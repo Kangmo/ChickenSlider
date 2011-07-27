@@ -79,14 +79,24 @@
 	totalTime += delta;
 
     StageScene* stage = [StageScene sharedStageScene];
+	Car* car = stage.car;
     
 	// Continuous fire
 	if (fireButton.active && totalTime > nextShotTime)
 	{
 		nextShotTime = totalTime + 0.5f;
 
+        CGPoint force = ccpMult(joystick.velocity, 150);
+        force.x = -force.x;
+        b2MassData mass;
+        b2Body * body = car->getBody();
+        body->GetMassData(&mass);
+        const b2Vec2 impulse(force.x, force.y);
+
+        body->ApplyImpulse(impulse, mass.center);
 //		[game shootBulletFromShip:[game defaultShip]];
-	}
+
+    }
 	
 	// Allow faster shooting by quickly tapping the fire button.
 	if (fireButton.active == NO)
@@ -95,8 +105,6 @@
 	}
 	
 	// Set the speed of the wheel.
-	Car* car = stage.car;
-	
     static float32 previousRadiansPerSec = 0;
 	CGPoint velocity = ccpMult(joystick.velocity, -150);
     

@@ -21,7 +21,7 @@
 
 #define GAME_AUTOROTATION kGameAutorotationNone
 
-#define LOAD_RESOURCE_FROM_TEST_WEB (1)
+//#define LOAD_RESOURCE_FROM_TEST_WEB (1)
 #define TEST_WEB_URL_PREFIX @"http://192.168.123.147/~kmkim/rocknroll_Resources/"
 
 

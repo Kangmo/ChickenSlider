@@ -48,7 +48,7 @@
 	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
-	
+//        [CCDirector setDirectorType:CCDirectorTypeThreadMainLoop];
 	
 	CCDirector *director = [CCDirector sharedDirector];
 	
@@ -66,6 +66,7 @@
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
+	[glView setMultipleTouchEnabled:YES];
 	
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
@@ -88,7 +89,6 @@
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
 	
-	
 	// make the OpenGLView a child of the view controller
 	[viewController setView:glView];
 	
@@ -109,54 +109,23 @@
     CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
 	// Run the main menu Scene
 	[[CCDirector sharedDirector] runWithScene: theFirstScene];
-/*    
-	// Init the window
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	
-	// cocos2d will inherit these values
-	[window setUserInteractionEnabled:YES];	
-	[window setMultipleTouchEnabled:YES];
-	
-	// must be called before any othe call to the director
-	// WARNING: FastDirector doesn't interact well with UIKit controls
-    //	[Director useFastDirector];
-	
-	// Use RGBA_8888 buffers
-	// Default is: RGB_565 buffers
-	[[CCDirector sharedDirector] setPixelFormat:kPixelFormatRGBA8888];
-	
-	// Create a depth buffer of 16 bits
-	// Enable it if you are going to use 3D transitions or 3d objects
-    //	[[Director sharedDirector] setDepthBufferFormat:kDepthBuffer16];
-	
-	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
-	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
-	// You can change anytime.
-	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
- 
-    
-	
-	// before creating any layer, set the landscape mode
-	[[CCDirector sharedDirector] setDeviceOrientation:CCDeviceOrientationLandscapeRight];
-	[[CCDirector sharedDirector] setAnimationInterval:1.0/60];
-	[[CCDirector sharedDirector] setDisplayFPS:YES];
-	
-	// create an openGL view inside a window
-	[[CCDirector sharedDirector] attachInView:window];	
-	[window makeKeyAndVisible];		
-    
-    
-	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];    
-*/ 
 }
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];
 }
-
+/*
+-(void) resumeGame:(NSTimer *) sender {
+	[[CCDirector sharedDirector] resume];
+}
+*/
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] resume];
+/*    
+    // If we schedule the resume, we fix the issue of drop to 40fps on iOS4.X
+	[NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(resumeGame:) userInfo:nil repeats:NO];
+ */
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
