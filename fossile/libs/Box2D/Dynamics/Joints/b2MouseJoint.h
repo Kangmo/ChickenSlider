@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2007 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -62,10 +62,10 @@ class b2MouseJoint : public b2Joint
 public:
 
 	/// Implements b2Joint.
-	b2Vec2 GetAnchor1() const;
+	b2Vec2 GetAnchorA() const;
 
 	/// Implements b2Joint.
-	b2Vec2 GetAnchor2() const;
+	b2Vec2 GetAnchorB() const;
 
 	/// Implements b2Joint.
 	b2Vec2 GetReactionForce(float32 inv_dt) const;
@@ -75,26 +75,49 @@ public:
 
 	/// Use this to update the target point.
 	void SetTarget(const b2Vec2& target);
+	const b2Vec2& GetTarget() const;
 
-	//--------------- Internals Below -------------------
+	/// Set/get the maximum force in Newtons.
+	void SetMaxForce(float32 force);
+	float32 GetMaxForce() const;
+
+	/// Set/get the frequency in Hertz.
+	void SetFrequency(float32 hz);
+	float32 GetFrequency() const;
+
+	/// Set/get the damping ratio (dimensionless).
+	void SetDampingRatio(float32 ratio);
+	float32 GetDampingRatio() const;
+
+protected:
+	friend class b2Joint;
 
 	b2MouseJoint(const b2MouseJointDef* def);
 
-	void InitVelocityConstraints(const b2TimeStep& step);
-	void SolveVelocityConstraints(const b2TimeStep& step);
-	bool SolvePositionConstraints(float32 baumgarte) { B2_NOT_USED(baumgarte); return true; }
+	void InitVelocityConstraints(const b2SolverData& data);
+	void SolveVelocityConstraints(const b2SolverData& data);
+	bool SolvePositionConstraints(const b2SolverData& data);
 
-	b2Vec2 m_localAnchor;
-	b2Vec2 m_target;
-	b2Vec2 m_impulse;
-
-	b2Mat22 m_mass;		// effective mass for point-to-point constraint.
-	b2Vec2 m_C;				// position error
-	float32 m_maxForce;
+	b2Vec2 m_localAnchorB;
+	b2Vec2 m_targetA;
 	float32 m_frequencyHz;
 	float32 m_dampingRatio;
 	float32 m_beta;
+	
+	// Solver shared
+	b2Vec2 m_impulse;
+	float32 m_maxForce;
 	float32 m_gamma;
+
+	// Solver temp
+	int32 m_indexA;
+	int32 m_indexB;
+	b2Vec2 m_rB;
+	b2Vec2 m_localCenterB;
+	float32 m_invMassB;
+	float32 m_invIB;
+	b2Mat22 m_mass;
+	b2Vec2 m_C;
 };
 
 #endif

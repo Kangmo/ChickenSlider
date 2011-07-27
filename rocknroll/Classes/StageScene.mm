@@ -18,6 +18,7 @@
 #include "GeneralScene.h"
 
 #include "InputLayer.h"
+#include "b2WorldEx.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -85,7 +86,7 @@ static StageScene* instanceOfStageScene;
 		// Do we want to let bodies sleep?
 		bool doSleep = true;
 		// Construct a world object, which will hold and simulate the rigid bodies.
-		world = new b2World(gravity, doSleep);
+		world = new b2WorldEx(gravity, doSleep);
 		world->SetContinuousPhysics(true);
 		
 		FollowCamera * followCam = [[FollowCamera alloc] init];
@@ -96,11 +97,20 @@ static StageScene* instanceOfStageScene;
 
 		world->SetDebugDraw(m_debugDraw);
 		uint32 flags = 0;
+        
+		flags += b2Draw::e_shapeBit;
+		flags += b2Draw::e_jointBit;
+		//flags += b2DebugDraw::e_aabbBit;
+		//flags += b2Draw::e_pairBit;
+		flags += b2Draw::e_centerOfMassBit;
+        // ver 2.1.2
+/*        
 		flags += b2DebugDraw::e_shapeBit;
 		flags += b2DebugDraw::e_jointBit;
 		//flags += b2DebugDraw::e_aabbBit;
 		flags += b2DebugDraw::e_pairBit;
 		flags += b2DebugDraw::e_centerOfMassBit;
+*/ 
 		m_debugDraw->SetFlags(flags);		
 		
 		

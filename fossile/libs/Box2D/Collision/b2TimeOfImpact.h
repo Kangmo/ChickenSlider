@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -21,7 +21,6 @@
 
 #include <Box2D/Common/b2Math.h>
 #include <Box2D/Collision/b2Distance.h>
-#include <climits>
 
 /// Input parameters for b2TimeOfImpact
 struct b2TOIInput
@@ -30,16 +29,30 @@ struct b2TOIInput
 	b2DistanceProxy proxyB;
 	b2Sweep sweepA;
 	b2Sweep sweepB;
-	float32 tolerance;
+	float32 tMax;		// defines sweep interval [0, tMax]
 };
 
-/// Compute the time when two shapes begin to touch or touch at a closer distance.
-/// TOI considers the shape radii. It attempts to have the radii overlap by the tolerance.
-/// Iterations terminate with the overlap is within 0.5 * tolerance. The tolerance should be
-/// smaller than sum of the shape radii.
-/// @warning the sweeps must have the same time interval.
-/// @return the fraction between [0,1] in which the shapes first touch.
-/// fraction=0 means the shapes begin touching/overlapped, and fraction=1 means the shapes don't touch.
-float32 b2TimeOfImpact(const b2TOIInput* input);
+// Output parameters for b2TimeOfImpact.
+struct b2TOIOutput
+{
+	enum State
+	{
+		e_unknown,
+		e_failed,
+		e_overlapped,
+		e_touching,
+		e_separated
+	};
+
+	State state;
+	float32 t;
+};
+
+/// Compute the upper bound on time before two shapes penetrate. Time is represented as
+/// a fraction between [0,tMax]. This uses a swept separating axis and may miss some intermediate,
+/// non-tunneling collision. If you change the time interval, you should call this function
+/// again.
+/// Note: use b2Distance to compute the contact point and normal at the time of impact.
+void b2TimeOfImpact(b2TOIOutput* output, const b2TOIInput* input);
 
 #endif

@@ -11,6 +11,7 @@
 #import "svgLoader.h"
 #import "Util.h"
 #import "RetainCountTrace.h"
+#import "b2WorldEx.h"
 
 @implementation GeneralScene
 
@@ -46,7 +47,7 @@
             // Do we want to let bodies sleep?
             bool doSleep = true;
             // Construct a world object, which will hold and simulate the rigid bodies.
-            world_ = new b2World(gravity, doSleep);
+            world_ = new b2WorldEx(gravity, doSleep);
 
             // Define the ground body.
             b2BodyDef groundBodyDef;

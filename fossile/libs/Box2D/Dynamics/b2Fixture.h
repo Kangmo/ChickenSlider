@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -26,6 +26,7 @@
 class b2BlockAllocator;
 class b2Body;
 class b2BroadPhase;
+class b2Fixture;
 
 /// This holds contact filtering data.
 struct b2Filter
@@ -61,8 +62,6 @@ struct b2FixtureDef
 		isSensor = false;
 	}
 
-	virtual ~b2FixtureDef() {}
-
 	/// The shape, this must be set. The shape will be cloned, so you
 	/// can create the shape on the stack.
 	const b2Shape* shape;
@@ -87,6 +86,14 @@ struct b2FixtureDef
 	b2Filter filter;
 };
 
+/// This proxy is used internally to connect fixtures to the broad-phase.
+struct b2FixtureProxy
+{
+	b2AABB aabb;
+	b2Fixture* fixture;
+	int32 childIndex;
+	int32 proxyId;
+};
 
 /// A fixture is used to attach a shape to a body for collision detection. A fixture
 /// inherits its transform from its parent. Fixtures hold additional non-geometric data
@@ -102,85 +109,107 @@ public:
 
 	/// Get the child shape. You can modify the child shape, however you should not change the
 	/// number of vertices because this will crash some collision caching mechanisms.
-	const b2Shape* GetShape() const;
+	/// Manipulating the shape may lead to non-physical behavior.
 	b2Shape* GetShape();
+	const b2Shape* GetShape() const;
+
+	/// Set if this fixture is a sensor.
+	void SetSensor(bool sensor);
 
 	/// Is this fixture a sensor (non-solid)?
 	/// @return the true if the shape is a sensor.
 	bool IsSensor() const;
 
-	/// Set if this fixture is a sensor.
-	void SetSensor(bool sensor);
-
-	/// Set the contact filtering data. This is an expensive operation and should
-	/// not be called frequently. This will not update contacts until the next time
-	/// step when either parent body is awake.
+	/// Set the contact filtering data. This will not update contacts until the next time
+	/// step when either parent body is active and awake.
+	/// This automatically calls Refilter.
 	void SetFilterData(const b2Filter& filter);
 
 	/// Get the contact filtering data.
 	const b2Filter& GetFilterData() const;
 
+	/// Call this if you want to establish collision that was previously disabled by b2ContactFilter::ShouldCollide.
+	void Refilter();
+
 	/// Get the parent body of this fixture. This is NULL if the fixture is not attached.
 	/// @return the parent body.
 	b2Body* GetBody();
+	const b2Body* GetBody() const;
 
 	/// Get the next fixture in the parent body's fixture list.
 	/// @return the next shape.
 	b2Fixture* GetNext();
+	const b2Fixture* GetNext() const;
 
 	/// Get the user data that was assigned in the fixture definition. Use this to
 	/// store your application specific data.
-	void* GetUserData();
+	void* GetUserData() const;
 
 	/// Set the user data. Use this to store your application specific data.
 	void SetUserData(void* data);
 
-	/// Test a point for containment in this fixture. This only works for convex shapes.
-	/// @param xf the shape world transform.
+	/// Test a point for containment in this fixture.
 	/// @param p a point in world coordinates.
 	bool TestPoint(const b2Vec2& p) const;
 
 	/// Cast a ray against this shape.
 	/// @param output the ray-cast results.
 	/// @param input the ray-cast input parameters.
-	void RayCast(b2RayCastOutput* output, const b2RayCastInput& input) const;
+	bool RayCast(b2RayCastOutput* output, const b2RayCastInput& input, int32 childIndex) const;
 
 	/// Get the mass data for this fixture. The mass data is based on the density and
-	/// the shape. The rotational inertia is about the shape's origin.
-	const b2MassData& GetMassData() const;
+	/// the shape. The rotational inertia is about the shape's origin. This operation
+	/// may be expensive.
+	void GetMassData(b2MassData* massData) const;
+
+	/// Set the density of this fixture. This will _not_ automatically adjust the mass
+	/// of the body. You must call b2Body::ResetMassData to update the body's mass.
+	void SetDensity(float32 density);
+
+	/// Get the density of this fixture.
+	float32 GetDensity() const;
 
 	/// Get the coefficient of friction.
 	float32 GetFriction() const;
 
-	/// Set the coefficient of friction.
+	/// Set the coefficient of friction. This will _not_ change the friction of
+	/// existing contacts.
 	void SetFriction(float32 friction);
 
 	/// Get the coefficient of restitution.
 	float32 GetRestitution() const;
 
-	/// Set the coefficient of restitution.
+	/// Set the coefficient of restitution. This will _not_ change the restitution of
+	/// existing contacts.
 	void SetRestitution(float32 restitution);
+
+	/// Get the fixture's AABB. This AABB may be enlarge and/or stale.
+	/// If you need a more accurate AABB, compute it using the shape and
+	/// the body transform.
+	const b2AABB& GetAABB(int32 childIndex) const;
 
 protected:
 
 	friend class b2Body;
 	friend class b2World;
+	friend class b2WorldEx;
 	friend class b2Contact;
 	friend class b2ContactManager;
 
 	b2Fixture();
-	~b2Fixture();
 
 	// We need separation create/destroy functions from the constructor/destructor because
-	// the destructor cannot access the allocator or broad-phase (no destructor arguments allowed by C++).
-	void Create(b2BlockAllocator* allocator, b2BroadPhase* broadPhase, b2Body* body, const b2Transform& xf, const b2FixtureDef* def);
-	void Destroy(b2BlockAllocator* allocator, b2BroadPhase* broadPhase);
+	// the destructor cannot access the allocator (no destructor arguments allowed by C++).
+	void Create(b2BlockAllocator* allocator, b2Body* body, const b2FixtureDef* def);
+	void Destroy(b2BlockAllocator* allocator);
+
+	// These support body activation/deactivation.
+	void CreateProxies(b2BroadPhase* broadPhase, const b2Transform& xf);
+	void DestroyProxies(b2BroadPhase* broadPhase);
 
 	void Synchronize(b2BroadPhase* broadPhase, const b2Transform& xf1, const b2Transform& xf2);
 
-	b2AABB m_aabb;
-
-	b2MassData m_massData;
+	float32 m_density;
 
 	b2Fixture* m_next;
 	b2Body* m_body;
@@ -190,7 +219,9 @@ protected:
 	float32 m_friction;
 	float32 m_restitution;
 
-	int32 m_proxyId;
+	b2FixtureProxy* m_proxies;
+	int32 m_proxyCount;
+
 	b2Filter m_filter;
 
 	bool m_isSensor;
@@ -203,12 +234,12 @@ inline b2Shape::Type b2Fixture::GetType() const
 	return m_shape->GetType();
 }
 
-inline const b2Shape* b2Fixture::GetShape() const
+inline b2Shape* b2Fixture::GetShape()
 {
 	return m_shape;
 }
 
-inline b2Shape* b2Fixture::GetShape()
+inline const b2Shape* b2Fixture::GetShape() const
 {
 	return m_shape;
 }
@@ -223,7 +254,7 @@ inline const b2Filter& b2Fixture::GetFilterData() const
 	return m_filter;
 }
 
-inline void* b2Fixture::GetUserData()
+inline void* b2Fixture::GetUserData() const
 {
 	return m_userData;
 }
@@ -238,9 +269,30 @@ inline b2Body* b2Fixture::GetBody()
 	return m_body;
 }
 
+inline const b2Body* b2Fixture::GetBody() const
+{
+	return m_body;
+}
+
 inline b2Fixture* b2Fixture::GetNext()
 {
 	return m_next;
+}
+
+inline const b2Fixture* b2Fixture::GetNext() const
+{
+	return m_next;
+}
+
+inline void b2Fixture::SetDensity(float32 density)
+{
+	b2Assert(b2IsValid(density) && density >= 0.0f);
+	m_density = density;
+}
+
+inline float32 b2Fixture::GetDensity() const
+{
+	return m_density;
 }
 
 inline float32 b2Fixture::GetFriction() const
@@ -268,14 +320,20 @@ inline bool b2Fixture::TestPoint(const b2Vec2& p) const
 	return m_shape->TestPoint(m_body->GetTransform(), p);
 }
 
-inline void b2Fixture::RayCast(b2RayCastOutput* output, const b2RayCastInput& input) const
+inline bool b2Fixture::RayCast(b2RayCastOutput* output, const b2RayCastInput& input, int32 childIndex) const
 {
-	m_shape->RayCast(output, input, m_body->GetTransform());
+	return m_shape->RayCast(output, input, m_body->GetTransform(), childIndex);
 }
 
-inline const b2MassData& b2Fixture::GetMassData() const
+inline void b2Fixture::GetMassData(b2MassData* massData) const
 {
-	return m_massData;
+	m_shape->ComputeMass(massData, m_density);
+}
+
+inline const b2AABB& b2Fixture::GetAABB(int32 childIndex) const
+{
+	b2Assert(0 <= childIndex && childIndex < m_proxyCount);
+	return m_proxies[childIndex].aabb;
 }
 
 #endif

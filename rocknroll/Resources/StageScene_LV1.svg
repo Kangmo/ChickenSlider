@@ -195,11 +195,11 @@
  x="62.433586"
  y="109.52361"
  isCircle=""
- phy_density="0.2"
+ phy_density="1.0"
  phy_friction="1.0"
  phy_restitution="0.001" />
 <rect
- phy_density="0.2"
+ phy_density="1.0"
  isCircle=""
  y="109.74582"
  x="122.71295"

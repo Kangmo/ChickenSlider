@@ -147,7 +147,7 @@
 		bodyPos.y = maxY - bi.rect.height/2.0f;
 		
         // by kangmo kim
-        //bodyDef.type = b2_dynamicBody;
+        bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(bodyPos.x, bodyPos.y);
 
 		b2Body *body = world->CreateBody(&bodyDef);
@@ -313,7 +313,7 @@
 			
 			b2BodyDef bodyDef;
             // by kangmo kim
-            //bodyDef.type = b2_dynamicBody;
+            bodyDef.type = b2_dynamicBody;
 			bodyDef.position.Set(fx, fy);
            
 			b2Body *body = world->CreateBody(&bodyDef);
@@ -343,14 +343,14 @@
 		{
 			b2BodyDef bodyDef;
             // by kangmo kim
-            //bodyDef.type = b2_dynamicBody;
+            bodyDef.type = b2_dynamicBody;
 			bodyDef.position.Set(fx, fy);
             // if "objectType" attr is defined, it is simply a game object not affected by physics
             if (objectType)
 			{
-                bodyDef.isSleeping = true;
-                // box2d 2.1 API :
-                // bodyDef.active = true;
+                bodyDef.active = false;
+                // box2d 2.0 API :
+                // bodyDef.isSleeping = true;
             }
 			
 			//bodyDef.userData = sprite;
@@ -450,8 +450,9 @@
 			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
 			NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
 			NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
-			
-			b2PolygonShape edgeShape;
+            b2EdgeShape edgeShape;
+			// v2.1.2
+			//b2PolygonShape edgeShape;
 			for (NSString * curComponent in dataComponents) 
 			{
 				if([curComponent length] < 3) continue;
@@ -475,9 +476,9 @@
 						p1.x /=scaleFactor;
 						p2.x /=scaleFactor;
 
-
-						
-						edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+                        edgeShape.Set( b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+						// 2.1.2
+						//edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
                         
 						float32 staticBodyDensity = 0;
 						b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
@@ -538,7 +539,7 @@
 					
 					b2BodyDef bodyDef;
                     // by kangmo kim
-                    //bodyDef.type = b2_dynamicBody;
+                    bodyDef.type = b2_dynamicBody;
 					bodyDef.position.Set(avg.x, avg.y);
 					
 					//bodyDef.userData = sprite;
@@ -645,13 +646,13 @@
 			//p1.y = worldHeight-p1.y;
 			b2RevoluteJointDef jointDef;
 			
-			jointDef.enableMotor= curJointData.motorEnabled?true:false;
-			jointDef.motorSpeed = curJointData.motorSpeed;
-			jointDef.maxMotorTorque = curJointData.maxTorque;
-			
 			if(b2) jointDef.Initialize(b1, b2, b2Vec2(p1.x,p1.y));
 			else jointDef.Initialize(b1, staticBody, b2Vec2(p1.x,p1.y));
-			
+
+            jointDef.enableMotor= curJointData.motorEnabled?true:false;
+			jointDef.motorSpeed = curJointData.motorSpeed;
+			jointDef.maxMotorTorque = curJointData.maxTorque;
+
 			world->CreateJoint(&jointDef);
 			CCLOG(@"SvgLoader: Loaded RevoluteJoint. body1=\"%@\" body2=\"%@\" at %f,%f ",
 				  curJointData.body1,curJointData.body2==nil?@"static":curJointData.body2,p1.x,p1.y);

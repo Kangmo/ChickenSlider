@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2007-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2007-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -18,12 +18,14 @@
 
 #include <Box2D/Collision/b2Distance.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
+#include <Box2D/Collision/Shapes/b2EdgeShape.h>
+#include <Box2D/Collision/Shapes/b2LoopShape.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 
 // GJK using Voronoi regions (Christer Ericson) and Barycentric coordinates.
 int32 b2_gjkCalls, b2_gjkIters, b2_gjkMaxIters;
 
-void b2DistanceProxy::Set(const b2Shape* shape)
+void b2DistanceProxy::Set(const b2Shape* shape, int32 index)
 {
 	switch (shape->GetType())
 	{
@@ -42,6 +44,36 @@ void b2DistanceProxy::Set(const b2Shape* shape)
 			m_vertices = polygon->m_vertices;
 			m_count = polygon->m_vertexCount;
 			m_radius = polygon->m_radius;
+		}
+		break;
+
+	case b2Shape::e_loop:
+		{
+			const b2LoopShape* loop = (b2LoopShape*)shape;
+			b2Assert(0 <= index && index < loop->GetCount());
+
+			m_buffer[0] = loop->GetVertex(index);
+			if (index + 1 < loop->GetCount())
+			{
+				m_buffer[1] = loop->GetVertex(index + 1);
+			}
+			else
+			{
+				m_buffer[1] = loop->GetVertex(0);
+			}
+
+			m_vertices = m_buffer;
+			m_count = 2;
+			m_radius = loop->m_radius;
+		}
+		break;
+
+	case b2Shape::e_edge:
+		{
+			const b2EdgeShape* edge = (b2EdgeShape*)shape;
+			m_vertices = &edge->m_vertex1;
+			m_count = 2;
+			m_radius = edge->m_radius;
 		}
 		break;
 
@@ -67,7 +99,7 @@ struct b2Simplex
 					const b2DistanceProxy* proxyA, const b2Transform& transformA,
 					const b2DistanceProxy* proxyB, const b2Transform& transformB)
 	{
-		b2Assert(0 <= cache->count && cache->count <= 3);
+		b2Assert(cache->count <= 3);
 		
 		// Copy data from cache.
 		m_count = cache->count;
@@ -91,7 +123,7 @@ struct b2Simplex
 		{
 			float32 metric1 = cache->metric;
 			float32 metric2 = GetMetric();
-			if (metric2 < 0.5f * metric1 || 2.0f * metric1 < metric2 || metric2 < B2_FLT_EPSILON)
+			if (metric2 < 0.5f * metric1 || 2.0f * metric1 < metric2 || metric2 < b2_epsilon)
 			{
 				// Reset the simplex.
 				m_count = 0;
@@ -355,7 +387,7 @@ void b2Simplex::Solve3()
 	{
 		float32 inv_d12 = 1.0f / (d12_1 + d12_2);
 		m_v1.a = d12_1 * inv_d12;
-		m_v2.a = d12_1 * inv_d12;
+		m_v2.a = d12_2 * inv_d12;
 		m_count = 2;
 		return;
 	}
@@ -487,7 +519,7 @@ void b2Distance(b2DistanceOutput* output,
 		b2Vec2 d = simplex.GetSearchDirection();
 
 		// Ensure the search direction is numerically fit.
-		if (d.LengthSquared() < B2_FLT_EPSILON * B2_FLT_EPSILON)
+		if (d.LengthSquared() < b2_epsilon * b2_epsilon)
 		{
 			// The origin is probably contained by a line segment
 			// or triangle. Thus the shapes are overlapped.
@@ -500,10 +532,10 @@ void b2Distance(b2DistanceOutput* output,
 
 		// Compute a tentative new simplex vertex using support points.
 		b2SimplexVertex* vertex = vertices + simplex.m_count;
-		vertex->indexA = proxyA->GetSupport(b2MulT(transformA.R, -d));
+		vertex->indexA = proxyA->GetSupport(b2MulT(transformA.q, -d));
 		vertex->wA = b2Mul(transformA, proxyA->GetVertex(vertex->indexA));
 		b2Vec2 wBLocal;
-		vertex->indexB = proxyB->GetSupport(b2MulT(transformB.R, d));
+		vertex->indexB = proxyB->GetSupport(b2MulT(transformB.q, d));
 		vertex->wB = b2Mul(transformB, proxyB->GetVertex(vertex->indexB));
 		vertex->w = vertex->wB - vertex->wA;
 
@@ -548,7 +580,7 @@ void b2Distance(b2DistanceOutput* output,
 		float32 rA = proxyA->m_radius;
 		float32 rB = proxyB->m_radius;
 
-		if (output->distance > rA + rB && output->distance > B2_FLT_EPSILON)
+		if (output->distance > rA + rB && output->distance > b2_epsilon)
 		{
 			// Shapes are still no overlapped.
 			// Move the witness points to the outer surface.

@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -24,16 +24,20 @@
 
 \section intro_sec Getting Started
 
-For tutorials please see http://www.box2d.org/manual.html
+For documentation please see http://box2d.org/documentation.html
 
-For discussion please visit http://www.box2d.org/forum
+For discussion please visit http://box2d.org/forum
 */
 
 // These include files constitute the main Box2D API
 
 #include <Box2D/Common/b2Settings.h>
+#include <Box2D/Common/b2Draw.h>
+#include <Box2D/Common/b2Timer.h>
 
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
+#include <Box2D/Collision/Shapes/b2EdgeShape.h>
+#include <Box2D/Collision/Shapes/b2LoopShape.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 
 #include <Box2D/Collision/b2BroadPhase.h>
@@ -50,11 +54,16 @@ For discussion please visit http://www.box2d.org/forum
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 
 #include <Box2D/Dynamics/Joints/b2DistanceJoint.h>
+#include <Box2D/Dynamics/Joints/b2FrictionJoint.h>
 #include <Box2D/Dynamics/Joints/b2GearJoint.h>
-#include <Box2D/Dynamics/Joints/b2LineJoint.h>
+#include <Box2D/Dynamics/Joints/b2WheelJoint.h>
 #include <Box2D/Dynamics/Joints/b2MouseJoint.h>
 #include <Box2D/Dynamics/Joints/b2PrismaticJoint.h>
 #include <Box2D/Dynamics/Joints/b2PulleyJoint.h>
 #include <Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+#include <Box2D/Dynamics/Joints/b2RopeJoint.h>
+#include <Box2D/Dynamics/Joints/b2WeldJoint.h>
+
+#include <Box2D/Rope/b2Rope.h>
 
 #endif

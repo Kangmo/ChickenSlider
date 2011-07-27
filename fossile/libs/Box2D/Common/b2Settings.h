@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -22,7 +22,7 @@
 #include <cassert>
 #include <cmath>
 
-#define B2_NOT_USED(x) x
+#define B2_NOT_USED(x) ((void)(x))
 #define b2Assert(A) assert(A)
 
 typedef signed char	int8;
@@ -32,10 +32,11 @@ typedef unsigned char uint8;
 typedef unsigned short uint16;
 typedef unsigned int uint32;
 typedef float float32;
+typedef double float64;
 
-#define	B2_FLT_MAX	FLT_MAX
-#define	B2_FLT_EPSILON	FLT_EPSILON
-#define b2_pi						3.14159265359f
+#define	b2_maxFloat		FLT_MAX
+#define	b2_epsilon		FLT_EPSILON
+#define b2_pi			3.14159265359f
 
 /// @file
 /// Global tuning constants based on meters-kilograms-seconds (MKS) units.
@@ -44,10 +45,11 @@ typedef float float32;
 // Collision
 
 /// The maximum number of contact points between two convex shapes.
-#define b2_maxManifoldPoints		2
+#define b2_maxManifoldPoints	2
 
-/// The maximum number of vertices on a convex polygon.
-#define b2_maxPolygonVertices		8
+/// The maximum number of vertices on a convex polygon. You cannot increase
+/// this too much because b2BlockAllocator has a maximum object size.
+#define b2_maxPolygonVertices	8
 
 /// This is used to fatten AABBs in the dynamic tree. This allows proxies
 /// to move by a small amount without triggering a tree adjustment.
@@ -61,25 +63,25 @@ typedef float float32;
 
 /// A small length used as a collision and constraint tolerance. Usually it is
 /// chosen to be numerically significant, but visually insignificant.
-#define b2_linearSlop				0.005f
+#define b2_linearSlop			0.005f
 
 /// A small angle used as a collision and constraint tolerance. Usually it is
 /// chosen to be numerically significant, but visually insignificant.
-#define b2_angularSlop				(2.0f / 180.0f * b2_pi)
+#define b2_angularSlop			(2.0f / 180.0f * b2_pi)
 
 /// The radius of the polygon/edge shape skin. This should not be modified. Making
-/// this smaller means polygons will have and insufficient for continuous collision.
+/// this smaller means polygons will have an insufficient buffer for continuous collision.
 /// Making it larger may create artifacts for vertex collision.
-#define b2_polygonRadius			(2.0f * b2_linearSlop)
+#define b2_polygonRadius		(2.0f * b2_linearSlop)
+
+/// Maximum number of sub-steps per contact in continuous physics simulation.
+#define b2_maxSubSteps			8
 
 
 // Dynamics
 
-/// Maximum number of contacts to be handled to solve a TOI island.
-#define b2_maxTOIContactsPerIsland	32
-
-/// Maximum number of joints to be handled to solve a TOI island.
-#define b2_maxTOIJointsPerIsland	32
+/// Maximum number of contacts to be handled to solve a TOI impact.
+#define b2_maxTOIContacts			32
 
 /// A velocity threshold for elastic collisions. Any collision with a relative linear
 /// velocity below this threshold will be treated as inelastic.
@@ -106,7 +108,9 @@ typedef float float32;
 /// This scale factor controls how fast overlap is resolved. Ideally this would be 1 so
 /// that overlap is removed in one time step. However using values close to 1 often lead
 /// to overshoot.
-#define b2_contactBaumgarte			0.2f
+#define b2_baumgarte				0.2f
+#define b2_toiBaugarte				0.75f
+
 
 // Sleep
 
@@ -120,9 +124,6 @@ typedef float float32;
 #define b2_angularSleepTolerance	(2.0f / 180.0f * b2_pi)
 
 // Memory Allocation
-
-/// The current number of bytes allocated through b2Alloc.
-extern int32 b2_byteCount;
 
 /// Implement this function to use your own memory allocator.
 void* b2Alloc(int32 size);
@@ -141,17 +142,5 @@ struct b2Version
 
 /// Current version.
 extern b2Version b2_version;
-
-/// Friction mixing law. Feel free to customize this.
-inline float32 b2MixFriction(float32 friction1, float32 friction2)
-{
-	return sqrtf(friction1 * friction2);
-}
-
-/// Restitution mixing law. Feel free to customize this.
-inline float32 b2MixRestitution(float32 restitution1, float32 restitution2)
-{
-	return restitution1 > restitution2 ? restitution1 : restitution2;
-}
 
 #endif

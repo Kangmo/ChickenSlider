@@ -93,7 +93,7 @@
         body->GetMassData(&mass);
         const b2Vec2 impulse(force.x, force.y);
 
-        body->ApplyImpulse(impulse, mass.center);
+        body->ApplyLinearImpulse(impulse, mass.center);
 //		[game shootBulletFromShip:[game defaultShip]];
 
     }

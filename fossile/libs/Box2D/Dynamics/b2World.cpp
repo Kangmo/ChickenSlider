@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2011 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -26,7 +26,12 @@
 #include <Box2D/Collision/b2Collision.h>
 #include <Box2D/Collision/b2BroadPhase.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
+#include <Box2D/Collision/Shapes/b2EdgeShape.h>
+#include <Box2D/Collision/Shapes/b2LoopShape.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Box2D/Collision/b2TimeOfImpact.h>
+#include <Box2D/Common/b2Draw.h>
+#include <Box2D/Common/b2Timer.h>
 #include <new>
 
 b2World::b2World(const b2Vec2& gravity, bool doSleep)
@@ -42,19 +47,41 @@ b2World::b2World(const b2Vec2& gravity, bool doSleep)
 
 	m_warmStarting = true;
 	m_continuousPhysics = true;
+	m_subStepping = false;
+
+	m_stepComplete = true;
 
 	m_allowSleep = doSleep;
 	m_gravity = gravity;
 
-	m_flags = 0;
+	m_flags = e_clearForces;
 
 	m_inv_dt0 = 0.0f;
 
 	m_contactManager.m_allocator = &m_blockAllocator;
+
+	memset(&m_profile, 0, sizeof(b2Profile));
 }
 
 b2World::~b2World()
 {
+	// Some shapes allocate using b2Alloc.
+	b2Body* b = m_bodyList;
+	while (b)
+	{
+		b2Body* bNext = b->m_next;
+
+		b2Fixture* f = b->m_fixtureList;
+		while (f)
+		{
+			b2Fixture* fNext = f->m_next;
+			f->m_proxyCount = 0;
+			f->Destroy(&m_blockAllocator);
+			f = fNext;
+		}
+
+		b = bNext;
+	}
 }
 
 void b2World::SetDestructionListener(b2DestructionListener* listener)
@@ -72,7 +99,7 @@ void b2World::SetContactListener(b2ContactListener* listener)
 	m_contactManager.m_contactListener = listener;
 }
 
-void b2World::SetDebugDraw(b2DebugDraw* debugDraw)
+void b2World::SetDebugDraw(b2Draw* debugDraw)
 {
 	m_debugDraw = debugDraw;
 }
@@ -123,6 +150,8 @@ void b2World::DestroyBody(b2Body* b)
 		}
 
 		DestroyJoint(je0->joint);
+
+		b->m_jointList = je;
 	}
 	b->m_jointList = NULL;
 
@@ -148,9 +177,13 @@ void b2World::DestroyBody(b2Body* b)
 			m_destructionListener->SayGoodbye(f0);
 		}
 
-		f0->Destroy(&m_blockAllocator, &m_contactManager.m_broadPhase);
+		f0->DestroyProxies(&m_contactManager.m_broadPhase);
+		f0->Destroy(&m_blockAllocator);
 		f0->~b2Fixture();
 		m_blockAllocator.Free(f0, sizeof(b2Fixture));
+
+		b->m_fixtureList = f;
+		b->m_fixtureCount -= 1;
 	}
 	b->m_fixtureList = NULL;
 	b->m_fixtureCount = 0;
@@ -211,22 +244,12 @@ b2Joint* b2World::CreateJoint(const b2JointDef* def)
 	if (j->m_bodyB->m_jointList) j->m_bodyB->m_jointList->prev = &j->m_edgeB;
 	j->m_bodyB->m_jointList = &j->m_edgeB;
 
-	b2Body* bodyA = def->body1;
-	b2Body* bodyB = def->body2;
-
-	bool staticA = bodyA->IsStatic();
-	bool staticB = bodyB->IsStatic();
+	b2Body* bodyA = def->bodyA;
+	b2Body* bodyB = def->bodyB;
 
 	// If the joint prevents collisions, then flag any contacts for filtering.
-	if (def->collideConnected == false && (staticA == false || staticB == false))
+	if (def->collideConnected == false)
 	{
-		// Ensure we iterate over contacts on a dynamic body (usually have less contacts
-		// than a static body). Ideally we will have a contact count on both bodies.
-		if (staticB)
-		{
-			b2Swap(bodyA, bodyB);
-		}
-
 		b2ContactEdge* edge = bodyB->GetContactList();
 		while (edge)
 		{
@@ -277,8 +300,8 @@ void b2World::DestroyJoint(b2Joint* j)
 	b2Body* bodyB = j->m_bodyB;
 
 	// Wake up connected bodies.
-	bodyA->WakeUp();
-	bodyB->WakeUp();
+	bodyA->SetAwake(true);
+	bodyB->SetAwake(true);
 
 	// Remove from body 1.
 	if (j->m_edgeA.prev)
@@ -344,6 +367,10 @@ void b2World::DestroyJoint(b2Joint* j)
 // Find islands, integrate and solve constraints, solve position constraints
 void b2World::Solve(const b2TimeStep& step)
 {
+	m_profile.solveInit = 0.0f;
+	m_profile.solveVelocity = 0.0f;
+	m_profile.solvePosition = 0.0f;
+
 	// Size the island for the worst case.
 	b2Island island(m_bodyCount,
 					m_contactManager.m_contactCount,
@@ -370,12 +397,18 @@ void b2World::Solve(const b2TimeStep& step)
 	b2Body** stack = (b2Body**)m_stackAllocator.Allocate(stackSize * sizeof(b2Body*));
 	for (b2Body* seed = m_bodyList; seed; seed = seed->m_next)
 	{
-		if (seed->m_flags & (b2Body::e_islandFlag | b2Body::e_sleepFlag))
+		if (seed->m_flags & b2Body::e_islandFlag)
 		{
 			continue;
 		}
 
-		if (seed->IsStatic())
+		if (seed->IsAwake() == false || seed->IsActive() == false)
+		{
+			continue;
+		}
+
+		// The seed can be dynamic or kinematic.
+		if (seed->GetType() == b2_staticBody)
 		{
 			continue;
 		}
@@ -391,14 +424,15 @@ void b2World::Solve(const b2TimeStep& step)
 		{
 			// Grab the next body off the stack and add it to the island.
 			b2Body* b = stack[--stackCount];
+			b2Assert(b->IsActive() == true);
 			island.Add(b);
 
 			// Make sure the body is awake.
-			b->m_flags &= ~b2Body::e_sleepFlag;
+			b->SetAwake(true);
 
 			// To keep islands as small as possible, we don't
 			// propagate islands across static bodies.
-			if (b->IsStatic())
+			if (b->GetType() == b2_staticBody)
 			{
 				continue;
 			}
@@ -406,20 +440,31 @@ void b2World::Solve(const b2TimeStep& step)
 			// Search all contacts connected to this body.
 			for (b2ContactEdge* ce = b->m_contactList; ce; ce = ce->next)
 			{
+				b2Contact* contact = ce->contact;
+
 				// Has this contact already been added to an island?
-				if (ce->contact->m_flags & b2Contact::e_islandFlag)
+				if (contact->m_flags & b2Contact::e_islandFlag)
 				{
 					continue;
 				}
 
 				// Is this contact solid and touching?
-				if (ce->contact->IsSolid() == false || ce->contact->IsTouching() == false)
+				if (contact->IsEnabled() == false ||
+					contact->IsTouching() == false)
 				{
 					continue;
 				}
 
-				island.Add(ce->contact);
-				ce->contact->m_flags |= b2Contact::e_islandFlag;
+				// Skip sensors.
+				bool sensorA = contact->m_fixtureA->m_isSensor;
+				bool sensorB = contact->m_fixtureB->m_isSensor;
+				if (sensorA || sensorB)
+				{
+					continue;
+				}
+
+				island.Add(contact);
+				contact->m_flags |= b2Contact::e_islandFlag;
 
 				b2Body* other = ce->other;
 
@@ -442,10 +487,17 @@ void b2World::Solve(const b2TimeStep& step)
 					continue;
 				}
 
+				b2Body* other = je->other;
+
+				// Don't simulate joints connected to inactive bodies.
+				if (other->IsActive() == false)
+				{
+					continue;
+				}
+
 				island.Add(je->joint);
 				je->joint->m_islandFlag = true;
 
-				b2Body* other = je->other;
 				if (other->m_flags & b2Body::e_islandFlag)
 				{
 					continue;
@@ -457,14 +509,18 @@ void b2World::Solve(const b2TimeStep& step)
 			}
 		}
 
-		island.Solve(step, m_gravity, m_allowSleep);
+		b2Profile profile;
+		island.Solve(&profile, step, m_gravity, m_allowSleep);
+		m_profile.solveInit += profile.solveInit;
+		m_profile.solveVelocity += profile.solveVelocity;
+		m_profile.solvePosition += profile.solvePosition;
 
 		// Post solve cleanup.
 		for (int32 i = 0; i < island.m_bodyCount; ++i)
 		{
 			// Allow static bodies to participate in other islands.
 			b2Body* b = island.m_bodies[i];
-			if (b->IsStatic())
+			if (b->GetType() == b2_staticBody)
 			{
 				b->m_flags &= ~b2Body::e_islandFlag;
 			}
@@ -473,63 +529,52 @@ void b2World::Solve(const b2TimeStep& step)
 
 	m_stackAllocator.Free(stack);
 
-	// Synchronize fixtures, check for out of range bodies.
-	for (b2Body* b = m_bodyList; b; b = b->GetNext())
 	{
-		if (b->m_flags & b2Body::e_sleepFlag)
+		b2Timer timer;
+		// Synchronize fixtures, check for out of range bodies.
+		for (b2Body* b = m_bodyList; b; b = b->GetNext())
 		{
-			continue;
+			// If a body was not in an island then it did not move.
+			if ((b->m_flags & b2Body::e_islandFlag) == 0)
+			{
+				continue;
+			}
+
+			if (b->GetType() == b2_staticBody)
+			{
+				continue;
+			}
+
+			// Update fixtures (for broad-phase).
+			b->SynchronizeFixtures();
 		}
 
-		if (b->IsStatic())
-		{
-			continue;
-		}
-
-		// Update fixtures (for broad-phase).
-		b->SynchronizeFixtures();
+		// Look for new contacts.
+		m_contactManager.FindNewContacts();
+		m_profile.broadphase = timer.GetMilliseconds();
 	}
-
-	// Look for new contacts.
-	m_contactManager.FindNewContacts();
 }
 
 // Find TOI contacts and solve them.
 void b2World::SolveTOI(const b2TimeStep& step)
 {
-	// Reserve an island and a queue for TOI island solution.
-	b2Island island(m_bodyCount,
-					b2_maxTOIContactsPerIsland,
-					b2_maxTOIJointsPerIsland,
-					&m_stackAllocator,
-					m_contactManager.m_contactListener);
+	b2Island island(2 * b2_maxTOIContacts, b2_maxTOIContacts, 0, &m_stackAllocator, m_contactManager.m_contactListener);
 
-	//Simple one pass queue
-	//Relies on the fact that we're only making one pass
-	//through and each body can only be pushed/popped once.
-	//To push: 
-	//  queue[queueStart+queueSize++] = newElement;
-	//To pop: 
-	//	poppedElement = queue[queueStart++];
-	//  --queueSize;
-	int32 queueCapacity = m_bodyCount;
-	b2Body** queue = (b2Body**)m_stackAllocator.Allocate(queueCapacity* sizeof(b2Body*));
-
-	for (b2Body* b = m_bodyList; b; b = b->m_next)
+	if (m_stepComplete)
 	{
-		b->m_flags &= ~b2Body::e_islandFlag;
-		b->m_sweep.t0 = 0.0f;
-	}
+		for (b2Body* b = m_bodyList; b; b = b->m_next)
+		{
+			b->m_flags &= ~b2Body::e_islandFlag;
+			b->m_sweep.alpha0 = 0.0f;
+		}
 
-	for (b2Contact* c = m_contactManager.m_contactList; c; c = c->m_next)
-	{
-		// Invalidate TOI
-		c->m_flags &= ~(b2Contact::e_toiFlag | b2Contact::e_islandFlag);
-	}
-
-	for (b2Joint* j = m_jointList; j; j = j->m_next)
-	{
-		j->m_islandFlag = false;
+		for (b2Contact* c = m_contactManager.m_contactList; c; c = c->m_next)
+		{
+			// Invalidate TOI
+			c->m_flags &= ~(b2Contact::e_toiFlag | b2Contact::e_islandFlag);
+			c->m_toiCount = 0;
+			c->m_toi = 1.0f;
+		}
 	}
 
 	// Find TOI events and solve them.
@@ -537,298 +582,303 @@ void b2World::SolveTOI(const b2TimeStep& step)
 	{
 		// Find the first TOI.
 		b2Contact* minContact = NULL;
-		float32 minTOI = 1.0f;
+		float32 minAlpha = 1.0f;
 
 		for (b2Contact* c = m_contactManager.m_contactList; c; c = c->m_next)
 		{
-			// Can this contact generate a solid TOI contact?
-			if (c->IsSolid() == false || c->IsContinuous() == false)
+			// Is this contact disabled?
+			if (c->IsEnabled() == false)
 			{
 				continue;
 			}
 
-			// TODO_ERIN keep a counter on the contact, only respond to M TOIs per contact.
+			// Prevent excessive sub-stepping.
+			if (c->m_toiCount > b2_maxSubSteps)
+			{
+				continue;
+			}
 
-			float32 toi = 1.0f;
+			float32 alpha = 1.0f;
 			if (c->m_flags & b2Contact::e_toiFlag)
 			{
 				// This contact has a valid cached TOI.
-				toi = c->m_toi;
+				alpha = c->m_toi;
 			}
 			else
 			{
-				// Compute the TOI for this contact.
-				b2Fixture* s1 = c->GetFixtureA();
-				b2Fixture* s2 = c->GetFixtureB();
-				b2Body* b1 = s1->GetBody();
-				b2Body* b2 = s2->GetBody();
+				b2Fixture* fA = c->GetFixtureA();
+				b2Fixture* fB = c->GetFixtureB();
 
-				if ((b1->IsStatic() || b1->IsSleeping()) && (b2->IsStatic() || b2->IsSleeping()))
+				// Is there a sensor?
+				if (fA->IsSensor() || fB->IsSensor())
 				{
 					continue;
 				}
 
+				b2Body* bA = fA->GetBody();
+				b2Body* bB = fB->GetBody();
+
+				b2BodyType typeA = bA->m_type;
+				b2BodyType typeB = bB->m_type;
+				b2Assert(typeA == b2_dynamicBody || typeB == b2_dynamicBody);
+
+				bool activeA = bA->IsAwake() && typeA != b2_staticBody;
+				bool activeB = bB->IsAwake() && typeB != b2_staticBody;
+
+				// Is at least one body active (awake and dynamic or kinematic)?
+				if (activeA == false && activeB == false)
+				{
+					continue;
+				}
+
+				bool collideA = bA->IsBullet() || typeA != b2_dynamicBody;
+				bool collideB = bB->IsBullet() || typeB != b2_dynamicBody;
+
+				// Are these two non-bullet dynamic bodies?
+				if (collideA == false && collideB == false)
+				{
+					continue;
+				}
+
+				// Compute the TOI for this contact.
 				// Put the sweeps onto the same time interval.
-				float32 t0 = b1->m_sweep.t0;
+				float32 alpha0 = bA->m_sweep.alpha0;
 
-				if (b1->m_sweep.t0 < b2->m_sweep.t0)
+				if (bA->m_sweep.alpha0 < bB->m_sweep.alpha0)
 				{
-					t0 = b2->m_sweep.t0;
-					b1->m_sweep.Advance(t0);
+					alpha0 = bB->m_sweep.alpha0;
+					bA->m_sweep.Advance(alpha0);
 				}
-				else if (b2->m_sweep.t0 < b1->m_sweep.t0)
+				else if (bB->m_sweep.alpha0 < bA->m_sweep.alpha0)
 				{
-					t0 = b1->m_sweep.t0;
-					b2->m_sweep.Advance(t0);
-				}
-
-				b2Assert(t0 < 1.0f);
-
-				// Compute the time of impact.
-				toi = c->ComputeTOI(b1->m_sweep, b2->m_sweep);
-
-				b2Assert(0.0f <= toi && toi <= 1.0f);
-
-				// If the TOI is in range ...
-				if (0.0f < toi && toi < 1.0f)
-				{
-					// Interpolate on the actual range.
-					toi = b2Min((1.0f - toi) * t0 + toi, 1.0f);
+					alpha0 = bA->m_sweep.alpha0;
+					bB->m_sweep.Advance(alpha0);
 				}
 
+				b2Assert(alpha0 < 1.0f);
 
-				c->m_toi = toi;
+				int32 indexA = c->GetChildIndexA();
+				int32 indexB = c->GetChildIndexB();
+
+				// Compute the time of impact in interval [0, minTOI]
+				b2TOIInput input;
+				input.proxyA.Set(fA->GetShape(), indexA);
+				input.proxyB.Set(fB->GetShape(), indexB);
+				input.sweepA = bA->m_sweep;
+				input.sweepB = bB->m_sweep;
+				input.tMax = 1.0f;
+
+				b2TOIOutput output;
+				b2TimeOfImpact(&output, &input);
+
+				// Beta is the fraction of the remaining portion of the .
+				float32 beta = output.t;
+				if (output.state == b2TOIOutput::e_touching)
+				{
+					alpha = b2Min(alpha0 + (1.0f - alpha0) * beta, 1.0f);
+				}
+				else
+				{
+					alpha = 1.0f;
+				}
+
+				c->m_toi = alpha;
 				c->m_flags |= b2Contact::e_toiFlag;
 			}
 
-			if (B2_FLT_EPSILON < toi && toi < minTOI)
+			if (alpha < minAlpha)
 			{
 				// This is the minimum TOI found so far.
 				minContact = c;
-				minTOI = toi;
+				minAlpha = alpha;
 			}
 		}
 
-		if (minContact == NULL || 1.0f - 100.0f * B2_FLT_EPSILON < minTOI)
+		if (minContact == NULL || 1.0f - 10.0f * b2_epsilon < minAlpha)
 		{
 			// No more TOI events. Done!
+			m_stepComplete = true;
 			break;
 		}
 
 		// Advance the bodies to the TOI.
-		b2Fixture* s1 = minContact->GetFixtureA();
-		b2Fixture* s2 = minContact->GetFixtureB();
-		b2Body* b1 = s1->GetBody();
-		b2Body* b2 = s2->GetBody();
+		b2Fixture* fA = minContact->GetFixtureA();
+		b2Fixture* fB = minContact->GetFixtureB();
+		b2Body* bA = fA->GetBody();
+		b2Body* bB = fB->GetBody();
 
-		b2Sweep backup1 = b1->m_sweep;
-		b2Sweep backup2 = b2->m_sweep;
+		b2Sweep backup1 = bA->m_sweep;
+		b2Sweep backup2 = bB->m_sweep;
 
-		b1->Advance(minTOI);
-		b2->Advance(minTOI);
+		bA->Advance(minAlpha);
+		bB->Advance(minAlpha);
 
 		// The TOI contact likely has some new contact points.
 		minContact->Update(m_contactManager.m_contactListener);
 		minContact->m_flags &= ~b2Contact::e_toiFlag;
+		++minContact->m_toiCount;
 
 		// Is the contact solid?
-		if (minContact->IsSolid() == false)
+		if (minContact->IsEnabled() == false || minContact->IsTouching() == false)
 		{
 			// Restore the sweeps.
-			b1->m_sweep = backup1;
-			b2->m_sweep = backup2;
-			b1->SynchronizeTransform();
-			b2->SynchronizeTransform();
+			minContact->SetEnabled(false);
+			bA->m_sweep = backup1;
+			bB->m_sweep = backup2;
+			bA->SynchronizeTransform();
+			bB->SynchronizeTransform();
 			continue;
 		}
 
-		// Did numerical issues prevent a contact point from being generated?
-		if (minContact->IsTouching() == false)
-		{
-			// Give up on this TOI.
-			continue;
-		}
+		bA->SetAwake(true);
+		bB->SetAwake(true);
 
-		// Build the TOI island. We need a dynamic seed.
-		b2Body* seed = b1;
-		if (seed->IsStatic())
-		{
-			seed = b2;
-		}
-
-		// Reset island and queue.
+		// Build the island
 		island.Clear();
+		island.Add(bA);
+		island.Add(bB);
+		island.Add(minContact);
 
-		int32 queueStart = 0; // starting index for queue
-		int32 queueSize = 0;  // elements in queue
-		queue[queueStart + queueSize++] = seed;
-		seed->m_flags |= b2Body::e_islandFlag;
+		bA->m_flags |= b2Body::e_islandFlag;
+		bB->m_flags |= b2Body::e_islandFlag;
+		minContact->m_flags |= b2Contact::e_islandFlag;
 
-		// Perform a breadth first search (BFS) on the contact/joint graph.
-		while (queueSize > 0)
+		// Get contacts on bodyA and bodyB.
+		b2Body* bodies[2] = {bA, bB};
+		for (int32 i = 0; i < 2; ++i)
 		{
-			// Grab the next body off the stack and add it to the island.
-			b2Body* b = queue[queueStart++];
-			--queueSize;
-
-			island.Add(b);
-
-			// Make sure the body is awake.
-			b->m_flags &= ~b2Body::e_sleepFlag;
-
-			// To keep islands as small as possible, we don't
-			// propagate islands across static bodies.
-			if (b->IsStatic())
+			b2Body* body = bodies[i];
+			if (body->m_type == b2_dynamicBody)
 			{
-				continue;
-			}
-
-			// Search all contacts connected to this body.
-			for (b2ContactEdge* cEdge = b->m_contactList; cEdge; cEdge = cEdge->next)
-			{
-				// Does the TOI island still have space for contacts?
-				if (island.m_contactCount == island.m_contactCapacity)
+				for (b2ContactEdge* ce = body->m_contactList; ce; ce = ce->next)
 				{
-					break;
+					if (island.m_bodyCount == island.m_bodyCapacity)
+					{
+						break;
+					}
+
+					if (island.m_contactCount == island.m_contactCapacity)
+					{
+						break;
+					}
+
+					b2Contact* contact = ce->contact;
+
+					// Has this contact already been added to the island?
+					if (contact->m_flags & b2Contact::e_islandFlag)
+					{
+						continue;
+					}
+
+					// Only add static, kinematic, or bullet bodies.
+					b2Body* other = ce->other;
+					if (other->m_type == b2_dynamicBody &&
+						body->IsBullet() == false && other->IsBullet() == false)
+					{
+						continue;
+					}
+
+					// Skip sensors.
+					bool sensorA = contact->m_fixtureA->m_isSensor;
+					bool sensorB = contact->m_fixtureB->m_isSensor;
+					if (sensorA || sensorB)
+					{
+						continue;
+					}
+
+					// Tentatively advance the body to the TOI.
+					b2Sweep backup = other->m_sweep;
+					if ((other->m_flags & b2Body::e_islandFlag) == 0)
+					{
+						other->Advance(minAlpha);
+					}
+
+					// Update the contact points
+					contact->Update(m_contactManager.m_contactListener);
+
+					// Was the contact disabled by the user?
+					if (contact->IsEnabled() == false)
+					{
+						other->m_sweep = backup;
+						other->SynchronizeTransform();
+						continue;
+					}
+
+					// Are there contact points?
+					if (contact->IsTouching() == false)
+					{
+						other->m_sweep = backup;
+						other->SynchronizeTransform();
+						continue;
+					}
+
+					// Add the contact to the island
+					contact->m_flags |= b2Contact::e_islandFlag;
+					island.Add(contact);
+
+					// Has the other body already been added to the island?
+					if (other->m_flags & b2Body::e_islandFlag)
+					{
+						continue;
+					}
+					
+					// Add the other body to the island.
+					other->m_flags |= b2Body::e_islandFlag;
+
+					if (other->m_type != b2_staticBody)
+					{
+						other->SetAwake(true);
+					}
+
+					island.Add(other);
 				}
-
-				// Has this contact already been added to an island?
-				if (cEdge->contact->m_flags & b2Contact::e_islandFlag)
-				{
-					continue;
-				}
-
-				// Skip separate, sensor, or disabled contacts.
-				if (cEdge->contact->IsSolid() == false || cEdge->contact->IsTouching() == false)
-				{
-					continue;
-				}
-
-				island.Add(cEdge->contact);
-				cEdge->contact->m_flags |= b2Contact::e_islandFlag;
-
-				// Update other body.
-				b2Body* other = cEdge->other;
-
-				// Was the other body already added to this island?
-				if (other->m_flags & b2Body::e_islandFlag)
-				{
-					continue;
-				}
-
-				// March forward, this can do no harm since this is the min TOI.
-				if (other->IsStatic() == false)
-				{
-					other->Advance(minTOI);
-					other->WakeUp();
-				}
-
-				b2Assert(queueStart + queueSize < queueCapacity);
-				queue[queueStart + queueSize] = other;
-				++queueSize;
-				other->m_flags |= b2Body::e_islandFlag;
-			}
-
-			for (b2JointEdge* jEdge = b->m_jointList; jEdge; jEdge = jEdge->next)
-			{
-				if (island.m_jointCount == island.m_jointCapacity)
-				{
-					continue;
-				}
-
-				if (jEdge->joint->m_islandFlag == true)
-				{
-					continue;
-				}
-
-				island.Add(jEdge->joint);
-
-				jEdge->joint->m_islandFlag = true;
-
-				b2Body* other = jEdge->other;
-
-				if (other->m_flags & b2Body::e_islandFlag)
-				{
-					continue;
-				}
-
-				if (!other->IsStatic())
-				{
-					other->Advance(minTOI);
-					other->WakeUp();
-				}
-
-				b2Assert(queueStart + queueSize < queueCapacity);
-				queue[queueStart + queueSize] = other;
-				++queueSize;
-				other->m_flags |= b2Body::e_islandFlag;
 			}
 		}
 
 		b2TimeStep subStep;
-		subStep.warmStarting = false;
-		subStep.dt = (1.0f - minTOI) * step.dt;
+		subStep.dt = (1.0f - minAlpha) * step.dt;
 		subStep.inv_dt = 1.0f / subStep.dt;
-		subStep.dtRatio = 0.0f;
+		subStep.dtRatio = 1.0f;
+		subStep.positionIterations = 20;
 		subStep.velocityIterations = step.velocityIterations;
-		subStep.positionIterations = step.positionIterations;
+		subStep.warmStarting = false;
+		island.SolveTOI(subStep, bA->m_islandIndex, bB->m_islandIndex);
 
-		island.SolveTOI(subStep);
-
-		// Post solve cleanup.
+		// Reset island flags and synchronize broad-phase proxies.
 		for (int32 i = 0; i < island.m_bodyCount; ++i)
 		{
-			// Allow bodies to participate in future TOI islands.
-			b2Body* b = island.m_bodies[i];
-			b->m_flags &= ~b2Body::e_islandFlag;
+			b2Body* body = island.m_bodies[i];
+			body->m_flags &= ~b2Body::e_islandFlag;
 
-			if (b->m_flags & b2Body::e_sleepFlag)
+			if (body->m_type != b2_dynamicBody)
 			{
 				continue;
 			}
 
-			if (b->IsStatic())
+			body->SynchronizeFixtures();
+
+			// Invalidate all contact TOIs on this displaced body.
+			for (b2ContactEdge* ce = body->m_contactList; ce; ce = ce->next)
 			{
-				continue;
+				ce->contact->m_flags &= ~(b2Contact::e_toiFlag | b2Contact::e_islandFlag);
 			}
-
-			// Update fixtures (for broad-phase).
-			b->SynchronizeFixtures();
-
-			// Invalidate all contact TOIs associated with this body. Some of these
-			// may not be in the island because they were not touching.
-			for (b2ContactEdge* ce = b->m_contactList; ce; ce = ce->next)
-			{
-				ce->contact->m_flags &= ~b2Contact::e_toiFlag;
-			}
-		}
-
-		for (int32 i = 0; i < island.m_contactCount; ++i)
-		{
-			// Allow contacts to participate in future TOI islands.
-			b2Contact* c = island.m_contacts[i];
-			c->m_flags &= ~(b2Contact::e_toiFlag | b2Contact::e_islandFlag);
-		}
-
-		for (int32 i = 0; i < island.m_jointCount; ++i)
-		{
-			// Allow joints to participate in future TOI islands.
-			b2Joint* j = island.m_joints[i];
-			j->m_islandFlag = false;
 		}
 
 		// Commit fixture proxy movements to the broad-phase so that new contacts are created.
 		// Also, some contacts can be destroyed.
 		m_contactManager.FindNewContacts();
-	}
 
-	m_stackAllocator.Free(queue);
+		if (m_subStepping)
+		{
+			m_stepComplete = false;
+			break;
+		}
+	}
 }
 
 void b2World::Step(float32 dt, int32 velocityIterations, int32 positionIterations)
 {
-	int32 height;
-	height = m_contactManager.m_broadPhase.ComputeHeight();
+	b2Timer stepTimer;
 
 	// If new fixtures were added, we need to find the new contacts.
 	if (m_flags & e_newFixture)
@@ -855,20 +905,28 @@ void b2World::Step(float32 dt, int32 velocityIterations, int32 positionIteration
 	step.dtRatio = m_inv_dt0 * dt;
 
 	step.warmStarting = m_warmStarting;
-
+	
 	// Update contacts. This is where some contacts are destroyed.
-	m_contactManager.Collide();
+	{
+		b2Timer timer;
+		m_contactManager.Collide();
+		m_profile.collide = timer.GetMilliseconds();
+	}
 
 	// Integrate velocities, solve velocity constraints, and integrate positions.
-	if (step.dt > 0.0f)
+	if (m_stepComplete && step.dt > 0.0f)
 	{
+		b2Timer timer;
 		Solve(step);
+		m_profile.solve = timer.GetMilliseconds();
 	}
 
 	// Handle TOI events.
 	if (m_continuousPhysics && step.dt > 0.0f)
 	{
+		b2Timer timer;
 		SolveTOI(step);
+		m_profile.solveTOI = timer.GetMilliseconds();
 	}
 
 	if (step.dt > 0.0f)
@@ -876,40 +934,43 @@ void b2World::Step(float32 dt, int32 velocityIterations, int32 positionIteration
 		m_inv_dt0 = step.inv_dt;
 	}
 
+	if (m_flags & e_clearForces)
+	{
+		ClearForces();
+	}
+
 	m_flags &= ~e_locked;
+
+	m_profile.step = stepTimer.GetMilliseconds();
+}
+
+void b2World::ClearForces()
+{
+	for (b2Body* body = m_bodyList; body; body = body->GetNext())
+	{
+		body->m_force.SetZero();
+		body->m_torque = 0.0f;
+	}
 }
 
 struct b2WorldQueryWrapper
 {
 	bool QueryCallback(int32 proxyId)
 	{
-		b2Fixture* fixture = (b2Fixture*)broadPhase->GetUserData(proxyId);
-		return callback->ReportFixture(fixture);
+		b2FixtureProxy* proxy = (b2FixtureProxy*)broadPhase->GetUserData(proxyId);
+		return callback->ReportFixture(proxy->fixture);
 	}
 
-	b2BroadPhase* broadPhase;
+	const b2BroadPhase* broadPhase;
 	b2QueryCallback* callback;
 };
 
-void b2World::QueryAABB(b2QueryCallback* callback, const b2AABB& aabb)
+void b2World::QueryAABB(b2QueryCallback* callback, const b2AABB& aabb) const
 {
 	b2WorldQueryWrapper wrapper;
 	wrapper.broadPhase = &m_contactManager.m_broadPhase;
 	wrapper.callback = callback;
 	m_contactManager.m_broadPhase.Query(&wrapper, aabb);
-}
-b2AABB b2World::GetAABBForBody(b2Body * b)
-{
-	b2BroadPhase* bp = &m_contactManager.m_broadPhase;
-	b2AABB ret;
-	ret.lowerBound = b2Vec2(MAXFLOAT,MAXFLOAT);
-	ret.upperBound = b2Vec2(-MAXFLOAT,-MAXFLOAT);
-	for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-	{
-		b2AABB aabb = bp->GetFatAABB(f->m_proxyId);
-		ret.Combine(ret,aabb);
-	}
-	return ret;
 }
 
 struct b2WorldRayCastWrapper
@@ -917,11 +978,13 @@ struct b2WorldRayCastWrapper
 	float32 RayCastCallback(const b2RayCastInput& input, int32 proxyId)
 	{
 		void* userData = broadPhase->GetUserData(proxyId);
-		b2Fixture* fixture = (b2Fixture*)userData;
+		b2FixtureProxy* proxy = (b2FixtureProxy*)userData;
+		b2Fixture* fixture = proxy->fixture;
+		int32 index = proxy->childIndex;
 		b2RayCastOutput output;
-		fixture->RayCast(&output, input);
+		bool hit = fixture->RayCast(&output, input, index);
 
-		if (output.hit)
+		if (hit)
 		{
 			float32 fraction = output.fraction;
 			b2Vec2 point = (1.0f - fraction) * input.p1 + fraction * input.p2;
@@ -931,11 +994,11 @@ struct b2WorldRayCastWrapper
 		return input.maxFraction;
 	}
 
-	b2BroadPhase* broadPhase;
+	const b2BroadPhase* broadPhase;
 	b2RayCastCallback* callback;
 };
 
-void b2World::RayCast(b2RayCastCallback* callback, const b2Vec2& point1, const b2Vec2& point2)
+void b2World::RayCast(b2RayCastCallback* callback, const b2Vec2& point1, const b2Vec2& point2) const
 {
 	b2WorldRayCastWrapper wrapper;
 	wrapper.broadPhase = &m_contactManager.m_broadPhase;
@@ -949,8 +1012,6 @@ void b2World::RayCast(b2RayCastCallback* callback, const b2Vec2& point1, const b
 
 void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color& color)
 {
-	b2Color coreColor(0.9f, 0.6f, 0.6f);
-
 	switch (fixture->GetType())
 	{
 	case b2Shape::e_circle:
@@ -959,9 +1020,35 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 
 			b2Vec2 center = b2Mul(xf, circle->m_p);
 			float32 radius = circle->m_radius;
-			b2Vec2 axis = xf.R.col1;
+			b2Vec2 axis = b2Mul(xf.q, b2Vec2(1.0f, 0.0f));
 
 			m_debugDraw->DrawSolidCircle(center, radius, axis, color);
+		}
+		break;
+
+	case b2Shape::e_edge:
+		{
+			b2EdgeShape* edge = (b2EdgeShape*)fixture->GetShape();
+			b2Vec2 v1 = b2Mul(xf, edge->m_vertex1);
+			b2Vec2 v2 = b2Mul(xf, edge->m_vertex2);
+			m_debugDraw->DrawSegment(v1, v2, color);
+		}
+		break;
+
+	case b2Shape::e_loop:
+		{
+			b2LoopShape* loop = (b2LoopShape*)fixture->GetShape();
+			int32 count = loop->GetCount();
+			const b2Vec2* vertices = loop->GetVertices();
+
+			b2Vec2 v1 = b2Mul(xf, vertices[count - 1]);
+			for (int32 i = 0; i < count; ++i)
+			{
+				b2Vec2 v2 = b2Mul(xf, vertices[i]);
+				m_debugDraw->DrawSegment(v1, v2, color);
+				m_debugDraw->DrawCircle(v1, 0.05f, color);
+				v1 = v2;
+			}
 		}
 		break;
 
@@ -982,68 +1069,17 @@ void b2World::DrawShape(b2Fixture* fixture, const b2Transform& xf, const b2Color
 		break;
 	}
 }
-void b2World::DrawJoint(b2Joint* joint, const b2Vec2& cameraPosition)
-{
-	b2Body* b1 = joint->GetBody1();
-	b2Body* b2 = joint->GetBody2();
-	const b2Transform& xf1 = b1->GetTransform();
-	const b2Transform& xf2 = b2->GetTransform();
-	b2Vec2 x1 = xf1.position;
-	b2Vec2 x2 = xf2.position;
-	b2Vec2 p1 = joint->GetAnchor1();
-	b2Vec2 p2 = joint->GetAnchor2();
-	
-	b2Color color(0.5f, 0.8f, 0.8f);
-	
-	switch (joint->GetType())
-	{
-		case e_distanceJoint:
-			
-			
-			//m_debugDraw->DrawSegment(p1, p2, color);
-			m_debugDraw->DrawSegment(b2Vec2(p1.x+cameraPosition.x,p1.y+cameraPosition.y), 
-									 b2Vec2(p2.x+cameraPosition.x,p2.y+cameraPosition.y), 
-									 color);
-			break;
-			
-		case e_pulleyJoint:
-		{
-			b2PulleyJoint* pulley = (b2PulleyJoint*)joint;
-			b2Vec2 s1 = pulley->GetGroundAnchor1();
-			b2Vec2 s2 = pulley->GetGroundAnchor2();
-			m_debugDraw->DrawSegment(s1, p1, color);
-			m_debugDraw->DrawSegment(s2, p2, color);
-			m_debugDraw->DrawSegment(s1, s2, color);
-		}
-			break;
-			
-		case e_mouseJoint:
-			// don't draw this
-			break;
-			
-		default:
-//			m_debugDraw->DrawSegment(x1, p1, color);
-//			m_debugDraw->DrawSegment(p1, p2, color);
-//			m_debugDraw->DrawSegment(x2, p2, color);
-			m_debugDraw->DrawSegment(b2Vec2(x1.x+cameraPosition.x,x1.y+cameraPosition.y), 
-									 b2Vec2(p1.x+cameraPosition.x,p1.y+cameraPosition.y), color);
-			m_debugDraw->DrawSegment(b2Vec2(p1.x+cameraPosition.x,p1.y+cameraPosition.y),
-									 b2Vec2(p2.x+cameraPosition.x,p2.y+cameraPosition.y), color);
-			m_debugDraw->DrawSegment(b2Vec2(x2.x+cameraPosition.x,x2.y+cameraPosition.y), 
-									 b2Vec2(p2.x+cameraPosition.x,p2.y+cameraPosition.y), color);
-	}
-}
 
 void b2World::DrawJoint(b2Joint* joint)
 {
-	b2Body* b1 = joint->GetBody1();
-	b2Body* b2 = joint->GetBody2();
-	const b2Transform& xf1 = b1->GetTransform();
-	const b2Transform& xf2 = b2->GetTransform();
-	b2Vec2 x1 = xf1.position;
-	b2Vec2 x2 = xf2.position;
-	b2Vec2 p1 = joint->GetAnchor1();
-	b2Vec2 p2 = joint->GetAnchor2();
+	b2Body* bodyA = joint->GetBodyA();
+	b2Body* bodyB = joint->GetBodyB();
+	const b2Transform& xf1 = bodyA->GetTransform();
+	const b2Transform& xf2 = bodyB->GetTransform();
+	b2Vec2 x1 = xf1.p;
+	b2Vec2 x2 = xf2.p;
+	b2Vec2 p1 = joint->GetAnchorA();
+	b2Vec2 p2 = joint->GetAnchorB();
 
 	b2Color color(0.5f, 0.8f, 0.8f);
 
@@ -1056,8 +1092,8 @@ void b2World::DrawJoint(b2Joint* joint)
 	case e_pulleyJoint:
 		{
 			b2PulleyJoint* pulley = (b2PulleyJoint*)joint;
-			b2Vec2 s1 = pulley->GetGroundAnchor1();
-			b2Vec2 s2 = pulley->GetGroundAnchor2();
+			b2Vec2 s1 = pulley->GetGroundAnchorA();
+			b2Vec2 s2 = pulley->GetGroundAnchorB();
 			m_debugDraw->DrawSegment(s1, p1, color);
 			m_debugDraw->DrawSegment(s2, p2, color);
 			m_debugDraw->DrawSegment(s1, s2, color);
@@ -1069,97 +1105,12 @@ void b2World::DrawJoint(b2Joint* joint)
 		break;
 
 	default:
-			m_debugDraw->DrawSegment(x1, p1, color);
-			m_debugDraw->DrawSegment(p1, p2, color);
-			m_debugDraw->DrawSegment(x2, p2, color);
+		m_debugDraw->DrawSegment(x1, p1, color);
+		m_debugDraw->DrawSegment(p1, p2, color);
+		m_debugDraw->DrawSegment(x2, p2, color);
 	}
 }
 
-
-void b2World::DrawDebugData(b2Vec2 * cameraPosition)
-{
-	if (m_debugDraw == NULL)
-	{
-		return;
-	}
-	
-	uint32 flags = m_debugDraw->GetFlags();
-	
-	if (flags & b2DebugDraw::e_shapeBit)
-	{
-		for (b2Body* b = m_bodyList; b; b = b->GetNext())
-		{
-			b2Transform xf = b->GetTransform();
-			xf.position.x+=cameraPosition->x;
-			xf.position.y+=cameraPosition->y;
-			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-			{
-				if (b->IsStatic())
-				{
-					DrawShape(f, xf, b2Color(0.5f, 0.9f, 0.5f));
-				}
-				else if (b->IsSleeping())
-				{
-					DrawShape(f, xf, b2Color(0.5f, 0.5f, 0.9f));
-				}
-				else
-				{
-					DrawShape(f, xf, b2Color(0.9f, 0.9f, 0.9f));
-				}
-			}
-		}
-	}
-	
-	if (flags & b2DebugDraw::e_jointBit)
-	{
-		for (b2Joint* j = m_jointList; j; j = j->GetNext())
-		{
-			if (j->GetType() != e_mouseJoint)
-			{
-				DrawJoint(j,b2Vec2(cameraPosition->x,cameraPosition->y));
-			}
-		}
-	}
-	
-	if (flags & b2DebugDraw::e_pairBit)
-	{
-		// TODO_ERIN
-	}
-	
-	if (flags & b2DebugDraw::e_aabbBit)
-	{
-		b2Color color(0.9f, 0.3f, 0.9f);
-		b2BroadPhase* bp = &m_contactManager.m_broadPhase;
-		
-		for (b2Body* b = m_bodyList; b; b = b->GetNext())
-		{
-			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-			{
-				b2AABB aabb = bp->GetFatAABB(f->m_proxyId);
-				
-				b2Vec2 vs[4];
-				vs[0].Set(aabb.lowerBound.x + cameraPosition->x, aabb.lowerBound.y + cameraPosition->y);
-				vs[1].Set(aabb.upperBound.x + cameraPosition->x, aabb.lowerBound.y + cameraPosition->y);
-				vs[2].Set(aabb.upperBound.x + cameraPosition->x, aabb.upperBound.y + cameraPosition->y);
-				vs[3].Set(aabb.lowerBound.x + cameraPosition->x, aabb.upperBound.y + cameraPosition->y);
-				
-				m_debugDraw->DrawPolygon(vs, 4, color);
-			}
-		}
-	}
-	
-	if (flags & b2DebugDraw::e_centerOfMassBit)
-	{
-		for (b2Body* b = m_bodyList; b; b = b->GetNext())
-		{
-			b2Transform xf = b->GetTransform();
-			xf.position = b->GetWorldCenter();
-			xf.position.x +=cameraPosition->x;
-			xf.position.y +=cameraPosition->y;
-			m_debugDraw->DrawXForm(xf);
-		}
-	}
-}
 void b2World::DrawDebugData()
 {
 	if (m_debugDraw == NULL)
@@ -1169,73 +1120,97 @@ void b2World::DrawDebugData()
 
 	uint32 flags = m_debugDraw->GetFlags();
 
-	if (flags & b2DebugDraw::e_shapeBit)
+	if (flags & b2Draw::e_shapeBit)
 	{
 		for (b2Body* b = m_bodyList; b; b = b->GetNext())
 		{
 			const b2Transform& xf = b->GetTransform();
 			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 			{
-				if (b->IsStatic())
+				if (b->IsActive() == false)
+				{
+					DrawShape(f, xf, b2Color(0.5f, 0.5f, 0.3f));
+				}
+				else if (b->GetType() == b2_staticBody)
 				{
 					DrawShape(f, xf, b2Color(0.5f, 0.9f, 0.5f));
 				}
-				else if (b->IsSleeping())
+				else if (b->GetType() == b2_kinematicBody)
 				{
 					DrawShape(f, xf, b2Color(0.5f, 0.5f, 0.9f));
 				}
+				else if (b->IsAwake() == false)
+				{
+					DrawShape(f, xf, b2Color(0.6f, 0.6f, 0.6f));
+				}
 				else
 				{
-					DrawShape(f, xf, b2Color(0.9f, 0.9f, 0.9f));
+					DrawShape(f, xf, b2Color(0.9f, 0.7f, 0.7f));
 				}
 			}
 		}
 	}
 
-	if (flags & b2DebugDraw::e_jointBit)
+	if (flags & b2Draw::e_jointBit)
 	{
 		for (b2Joint* j = m_jointList; j; j = j->GetNext())
 		{
-			if (j->GetType() != e_mouseJoint)
-			{
-				DrawJoint(j);
-			}
+			DrawJoint(j);
 		}
 	}
 
-	if (flags & b2DebugDraw::e_pairBit)
+	if (flags & b2Draw::e_pairBit)
 	{
-		// TODO_ERIN
+		b2Color color(0.3f, 0.9f, 0.9f);
+		for (b2Contact* c = m_contactManager.m_contactList; c; c = c->GetNext())
+		{
+			//b2Fixture* fixtureA = c->GetFixtureA();
+			//b2Fixture* fixtureB = c->GetFixtureB();
+
+			//b2Vec2 cA = fixtureA->GetAABB().GetCenter();
+			//b2Vec2 cB = fixtureB->GetAABB().GetCenter();
+
+			//m_debugDraw->DrawSegment(cA, cB, color);
+		}
 	}
 
-	if (flags & b2DebugDraw::e_aabbBit)
+	if (flags & b2Draw::e_aabbBit)
 	{
 		b2Color color(0.9f, 0.3f, 0.9f);
 		b2BroadPhase* bp = &m_contactManager.m_broadPhase;
 
 		for (b2Body* b = m_bodyList; b; b = b->GetNext())
 		{
+			if (b->IsActive() == false)
+			{
+				continue;
+			}
+
 			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 			{
-				b2AABB aabb = bp->GetFatAABB(f->m_proxyId);
-				b2Vec2 vs[4];
-				vs[0].Set(aabb.lowerBound.x, aabb.lowerBound.y);
-				vs[1].Set(aabb.upperBound.x, aabb.lowerBound.y);
-				vs[2].Set(aabb.upperBound.x, aabb.upperBound.y);
-				vs[3].Set(aabb.lowerBound.x, aabb.upperBound.y);
+				for (int32 i = 0; i < f->m_proxyCount; ++i)
+				{
+					b2FixtureProxy* proxy = f->m_proxies + i;
+					b2AABB aabb = bp->GetFatAABB(proxy->proxyId);
+					b2Vec2 vs[4];
+					vs[0].Set(aabb.lowerBound.x, aabb.lowerBound.y);
+					vs[1].Set(aabb.upperBound.x, aabb.lowerBound.y);
+					vs[2].Set(aabb.upperBound.x, aabb.upperBound.y);
+					vs[3].Set(aabb.lowerBound.x, aabb.upperBound.y);
 
-				m_debugDraw->DrawPolygon(vs, 4, color);
+					m_debugDraw->DrawPolygon(vs, 4, color);
+				}
 			}
 		}
 	}
 
-	if (flags & b2DebugDraw::e_centerOfMassBit)
+	if (flags & b2Draw::e_centerOfMassBit)
 	{
 		for (b2Body* b = m_bodyList; b; b = b->GetNext())
 		{
 			b2Transform xf = b->GetTransform();
-			xf.position = b->GetWorldCenter();
-			m_debugDraw->DrawXForm(xf);
+			xf.p = b->GetWorldCenter();
+			m_debugDraw->DrawTransform(xf);
 		}
 	}
 }
@@ -1243,4 +1218,19 @@ void b2World::DrawDebugData()
 int32 b2World::GetProxyCount() const
 {
 	return m_contactManager.m_broadPhase.GetProxyCount();
+}
+
+int32 b2World::GetTreeHeight() const
+{
+	return m_contactManager.m_broadPhase.GetTreeHeight();
+}
+
+int32 b2World::GetTreeBalance() const
+{
+	return m_contactManager.m_broadPhase.GetTreeBalance();
+}
+
+float32 b2World::GetTreeQuality() const
+{
+	return m_contactManager.m_broadPhase.GetTreeQuality();
 }

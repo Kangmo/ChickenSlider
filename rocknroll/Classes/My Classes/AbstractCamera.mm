@@ -7,7 +7,7 @@
 //
 
 #import "AbstractCamera.h"
-
+#include "b2WorldEx.h"
 
 @implementation AbstractCamera
 
@@ -146,7 +146,7 @@
 -(void) ZoomToObject:(b2Body*) body screenPart:(float) part
 {
 	if(!body) return;
-	b2World * world = body->GetWorld();
+	b2WorldEx * world = (b2WorldEx*)body->GetWorld();
 	b2AABB aabb = world->GetAABBForBody(body);
 	
 	float w = aabb.lowerBound.x-aabb.upperBound.x;
@@ -158,7 +158,7 @@
 	length*=ptmRatio;
 	
 	//must be 1/10 in screen coords
-	float scrLength = sqrt(480*480 + 320*320);
+	const float scrLength = sqrt(480*480 + 320*320);
 	
 	float scaleFactor = scrLength/length*part;
 	

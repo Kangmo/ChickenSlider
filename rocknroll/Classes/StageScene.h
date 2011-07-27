@@ -11,6 +11,8 @@
 #import "FollowCamera.h"
 #include "Car.h"
 
+class b2WorldEx;
+
 typedef enum {
     StageSceneLayerTagStage=1,
     StageSceneLayerTagInput
@@ -19,7 +21,7 @@ typedef enum {
 // HelloWorld Layer
 @interface StageScene : CCLayer
 {
-	b2World* world;
+	b2WorldEx* world;
 	GLESDebugDraw *m_debugDraw;
 	
 	CCSprite * arrow;

@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+* Copyright (c) 2006-2011 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -37,8 +37,8 @@ struct b2RevoluteJointDef : public b2JointDef
 	b2RevoluteJointDef()
 	{
 		type = e_revoluteJoint;
-		localAnchor1.Set(0.0f, 0.0f);
-		localAnchor2.Set(0.0f, 0.0f);
+		localAnchorA.Set(0.0f, 0.0f);
+		localAnchorB.Set(0.0f, 0.0f);
 		referenceAngle = 0.0f;
 		lowerAngle = 0.0f;
 		upperAngle = 0.0f;
@@ -48,15 +48,15 @@ struct b2RevoluteJointDef : public b2JointDef
 		enableMotor = false;
 	}
 
-	/// Initialize the bodies, anchors, and reference angle using the world
-	/// anchor.
-	void Initialize(b2Body* body1, b2Body* body2, const b2Vec2& anchor);
+	/// Initialize the bodies, anchors, and reference angle using a world
+	/// anchor point.
+	void Initialize(b2Body* bodyA, b2Body* bodyB, const b2Vec2& anchor);
 
 	/// The local anchor point relative to body1's origin.
-	b2Vec2 localAnchor1;
+	b2Vec2 localAnchorA;
 
 	/// The local anchor point relative to body2's origin.
-	b2Vec2 localAnchor2;
+	b2Vec2 localAnchorB;
 
 	/// The body2 angle minus body1 angle in the reference state (radians).
 	float32 referenceAngle;
@@ -81,7 +81,7 @@ struct b2RevoluteJointDef : public b2JointDef
 	float32 maxMotorTorque;
 };
 
-/// A revolute joint constrains to bodies to share a common point while they
+/// A revolute joint constrains two bodies to share a common point while they
 /// are free to rotate about the point. The relative rotation about the shared
 /// point is the joint angle. You can limit the relative rotation with
 /// a joint limit that specifies a lower and upper angle. You can use a motor
@@ -90,11 +90,8 @@ struct b2RevoluteJointDef : public b2JointDef
 class b2RevoluteJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchor1() const;
-	b2Vec2 GetAnchor2() const;
-
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
-	float32 GetReactionTorque(float32 inv_dt) const;
+	b2Vec2 GetAnchorA() const;
+	b2Vec2 GetAnchorB() const;
 
 	/// Get the current joint angle in radians.
 	float32 GetJointAngle() const;
@@ -132,25 +129,35 @@ public:
 	/// Set the maximum motor torque, usually in N-m.
 	void SetMaxMotorTorque(float32 torque);
 
-	/// Get the current motor torque, usually in N-m.
-	float32 GetMotorTorque() const;
+	/// Get the reaction force given the inverse time step.
+	/// Unit is N.
+	b2Vec2 GetReactionForce(float32 inv_dt) const;
 
-	//--------------- Internals Below -------------------
+	/// Get the reaction torque due to the joint limit given the inverse time step.
+	/// Unit is N*m.
+	float32 GetReactionTorque(float32 inv_dt) const;
+
+	/// Get the current motor torque given the inverse time step.
+	/// Unit is N*m.
+	float32 GetMotorTorque(float32 inv_dt) const;
+
+protected:
+	
+	friend class b2Joint;
+	friend class b2GearJoint;
+
 	b2RevoluteJoint(const b2RevoluteJointDef* def);
 
-	void InitVelocityConstraints(const b2TimeStep& step);
-	void SolveVelocityConstraints(const b2TimeStep& step);
+	void InitVelocityConstraints(const b2SolverData& data);
+	void SolveVelocityConstraints(const b2SolverData& data);
+	bool SolvePositionConstraints(const b2SolverData& data);
 
-	bool SolvePositionConstraints(float32 baumgarte);
-
-	b2Vec2 m_localAnchor1;	// relative
-	b2Vec2 m_localAnchor2;
+	// Solver shared
+	b2Vec2 m_localAnchorA;
+	b2Vec2 m_localAnchorB;
 	b2Vec3 m_impulse;
 	float32 m_motorImpulse;
 
-	b2Mat33 m_mass;			// effective mass for point-to-point constraint.
-	float32 m_motorMass;	// effective mass for motor/limit angular constraint.
-	
 	bool m_enableMotor;
 	float32 m_maxMotorTorque;
 	float32 m_motorSpeed;
@@ -159,6 +166,20 @@ public:
 	float32 m_referenceAngle;
 	float32 m_lowerAngle;
 	float32 m_upperAngle;
+
+	// Solver temp
+	int32 m_indexA;
+	int32 m_indexB;
+	b2Vec2 m_rA;
+	b2Vec2 m_rB;
+	b2Vec2 m_localCenterA;
+	b2Vec2 m_localCenterB;
+	float32 m_invMassA;
+	float32 m_invMassB;
+	float32 m_invIA;
+	float32 m_invIB;
+	b2Mat33 m_mass;			// effective mass for point-to-point constraint.
+	float32 m_motorMass;	// effective mass for motor/limit angular constraint.
 	b2LimitState m_limitState;
 };
 
