@@ -11,10 +11,11 @@
 #import "BodyInfo.h"
 #include "InteractiveBodyNode.h"
 #include "StringParser.h"
+#import "ClassDictionary.h"
 
 @implementation svgLoader
 @synthesize scaleFactor;
-
+@synthesize classDict;
 
 -(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l
 {
@@ -24,75 +25,19 @@
 		world = w;
 		staticBody = sb;
         layer = l;
-		delayedJoints = [[NSMutableSet alloc] initWithCapacity:10];
-		addedObjects = [[NSMutableDictionary alloc] initWithCapacity:10];
 		scaleFactor = 10.0f;
+        classDict = nil;
 	}
 	return self;
 }
 
 - (void) dealloc
 {
-	[delayedJoints release];
-	[addedObjects release];
+    [classDict release];
 	[super dealloc];
 }
 
-
--(void) parseFile:(NSString*)filename;
-{
-	//NSString *filePath = [[NSBundle mainBundle] pathForResource:@"drawing.svg" ofType:nil];  
-    CCLOG(@"The file :%@", filename);
-	NSData *data = [NSData dataWithContentsOfFile:filename]; 
-	CXMLDocument *svgDocument  = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
-
-	//get world space dimensions
-	if([[svgDocument rootElement] attributeForName:@"width"])
-	{
-		worldWidth = [[[[svgDocument rootElement] attributeForName:@"width"] stringValue] floatValue] / scaleFactor;
-	}
-	else
-	{
-		worldWidth = 100.0f;
-	}
-	if([[svgDocument rootElement] attributeForName:@"height"])
-	{
-		worldHeight = [[[[svgDocument rootElement] attributeForName:@"height"] stringValue] floatValue] / scaleFactor;
-	}
-	else
-	{
-		worldHeight = 100.0f;
-	}
-	
-    NSArray *layers = NULL;
-	
-    // root groups are layers for geometry
-    layers = [[svgDocument rootElement] elementsForName:@"g"];
-	for (CXMLElement * curLayer in layers) 
-	{
-		//layers with "ignore" attribute not loading
-		if([curLayer attributeForName:@"ignore"])
-		{
-			CCLOG(@"SvgLoader: layer ignored: %@",[[curLayer attributeForName:@"id"] stringValue]);
-			continue;
-		}
-		CCLOG(@"SvgLoader: loading layer: %@",[[curLayer attributeForName:@"id"] stringValue]);
-		//add boxes first
-		NSArray *rects = [curLayer elementsForName:@"rect"];
-		[self initRectangles:rects];
-		
-		NSArray *nonrectangles = [curLayer elementsForName:@"path"];
-		[self initShapes:nonrectangles];
-		
-		NSArray *groups = [curLayer elementsForName:@"g"];
-		[self initGroups:groups];
-		
-		[self initJoints];
-		CCLOG(@"SvgLoader: layer loaded: %@",[[curLayer attributeForName:@"id"] stringValue]);
-	}
-}
-
--(void) initGroups:(NSArray *) shapes
+-(void) initGroups:(NSArray *)shapes delayedJoints:(NSMutableSet*)delayedJoints namePrefix:(NSString*)objectNamePrefix  xOffset:(float)xOffset yOffset:(float)yOffset
 {
 	for(CXMLElement * curGroup in shapes)
 	{
@@ -112,8 +57,8 @@
 			NSString * width = [[curShape attributeForName:@"width"] stringValue];
 			if(!x || !y || !height || !width) continue;
 			
-			float fx = [x floatValue] / scaleFactor;
-			float fy = [y floatValue] / scaleFactor;
+			float fx = ([x floatValue] + xOffset) / scaleFactor;
+			float fy = ([y floatValue] + yOffset) / scaleFactor;
 			float fWidth = [width floatValue] / scaleFactor;
 			float fHeight = [height floatValue] / scaleFactor;
 			fy = worldHeight - (fy + fHeight * .5f);
@@ -139,6 +84,7 @@
 //		bodyPos.y = bodyPos.y/ activeCount;
 		BodyInfo * bi = [[BodyInfo alloc] init];
 		bi.name = [[curGroup attributeForName:@"id"] stringValue];
+        bi.name = [objectNamePrefix stringByAppendingString:bi.name];
 		bi.data = nil;
 		bi.rect = CGSizeMake(maxX-minX, maxY-minY);
 		bi.spriteName = [[curGroup attributeForName:@"sprite"] stringValue];
@@ -172,8 +118,8 @@
 			if(!x || !y || !width || !height) continue;
 			
 			//CCLOG(@"SvgLoader: loading shape: %@",name);
-			float fx = [x floatValue] / scaleFactor;
-			float fy = [y floatValue] / scaleFactor;
+			float fx = ([x floatValue]+xOffset) / scaleFactor;
+			float fy = ([y floatValue]+yOffset) / scaleFactor;
 			float fWidth = [width floatValue] / scaleFactor;
 			float fHeight = [height floatValue] / scaleFactor;
 			fx = fx + fWidth * .5f;
@@ -240,7 +186,7 @@
 	}	
 }
 
--(void) initRectangles:(NSArray *) shapes
+-(void) initRectangles:(NSArray *)shapes delayedJoints:(NSMutableSet*)delayedJoints namePrefix:(NSString*)objectNamePrefix  xOffset:(float)xOffset yOffset:(float)yOffset
 {
 	for (CXMLElement * curShape in shapes) 
 	{
@@ -256,8 +202,8 @@
 		
 		if(!x || !y) continue;
 		if(!width || !height) continue;
-		float orgX = [x floatValue] ;
-		float orgY = [y floatValue] ;
+		float orgX = [x floatValue] + xOffset ;
+		float orgY = [y floatValue] + yOffset;
         float orgWidth = [width floatValue];
         float orgHeight = [height floatValue];
 		float fx = orgX / scaleFactor;
@@ -273,8 +219,9 @@
 			curJoint.point1 = CGPointMake(fx + fWidth/2, worldHeight - (fy + fHeight/2) );
 			//curJoint.point1 = CGPointMake(fx, fy);
 			
-			curJoint.body1 = [[curShape attributeForName:@"body1"] stringValue];
-			curJoint.body2 = [[curShape attributeForName:@"body2"] stringValue];
+            // Need to prefix the body names. objectNamePrefix equals to {InstanceName}_
+			curJoint.body1 = [objectNamePrefix stringByAppendingString:[[curShape attributeForName:@"body1"] stringValue]];
+			curJoint.body2 = [objectNamePrefix stringByAppendingString:[[curShape attributeForName:@"body2"] stringValue]];
 			
 			curJoint.jointType = kRevoluteJoint;
 			
@@ -300,7 +247,8 @@
 
 		
 		BodyInfo * bi = [[BodyInfo alloc] init];
-		bi.name = name;
+		bi.name = [objectNamePrefix stringByAppendingString:name];
+
 		bi.spriteName = [[curShape attributeForName:@"sprite"] stringValue];
 		bi.textureName = [[curShape attributeForName:@"texture"] stringValue];
 		bi.data = nil;
@@ -435,7 +383,7 @@
 	}
 }
 
--(void) initShapes:(NSArray *) shapes
+-(void) initShapes:(NSArray *) shapes delayedJoints:(NSMutableSet*)delayedJoints namePrefix:(NSString*)objectNamePrefix  xOffset:(float)xOffset yOffset:(float)yOffset
 {
 	for (CXMLElement * curShape in shapes) 
 	{
@@ -445,57 +393,7 @@
 		NSString * name = [[curShape attributeForName:@"id"] stringValue];
 		
 		
-		if([curShape attributeForName:@"isEdge"])
-		{
-			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
-			NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
-			NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
-            b2EdgeShape edgeShape;
-			// v2.1.2
-			//b2PolygonShape edgeShape;
-			for (NSString * curComponent in dataComponents) 
-			{
-				if([curComponent length] < 3) continue;
-				NSArray * points = [[[curComponent stringByReplacingOccurrencesOfString:@"  " withString:@""] stringByReplacingOccurrencesOfString:@"Z " withString:@""] componentsSeparatedByString:@" "];
-				//CCLOG(@"%@",points);
-				if([points count]>1)
-				{
-					CGPoint p1,p2;
-					
-					for (uint32 i = 1; i< [points count]; i++) 
-					{
-						if([[points objectAtIndex:i] length]<2) continue;
-						
-						p1 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i-1]]);
-						p2 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i]]);
-						p1.y /=scaleFactor;
-						p2.y /=scaleFactor;
-						
-						p1.y = worldHeight-p1.y;
-						p2.y = worldHeight-p2.y;
-						p1.x /=scaleFactor;
-						p2.x /=scaleFactor;
-
-                        edgeShape.Set( b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
-						// 2.1.2
-						//edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
-                        
-						float32 staticBodyDensity = 0;
-						b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
-						
-						if(friction)	edgeFixture->SetFriction([friction floatValue]);
-						else edgeFixture->SetFriction(0.5f);
-					}
-				}
-			}
-			//NSArray * points = [data componentsSeparatedByString:@" "];
-			// Define the ground box shape.
-			
-			CCLOG(@"SvgLoader: loaded static edge: %@",name);
-			//CCLOG(@"Static Edge : %@",data);
-			
-		}
-		else if([curShape attributeForName:@"isCustomShape"])
+		if([curShape attributeForName:@"isCustomShape"])
 		{
 			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
 			NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
@@ -520,10 +418,12 @@
 					for (int i =0; i<vx; i++) 
 					{
 						CGPoint cp = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i]]);
-						p[i] = b2Vec2(cp.x,cp.y);
+						p[i] = b2Vec2(cp.x, cp.y);
 						p[i].y = worldHeight-p[i].y;
+                        p[i].x += xOffset;
+                        p[i].y += yOffset;
+                        // BUGBUG no need to devide with scaleFactor?
 						avg+=p[i];
-						CCLOG(@"------      %f %f",cp.x,cp.y);
 					}
 					
 					avg*=1.0f/vx;
@@ -583,16 +483,23 @@
 				CGPoint p1,p2;
 				p1 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:0]]);
 				p2 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:1]]);
+                p1.x += xOffset; p1.y += yOffset;
+                p2.x += xOffset; p2.y += yOffset;
+
 				JointDeclaration * curJoint = [[JointDeclaration alloc] init];
 				p1.x /=scaleFactor;
 				p2.x /=scaleFactor;
 				p1.y /=scaleFactor;
 				p2.y /=scaleFactor;
+                
+                p1.y = worldHeight-p1.y;
+                p2.y = worldHeight-p2.y;
+
 				curJoint.point1 = p1;
 				curJoint.point2 = p2;
 
-				curJoint.body1 = [[curShape attributeForName:@"body1"] stringValue];
-				curJoint.body2 = [[curShape attributeForName:@"body2"] stringValue];
+				curJoint.body1 = [objectNamePrefix stringByAppendingString:[[curShape attributeForName:@"body1"] stringValue]];
+				curJoint.body2 = [objectNamePrefix stringByAppendingString:[[curShape attributeForName:@"body2"] stringValue]];
 				
 				curJoint.jointType = kDistanceJoint;
 				[delayedJoints addObject:curJoint];
@@ -600,24 +507,67 @@
 
 			}
 		}
-		else continue;
+		else // by default, a shape is an edge.
+//            if([curShape attributeForName:@"isEdge"])
+        {
+            NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
+            NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
+            
+            // After converting nodes to cusps, " C" is added to the svg document. We can simply remove it.
+            data = [data stringByReplacingOccurrencesOfString:@" C" withString:@""];
+            NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
+            b2EdgeShape edgeShape;
+            // v2.1.2
+            //b2PolygonShape edgeShape;
+            for (NSString * curComponent in dataComponents) 
+            {
+                if([curComponent length] < 3) continue;
+                NSArray * points = [[[curComponent stringByReplacingOccurrencesOfString:@"  " withString:@""] stringByReplacingOccurrencesOfString:@"Z " withString:@""] componentsSeparatedByString:@" "];
+                //CCLOG(@"%@",points);
+                if([points count]>1)
+                {
+                    CGPoint p1,p2;
+                    
+                    for (uint32 i = 1; i< [points count]; i++) 
+                    {
+                        if([[points objectAtIndex:i] length]<2) continue;
+                        
+                        p1 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i-1]]);
+                        p2 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i]]);
+                        
+                        p1.x += xOffset; p1.y += yOffset;
+                        p2.x += xOffset; p2.y += yOffset;
+                        
+                        p1.y /=scaleFactor;
+                        p2.y /=scaleFactor;
+                        
+                        p1.y = worldHeight-p1.y;
+                        p2.y = worldHeight-p2.y;
+                        p1.x /=scaleFactor;
+                        p2.x /=scaleFactor;
+                        
+                        edgeShape.Set( b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+                        // 2.1.2
+                        //edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+                        
+                        float32 staticBodyDensity = 0;
+                        b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
+                        
+                        if(friction)	edgeFixture->SetFriction([friction floatValue]);
+                        else edgeFixture->SetFriction(0.5f);
+                    }
+                }
+            }
+            //NSArray * points = [data componentsSeparatedByString:@" "];
+            // Define the ground box shape.
+            
+            CCLOG(@"SvgLoader: loaded static edge: %@",name);
+            //CCLOG(@"Static Edge : %@",data);
+        }
 	}
 }
 
--(b2Body*) getBodyByName:(NSString*) bodyName
-{
-	//Iterate over the bodies in the physics world
-	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-	{
-		if (b->GetUserData() != NULL) 
-		{
-			BodyInfo * bi = (BodyInfo*)b->GetUserData();
-			if(bi && [bi.name isEqualToString:bodyName]) return b;
-		}
-	}
-	return NULL;
-}
--(void) initJoints
+-(void) initJoints:(NSMutableSet*)delayedJoints
 {
 	for (JointDeclaration * curJointData in delayedJoints) 
 	{
@@ -628,8 +578,7 @@
 		{
 			CGPoint p1 = curJointData.point1;
 			CGPoint p2 = curJointData.point2;
-			p1.y = worldHeight-p1.y;
-			p2.y = worldHeight-p2.y;
+
 			b2DistanceJointDef jointDef;
 			
 			if(b2) jointDef.Initialize(b1, b2, b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
@@ -643,7 +592,7 @@
 		else if(curJointData.jointType==kRevoluteJoint && b1)
 		{
 			CGPoint p1 = curJointData.point1;
-			//p1.y = worldHeight-p1.y;
+
 			b2RevoluteJointDef jointDef;
 			
 			if(b2) jointDef.Initialize(b1, b2, b2Vec2(p1.x,p1.y));
@@ -658,6 +607,128 @@
 				  curJointData.body1,curJointData.body2==nil?@"static":curJointData.body2,p1.x,p1.y);
 		}
 	}
+}
+
+/**@brief
+   Input : http://.../aa/bb/ClassName.png'
+   Output : ClassName
+ */
+-(NSString *) getClassNameFromURL:(NSString *) url
+{
+    assert(url);
+    NSRange lastSlashRange = [url rangeOfString:@"/" options:NSBackwardsSearch];
+    NSRange lastDotRange = [url rangeOfString:@"." options:NSBackwardsSearch];
+    const int MIN_CLASS_NAME_LEN=1;
+    assert( lastSlashRange.location + MIN_CLASS_NAME_LEN < lastDotRange.location );
+    NSString * className = [url substringWithRange:NSMakeRange(lastSlashRange.location +1, lastDotRange.location - lastSlashRange.location - 1) ];
+    return className;
+  
+    return @"Car";
+}
+
+-(void) initGameObjects:(NSArray *) gameObjects
+{
+	for (CXMLElement * gameObject in gameObjects) 
+	{
+		
+		NSString * instanceName = [[gameObject attributeForName:@"id"] stringValue];
+		NSString * xOffset = [[gameObject attributeForName:@"x"] stringValue];
+		NSString * yOffset = [[gameObject attributeForName:@"y"] stringValue];
+//        NSString * gameObjectImageFile = [[gameObject attributeForLocalName:@"href" URI:nil] stringValue];
+
+		NSString * gameObjectImageFile = [[gameObject attributeForName:@"xlink:href"] stringValue];
+        NSString * className = [self getClassNameFromURL:gameObjectImageFile];
+        
+        assert(classDict);
+        
+        ClassInfo * classInfo = [classDict getClassByName:className];
+        NSString * namePrefix = [instanceName stringByAppendingString:@"_"];
+        [self instantiateObjects:classInfo.svgLayer namePrefix:namePrefix xOffset:[xOffset floatValue] yOffset:[yOffset floatValue]];
+    }    
+}
+-(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset
+{
+    NSMutableSet * delayedJoints = [[NSMutableSet alloc] initWithCapacity:10];
+    
+    //add boxes first
+    NSArray *rects = [svgLayer elementsForName:@"rect"];
+    [self initRectangles:rects delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    
+    NSArray *nonrectangles = [svgLayer elementsForName:@"path"];
+    [self initShapes:nonrectangles delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    
+    NSArray *groups = [svgLayer elementsForName:@"g"];
+    [self initGroups:groups delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+
+    /** Treat images as objects of classes
+     If the image has 'xlink:href' attribute with 'http://.../aa/bb/ClassName.png'
+     We need to parse the attribute to get the ClassName, and then pass it to classDict to get the svg layer containing the definition of the class. 
+     */
+    NSArray *gameObjects = [svgLayer elementsForName:@"image"];
+    [self initGameObjects:gameObjects];
+
+    [self initJoints:delayedJoints];
+    
+    [delayedJoints release];
+}
+
+-(void) instantiateObjectsIn:(NSString*)filename;
+{
+    CCLOG(@"The file :%@", filename);
+	NSData *data = [NSData dataWithContentsOfFile:filename]; 
+	CXMLDocument *svgDocument  = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
+    
+	//get world space dimensions
+	if([[svgDocument rootElement] attributeForName:@"width"])
+	{
+		worldWidth = [[[[svgDocument rootElement] attributeForName:@"width"] stringValue] floatValue] / scaleFactor;
+	}
+	else
+	{
+		worldWidth = 100.0f;
+	}
+	if([[svgDocument rootElement] attributeForName:@"height"])
+	{
+		worldHeight = [[[[svgDocument rootElement] attributeForName:@"height"] stringValue] floatValue] / scaleFactor;
+	}
+	else
+	{
+		worldHeight = 100.0f;
+	}
+	
+    NSArray *layers = NULL;
+	
+    // root groups are layers for geometry
+    layers = [[svgDocument rootElement] elementsForName:@"g"];
+	for (CXMLElement * curLayer in layers) 
+	{
+		//layers with "ignore" attribute not loading
+		if([curLayer attributeForName:@"ignore"])
+		{
+			CCLOG(@"SvgLoader: layer ignored: %@",[[curLayer attributeForName:@"id"] stringValue]);
+			continue;
+		}
+		CCLOG(@"SvgLoader: loading layer: %@",[[curLayer attributeForName:@"id"] stringValue]);
+        
+        [self instantiateObjects:curLayer namePrefix:@"" xOffset:0.0f yOffset:0.0f];
+        
+		CCLOG(@"SvgLoader: layer loaded: %@",[[curLayer attributeForName:@"id"] stringValue]);
+	}
+}
+
+
+-(b2Body*) getBodyByName:(NSString*) bodyName
+{
+	//Iterate over the bodies in the physics world
+	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetUserData() != NULL) 
+		{
+			BodyInfo * bi = (BodyInfo*)b->GetUserData();
+			if(bi && [bi.name isEqualToString:bodyName]) return b;
+		}
+	}
+	return NULL;
 }
 
 -(void) assignSpritesFromManager:(SpriteManager*)manager

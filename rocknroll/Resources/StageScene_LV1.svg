@@ -7,6 +7,7 @@
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
  xmlns:svg="http://www.w3.org/2000/svg"
  xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
  version="1.0"
@@ -25,7 +26,7 @@
 <dc:format>image/svg+xml</dc:format>
 <dc:type
  rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-<dc:title />
+<dc:title></dc:title>
 </cc:Work>
 </rdf:RDF>
 </metadata>
@@ -42,11 +43,11 @@
  pagecolor="#ffffff"
  id="base"
  showgrid="false"
- inkscape:zoom="2.8284271"
- inkscape:cx="103.23243"
- inkscape:cy="218.17498"
- inkscape:window-x="2"
- inkscape:window-y="268"
+ inkscape:zoom="0.70710678"
+ inkscape:cx="802.28263"
+ inkscape:cy="325.33748"
+ inkscape:window-x="1918"
+ inkscape:window-y="48"
  inkscape:current-layer="layer3"
  width="480px"
  inkscape:window-maximized="0"
@@ -96,79 +97,43 @@
  inkscape:groupmode="layer"
  id="staticShapes"
  inkscape:label="static"
- style="display:inline">
-<rect
- phy_restitution="0.001"
- phy_friction="1.0"
- phy_density="0.2"
- isCircle=""
- y="242.72166"
- x="479.71634"
- height="15.5"
- width="15.5"
- id="obstacle"
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-<rect
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- id="rect3104"
- width="15.5"
- height="15.5"
- x="479.71634"
- y="242.72166"
- isCircle=""
- phy_density="0.2"
- phy_friction="1.0"
- phy_restitution="0.001" />
-<rect
- phy_restitution="0.001"
- phy_friction="1.0"
- phy_density="0.2"
- isCircle=""
- y="127.46326"
- x="196.87363"
- height="15.5"
- width="15.5"
- id="rect3106"
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-<rect
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- id="rect3108"
- width="15.5"
- height="15.5"
- x="1521.9917"
- y="116.14955"
- isCircle=""
- phy_density="0.2"
- phy_friction="1.0"
- phy_restitution="0.001" />
-<rect
- phy_restitution="0.001"
- phy_friction="1.0"
- phy_density="0.2"
- isCircle=""
- y="282.31964"
- x="2142.1243"
- height="15.5"
- width="15.5"
- id="rect3110"
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-<rect
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- id="rect3112"
- width="15.5"
- height="15.5"
- x="963.37738"
- y="203.12369"
- isCircle=""
- phy_density="0.2"
- phy_friction="1.0"
- phy_restitution="0.001" />
-</g>
+ style="display:inline" />
 <g
  inkscape:groupmode="layer"
  id="layer3"
  inkscape:label="boxes"
  style="display:inline">
+<image
+ style="display:inline"
+ y="224.31876"
+ x="516.67322"
+ id="image3251-4-4-9"
+ xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
+ height="16"
+ width="16" />
+<image
+ style="display:inline"
+ y="54.613125"
+ x="1327.0176"
+ id="image3251-4-4"
+ xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
+ height="16"
+ width="16" />
+<image
+ style="display:inline"
+ y="197.4487"
+ x="923.96674"
+ id="image3251-4"
+ xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
+ height="16"
+ width="16" />
+<image
+ y="225.73297"
+ x="546.3717"
+ id="image3251"
+ xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
+ height="16"
+ width="16" />
 <path
  style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
  d="M 717.38056,267.29084 L 848.70676,261.03721 L 942.51119,234.23595 L 1084.5579,194.92742 L 1181.9358,146.68515 L 1234.645,105.58987 L 1291.821,84.148857 L 1370.4381,85.935609 L 1454.4154,118.09713 L 1531.2457,135.96464 L 1587.5283,132.39114"
@@ -187,62 +152,6 @@
  id="path3009"
  inkscape:connector-curvature="0"
  isEdge="" />
-<rect
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.39024389;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- id="boberWheel1"
- width="15.609756"
- height="15.609756"
- x="62.433586"
- y="109.52361"
- isCircle=""
- phy_density="1.0"
- phy_friction="1.0"
- phy_restitution="0.001" />
-<rect
- phy_density="1.0"
- isCircle=""
- y="109.74582"
- x="122.71295"
- height="15.418975"
- width="15.418975"
- id="boberWheel2"
- style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.58102518;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- phy_friction="1.0"
- phy_restitution="0.0001" />
-<rect
- style="opacity:0.94650209;fill:#000080;fill-rule:nonzero;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- id="boberJoint1"
- width="1"
- height="1"
- x="69.738464"
- y="116.32849"
- isRevoluteJoint=""
- body1="bober"
- body2="boberWheel1"
- motorEnabled=""
- motorSpeed="0"
- maxTorque="1500" />
-<rect
- body2="boberWheel2"
- body1="bober"
- isRevoluteJoint=""
- y="116.32849"
- x="130.04926"
- height="1"
- width="1"
- id="boberJoint2"
- style="opacity:0.94650209;fill:#000080;fill-rule:nonzero;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
- motorEnabled=""
- motorSpeed="0"
- maxTorque="1500" />
-<rect
- phy_density="1"
- y="95.270142"
- x="49.055847"
- height="20.187164"
- width="97.122726"
- id="bober"
- style="fill:#000080;stroke-width:1.04799998;stroke-miterlimit:4;stroke-dasharray:none;display:inline" />
 <path
  style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
  d="M 2541.1472,235.76955 L 2649.1472,234.76955 L 2773.1472,207.76955 L 2889.1472,158.76955 L 2966.1472,119.76955 L 3048.1472,123.76955 L 3162.1472,175.76955 L 3280.1472,177.76955 L 3345.1472,152.76955 L 3405.1472,163.76955 L 3475.1472,206.76955 L 3514.1472,219.76955"
@@ -531,6 +440,13 @@
  id="path3122"
  inkscape:connector-curvature="0"
  isEdge="" />
+<image
+ y="92.867966"
+ x="47.666519"
+ id="MyCar"
+ xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Car.png"
+ height="30"
+ width="97" />
 <path
  style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
  d="M 25103.705,158.77965 L 25109.362,298.7868"

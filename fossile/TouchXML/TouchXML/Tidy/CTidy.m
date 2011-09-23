@@ -1,9 +1,9 @@
 //
 //  CTidy.m
-//  TouchXML
+//  TouchCode
 //
 //  Created by Jonathan Wight on 03/07/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -26,6 +26,8 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
+
+#ifdef TOUCHXMLUSETIDY
 
 #import "CTidy.h"
 
@@ -186,7 +188,6 @@ if (theResultCode < 0)
 	return(NO);
 	}
 
-
 // Repair the data
 theResultCode = tidyCleanAndRepair(theTidyDocument);
 if (theResultCode < 0)
@@ -205,7 +206,7 @@ NSMutableData *theOutputBuffer = [NSMutableData dataWithLength:theBufferLength];
 
 theResultCode = tidySaveString(theTidyDocument, [theOutputBuffer mutableBytes], &theBufferLength);
 
-NSString *theString = [NSString stringWithUTF8String:[theOutputBuffer bytes]];
+NSString *theString = [[[NSString alloc] initWithData:theOutputBuffer encoding:NSUTF8StringEncoding] autorelease];
 
 // 
 if (outDiagnostics && theErrorBuffer.bp != NULL)
@@ -222,7 +223,6 @@ tidyRelease(theTidyDocument);
 return(theString);
 }
 
-
-
-
 @end
+
+#endif /* TOUCHXMLUSETIDY */

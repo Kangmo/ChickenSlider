@@ -1,9 +1,9 @@
 //
 //  CXMLDocument.h
-//  TouchXML
+//  TouchCode
 //
 //  Created by Jonathan Wight on 03/07/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -30,8 +30,8 @@
 #import "CXMLNode.h"
 
 enum {
-	CXMLDocumentTidyHTML, // Based on NSXMLDocumentTidyHTML
-	CXMLDocumentTidyXML, // Based on NSXMLDocumentTidyXML
+	CXMLDocumentTidyHTML = 1 << 9, // Based on NSXMLDocumentTidyHTML
+	CXMLDocumentTidyXML = 1 << 10, // Based on NSXMLDocumentTidyXML
 };
 
 @class CXMLElement;
@@ -44,6 +44,7 @@ enum {
 - (id)initWithData:(NSData *)inData encoding:(NSStringEncoding)encoding options:(NSUInteger)inOptions error:(NSError **)outError;
 - (id)initWithXMLString:(NSString *)inString options:(NSUInteger)inOptions error:(NSError **)outError;
 - (id)initWithContentsOfURL:(NSURL *)inURL options:(NSUInteger)inOptions error:(NSError **)outError;
+- (id)initWithContentsOfURL:(NSURL *)inURL encoding:(NSStringEncoding)encoding options:(NSUInteger)inOptions error:(NSError **)outError;
 
 //- (NSString *)characterEncoding;
 //- (NSString *)version;

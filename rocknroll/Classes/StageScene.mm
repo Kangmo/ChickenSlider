@@ -20,6 +20,7 @@
 #include "InputLayer.h"
 #include "b2WorldEx.h"
 
+
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -60,7 +61,16 @@ static StageScene* instanceOfStageScene;
     NSString *filePath = [Util getResourcePath:svgFileName];
     
 	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self] autorelease];
-	[loader parseFile:filePath];
+    
+    // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
+    // In that file, a class is defined within a layer.
+    ClassDictionary * classDict = [[ClassDictionary alloc] init];
+    NSString *classFilePath = [Util getResourcePath:@"game_classes.svg"];
+    [classDict loadClassesFrom:classFilePath];
+    loader.classDict = classDict;
+    [classDict release];
+    
+	[loader instantiateObjectsIn:filePath];
 	return loader;
 }
 
@@ -122,7 +132,10 @@ static StageScene* instanceOfStageScene;
 		
 		[loader assignSpritesFromManager:spriteManager];
 		
-		car = new Car( [loader getBodyByName:@"bober"] );
+        b2Body * carBody = [loader getBodyByName:@"MyCar_CarMainBody"];
+        assert( carBody );
+        
+		car = new Car( carBody );
         
 		[followCam follow:car->getBody()];
 		

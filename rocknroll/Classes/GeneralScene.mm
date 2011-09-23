@@ -59,7 +59,7 @@
             
             svgLoader * loader = [[svgLoader alloc] initWithWorld:world_ andStaticBody:groundBody andLayer:self];
 
-            [loader parseFile:filePath];
+            [loader instantiateObjectsIn:filePath];
             
             [loader release];
         }

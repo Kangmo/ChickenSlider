@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:cc="http://creativecommons.org/ns#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:svg="http://www.w3.org/2000/svg"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+ xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+ version="1.0"
+ width="480"
+ height="320"
+ id="svg2"
+ sodipodi:version="0.32"
+ inkscape:version="0.48.1 r9760"
+ sodipodi:docname="game_classes.svg"
+ inkscape:output_extension="org.inkscape.output.svg.inkscape"
+ style="display:inline">
+<metadata
+ id="metadata2500">
+<rdf:RDF>
+<cc:Work
+ rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type
+ rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+<dc:title />
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<sodipodi:namedview
+ inkscape:window-height="778"
+ inkscape:window-width="1280"
+ inkscape:pageshadow="2"
+ inkscape:pageopacity="0.0"
+ guidetolerance="10.0"
+ gridtolerance="10.0"
+ objecttolerance="10.0"
+ borderopacity="1.0"
+ bordercolor="#666666"
+ pagecolor="#ffffff"
+ id="base"
+ showgrid="true"
+ inkscape:zoom="0.99999999"
+ inkscape:cx="93.919389"
+ inkscape:cy="127.08167"
+ inkscape:window-x="1614"
+ inkscape:window-y="138"
+ inkscape:current-layer="Car"
+ width="480px"
+ inkscape:window-maximized="0"
+ inkscape:snap-grids="true"
+ showguides="true"
+ inkscape:guide-bbox="true"
+ inkscape:snap-bbox="true"
+ inkscape:bbox-paths="false"
+ inkscape:bbox-nodes="false"
+ inkscape:snap-page="true">
+<inkscape:grid
+ type="xygrid"
+ id="grid3290"
+ visible="true"
+ enabled="true"
+ empspacing="5"
+ snapvisiblegridlinesonly="true" />
+</sodipodi:namedview>
+<defs
+ id="defs4">
+<inkscape:perspective
+ sodipodi:type="inkscape:persp3d"
+ inkscape:vp_x="0 : 500 : 1"
+ inkscape:vp_y="0 : 1000 : 0"
+ inkscape:vp_z="1000 : 500 : 1"
+ inkscape:persp3d-origin="500 : 333.33333 : 1"
+ id="perspective2413" />
+<inkscape:perspective
+ id="perspective2443"
+ inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+ inkscape:vp_z="744.09448 : 526.18109 : 1"
+ inkscape:vp_y="0 : 1000 : 0"
+ inkscape:vp_x="0 : 526.18109 : 1"
+ sodipodi:type="inkscape:persp3d" />
+<inkscape:perspective
+ id="perspective3980"
+ inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+ inkscape:vp_z="1 : 0.5 : 1"
+ inkscape:vp_y="0 : 1000 : 0"
+ inkscape:vp_x="0 : 0.5 : 1"
+ sodipodi:type="inkscape:persp3d" />
+<inkscape:perspective
+ id="perspective3534"
+ inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+ inkscape:vp_z="1 : 0.5 : 1"
+ inkscape:vp_y="0 : 1000 : 0"
+ inkscape:vp_x="0 : 0.5 : 1"
+ sodipodi:type="inkscape:persp3d" />
+</defs>
+<g
+ style="display:none"
+ inkscape:label="ignored_layer"
+ id="ignored_layer"
+ inkscape:groupmode="layer"
+ ignore="">
+<rect
+ style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+ id="rect3076"
+ width="15.5"
+ height="15.5"
+ x="0"
+ y="0"
+ isCircle=""
+ phy_density="0.2"
+ phy_friction="1.0"
+ phy_restitution="0.001" />
+</g>
+<g
+ inkscape:groupmode="layer"
+ id="Ball"
+ inkscape:label="Ball"
+ style="display:none">
+<rect
+ phy_restitution="0.001"
+ phy_friction="1.0"
+ phy_density="0.2"
+ isCircle=""
+ y="0"
+ x="0"
+ height="15.5"
+ width="15.5"
+ id="Ball_MainBody"
+ style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+</g>
+<g
+ style="display:inline"
+ inkscape:label="Car"
+ id="Car"
+ inkscape:groupmode="layer">
+<rect
+ style="fill:#000080;stroke-width:1.04799998;stroke-miterlimit:4;stroke-dasharray:none;display:inline"
+ id="CarMainBody"
+ width="97.122726"
+ height="20.187164"
+ x="0"
+ y="-0.18516421"
+ phy_density="1" />
+<rect
+ maxTorque="1500"
+ motorSpeed="0"
+ motorEnabled=""
+ style="opacity:0.94650209;fill:#000080;fill-rule:nonzero;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+ id="boberJoint2"
+ width="1"
+ height="1"
+ x="80.993416"
+ y="20.873184"
+ isRevoluteJoint=""
+ body1="CarMainBody"
+ body2="boberWheel2" />
+<rect
+ maxTorque="1500"
+ motorSpeed="0"
+ motorEnabled=""
+ body2="boberWheel1"
+ body1="CarMainBody"
+ isRevoluteJoint=""
+ y="20.873184"
+ x="20.682617"
+ height="1"
+ width="1"
+ id="boberJoint1"
+ style="opacity:0.94650209;fill:#000080;fill-rule:nonzero;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+<rect
+ phy_restitution="0.0001"
+ phy_friction="1.0"
+ style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.58102518;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+ id="boberWheel2"
+ width="15.418975"
+ height="15.418975"
+ x="73.657104"
+ y="14.290512"
+ isCircle=""
+ phy_density="1.0" />
+<rect
+ phy_restitution="0.001"
+ phy_friction="1.0"
+ phy_density="1.0"
+ isCircle=""
+ y="14.068306"
+ x="13.377739"
+ height="15.609756"
+ width="15.609756"
+ id="boberWheel1"
+ style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.39024389;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+</g>
+</svg>

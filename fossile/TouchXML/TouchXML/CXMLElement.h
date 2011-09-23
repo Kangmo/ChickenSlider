@@ -1,9 +1,9 @@
 //
 //  CXMLElement.h
-//  TouchXML
+//  TouchCode
 //
 //  Created by Jonathan Wight on 03/07/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -35,16 +35,16 @@
 }
 
 - (NSArray *)elementsForName:(NSString *)name;
-//- (NSArray *)elementsForLocalName:(NSString *)localName URI:(NSString *)URI;
+- (NSArray *)elementsForLocalName:(NSString *)localName URI:(NSString *)URI;
 
 - (NSArray *)attributes;
 - (CXMLNode *)attributeForName:(NSString *)name;
-//- (CXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
+- (CXMLNode *)attributeForLocalName:(NSString *)localName URI:(NSString *)URI;
 
-//- (NSArray *)namespaces; //primitive
-//- (CXMLNode *)namespaceForPrefix:(NSString *)name;
-//- (CXMLNode *)resolveNamespaceForName:(NSString *)name;
-//- (NSString *)resolvePrefixForNamespaceURI:(NSString *)namespaceURI;
+- (NSArray *)namespaces; 
+- (CXMLNode *)namespaceForPrefix:(NSString *)name;
+- (CXMLNode *)resolveNamespaceForName:(NSString *)name;
+- (NSString *)resolvePrefixForNamespaceURI:(NSString *)namespaceURI;
 
-- (NSString*)_XMLStringWithOptions:(NSUInteger)options appendingToString:(NSMutableString*)str;
+//- (NSString*)_XMLStringWithOptions:(NSUInteger)options appendingToString:(NSMutableString*)str;
 @end

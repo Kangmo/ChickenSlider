@@ -4,6 +4,7 @@
 #import "GLES-Render.h"
 #import "JointDeclaration.h"
 #import "svgLoader.h"
+#import "ClassDictionary.h"
 
 
 #import "AbstractCamera.h"

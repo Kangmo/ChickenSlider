@@ -79,6 +79,10 @@
 	}
 }
 
+// BUGBUG : Adjust the position for iPad, retina...
+const int TARGET_OBJ_POS_X = 100;
+const int TARGET_OBJ_POS_Y = 160;
+
 -(void) updateFollowPosition
 {
 	if(objectToFollow)
@@ -91,7 +95,7 @@
 		
 		//add center of scren shift
 		
-		objPosition = ccpAdd(objPosition, CGPointMake(240, 160));
+		objPosition = ccpAdd(objPosition, CGPointMake(TARGET_OBJ_POS_X, TARGET_OBJ_POS_Y));
 		
 
 		CGPoint returnDelta = ccpSub(objPosition,cameraPosition);

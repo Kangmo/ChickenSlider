@@ -14,30 +14,27 @@
 #include <vector>
 #import "SpriteManager.h"
 
-
+@class ClassDictionary;
 
 @interface svgLoader : NSObject 
 {
 	b2World* world;
 	b2Body* staticBody;
     CCLayer * layer;
-	NSMutableSet * delayedJoints;
-	NSMutableDictionary * addedObjects;
 	
 	float worldWidth;
 	float worldHeight;
 	float scaleFactor; // used for debug rendering and physycs creation from svg only
+    ClassDictionary * classDict;
 }
-@property 	float scaleFactor; 
-
+@property float scaleFactor; 
+@property (nonatomic, retain) ClassDictionary * classDict;
+           
 -(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l;
 
--(void) parseFile:(NSString*)filename;
--(void) initGroups:(NSArray *) shapes;
--(void) initRectangles:(NSArray *) shapes;
--(void) initShapes:(NSArray *) shapes;
+-(void) instantiateObjectsIn:(NSString*)filename;
+-(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset;
 -(b2Body*) getBodyByName:(NSString*) bodyName;
--(void) initJoints;
 -(void) assignSpritesFromManager:(SpriteManager*)manager;
 -(void) doCleanupShapes;
 

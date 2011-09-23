@@ -1,9 +1,9 @@
 //
-//  CXMLDocument
-//  TouchXML
+//  CXMLDocument.m
+//  TouchCode
 //
 //  Created by Jonathan Wight on 03/07/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -42,6 +42,7 @@
 
 - (id)initWithXMLString:(NSString *)inString options:(NSUInteger)inOptions error:(NSError **)outError
 {
+#pragma unused (inOptions)
 if ((self = [super init]) != NULL)
 	{
 	NSError *theError = NULL;
@@ -66,7 +67,16 @@ if ((self = [super init]) != NULL)
 		}
 	else
 		{
-		theError = [NSError errorWithDomain:@"CXMLErrorDomain" code:1 userInfo:NULL];
+		xmlErrorPtr	theLastErrorPtr = xmlGetLastError();
+		
+		NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSString stringWithUTF8String:theLastErrorPtr->message], NSLocalizedDescriptionKey,
+			NULL];
+		
+		
+		theError = [NSError errorWithDomain:@"CXMLErrorDomain" code:1 userInfo:theUserInfo];
+		
+		xmlResetLastError();
 		}
 
 	if (outError)
@@ -88,6 +98,7 @@ return(self);
 
 - (id)initWithData:(NSData *)inData encoding:(NSStringEncoding)encoding options:(NSUInteger)inOptions error:(NSError **)outError
 {
+#pragma unused (inOptions)
 if ((self = [super init]) != NULL)
 	{
 	NSError *theError = NULL;
@@ -114,14 +125,21 @@ if ((self = [super init]) != NULL)
 			theDoc = xmlReadMemory([inData bytes], [inData length], NULL, enc, XML_PARSE_RECOVER | XML_PARSE_NOWARNING);
 			}
 		
-		if (theDoc != NULL)
+		if (theDoc != NULL && xmlDocGetRootElement(theDoc) != NULL)
 			{
 			_node = (xmlNodePtr)theDoc;
 			_node->_private = self; // Note. NOT retained (TODO think more about _private usage)
 			}
 		else
 			{
-			theError = [NSError errorWithDomain:@"CXMLErrorDomain" code:-1 userInfo:NULL];
+			xmlErrorPtr	theLastErrorPtr = xmlGetLastError();
+			NSString* message = [NSString stringWithUTF8String:
+								 (theLastErrorPtr ? theLastErrorPtr->message : "Unknown error")];
+			NSDictionary *theUserInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+										 message, NSLocalizedDescriptionKey, NULL];
+			theError = [NSError errorWithDomain:@"CXMLErrorDomain" code:1 userInfo:theUserInfo];
+								 
+			xmlResetLastError();
 			}
 		}
 
@@ -139,13 +157,18 @@ return(self);
 
 - (id)initWithContentsOfURL:(NSURL *)inURL options:(NSUInteger)inOptions error:(NSError **)outError
 {
+	return [self initWithContentsOfURL:inURL encoding:NSUTF8StringEncoding options:inOptions error:outError];
+}
+
+- (id)initWithContentsOfURL:(NSURL *)inURL encoding:(NSStringEncoding)encoding options:(NSUInteger)inOptions error:(NSError **)outError
+{
 if (outError)
 	*outError = NULL;
 
 NSData *theData = [NSData dataWithContentsOfURL:inURL options:NSUncachedRead error:outError];
 if (theData)
 	{
-	self = [self initWithData:theData options:inOptions error:outError];
+	self = [self initWithData:theData encoding:encoding options:inOptions error:outError];
 	}
 else
 	{
@@ -184,7 +207,7 @@ _node = NULL;
 {
 xmlNodePtr theLibXMLNode = xmlDocGetRootElement((xmlDocPtr)_node);
 	
-return([CXMLNode nodeWithLibXMLNode:theLibXMLNode]);
+return([CXMLNode nodeWithLibXMLNode:theLibXMLNode freeOnDealloc:NO]);
 }
 
 - (NSData *)XMLData
@@ -194,6 +217,7 @@ return([self XMLDataWithOptions:0]);
 
 - (NSData *)XMLDataWithOptions:(NSUInteger)options
 {
+#pragma unused (options)
 xmlChar *theBuffer = NULL;
 int theBufferSize = 0;
 xmlDocDumpMemory((xmlDocPtr)self->_node, &theBuffer, &theBufferSize);
@@ -210,9 +234,9 @@ return(theData);
 //- (id)objectByApplyingXSLTAtURL:(NSURL *)xsltURL arguments:(NSDictionary *)argument error:(NSError **)error;
 - (id)XMLStringWithOptions:(NSUInteger)options
 {
-id root = [self rootElement];
-NSMutableString* xmlString = [NSMutableString string];
-[root _XMLStringWithOptions:options appendingToString:xmlString];
+CXMLElement *theRoot = [self rootElement];
+NSMutableString *xmlString = [NSMutableString string];
+[xmlString appendString:[theRoot XMLStringWithOptions:options]];
 return xmlString;
 }
 

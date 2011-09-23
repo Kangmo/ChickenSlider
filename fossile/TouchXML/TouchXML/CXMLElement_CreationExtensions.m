@@ -1,9 +1,9 @@
 //
 //  CXMLElement_CreationExtensions.m
-//  TouchXML
+//  TouchCode
 //
 //  Created by Jonathan Wight on 04/01/08.
-//  Copyright (c) 2008 Jonathan Wight
+//  Copyright 2008 toxicsoftware.com. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -37,6 +37,8 @@ NSAssert(inNode->_node->doc == NULL, @"Cannot addChild with a node that already 
 NSAssert(self->_node != NULL, @"_node should not be null");
 NSAssert(inNode->_node != NULL, @"_node should not be null");
 xmlAddChild(self->_node, inNode->_node);
+// now XML element is tracked by document, do not release on dealloc
+inNode->_freeNodeOnRelease = NO;
 }
 
 - (void)addNamespace:(CXMLNode *)inNamespace
