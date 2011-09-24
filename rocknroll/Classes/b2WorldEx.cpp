@@ -12,7 +12,7 @@
 /// Construct a world object.
 /// @param gravity the world gravity vector.
 /// @param doSleep improve performance by not simulating inactive bodies.
-b2WorldEx::b2WorldEx(const b2Vec2& gravity, bool doSleep) : b2World(gravity, doSleep)
+b2WorldEx::b2WorldEx(const b2Vec2& gravity) : b2World(gravity)
 {
 }
 

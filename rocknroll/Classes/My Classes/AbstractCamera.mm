@@ -8,6 +8,7 @@
 
 #import "AbstractCamera.h"
 #include "b2WorldEx.h"
+#include "GameConfig.h"
 
 @implementation AbstractCamera
 
@@ -22,7 +23,7 @@
 		zoom = 1.0f;
 		minZoom = 0.1;
 		maxZoom = 10;
-		ptmRatio = 10.0f;  //1 phy unit = 10 screen pixels by default
+		ptmRatio = INIT_PTM_RATIO;  //1 phy unit = 32 screen pixels by default
 		originalPtmRatio = ptmRatio;
 		
 		storedTouches = [[NSMutableArray alloc] initWithCapacity:3];
@@ -117,7 +118,8 @@
 		BodyInfo *bi = (BodyInfo*)body->GetUserData();
 		if(bi.data)
 		{
-			CCSpriteBatchNode* actor = (CCSpriteBatchNode*)bi.data;
+            
+            CCSprite* actor = (CCSprite*)bi.data;
 			
 			//get position in physycs coords
 			actor.position = CGPointMake( body->GetPosition().x , body->GetPosition().y);
@@ -130,6 +132,21 @@
 			
 			actor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
 			actor.scale = 1.0f * zoom;
+
+/*			CCSpriteBatchNode* actor = (CCSpriteBatchNode*)bi.data;
+			
+			//get position in physycs coords
+			actor.position = CGPointMake( body->GetPosition().x , body->GetPosition().y);
+			actor.position = ccpSub(actor.position, bi.spriteOffset);
+			//map it to scren coords using PTM ratio
+			actor.position = ccpMult(actor.position, ptmRatio);
+			
+			//add camera shift
+			actor.position = ccpAdd(actor.position,cameraPosition);
+			
+			actor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
+			actor.scale = 1.0f * zoom;
+ */
 		}
 	}
 }

@@ -93,10 +93,8 @@ static StageScene* instanceOfStageScene;
 		b2Vec2 gravity;
 		gravity.Set(0.0f, -9.8);
 		
-		// Do we want to let bodies sleep?
-		bool doSleep = true;
 		// Construct a world object, which will hold and simulate the rigid bodies.
-		world = new b2WorldEx(gravity, doSleep);
+		world = new b2WorldEx(gravity);
 		world->SetContinuousPhysics(true);
 		
 		FollowCamera * followCam = [[FollowCamera alloc] init];
@@ -174,7 +172,7 @@ static StageScene* instanceOfStageScene;
 		[followCam follow:playerBody];
 		
 		[cam ZoomToObject:playerBody screenPart:0.15];
-		
+		[cam ZoomTo:INIT_ZOOM_RATIO];
 		
 		CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Menu" target:self selector:@selector(onReset:)];
 		
@@ -277,12 +275,35 @@ static StageScene* instanceOfStageScene;
     
 }
 
+-(void) adjustZoom
+{
+    static float minHeightMeters = 0.0f;
+    if (!minHeightMeters) 
+    {
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+		minHeightMeters = screenSize.height * 4/5 / INIT_PTM_RATIO;
+    }
+    if (hero)
+    {
+        float heightMeters = hero.body->GetPosition().y ;
+        if (heightMeters < minHeightMeters) {
+            heightMeters = minHeightMeters;
+        }
+        float zoom = minHeightMeters / heightMeters;
+        [cam ZoomTo:zoom];
+        
+        CCLOG(@"heightMeters:%f, zoom:%f\n", heightMeters, zoom);
+    }
+}
+
 -(void) tick: (ccTime) dt
 {
 //	st+=0.01;
 //	float s = sin(st)*2.0f;
 //	if(s<0) s*=-1.0f;
 //	[cam ZoomTo: s +0.2f];
+
+    [self adjustZoom];
 
 	[cam updateFollowPosition];
 	int32 velocityIterations = 8;
@@ -297,19 +318,20 @@ static StageScene* instanceOfStageScene;
 	world->Step(1.0f/30.0f, velocityIterations, positionIterations);
 	
     [hero updateNode];
-    
+
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		[cam updateSpriteFromBody:b];
 	}
-	
+
 }
+
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     CCLOG(@"TouchesBegan");
 // by kmkim    
-	[cam eventBegan:touches];
+//	[cam eventBegan:touches];
     
     self.hero.diving = YES;
 //	//Add a new body/atlas sprite at the touched location
@@ -325,7 +347,7 @@ static StageScene* instanceOfStageScene;
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 // by kmkim    
-    [cam eventMoved:touches];
+//    [cam eventMoved:touches];
 	
 //	for( UITouch *touch in touches ) 
 //	{
@@ -338,7 +360,7 @@ static StageScene* instanceOfStageScene;
 {
     CCLOG(@"TouchesEnded");
 // by kmkim    
-	[cam eventEnded:touches];
+//	[cam eventEnded:touches];
 
     self.hero.diving = NO;
 

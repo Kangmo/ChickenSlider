@@ -14,6 +14,7 @@
 
 @implementation Hero
 @synthesize world = _world;
+@synthesize body = _body;
 @synthesize sprite = _sprite;
 @synthesize awake = _awake;
 @synthesize diving = _diving;
@@ -48,6 +49,7 @@
 - (void) dealloc {
     
 	self.world = nil;
+    self.body = nil;
     /*	
      #ifndef DRAW_BOX2D_WORLD
      self.sprite = nil;
@@ -83,7 +85,7 @@
 - (void) wake {
 	_awake = YES;
 	_body->SetActive(true);
-	_body->ApplyLinearImpulse(b2Vec2(1,2), _body->GetPosition());
+    _body->ApplyLinearImpulse(b2Vec2(1,2), _body->GetPosition());
 }
 
 - (void) updatePhysics {
@@ -94,13 +96,14 @@
 			[self wake];
 			_diving = NO;
 		} else {
-			_body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
+            _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
 		}
 	}
-	
+
 	// limit velocity
 	const float minVelocityX = 3;
 	const float minVelocityY = -40;
+
 	b2Vec2 vel = _body->GetLinearVelocity();
 	if (vel.x < minVelocityX) {
 		vel.x = minVelocityX;
@@ -119,12 +122,15 @@
 	self.position = ccp(x, y);
 	b2Vec2 vel = _body->GetLinearVelocity();
 	float angle = atan2f(vel.y, vel.x);
-    
+/*    
 #ifdef DRAW_BOX2D_WORLD
 	body->SetTransform(body->GetPosition(), angle);
 #else
-	self.rotation = -1 * CC_RADIANS_TO_DEGREES(angle);
-#endif
+*/
+	_body->SetTransform(_body->GetPosition(), angle);
+    
+//	self.rotation = -1 * CC_RADIANS_TO_DEGREES(angle);
+//#endif
 	
 	// collision detection
 	b2Contact *c = _world->GetContactList();

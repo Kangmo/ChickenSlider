@@ -27,7 +27,7 @@
 	float scaleFactor; // used for debug rendering and physycs creation from svg only
     ClassDictionary * classDict;
 }
-@property float scaleFactor; 
+//@property float scaleFactor; 
 @property (nonatomic, retain) ClassDictionary * classDict;
            
 //-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*)sb andLayer:(CCLayer*)l andSpriteSheet:(CCSpriteBatchNode*)ss;

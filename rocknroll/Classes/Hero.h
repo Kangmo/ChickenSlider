@@ -29,6 +29,7 @@ class HeroContactListener;
 	int _nPerfectSlides;
 }
 @property (nonatomic, assign) b2World *world;
+@property (nonatomic, assign) b2Body *body;
 @property (nonatomic, retain) CCSprite *sprite;
 @property (readonly) BOOL awake;
 @property (nonatomic) BOOL diving;

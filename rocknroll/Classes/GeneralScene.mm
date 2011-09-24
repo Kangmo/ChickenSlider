@@ -42,12 +42,10 @@
         {
             // Define the gravity vector.
             b2Vec2 gravity;
-            gravity.Set(0.0f, -100.0f);
+            gravity.Set(0.0f, -9.8f);
             
-            // Do we want to let bodies sleep?
-            bool doSleep = true;
             // Construct a world object, which will hold and simulate the rigid bodies.
-            world_ = new b2WorldEx(gravity, doSleep);
+            world_ = new b2WorldEx(gravity);
 
             // Define the ground body.
             b2BodyDef groundBodyDef;

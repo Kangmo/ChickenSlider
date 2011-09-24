@@ -12,9 +12,10 @@
 #include "InteractiveBodyNode.h"
 #include "StringParser.h"
 #import "ClassDictionary.h"
+#include "GameConfig.h"
 
 @implementation svgLoader
-@synthesize scaleFactor;
+//@synthesize scaleFactor;
 @synthesize classDict;
 
 -(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l
@@ -25,7 +26,8 @@
 		world = w;
 		staticBody = sb;
         layer = l;
-		scaleFactor = 10.0f;
+//		scaleFactor = 10.0f;
+        scaleFactor = INIT_PTM_RATIO;
         classDict = nil;
 	}
 	return self;
@@ -277,6 +279,7 @@
 			
 			if(friction) fixtureDef.friction =[friction floatValue];
 			else fixtureDef.friction = 0.5f;
+            
 			if(restitution) fixtureDef.restitution =[restitution floatValue];
 			//else fixtureDef.friction = 0.5f;
 			

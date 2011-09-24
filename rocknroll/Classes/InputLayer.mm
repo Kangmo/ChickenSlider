@@ -87,16 +87,9 @@
     {
         nextShotTime = totalTime + 0.5f;
         
-        CGPoint force = ccpMult(joystick.velocity, 150);
-        force.x = -force.x;
-        b2MassData mass;
         b2Body * body = car->getBody();
-        body->GetMassData(&mass);
-        const b2Vec2 impulse(force.x, force.y);
-        
-        body->ApplyLinearImpulse(impulse, mass.center);
+        body->ApplyLinearImpulse(b2Vec2(100,200), body->GetPosition());
         //		[game shootBulletFromShip:[game defaultShip]];
-        
     }
     
     // Allow faster shooting by quickly tapping the fire button.

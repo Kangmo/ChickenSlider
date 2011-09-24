@@ -16,8 +16,7 @@ class b2WorldEx : public b2World
 public:    
     /// Construct a world object.
     /// @param gravity the world gravity vector.
-    /// @param doSleep improve performance by not simulating inactive bodies.
-    b2WorldEx(const b2Vec2& gravity, bool doSleep);
+    b2WorldEx(const b2Vec2& gravity);
     
     /// Destruct the world. All physics entities are destroyed and all heap memory is released.
     virtual ~b2WorldEx();
