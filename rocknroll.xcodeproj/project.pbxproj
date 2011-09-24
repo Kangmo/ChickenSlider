@@ -325,8 +325,6 @@
 		670982E313DD1733003E4E75 /* LevelMapScene_Hover_LV12.svg in Resources */ = {isa = PBXBuildFile; fileRef = 670982A413DD1733003E4E75 /* LevelMapScene_Hover_LV12.svg */; };
 		670982E413DD1733003E4E75 /* LevelMapScene.png in Resources */ = {isa = PBXBuildFile; fileRef = 670982A513DD1733003E4E75 /* LevelMapScene.png */; };
 		670982E513DD1733003E4E75 /* LevelMapScene.svg in Resources */ = {isa = PBXBuildFile; fileRef = 670982A613DD1733003E4E75 /* LevelMapScene.svg */; };
-		670982E613DD1733003E4E75 /* levin.plist in Resources */ = {isa = PBXBuildFile; fileRef = 670982A713DD1733003E4E75 /* levin.plist */; };
-		670982E713DD1733003E4E75 /* levin.png in Resources */ = {isa = PBXBuildFile; fileRef = 670982A813DD1733003E4E75 /* levin.png */; };
 		670982E813DD1733003E4E75 /* MainMenuScene_Hover_Credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 670982A913DD1733003E4E75 /* MainMenuScene_Hover_Credits.png */; };
 		670982E913DD1733003E4E75 /* MainMenuScene_Hover_Credits.svg in Resources */ = {isa = PBXBuildFile; fileRef = 670982AA13DD1733003E4E75 /* MainMenuScene_Hover_Credits.svg */; };
 		670982EA13DD1733003E4E75 /* MainMenuScene_Hover_Help.png in Resources */ = {isa = PBXBuildFile; fileRef = 670982AB13DD1733003E4E75 /* MainMenuScene_Hover_Help.png */; };
@@ -355,7 +353,6 @@
 		6709832813DD1777003E4E75 /* FreeCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830E13DD1777003E4E75 /* FreeCamera.mm */; };
 		6709832913DD1777003E4E75 /* InteractiveBodyNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831013DD1777003E4E75 /* InteractiveBodyNode.mm */; };
 		6709832A13DD1777003E4E75 /* JointDeclaration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709831213DD1777003E4E75 /* JointDeclaration.m */; };
-		6709832B13DD1777003E4E75 /* SpriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709831513DD1777003E4E75 /* SpriteManager.m */; };
 		6709832C13DD1777003E4E75 /* StringParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831713DD1777003E4E75 /* StringParser.mm */; };
 		6709832D13DD1777003E4E75 /* svgLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831913DD1777003E4E75 /* svgLoader.mm */; };
 		6709832E13DD1777003E4E75 /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831B13DD1777003E4E75 /* Util.mm */; };
@@ -433,6 +430,11 @@
 		67B4F9D613DD388E00FAFBDD /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = 6709807013DD1548003E4E75 /* win32tc.c */; };
 		67B4F9D713DD388E00FAFBDD /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6709807113DD1548003E4E75 /* win32tc.h */; };
 		67B4F9D913DD389600FAFBDD /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = 6709804213DD1548003E4E75 /* access.c */; };
+		67E6C5D1142CA6D80087CC97 /* StageScene_LV3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */; };
+		67E6C5D6142CAF840087CC97 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5D4142CAF7F0087CC97 /* sprites.plist */; };
+		67E6C5D7142CAF840087CC97 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5D5142CAF810087CC97 /* sprites.png */; };
+		67E6C5F2142D75D90087CC97 /* Hero.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67E6C5EF142D75D90087CC97 /* Hero.mm */; };
+		67E6C5F3142D75D90087CC97 /* HeroContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67E6C5F1142D75D90087CC97 /* HeroContactListener.mm */; };
 		67FA97C513DFFCBA00468DDA /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67FA976513DFFCBA00468DDA /* b2BroadPhase.cpp */; };
 		67FA97C613DFFCBA00468DDA /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67FA976713DFFCBA00468DDA /* b2CollideCircle.cpp */; };
 		67FA97C713DFFCBA00468DDA /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67FA976813DFFCBA00468DDA /* b2CollideEdge.cpp */; };
@@ -931,8 +933,6 @@
 		670982A413DD1733003E4E75 /* LevelMapScene_Hover_LV12.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LevelMapScene_Hover_LV12.svg; path = Resources/LevelMapScene_Hover_LV12.svg; sourceTree = "<group>"; };
 		670982A513DD1733003E4E75 /* LevelMapScene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LevelMapScene.png; path = Resources/LevelMapScene.png; sourceTree = "<group>"; };
 		670982A613DD1733003E4E75 /* LevelMapScene.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LevelMapScene.svg; path = Resources/LevelMapScene.svg; sourceTree = "<group>"; };
-		670982A713DD1733003E4E75 /* levin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = levin.plist; path = Resources/levin.plist; sourceTree = "<group>"; };
-		670982A813DD1733003E4E75 /* levin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = levin.png; path = Resources/levin.png; sourceTree = "<group>"; };
 		670982A913DD1733003E4E75 /* MainMenuScene_Hover_Credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainMenuScene_Hover_Credits.png; path = Resources/MainMenuScene_Hover_Credits.png; sourceTree = "<group>"; };
 		670982AA13DD1733003E4E75 /* MainMenuScene_Hover_Credits.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MainMenuScene_Hover_Credits.svg; path = Resources/MainMenuScene_Hover_Credits.svg; sourceTree = "<group>"; };
 		670982AB13DD1733003E4E75 /* MainMenuScene_Hover_Help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainMenuScene_Hover_Help.png; path = Resources/MainMenuScene_Hover_Help.png; sourceTree = "<group>"; };
@@ -975,8 +975,6 @@
 		6709831113DD1777003E4E75 /* JointDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JointDeclaration.h; sourceTree = "<group>"; };
 		6709831213DD1777003E4E75 /* JointDeclaration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JointDeclaration.m; sourceTree = "<group>"; };
 		6709831313DD1777003E4E75 /* RetainCountTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetainCountTrace.h; sourceTree = "<group>"; };
-		6709831413DD1777003E4E75 /* SpriteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteManager.h; sourceTree = "<group>"; };
-		6709831513DD1777003E4E75 /* SpriteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteManager.m; sourceTree = "<group>"; };
 		6709831613DD1777003E4E75 /* StringParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringParser.h; sourceTree = "<group>"; };
 		6709831713DD1777003E4E75 /* StringParser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StringParser.mm; sourceTree = "<group>"; };
 		6709831813DD1777003E4E75 /* svgLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svgLoader.h; sourceTree = "<group>"; };
@@ -1021,6 +1019,13 @@
 		67B4F97B13DD20FF00FAFBDD /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		67B4F98513DD34F600FAFBDD /* CategoryDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryDummy.h; sourceTree = "<group>"; };
 		67B4F98613DD34F600FAFBDD /* CategoryDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryDummy.m; sourceTree = "<group>"; };
+		67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV3.svg; path = Resources/StageScene_LV3.svg; sourceTree = "<group>"; };
+		67E6C5D4142CAF7F0087CC97 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sprites.plist; path = Resources/sprites.plist; sourceTree = "<group>"; };
+		67E6C5D5142CAF810087CC97 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sprites.png; path = Resources/sprites.png; sourceTree = "<group>"; };
+		67E6C5EE142D75D90087CC97 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		67E6C5EF142D75D90087CC97 /* Hero.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Hero.mm; sourceTree = "<group>"; };
+		67E6C5F0142D75D90087CC97 /* HeroContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeroContactListener.h; sourceTree = "<group>"; };
+		67E6C5F1142D75D90087CC97 /* HeroContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HeroContactListener.mm; sourceTree = "<group>"; };
 		67FA976313DFFCBA00468DDA /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		67FA976513DFFCBA00468DDA /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
 		67FA976613DFFCBA00468DDA /* b2BroadPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2BroadPhase.h; sourceTree = "<group>"; };
@@ -1194,6 +1199,9 @@
 		6709790513DD14A7003E4E75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67E6C5D4142CAF7F0087CC97 /* sprites.plist */,
+				67E6C5D5142CAF810087CC97 /* sprites.png */,
+				67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */,
 				67714D8713E0708800892B4C /* game_classes.svg */,
 				6709827B13DD1733003E4E75 /* arrow.png */,
 				6709827C13DD1733003E4E75 /* bigtexture.png */,
@@ -1239,8 +1247,6 @@
 				670982A413DD1733003E4E75 /* LevelMapScene_Hover_LV12.svg */,
 				670982A513DD1733003E4E75 /* LevelMapScene.png */,
 				670982A613DD1733003E4E75 /* LevelMapScene.svg */,
-				670982A713DD1733003E4E75 /* levin.plist */,
-				670982A813DD1733003E4E75 /* levin.png */,
 				670982A913DD1733003E4E75 /* MainMenuScene_Hover_Credits.png */,
 				670982AA13DD1733003E4E75 /* MainMenuScene_Hover_Credits.svg */,
 				670982AB13DD1733003E4E75 /* MainMenuScene_Hover_Help.png */,
@@ -1874,10 +1880,14 @@
 		670982F913DD1777003E4E75 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				670982FA13DD1777003E4E75 /* AppDelegate.h */,
-				670982FB13DD1777003E4E75 /* AppDelegate.mm */,
 				670982FC13DD1777003E4E75 /* Car.cpp */,
 				670982FD13DD1777003E4E75 /* Car.h */,
+				67E6C5EE142D75D90087CC97 /* Hero.h */,
+				67E6C5EF142D75D90087CC97 /* Hero.mm */,
+				67E6C5F0142D75D90087CC97 /* HeroContactListener.h */,
+				67E6C5F1142D75D90087CC97 /* HeroContactListener.mm */,
+				670982FA13DD1777003E4E75 /* AppDelegate.h */,
+				670982FB13DD1777003E4E75 /* AppDelegate.mm */,
 				670982FE13DD1777003E4E75 /* GameConfig.h */,
 				670982FF13DD1777003E4E75 /* GeneralScene.h */,
 				6709830013DD1777003E4E75 /* GeneralScene.mm */,
@@ -1915,8 +1925,6 @@
 				6709831113DD1777003E4E75 /* JointDeclaration.h */,
 				6709831213DD1777003E4E75 /* JointDeclaration.m */,
 				6709831313DD1777003E4E75 /* RetainCountTrace.h */,
-				6709831413DD1777003E4E75 /* SpriteManager.h */,
-				6709831513DD1777003E4E75 /* SpriteManager.m */,
 				6709831613DD1777003E4E75 /* StringParser.h */,
 				6709831713DD1777003E4E75 /* StringParser.mm */,
 				6709831813DD1777003E4E75 /* svgLoader.h */,
@@ -2416,8 +2424,6 @@
 				670982E313DD1733003E4E75 /* LevelMapScene_Hover_LV12.svg in Resources */,
 				670982E413DD1733003E4E75 /* LevelMapScene.png in Resources */,
 				670982E513DD1733003E4E75 /* LevelMapScene.svg in Resources */,
-				670982E613DD1733003E4E75 /* levin.plist in Resources */,
-				670982E713DD1733003E4E75 /* levin.png in Resources */,
 				670982E813DD1733003E4E75 /* MainMenuScene_Hover_Credits.png in Resources */,
 				670982E913DD1733003E4E75 /* MainMenuScene_Hover_Credits.svg in Resources */,
 				670982EA13DD1733003E4E75 /* MainMenuScene_Hover_Help.png in Resources */,
@@ -2436,6 +2442,9 @@
 				670982F713DD1733003E4E75 /* textures.svg in Resources */,
 				670982F813DD1733003E4E75 /* wheel.png in Resources */,
 				67714D8813E0708800892B4C /* game_classes.svg in Resources */,
+				67E6C5D1142CA6D80087CC97 /* StageScene_LV3.svg in Resources */,
+				67E6C5D6142CAF840087CC97 /* sprites.plist in Resources */,
+				67E6C5D7142CAF840087CC97 /* sprites.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2458,7 +2467,6 @@
 				6709832813DD1777003E4E75 /* FreeCamera.mm in Sources */,
 				6709832913DD1777003E4E75 /* InteractiveBodyNode.mm in Sources */,
 				6709832A13DD1777003E4E75 /* JointDeclaration.m in Sources */,
-				6709832B13DD1777003E4E75 /* SpriteManager.m in Sources */,
 				6709832C13DD1777003E4E75 /* StringParser.mm in Sources */,
 				6709832D13DD1777003E4E75 /* svgLoader.mm in Sources */,
 				6709832E13DD1777003E4E75 /* Util.mm in Sources */,
@@ -2532,6 +2540,8 @@
 				67714DB113E07B5500892B4C /* CXMLNode_PrivateExtensions.m in Sources */,
 				67714DB213E07B5500892B4C /* CXMLNode_XPathExtensions.m in Sources */,
 				67714DB313E07B5500892B4C /* CTidy.m in Sources */,
+				67E6C5F2142D75D90087CC97 /* Hero.mm in Sources */,
+				67E6C5F3142D75D90087CC97 /* HeroContactListener.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

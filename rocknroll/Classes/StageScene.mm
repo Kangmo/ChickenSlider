@@ -11,7 +11,6 @@
 #import "TouchXML.h"
 #import "JointDeclaration.h"
 
-#import "SpriteManager.h"
 #import "BodyInfo.h"
 #include "GameConfig.h"
 #include "Util.h"
@@ -41,6 +40,7 @@ enum {
 @implementation StageScene
 
 @synthesize car;
+@synthesize hero;
 
 static StageScene* instanceOfStageScene;
 +(StageScene*) sharedStageScene
@@ -91,7 +91,7 @@ static StageScene* instanceOfStageScene;
 
 		// Define the gravity vector.
 		b2Vec2 gravity;
-		gravity.Set(0.0f, -100.0f);
+		gravity.Set(0.0f, -9.8);
 		
 		// Do we want to let bodies sleep?
 		bool doSleep = true;
@@ -123,23 +123,57 @@ static StageScene* instanceOfStageScene;
 */ 
 		m_debugDraw->SetFlags(flags);		
 		
+        // Load the sprite frames.
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
 		
-		
+        CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
+        [self addChild:spriteSheet];
 		//init stuff from svg file
 		svgLoader* loader = [self initGeometry:svgFileName];
-		spriteManager = [[SpriteManager alloc] initWithNode:self z:10];
-		[spriteManager parsePlistFile:@"levin.plist"];
-		
-		[loader assignSpritesFromManager:spriteManager];
-		
-        b2Body * carBody = [loader getBodyByName:@"MyCar_CarMainBody"];
-        assert( carBody );
+        [loader assignSpritesFromSheet:spriteSheet];
+
         
-		car = new Car( carBody );
+        b2Body * playerBody = [loader getBodyByName:@"MyCar_CarMainBody"];
+        if ( playerBody ) 
+        {
+            car = new Car( playerBody );
+        }
+        else
+        {
+            playerBody = [loader getBodyByName:@"MyBird_BirdMainBody"];
+            /*
+            b2Body * testBody = nil; 
+            {
+                
+                b2BodyDef bd;
+                bd.type = b2_dynamicBody;
+                bd.linearDamping = 0.05f;
+                bd.fixedRotation = true;
+                bd.position.Set(playerBody->GetPosition().x, playerBody->GetPosition().y);
+                testBody = world->CreateBody(&bd);
+                
+                b2CircleShape shape;
+                shape.m_radius = 14.0f/cam.ptmRatio;
+                
+                b2FixtureDef fd;
+                fd.shape = &shape;
+                fd.density = 1.0f;
+                fd.restitution = 0; // bounce
+                fd.friction = 0;
+                
+                testBody->CreateFixture(&fd);
+            }
+            playerBody = testBody;
+            */
+            
+            assert(playerBody);
+            playerBody->SetLinearDamping(0.05f);
+            self.hero = [Hero heroWithWorld:world heroBody:playerBody camera:cam];
+        }
         
-		[followCam follow:car->getBody()];
+		[followCam follow:playerBody];
 		
-		[cam ZoomToObject:car->getBody() screenPart:0.15];
+		[cam ZoomToObject:playerBody screenPart:0.15];
 		
 		
 		CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Menu" target:self selector:@selector(onReset:)];
@@ -169,6 +203,14 @@ static StageScene* instanceOfStageScene;
     return [[[StageScene alloc] initWithLevel:levelStr] autorelease];
 }
 
+/** @brief Does the game scene require joystick?
+ */
+-(BOOL) needJoystick
+{
+    if ( [self car] )
+        return YES;
+    return NO;
+}
 
 +(CCScene*) sceneWithLevel:(NSString*)levelStr
 {
@@ -181,9 +223,12 @@ static StageScene* instanceOfStageScene;
 	// add layer as a child to scene
 	[scene addChild:layer z:0 tag:StageSceneLayerTagStage];
 
-    // add the input layer that has a joystick and buttons
-    InputLayer * inputLayer = [InputLayer node];
-	[scene addChild:inputLayer z:1 tag:StageSceneLayerTagInput];
+    if ( [layer needJoystick] )
+    {
+        // add the input layer that has a joystick and buttons
+        InputLayer * inputLayer = [InputLayer node];
+        [scene addChild:inputLayer z:1 tag:StageSceneLayerTagInput];
+    }
     
 	// return the scene
 	return scene;
@@ -241,14 +286,18 @@ static StageScene* instanceOfStageScene;
 
 	[cam updateFollowPosition];
 	int32 velocityIterations = 8;
-    int32 positionIterations = 10;
+    int32 positionIterations = 3;
     //	int32 positionIterations = 10;
 	
+    [hero updatePhysics];
+    
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	//world->Step(dt, velocityIterations, positionIterations);
 	world->Step(1.0f/30.0f, velocityIterations, positionIterations);
 	
+    [hero updateNode];
+    
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
@@ -258,9 +307,11 @@ static StageScene* instanceOfStageScene;
 }
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    CCLOG(@"TouchesBegan");
 // by kmkim    
 	[cam eventBegan:touches];
     
+    self.hero.diving = YES;
 //	//Add a new body/atlas sprite at the touched location
 //	for( UITouch *touch in touches ) {
 //		CGPoint location = [touch locationInView: [touch view]];
@@ -285,9 +336,12 @@ static StageScene* instanceOfStageScene;
 }
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    CCLOG(@"TouchesEnded");
 // by kmkim    
 	[cam eventEnded:touches];
-    
+
+    self.hero.diving = NO;
+
 //	//Add a new body/atlas sprite at the touched location
 //	for( UITouch *touch in touches ) 
 //	{
@@ -317,15 +371,16 @@ static StageScene* instanceOfStageScene;
 	// in case you have something to dealloc, do it in this method
     [self unschedule: @selector(tick:)];
 
-    delete car;
+    if (car)
+        delete car;
+
+    self.hero = nil;
     
     // remove all body nodes attached to b2Body in the b2World.
     Helper::removeAttachedBodyNodes(world);
 	delete world;
 	world = NULL;
     
-	//[spriteManager detachWithCleanup:YES];
-    [spriteManager release];
     [cam release];
     
 	delete m_debugDraw;

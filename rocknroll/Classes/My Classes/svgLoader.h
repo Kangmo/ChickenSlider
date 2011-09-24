@@ -12,7 +12,6 @@
 #import "TouchXML.h"
 #import "GrahamScanConvexHull.h"
 #include <vector>
-#import "SpriteManager.h"
 
 @class ClassDictionary;
 
@@ -21,7 +20,8 @@
 	b2World* world;
 	b2Body* staticBody;
     CCLayer * layer;
-	
+//	CCSpriteBatchNode * spriteSheet;
+    
 	float worldWidth;
 	float worldHeight;
 	float scaleFactor; // used for debug rendering and physycs creation from svg only
@@ -30,12 +30,15 @@
 @property float scaleFactor; 
 @property (nonatomic, retain) ClassDictionary * classDict;
            
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l;
+//-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*)sb andLayer:(CCLayer*)l andSpriteSheet:(CCSpriteBatchNode*)ss;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*)sb andLayer:(CCLayer*)l;
 
 -(void) instantiateObjectsIn:(NSString*)filename;
 -(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset;
 -(b2Body*) getBodyByName:(NSString*) bodyName;
--(void) assignSpritesFromManager:(SpriteManager*)manager;
+//-(void) assignSpritesFromManager:(SpriteManager*)manager;
+-(void) assignSpritesFromSheet:(CCSpriteBatchNode*)spriteSheet;
+
 -(void) doCleanupShapes;
 
 @end

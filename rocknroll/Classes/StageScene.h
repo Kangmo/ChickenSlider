@@ -11,7 +11,7 @@
 #import "FreeCamera.h"
 #import "FollowCamera.h"
 #include "Car.h"
-
+#include "Hero.h"
 class b2WorldEx;
 
 typedef enum {
@@ -30,8 +30,7 @@ typedef enum {
 	AbstractCamera * cam;
 	
 	Car * car;
-    
-	SpriteManager * spriteManager;
+	Hero * hero;
     
 	float st;
 }
@@ -39,7 +38,9 @@ typedef enum {
 // returns a Scene that contains the HelloWorld as the only child
 +(CCScene*) sceneWithLevel:(NSString*)levelStr;
 +(StageScene*) sharedStageScene;
+-(BOOL) needJoystick;
 
 @property (nonatomic, assign) Car * car;
+@property (nonatomic, retain) Hero * hero;
 
 @end

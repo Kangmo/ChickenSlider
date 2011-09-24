@@ -513,8 +513,9 @@
             NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
             NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
             
-            // After converting nodes to cusps, " C" is added to the svg document. We can simply remove it.
+            // After converting nodes to cusps, " C" or " c" is added to the svg document. We can simply remove it.
             data = [data stringByReplacingOccurrencesOfString:@" C" withString:@""];
+            data = [data stringByReplacingOccurrencesOfString:@" c" withString:@""];
             NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
             b2EdgeShape edgeShape;
             // v2.1.2
@@ -634,6 +635,7 @@
 		NSString * instanceName = [[gameObject attributeForName:@"id"] stringValue];
 		NSString * xOffset = [[gameObject attributeForName:@"x"] stringValue];
 		NSString * yOffset = [[gameObject attributeForName:@"y"] stringValue];
+//        NSString * height = [[gameObject attributeForName:@"height"] stringValue];
 //        NSString * gameObjectImageFile = [[gameObject attributeForLocalName:@"href" URI:nil] stringValue];
 
 		NSString * gameObjectImageFile = [[gameObject attributeForName:@"xlink:href"] stringValue];
@@ -642,7 +644,11 @@
         assert(classDict);
         
         ClassInfo * classInfo = [classDict getClassByName:className];
+        
+
         NSString * namePrefix = [instanceName stringByAppendingString:@"_"];
+        // Not true:(x,y) is the top left corner. We need to provide bottm left corner for the offset.
+        // Not true:So we add height from the y position. ( Y value grows from top to bottom in svg files )
         [self instantiateObjects:classInfo.svgLayer namePrefix:namePrefix xOffset:[xOffset floatValue] yOffset:[yOffset floatValue]];
     }    
 }
@@ -730,7 +736,7 @@
 	}
 	return NULL;
 }
-
+/*
 -(void) assignSpritesFromManager:(SpriteManager*)manager
 {
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
@@ -745,6 +751,30 @@
 			else if(bi && bi.spriteName)
 			{
 				bi.data = [manager getSpriteWithName:bi.spriteName];
+                CCLOG(@"%@", bi.spriteName);
+			}
+		}
+	}
+}
+*/
+-(void) assignSpritesFromSheet:(CCSpriteBatchNode*)spriteSheet
+{
+	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+	{
+		if (b->GetUserData() != NULL) 
+		{
+			BodyInfo *bi = (BodyInfo*)b->GetUserData();
+			if(bi && bi.textureName && bi.spriteName)
+			{
+                NSAssert2(0, @"svg parser : textureName is not supported yet (Sprite=%@, Texture=%@).", bi.spriteName, bi.textureName);
+                
+//				bi.data = [manager getSpriteWithName:bi.spriteName fromTexture:bi.textureName];
+			}
+			else if(bi && bi.spriteName)
+			{
+                CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:bi.spriteName];
+				bi.data = sprite;
+                [spriteSheet addChild:sprite];
 			}
 		}
 	}
