@@ -16,29 +16,24 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <Box2D/Common/b2Settings.h>
-#include <cstdlib>
-#include <cstdio>
-#include <cstdarg>
+#ifndef B2_CHAIN_AND_POLYGON_CONTACT_H
+#define B2_CHAIN_AND_POLYGON_CONTACT_H
 
-b2Version b2_version = {2, 2, 1};
+#include <Box2D/Dynamics/Contacts/b2Contact.h>
 
-// Memory allocators. Modify these to use your own allocator.
-void* b2Alloc(int32 size)
+class b2BlockAllocator;
+
+class b2ChainAndPolygonContact : public b2Contact
 {
-	return malloc(size);
-}
+public:
+	static b2Contact* Create(	b2Fixture* fixtureA, int32 indexA,
+								b2Fixture* fixtureB, int32 indexB, b2BlockAllocator* allocator);
+	static void Destroy(b2Contact* contact, b2BlockAllocator* allocator);
 
-void b2Free(void* mem)
-{
-	free(mem);
-}
+	b2ChainAndPolygonContact(b2Fixture* fixtureA, int32 indexA, b2Fixture* fixtureB, int32 indexB);
+	~b2ChainAndPolygonContact() {}
 
-// You can modify this to use your logging facility.
-void b2Log(const char* string, ...)
-{
-	va_list args;
-	va_start(args, string);
-	vprintf(string, args);
-	va_end(args);
-}
+	void Evaluate(b2Manifold* manifold, const b2Transform& xfA, const b2Transform& xfB);
+};
+
+#endif
