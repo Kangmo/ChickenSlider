@@ -5,13 +5,12 @@
 #import "JointDeclaration.h"
 #import "svgLoader.h"
 #import "ClassDictionary.h"
-
-
 #import "AbstractCamera.h"
 #import "FreeCamera.h"
 #import "FollowCamera.h"
 #include "Car.h"
 #include "Hero.h"
+
 class b2WorldEx;
 
 typedef enum {

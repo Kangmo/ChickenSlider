@@ -19,6 +19,12 @@
 #include "InputLayer.h"
 #include "b2WorldEx.h"
 
+#include "PointQueue.h"
+
+/** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
+ */
+PointQueue theGroundPoints;
+
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -86,6 +92,9 @@ static StageScene* instanceOfStageScene;
 		// enable accelerometer
 		self.isAccelerometerEnabled = YES;
 
+        // Clear the ground point
+        theGroundPoints.clear();
+        
 		// The SVG file for the given level.
         NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@.svg", levelStr];
 
@@ -275,24 +284,71 @@ static StageScene* instanceOfStageScene;
     
 }
 
+#include "PointQueue.h"
+/** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
+ */
+extern PointQueue theGroundPoints;
+
+/** @brief Adjust the zoom level so that both the ground and the hero are shown in the screen regardless of how far the hero jumped!
+ */
 -(void) adjustZoom
 {
+    
     static float minHeightMeters = 0.0f;
     if (!minHeightMeters) 
     {
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
 		minHeightMeters = screenSize.height * 4/5 / INIT_PTM_RATIO;
     }
+
+    float32 groundY = theGroundPoints.getAverageY();
+    if ( groundY == kMAX_POSITION ) // No contact points are added to the ground points yet. Assume the level map starts at Y position 0.
+    {
+        groundY = 0;
+    }
+    else
+    {
+        groundY -= 5; 
+
+        // Subtract the ground level by 5 meters ( about the height of the wave ) to show the whole ground.
+        // This is necessary because the Hero usually hits on top of the wave.
+    }
+    
+    static float targetZoom = 0.0f;
+    if ( targetZoom == 0.0f )
+    {
+        targetZoom = cam.zoom;
+    }
+    
     if (hero)
     {
-        float heightMeters = hero.body->GetPosition().y ;
-        if (heightMeters < minHeightMeters) {
-            heightMeters = minHeightMeters;
-        }
-        float zoom = minHeightMeters / heightMeters;
-        [cam ZoomTo:zoom];
+        float32 worldHeightToShow = hero.body->GetPosition().y - groundY;
         
-        CCLOG(@"heightMeters:%f, zoom:%f\n", heightMeters, zoom);
+        if (worldHeightToShow < minHeightMeters) {
+            worldHeightToShow = minHeightMeters;
+        }
+        float targetZoom = minHeightMeters / worldHeightToShow;
+        
+        CCLOG(@"worldHeightToShow:%f, ground:%f targetZoom:%f\n", worldHeightToShow, groundY, targetZoom);
+        
+        // Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
+        // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
+        const float zoomDeltaRatio = 0.1f; // change Zoom 10%
+        float zoomDiff = targetZoom - cam.zoom;
+        zoomDiff = zoomDiff < 0 ? -zoomDiff : zoomDiff;
+        
+        float newZoom = targetZoom;
+        // IS this making the zoom to change too slowly? Go directly to the targetZoom
+        if ( zoomDiff / cam.zoom > zoomDeltaRatio ) // more than 10% change in zoom?
+        {
+            // At most, allow 10% change of zoom
+            if ( targetZoom > cam.zoom)
+                newZoom = cam.zoom + cam.zoom * zoomDeltaRatio;
+            else
+                newZoom = cam.zoom - cam.zoom * zoomDeltaRatio;
+        }
+        
+        [cam ZoomTo:newZoom];
     }
 }
 

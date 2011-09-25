@@ -82,7 +82,7 @@
 // BUGBUG : Adjust the position for iPad, retina...
 const float TARGET_OBJ_POS_X = 100.0f;
 //const float TARGET_OBJ_POS_Y = 160.0f;
-const float MIN_TARGET_OBJ_POS_Y = 320.0 * 0.1;
+const float MIN_TARGET_OBJ_POS_Y = 320.0 * 0.5;
 const float MAX_TARGET_OBJ_POS_Y = 320.0 * 0.9;
 
 -(void) updateFollowPosition

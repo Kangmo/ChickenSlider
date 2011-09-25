@@ -119,7 +119,7 @@
 	float y = _body->GetPosition().y * _camera.ptmRatio;
     
 	// CCNode position and rotation
-	self.position = ccp(x, y);
+//	self.position = ccp(x, y);
 	b2Vec2 vel = _body->GetLinearVelocity();
 	float angle = atan2f(vel.y, vel.x);
 /*    
@@ -143,11 +143,12 @@
 			[self tookOff];
 		}
 	}
-	
+/*	
 	// TEMP: sleep if below the screen
 	if (y < -_radius && _awake) {
 		[self sleep];
 	}
+ */
 }
 
 - (void) landed {

@@ -451,8 +451,10 @@
 		67351E6B142DA4380073575A /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67351E10142DA4380073575A /* b2Rope.cpp */; };
 		67351E6C142DA4380073575A /* b2Rope.h in Headers */ = {isa = PBXBuildFile; fileRef = 67351E11142DA4380073575A /* b2Rope.h */; };
 		67351E6F142DA9920073575A /* StageScene_LV4.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67351E6E142DA9920073575A /* StageScene_LV4.svg */; };
-		67351E76142E97B70073575A /* PixcelQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67351E75142E97B40073575A /* PixcelQueue.cpp */; };
-		67351E78142E97CF0073575A /* PixcelQueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 67351E77142E97CD0073575A /* PixcelQueue.c */; };
+		67351E76142E97B70073575A /* PointQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67351E75142E97B40073575A /* PointQueue.cpp */; };
+		67351E78142E97CF0073575A /* PointQueue.h in Sources */ = {isa = PBXBuildFile; fileRef = 67351E77142E97CD0073575A /* PointQueue.h */; };
+		67351E7A142EBD4A0073575A /* StageScene_LV5.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67351E79142EBD4A0073575A /* StageScene_LV5.svg */; };
+		67351E7C142EC14B0073575A /* StageScene_LV6.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67351E7B142EC1490073575A /* StageScene_LV6.svg */; };
 		67714D8613E04C1E00892B4C /* ClassDictionary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67714D8513E04C1E00892B4C /* ClassDictionary.mm */; };
 		67714D8813E0708800892B4C /* game_classes.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67714D8713E0708800892B4C /* game_classes.svg */; };
 		67714DA713E07B5500892B4C /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714D8C13E07B5500892B4C /* CXMLDocument_CreationExtensions.m */; };
@@ -1127,8 +1129,10 @@
 		67351E10142DA4380073575A /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		67351E11142DA4380073575A /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
 		67351E6E142DA9920073575A /* StageScene_LV4.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV4.svg; path = Resources/StageScene_LV4.svg; sourceTree = "<group>"; };
-		67351E75142E97B40073575A /* PixcelQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixcelQueue.cpp; sourceTree = "<group>"; };
-		67351E77142E97CD0073575A /* PixcelQueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PixcelQueue.c; sourceTree = "<group>"; };
+		67351E75142E97B40073575A /* PointQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PointQueue.cpp; sourceTree = "<group>"; };
+		67351E77142E97CD0073575A /* PointQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointQueue.h; sourceTree = "<group>"; };
+		67351E79142EBD4A0073575A /* StageScene_LV5.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV5.svg; path = Resources/StageScene_LV5.svg; sourceTree = "<group>"; };
+		67351E7B142EC1490073575A /* StageScene_LV6.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV6.svg; path = rocknroll/Resources/StageScene_LV6.svg; sourceTree = SOURCE_ROOT; };
 		67714D8413E04C1D00892B4C /* ClassDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDictionary.h; sourceTree = "<group>"; };
 		67714D8513E04C1E00892B4C /* ClassDictionary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClassDictionary.mm; sourceTree = "<group>"; };
 		67714D8713E0708800892B4C /* game_classes.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = game_classes.svg; path = Resources/game_classes.svg; sourceTree = "<group>"; };
@@ -1251,6 +1255,8 @@
 		6709790513DD14A7003E4E75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67351E7B142EC1490073575A /* StageScene_LV6.svg */,
+				67351E79142EBD4A0073575A /* StageScene_LV5.svg */,
 				67351E6E142DA9920073575A /* StageScene_LV4.svg */,
 				67E6C5D4142CAF7F0087CC97 /* sprites.plist */,
 				67E6C5D5142CAF810087CC97 /* sprites.png */,
@@ -1933,8 +1939,8 @@
 		670982F913DD1777003E4E75 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				67351E75142E97B40073575A /* PixcelQueue.cpp */,
-				67351E77142E97CD0073575A /* PixcelQueue.c */,
+				67351E75142E97B40073575A /* PointQueue.cpp */,
+				67351E77142E97CD0073575A /* PointQueue.h */,
 				670982FC13DD1777003E4E75 /* Car.cpp */,
 				670982FD13DD1777003E4E75 /* Car.h */,
 				67E6C5EE142D75D90087CC97 /* Hero.h */,
@@ -2547,6 +2553,8 @@
 				67E6C5D6142CAF840087CC97 /* sprites.plist in Resources */,
 				67E6C5D7142CAF840087CC97 /* sprites.png in Resources */,
 				67351E6F142DA9920073575A /* StageScene_LV4.svg in Resources */,
+				67351E7A142EBD4A0073575A /* StageScene_LV5.svg in Resources */,
+				67351E7C142EC14B0073575A /* StageScene_LV6.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2599,8 +2607,8 @@
 				67714DB313E07B5500892B4C /* CTidy.m in Sources */,
 				67E6C5F2142D75D90087CC97 /* Hero.mm in Sources */,
 				67E6C5F3142D75D90087CC97 /* HeroContactListener.mm in Sources */,
-				67351E76142E97B70073575A /* PixcelQueue.cpp in Sources */,
-				67351E78142E97CF0073575A /* PixcelQueue.c in Sources */,
+				67351E76142E97B70073575A /* PointQueue.cpp in Sources */,
+				67351E78142E97CF0073575A /* PointQueue.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
