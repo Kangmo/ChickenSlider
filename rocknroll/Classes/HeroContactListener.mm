@@ -38,7 +38,7 @@ void HeroContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldMani
         b2Vec2 heroPos = _hero.body->GetPosition();
         // getLastPoint returns kMAX_POSITION if no point was added before. 
         // In this case we set the lastPointX to 0 assuming that the ground level starts from 0.
-        float32 lastPointX = (theGroundPoints.getLastPoint().x == kMAX_POSITION)?0:theGroundPoints.getLastPoint().x;
+        //float32 lastPointX = (theGroundPoints.getLastPoint().x == kMAX_POSITION)?0:theGroundPoints.getLastPoint().x;
         // Add the position only if the hero moved enoughly.
 //        if ( heroPos.x - lastPointX > 3 )
         {

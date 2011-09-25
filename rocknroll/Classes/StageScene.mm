@@ -308,7 +308,7 @@ extern PointQueue theGroundPoints;
     }
     else
     {
-        groundY -= 5; 
+        groundY -= MAX_WAVE_HEIGHT; 
 
         // Subtract the ground level by 5 meters ( about the height of the wave ) to show the whole ground.
         // This is necessary because the Hero usually hits on top of the wave.
@@ -333,19 +333,18 @@ extern PointQueue theGroundPoints;
         
         // Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
         // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
-        const float zoomDeltaRatio = 0.1f; // change Zoom 10%
         float zoomDiff = targetZoom - cam.zoom;
         zoomDiff = zoomDiff < 0 ? -zoomDiff : zoomDiff;
         
         float newZoom = targetZoom;
         // IS this making the zoom to change too slowly? Go directly to the targetZoom
-        if ( zoomDiff / cam.zoom > zoomDeltaRatio ) // more than 10% change in zoom?
+        if ( zoomDiff / cam.zoom > ZOOM_DELTA_RATIO ) // more than 10% change in zoom?
         {
             // At most, allow 10% change of zoom
             if ( targetZoom > cam.zoom)
-                newZoom = cam.zoom + cam.zoom * zoomDeltaRatio;
+                newZoom = cam.zoom + cam.zoom * ZOOM_DELTA_RATIO;
             else
-                newZoom = cam.zoom - cam.zoom * zoomDeltaRatio;
+                newZoom = cam.zoom - cam.zoom * ZOOM_DELTA_RATIO;
         }
         
         [cam ZoomTo:newZoom];

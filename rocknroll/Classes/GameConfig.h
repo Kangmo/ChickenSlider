@@ -23,7 +23,12 @@
 
 #define INIT_PTM_RATIO (32)
 #define INIT_ZOOM_RATIO (1)
-
+// The maximum wave height in meters. Used for adjusting ground level.
+#define MAX_WAVE_HEIGHT (5) 
+// Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
+// This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
+// At most, change Zoom by 10%
+#define ZOOM_DELTA_RATIO (0.1f)
 //#define LOAD_RESOURCE_FROM_TEST_WEB (1)
 #define TEST_WEB_URL_PREFIX @"http://192.168.123.147/~kmkim/rocknroll_Resources/"
 
