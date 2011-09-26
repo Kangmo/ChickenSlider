@@ -195,6 +195,9 @@ public:
 	/// Dump this fixture to the log file.
 	void Dump(int32 bodyIndex);
 
+    b2FixtureProxy* m_proxies;
+	int32 m_proxyCount;
+
 protected:
 
 	friend class b2Body;
@@ -224,9 +227,6 @@ protected:
 
 	float32 m_friction;
 	float32 m_restitution;
-
-	b2FixtureProxy* m_proxies;
-	int32 m_proxyCount;
 
 	b2Filter m_filter;
 

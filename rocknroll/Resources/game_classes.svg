@@ -27,7 +27,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -44,12 +44,12 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="true"
-     inkscape:zoom="3.2138003"
-     inkscape:cx="35.083337"
-     inkscape:cy="268.60392"
-     inkscape:window-x="428"
-     inkscape:window-y="14"
-     inkscape:current-layer="Car"
+     inkscape:zoom="9.09"
+     inkscape:cx="3.0300463"
+     inkscape:cy="297.03776"
+     inkscape:window-x="5"
+     inkscape:window-y="434"
+     inkscape:current-layer="ignored_layer"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -240,92 +240,143 @@
        d="M 23.958399,8.5567134 C 23.958399,8.5567134 23.261103,6.0950349 22.580122,5.0414504 21.864786,3.9347109 20.943528,2.9015334 19.823569,2.2292399 18.382233,1.3640293 16.666984,0.95432752 14.999601,0.82313467 13.153081,0.67784692 11.180178,0.7618249 9.4864947,1.5261873 7.5496936,2.4002691 5.7759447,3.9065798 4.6625267,5.744503 3.6666553,7.3883911 3.515697,9.4508965 3.2842501,11.368924 3.0316466,13.462279 2.8092555,15.643662 3.2842501,17.696397 3.7563035,19.736423 4.644797,21.782865 6.0408033,23.320818 7.8609725,25.326064 10.305321,27.003153 12.932186,27.539134 16.377878,28.242187 19.823569,25.429976 19.823569,25.429976"
        id="path4236"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="caaaaaaaasc" />
+       sodipodi:nodetypes="caaaaaaaasc"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:url(#linearGradient4358);fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 20.512707,10.665871 C 20.512707,10.665871 20.801174,9.5876628 21.201846,9.2597661 21.940647,8.6551549 23.011967,8.5196323 23.958399,8.5567134 24.684279,8.5851519 25.47704,8.7742077 26.025814,9.2597661 26.413855,9.6031081 26.714952,10.665871 26.714952,10.665871"
        id="path4234"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="caaac" />
+       sodipodi:nodetypes="caaac"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:url(#linearGradient4366);fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 20.512707,10.665871 C 18.312132,11.377839 19.938568,15.344124 19.823569,17.696397 19.743469,19.334817 19.665122,20.985293 19.823569,22.617766 19.938987,23.80691 19.763655,25.214351 20.512707,26.133029 21.303791,27.103261 22.722427,27.591582 23.958399,27.539134 24.984818,27.49558 26.091383,26.96592 26.714952,26.133029 27.42593,25.183386 27.288672,23.80691 27.40409,22.617766 27.69835,19.586031 27.768962,16.501817 27.40409,13.478082 27.288367,12.519068 27.343839,11.388375 26.714952,10.665871 25.862509,9.6865309 22.678843,9.9650459 20.512707,10.665871 z"
        id="path4232"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="saaaaaaass" />
+       sodipodi:nodetypes="saaaaaaass"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:url(#linearGradient4350);fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 18.445293,5.744503 C 17.795567,5.744503 17.067016,6.4877639 17.067016,7.1506082 17.067016,7.8134525 17.795567,8.5567134 18.445293,8.5567134 19.095018,8.5567134 19.823569,7.8134525 19.823569,7.1506082 19.823569,6.4877639 19.095018,5.744503 18.445293,5.744503 z"
        id="path4238"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="aaaaa" />
+       sodipodi:nodetypes="aaaaa"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:url(#linearGradient4342);fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 6.7299415,12.071977 C 9.2656121,12.425007 16.474276,11.776942 17.756154,11.368924 18.376393,11.171504 16.87779,10.786268 16.377878,10.665871 13.695065,10.019757 10.654941,9.5896847 8.1082181,10.665871 7.5079497,10.919531 6.0861828,11.982349 6.7299415,12.071977 z"
        id="path4252"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ssaas" />
+       sodipodi:nodetypes="ssaas"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#89a02c;fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 6.7299415,12.071977 C 6.7299415,12.071977 5.2646883,16.884389 6.0408033,19.102503 6.3684468,20.038898 7.1336291,21.211661 8.1082181,21.211661 9.0828071,21.211661 9.8026741,20.021085 10.175633,19.102503 11.054705,16.937383 10.175633,12.071977 10.175633,12.071977"
        id="path4262"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#bcd35f;fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 10.175633,12.071977 C 10.175633,12.071977 9.5602821,15.477761 10.175633,16.993345 10.548592,17.911927 11.268459,19.102503 12.243048,19.102503 13.217637,19.102503 13.937504,17.911927 14.310463,16.993345 14.925814,15.477761 14.310463,12.071977 14.310463,12.071977"
        id="path4274"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#ddff55;fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 14.310463,12.071977 C 14.310463,12.071977 13.870926,14.50468 14.310463,15.58724 14.559102,16.199628 15.042175,16.92803 15.688739,16.993345 16.512949,17.076605 17.365342,16.332223 17.756154,15.58724 18.406505,14.347512 17.756154,11.368924 17.756154,11.368924"
        id="path4254"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 3.2842501,10.665871 C 3.2842501,10.665871 2.5525373,9.325081 1.9059735,9.2597661 1.0817631,9.1765056 9.9007812e-4,9.837316 -0.16144137,10.665871 -0.32387283,11.494427 0.48659603,12.376326 1.2168352,12.775029 1.6218991,12.99619 2.1356862,12.775029 2.5951118,12.775029 2.8248245,12.775029 3.2842501,12.775029 3.2842501,12.775029"
        id="path4278"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 3.2842501,12.775029 C 3.2842501,12.775029 1.8535159,12.505983 1.2168352,12.775029 0.61656688,13.028688 -0.09741887,13.521516 -0.1614413,14.181134 -0.24305421,15.021986 0.43342412,16.016071 1.2168352,16.290292 1.9039322,16.5308 3.2842501,15.58724 3.2842501,15.58724"
        id="path4256"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 2.5951118,16.290292 C 2.5951118,16.290292 0.03247495,17.244517 -0.16144137,18.39945 -0.30127643,19.232284 0.38891292,20.485164 1.2168352,20.508608 2.3649568,20.541117 3.2842501,17.696397 3.2842501,17.696397"
        id="path4258"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="caac" />
+       sodipodi:nodetypes="caac"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066;stroke-linecap:round"
        id="path4421"
        d="M 17.350166,5.434977 C 17.212597,5.2367092 17.106031,5.019691 16.987774,4.8095829 16.904589,4.6628264 16.819167,4.517728 16.724635,4.3781779 16.617326,4.2595243 16.432222,4.2696066 16.285601,4.2614591 16.285601,4.2614591 16.644759,3.9984754 16.644759,3.9984754 L 16.644759,3.9984754 C 16.807126,4.0086465 16.999143,4.0069851 17.110481,4.147099 17.20322,4.2892457 17.28894,4.4352987 17.368941,4.5852692 17.485481,4.7937004 17.589885,5.0100376 17.73479,5.2004526 17.73479,5.2004526 17.350166,5.434977 17.350166,5.434977 z"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066;stroke-linecap:round"
        id="path4423"
        d="M 19.310218,5.2151344 C 19.426774,5.1677157 19.703446,5.0524341 19.046402,5.3715407 19.019698,5.3845085 19.093456,5.3348371 19.115143,5.3143305 19.181824,5.2512912 19.226076,5.1808587 19.269148,5.1003257 19.344002,4.9200345 19.351327,4.7279295 19.333079,4.5360608 19.307602,4.3495413 19.239438,4.1959173 19.109206,4.0638615 19.084431,4.0416992 19.05965,4.0195369 19.034877,3.9973738 19.034877,3.9973738 19.411199,3.7586492 19.411199,3.7586492 L 19.411199,3.7586492 C 19.436718,3.7815061 19.462244,3.8043638 19.48776,3.8272207 19.624302,3.9675374 19.69708,4.1302409 19.726164,4.3266121 19.746672,4.525655 19.742882,4.7230406 19.674609,4.913711 19.534398,5.2095728 19.266493,5.3956073 18.952344,5.4943074 18.952344,5.4943074 19.310214,5.2151338 19.310214,5.2151338 z"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066;stroke-linecap:round"
        id="path4425"
        d="M 16.515083,7.0326673 C 16.337276,6.9722047 16.17147,6.8818194 15.996476,6.8139688 15.832624,6.7532398 15.659377,6.7421537 15.48695,6.7355246 15.237906,6.725549 14.990286,6.7286347 14.742583,6.7560973 14.541108,6.7809559 14.359975,6.8673919 14.175427,6.9461099 13.941468,7.0826736 14.341364,6.8484233 14.416783,6.8159828 14.44275,6.804812 14.375552,6.8555555 14.358358,6.8783372 14.340165,6.9024442 14.326906,6.9300411 14.311179,6.9558929 14.311179,6.9558929 13.905675,7.1406916 13.905675,7.1406916 L 13.905675,7.1406916 C 14.029214,6.8922928 14.277066,6.780247 14.524271,6.6651709 14.708756,6.5850471 14.894322,6.5097028 15.09605,6.4884236 15.345806,6.4638112 15.595882,6.4636881 15.846639,6.4711306 16.022998,6.4785985 16.199005,6.4949747 16.364977,6.5616332 16.537528,6.6319986 16.703,6.7236286 16.883852,6.7705167 16.883852,6.7705167 16.51508,7.0326678 16.51508,7.0326678 z"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066;stroke-linecap:round"
        id="path4451"
        d="M 6.5238006,3.1202723 C 6.4671271,2.9389987 6.4147414,2.7570182 6.3339014,2.5850732 6.2568071,2.4015703 6.1333667,2.2462609 5.9961173,2.1063069 5.8711867,1.9609644 5.701945,1.9073757 5.5260167,1.856093 5.3275364,1.7933013 5.1320813,1.7206187 4.9294348,1.6725918 4.7489998,1.6472853 4.5710824,1.6071633 4.3907866,1.5804076 4.2086434,1.5565949 4.0246617,1.5545613 3.8413084,1.5524235 3.6548753,1.5515458 3.4684369,1.5517463 3.2820024,1.5521455 3.0859514,1.5425593 2.9030364,1.6233336 2.7127155,1.6581704 2.6731886,1.6632816 2.6336612,1.6683914 2.594134,1.6735019 2.594134,1.6735019 2.9472228,1.4041254 2.9472228,1.4041254 L 2.9472228,1.4041254 C 2.9866346,1.3980651 3.0260469,1.3920048 3.0654589,1.3859445 3.2561848,1.3447575 3.4431614,1.2728407 3.6411787,1.2858444 3.8275686,1.2857352 4.0139644,1.2847265 4.200347,1.2870185 4.3853176,1.2897112 4.5710437,1.2921578 4.754464,1.3193027 4.9349949,1.3484829 5.1144224,1.3849312 5.2946723,1.4152104 5.4964503,1.4673748 5.6921583,1.5401904 5.8914673,1.6010679 6.0741643,1.6565753 6.2460982,1.7178228 6.3752627,1.8695197 6.5141911,2.013912 6.6390054,2.1756067 6.7193677,2.3619471 6.8004087,2.533143 6.8524131,2.7145 6.914971,2.8930495 6.914971,2.8930495 6.5238006,3.1202727 6.5238006,3.1202727 z"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066;stroke-linecap:round"
        id="path4453"
        d="M 5.0075448,4.3577687 C 4.8974854,4.1611064 4.7556962,3.9867945 4.5883113,3.8389022 4.4292851,3.6841846 4.2419904,3.5951939 4.0385621,3.520702 3.8188881,3.4624625 3.607136,3.3785953 3.3880491,3.3187524 3.1876993,3.2674798 2.9878599,3.2208134 2.7824616,3.1967767 2.569246,3.1841435 2.3536502,3.1628758 2.1407063,3.1866243 1.970912,3.2075446 1.8081414,3.2514053 1.6559567,3.331169 1.6298501,3.3442299 1.5525784,3.385398 1.5776369,3.3703515 1.6808423,3.3083817 1.9936839,3.1281863 1.8905616,3.1903 1.7402711,3.2808244 1.5871941,3.3664511 1.4361131,3.4555956 1.3382845,3.5133187 1.630904,3.3384743 1.7308015,3.2845655 1.7628947,3.2672465 1.6696949,3.3246079 1.6398258,3.3456636 1.6088973,3.367466 1.5789101,3.3906259 1.5484523,3.4131075 1.4273133,3.5099923 1.4866759,3.4586034 1.3706585,3.5676278 1.3706585,3.5676278 0.96296583,3.7387037 0.96296583,3.7387037 L 0.96296583,3.7387037 C 1.0760937,3.6252617 1.0176524,3.678255 1.1378876,3.5792635 1.3465351,3.4196172 1.5449598,3.3106937 1.7827504,3.1707526 1.8856598,3.1101899 1.372255,3.415005 1.4752691,3.354628 1.9935172,3.050881 1.7618723,3.1684087 2.0035188,3.0483588 2.1601417,2.976076 2.3258014,2.9334353 2.4972577,2.9174575 2.7126123,2.902886 2.9289757,2.9193698 3.1438901,2.9356363 3.350109,2.9626349 3.5514326,3.0107625 3.752724,3.063426 3.9716638,3.1265405 4.1850071,3.2080074 4.4048196,3.2684698 4.6127583,3.3449807 4.800926,3.4436087 4.9624369,3.6016134 5.1323929,3.7561626 5.2759409,3.934741 5.3987151,4.1305452 5.3987151,4.1305452 5.0075448,4.3577684 5.0075448,4.3577684 z"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.69606066;stroke-linecap:round"
        id="path4455"
        d="M 3.8597819,5.7037079 C 3.7125219,5.6073401 3.5573235,5.5305564 3.3909431,5.4760101 3.2344955,5.4093223 3.0689207,5.3713254 2.9049512,5.3296317 2.7206445,5.282602 2.5309655,5.2738139 2.3420313,5.2674259 2.144913,5.2631847 1.947732,5.2631828 1.7505843,5.2646955 1.5846826,5.2521692 1.4386803,5.3236584 1.2956949,5.3987519 1.4493125,5.3133238 0.97575127,5.5731949 1.1317403,5.4808658 1.5441024,5.2367905 1.6546142,5.1839728 1.0040438,5.5505656 0.97882717,5.564775 0.95265501,5.5771433 0.92696063,5.5904322 1.5180171,5.2247507 1.2138744,5.4201611 1.0960113,5.5246594 1.0299661,5.5832157 0.96776251,5.6459979 0.90535159,5.7084907 0.8241343,5.791246 0.86509255,5.7493366 0.78248795,5.8342303 0.78248795,5.8342303 0.37191096,6.0079958 0.37191096,6.0079958 L 0.37191096,6.0079958 C 0.45398602,5.9230594 0.41329038,5.9650518 0.49399094,5.8820116 0.7302051,5.6426211 0.95377396,5.446981 1.2741448,5.306922 1.3002238,5.293587 1.3771308,5.2511629 1.3523819,5.2669169 1.2497716,5.3322337 0.93398742,5.5145688 1.0403158,5.4557663 1.2435929,5.3433484 1.4340345,5.2119464 1.6440787,5.1142304 1.7910476,5.0400501 1.9441075,4.985718 2.1109711,4.997499 2.3073667,4.9985043 2.5038177,4.9976378 2.7001445,5.0038405 2.8920439,5.0103578 3.0841616,5.0215405 3.2706867,5.0722862 3.4355494,5.114553 3.6013729,5.153933 3.7585712,5.2216027 3.9260358,5.280984 4.0816021,5.3623549 4.23582,5.4512961 4.23582,5.4512961 3.8597819,5.7037114 3.8597819,5.7037114 z"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/Resources/sprites/Bird.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -345,7 +396,7 @@
        style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="Car"
      id="Car"
      inkscape:groupmode="layer">
@@ -356,9 +407,9 @@
        height="20.187164"
        x="0"
        y="-0.18516421"
-       phy_density="10" />
+       phy_density="1" />
     <rect
-       maxTorque="6000"
+       maxTorque="1500"
        motorSpeed="0"
        motorEnabled=""
        style="opacity:0.94650209;fill:#000080;fill-rule:nonzero;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
@@ -371,7 +422,7 @@
        body1="CarMainBody"
        body2="boberWheel2" />
     <rect
-       maxTorque="6000"
+       maxTorque="1500"
        motorSpeed="0"
        motorEnabled=""
        body2="boberWheel1"

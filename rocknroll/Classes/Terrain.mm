@@ -265,7 +265,10 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 	if (_offsetX != offsetX || firstTime) {
 		firstTime = NO;
 		_offsetX = offsetX;
-		self.position = ccp(screenW/8-_offsetX*self.scale, -groundY * self.scale);
+        
+        // Don't scale groundY, because it is for shifting camera offset.
+		self.position = ccp(screenW/8-_offsetX*self.scale, -groundY /* Caution: should not scale groundY */);
+        
         // calculate the range of border indexes to borderVertices array to draw on screen. 
         [self calcStartBorderIndex];
         [self calcEndBorderIndex];

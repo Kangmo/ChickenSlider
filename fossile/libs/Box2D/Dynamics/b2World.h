@@ -204,7 +204,7 @@ public:
 	/// @warning this should be called outside of a time step.
 	void Dump();
 
-private:
+protected:
 
 	// m_flags
 	enum

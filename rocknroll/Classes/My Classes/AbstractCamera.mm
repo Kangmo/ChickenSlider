@@ -124,21 +124,6 @@
 			
 			actor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
 			actor.scale = 1.0f * zoom;
-
-/*			CCSpriteBatchNode* actor = (CCSpriteBatchNode*)bi.data;
-			
-			//get position in physycs coords
-			actor.position = CGPointMake( body->GetPosition().x , body->GetPosition().y);
-			actor.position = ccpSub(actor.position, bi.spriteOffset);
-			//map it to scren coords using PTM ratio
-			actor.position = ccpMult(actor.position, ptmRatio);
-			
-			//add camera shift
-			actor.position = ccpAdd(actor.position,cameraPosition);
-			
-			actor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
-			actor.scale = 1.0f * zoom;
- */
 		}
 	}
 }

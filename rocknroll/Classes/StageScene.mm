@@ -255,6 +255,7 @@ static StageScene* instanceOfStageScene;
 	
 	b2Vec2 tmp = [cam b2vPosition];
 	m_debugDraw->mRatio = cam.ptmRatio;
+
 	world->DrawDebugData(&tmp);
 	//world->DrawDebugData();
 	
@@ -346,10 +347,12 @@ extern PointQueue theGroundPoints;
             float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
             // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
             // Convert it back to the y offset from sea level.
-            float groundY_withoutZoom = -cam.cameraPosition.y;
-            
-            t.scale = cam.zoom;
-            [t setHeroX:heroX_withoutZoom withGroundY:groundY_withoutZoom];
+            float groundY = -cam.cameraPosition.y;
+
+            //t.scale = cam.zoom;
+            t.scale = cam.ptmRatio / INIT_PTM_RATIO;
+
+            [t setHeroX:heroX_withoutZoom withGroundY:groundY];
         }
     }
 }
@@ -360,13 +363,13 @@ extern PointQueue theGroundPoints;
 //	float s = sin(st)*2.0f;
 //	if(s<0) s*=-1.0f;
 //	[cam ZoomTo: s +0.2f];
+    // TODO : Understand why adjusting terrain should come here.
 
     float groundY = [self getWorldGroundY];
     [self adjustZoomWithGroundY:groundY];
 
 	[cam updateFollowPosition];
 
-    // TODO : Understand why adjusting terrain should come here.
     [self adjustTerrains];
     
 	int32 velocityIterations = 8;
