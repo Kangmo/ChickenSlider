@@ -1,11 +1,3 @@
-//
-//  b2WorldEx.h
-//  rocknroll
-//
-//  Created by 강모 김 on 11. 7. 27..
-//  Copyright 2011 강모소프트. All rights reserved.
-//
-
 #ifndef _B2_WORLD_EX_H_
 #define _B2_WORLD_EX_H_ (1)
 

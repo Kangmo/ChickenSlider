@@ -1,11 +1,3 @@
-//
-//  GameConfig.h
-//  thxengine
-//
-//  Created by 강모 김 on 11. 7. 19..
-//  Copyright 강모소프트 2011. All rights reserved.
-//
-
 #ifndef __GAME_CONFIG_H
 #define __GAME_CONFIG_H
 
@@ -29,6 +21,10 @@
 // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
 // At most, change Zoom by 10%
 #define ZOOM_DELTA_RATIO (0.1f)
+
+// The X position of hero on the screen. It is positioned on the ride side of the screen with the offset of 1/8 of screen width.
+#define HERO_XPOS_RATIO (1.0f/8.0f)
+
 //#define LOAD_RESOURCE_FROM_TEST_WEB (1)
 #define TEST_WEB_URL_PREFIX @"http://192.168.123.147/~kmkim/rocknroll_Resources/"
 

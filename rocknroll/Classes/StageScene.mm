@@ -1,11 +1,3 @@
-//
-// Demo of calling integrating Box2D physics engine with cocos2d AtlasSprites
-// a cocos2d example
-// http://code.google.com/p/cocos2d-iphone
-//
-// by Steve Oldmeadow
-//
-
 // Import the interfaces
 #import "StageScene.h"
 #import "TouchXML.h"

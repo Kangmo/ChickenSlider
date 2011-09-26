@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  thxengine
-//
-//  Created by 강모 김 on 11. 7. 19..
-//  Copyright 강모소프트 2011. All rights reserved.
-//
-
 #import "cocos2d.h"
 
 #import "AppDelegate.h"

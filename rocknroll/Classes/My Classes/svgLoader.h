@@ -1,10 +1,3 @@
-//
-//  svgLoader.h
-//  svgParser
-//
-//  Created by Skeeet on 10/20/09.
-//  Copyright 2009 Munky Interactive / munkyinteractive.com. All rights reserved.
-//
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"

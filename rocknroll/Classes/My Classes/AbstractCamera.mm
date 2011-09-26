@@ -1,11 +1,3 @@
-//
-//  AbstractCamera.m
-//  svgParser
-//
-//  Created by Skeeet on 11/14/09.
-//  Copyright 2009 Munky Interactive / munkyinteractive.com. All rights reserved.
-//
-
 #import "AbstractCamera.h"
 #include "b2WorldEx.h"
 #include "GameConfig.h"

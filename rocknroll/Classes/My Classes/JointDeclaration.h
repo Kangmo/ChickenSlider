@@ -1,11 +1,3 @@
-//
-//  JointDeclaration.h
-//  svgParser
-//
-//  Created by Skeeet on 10/20/09.
-//  Copyright 2009 Munky Interactive / munkyinteractive.com. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #define kDistanceJoint 1

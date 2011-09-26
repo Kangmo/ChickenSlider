@@ -1,11 +1,3 @@
-//
-//  InputLayer.m
-//  ScrollingWithJoy
-//
-//  Created by Steffen Itterheim on 12.08.10.
-//  Copyright 2010 Steffen Itterheim. All rights reserved.
-//
-
 #import "InputLayer.h"
 #import "StageScene.h"
 

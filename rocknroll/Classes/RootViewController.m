@@ -1,16 +1,3 @@
-//
-//  RootViewController.m
-//  thxengine
-//
-//  Created by 강모 김 on 11. 7. 19..
-//  Copyright 강모소프트 2011. All rights reserved.
-//
-
-//
-// RootViewController + iAd
-// If you want to support iAd, use this class as the controller of your iAd
-//
-
 #import "cocos2d.h"
 
 #import "RootViewController.h"

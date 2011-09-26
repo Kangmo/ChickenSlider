@@ -1,11 +1,3 @@
-//
-//  CategoryDummy.h
-//  rocknroll
-//
-//  Created by 강모 김 on 11. 7. 25..
-//  Copyright 2011 강모소프트. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #import "../../fossile/TouchXML/TouchXML/CXMLDocument_PrivateExtensions.h"

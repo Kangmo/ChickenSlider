@@ -1,11 +1,3 @@
-//
-//  RetainCountTrace.h
-//  rocknroll
-//
-//  Created by 강모 김 on 11. 7. 24..
-//  Copyright 2011 강모소프트. All rights reserved.
-//
-
 #ifndef _THX_RETAIN_COUNT_TRACE_H_
 #define _THX_RETAIN_COUNT_TRACE_H_ (1)
 

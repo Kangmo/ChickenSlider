@@ -1,12 +1,3 @@
-/*
- *  Tiny Wings Remake
- *  http://github.com/haqu/tiny-wings
- *
- *  Created by Sergey Tikhonov http://haqu.net
- *  Released under the MIT License
- *
- */
-
 #import "Terrain.h"
 
 @interface Terrain()
@@ -274,7 +265,7 @@
 	[s visit];
 	[s visit]; // more contrast
 }
-
+/*
 - (void) generateHillKeyPoints {
 
 	nHillKeyPoints = 0;
@@ -342,6 +333,7 @@
 	}
 //	NSLog(@"nBorderVertices = %d", nBorderVertices);
 }
+*/
 
 /*
 - (void) createBox2DBody {

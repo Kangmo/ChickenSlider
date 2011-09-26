@@ -1,12 +1,5 @@
-//
-//  FollowCamera.m
-//  svgParser
-//
-//  Created by Skeeet on 11/14/09.
-//  Copyright 2009 Munky Interactive / munkyinteractive.com. All rights reserved.
-//
-
 #import "FollowCamera.h"
+#include "GameConfig.h"
 
 #define RETURN_FRAMES 30
 
@@ -80,7 +73,7 @@
 }
 
 // BUGBUG : Adjust the position for iPad, retina...
-const float TARGET_OBJ_POS_X = 100.0f;
+const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 //const float TARGET_OBJ_POS_Y = 160.0f;
 const float MIN_TARGET_OBJ_POS_Y = 320.0 * 0.5;
 const float MAX_TARGET_OBJ_POS_Y = 320.0 * 0.9;

@@ -1,11 +1,3 @@
-//
-//  Util.m
-//  rocknroll
-//
-//  Created by 강모 김 on 11. 7. 21..
-//  Copyright 2011 강모소프트. All rights reserved.
-//
-
 #import "Util.h"
 #include "Box2D.h"
 #include "InteractiveBodyNode.h"
