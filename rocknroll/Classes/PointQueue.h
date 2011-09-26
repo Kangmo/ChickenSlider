@@ -20,7 +20,7 @@ public :
     void clear();
     void addPoint(const b2Vec2 & point);
     float32 getAverageY();
-    const b2Vec2 & getLastPoint();
+    const b2Vec2 getLastPoint();
 
 protected : 
     static void invalidate(b2Vec2 & point);

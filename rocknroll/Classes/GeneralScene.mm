@@ -46,7 +46,7 @@
             
             NSString *filePath = [Util getResourcePath:svgFileName];
             
-            svgLoader * loader = [[svgLoader alloc] initWithWorld:world_ andStaticBody:groundBody andLayer:self];
+            svgLoader * loader = [[svgLoader alloc] initWithWorld:world_ andStaticBody:groundBody andLayer:self terrains:nil];
 
             [loader instantiateObjectsIn:filePath];
             

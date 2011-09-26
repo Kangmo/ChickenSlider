@@ -1,16 +1,19 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 
-#define kMaxHillKeyPoints 101
-#define kMaxHillVertices 1000
 #define kMaxBorderVertices 5000
+
+// How many vertical segments for each point on the border for filling the terrain?
+#define kTerrainVerticalSegments 1
+
+#define kMaxHillVertices kMaxBorderVertices * (kTerrainVerticalSegments+1) * 2
+
 #define kHillSegmentWidth 15
 
 @interface Terrain : CCNode {
-	CGPoint hillKeyPoints[kMaxHillKeyPoints];
-	int nHillKeyPoints;
-	int fromKeyPointI;
-	int toKeyPointI;
+    // The the range of border indexes to borderVertices array to draw on screen. Both start/end indexes are inclusive.
+	int startBorderIndex;
+	int endBorderIndex;
 	CGPoint hillVertices[kMaxHillVertices];
 	CGPoint hillTexCoords[kMaxHillVertices];
 	int nHillVertices;
@@ -25,10 +28,11 @@
 	int textureSize;
 }
 @property (nonatomic, retain) CCSprite *stripes;
-@property (nonatomic, assign) float offsetX;
 
-+ (id) terrainWithWorld:(b2World*)w;
-- (id) initWithWorld:(b2World*)w;
+
++ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
+- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
+- (void) setHeroX:(float)offsetX withGroundY:(float)groundY;
 
 - (void) reset;
 

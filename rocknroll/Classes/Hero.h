@@ -7,7 +7,7 @@
 @class AbstractCamera;
 class HeroContactListener;
 
-@interface Hero :NSObject/*: CCNode*/ {
+@interface Hero :NSObject {
 	b2World *_world;
 	b2Body *_body;
     AbstractCamera * _camera;

@@ -106,8 +106,6 @@
 }
 
 - (void) updateNode {
-	float x = _body->GetPosition().x * _camera.ptmRatio;
-	float y = _body->GetPosition().y * _camera.ptmRatio;
     
 	// CCNode position and rotation
 //	self.position = ccp(x, y);

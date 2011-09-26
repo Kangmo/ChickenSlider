@@ -456,6 +456,7 @@
 		67351E7A142EBD4A0073575A /* StageScene_LV5.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67351E79142EBD4A0073575A /* StageScene_LV5.svg */; };
 		67351E7C142EC14B0073575A /* StageScene_LV6.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67351E7B142EC1490073575A /* StageScene_LV6.svg */; };
 		67351E7F142F55390073575A /* Terrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67351E7E142F55330073575A /* Terrain.mm */; };
+		67377F72143043E00079ADCB /* StageScene_LV7.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67377F71143043E00079ADCB /* StageScene_LV7.svg */; };
 		67714D8613E04C1E00892B4C /* ClassDictionary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67714D8513E04C1E00892B4C /* ClassDictionary.mm */; };
 		67714D8813E0708800892B4C /* game_classes.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67714D8713E0708800892B4C /* game_classes.svg */; };
 		67714DA713E07B5500892B4C /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714D8C13E07B5500892B4C /* CXMLDocument_CreationExtensions.m */; };
@@ -1136,6 +1137,7 @@
 		67351E7B142EC1490073575A /* StageScene_LV6.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV6.svg; path = rocknroll/Resources/StageScene_LV6.svg; sourceTree = SOURCE_ROOT; };
 		67351E7D142F552B0073575A /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terrain.h; sourceTree = "<group>"; };
 		67351E7E142F55330073575A /* Terrain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Terrain.mm; sourceTree = "<group>"; };
+		67377F71143043E00079ADCB /* StageScene_LV7.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV7.svg; path = Resources/StageScene_LV7.svg; sourceTree = "<group>"; };
 		67714D8413E04C1D00892B4C /* ClassDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDictionary.h; sourceTree = "<group>"; };
 		67714D8513E04C1E00892B4C /* ClassDictionary.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ClassDictionary.mm; sourceTree = "<group>"; };
 		67714D8713E0708800892B4C /* game_classes.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = game_classes.svg; path = Resources/game_classes.svg; sourceTree = "<group>"; };
@@ -1258,6 +1260,7 @@
 		6709790513DD14A7003E4E75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67377F71143043E00079ADCB /* StageScene_LV7.svg */,
 				67351E7B142EC1490073575A /* StageScene_LV6.svg */,
 				67351E79142EBD4A0073575A /* StageScene_LV5.svg */,
 				67351E6E142DA9920073575A /* StageScene_LV4.svg */,
@@ -2560,6 +2563,7 @@
 				67351E6F142DA9920073575A /* StageScene_LV4.svg in Resources */,
 				67351E7A142EBD4A0073575A /* StageScene_LV5.svg in Resources */,
 				67351E7C142EC14B0073575A /* StageScene_LV6.svg in Resources */,
+				67377F72143043E00079ADCB /* StageScene_LV7.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

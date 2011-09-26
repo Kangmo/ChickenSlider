@@ -30,6 +30,8 @@ typedef enum {
 	Car * car;
 	Hero * hero;
     
+    NSMutableArray * terrains;
+    
 	float st;
 }
 

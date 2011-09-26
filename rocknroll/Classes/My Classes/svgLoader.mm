@@ -5,12 +5,13 @@
 #include "StringParser.h"
 #import "ClassDictionary.h"
 #include "GameConfig.h"
+#import "Terrain.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t
 {
 	self = [super init];
 	if (self != nil) 
@@ -21,6 +22,7 @@
 //		scaleFactor = 10.0f;
         scaleFactor = INIT_PTM_RATIO;
         classDict = nil;
+        terrains = t;
 	}
 	return self;
 }
@@ -552,6 +554,16 @@
                         if(friction)	edgeFixture->SetFriction([friction floatValue]);
                         else edgeFixture->SetFriction(0.5f);
                     }
+
+                    if ( terrains )
+                    {
+                        // x, y offset should be zero, because we don't instantiate terrain yet.
+                        assert(xOffset == 0);
+                        assert(yOffset == 0);
+                        
+                        Terrain * terrain = [Terrain terrainWithWorld:world borderPoints:(NSArray*)points canvasHeight:svgCanvasHeight xOffset:xOffset yOffset:yOffset];
+                        [terrains addObject:terrain];
+                    }
                 }
             }
             //NSArray * points = [data componentsSeparatedByString:@" "];
@@ -686,15 +698,17 @@
 	}
 	else
 	{
-		worldWidth = 100.0f;
+        assert(0);
 	}
 	if([[svgDocument rootElement] attributeForName:@"height"])
 	{
-		worldHeight = [[[[svgDocument rootElement] attributeForName:@"height"] stringValue] floatValue] / scaleFactor;
+        svgCanvasHeight = [[[[svgDocument rootElement] attributeForName:@"height"] stringValue] floatValue];
+        
+		worldHeight = svgCanvasHeight / scaleFactor;
 	}
 	else
 	{
-		worldHeight = 100.0f;
+		assert(0);
 	}
 	
     NSArray *layers = NULL;

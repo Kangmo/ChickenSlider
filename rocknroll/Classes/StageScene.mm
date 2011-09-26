@@ -13,6 +13,8 @@
 
 #include "PointQueue.h"
 
+#import "Terrain.h"
+
 /** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
  */
 PointQueue theGroundPoints;
@@ -56,9 +58,11 @@ static StageScene* instanceOfStageScene;
 	// load geometry from file
 	b2Body* groundBody = world->CreateBody(&groundBodyDef);
     
+    terrains = [[NSMutableArray array] retain];
+    
     NSString *filePath = [Util getResourcePath:svgFileName];
     
-	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self] autorelease];
+	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains] autorelease];
     
     // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
     // In that file, a class is defined within a layer.
@@ -72,12 +76,20 @@ static StageScene* instanceOfStageScene;
 	return loader;
 }
 
+-(void) addTerrains {
+    for (Terrain * t in terrains) {
+        [self addChild:t];
+    }
+}
 
 // initialize your instance here
 -(id) initWithLevel:(NSString*)levelStr
 {
 	if( (self=[super init])) 
 	{
+        // initialize variables
+        terrains = nil;
+        
 		// enable touches
 		self.isTouchEnabled = YES;
 		
@@ -130,7 +142,8 @@ static StageScene* instanceOfStageScene;
 		//init stuff from svg file
 		svgLoader* loader = [self initGeometry:svgFileName];
         [loader assignSpritesFromSheet:spriteSheet];
-
+       
+        [self addTerrains];
         
         b2Body * playerBody = [loader getBodyByName:@"MyCar_CarMainBody"];
         if ( playerBody ) 
@@ -140,30 +153,6 @@ static StageScene* instanceOfStageScene;
         else
         {
             playerBody = [loader getBodyByName:@"MyBird_BirdMainBody"];
-            /*
-            b2Body * testBody = nil; 
-            {
-                
-                b2BodyDef bd;
-                bd.type = b2_dynamicBody;
-                bd.linearDamping = 0.05f;
-                bd.fixedRotation = true;
-                bd.position.Set(playerBody->GetPosition().x, playerBody->GetPosition().y);
-                testBody = world->CreateBody(&bd);
-                
-                b2CircleShape shape;
-                shape.m_radius = 14.0f/cam.ptmRatio;
-                
-                b2FixtureDef fd;
-                fd.shape = &shape;
-                fd.density = 1.0f;
-                fd.restitution = 0; // bounce
-                fd.friction = 0;
-                
-                testBody->CreateFixture(&fd);
-            }
-            playerBody = testBody;
-            */
             
             assert(playerBody);
             playerBody->SetLinearDamping(0.05f);
@@ -281,18 +270,9 @@ static StageScene* instanceOfStageScene;
  */
 extern PointQueue theGroundPoints;
 
-/** @brief Adjust the zoom level so that both the ground and the hero are shown in the screen regardless of how far the hero jumped!
- */
--(void) adjustZoom
+// Get the Y position of the world ground in world coordinate system. 
+-(float) getWorldGroundY
 {
-    
-    static float minHeightMeters = 0.0f;
-    if (!minHeightMeters) 
-    {
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
-		minHeightMeters = screenSize.height * 4/5 / INIT_PTM_RATIO;
-    }
-
     float32 groundY = theGroundPoints.getAverageY();
     if ( groundY == kMAX_POSITION ) // No contact points are added to the ground points yet. Assume the level map starts at Y position 0.
     {
@@ -301,9 +281,23 @@ extern PointQueue theGroundPoints;
     else
     {
         groundY -= MAX_WAVE_HEIGHT; 
-
+        
         // Subtract the ground level by 5 meters ( about the height of the wave ) to show the whole ground.
         // This is necessary because the Hero usually hits on top of the wave.
+    }
+    return groundY;
+}
+
+/** @brief Adjust the zoom level so that both the ground and the hero are shown in the screen regardless of how far the hero jumped!
+ */
+-(void) adjustZoomWithGroundY:(int)groundY
+{
+    
+    static float minHeightMeters = 0.0f;
+    if (!minHeightMeters) 
+    {
+        CGSize screenSize = [[CCDirector sharedDirector] winSize];
+		minHeightMeters = screenSize.height * 4/5 / INIT_PTM_RATIO;
     }
     
     static float targetZoom = 0.0f;
@@ -321,7 +315,7 @@ extern PointQueue theGroundPoints;
         }
         float targetZoom = minHeightMeters / worldHeightToShow;
         
-        CCLOG(@"worldHeightToShow:%f, ground:%f targetZoom:%f\n", worldHeightToShow, groundY, targetZoom);
+        //CCLOG(@"worldHeightToShow:%f, ground:%f targetZoom:%f\n", worldHeightToShow, groundY, targetZoom);
         
         // Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
         // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
@@ -343,6 +337,23 @@ extern PointQueue theGroundPoints;
     }
 }
 
+/** @brief Activate, move, scale terrains based on the current hero position.
+ */
+-(void) adjustTerrains {
+    if (hero)
+    {
+        for (Terrain * t in terrains) {
+            float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
+            // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
+            // Convert it back to the y offset from sea level.
+            float groundY_withoutZoom = -cam.cameraPosition.y;
+            
+            t.scale = cam.zoom;
+            [t setHeroX:heroX_withoutZoom withGroundY:groundY_withoutZoom];
+        }
+    }
+}
+
 -(void) tick: (ccTime) dt
 {
 //	st+=0.01;
@@ -350,28 +361,34 @@ extern PointQueue theGroundPoints;
 //	if(s<0) s*=-1.0f;
 //	[cam ZoomTo: s +0.2f];
 
-    [self adjustZoom];
+    float groundY = [self getWorldGroundY];
+    [self adjustZoomWithGroundY:groundY];
 
 	[cam updateFollowPosition];
+
+    // TODO : Understand why adjusting terrain should come here.
+    [self adjustTerrains];
+    
 	int32 velocityIterations = 8;
     int32 positionIterations = 3;
     //	int32 positionIterations = 10;
-	
-    [hero updatePhysics];
+	if (hero)
+        [hero updatePhysics];
     
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	//world->Step(dt, velocityIterations, positionIterations);
 	world->Step(1.0f/30.0f, velocityIterations, positionIterations);
-	
-    [hero updateNode];
+
+	if (hero)
+        [hero updateNode];
 
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		[cam updateSpriteFromBody:b];
 	}
-
+    
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -444,6 +461,7 @@ extern PointQueue theGroundPoints;
         delete car;
 
     self.hero = nil;
+    [terrains release];
     
     // remove all body nodes attached to b2Body in the b2World.
     Helper::removeAttachedBodyNodes(world);

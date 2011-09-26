@@ -51,7 +51,7 @@ void PointQueue::addPoint(const b2Vec2 & point)
 
 /** @brief Get the point that was added lastly.
  */
-const b2Vec2 & PointQueue::getLastPoint()
+const b2Vec2 PointQueue::getLastPoint()
 {
     if ( lastPointIndex >= 0 ) 
     {
