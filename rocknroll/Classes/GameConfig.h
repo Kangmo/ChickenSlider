@@ -25,6 +25,9 @@
 // The X position of hero on the screen. It is positioned on the ride side of the screen with the offset of 1/8 of screen width.
 #define HERO_XPOS_RATIO (1.0f/8.0f)
 
+// Need to draw debug information of Box2D?
+//#define BOX2D_DEBUG_DRAW (1)
+
 //#define LOAD_RESOURCE_FROM_TEST_WEB (1)
 #define TEST_WEB_URL_PREFIX @"http://192.168.123.147/~kmkim/rocknroll_Resources/"
 

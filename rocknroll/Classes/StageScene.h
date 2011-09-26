@@ -9,6 +9,7 @@
 #import "FollowCamera.h"
 #include "Car.h"
 #include "Hero.h"
+#include "GameConfig.h"
 
 class b2WorldEx;
 

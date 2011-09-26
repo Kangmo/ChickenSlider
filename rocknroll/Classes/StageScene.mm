@@ -249,6 +249,7 @@ static StageScene* instanceOfStageScene;
 	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
 	// Needed states:  GL_VERTEX_ARRAY, 
 	// Unneeded states: GL_TEXTURE_2D, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
+#if defined(BOX2D_DEBUG_DRAW)    
 	glDisable(GL_TEXTURE_2D);
 	glDisableClientState(GL_COLOR_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -263,7 +264,7 @@ static StageScene* instanceOfStageScene;
 	glEnable(GL_TEXTURE_2D);
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    
+#endif
 }
 
 #include "PointQueue.h"
