@@ -561,7 +561,11 @@
                         assert(xOffset == 0);
                         assert(yOffset == 0);
                         
-                        Terrain * terrain = [Terrain terrainWithWorld:world borderPoints:(NSArray*)points canvasHeight:svgCanvasHeight xOffset:xOffset yOffset:yOffset];
+                        // If "upTerrain" attribute exists, rendering is done on the upper part of the terrain border.
+                        NSString * renderUpsideAttr = [[curShape attributeForName:@"upTerrain"] stringValue];
+
+                        BOOL renderUpside = renderUpsideAttr ? TRUE : FALSE;
+                        Terrain * terrain = [Terrain terrainWithWorld:world borderPoints:(NSArray*)points canvasHeight:svgCanvasHeight xOffset:xOffset yOffset:yOffset renderUpside:renderUpside];
                         [terrains addObject:terrain];
                     }
                 }

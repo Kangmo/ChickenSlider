@@ -26,12 +26,15 @@
 	int screenW;
 	int screenH;
 	int textureSize;
+    
+    // When rendering terrains, render up-side of the border line, not the down-side of the border line.
+    BOOL renderUpside;
 }
 @property (nonatomic, retain) CCSprite *stripes;
 
++ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside ;
+- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside ;
 
-+ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
-- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
 - (void) setHeroX:(float)offsetX withGroundY:(float)groundY;
 
 - (void) reset;

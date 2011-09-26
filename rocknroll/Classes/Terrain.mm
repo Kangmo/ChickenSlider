@@ -21,11 +21,11 @@
 
 @synthesize stripes = _stripes;
 
-+ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset{
-	return [[[self alloc] initWithWorld:w borderPoints:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset] autorelease];
++ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside {
+	return [[[self alloc] initWithWorld:w borderPoints:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset renderUpside:renderUpside] autorelease];
 }
 
-- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset{
+- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)r {
 	
 	if ((self = [super init])) {
 		
@@ -37,6 +37,8 @@
 
         startBorderIndex = 0;
         endBorderIndex = 0;
+        
+        renderUpside = r;
 
 #ifndef DRAW_BOX2D_WORLD
 		textureSize = 512;
@@ -155,9 +157,15 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
         int vSegments = kTerrainVerticalSegments;
         
         for (int k=0; k<vSegments+1; k++) {
-            hillVertices[nHillVertices] = ccp(p0.x, p0.y-(float)textureSize/vSegments*k);
+            float vSegOffset = (float)textureSize/vSegments*k;
+
+            // The direction of rendering terrain.
+            if ( ! renderUpside )
+                vSegOffset = -vSegOffset;
+            
+            hillVertices[nHillVertices] = ccp(p0.x, p0.y + vSegOffset);
             hillTexCoords[nHillVertices++] = ccp(p0.x/(float)textureSize, (float)(k)/vSegments);
-            hillVertices[nHillVertices] = ccp(p1.x, p1.y-(float)textureSize/vSegments*k);
+            hillVertices[nHillVertices] = ccp(p1.x, p1.y + vSegOffset);
             hillTexCoords[nHillVertices++] = ccp(p1.x/(float)textureSize, (float)(k)/vSegments);
         }
         
