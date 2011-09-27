@@ -13,8 +13,8 @@
 	{
 		cameraPosition = CGPointZero;
 		zoom = 1.0f;
-		minZoom = 0.1;
-		maxZoom = 10;
+		minZoom = MIN_ZOOM_RATIO;
+		maxZoom = MAX_ZOOM_RATIO;
 		ptmRatio = INIT_PTM_RATIO;  //1 phy unit = 32 screen pixels by default
 		originalPtmRatio = ptmRatio;
 		

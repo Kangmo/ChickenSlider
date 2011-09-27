@@ -72,11 +72,6 @@
 	}
 }
 
-// BUGBUG : Adjust the position for iPad, retina...
-const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
-//const float TARGET_OBJ_POS_Y = 160.0f;
-const float MIN_TARGET_OBJ_POS_Y = 320.0 * 0.5;
-const float MAX_TARGET_OBJ_POS_Y = 320.0 * 0.9;
 
 -(void) updateFollowPosition
 {
@@ -86,13 +81,14 @@ const float MAX_TARGET_OBJ_POS_Y = 320.0 * 0.9;
 		CGPoint objPosition = CGPointMake(objectToFollow->GetPosition().x, objectToFollow->GetPosition().y);
         //CGPointMake(-objectToFollow->GetPosition().x, -objectToFollow->GetPosition().y);
 		
-		//convert to screen coords
-		objPosition = ccpMult(objPosition, ptmRatio);
-		
-        // Follow in Y axis for the first time only.
-        //objPosition = ccpAdd(objPosition, CGPointMake(TARGET_OBJ_POS_X, TARGET_OBJ_POS_Y));
+        // Convert the phy coords to screen coords considering zoom
+        CGPoint objPositionOnScreen = ccpMult(objPosition, ptmRatio);
+
+        // Adjust camera shift. 
+        objPositionOnScreen = ccpAdd(objPositionOnScreen,cameraPosition);
         
-        float targetObjPosY = objPosition.y;
+        float targetObjPosY = objPositionOnScreen.y;
+        
         if ( targetObjPosY < MIN_TARGET_OBJ_POS_Y )
         {
             targetObjPosY = MIN_TARGET_OBJ_POS_Y;
@@ -101,16 +97,21 @@ const float MAX_TARGET_OBJ_POS_Y = 320.0 * 0.9;
         {
             targetObjPosY = MAX_TARGET_OBJ_POS_Y;
         }
-        
+
+		//convert to screen coords
+		objPosition = ccpMult(objPosition, ptmRatio);
+                
         CGPoint objTargetDiff = ccpSub(CGPointMake(TARGET_OBJ_POS_X, targetObjPosY), objPosition);
 
 		CGPoint returnDelta = ccpSub(objTargetDiff,cameraPosition);
-		float deltaLength= ccpLength(returnDelta);
+		
+        float deltaLength= ccpLength(returnDelta);
+        
 		if(deltaLength>0.5f)
 		{
             // To make the camera follow the target object slowly, uncomment this block.
 //			returnDelta = ccpNormalize(returnDelta);
-//			returnDelta = ccpMult(returnDelta, deltaLength/2);
+//			returnDelta = ccpMult(returnDelta, deltaLength/10);
             
 			cameraPosition = ccpAdd(cameraPosition, returnDelta);
 		}

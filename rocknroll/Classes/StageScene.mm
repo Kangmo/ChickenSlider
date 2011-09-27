@@ -292,14 +292,15 @@ extern PointQueue theGroundPoints;
 
 /** @brief Adjust the zoom level so that both the ground and the hero are shown in the screen regardless of how far the hero jumped!
  */
--(void) adjustZoomWithGroundY:(int)groundY
+-(void) adjustZoomWithGroundY:(float)worldGroundY
 {
     
     static float minHeightMeters = 0.0f;
     if (!minHeightMeters) 
     {
         CGSize screenSize = [[CCDirector sharedDirector] winSize];
-		minHeightMeters = screenSize.height * 4/5 / INIT_PTM_RATIO;
+        float maxHeroY = screenSize.height * HERO_MAX_YPOS_RATIO;
+		minHeightMeters = maxHeroY / INIT_PTM_RATIO;
     }
     
     static float targetZoom = 0.0f;
@@ -310,7 +311,7 @@ extern PointQueue theGroundPoints;
     
     if (hero)
     {
-        float32 worldHeightToShow = hero.body->GetPosition().y - groundY;
+        float32 worldHeightToShow = hero.body->GetPosition().y - worldGroundY;
         
         if (worldHeightToShow < minHeightMeters) {
             worldHeightToShow = minHeightMeters;
@@ -341,21 +342,33 @@ extern PointQueue theGroundPoints;
 
 /** @brief Activate, move, scale terrains based on the current hero position.
  */
--(void) adjustTerrains {
+-(float) adjustTerrains {
+    float groundY = kMAX_POSITION;
+    
     if (hero)
     {
+        float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
+        // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
+        // Convert it back to the y offset from sea level.
+        float cameraY = -cam.cameraPosition.y;
+        
         for (Terrain * t in terrains) {
-            float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
-            // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
-            // Convert it back to the y offset from sea level.
-            float groundY = -cam.cameraPosition.y;
 
-            //t.scale = cam.zoom;
-            t.scale = cam.ptmRatio / INIT_PTM_RATIO;
+            t.scale = cam.zoom;
+            //t.scale = cam.ptmRatio / INIT_PTM_RATIO;
 
-            [t setHeroX:heroX_withoutZoom withGroundY:groundY];
+            [t setHeroX:heroX_withoutZoom withCameraY:cameraY];
+            
+            float borderMinY = [t calcBorderMinY];
+            if ( borderMinY != kMAX_POSITION ) // The terrain is not drawn on the current screen.
+            {
+                if ( groundY > borderMinY )
+                    groundY = borderMinY;
+            }
         }
     }
+    
+    return groundY;
 }
 
 -(void) tick: (ccTime) dt
@@ -366,12 +379,16 @@ extern PointQueue theGroundPoints;
 //	[cam ZoomTo: s +0.2f];
     // TODO : Understand why adjusting terrain should come here.
 
-    float groundY = [self getWorldGroundY];
-    [self adjustZoomWithGroundY:groundY];
+    static float worldGroundY = 0.0f;//[self getWorldGroundY];
+    [self adjustZoomWithGroundY:worldGroundY];
 
 	[cam updateFollowPosition];
 
-    [self adjustTerrains];
+    // groundY will be used in the next tick to decide the zoom level.
+    worldGroundY = [self adjustTerrains] / INIT_PTM_RATIO;
+    
+    // To show bottom of terrains, lower the ground level. 
+    worldGroundY -= MAX_WAVE_HEIGHT;
     
 	int32 velocityIterations = 8;
     int32 positionIterations = 3;
@@ -381,8 +398,7 @@ extern PointQueue theGroundPoints;
     
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	//world->Step(dt, velocityIterations, positionIterations);
-	world->Step(1.0f/30.0f, velocityIterations, positionIterations);
+	world->Step(1.0f/60.0f, velocityIterations, positionIterations);
 
 	if (hero)
         [hero updateNode];

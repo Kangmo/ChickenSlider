@@ -35,7 +35,9 @@
 + (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside ;
 - (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside ;
 
-- (void) setHeroX:(float)offsetX withGroundY:(float)groundY;
+- (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
+
+- (float) calcBorderMinY;
 
 - (void) reset;
 

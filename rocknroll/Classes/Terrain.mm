@@ -1,4 +1,33 @@
 #import "Terrain.h"
+#import "GameConfig.h"
+
+
+static int textureFilesCount = 19;
+static NSString * textureFiles[] =
+{
+    @"lgren008.jpg",
+    @"lgren051.jpg",
+    @"lgren062.jpg",
+    @"lgren071.gif",
+    @"lgren077.jpg",  // 5
+    @"lgren080a.jpg",
+    @"blue008.jpg",
+    @"blue011.jpg",
+    @"blue032.jpg",
+    @"blue112.jpg",  // 10
+    @"blue137.jpg",
+    @"blue148.jpg",
+    @"blue207.gif",
+    @"red009.jpg",
+    @"red020.jpg",  // 15
+    @"red079.gif",
+    @"red157.jpg",
+    @"red168.gif",
+    @"red205.gif", // 19
+    @"",
+    NULL
+};
+
 
 @interface Terrain()
 - (CCSprite*) generateStripesSprite;
@@ -11,10 +40,12 @@
 //- (void) generateHillKeyPoints;
 //- (void) generateBorderVertices;
 - (void) loadBorderVertices:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
-- (void) setHeroX:(float)offsetX withGroundY:(float)groundY;
+- (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
 //- (void) createBox2DBody;
 - (void) calcHillVertices;
 - (ccColor4F) randomColor;
+- (void) renderImage:(NSString*)imageFileName;
+
 @end
 
 @implementation Terrain
@@ -41,15 +72,12 @@
         renderUpside = r;
 
 #ifndef DRAW_BOX2D_WORLD
-		textureSize = 512;
+        //        textureSize = 512;
+		textureSize = 128;
 		self.stripes = [self generateStripesSprite];
 #endif
 		[self loadBorderVertices:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset];
         [self calcHillVertices];
-//		[self generateHillKeyPoints];
-//		[self generateBorderVertices];
-//		[self createBox2DBody];
-//      [self setHeroX:0 withGroundY:0];
 	}
 	return self;
 }
@@ -173,6 +201,8 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
     }
 }
 
+
+
 - (ccColor4F) randomColor {
 	const int minSum = 450;
 	const int minDelta = 150;
@@ -260,19 +290,44 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
     }
 #endif
 }
-- (void) setHeroX:(float)offsetX withGroundY:(float)groundY {
+
+/** @brief Calculate minimum Y value of the border we are drawing now!
+ */
+- (float) calcBorderMinY {
+    float minBorderY = kMAX_POSITION;
+    if ( startBorderIndex < endBorderIndex )
+    {
+        // get 10% sample
+        int step = (endBorderIndex - startBorderIndex) / 10;
+
+        // Not enough samples. Don't sample but do full scan.
+        if (!step)
+            step = 1;
+        
+        step = 1;
+        
+        for (int i=startBorderIndex; i<endBorderIndex; i+=step)
+        {
+            float borderY = borderVertices[i].y;
+            if (minBorderY > borderY)
+                minBorderY = borderY;
+        }
+    }
+    return minBorderY;
+}
+
+- (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY {
 	static BOOL firstTime = YES;
 	if (_offsetX != offsetX || firstTime) {
 		firstTime = NO;
 		_offsetX = offsetX;
         
         // Don't scale groundY, because it is for shifting camera offset.
-		self.position = ccp(screenW/8-_offsetX*self.scale, -groundY /* Caution: should not scale groundY */);
+		self.position = ccp(screenW/8-_offsetX*self.scale, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
         
         // calculate the range of border indexes to borderVertices array to draw on screen. 
         [self calcStartBorderIndex];
         [self calcEndBorderIndex];
-        
         //CCLOG(@"StartBorderIndex: %d, EndBorderIndex:%d", startBorderIndex, endBorderIndex);
 //		[self resetHillVertices];
 	}
@@ -304,7 +359,10 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 	
 	CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureSize height:textureSize];
 	[rt begin];
-	[self renderStripes];
+    
+    int textureIndex = arc4random() % textureFilesCount;
+    [self renderImage:textureFiles[textureIndex]];
+	//[self renderStripes];
 	[self renderGradient];
 	[self renderHighlight];
 	[self renderTopBorder];
@@ -497,5 +555,20 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 	[s visit]; // more contrast
 }
 
+
+- (void) renderImage:(NSString*)imageFileName {
+	
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glEnable(GL_TEXTURE_2D);
+	
+	CCSprite *s = [CCSprite spriteWithFile:imageFileName];
+    
+	//[s setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
+	s.position = ccp(s.contentSize.width/2, s.contentSize.height/2);
+	s.scale = 1;
+	glColor4f(1, 1, 1, 1);
+	[s visit];
+	[s visit]; // more contrast
+}
 
 @end

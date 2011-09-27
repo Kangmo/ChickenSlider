@@ -1,4 +1,5 @@
 #include "PointQueue.h"
+#include "GameConfig.h"
 
 /** @brief Invalidate a point.
  */

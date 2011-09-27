@@ -34,7 +34,7 @@ void HeroContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldMani
 //        if ( heroPos.x - lastPointX > 3 )
         {
             theGroundPoints.addPoint( heroPos );
-            CCLOG(@"AddPoint Y:%f", heroPos.y );
+            //CCLOG(@"AddPoint Y:%f", heroPos.y );
         }
         
 		const b2Body *b = contact->GetFixtureB()->GetBody();
