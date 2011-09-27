@@ -21,8 +21,7 @@
 #define INIT_PTM_RATIO (32)
 #define INIT_ZOOM_RATIO (1)
 
-//#define MIN_ZOOM_RATIO (0.2)
-#define MIN_ZOOM_RATIO (0.1)
+#define MIN_ZOOM_RATIO (0.15)
 #define MAX_ZOOM_RATIO (10)
 
 // The maximum wave height in meters. Used for adjusting ground level.

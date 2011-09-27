@@ -271,6 +271,10 @@
 		67714DB113E07B5500892B4C /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714DA013E07B5500892B4C /* CXMLNode_PrivateExtensions.m */; };
 		67714DB213E07B5500892B4C /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714DA213E07B5500892B4C /* CXMLNode_XPathExtensions.m */; };
 		67714DB313E07B5500892B4C /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714DA513E07B5500892B4C /* CTidy.m */; };
+		679648D614319E3000C4E87B /* AKCCRandomDelayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648CA14319E3000C4E87B /* AKCCRandomDelayTime.m */; };
+		679648D714319E3000C4E87B /* AKCCRandomSpawn.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648CC14319E3000C4E87B /* AKCCRandomSpawn.m */; };
+		679648D814319E3000C4E87B /* AKCCSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648CE14319E3000C4E87B /* AKCCSoundEffect.m */; };
+		679648D914319E3000C4E87B /* AKHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648D014319E3000C4E87B /* AKHelpers.m */; };
 		67B4F98713DD34F700FAFBDD /* CategoryDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4F98613DD34F600FAFBDD /* CategoryDummy.m */; };
 		67B4F99713DD37F500FAFBDD /* ColoredCircleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709801D13DD153F003E4E75 /* ColoredCircleSprite.m */; };
 		67B4F99813DD37F500FAFBDD /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709801F13DD153F003E4E75 /* ColoredSquareSprite.m */; };
@@ -984,6 +988,15 @@
 		67714DA413E07B5500892B4C /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
 		67714DA513E07B5500892B4C /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		67714DA613E07B5500892B4C /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		679648C914319E3000C4E87B /* AKCCRandomDelayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCCRandomDelayTime.h; sourceTree = "<group>"; };
+		679648CA14319E3000C4E87B /* AKCCRandomDelayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCCRandomDelayTime.m; sourceTree = "<group>"; };
+		679648CB14319E3000C4E87B /* AKCCRandomSpawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCCRandomSpawn.h; sourceTree = "<group>"; };
+		679648CC14319E3000C4E87B /* AKCCRandomSpawn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCCRandomSpawn.m; sourceTree = "<group>"; };
+		679648CD14319E3000C4E87B /* AKCCSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCCSoundEffect.h; sourceTree = "<group>"; };
+		679648CE14319E3000C4E87B /* AKCCSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCCSoundEffect.m; sourceTree = "<group>"; };
+		679648CF14319E3000C4E87B /* AKHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKHelpers.h; sourceTree = "<group>"; };
+		679648D014319E3000C4E87B /* AKHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKHelpers.m; sourceTree = "<group>"; };
+		679648D114319E3000C4E87B /* AnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationKit.h; sourceTree = "<group>"; };
 		67B4F97B13DD20FF00FAFBDD /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		67B4F98513DD34F600FAFBDD /* CategoryDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryDummy.h; sourceTree = "<group>"; };
 		67B4F98613DD34F600FAFBDD /* CategoryDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryDummy.m; sourceTree = "<group>"; };
@@ -1707,6 +1720,7 @@
 		670982F913DD1777003E4E75 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				679648C714319E3000C4E87B /* AnimationKit */,
 				67351E7D142F552B0073575A /* Terrain.h */,
 				67351E7E142F55330073575A /* Terrain.mm */,
 				67351E75142E97B40073575A /* PointQueue.cpp */,
@@ -1970,6 +1984,30 @@
 				67714DA513E07B5500892B4C /* CTidy.m */,
 			);
 			path = Tidy;
+			sourceTree = "<group>";
+		};
+		679648C714319E3000C4E87B /* AnimationKit */ = {
+			isa = PBXGroup;
+			children = (
+				679648C814319E3000C4E87B /* cocos2d */,
+			);
+			path = AnimationKit;
+			sourceTree = "<group>";
+		};
+		679648C814319E3000C4E87B /* cocos2d */ = {
+			isa = PBXGroup;
+			children = (
+				679648C914319E3000C4E87B /* AKCCRandomDelayTime.h */,
+				679648CA14319E3000C4E87B /* AKCCRandomDelayTime.m */,
+				679648CB14319E3000C4E87B /* AKCCRandomSpawn.h */,
+				679648CC14319E3000C4E87B /* AKCCRandomSpawn.m */,
+				679648CD14319E3000C4E87B /* AKCCSoundEffect.h */,
+				679648CE14319E3000C4E87B /* AKCCSoundEffect.m */,
+				679648CF14319E3000C4E87B /* AKHelpers.h */,
+				679648D014319E3000C4E87B /* AKHelpers.m */,
+				679648D114319E3000C4E87B /* AnimationKit.h */,
+			);
+			path = cocos2d;
 			sourceTree = "<group>";
 		};
 		67F5EA941430C813003FFB2D /* cocos2d */ = {
@@ -2740,6 +2778,10 @@
 				67351E76142E97B70073575A /* PointQueue.cpp in Sources */,
 				67351E78142E97CF0073575A /* PointQueue.h in Sources */,
 				67351E7F142F55390073575A /* Terrain.mm in Sources */,
+				679648D614319E3000C4E87B /* AKCCRandomDelayTime.m in Sources */,
+				679648D714319E3000C4E87B /* AKCCRandomSpawn.m in Sources */,
+				679648D814319E3000C4E87B /* AKCCSoundEffect.m in Sources */,
+				679648D914319E3000C4E87B /* AKHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
