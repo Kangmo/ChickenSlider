@@ -18,6 +18,10 @@ class HeroContactListener;
 	BOOL _diving;
 	HeroContactListener *_contactListener;
 	int _nPerfectSlides;
+    
+    // Animation Clips
+    NSDictionary * flyingClip;
+    NSDictionary * walkingClip;
 }
 @property (nonatomic, assign) b2World *world;
 @property (nonatomic, assign) b2Body *body;

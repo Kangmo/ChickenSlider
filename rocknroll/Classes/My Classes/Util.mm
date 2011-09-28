@@ -1,8 +1,8 @@
 #import "Util.h"
+#import "AKHelpers.h"
 #include "Box2D.h"
 #include "InteractiveBodyNode.h"
 #include "GameConfig.h"
-
 @implementation Util
 
 /** @brief Retrieve a file from a URL, save it in document file 
@@ -37,6 +37,21 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];  
 #endif /*LOAD_RESOURCE_FROM_TEST_WEB*/
     return filePath;
+}
+
+
+/** @brief Apply animation clip to the sprite attached to the given Box2D body.
+ */
++(void) setBody:(b2Body*)body withClip:(NSDictionary*)clip
+{
+    BodyInfo *bi = (BodyInfo*)body->GetUserData();
+    if(bi.data)
+    {
+        
+        CCSprite*bodySprite = (CCSprite*)bi.data;
+        [bodySprite stopAllActions];
+        [AKHelpers applyAnimationClip:clip toNode:bodySprite];
+    }
 }
 
 @end

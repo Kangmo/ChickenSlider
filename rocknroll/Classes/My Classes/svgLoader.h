@@ -5,6 +5,7 @@
 #import "TouchXML.h"
 #import "GrahamScanConvexHull.h"
 #include <vector>
+#import "AKHelpers.h"
 
 @class ClassDictionary;
 

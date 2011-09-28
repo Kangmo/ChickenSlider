@@ -6,6 +6,7 @@
 #import "ClassDictionary.h"
 #include "GameConfig.h"
 #import "Terrain.h"
+#import "ClipFactory.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
@@ -85,6 +86,9 @@
 		bi.rect = CGSizeMake(maxX-minX, maxY-minY);
 		bi.spriteName = [[curGroup attributeForName:@"sprite"] stringValue];
 		bi.textureName = [[curGroup attributeForName:@"texture"] stringValue];
+		bi.initFrameAnim = [[curGroup attributeForName:@"initFrameAnim"] stringValue];
+		bi.initClipFile = [[curGroup attributeForName:@"initClipFile"] stringValue];
+
 		bodyPos.x = minX + bi.rect.width;
 		bodyPos.y = maxY - bi.rect.height/2.0f;
 		
@@ -126,6 +130,9 @@
 				bi.spriteOffset = CGPointMake(fx - bodyPos.x, -(fy - bodyPos.y));
 				bi.spriteName = [[curShape attributeForName:@"sprite"] stringValue];
 				bi.textureName = [[curShape attributeForName:@"texture"] stringValue];
+                bi.initFrameAnim = [[curShape attributeForName:@"initFrameAnim"] stringValue];
+                bi.initClipFile = [[curShape attributeForName:@"initClipFile"] stringValue];
+
 			}
 			
 			if([curShape attributeForName:@"isCircle"])
@@ -186,6 +193,8 @@
 {
 	for (CXMLElement * curShape in shapes) 
 	{
+		NSString * logicClass = [[curShape attributeForName:@"logicClass"] stringValue];
+        
 		NSString * width = [[curShape attributeForName:@"width"] stringValue];
 		NSString * height = [[curShape attributeForName:@"height"] stringValue];
 		NSString * x = [[curShape attributeForName:@"x"] stringValue];
@@ -247,42 +256,51 @@
 
 		bi.spriteName = [[curShape attributeForName:@"sprite"] stringValue];
 		bi.textureName = [[curShape attributeForName:@"texture"] stringValue];
+        bi.initFrameAnim = [[curShape attributeForName:@"initFrameAnim"] stringValue];
+		bi.initClipFile = [[curShape attributeForName:@"initClipFile"] stringValue];
+
 		bi.data = nil;
         NSString * objectType = [[curShape attributeForName:@"objectType"] stringValue];
         
 		if([curShape attributeForName:@"isCircle"])
 		{
-			//float r = sqrt((fWidth/2)*(fWidth/2) + (fHeight/2)*(fHeight/2));;
-			float r = fWidth/2;
-			
-			b2BodyDef bodyDef;
-            // by kangmo kim
-            bodyDef.type = b2_dynamicBody;
-			bodyDef.position.Set(fx, fy);
-           
-			b2Body *body = world->CreateBody(&bodyDef);
-			
-			b2CircleShape circle;
-			circle.m_radius = r;
-			
-			b2FixtureDef fixtureDef;
-			fixtureDef.shape = &circle;	
-			
-			if(density)	fixtureDef.density =[density floatValue];
-			else fixtureDef.density = 0.0f;
-			
-			if(friction) fixtureDef.friction =[friction floatValue];
-			else fixtureDef.friction = 0.5f;
-            
-			if(restitution) fixtureDef.restitution =[restitution floatValue];
-			//else fixtureDef.friction = 0.5f;
-			
-			body->CreateFixture(&fixtureDef);
-			bi.rect = CGSizeMake(fWidth, fHeight);
-            
-			if(name) body->SetUserData(bi);
-			CCLOG(@"SvgLoader: Loaded circle. name=%@ x=%f,y=%f r=%f, density=%f, friction = %f",name, fx, fy, r,fixtureDef.density,fixtureDef.friction);
-
+            if ( logicClass ) // Logic class is specified. Add a sprite into layer, instantiate the logic class, attach it to the sprite 
+            {
+                
+            }
+            else // No logic class. Create Box2d body.
+            {
+                //float r = sqrt((fWidth/2)*(fWidth/2) + (fHeight/2)*(fHeight/2));;
+                float r = fWidth/2;
+                
+                b2BodyDef bodyDef;
+                // by kangmo kim
+                bodyDef.type = b2_dynamicBody;
+                bodyDef.position.Set(fx, fy);
+                
+                b2Body *body = world->CreateBody(&bodyDef);
+                
+                b2CircleShape circle;
+                circle.m_radius = r;
+                
+                b2FixtureDef fixtureDef;
+                fixtureDef.shape = &circle;	
+                
+                if(density)	fixtureDef.density =[density floatValue];
+                else fixtureDef.density = 0.0f;
+                
+                if(friction) fixtureDef.friction =[friction floatValue];
+                else fixtureDef.friction = 0.5f;
+                
+                if(restitution) fixtureDef.restitution =[restitution floatValue];
+                //else fixtureDef.friction = 0.5f;
+                
+                body->CreateFixture(&fixtureDef);
+                bi.rect = CGSizeMake(fWidth, fHeight);
+                
+                if(name) body->SetUserData(bi);
+                CCLOG(@"SvgLoader: Loaded circle. name=%@ x=%f,y=%f r=%f, density=%f, friction = %f",name, fx, fy, r,fixtureDef.density,fixtureDef.friction);
+            }
         }
         else
 		{
@@ -749,27 +767,7 @@
 	}
 	return NULL;
 }
-/*
--(void) assignSpritesFromManager:(SpriteManager*)manager
-{
-	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-	{
-		if (b->GetUserData() != NULL) 
-		{
-			BodyInfo *bi = (BodyInfo*)b->GetUserData();
-			if(bi && bi.textureName && bi.spriteName)
-			{
-				bi.data = [manager getSpriteWithName:bi.spriteName fromTexture:bi.textureName];
-			}
-			else if(bi && bi.spriteName)
-			{
-				bi.data = [manager getSpriteWithName:bi.spriteName];
-                CCLOG(@"%@", bi.spriteName);
-			}
-		}
-	}
-}
-*/
+
 -(void) assignSpritesFromSheet:(CCSpriteBatchNode*)spriteSheet
 {
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
@@ -777,18 +775,42 @@
 		if (b->GetUserData() != NULL) 
 		{
 			BodyInfo *bi = (BodyInfo*)b->GetUserData();
-			if(bi && bi.textureName && bi.spriteName)
-			{
-                NSAssert2(0, @"svg parser : textureName is not supported yet (Sprite=%@, Texture=%@).", bi.spriteName, bi.textureName);
-                
-//				bi.data = [manager getSpriteWithName:bi.spriteName fromTexture:bi.textureName];
-			}
-			else if(bi && bi.spriteName)
-			{
-                CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:bi.spriteName];
-				bi.data = sprite;
-                [spriteSheet addChild:sprite];
-			}
+            if (bi)
+            {
+                if(bi.textureName && bi.spriteName)
+                {
+                    NSAssert2(0, @"svg parser : textureName is not supported yet (Sprite=%@, Texture=%@).", bi.spriteName, bi.textureName);
+                    
+                    //				bi.data = [manager getSpriteWithName:bi.spriteName fromTexture:bi.textureName];
+                }
+                else if(bi.spriteName)
+                {
+                    CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:bi.spriteName];
+                    bi.data = sprite;
+                    [spriteSheet addChild:sprite];
+                }
+                else if (bi.initClipFile)
+                {
+                    NSAssert(bi.initFrameAnim, @"svg parsesr : You should specifiy initFrameAnim if you specified initClipName attribute for a body.");
+                    
+                    NSDictionary *clip = [[ClipFactory sharedFactory] clipByFile:bi.initClipFile];
+                    assert(clip);
+                    
+                    NSDictionary *animSet = [AKHelpers animationSetOfClip:clip];
+                    
+                    CCSprite *sprite = [CCSprite spriteWithSpriteFrame:[AKHelpers initialFrameForAnimationWithName:bi.initFrameAnim
+                                                                                                           fromSet:animSet]];
+                    
+                    assert(sprite);
+                    
+                    [layer addChild:sprite];
+                    
+                    bi.data = sprite;
+                    bi.defaultClip = clip;
+                                                                        
+                    //[AKHelpers applyAnimationClip:clip toNode:sprite];
+                }
+            }
 		}
 	}
 }

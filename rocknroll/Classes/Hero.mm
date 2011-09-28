@@ -2,6 +2,9 @@
 #import "HeroContactListener.h"
 #import "Box2D.h"
 #import "AbstractCamera.h"
+#import "Util.h"
+#import "AKHelpers.h"
+#import "ClipFactory.h"
 
 @implementation Hero
 @synthesize world = _world;
@@ -14,6 +17,17 @@
 	return [[[self alloc] initWithWorld:world heroBody:body camera:camera] autorelease];
 }
 
+/** @brief Load all animation clips. 
+ */
+-(void) loadAnimationClips
+{
+    flyingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_snail_flying.plist"] retain];
+    assert(flyingClip);
+    walkingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_snail_walking.plist"] retain];
+    assert(walkingClip);
+}
+
+
 - (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera {
 	
 	if ((self = [super init])) {
@@ -21,17 +35,11 @@
 		_world = world;
         _body = body;
         _camera = camera;
-        /*        
-         #ifndef DRAW_BOX2D_WORLD
-         self.sprite = [CCSprite spriteWithFile:@"hero.png"];
-         [self addChild:_sprite];
-         #endif
-         */ 
-		_radius = 14.0f;
         
 		_contactListener = new HeroContactListener(self);
 		_world->SetContactListener(_contactListener);
         
+        [self loadAnimationClips];
 		[self reset];
 	}
 	return self;
@@ -41,11 +49,9 @@
     
 	self.world = nil;
     self.body = nil;
-    /*	
-     #ifndef DRAW_BOX2D_WORLD
-     self.sprite = nil;
-     #endif
-     */
+    [flyingClip release];
+    [walkingClip release];
+
 	delete _contactListener;
 	[super dealloc];
 }
@@ -86,6 +92,7 @@
 		if (!_awake) {
 			[self wake];
 			_diving = NO;
+            [Util setBody:_body withClip:walkingClip];
 		} else {
             _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
 		}
@@ -120,34 +127,34 @@
     
 //	self.rotation = -1 * CC_RADIANS_TO_DEGREES(angle);
 //#endif
-	
-	// collision detection
-	b2Contact *c = _world->GetContactList();
-	if (c) {
-		if (_flying) {
-			[self landed];
-		}
-	} else {
-		if (!_flying) {
-			[self tookOff];
-		}
-	}
-/*	
-	// TEMP: sleep if below the screen
-	if (y < -_radius && _awake) {
-		[self sleep];
-	}
- */
+	if (_awake) 
+    {
+        // collision detection
+        b2Contact *c = _world->GetContactList();
+        if (c) {
+            if (_flying) {
+                [self landed];
+            }
+        } else {
+            if (!_flying) {
+                [self tookOff];
+            }
+        }
+    }
 }
 
 - (void) landed {
     //	NSLog(@"landed");
 	_flying = NO;
+    [Util setBody:_body withClip:walkingClip];
 }
 
 - (void) tookOff {
     //	NSLog(@"tookOff");
 	_flying = YES;
+    
+    [Util setBody:_body withClip:flyingClip];
+    
 	b2Vec2 vel = _body->GetLinearVelocity();
     //	NSLog(@"vel.y = %f",vel.y);
 	if (vel.y > kPerfectTakeOffVelocityY) {

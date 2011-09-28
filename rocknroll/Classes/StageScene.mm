@@ -14,6 +14,7 @@
 #include "PointQueue.h"
 
 #import "Terrain.h"
+#import "AKHelpers.h"
 
 /** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
  */
@@ -81,6 +82,7 @@ static StageScene* instanceOfStageScene;
         [self addChild:t];
     }
 }
+
 
 // initialize your instance here
 -(id) initWithLevel:(NSString*)levelStr
