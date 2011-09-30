@@ -92,7 +92,7 @@
 		if (!_awake) {
 			[self wake];
 			_diving = NO;
-            [Util setBody:_body withClip:walkingClip];
+            Helper::runClip(_body, walkingClip);
 		} else {
             _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
 		}
@@ -146,14 +146,14 @@
 - (void) landed {
     //	NSLog(@"landed");
 	_flying = NO;
-    [Util setBody:_body withClip:walkingClip];
+    Helper::runClip(_body, walkingClip);
 }
 
 - (void) tookOff {
     //	NSLog(@"tookOff");
 	_flying = YES;
-    
-    [Util setBody:_body withClip:flyingClip];
+
+    Helper::runClip(_body, flyingClip);
     
 	b2Vec2 vel = _body->GetLinearVelocity();
     //	NSLog(@"vel.y = %f",vel.y);

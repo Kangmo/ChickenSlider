@@ -104,8 +104,8 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-    CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
-    //CCScene * theFirstScene = [StageScene sceneWithLevel:@"LV5"];
+    //CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
+    CCScene * theFirstScene = [StageScene sceneWithLevel:@"LV5"];
 	// Run the main menu Scene
 	[[CCDirector sharedDirector] runWithScene: theFirstScene];
 }

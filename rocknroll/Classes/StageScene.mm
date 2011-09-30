@@ -16,6 +16,7 @@
 #import "Terrain.h"
 #import "AKHelpers.h"
 
+
 /** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
  */
 PointQueue theGroundPoints;
@@ -63,7 +64,7 @@ static StageScene* instanceOfStageScene;
     
     NSString *filePath = [Util getResourcePath:svgFileName];
     
-	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains] autorelease];
+	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains gameObjects:&gameObjectContainer] autorelease];
     
     // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
     // In that file, a class is defined within a layer.
@@ -82,7 +83,6 @@ static StageScene* instanceOfStageScene;
         [self addChild:t];
     }
 }
-
 
 // initialize your instance here
 -(id) initWithLevel:(NSString*)levelStr
@@ -373,6 +373,33 @@ extern PointQueue theGroundPoints;
     return groundY;
 }
 
+// See if the hero collides any objects in the GameObjectContainer.
+-(void) checkCollisions {
+    if ( hero )
+    {
+        //get position in physycs coords
+        CGPoint screenCoordPos = CGPointMake( hero.body->GetPosition().x , hero.body->GetPosition().y);
+
+        //map it to scren coords using PTM ratio
+        screenCoordPos = ccpMult(screenCoordPos, cam.ptmRatio);
+        
+        // screenCoordPos is the center of the body. We need to get the bounding rectangle from it.
+        // BUGBUG : Get Hero width and height from SVG file.
+#define RADIUS  (24)
+        box_t heroContentBox = box_t(point_t(screenCoordPos.x-RADIUS, screenCoordPos.y-RADIUS), point_t(screenCoordPos.x+RADIUS, screenCoordPos.y+RADIUS));
+
+        std::deque<REF(GameObject)> v;
+        v = gameObjectContainer.getCollidingObjects(heroContentBox);
+        
+        for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
+        {
+            REF(GameObject) refGameObject = *it;
+            
+            refGameObject->onCollideWithHero();
+        }
+    }
+}
+
 -(void) tick: (ccTime) dt
 {
 //	st+=0.01;
@@ -405,12 +432,20 @@ extern PointQueue theGroundPoints;
 	if (hero)
         [hero updateNode];
 
+    [self checkCollisions];
+    
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		[cam updateSpriteFromBody:b];
 	}
     
+    // Iterate over the game objects in the GameObjectContainer
+    GameObjectContainer::GameObjectSet gameObjects = gameObjectContainer.gameObjects();
+    for (GameObjectContainer::GameObjectSet::iterator o = gameObjects.begin(); o!= gameObjects.end(); o++)
+    {
+        [cam updateSpriteFromGameObject: *o ];
+    }
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

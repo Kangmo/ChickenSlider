@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67077A0E1435AAEE0070F0A5 /* WaterDrop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 67077A0D1435AAEE0070F0A5 /* WaterDrop.wav */; };
 		670978F513DD14A7003E4E75 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670978F413DD14A7003E4E75 /* QuartzCore.framework */; };
 		670978F713DD14A7003E4E75 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670978F613DD14A7003E4E75 /* OpenGLES.framework */; };
 		670978F913DD14A7003E4E75 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670978F813DD14A7003E4E75 /* OpenAL.framework */; };
@@ -272,7 +273,8 @@
 		67714DB113E07B5500892B4C /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714DA013E07B5500892B4C /* CXMLNode_PrivateExtensions.m */; };
 		67714DB213E07B5500892B4C /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714DA213E07B5500892B4C /* CXMLNode_XPathExtensions.m */; };
 		67714DB313E07B5500892B4C /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 67714DA513E07B5500892B4C /* CTidy.m */; };
-		6791FDC51433058D004E28C0 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791FDC41433058D004E28C0 /* boost.framework */; };
+		6791FDC8143306DA004E28C0 /* GameObjectContainer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6791FDC7143306DA004E28C0 /* GameObjectContainer.mm */; };
+		6791FDCB14331438004E28C0 /* boost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6791FDCA14331438004E28C0 /* boost.framework */; };
 		679648D614319E3000C4E87B /* AKCCRandomDelayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648CA14319E3000C4E87B /* AKCCRandomDelayTime.m */; };
 		679648D714319E3000C4E87B /* AKCCRandomSpawn.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648CC14319E3000C4E87B /* AKCCRandomSpawn.m */; };
 		679648D814319E3000C4E87B /* AKCCSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648CE14319E3000C4E87B /* AKCCSoundEffect.m */; };
@@ -581,6 +583,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67077A0914358D0E0070F0A5 /* CppInfra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CppInfra.h; sourceTree = "<group>"; };
+		67077A0B1435A8150070F0A5 /* GameObjectContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectContainer.h; sourceTree = "<group>"; };
+		67077A0D1435AAEE0070F0A5 /* WaterDrop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = WaterDrop.wav; path = Resources/sound/WaterDrop.wav; sourceTree = "<group>"; };
 		670978F013DD14A7003E4E75 /* rocknroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rocknroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		670978F413DD14A7003E4E75 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		670978F613DD14A7003E4E75 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -998,7 +1003,8 @@
 		67714DA413E07B5500892B4C /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
 		67714DA513E07B5500892B4C /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		67714DA613E07B5500892B4C /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
-		6791FDC41433058D004E28C0 /* boost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = boost.framework; path = ../Frameworks/boost.framework; sourceTree = "<group>"; };
+		6791FDC7143306DA004E28C0 /* GameObjectContainer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObjectContainer.mm; sourceTree = "<group>"; };
+		6791FDCA14331438004E28C0 /* boost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = boost.framework; path = ../Frameworks/boost.framework; sourceTree = "<group>"; };
 		679648C914319E3000C4E87B /* AKCCRandomDelayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKCCRandomDelayTime.h; path = cocos2d/AKCCRandomDelayTime.h; sourceTree = "<group>"; };
 		679648CA14319E3000C4E87B /* AKCCRandomDelayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKCCRandomDelayTime.m; path = cocos2d/AKCCRandomDelayTime.m; sourceTree = "<group>"; };
 		679648CB14319E3000C4E87B /* AKCCRandomSpawn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKCCRandomSpawn.h; path = cocos2d/AKCCRandomSpawn.h; sourceTree = "<group>"; };
@@ -1261,7 +1267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6791FDC51433058D004E28C0 /* boost.framework in Frameworks */,
+				6791FDCB14331438004E28C0 /* boost.framework in Frameworks */,
 				6709834713DD1F9F003E4E75 /* libxml2.2.dylib in Frameworks */,
 				6709817A13DD1587003E4E75 /* libfossile.a in Frameworks */,
 				670978F513DD14A7003E4E75 /* QuartzCore.framework in Frameworks */,
@@ -1286,9 +1292,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67077A0C1435AABE0070F0A5 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				67077A0D1435AAEE0070F0A5 /* WaterDrop.wav */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		670978E513DD14A7003E4E75 = {
 			isa = PBXGroup;
 			children = (
+				6791FDCA14331438004E28C0 /* boost.framework */,
 				6709790413DD14A7003E4E75 /* rocknroll */,
 				67097AE313DD14CA003E4E75 /* fossile */,
 				670978F313DD14A7003E4E75 /* Frameworks */,
@@ -1310,7 +1325,6 @@
 		670978F313DD14A7003E4E75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6791FDC41433058D004E28C0 /* boost.framework */,
 				670978F413DD14A7003E4E75 /* QuartzCore.framework */,
 				670978F613DD14A7003E4E75 /* OpenGLES.framework */,
 				670978F813DD14A7003E4E75 /* OpenAL.framework */,
@@ -1336,6 +1350,7 @@
 		6709790513DD14A7003E4E75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67077A0C1435AABE0070F0A5 /* sound */,
 				679648FC1431FC0000C4E87B /* Clips */,
 				67F5EC4014316B60003FFB2D /* Backgrounds */,
 				67F5EC3A1430D7A2003FFB2D /* StageScene_LV10.svg */,
@@ -1740,16 +1755,11 @@
 		670982F913DD1777003E4E75 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6791FDCC143359DC004E28C0 /* GameObjects */,
 				67351E7D142F552B0073575A /* Terrain.h */,
 				67351E7E142F55330073575A /* Terrain.mm */,
 				67351E75142E97B40073575A /* PointQueue.cpp */,
 				67351E77142E97CD0073575A /* PointQueue.h */,
-				670982FC13DD1777003E4E75 /* Car.cpp */,
-				670982FD13DD1777003E4E75 /* Car.h */,
-				67E6C5EE142D75D90087CC97 /* Hero.h */,
-				67E6C5EF142D75D90087CC97 /* Hero.mm */,
-				67E6C5F0142D75D90087CC97 /* HeroContactListener.h */,
-				67E6C5F1142D75D90087CC97 /* HeroContactListener.mm */,
 				670982FA13DD1777003E4E75 /* AppDelegate.h */,
 				670982FB13DD1777003E4E75 /* AppDelegate.mm */,
 				670982FE13DD1777003E4E75 /* GameConfig.h */,
@@ -1772,6 +1782,7 @@
 				6742ED2F1432DD8B00084934 /* ClipFactory.m */,
 				6709830613DD1777003E4E75 /* My Classes */,
 				679648C714319E3000C4E87B /* AnimationKit */,
+				67077A0914358D0E0070F0A5 /* CppInfra.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2006,6 +2017,21 @@
 				67714DA513E07B5500892B4C /* CTidy.m */,
 			);
 			path = Tidy;
+			sourceTree = "<group>";
+		};
+		6791FDCC143359DC004E28C0 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				670982FC13DD1777003E4E75 /* Car.cpp */,
+				670982FD13DD1777003E4E75 /* Car.h */,
+				67E6C5EE142D75D90087CC97 /* Hero.h */,
+				67E6C5EF142D75D90087CC97 /* Hero.mm */,
+				67E6C5F0142D75D90087CC97 /* HeroContactListener.h */,
+				67E6C5F1142D75D90087CC97 /* HeroContactListener.mm */,
+				6791FDC7143306DA004E28C0 /* GameObjectContainer.mm */,
+				67077A0B1435A8150070F0A5 /* GameObjectContainer.h */,
+			);
+			name = GameObjects;
 			sourceTree = "<group>";
 		};
 		679648C714319E3000C4E87B /* AnimationKit */ = {
@@ -2756,6 +2782,7 @@
 				6796490514320E3600C4E87B /* clip_snail_flying.plist in Resources */,
 				6796490614320E3600C4E87B /* clip_snail_walking.plist in Resources */,
 				679649091432BC6E00C4E87B /* clip_waterdrop.plist in Resources */,
+				67077A0E1435AAEE0070F0A5 /* WaterDrop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2816,6 +2843,7 @@
 				679648D814319E3000C4E87B /* AKCCSoundEffect.m in Sources */,
 				679648D914319E3000C4E87B /* AKHelpers.m in Sources */,
 				6742ED301432DD8B00084934 /* ClipFactory.m in Sources */,
+				6791FDC8143306DA004E28C0 /* GameObjectContainer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

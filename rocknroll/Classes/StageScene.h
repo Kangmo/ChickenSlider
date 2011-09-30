@@ -10,6 +10,7 @@
 #include "Car.h"
 #include "Hero.h"
 #include "GameConfig.h"
+#include "GameObjectContainer.h"
 
 class b2WorldEx;
 
@@ -35,6 +36,10 @@ typedef enum {
     
 	float st;
     
+    // The container that holds game objects. These are not defined as Box2D objects. 
+    // Puting these objects (ex> 1000 Water Drops, not box2d objects, just stay at a static position) into Box2d make the game terribly slow.
+    // We do collision detection on these objects with the Hero.
+    GameObjectContainer gameObjectContainer;
 }
 
 // returns a Scene that contains the HelloWorld as the only child

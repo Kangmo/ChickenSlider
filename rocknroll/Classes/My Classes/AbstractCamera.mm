@@ -1,5 +1,6 @@
 #import "AbstractCamera.h"
 #include "b2WorldEx.h"
+#include "GameObjectContainer.h"
 #include "GameConfig.h"
 
 @implementation AbstractCamera
@@ -103,6 +104,17 @@
 {
 }
 
+
+
+
+-(void) updateSprite:(CCSprite*)sprite position:(CGPoint)screenCoordPos
+{
+    //add camera shift
+    sprite.position = ccpAdd(screenCoordPos,cameraPosition);
+    
+    sprite.scale = 1.0f * zoom;
+}
+
 -(void) updateSpriteFromBody:(b2Body*) body
 {
 	if (body->GetUserData() != NULL) 
@@ -110,23 +122,32 @@
 		BodyInfo *bi = (BodyInfo*)body->GetUserData();
 		if(bi.data)
 		{
-            
             CCSprite* actor = (CCSprite*)bi.data;
+            CGPoint screenCoordPos = 
 			
 			//get position in physycs coords
-			actor.position = CGPointMake( body->GetPosition().x , body->GetPosition().y);
-			actor.position = ccpSub(actor.position, bi.spriteOffset);
+			screenCoordPos = CGPointMake( body->GetPosition().x , body->GetPosition().y);
+			screenCoordPos = ccpSub(screenCoordPos, bi.spriteOffset);
 			//map it to scren coords using PTM ratio
-			actor.position = ccpMult(actor.position, ptmRatio);
-			
-			//add camera shift
-			actor.position = ccpAdd(actor.position,cameraPosition);
-			
-			actor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
-			actor.scale = 1.0f * zoom;
+			screenCoordPos = ccpMult(screenCoordPos, ptmRatio);
+            
+            [self updateSprite:actor position:screenCoordPos];
+            
+            actor.rotation = -1 * CC_RADIANS_TO_DEGREES(body->GetAngle());
 		}
 	}
 }
+
+-(void) updateSpriteFromGameObject:(REF(GameObject)) gameObject
+{
+    CCSprite * actor = gameObject->getSprite();
+    
+    CGPoint screenCoordPos = gameObject->getPosition();
+    screenCoordPos = ccpMult(screenCoordPos, zoom);
+    
+    [self updateSprite:actor position:screenCoordPos];
+}
+
 
 -(void) ZoomTo:(float)newZoom
 {

@@ -38,6 +38,7 @@
 	[super dealloc];
 }
 
+
 - (void) loadClassesFrom:(NSString *)svgFileName
 {
     CCLOG(@"Loading classes from the file :%@", svgFileName);

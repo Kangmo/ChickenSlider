@@ -2,6 +2,9 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "BodyInfo.h"
+#import "Util.h"
+
+#include "GameObjectContainer.h"
 
 @interface AbstractCamera : NSObject 
 {
@@ -29,6 +32,7 @@
 -(void) updateFollowPosition;
 
 -(void) updateSpriteFromBody:(b2Body*) body;
+-(void) updateSpriteFromGameObject:(REF(GameObject)) gameObject;
 
 -(void) ZoomTo:(float)newZoom;
 

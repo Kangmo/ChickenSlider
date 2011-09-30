@@ -45,10 +45,10 @@
      showgrid="true"
      inkscape:zoom="9.09"
      inkscape:cx="-9.6762243"
-     inkscape:cy="292.63732"
-     inkscape:window-x="562"
-     inkscape:window-y="394"
-     inkscape:current-layer="svg2"
+     inkscape:cy="327.84084"
+     inkscape:window-x="33"
+     inkscape:window-y="179"
+     inkscape:current-layer="WaterDrop"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -235,6 +235,7 @@
        height="32"
        width="32"
        id="rect6831"
-       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline" />
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       gameObjectClass="WaterDrop" />
   </g>
 </svg>

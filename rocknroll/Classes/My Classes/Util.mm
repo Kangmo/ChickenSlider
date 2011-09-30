@@ -1,8 +1,12 @@
+#import <Foundation/Foundation.h>
 #import "Util.h"
 #import "AKHelpers.h"
 #include "Box2D.h"
 #include "InteractiveBodyNode.h"
 #include "GameConfig.h"
+#import "ClipFactory.h"
+#include "GameObjectContainer.h"
+
 @implementation Util
 
 /** @brief Retrieve a file from a URL, save it in document file 
@@ -39,21 +43,6 @@
     return filePath;
 }
 
-
-/** @brief Apply animation clip to the sprite attached to the given Box2D body.
- */
-+(void) setBody:(b2Body*)body withClip:(NSDictionary*)clip
-{
-    BodyInfo *bi = (BodyInfo*)body->GetUserData();
-    if(bi.data)
-    {
-        
-        CCSprite*bodySprite = (CCSprite*)bi.data;
-        [bodySprite stopAllActions];
-        [AKHelpers applyAnimationClip:clip toNode:bodySprite];
-    }
-}
-
 @end
 
 namespace Helper 
@@ -79,4 +68,51 @@ namespace Helper
             }
         }
     }
+    
+    void getSpriteAndClip(NSString* initClipFile, NSString* initFrameAnim, CCSprite ** oSprite, NSDictionary ** oClip)
+    {
+        assert(initClipFile);
+        assert(initFrameAnim);
+        assert(oSprite);
+        assert(oClip);
+        
+        //NSAssert(initFrameAnim, @"svg parsesr : You should specifiy initFrameAnim if you specified initClipName attribute for a body.");
+        
+        NSDictionary *clip = [[ClipFactory sharedFactory] clipByFile:initClipFile];
+        assert(clip);
+        
+        NSDictionary *animSet = [AKHelpers animationSetOfClip:clip];
+        
+        CCSprite *sprite = [CCSprite spriteWithSpriteFrame:[AKHelpers initialFrameForAnimationWithName:initFrameAnim
+                                                                                               fromSet:animSet]];
+        assert(sprite);
+        
+        *oSprite = sprite;
+        *oClip = clip;
+    }
+
+    /** @brief Apply animation clip to the sprite attached to the given Box2D body.
+     */
+    void runClip(b2Body *body, NSDictionary* clip) 
+    {
+        BodyInfo *bi = (BodyInfo*)body->GetUserData();
+        if(bi.data)
+        {
+            
+            CCSprite*bodySprite = (CCSprite*)bi.data;
+            [bodySprite stopAllActions];
+            [AKHelpers applyAnimationClip:clip toNode:bodySprite];
+        }
+    }
+
+    /** @brief Apply animation clip to the sprite attached to the given GameObject.
+     */
+    void runClip(REF(GameObject) refGameObject, NSDictionary* clip) 
+    {
+        CCSprite * sprite = refGameObject->getSprite();
+        
+        [sprite stopAllActions];
+        [AKHelpers applyAnimationClip:clip toNode:sprite];
+    }
+
 }

@@ -7,12 +7,14 @@
 #include "GameConfig.h"
 #import "Terrain.h"
 #import "ClipFactory.h"
+#import "GameObjectContainer.h"
+#import "Util.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs
 {
 	self = [super init];
 	if (self != nil) 
@@ -24,6 +26,7 @@
         scaleFactor = INIT_PTM_RATIO;
         classDict = nil;
         terrains = t;
+        gameObjectContainer = objs;
 	}
 	return self;
 }
@@ -193,7 +196,7 @@
 {
 	for (CXMLElement * curShape in shapes) 
 	{
-		NSString * logicClass = [[curShape attributeForName:@"logicClass"] stringValue];
+		NSString * gameObjectClass = [[curShape attributeForName:@"gameObjectClass"] stringValue];
         
 		NSString * width = [[curShape attributeForName:@"width"] stringValue];
 		NSString * height = [[curShape attributeForName:@"height"] stringValue];
@@ -264,9 +267,38 @@
         
 		if([curShape attributeForName:@"isCircle"])
 		{
-            if ( logicClass ) // Logic class is specified. Add a sprite into layer, instantiate the logic class, attach it to the sprite 
+            // BUGBUG : Need to check "gameObjectClass" attr in other shapes as well.
+            if ( gameObjectClass ) // Logic class is specified. Add a sprite into layer, instantiate the logic class, attach it to the sprite 
             {
+                assert( gameObjectContainer ); // When gameObjectClass attr is specified, gameObjects should not be NULL.
                 
+                REF(GameObject) refGameObject((GameObject*)NULL);
+
+                if ( [gameObjectClass isEqualToString:@"WaterDrop"] )
+                {
+                    float yInOpenGL = svgCanvasHeight - orgY;
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new WaterDrop(orgX, yInOpenGL, orgWidth, orgHeight) );
+                }
+                
+                NSAssert1(refGameObject, @"The game object class name is not supported : %@", gameObjectClass);
+                
+                if ( bi.initClipFile )
+                {
+                    CCSprite *sprite;
+                    NSDictionary * clip;
+                    
+                    Helper::getSpriteAndClip( bi.initClipFile, bi.initFrameAnim, &sprite, &clip);
+                    
+                    refGameObject->setSprite(sprite);
+                    refGameObject->setDefaultClip(clip);
+                    
+                    [layer addChild:sprite];
+                    
+                    Helper::runClip( refGameObject, clip );
+                }
+
+                gameObjectContainer->insert(refGameObject);
             }
             else // No logic class. Create Box2d body.
             {
@@ -768,6 +800,7 @@
 	return NULL;
 }
 
+
 -(void) assignSpritesFromSheet:(CCSpriteBatchNode*)spriteSheet
 {
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
@@ -791,17 +824,11 @@
                 }
                 else if (bi.initClipFile)
                 {
-                    NSAssert(bi.initFrameAnim, @"svg parsesr : You should specifiy initFrameAnim if you specified initClipName attribute for a body.");
-                    
-                    NSDictionary *clip = [[ClipFactory sharedFactory] clipByFile:bi.initClipFile];
-                    assert(clip);
-                    
-                    NSDictionary *animSet = [AKHelpers animationSetOfClip:clip];
-                    
-                    CCSprite *sprite = [CCSprite spriteWithSpriteFrame:[AKHelpers initialFrameForAnimationWithName:bi.initFrameAnim
-                                                                                                           fromSet:animSet]];
-                    
-                    assert(sprite);
+                    NSDictionary *clip;
+                    CCSprite *sprite;
+
+                    // BUGBUG : GameObjects does not delay getting sprite and clip like this. Think about unifying the behavior.
+                    Helper::getSpriteAndClip( bi.initClipFile, bi.initFrameAnim, &sprite, &clip);
                     
                     [layer addChild:sprite];
                     
