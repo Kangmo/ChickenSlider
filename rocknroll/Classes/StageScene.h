@@ -13,6 +13,7 @@
 #include "GameObjectContainer.h"
 
 class b2WorldEx;
+@class Sky;
 
 typedef enum {
     StageSceneLayerTagStage=1,
@@ -35,6 +36,8 @@ typedef enum {
     NSMutableArray * terrains;
     
 	float st;
+    
+    Sky * sky;
     
     // The container that holds game objects. These are not defined as Box2D objects. 
     // Puting these objects (ex> 1000 Water Drops, not box2d objects, just stay at a static position) into Box2d make the game terribly slow.

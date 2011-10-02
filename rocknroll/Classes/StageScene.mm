@@ -11,16 +11,10 @@
 #include "InputLayer.h"
 #include "b2WorldEx.h"
 
-#include "PointQueue.h"
-
 #import "Terrain.h"
 #import "AKHelpers.h"
 
-
-/** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
- */
-PointQueue theGroundPoints;
-
+#import "Sky.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -92,14 +86,13 @@ static StageScene* instanceOfStageScene;
         // initialize variables
         terrains = nil;
         
-		// enable touches
+		// enable touches   ```````````                             ```````                                                                `1EE
 		self.isTouchEnabled = YES;
 		
-		// enable accelerometer
-		self.isAccelerometerEnabled = YES;
-
-        // Clear the ground point
-        theGroundPoints.clear();
+		// enable accelerom                      ,,,,abled = YES;
+        
+        sky = [[Sky skyWithTextureSize:1024] retain];
+		[self addChild:sky];
         
 		// The SVG file for the given level.
         NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@.svg", levelStr];
@@ -269,28 +262,6 @@ static StageScene* instanceOfStageScene;
 #endif
 }
 
-#include "PointQueue.h"
-/** @brief The singletone to keep track of the ground points. Points are added whenever the Hero hits on the ground. The minimum Y value is used to calculate the Zoom level making the Y level positioned on the bottom of the screen.
- */
-extern PointQueue theGroundPoints;
-
-// Get the Y position of the world ground in world coordinate system. 
--(float) getWorldGroundY
-{
-    float32 groundY = theGroundPoints.getAverageY();
-    if ( groundY == kMAX_POSITION ) // No contact points are added to the ground points yet. Assume the level map starts at Y position 0.
-    {
-        groundY = 0;
-    }
-    else
-    {
-        groundY -= MAX_WAVE_HEIGHT; 
-        
-        // Subtract the ground level by 5 meters ( about the height of the wave ) to show the whole ground.
-        // This is necessary because the Hero usually hits on top of the wave.
-    }
-    return groundY;
-}
 
 /** @brief Adjust the zoom level so that both the ground and the hero are shown in the screen regardless of how far the hero jumped!
  */
@@ -342,13 +313,15 @@ extern PointQueue theGroundPoints;
     }
 }
 
-/** @brief Activate, move, scale terrains based on the current hero position.
+/** @brief Activate, move, scale terrains/sky based on the current hero position.
  */
--(float) adjustTerrains {
+-(float) adjustTerrainsAndSky {
     float groundY = kMAX_POSITION;
     
     if (hero)
     {
+        /////////////////////////////////////////////
+        // Step1 : Adjust Terrains
         float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
         // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
         // Convert it back to the y offset from sea level.
@@ -368,26 +341,39 @@ extern PointQueue theGroundPoints;
                     groundY = borderMinY;
             }
         }
+        
+        /////////////////////////////////////////////
+        // Step 2 : Adjust Sky
+        [sky setOffsetX:heroX_withoutZoom*0.2f];
+        [sky setScale:1.0f-(1.0f-cam.zoom)*0.75f];
     }
     
     return groundY;
 }
-
-// See if the hero collides any objects in the GameObjectContainer.
--(void) checkCollisions {
+/** @brief See if the hero collides any objects in the GameObjectContainer. Box2D objects are not included here.
+ */
+-(void) checkCollisions4GameObjects {
     if ( hero )
     {
+        ////////////////////////////////////////////////////////////////////////////////
+        // Step 1 : Get the screen position of Hero without considering zoom. 
+        // Objects in the gameObjectContainer are having positions at zoom ratio 1.0.
+        ////////////////////////////////////////////////////////////////////////////////
         //get position in physycs coords
         CGPoint screenCoordPos = CGPointMake( hero.body->GetPosition().x , hero.body->GetPosition().y);
 
-        //map it to scren coords using PTM ratio
-        screenCoordPos = ccpMult(screenCoordPos, cam.ptmRatio);
+        //map it to scren coords using the initial PTM ratio (which means zoom ratio 1.0)
+        screenCoordPos = ccpMult(screenCoordPos, INIT_PTM_RATIO);
         
         // screenCoordPos is the center of the body. We need to get the bounding rectangle from it.
         // BUGBUG : Get Hero width and height from SVG file.
-#define RADIUS  (24)
-        box_t heroContentBox = box_t(point_t(screenCoordPos.x-RADIUS, screenCoordPos.y-RADIUS), point_t(screenCoordPos.x+RADIUS, screenCoordPos.y+RADIUS));
+#define INIT_RADIUS  (24)
+        box_t heroContentBox = box_t(point_t(screenCoordPos.x-INIT_RADIUS, screenCoordPos.y-INIT_RADIUS), 
+                                     point_t(screenCoordPos.x+INIT_RADIUS, screenCoordPos.y+INIT_RADIUS));
 
+        ////////////////////////////////////////////////////////////////////////////////
+        // Step 2 : Get all game objects colliding with the bounding rectangle of Hero. 
+        ////////////////////////////////////////////////////////////////////////////////
         std::deque<REF(GameObject)> v;
         v = gameObjectContainer.getCollidingObjects(heroContentBox);
         
@@ -399,6 +385,61 @@ extern PointQueue theGroundPoints;
         }
     }
 }
+/** @brief update GameObject(s) for each tick. Box2D objects are not included here.
+ */
+-(void) updateGameObjects {
+
+    // 100 : 
+    // 550 : [60->38], [15->30]
+    // Iterate over the game objects in the GameObjectContainer
+//    GameObjectContainer::GameObjectSet gameObjects = gameObjectContainer.gameObjects();
+//    for (GameObjectContainer::GameObjectSet::iterator it = gameObjects.begin(); it!= gameObjects.end(); it++)
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Step 1: Get the hero position X at zoom level 1.0 
+    float heroXatZ1 = hero.body->GetPosition().x * INIT_PTM_RATIO;
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Step 2: Remove gone game objects 
+    // Search game objects that are shown on the left of the left side of the screen at the minimum zoom level.
+    //
+    {
+        box_t goneScreenBox = [cam goneScreenRect:heroXatZ1];
+        std::deque<REF(GameObject)> v;
+        v = gameObjectContainer.getCollidingObjects(goneScreenBox);
+        
+        for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
+        {
+            REF(GameObject) refGameObject = *it;
+            refGameObject->deactivate();
+            refGameObject->removeSelf();
+        }
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Step 3: Update comming game objects 
+    // Search game objects that are shown in the screen and will be shown in the screen at the minimum zoom level.
+    {
+        box_t commingScreenBox = [cam commingScreenRect:heroXatZ1];
+        std::deque<REF(GameObject)> v;
+        v = gameObjectContainer.getCollidingObjects(commingScreenBox);
+        
+        for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
+        {
+            REF(GameObject) refGameObject = *it;
+            
+            // If it is not active yet, (It is the first time to come into the commingScreenBox)
+            if ( ! refGameObject->isActivated() )
+            {
+                // Activate it
+                refGameObject->activate( self );
+            }
+            
+            // update the sprite position, scale, rotation based on the game object and camera position considering zoom level.
+            [cam updateSpriteFromGameObject: refGameObject ];
+        }    
+    }
+}
 
 -(void) tick: (ccTime) dt
 {
@@ -408,13 +449,13 @@ extern PointQueue theGroundPoints;
 //	[cam ZoomTo: s +0.2f];
     // TODO : Understand why adjusting terrain should come here.
 
-    static float worldGroundY = 0.0f;//[self getWorldGroundY];
+    static float worldGroundY = 0.0f;
     [self adjustZoomWithGroundY:worldGroundY];
 
 	[cam updateFollowPosition];
 
     // groundY will be used in the next tick to decide the zoom level.
-    worldGroundY = [self adjustTerrains] / INIT_PTM_RATIO;
+    worldGroundY = [self adjustTerrainsAndSky] / INIT_PTM_RATIO;
     
     // To show bottom of terrains, lower the ground level. 
     worldGroundY -= MAX_WAVE_HEIGHT;
@@ -432,20 +473,16 @@ extern PointQueue theGroundPoints;
 	if (hero)
         [hero updateNode];
 
-    [self checkCollisions];
-    
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		[cam updateSpriteFromBody:b];
 	}
-    
-    // Iterate over the game objects in the GameObjectContainer
-    GameObjectContainer::GameObjectSet gameObjects = gameObjectContainer.gameObjects();
-    for (GameObjectContainer::GameObjectSet::iterator o = gameObjects.begin(); o!= gameObjects.end(); o++)
-    {
-        [cam updateSpriteFromGameObject: *o ];
-    }
+
+    // no change in performance.
+    [self checkCollisions4GameObjects];
+
+    [self updateGameObjects];
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -517,6 +554,9 @@ extern PointQueue theGroundPoints;
     if (car)
         delete car;
 
+    [sky release];
+    sky = nil;
+    
     self.hero = nil;
     [terrains release];
     

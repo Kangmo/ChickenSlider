@@ -146,7 +146,7 @@
 		6709832313DD1777003E4E75 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830213DD1777003E4E75 /* GLES-Render.mm */; };
 		6709832413DD1777003E4E75 /* InputLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830413DD1777003E4E75 /* InputLayer.mm */; };
 		6709832513DD1777003E4E75 /* AbstractCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830813DD1777003E4E75 /* AbstractCamera.mm */; };
-		6709832613DD1777003E4E75 /* BodyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709830A13DD1777003E4E75 /* BodyInfo.m */; };
+		6709832613DD1777003E4E75 /* BodyInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830A13DD1777003E4E75 /* BodyInfo.mm */; };
 		6709832713DD1777003E4E75 /* FollowCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830C13DD1777003E4E75 /* FollowCamera.mm */; };
 		6709832813DD1777003E4E75 /* FreeCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830E13DD1777003E4E75 /* FreeCamera.mm */; };
 		6709832913DD1777003E4E75 /* InteractiveBodyNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831013DD1777003E4E75 /* InteractiveBodyNode.mm */; };
@@ -285,6 +285,7 @@
 		6796490514320E3600C4E87B /* clip_snail_flying.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6796490314320E3600C4E87B /* clip_snail_flying.plist */; };
 		6796490614320E3600C4E87B /* clip_snail_walking.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6796490414320E3600C4E87B /* clip_snail_walking.plist */; };
 		679649091432BC6E00C4E87B /* clip_waterdrop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 679649081432BC6D00C4E87B /* clip_waterdrop.plist */; };
+		679C4A191436947F00336D43 /* GameObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 679C4A181436947D00336D43 /* GameObject.mm */; };
 		67B4F98713DD34F700FAFBDD /* CategoryDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B4F98613DD34F600FAFBDD /* CategoryDummy.m */; };
 		67B4F99713DD37F500FAFBDD /* ColoredCircleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709801D13DD153F003E4E75 /* ColoredCircleSprite.m */; };
 		67B4F99813DD37F500FAFBDD /* ColoredSquareSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709801F13DD153F003E4E75 /* ColoredSquareSprite.m */; };
@@ -341,6 +342,9 @@
 		67B4F9D613DD388E00FAFBDD /* win32tc.c in Sources */ = {isa = PBXBuildFile; fileRef = 6709807013DD1548003E4E75 /* win32tc.c */; };
 		67B4F9D713DD388E00FAFBDD /* win32tc.h in Headers */ = {isa = PBXBuildFile; fileRef = 6709807113DD1548003E4E75 /* win32tc.h */; };
 		67B4F9D913DD389600FAFBDD /* access.c in Sources */ = {isa = PBXBuildFile; fileRef = 6709804213DD1548003E4E75 /* access.c */; };
+		67CDB9E81437475200E58690 /* WaterDrop.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67CDB9E71437475200E58690 /* WaterDrop.mm */; };
+		67CDB9EF1437513600E58690 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 67CDB9EE1437513600E58690 /* noise.png */; };
+		67CDB9F21437516F00E58690 /* Sky.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CDB9F11437516F00E58690 /* Sky.m */; };
 		67E6C5D1142CA6D80087CC97 /* StageScene_LV3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */; };
 		67E6C5D6142CAF840087CC97 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5D4142CAF7F0087CC97 /* sprites.plist */; };
 		67E6C5D7142CAF840087CC97 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5D5142CAF810087CC97 /* sprites.png */; };
@@ -849,7 +853,7 @@
 		6709830713DD1777003E4E75 /* AbstractCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCamera.h; sourceTree = "<group>"; };
 		6709830813DD1777003E4E75 /* AbstractCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AbstractCamera.mm; sourceTree = "<group>"; };
 		6709830913DD1777003E4E75 /* BodyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BodyInfo.h; sourceTree = "<group>"; };
-		6709830A13DD1777003E4E75 /* BodyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BodyInfo.m; sourceTree = "<group>"; };
+		6709830A13DD1777003E4E75 /* BodyInfo.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BodyInfo.mm; sourceTree = "<group>"; };
 		6709830B13DD1777003E4E75 /* FollowCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowCamera.h; sourceTree = "<group>"; };
 		6709830C13DD1777003E4E75 /* FollowCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FollowCamera.mm; sourceTree = "<group>"; };
 		6709830D13DD1777003E4E75 /* FreeCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeCamera.h; sourceTree = "<group>"; };
@@ -1020,9 +1024,17 @@
 		6796490314320E3600C4E87B /* clip_snail_flying.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_snail_flying.plist; sourceTree = "<group>"; };
 		6796490414320E3600C4E87B /* clip_snail_walking.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_snail_walking.plist; sourceTree = "<group>"; };
 		679649081432BC6D00C4E87B /* clip_waterdrop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_waterdrop.plist; sourceTree = "<group>"; };
+		679C4A111435BB5100336D43 /* WaterDrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterDrop.h; sourceTree = "<group>"; };
+		679C4A121435BB6F00336D43 /* CollisionDetector2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector2D.h; sourceTree = "<group>"; };
+		679C4A131435BC0100336D43 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		679C4A181436947D00336D43 /* GameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameObject.mm; sourceTree = "<group>"; };
 		67B4F97B13DD20FF00FAFBDD /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		67B4F98513DD34F600FAFBDD /* CategoryDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryDummy.h; sourceTree = "<group>"; };
 		67B4F98613DD34F600FAFBDD /* CategoryDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryDummy.m; sourceTree = "<group>"; };
+		67CDB9E71437475200E58690 /* WaterDrop.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WaterDrop.mm; sourceTree = "<group>"; };
+		67CDB9EE1437513600E58690 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		67CDB9F01437516F00E58690 /* Sky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sky.h; sourceTree = "<group>"; };
+		67CDB9F11437516F00E58690 /* Sky.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sky.m; sourceTree = "<group>"; };
 		67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV3.svg; path = Resources/StageScene_LV3.svg; sourceTree = "<group>"; };
 		67E6C5D4142CAF7F0087CC97 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sprites.plist; path = Resources/sprites.plist; sourceTree = "<group>"; };
 		67E6C5D5142CAF810087CC97 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sprites.png; path = Resources/sprites.png; sourceTree = "<group>"; };
@@ -1793,7 +1805,7 @@
 				6709830713DD1777003E4E75 /* AbstractCamera.h */,
 				6709830813DD1777003E4E75 /* AbstractCamera.mm */,
 				6709830913DD1777003E4E75 /* BodyInfo.h */,
-				6709830A13DD1777003E4E75 /* BodyInfo.m */,
+				6709830A13DD1777003E4E75 /* BodyInfo.mm */,
 				6709830B13DD1777003E4E75 /* FollowCamera.h */,
 				6709830C13DD1777003E4E75 /* FollowCamera.mm */,
 				6709830D13DD1777003E4E75 /* FreeCamera.h */,
@@ -2022,6 +2034,8 @@
 		6791FDCC143359DC004E28C0 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				67CDB9F01437516F00E58690 /* Sky.h */,
+				67CDB9F11437516F00E58690 /* Sky.m */,
 				670982FC13DD1777003E4E75 /* Car.cpp */,
 				670982FD13DD1777003E4E75 /* Car.h */,
 				67E6C5EE142D75D90087CC97 /* Hero.h */,
@@ -2030,6 +2044,11 @@
 				67E6C5F1142D75D90087CC97 /* HeroContactListener.mm */,
 				6791FDC7143306DA004E28C0 /* GameObjectContainer.mm */,
 				67077A0B1435A8150070F0A5 /* GameObjectContainer.h */,
+				679C4A131435BC0100336D43 /* GameObject.h */,
+				679C4A181436947D00336D43 /* GameObject.mm */,
+				679C4A111435BB5100336D43 /* WaterDrop.h */,
+				679C4A121435BB6F00336D43 /* CollisionDetector2D.h */,
+				67CDB9E71437475200E58690 /* WaterDrop.mm */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -2352,6 +2371,7 @@
 		67F5EC4014316B60003FFB2D /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				67CDB9EE1437513600E58690 /* noise.png */,
 				67F5EC6A14318386003FFB2D /* green128 */,
 				67F5EC5B1431832C003FFB2D /* blue128 */,
 				67F5EC4E143173BB003FFB2D /* red128 */,
@@ -2783,6 +2803,7 @@
 				6796490614320E3600C4E87B /* clip_snail_walking.plist in Resources */,
 				679649091432BC6E00C4E87B /* clip_waterdrop.plist in Resources */,
 				67077A0E1435AAEE0070F0A5 /* WaterDrop.wav in Resources */,
+				67CDB9EF1437513600E58690 /* noise.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2800,7 +2821,7 @@
 				6709832313DD1777003E4E75 /* GLES-Render.mm in Sources */,
 				6709832413DD1777003E4E75 /* InputLayer.mm in Sources */,
 				6709832513DD1777003E4E75 /* AbstractCamera.mm in Sources */,
-				6709832613DD1777003E4E75 /* BodyInfo.m in Sources */,
+				6709832613DD1777003E4E75 /* BodyInfo.mm in Sources */,
 				6709832713DD1777003E4E75 /* FollowCamera.mm in Sources */,
 				6709832813DD1777003E4E75 /* FreeCamera.mm in Sources */,
 				6709832913DD1777003E4E75 /* InteractiveBodyNode.mm in Sources */,
@@ -2844,6 +2865,9 @@
 				679648D914319E3000C4E87B /* AKHelpers.m in Sources */,
 				6742ED301432DD8B00084934 /* ClipFactory.m in Sources */,
 				6791FDC8143306DA004E28C0 /* GameObjectContainer.mm in Sources */,
+				679C4A191436947F00336D43 /* GameObject.mm in Sources */,
+				67CDB9E81437475200E58690 /* WaterDrop.mm in Sources */,
+				67CDB9F21437516F00E58690 /* Sky.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

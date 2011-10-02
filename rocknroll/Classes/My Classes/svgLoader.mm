@@ -7,8 +7,9 @@
 #include "GameConfig.h"
 #import "Terrain.h"
 #import "ClipFactory.h"
-#import "GameObjectContainer.h"
 #import "Util.h"
+#include "GameObjectContainer.h"
+#include "WaterDrop.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
@@ -273,7 +274,15 @@
                 assert( gameObjectContainer ); // When gameObjectClass attr is specified, gameObjects should not be NULL.
                 
                 REF(GameObject) refGameObject((GameObject*)NULL);
-
+/*
+                static int c = 0;
+                c++;
+                if ( c >= 100 )
+                {
+                    CCLOG(@"c=%d", c);
+                    continue;
+                }
+  */              
                 if ( [gameObjectClass isEqualToString:@"WaterDrop"] )
                 {
                     float yInOpenGL = svgCanvasHeight - orgY;
@@ -293,9 +302,19 @@
                     refGameObject->setSprite(sprite);
                     refGameObject->setDefaultClip(clip);
                     
+                    // Do not add sprite, do not run the default clip yet. 
+                    // It will be done in GameObject::activate while running tick() of the StageScene when the object gets to show on screen.
+                    /*
+                    // 100 : [60-> 60]
+                    // 200 : [60-> 55]
+                    // 550 : [38->16], [27-> 60]
                     [layer addChild:sprite];
-                    
+
+                    // 100 : [60->60]
+                    // 550 : [7->15]
                     Helper::runClip( refGameObject, clip );
+                     */
+                    
                 }
 
                 gameObjectContainer->insert(refGameObject);

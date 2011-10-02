@@ -5,7 +5,7 @@
 #include "InteractiveBodyNode.h"
 #include "GameConfig.h"
 #import "ClipFactory.h"
-#include "GameObjectContainer.h"
+#include "GameObject.h"
 
 @implementation Util
 
@@ -114,5 +114,5 @@ namespace Helper
         [sprite stopAllActions];
         [AKHelpers applyAnimationClip:clip toNode:sprite];
     }
-
+    
 }

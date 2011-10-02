@@ -28,6 +28,11 @@ namespace Helper
     void runClip(b2Body *body, NSDictionary* clip) ;
 
     void runClip(REF(GameObject) refGameObject, NSDictionary* clip) ;
+    
+    inline box_t getBox(CGPoint minPoint, CGPoint maxPoint) 
+    {
+        return box_t( point_t( minPoint.x, minPoint.y ), point_t( maxPoint.x, maxPoint.y ) );
+    }
 }
 
 #endif /* __THX_UTIL_H_ */

@@ -1,7 +1,8 @@
 #import "AbstractCamera.h"
 #include "b2WorldEx.h"
-#include "GameObjectContainer.h"
+#include "GameObject.h"
 #include "GameConfig.h"
+
 
 @implementation AbstractCamera
 
@@ -104,7 +105,79 @@
 {
 }
 
+-(box_t) getCameraView:(CGPoint) minPoint withMax:(CGPoint) maxPoint
+{
+    // Camera position holds negative offset to move sprites to (0,0)~(480, 320)
+    minPoint = ccpSub(minPoint,cameraPosition);
+    maxPoint = ccpSub(maxPoint,cameraPosition);
+    
+    minPoint = ccpMult( minPoint, zoom );
+    maxPoint = ccpMult( maxPoint, zoom );
+    
+    return Helper::getBox(minPoint, maxPoint);
+}
 
+/** @brief Return the rectangle area that will be drawn in the screen.
+ *  Including zooming and camera position, it returns the screen rectangle in OpenGL coordinate system.
+ */
+-(box_t) screenViewRect
+{
+    
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    static CGPoint minPoint = CGPointMake(0,0);
+    static CGPoint maxPoint = CGPointMake(screenSize.width, screenSize.height);
+
+    return [self getCameraView:minPoint withMax:maxPoint];
+}
+
+/** @brief Get the left side of the screen at min zoom. 
+ * @param HeroXatZ1 The X position of the Hero at Zoom level 1.0
+ */
+- (float) viewLeftAtMinZoom:(float)heroXatZ1 {
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    float heroViewOffsetFromLeftAtZ1 = screenSize.width * HERO_XPOS_RATIO;
+    
+    float HeroViewOffsetFromLeftAtMinZoom = (heroViewOffsetFromLeftAtZ1 / minZoom);
+    
+    float viewLeft = heroXatZ1 - HeroViewOffsetFromLeftAtMinZoom;
+    return viewLeft;
+}
+
+/** @brief Return the screen went to the left side of the screen even at the minimum zoom level.
+ * @param HeroXatZ1 : The X position of the Hero at Zoom level 1.0
+ */
+-(box_t) goneScreenRect:(float)heroXatZ1 {
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    static float screenWidthAtMinZoom = screenSize.width/minZoom;
+//    static float screenHeightAtMinZoom = screenSize.height/minZoom;
+    static float screenHeightAtMinZoom = kMAX_POSITION;
+    
+    static CGPoint minPoint = CGPointMake(-screenWidthAtMinZoom,-screenHeightAtMinZoom);
+    
+    CGPoint maxPoint = CGPointMake([self viewLeftAtMinZoom:heroXatZ1], screenHeightAtMinZoom);
+    
+    return Helper::getBox(minPoint,maxPoint);
+}
+
+/** @brief Return the rect of the comming screen at the min zoom level on the right side including the currently drawn screen.
+ * @param HeroXatZ1 : The X position of the Hero at Zoom level 1.0
+ */
+-(box_t) commingScreenRect:(float)heroXatZ1 {
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    static float screenWidthAtMinZoom = screenSize.width/minZoom;
+    static float screenHeightAtMinZoom = kMAX_POSITION;
+    
+    float screenLeftXatMinZoom = [self viewLeftAtMinZoom:heroXatZ1];
+    
+    CGPoint minPoint = CGPointMake(screenLeftXatMinZoom,-screenHeightAtMinZoom);
+    
+    CGPoint maxPoint = CGPointMake(screenLeftXatMinZoom+screenWidthAtMinZoom, screenHeightAtMinZoom);
+    
+    return Helper::getBox(minPoint,maxPoint);
+}
 
 
 -(void) updateSprite:(CCSprite*)sprite position:(CGPoint)screenCoordPos

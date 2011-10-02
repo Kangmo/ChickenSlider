@@ -3,8 +3,9 @@
 #import "Box2D.h"
 #import "BodyInfo.h"
 #import "Util.h"
+#include "CppInfra.h"
 
-#include "GameObjectContainer.h"
+class GameObject;
 
 @interface AbstractCamera : NSObject 
 {
@@ -39,5 +40,9 @@
 -(void) ZoomToObject:(b2Body*) body screenPart:(float) part;
 
 -(b2Vec2) b2vPosition;
+
+-(box_t) screenViewRect;
+-(box_t) goneScreenRect:(float)heroXatZ1;
+-(box_t) commingScreenRect:(float)heroXatZ1;
 
 @end
