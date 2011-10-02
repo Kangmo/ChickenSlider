@@ -7,10 +7,13 @@
 #import "AbstractCamera.h"
 #import "FreeCamera.h"
 #import "FollowCamera.h"
+#import "ScoreBoardProtocol.h"
+
 #include "Car.h"
 #include "Hero.h"
 #include "GameConfig.h"
 #include "GameObjectContainer.h"
+#include "IncNumLabel.h"
 
 class b2WorldEx;
 @class Sky;
@@ -21,7 +24,7 @@ typedef enum {
 } StageSceneLayerTags;
 
 // HelloWorld Layer
-@interface StageScene : CCLayer
+@interface StageScene : CCLayer<ScoreBoardProtocol>
 {
 	b2WorldEx* world;
 	GLESDebugDraw *m_debugDraw;
@@ -43,6 +46,13 @@ typedef enum {
     // Puting these objects (ex> 1000 Water Drops, not box2d objects, just stay at a static position) into Box2d make the game terribly slow.
     // We do collision detection on these objects with the Hero.
     GameObjectContainer gameObjectContainer;
+    
+    int curWaterDrops;
+    int targetWaterDrops;
+    IncNumLabel waterDropsLabel;
+    IncNumLabel scoreLabel;
+    
+    CCSpriteBatchNode * spriteSheet;
 }
 
 // returns a Scene that contains the HelloWorld as the only child
@@ -50,7 +60,11 @@ typedef enum {
 +(StageScene*) sharedStageScene;
 -(BOOL) needJoystick;
 
+-(void) increaseScore:(int) scoreDiff;
+-(void) increaseWaterDrops:(int) waterDropsDiff;
+
 @property (nonatomic, assign) Car * car;
 @property (nonatomic, retain) Hero * hero;
+
 
 @end

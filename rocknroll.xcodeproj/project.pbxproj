@@ -345,6 +345,12 @@
 		67CDB9E81437475200E58690 /* WaterDrop.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67CDB9E71437475200E58690 /* WaterDrop.mm */; };
 		67CDB9EF1437513600E58690 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 67CDB9EE1437513600E58690 /* noise.png */; };
 		67CDB9F21437516F00E58690 /* Sky.m in Sources */ = {isa = PBXBuildFile; fileRef = 67CDB9F11437516F00E58690 /* Sky.m */; };
+		67CDB9F4143816C600E58690 /* sky1.png in Resources */ = {isa = PBXBuildFile; fileRef = 67CDB9F3143816C600E58690 /* sky1.png */; };
+		67CDB9F9143826A300E58690 /* summer_smile-stephen_burns.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 67CDB9F8143826A300E58690 /* summer_smile-stephen_burns.mp3 */; };
+		67CDBA0714383F3400E58690 /* punkboy.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 67CDBA0514383F3400E58690 /* punkboy.fnt */; };
+		67CDBA0814383F3400E58690 /* punkboy.png in Resources */ = {isa = PBXBuildFile; fileRef = 67CDBA0614383F3400E58690 /* punkboy.png */; };
+		67CDBA0A1438B96C00E58690 /* IncNumLabel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67CDBA091438B96700E58690 /* IncNumLabel.mm */; };
+		67CDBA0F1438CF4900E58690 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = 67CDBA0E1438CF4900E58690 /* stars.png */; };
 		67E6C5D1142CA6D80087CC97 /* StageScene_LV3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */; };
 		67E6C5D6142CAF840087CC97 /* sprites.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5D4142CAF7F0087CC97 /* sprites.plist */; };
 		67E6C5D7142CAF840087CC97 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = 67E6C5D5142CAF810087CC97 /* sprites.png */; };
@@ -1035,6 +1041,14 @@
 		67CDB9EE1437513600E58690 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		67CDB9F01437516F00E58690 /* Sky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sky.h; sourceTree = "<group>"; };
 		67CDB9F11437516F00E58690 /* Sky.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sky.m; sourceTree = "<group>"; };
+		67CDB9F3143816C600E58690 /* sky1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky1.png; sourceTree = "<group>"; };
+		67CDB9F8143826A300E58690 /* summer_smile-stephen_burns.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "summer_smile-stephen_burns.mp3"; sourceTree = "<group>"; };
+		67CDBA0514383F3400E58690 /* punkboy.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = punkboy.fnt; sourceTree = "<group>"; };
+		67CDBA0614383F3400E58690 /* punkboy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = punkboy.png; sourceTree = "<group>"; };
+		67CDBA091438B96700E58690 /* IncNumLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IncNumLabel.mm; sourceTree = "<group>"; };
+		67CDBA0B1438B98000E58690 /* IncNumLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncNumLabel.h; sourceTree = "<group>"; };
+		67CDBA0C1438BE6C00E58690 /* ScoreBoardProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBoardProtocol.h; sourceTree = "<group>"; };
+		67CDBA0E1438CF4900E58690 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars.png; path = Resources/particles/stars.png; sourceTree = "<group>"; };
 		67E6C5CF142CA6D70087CC97 /* StageScene_LV3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = StageScene_LV3.svg; path = Resources/StageScene_LV3.svg; sourceTree = "<group>"; };
 		67E6C5D4142CAF7F0087CC97 /* sprites.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sprites.plist; path = Resources/sprites.plist; sourceTree = "<group>"; };
 		67E6C5D5142CAF810087CC97 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sprites.png; path = Resources/sprites.png; sourceTree = "<group>"; };
@@ -1362,6 +1376,9 @@
 		6709790513DD14A7003E4E75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67CDBA0D1438CF2700E58690 /* particles */,
+				67CDBA0414383F3400E58690 /* fonts */,
+				67CDB9F51438268000E58690 /* BGM */,
 				67077A0C1435AABE0070F0A5 /* sound */,
 				679648FC1431FC0000C4E87B /* Clips */,
 				67F5EC4014316B60003FFB2D /* Backgrounds */,
@@ -1768,6 +1785,11 @@
 			isa = PBXGroup;
 			children = (
 				6791FDCC143359DC004E28C0 /* GameObjects */,
+				67CDBA0C1438BE6C00E58690 /* ScoreBoardProtocol.h */,
+				67CDBA091438B96700E58690 /* IncNumLabel.mm */,
+				67CDBA0B1438B98000E58690 /* IncNumLabel.h */,
+				67CDB9F01437516F00E58690 /* Sky.h */,
+				67CDB9F11437516F00E58690 /* Sky.m */,
 				67351E7D142F552B0073575A /* Terrain.h */,
 				67351E7E142F55330073575A /* Terrain.mm */,
 				67351E75142E97B40073575A /* PointQueue.cpp */,
@@ -2034,8 +2056,6 @@
 		6791FDCC143359DC004E28C0 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
-				67CDB9F01437516F00E58690 /* Sky.h */,
-				67CDB9F11437516F00E58690 /* Sky.m */,
 				670982FC13DD1777003E4E75 /* Car.cpp */,
 				670982FD13DD1777003E4E75 /* Car.h */,
 				67E6C5EE142D75D90087CC97 /* Hero.h */,
@@ -2047,8 +2067,8 @@
 				679C4A131435BC0100336D43 /* GameObject.h */,
 				679C4A181436947D00336D43 /* GameObject.mm */,
 				679C4A111435BB5100336D43 /* WaterDrop.h */,
-				679C4A121435BB6F00336D43 /* CollisionDetector2D.h */,
 				67CDB9E71437475200E58690 /* WaterDrop.mm */,
+				679C4A121435BB6F00336D43 /* CollisionDetector2D.h */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -2080,6 +2100,32 @@
 				679648FF1431FC0500C4E87B /* clip_snail_idle.plist */,
 			);
 			path = Clips;
+			sourceTree = "<group>";
+		};
+		67CDB9F51438268000E58690 /* BGM */ = {
+			isa = PBXGroup;
+			children = (
+				67CDB9F8143826A300E58690 /* summer_smile-stephen_burns.mp3 */,
+			);
+			name = BGM;
+			path = Resources/BGM;
+			sourceTree = "<group>";
+		};
+		67CDBA0414383F3400E58690 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				67CDBA0514383F3400E58690 /* punkboy.fnt */,
+				67CDBA0614383F3400E58690 /* punkboy.png */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		67CDBA0D1438CF2700E58690 /* particles */ = {
+			isa = PBXGroup;
+			children = (
+				67CDBA0E1438CF4900E58690 /* stars.png */,
+			);
+			name = particles;
 			sourceTree = "<group>";
 		};
 		67F5EA941430C813003FFB2D /* cocos2d */ = {
@@ -2371,6 +2417,7 @@
 		67F5EC4014316B60003FFB2D /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				67CDB9F3143816C600E58690 /* sky1.png */,
 				67CDB9EE1437513600E58690 /* noise.png */,
 				67F5EC6A14318386003FFB2D /* green128 */,
 				67F5EC5B1431832C003FFB2D /* blue128 */,
@@ -2804,6 +2851,11 @@
 				679649091432BC6E00C4E87B /* clip_waterdrop.plist in Resources */,
 				67077A0E1435AAEE0070F0A5 /* WaterDrop.wav in Resources */,
 				67CDB9EF1437513600E58690 /* noise.png in Resources */,
+				67CDB9F4143816C600E58690 /* sky1.png in Resources */,
+				67CDB9F9143826A300E58690 /* summer_smile-stephen_burns.mp3 in Resources */,
+				67CDBA0714383F3400E58690 /* punkboy.fnt in Resources */,
+				67CDBA0814383F3400E58690 /* punkboy.png in Resources */,
+				67CDBA0F1438CF4900E58690 /* stars.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2868,6 +2920,7 @@
 				679C4A191436947F00336D43 /* GameObject.mm in Sources */,
 				67CDB9E81437475200E58690 /* WaterDrop.mm in Sources */,
 				67CDB9F21437516F00E58690 /* Sky.m in Sources */,
+				67CDBA0A1438B96C00E58690 /* IncNumLabel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

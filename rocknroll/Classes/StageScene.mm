@@ -58,7 +58,7 @@ static StageScene* instanceOfStageScene;
     
     NSString *filePath = [Util getResourcePath:svgFileName];
     
-	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains gameObjects:&gameObjectContainer] autorelease];
+	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains gameObjects:&gameObjectContainer scoreBoard:self] autorelease];
     
     // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
     // In that file, a class is defined within a layer.
@@ -78,6 +78,61 @@ static StageScene* instanceOfStageScene;
     }
 }
 
+-(void) increaseScore:(int) scoreDiff
+{
+    int newScore = scoreLabel.getTargetCount() + scoreDiff;
+    scoreLabel.setTargetCount(newScore);
+}
+
+-(void) increaseWaterDrops:(int) waterDropsDiff
+{
+    int newDrops = waterDropsLabel.getTargetCount() + waterDropsDiff;
+    waterDropsLabel.setTargetCount(newDrops);
+}
+
+
+-(void) initScoreLabels {
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    static float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/8;
+    static float HORIZONTAL_MARGIN = screenSize.width/32;
+    // The margin between the water drop sprite and the counter.
+    static float WATER_DROP_MARGIN = HORIZONTAL_MARGIN/2;
+    // Water Drop sprite and count
+    {
+        CCSprite * waterDropSprite = [CCSprite spriteWithSpriteFrameName:@"WaterDrop00.png"]; 
+        assert(waterDropSprite);
+        
+        [spriteSheet addChild:waterDropSprite];
+        waterDropSprite.anchorPoint = ccp(0, waterDropSprite.anchorPoint.y);
+        // Y : +5 is required to move the sprite to the top of the screen by 5 pixcels because the water drop sprite have margin space on top of it.
+        waterDropSprite.position = ccp(HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y+5);
+
+        
+        CCLabelBMFont *label = waterDropsLabel.getLabel();
+        
+        label.anchorPoint = ccp(0, label.anchorPoint.y);
+        
+        label.position = ccp(waterDropSprite.position.x + waterDropSprite.contentSize.width + WATER_DROP_MARGIN, 
+                             SCORE_VERT_CENTER_Y);
+
+        [self addChild:label];
+    }
+
+    
+    // Score
+    {
+        CCLabelBMFont *label = scoreLabel.getLabel();
+        
+        label.anchorPoint = ccp(label.anchorPoint.x*2, label.anchorPoint.y);
+        
+        label.position = ccp(screenSize.width - HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y);
+        
+        [self addChild:label];
+    }
+    
+}
+
+
 // initialize your instance here
 -(id) initWithLevel:(NSString*)levelStr
 {
@@ -86,13 +141,23 @@ static StageScene* instanceOfStageScene;
         // initialize variables
         terrains = nil;
         
-		// enable touches   ```````````                             ```````                                                                `1EE
+		// enable touches
 		self.isTouchEnabled = YES;
 		
-		// enable accelerom                      ,,,,abled = YES;
-        
-        sky = [[Sky skyWithTextureSize:1024] retain];
+		// enable accelerometer
+		self.isAccelerometerEnabled = YES;
+
+        sky = [[Sky skyWithTextureSize:512] retain];
 		[self addChild:sky];
+        
+        // Load the sprite frames.
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
+        
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
+        [self addChild:spriteSheet];
+
+        // Initialize score labels. (Requires spriteSheet);
+        [self initScoreLabels];
         
 		// The SVG file for the given level.
         NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@.svg", levelStr];
@@ -129,11 +194,6 @@ static StageScene* instanceOfStageScene;
 */ 
 		m_debugDraw->SetFlags(flags);		
 		
-        // Load the sprite frames.
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
-		
-        CCSpriteBatchNode * spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
-        [self addChild:spriteSheet];
 		//init stuff from svg file
 		svgLoader* loader = [self initGeometry:svgFileName];
         [loader assignSpritesFromSheet:spriteSheet];
@@ -151,7 +211,7 @@ static StageScene* instanceOfStageScene;
             
             assert(playerBody);
             playerBody->SetLinearDamping(0.05f);
-            self.hero = [Hero heroWithWorld:world heroBody:playerBody camera:cam];
+            self.hero = [Hero heroWithWorld:world heroBody:playerBody camera:cam scoreBoard:self];
         }
         
 		[followCam follow:playerBody];
@@ -163,7 +223,7 @@ static StageScene* instanceOfStageScene;
 		
 		CCMenu * m = [CCMenu menuWithItems:mi,nil];
 		[self addChild:m z:500];
-		m.position = CGPointMake(430, 320 - 30);
+		m.position = CGPointMake(430, 30);
 		
 		arrow = [CCSprite spriteWithFile:@"arrow.png"];
 		arrow.anchorPoint = CGPointMake(0, 2.5);
@@ -175,7 +235,10 @@ static StageScene* instanceOfStageScene;
         instanceOfStageScene = self;
         
 		[self schedule: @selector(tick:)];
-		
+        
+        // playbackground music
+        [[CDAudioManager sharedManager] playBackgroundMusic:@"summer_smile-stephen_burns.mp3" loop:YES];
+        [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 100;//To loop 3 times
 	}
 	return self;
 }
@@ -483,6 +546,10 @@ static StageScene* instanceOfStageScene;
     [self checkCollisions4GameObjects];
 
     [self updateGameObjects];
+    
+    // Update counters to look like they are increasing by 1 until they reach the target count. 
+    scoreLabel.update();
+    waterDropsLabel.update();
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -547,7 +614,9 @@ static StageScene* instanceOfStageScene;
 - (void) dealloc
 {
     CCLOG(@"StageScene:dealloc");
-
+    
+    [[CDAudioManager sharedManager] stopBackgroundMusic];
+    
 	// in case you have something to dealloc, do it in this method
     [self unschedule: @selector(tick:)];
 

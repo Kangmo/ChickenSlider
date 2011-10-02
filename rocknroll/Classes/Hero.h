@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
+#import "ScoreBoardProtocol.h"
+
 
 #define kPerfectTakeOffVelocityY 2.0f
 
@@ -10,8 +12,11 @@ class HeroContactListener;
 @interface Hero :NSObject {
 	b2World *_world;
 	b2Body *_body;
+    // Score Board
+    id<ScoreBoardProtocol> _scoreBoard;
+    
     AbstractCamera * _camera;
-	//CCSprite *_sprite;
+
 	float _radius;
 	BOOL _awake;
 	BOOL _flying;
@@ -25,12 +30,11 @@ class HeroContactListener;
 }
 @property (nonatomic, assign) b2World *world;
 @property (nonatomic, assign) b2Body *body;
-@property (nonatomic, retain) CCSprite *sprite;
 @property (readonly) BOOL awake;
 @property (nonatomic) BOOL diving;
 
-+ (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera ;
-- (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera ;
++ (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb;
+- (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb;
 
 - (void) reset;
 - (void) sleep;

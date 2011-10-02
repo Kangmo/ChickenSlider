@@ -42,15 +42,18 @@
 	CCTexture2D *texture = [self generateTexture];
 	
 	float w = (float)screenW/(float)screenH*textureSize;
+
 	float h = textureSize;
 	CGRect rect = CGRectMake(0, 0, w, h);
 	
 	CCSprite *sprite = [CCSprite spriteWithTexture:texture rect:rect];
+    
+//	ccTexParams tp = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
 	ccTexParams tp = {GL_NEAREST, GL_NEAREST, GL_REPEAT, GL_REPEAT};
 	[sprite.texture setTexParameters:&tp];
 	sprite.anchorPoint = ccp(1.0f/8.0f, 0);
 	sprite.position = ccp(screenW/8, 0);
-	
+
 	return sprite;
 }
 
@@ -62,7 +65,7 @@
 	ccColor4F cf = ccc4FFromccc3B(c);
 	
 	[rt beginWithClear:cf.r g:cf.g b:cf.b a:cf.a];
-	
+
 	// layer 1: gradient
 	
 	float gradientAlpha = 0.3f;
@@ -94,7 +97,7 @@
 	
 	// layer 2: noise
 	
-	CCSprite *s = [CCSprite spriteWithFile:@"noise.png"];
+	CCSprite *s = [CCSprite spriteWithFile:@"sky1.png"];
 	[s setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
 	s.position = ccp(textureSize/2, textureSize/2);
 	s.scale = (float)textureSize/512.0f;

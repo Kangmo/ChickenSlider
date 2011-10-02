@@ -11,13 +11,15 @@
 
 #include "GameObject.h"
 #include "GameObjectContainer.h"
+#import "ScoreBoardProtocol.h"
 
 class WaterDrop : public GameObject
 {
 private:
     static CDSoundSource * _collideSound;
+    id<ScoreBoardProtocol> _scoreBoard;
 public:
-    WaterDrop(float x, float y, float width, float height)
+    WaterDrop(float x, float y, float width, float height, id<ScoreBoardProtocol> sb)
     :GameObject(x,y,width,height)
     {
         if ( !_collideSound )
@@ -26,35 +28,14 @@ public:
             _collideSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:@"WaterDrop.wav"] retain];
         }
         assert(_collideSound);
+        
+        _scoreBoard = sb;
     };
     virtual ~WaterDrop()
     {
     }
-    inline virtual void onCollideWithHero() 
-    {
-        // For the collided objects, remove them
-        CCSprite * sprite = this->getSprite();
-        
-        
-        [sprite removeFromParentAndCleanup:YES];
-        
-        //BUGBUG : Understand what happens if this objet is destroyed while the sound was playing
-        assert(_collideSound);
-        [_collideSound play];
-        
-        CCLOG(@"played");
-        GameObject::removeSelf();
-        /*            
-         // node2: the node that will be removed
-         id action = [CCSequence actions:
-         [CCMoveBy actionWithDuration:2 position:ccp(200,0)],
-         [CCCallFuncND actionWithTarget:node2 selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
-         nil];
-         
-         // node1: the node that runs the action
-         [node1 runAction:action];
-         */          
-    }
+    
+    virtual void onCollideWithHero();
 };
 
 #endif

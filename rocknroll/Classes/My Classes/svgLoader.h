@@ -6,6 +6,7 @@
 #import "GrahamScanConvexHull.h"
 #include <vector>
 #import "AKHelpers.h"
+#import "ScoreBoardProtocol.h"
 
 class GameObjectContainer;
 
@@ -28,11 +29,13 @@ class GameObjectContainer;
     NSMutableArray * terrains; // indicates if we need to load terrain. For menu screens we don't need to load terrain.
     
     GameObjectContainer * gameObjectContainer; // non Box2d objects in the SVG file are added here.
+    
+    id<ScoreBoardProtocol> scoreBoard;
 }
 //@property float scaleFactor; 
 @property (nonatomic, retain) ClassDictionary * classDict;
            
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects scoreBoard:(id<ScoreBoardProtocol>)sb;
 
 -(void) instantiateObjectsIn:(NSString*)filename;
 -(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset;

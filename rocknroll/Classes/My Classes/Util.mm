@@ -43,6 +43,21 @@
     return filePath;
 }
 
+/** @brief Show message on top of the screen for 2 seconds.
+ */
++ (void) showMessage:(NSString*)message inLayer:(CCLayer*)layer {
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+
+	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
+	label.position = ccp(screenSize.width/2, screenSize.height - screenSize.height/8);
+	[label runAction:[CCScaleTo actionWithDuration:2.0f scale:1.4f]];
+	[label runAction:[CCSequence actions:
+					  [CCFadeOut actionWithDuration:2.0f],
+					  [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
+					  nil]];
+	[layer addChild:label];
+}
+
 @end
 
 namespace Helper 

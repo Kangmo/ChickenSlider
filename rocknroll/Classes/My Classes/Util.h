@@ -14,6 +14,8 @@
 
 +(NSString*) retrieveResourceFile:(NSString*)fileName fromWeb:(NSString*)urlPrefix;
 
++(void) showMessage:(NSString*)message inLayer:(CCLayer*)layer;
+
 @end
 
 class GameObject;

@@ -17,6 +17,7 @@
 /** @brief The maximum position for X or Y axis for a valid point.
  */
 #define kMAX_POSITION (9999999.0f)
+#define SCORE_PER_COMBO (1000)
 
 #define INIT_PTM_RATIO (32)
 #define INIT_ZOOM_RATIO (1)

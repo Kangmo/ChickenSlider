@@ -15,7 +15,7 @@
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard;
 {
 	self = [super init];
 	if (self != nil) 
@@ -28,6 +28,7 @@
         classDict = nil;
         terrains = t;
         gameObjectContainer = objs;
+        scoreBoard = sboard;
 	}
 	return self;
 }
@@ -287,7 +288,7 @@
                 {
                     float yInOpenGL = svgCanvasHeight - orgY;
                     // Don't scale.
-                    refGameObject = REF(GameObject)( new WaterDrop(orgX, yInOpenGL, orgWidth, orgHeight) );
+                    refGameObject = REF(GameObject)( new WaterDrop(orgX, yInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
                 
                 NSAssert1(refGameObject, @"The game object class name is not supported : %@", gameObjectClass);
