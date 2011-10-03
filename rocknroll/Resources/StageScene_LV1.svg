@@ -2,588 +2,1936 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
- xmlns:dc="http://purl.org/dc/elements/1.1/"
- xmlns:cc="http://creativecommons.org/ns#"
- xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
- xmlns:svg="http://www.w3.org/2000/svg"
- xmlns="http://www.w3.org/2000/svg"
- xmlns:xlink="http://www.w3.org/1999/xlink"
- xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
- xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
- version="1.0"
- width="48000"
- height="320"
- id="svg2"
- sodipodi:version="0.32"
- inkscape:version="0.48.1 r9760"
- sodipodi:docname="StageScene_LV1.svg"
- inkscape:output_extension="org.inkscape.output.svg.inkscape">
-<metadata
- id="metadata2500">
-<rdf:RDF>
-<cc:Work
- rdf:about="">
-<dc:format>image/svg+xml</dc:format>
-<dc:type
- rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-<dc:title></dc:title>
-</cc:Work>
-</rdf:RDF>
-</metadata>
-<sodipodi:namedview
- inkscape:window-height="778"
- inkscape:window-width="1280"
- inkscape:pageshadow="2"
- inkscape:pageopacity="0.0"
- guidetolerance="10.0"
- gridtolerance="10.0"
- objecttolerance="10.0"
- borderopacity="1.0"
- bordercolor="#666666"
- pagecolor="#ffffff"
- id="base"
- showgrid="false"
- inkscape:zoom="0.70710678"
- inkscape:cx="802.28263"
- inkscape:cy="325.33748"
- inkscape:window-x="1918"
- inkscape:window-y="48"
- inkscape:current-layer="layer3"
- width="480px"
- inkscape:window-maximized="0"
- inkscape:snap-grids="true"
- showguides="true"
- inkscape:guide-bbox="true">
-<inkscape:grid
- type="xygrid"
- id="grid3290"
- visible="true"
- enabled="true"
- empspacing="5"
- snapvisiblegridlinesonly="true" />
-</sodipodi:namedview>
-<defs
- id="defs4">
-<inkscape:perspective
- sodipodi:type="inkscape:persp3d"
- inkscape:vp_x="0 : 500 : 1"
- inkscape:vp_y="0 : 1000 : 0"
- inkscape:vp_z="1000 : 500 : 1"
- inkscape:persp3d-origin="500 : 333.33333 : 1"
- id="perspective2413" />
-<inkscape:perspective
- id="perspective2443"
- inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
- inkscape:vp_z="744.09448 : 526.18109 : 1"
- inkscape:vp_y="0 : 1000 : 0"
- inkscape:vp_x="0 : 526.18109 : 1"
- sodipodi:type="inkscape:persp3d" />
-<inkscape:perspective
- id="perspective3980"
- inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
- inkscape:vp_z="1 : 0.5 : 1"
- inkscape:vp_y="0 : 1000 : 0"
- inkscape:vp_x="0 : 0.5 : 1"
- sodipodi:type="inkscape:persp3d" />
-<inkscape:perspective
- id="perspective3534"
- inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
- inkscape:vp_z="1 : 0.5 : 1"
- inkscape:vp_y="0 : 1000 : 0"
- inkscape:vp_x="0 : 0.5 : 1"
- sodipodi:type="inkscape:persp3d" />
-</defs>
-<g
- inkscape:groupmode="layer"
- id="staticShapes"
- inkscape:label="static"
- style="display:inline" />
-<g
- inkscape:groupmode="layer"
- id="layer3"
- inkscape:label="boxes"
- style="display:inline">
-<image
- style="display:inline"
- y="224.31876"
- x="516.67322"
- id="image3251-4-4-9"
- xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
- height="16"
- width="16" />
-<image
- style="display:inline"
- y="54.613125"
- x="1327.0176"
- id="image3251-4-4"
- xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
- height="16"
- width="16" />
-<image
- style="display:inline"
- y="197.4487"
- x="923.96674"
- id="image3251-4"
- xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
- height="16"
- width="16" />
-<image
- y="225.73297"
- x="546.3717"
- id="image3251"
- xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Ball.png"
- height="16"
- width="16" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 717.38056,267.29084 L 848.70676,261.03721 L 942.51119,234.23595 L 1084.5579,194.92742 L 1181.9358,146.68515 L 1234.645,105.58987 L 1291.821,84.148857 L 1370.4381,85.935609 L 1454.4154,118.09713 L 1531.2457,135.96464 L 1587.5283,132.39114"
- id="path2995"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 8.9337554,-42.710469 L 33.948271,135.07126 L 154.55397,135.07126 L 243.89152,155.6189 L 292.1338,185.99367 L 374.32435,244.95645 L 451.15465,266.39747 L 548.53258,264.61072 L 628.043,238.70283"
- id="path2993"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 1667.3848,167.48528 L 1796.3848,205.48528 L 1919.3848,253.48528 L 2049.3848,298.48528 L 2150.3848,306.48528 L 2306.3848,282.48528 L 2399.3848,252.48528 L 2469.3848,208.48528 L 2521.3848,192.48528"
- id="path3009"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 2541.1472,235.76955 L 2649.1472,234.76955 L 2773.1472,207.76955 L 2889.1472,158.76955 L 2966.1472,119.76955 L 3048.1472,123.76955 L 3162.1472,175.76955 L 3280.1472,177.76955 L 3345.1472,152.76955 L 3405.1472,163.76955 L 3475.1472,206.76955 L 3514.1472,219.76955"
- id="path3011"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 3549.676,260.60303 L 3746.2517,274.74517 L 3923.0284,304.44365 L 4072.9351,307.27208 L 4317.594,263.43146 L 4467.5006,212.51977 L 4573.5667,157.36544 L 4736.2012,140.39488 L 4815.3972,167.26494"
- id="path3021"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 4853.5809,216.76241 L 5023.2866,232.31876 L 5136.4237,191.30657 L 5304.7151,163.02229 L 5396.639,109.28218 L 5521.0897,85.240549 L 5596.0431,38.571501 L 5679.4817,38.571501 L 5843.5304,62.613132 L 5949.5965,102.21111 L 6017.4787,130.49538 L 6083.9467,131.9096 L 6199.9123,138.98066"
- id="path3023"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="ccccccccccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 6192.8412,155.95123 L 6417.7011,163.02229 L 6503.9682,201.20606 L 6588.821,209.69134"
- id="path3025"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 6593.0636,228.07612 L 6737.3134,230.90455 L 6796.7104,256.36039 L 6916.9186,263.43146"
- id="path3027"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 6929.6465,286.05887 L 7089.4526,284.64466 L 7131.879,256.36039 L 7151.678,256.36039 L 7204.0039,242.21825 L 7288.8567,239.38983"
- id="path3029"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 7315.7268,273.33095 L 7426.0354,267.6741 L 7510.8882,239.38983 L 7619.7827,185.64971 L 7704.6355,155.95123 L 7768.2751,154.53701"
- id="path3031"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 7792.3167,202.62027 L 7945.0518,204.03449 L 8021.4193,163.02229 L 8131.728,143.2233 L 8205.2671,137.56645"
- id="path3033"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 8268.9067,177.16443 L 8572.9626,170.09336 L 8779.4378,215.3482 L 8920.8591,206.86292 L 9093.3932,181.40707"
- id="path3035"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 9135.8196,228.07612 L 9321.0816,212.51977 L 9407.3486,254.94618 L 9538.8705,249.28932 L 9625.1375,245.04668"
- id="path3037"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 9633.6228,281.81623 L 9776.4584,277.57359 L 9857.0685,246.46089 L 9951.8208,246.46089"
- id="path3039"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 9980.1051,274.74517 L 10104.556,260.60303 L 10158.296,239.38983 L 10236.078,223.83348 L 10320.931,188.47814 L 10418.511,164.43651 L 10524.577,171.50758 L 10610.844,147.46595 L 10664.584,141.80909"
- id="path3041"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="ccccccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 10685.798,170.09336 L 10818.734,174.336 L 10938.942,131.9096 L 11049.251,113.52482 L 11098.748,76.755267 L 11196.329,72.512627"
- id="path3043"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 11228.856,105.03954 L 11361.792,103.62533"
- id="path3045"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 11397.147,137.56645 L 11525.841,134.73802"
- id="path3047"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 11569.681,177.16443 L 11699.789,175.75022"
- id="path3049"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 11737.973,216.76241 L 11870.909,216.76241"
- id="path3051"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 11902.021,257.7746 L 12036.372,256.36039"
- id="path3053"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 12078.798,297.37258 L 12251.332,297.37258 L 12404.067,225.24769 L 12539.832,226.6619 L 12627.513,171.50758 L 12689.738,151.70859 L 12764.692,138.98066"
- id="path3055"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 12783.076,177.16443 L 12947.125,174.336 L 13074.404,221.00505 L 13227.139,221.00505 L 13296.436,246.46089 L 13437.857,246.46089 L 13529.781,286.05887 L 13634.433,278.98781"
- id="path3057"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 13655.646,304.44365 L 13795.653,297.37258 L 13874.849,246.46089 L 14010.614,226.6619"
- id="path3059"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 14038.898,253.53196 L 14122.336,235.14719 L 14266.586,198.37763 L 14381.138,181.40707"
- id="path3061"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 14376.895,216.76241 L 14474.476,178.57864 L 14564.985,124.83853 L 14656.909,69.6842 L 14734.691,51.299423 L 14811.059,47.056783"
- id="path3063"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 14840.757,69.6842 L 15014.705,89.483189 L 15088.244,107.86797 L 15143.398,119.18168"
- id="path3065"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 15164.612,141.80909 L 15291.891,140.39488 L 15390.886,163.02229 L 15465.84,157.36544"
- id="path3067"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 15484.224,196.96342 L 15608.675,189.89235 L 15675.143,226.6619 L 15768.481,222.41926"
- id="path3069"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 15782.623,260.60303 L 15998.998,249.28932 L 16035.768,273.33095 L 16136.177,270.50253 L 16196.988,284.64466 L 16344.066,280.40202"
- id="path3071"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 16358.208,307.27208 L 16585.897,304.44365 L 16693.377,264.84567 L 16779.644,254.94618 L 16880.053,215.3482 L 16983.291,215.3482"
- id="path3073"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 17004.504,243.63247 L 17127.541,230.90455 L 17226.536,208.27712 L 17305.731,198.37763"
- id="path3075"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 17332.601,213.93398 L 17454.224,233.73297 L 17571.604,184.2355 L 17629.586,181.40707"
- id="path3077"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 17650.799,223.83348 L 17888.387,189.89236 L 18011.424,160.19387 L 18155.674,137.56645 L 18278.71,90.897403 L 18393.262,68.269986 L 18449.83,44.228355 L 18595.494,49.88521"
- id="path3079"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 18644.992,75.341054 L 18820.354,93.72583 L 18916.521,144.63752 L 19073.498,143.2233 L 19113.096,163.02229 L 19229.062,155.95123"
- id="path3081"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 19261.589,192.72078 L 19441.194,195.54921 L 19469.478,218.17662 L 19564.23,213.93398 L 19657.569,247.87511 L 19735.35,235.14719"
- id="path3083"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 19753.735,270.50253 L 19890.914,245.04668 L 19970.11,253.53197 L 20062.033,240.80404 L 20288.308,233.73297"
- id="path3085"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="ccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 20134.158,284.64466 L 20241.639,253.53196 L 20267.095,269.08831 L 20388.717,228.07612 L 20421.244,237.97561 L 20438.214,221.00505 L 20455.185,230.90455 L 20465.084,218.17662 L 20484.883,229.49033 L 20496.197,219.59084 L 20514.582,230.90455 L 20538.624,215.3482 L 20548.523,223.83348 L 20564.079,212.51977 L 20593.778,223.83348 L 20616.405,225.24769 L 20692.773,216.76241"
- id="path3087"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="ccccccccccccccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 20658.831,250.70353 L 20709.744,239.38983 L 20725.3,236.5614 L 20849.751,211.10556 L 20868.135,219.59083 L 20974.201,196.96342 L 20988.343,205.4487 L 21150.978,198.37764 L 21166.534,209.69134 L 21347.554,191.30657"
- id="path3089"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccccccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 21336.24,235.14718 L 22099.915,52.713637 L 22180.526,78.169481 L 22391.243,72.512627 L 22508.623,124.83853 L 22604.79,122.0101"
- id="path3091"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 22618.932,138.98066 L 22833.892,161.60808 L 22862.176,194.13499 L 23020.568,205.4487 L 23111.078,226.6619 L 23289.269,247.87511 L 23386.849,219.59083"
- id="path3093"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="ccccccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 23405.234,239.38983 L 23494.33,243.63247 L 23556.555,266.25988 L 23587.668,262.01724"
- id="path3095"
- inkscape:connector-curvature="0"
- isEdge=""
- sodipodi:nodetypes="cccc" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 23606.053,291.71573 L 23760.202,294.54416 L 23888.895,253.53196 L 23987.89,243.63247 L 24167.495,198.37763 L 24299.017,175.75022 L 24678.027,122.01011"
- id="path3097"
- inkscape:connector-curvature="0"
- sodipodi:nodetypes="ccccccc"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24726.11,154.53701 L 24727.524,213.93398 L 24929.757,212.51977 L 24932.585,151.70859"
- id="path3114"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24823.691,216.76241 L 24823.691,305.85786"
- id="path3116"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25001.882,164.43651 L 24946.727,297.37258"
- id="path3118"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25010.367,170.09336 L 25074.006,295.95837"
- id="path3120"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24977.84,239.38983 L 25030.166,236.5614"
- id="path3122"
- inkscape:connector-curvature="0"
- isEdge="" />
-<image
- y="92.867966"
- x="47.666519"
- id="MyCar"
- xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Car.png"
- height="30"
- width="97" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25103.705,158.77965 L 25109.362,298.7868"
- id="path3124"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25112.19,168.67915 L 25180.072,290.30152 L 25177.244,171.50758"
- id="path3126"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25201.286,158.77965 L 25214.014,305.85786"
- id="path3130"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25276.239,179.99286 L 25212.599,237.97561 L 25294.624,287.47309"
- id="path3132"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24881.673,233.73297 L 24883.088,291.71573"
- id="path3134"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24885.916,260.60303 L 24907.129,260.60303"
- id="path3136"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24907.129,237.97561 L 24902.887,291.71573"
- id="path3138"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25337.05,75.341054 L 25427.56,181.40707 L 25573.224,69.6842"
- id="path3140"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25427.56,191.30657 L 25436.045,301.61522"
- id="path3142"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25505.342,212.51977 L 25518.07,317.17157 L 25614.236,301.61522 L 25636.863,213.93398 L 25626.964,184.2355 L 25519.484,191.30657"
- id="path3146"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25672.219,192.72078 L 25675.047,298.7868 L 25789.599,304.44365 L 25757.072,192.72078"
- id="path3148"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25990.417,68.269986 L 25857.481,71.098413 L 25853.238,161.60808 L 25959.304,194.13499 L 26021.53,253.53196 L 25973.446,286.05887 L 25882.937,295.95837"
- id="path3150"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26102.14,198.37763 L 26046.985,236.5614 L 26058.299,269.08831 L 26157.294,284.64466 L 26168.608,215.3482 L 26117.696,196.96342"
- id="path3152"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26188.407,185.64971 L 26318.514,195.54921"
- id="path3154"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26194.064,206.86292 L 26198.306,293.12994"
- id="path3156"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26209.62,237.97561 L 26284.573,236.5614"
- id="path3158"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26336.899,209.69134 L 26414.681,208.27713"
- id="path3160"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26370.84,221.00505 L 26375.083,277.57359"
- id="path3162"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 24719.039,130.49538 L 24768.536,136.15224 L 24786.921,124.83853 L 24809.549,131.9096 L 24907.129,107.86797 L 24914.2,112.11061 L 24945.313,96.554257 L 25020.266,93.72583 L 25129.161,64.027345 L 25198.457,80.997908 L 25310.18,66.855772 L 25404.932,92.311617 L 25477.057,85.240549 L 25503.927,97.968471 L 25570.395,73.92684"
- id="path3164"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 25590.194,93.72583 L 25716.059,78.169481 L 25761.314,99.382684 L 25841.924,66.855772"
- id="path3166"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26014.458,89.483189 L 26078.098,117.76746"
- id="path3168"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26089.412,137.56645 L 26164.365,163.02229"
- id="path3170"
- inkscape:connector-curvature="0"
- isEdge="" />
-<path
- style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
- d="M 26417.509,243.63247 L 26418.924,286.05887 L 26537.717,281.81623 L 26534.889,240.80404"
- id="path3172"
- inkscape:connector-curvature="0"
- isEdge="" />
-</g>
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="48000"
+   height="320"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="StageScene_LV1.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata2500">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:window-height="710"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="0.42740741"
+     inkscape:cx="19823.566"
+     inkscape:cy="656.26714"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:current-layer="layer3"
+     width="480px"
+     inkscape:window-maximized="0"
+     inkscape:snap-grids="true"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3290"
+       visible="true"
+       enabled="true"
+       empspacing="5"
+       snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="356.93383,2841.1933"
+       id="guide3805" />
+  </sodipodi:namedview>
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 500 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="1000 : 500 : 1"
+       inkscape:persp3d-origin="500 : 333.33333 : 1"
+       id="perspective2413" />
+    <inkscape:perspective
+       id="perspective2443"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3980"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3534"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-41" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-88">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-82" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-48">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-58" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-62" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-522">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-715" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-522-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-715-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6-57">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41-56">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43-55">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-45" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-75" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-02">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87-63">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2-88" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5-31" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65-59" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-34">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-07" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-57">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-50" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6-74">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6-74-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4-8-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7-0-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8-4-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4-0-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0-5-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6-0-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2-0-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4-5-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74-6-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18-7-7" />
+    </filter>
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="staticShapes"
+     inkscape:label="static"
+     style="display:inline"
+     transform="translate(0,-2880)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="boxes"
+     style="display:inline">
+    <image
+       y="45.081642"
+       x="36.971546"
+       id="MyBird"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bird.png"
+       height="48"
+       width="48" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 7.0190641,18.180244 C 7.0190641,18.180244 7.508484,19.634307 8.4271733,22.248493 9.3458627,24.862679 10.693821,28.636988 12.410899,33.27748 14.127977,37.917973 16.214173,43.424648 18.609339,49.503567 21.004504,55.582485 23.708637,62.233647 26.661589,69.163112 29.61454,76.092577 32.81631,83.300345 36.206747,90.492476 39.597184,97.684608 43.176289,104.8611 46.883911,111.72802 50.591532,118.59494 54.427671,125.15228 58.332176,131.10611 62.236681,137.05993 66.209553,142.41024 70.190641,146.86309 77.436585,154.96769 84.94945,163.18961 92.719038,171.37914 100.48863,179.56867 108.51494,187.72581 116.78778,195.70083 125.06062,203.67586 133.57998,211.46878 142.33568,218.92987 151.09137,226.39096 160.0834,233.52022 169.30156,240.16793 178.51972,246.81565 187.96402,252.98181 197.62425,258.51672 207.28448,264.05162 217.16065,268.95527 227.24256,273.07793 237.32446,277.20059 247.61211,280.54227 258.09531,282.95325"
+       id="path3990" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 258.09531,282.95325 C 268.5785,285.36423 279.25724,286.84451 290.12132,287.24437 301.41082,287.65989 312.19619,286.02626 322.6034,282.8411 333.01061,279.65594 343.03965,274.91925 352.8165,269.12864 362.59334,263.33804 372.11799,256.49352 381.51639,249.09272 390.91479,241.69192 400.18695,233.73482 409.45884,225.71906 418.73072,217.7033 428.00232,209.62887 437.3996,201.99339 446.79688,194.35791 456.31985,187.16138 466.09446,180.90143 475.86906,174.64147 485.89531,169.31809 496.29916,165.4289 506.70302,161.53971 517.48447,159.08471 528.76949,158.56153 541.46698,157.97286 553.7898,159.46892 565.83163,162.52858 577.87345,165.58825 589.63429,170.21151 601.20779,175.87725 612.7813,181.54299 624.16748,188.25121 635.46,195.48078 646.75252,202.71035 657.95139,210.46128 669.15026,218.21244 680.34914,225.9636 691.54802,233.715 702.84059,240.9455 714.13315,248.176 725.51939,254.88561 737.09299,260.5532 748.66658,266.2208 760.42752,270.84638 772.46947,273.90883 784.51143,276.97127 796.8344,278.47057 809.53206,277.88562 821.03489,277.35571 832.02699,274.99354 842.63594,271.25515 853.24489,267.51676 863.47069,262.40214 873.44092,256.36733 883.41114,250.33252 893.1258,243.37752 902.71245,235.95836 912.29911,228.5392 921.75777,220.65588 931.21601,212.76444 940.67425,204.87299 950.13207,196.97342 959.71705,189.52175 969.30202,182.07009 979.01415,175.06633 988.98102,168.9665 998.94788,162.86668 1009.1695,157.6708 1019.7734,153.83488 1030.3773,149.99897 1041.3635,147.52303 1052.8596,146.86309 1067.3181,146.03309 1081.3973,147.47032 1095.1924,150.61479 1108.9874,153.75927 1122.4982,158.611 1135.82,164.61001 1149.1418,170.60902 1162.2745,177.75532 1175.3132,185.48894 1188.3519,193.22255 1201.2967,201.54349 1214.2426,209.89177 1227.1886,218.24005 1240.1357,226.61568 1253.179,234.45869 1266.2224,242.3017 1279.362,249.61209 1292.693,255.8299 1306.024,262.0477 1319.5464,267.17292 1333.3553,270.64558 1347.1642,274.11824 1361.2596,275.93835 1375.7366,275.54593 1388.7298,275.19373 1401.2735,272.89711 1413.4801,269.14582 1425.6868,265.39454 1437.5563,260.18859 1449.2013,254.01775 1460.8462,247.84691 1472.2665,240.71117 1483.5747,233.1003 1494.8828,225.48944 1506.0788,217.40344 1517.275,209.33208 1528.4712,201.26072 1539.6677,193.204 1550.9769,185.65168 1562.2861,178.09937 1573.708,171.05145 1585.3551,164.99771 1597.0021,158.94396 1608.8743,153.88439 1621.0841,150.30875 1633.294,146.73311 1645.8414,144.6414 1658.8388,144.5234 1672.3693,144.40056 1685.4732,146.48034 1698.2566,150.19842 1711.04,153.9165 1723.5029,159.27288 1735.7514,165.70325 1747.9998,172.13361 1760.0339,179.63795 1771.9596,187.65195 1783.8853,195.66594 1795.7027,204.1896 1807.5178,212.65859 1819.3329,221.12758 1831.1457,229.5419 1843.0623,237.33724 1854.979,245.13257 1866.9994,252.30892 1879.2298,258.30197 1891.4601,264.29501 1903.9004,269.10474 1916.6566,272.16684 1929.4128,275.22894 1942.485,276.54341 1955.9792,275.54593 1965.6355,274.83214 1974.7453,272.48968 1983.4448,268.92056 1992.1442,265.35144 2000.4333,260.55566 2008.4481,254.93525 2016.463,249.31483 2024.2037,242.86978 2031.8063,236.0021 2039.4089,229.13442 2046.8735,221.84412 2054.3362,214.53322 2061.7989,207.22231 2069.2598,199.89081 2076.8549,192.94071 2084.45,185.99061 2092.1794,179.42193 2100.1793,173.63668 2108.1791,167.85142 2116.4494,162.8496 2125.1263,159.03323 2133.8032,155.21685 2142.8867,152.58592 2152.513,151.54246 2165.9107,150.09019 2179.0321,150.85193 2191.947,153.28027 2204.8619,155.70861 2217.5702,159.80356 2230.1415,165.01771 2242.7128,170.23186 2255.1472,176.56522 2267.5142,183.47037 2279.8813,190.37553 2292.181,197.85249 2304.483,205.35386 2316.7849,212.85522 2329.0892,220.38098 2341.4654,227.38375 2353.8416,234.38651 2366.2897,240.86627 2378.8793,246.27564 2391.4689,251.685 2404.2001,256.02397 2417.1424,258.74513 2430.0847,261.46629 2443.2382,262.56964 2456.6724,261.5078 2468.33,260.58638 2479.452,257.85142 2490.1727,253.76115 2500.8933,249.67088 2511.2126,244.2253 2521.2647,237.88263 2531.3167,231.53996 2541.1017,224.3002 2550.7537,216.62158 2560.4056,208.94296 2569.9247,200.82548 2579.445,192.72737 2588.9653,184.62925 2598.4869,176.5505 2608.144,168.94934 2617.801,161.34817 2627.5936,154.2246 2637.6559,148.03684 2647.7181,141.84909 2658.0501,136.59715 2668.786,132.73924 2679.5219,128.88134 2690.6617,126.41748 2702.3397,125.80589 2718.0887,124.98109 2733.3798,126.78296 2748.3272,130.55307 2763.2746,134.32317 2777.8784,140.0615 2792.2531,147.10961 2806.6277,154.15772 2820.7731,162.51561 2834.8037,171.52482 2848.8343,180.53403 2862.7502,190.19457 2876.6656,199.84799 2890.581,209.50141 2904.496,219.1477 2918.5251,228.12842 2932.5541,237.10914 2946.6971,245.42428 2961.0686,252.41541 2975.44,259.40653 2990.0398,265.07362 3004.9825,268.75825 3019.9251,272.44287 3035.2106,274.14502 3050.9532,273.20624 3064.2909,272.41088 3076.9801,269.46703 3089.1827,264.90692 3101.3852,260.34682 3113.101,254.17045 3124.4918,246.91005 3135.8827,239.64966 3146.9486,231.30522 3157.8513,222.40898 3168.7541,213.51273 3179.4936,204.06468 3190.2318,194.59703 3200.97,185.12939 3211.7068,175.64216 3222.6039,166.66757 3233.501,157.69297 3244.5586,149.23101 3255.9382,141.81392 3267.3179,134.39682 3279.0197,128.02458 3291.2054,123.22943 3303.3911,118.43428 3316.0608,115.21621 3329.3761,114.10745 3345.1133,112.79702 3360.5066,114.0345 3375.6419,117.18175 3390.7772,120.32899 3405.6545,125.38602 3420.3596,131.71467 3435.0647,138.04333 3449.5976,145.64362 3464.0443,153.87742 3478.491,162.11121 3492.8514,170.97851 3507.2114,179.84117 3521.5714,188.70383 3535.931,197.56186 3550.3761,205.77711 3564.8212,213.99237 3579.3518,221.56486 3594.0537,227.85644 3608.7556,234.14802 3623.6289,239.1587 3638.7594,242.25033 3653.89,245.34197 3669.2777,246.51456 3685.0086,245.12998 3699.066,243.89269 3712.4161,240.36586 3725.2366,235.13248 3738.057,229.8991 3750.3476,222.95916 3762.286,214.89566 3774.2245,206.83215 3785.8106,197.64508 3797.222,187.91743 3808.6334,178.18978 3819.87,167.92155 3831.1093,157.69573 3842.3486,147.46991 3853.5906,137.2865 3865.0128,127.72849 3876.435,118.17048 3888.0373,109.23786 3899.9974,101.51363 3911.9574,93.789396 3924.2752,87.273549 3937.128,82.549075 3949.9809,77.8246 3963.3689,74.891499 3977.4696,74.332757 3992.7183,73.728523 4007.4019,75.764084 4021.6618,79.788579 4035.9217,83.813075 4049.758,89.826505 4063.312,97.17801 4076.8661,104.52951 4090.138,113.2191 4103.2691,122.59589 4116.4002,131.97269 4129.3906,142.0367 4142.3818,152.13707 4155.373,162.23743 4168.3649,172.37416 4181.499,181.89637 4194.6331,191.41859 4207.9094,200.32631 4221.4695,207.96866 4235.0295,215.61101 4248.8732,221.988 4263.1421,226.44877 4277.411,230.90954 4292.105,233.45408 4307.3657,233.43154 4322.7566,233.40881 4337.5675,230.90797 4351.9433,226.54407 4366.3191,222.18017 4380.2599,215.95321 4393.9105,208.47824 4407.5612,201.00327 4420.9217,192.28028 4434.1371,182.92432 4447.3525,173.56836 4460.4228,163.57944 4473.4928,153.57259 4486.5629,143.56574 4499.6328,133.54097 4512.8474,124.11332 4526.062,114.68568 4539.4214,105.85515 4553.0705,98.236796 4566.7196,90.618442 4580.6584,84.212256 4595.0319,79.633286 4609.4054,75.054317 4624.2136,72.302562 4639.6014,71.993069 4657.3656,71.63578 4674.5749,74.129645 4691.3677,78.755819 4708.1606,83.381993 4724.537,90.140476 4740.6356,98.312419 4756.7342,106.48436 4772.555,116.06977 4788.2364,126.34979 4803.9179,136.62981 4819.46,147.60444 4835.0015,158.55484 4850.5429,169.50524 4866.0835,180.43141 4881.762,190.6145 4897.4404,200.79759 4913.2566,210.2376 4929.3492,218.21569 4945.4418,226.19377 4961.8108,232.70993 4978.5946,237.04531 4995.3784,241.3807 5012.5771,243.53531 5030.3293,242.7903 5046.4982,242.11174 5061.9406,238.7849 5076.8382,233.47368 5091.7358,228.16247 5106.0887,220.86688 5120.0784,212.25083 5134.0681,203.63477 5147.6947,193.69825 5161.1399,183.10517 5174.5851,172.51209 5187.8489,161.26244 5201.113,150.02014 5214.3771,138.77784 5227.6414,127.54288 5241.0877,116.97917 5254.5341,106.41546 5268.1624,96.522999 5282.1543,87.965692 5296.1463,79.408385 5310.502,72.186232 5325.4029,66.963139 5340.3039,61.740045 5355.7503,58.516011 5371.9237,57.954941 5390.7594,57.301514 5408.967,59.845914 5426.7034,64.785161 5444.4398,69.724408 5461.705,77.058503 5478.6558,85.984466 5495.6066,94.910429 5512.2431,105.42826 5528.7221,116.73498 5545.2012,128.0417 5561.5228,140.13731 5577.8438,152.21883 5594.1648,164.30034 5610.4852,176.36777 5626.962,187.61812 5643.4387,198.86848 5660.0717,209.30177 5677.018,218.115 5693.9642,226.92824 5711.2237,234.12142 5728.9532,238.89158 5746.6827,243.66174 5764.8823,246.00886 5783.7088,245.12998 5799.1936,244.4071 5813.9162,241.059 5828.0672,235.74302 5842.2181,230.42704 5855.7975,223.14318 5868.9958,214.54877 5882.1942,205.95436 5895.0115,196.0494 5907.6384,185.49123 5920.2653,174.93305 5932.7018,163.72167 5945.1385,152.51441 5957.5752,141.30715 5970.012,130.10401 5982.6397,119.56233 5995.2673,109.02065 6008.0857,99.140428 6021.2856,90.578999 6034.4854,82.01757 6048.0666,74.774935 6062.2197,69.508428 6076.3729,64.241921 6091.0981,60.951543 6106.5858,60.294629 6126.4565,59.451812 6145.6367,61.993287 6164.2995,67.082446 6182.9622,72.171605 6201.1074,79.808447 6218.9079,89.156366 6236.7084,98.504285 6254.1642,109.56328 6271.4482,121.49674 6288.7322,133.43021 6305.8444,146.23814 6322.9575,159.08393 6340.0707,171.92972 6357.1849,184.81337 6374.473,196.89828 6391.7611,208.98318 6409.2231,220.26933 6427.0319,229.92013 6444.8406,239.57093 6462.9961,247.58638 6481.6711,253.12986 6500.3462,258.67334 6519.5409,261.74486 6539.428,261.5078 6558.1302,261.28487 6576.1081,258.0857 6593.5425,252.6484 6610.9769,247.21111 6627.868,239.53569 6644.3966,230.36026 6660.9251,221.18483 6677.0913,210.50939 6693.0759,199.07205 6709.0606,187.63472 6724.8638,175.43549 6740.6664,163.21248 6756.4691,150.98947 6772.2712,138.74268 6788.2537,127.21023 6804.2363,115.67778 6820.3993,104.85966 6836.9237,95.493992 6853.4481,86.128325 6870.3338,78.215109 6887.762,72.492458 6905.1901,66.769807 6923.1606,63.237722 6941.8544,62.634317 6963.9125,61.922319 6985.3422,64.724132 7006.3004,70.153016 7027.2586,75.581899 7047.7452,83.637853 7067.9169,93.434137 7088.0887,103.23042 7107.9455,114.76704 7127.6442,127.15724 7147.3428,139.54745 7166.8833,152.79125 7186.4223,166.0019 7205.9613,179.21254 7225.4989,192.39004 7245.1917,204.64765 7264.8845,216.90526 7284.7325,228.24299 7304.8924,237.77408 7325.0524,247.30517 7345.5243,255.02964 7366.4649,260.06073 7387.4054,265.09183 7408.8146,267.42956 7430.8492,266.18718 7443.8765,265.45266 7456.2944,262.58819 7468.2554,258.12991 7480.2165,253.67162 7491.7207,247.61952 7502.9206,240.50972 7514.1204,233.39993 7525.0159,225.23245 7535.7596,216.54342 7546.5033,207.85438 7557.0952,198.64379 7567.6878,189.44777 7578.2803,180.25176 7588.8736,171.07031 7599.6201,162.43957 7610.3665,153.80883 7621.2662,145.7288 7632.4716,138.7356 7643.677,131.74239 7655.1881,125.83603 7667.1574,121.55263 7679.1268,117.26923 7691.5544,114.60879 7704.5927,114.10745 7720.2414,113.50574 7735.3578,115.5157 7750.0752,119.49233 7764.7926,123.46896 7779.111,129.41226 7793.1637,136.67723 7807.2163,143.94219 7821.0032,152.52883 7834.6575,161.79213 7848.3118,171.05544 7861.8336,180.99541 7875.3561,190.96704 7888.8786,200.93868 7902.4018,210.94198 7916.0589,220.33195 7929.716,229.72192 7943.5071,238.49855 7957.5654,246.01684 7971.6237,253.53513 7985.9491,259.79509 8000.675,264.15171 8015.4008,268.50833 8030.5271,270.96161 8046.1871,270.86655 8062.5832,270.76702 8078.3876,268.0876 8093.7483,263.47139 8109.1091,258.85518 8124.026,252.30219 8138.6472,244.45551 8153.2683,236.60884 8167.5936,227.46848 8181.7709,217.67755 8195.9482,207.88663 8209.9776,197.44512 8224.0069,186.99616 8238.0362,176.54719 8252.0654,166.09075 8266.2424,156.26996 8280.4195,146.44917 8294.7443,137.26402 8309.3649,129.35761 8323.9854,121.45121 8338.9017,114.82355 8354.2615,110.11775 8369.6214,105.41194 8385.4248,102.628 8401.8197,102.40901 8417.2696,102.20265 8432.2266,104.40157 8446.8138,108.40593 8461.401,112.41029 8475.6185,118.22009 8489.5895,125.23548 8503.5605,132.25087 8517.2851,140.47186 8530.8865,149.29858 8544.4878,158.1253 8557.966,167.55777 8571.4442,176.99613 8584.9224,186.43449 8598.4007,195.87874 8612.0023,204.72904 8625.6039,213.57934 8639.3288,221.83568 8653.3003,228.89822 8667.2718,235.96076 8681.4899,241.8295 8696.0779,245.90459 8710.6658,249.97968 8725.6236,252.26111 8741.0745,252.14905 8759.308,252.0168 8776.9193,249.12161 8794.064,244.14932 8811.2087,239.17704 8827.8866,232.12767 8844.2534,223.68709 8860.6201,215.24651 8876.6756,205.41471 8892.5753,194.87757 8908.4751,184.34043 8924.2191,173.09795 8939.9627,161.83599 8955.7064,150.57403 8971.4497,139.2926 8987.3482,128.67756 9003.2468,118.06253 9019.3004,108.11388 9035.6647,99.517505 9052.029,90.921128 9068.7039,83.677016 9085.8448,78.471038 9102.9858,73.265061 9120.5928,70.097219 9138.8214,69.653381 9157.4076,69.200837 9175.4941,71.483378 9193.2059,75.82101 9210.9178,80.158642 9228.2549,86.551364 9245.3424,94.319182 9262.4299,102.087 9279.2677,111.22991 9295.9808,121.06793 9312.6938,130.90594 9329.2822,141.43905 9345.8709,151.98727 9362.4595,162.53549 9379.0484,173.09881 9395.7626,182.99725 9412.4767,192.89568 9429.3161,202.12922 9446.4058,210.01788 9463.4954,217.90653 9480.8353,224.45031 9498.5504,228.9692 9516.2654,233.48809 9534.3557,235.9821 9552.9462,235.77123 9570.546,235.5716 9587.6143,232.84058 9604.2841,228.21234 9620.9539,223.5841 9637.2251,217.05865 9653.2305,209.27017 9669.236,201.48168 9684.9758,192.43017 9700.5828,182.7498 9716.1897,173.06944 9731.6638,162.76023 9747.138,152.45635 9762.6122,142.15247 9778.0864,131.85392 9793.6936,122.19488 9809.3007,112.53585 9825.0408,103.51633 9841.0466,95.770507 9857.0525,88.024684 9873.3242,81.552557 9889.9945,76.988309 9906.6648,72.424061 9923.7338,69.767691 9941.3344,69.653381 9959.9991,69.53216 9978.1354,72.136082 9995.8753,76.782488 10013.615,81.428894 10030.959,88.117785 10048.038,96.166503 10065.117,104.21522 10081.932,113.62377 10098.615,123.70948 10115.298,133.79519 10131.848,144.55808 10148.399,155.31547 10164.95,166.07286 10181.5,176.82477 10198.183,186.88853 10214.865,196.95228 10231.68,206.32789 10248.759,214.3327 10265.838,222.3375 10283.181,228.97151 10300.92,233.55204 10318.659,238.13258 10336.795,240.65966 10355.459,240.45061 10374.621,240.23598 10393.178,237.23747 10411.281,232.14809 10429.385,227.05871 10447.034,219.87845 10464.381,211.30033 10481.728,202.72221 10498.772,192.74622 10515.665,182.06538 10532.558,171.38455 10549.299,159.99886 10566.04,148.60133 10582.781,137.2038 10599.522,125.79443 10616.414,115.06622 10633.306,104.33802 10650.349,94.290986 10667.695,85.618132 10685.04,76.945278 10702.688,69.646604 10720.789,64.41512 10738.89,59.183637 10757.444,56.019344 10776.603,55.615253 10796.476,55.196096 10815.843,57.64749 10834.831,62.250786 10853.818,66.854081 10872.425,73.609277 10890.779,81.797723 10909.133,89.986169 10927.234,99.607864 10945.209,109.94416 10963.183,120.28045 10981.03,131.33135 10998.878,142.37819 11016.725,153.42503 11034.573,164.46782 11052.547,174.78791 11070.521,185.108 11088.621,194.70539 11106.974,202.86142 11125.328,211.01745 11143.934,217.73213 11162.92,222.28681 11181.906,226.84148 11201.272,229.23615 11221.144,228.75217 11239.366,228.30836 11256.997,225.1118 11274.184,219.86708 11291.37,214.62237 11308.113,207.32951 11324.56,198.69311 11341.007,190.05671 11357.158,180.07677 11373.16,169.45791 11389.163,158.83904 11405.017,147.58124 11420.872,136.38912 11436.726,125.197 11452.58,114.07056 11468.581,103.71441 11484.583,93.358261 11500.732,83.772399 11517.176,75.661434 11533.621,67.550469 11550.361,60.914402 11567.544,56.457842 11584.727,52.001281 11602.353,49.724227 11620.571,50.331289 11640.603,50.998827 11659.767,54.943428 11678.279,61.344355 11696.79,67.745281 11714.65,76.602534 11732.076,87.095376 11749.501,97.588217 11766.492,109.71665 11783.266,122.65993 11800.04,135.60321 11816.597,149.36135 11833.154,163.1136 11849.711,176.86585 11866.268,190.61221 11883.043,203.53195 11899.817,216.4517 11916.809,228.54482 11934.236,238.99058 11951.663,249.43634 11969.525,258.23474 11988.039,264.56505 12006.553,270.89536 12025.719,274.75757 12045.754,275.33095 12065.611,275.89922 12084.794,273.14752 12103.472,267.90647 12122.151,262.66541 12140.324,254.93499 12158.16,245.5458 12175.997,236.15661 12193.496,225.10865 12210.828,213.23251 12228.159,201.35638 12245.322,188.65207 12262.485,175.95019 12279.648,163.2483 12296.811,150.54883 12314.142,138.68238 12331.473,126.81593 12348.972,115.7825 12366.808,106.41268 12384.644,97.042855 12402.816,89.336644 12421.494,84.124639 12440.171,78.912633 12459.353,76.194835 12479.209,76.801837 12497.488,77.360647 12517.247,81.011023 12537.829,86.971342 12558.411,92.931661 12579.816,101.20192 12601.391,111.0005 12622.965,120.79908 12644.707,132.12599 12665.963,144.19958 12687.218,156.27318 12707.987,169.09348 12727.613,181.87885 12747.239,194.66422 12765.722,207.41466 12782.408,219.34856 12799.093,231.28246 12813.981,242.3998 12826.416,251.91898 12838.85,261.43816 12860.413,271.01357 12867.285,276.55478 12874.158,282.09599 12914.319,288.56623 12914.319,288.56623"
+       id="path3986" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 12914.656,289.3176 C 12925.139,291.7286 12935.818,293.2089 12946.682,293.6088 12957.972,294.0243 12968.757,292.3907 12979.164,289.2055 12989.572,286.0203 12999.601,281.2836 13009.377,275.493 13019.154,269.7024 13028.679,262.8579 13038.077,255.4571 13047.476,248.0563 13056.748,240.0992 13066.02,232.0835 13075.292,224.0677 13084.563,215.9933 13093.961,208.3578 13103.358,200.7223 13112.881,193.5258 13122.655,187.26582 13132.43,181.00586 13142.456,175.68248 13152.86,171.79329 13163.264,167.9041 13174.045,165.4491 13185.33,164.92592 13198.028,164.33725 13210.351,165.83331 13222.393,168.89297 13234.434,171.95264 13246.195,176.5759 13257.769,182.24164 13269.342,187.90738 13280.728,194.6156 13292.021,201.8452 13303.313,209.0747 13314.512,216.8257 13325.711,224.5768 13336.91,232.328 13348.109,240.0794 13359.402,247.3099 13370.694,254.5404 13382.08,261.25 13393.654,266.9176 13405.228,272.5852 13416.988,277.2108 13429.03,280.2732 13441.072,283.3357 13453.395,284.835 13466.093,284.25 13477.596,283.7201 13488.588,281.3579 13499.197,277.6195 13509.806,273.8812 13520.032,268.7665 13530.002,262.7317 13539.972,256.6969 13549.687,249.7419 13559.273,242.3228 13568.86,234.9036 13578.319,227.0203 13587.777,219.1288 13597.235,211.2374 13606.693,203.3378 13616.278,195.8861 13625.863,188.43448 13635.575,181.43072 13645.542,175.33089 13655.509,169.23107 13665.73,164.03519 13676.334,160.19927 13686.938,156.36336 13697.924,153.88742 13709.421,153.22748 13723.879,152.39748 13737.958,153.83471 13751.753,156.97918 13765.548,160.12366 13779.059,164.97539 13792.381,170.9744 13805.703,176.97341 13818.835,184.11971 13831.874,191.8533 13844.913,199.5869 13857.858,207.9079 13870.804,216.2562 13883.75,224.6044 13896.697,232.9801 13909.74,240.8231 13922.783,248.6661 13935.923,255.9765 13949.254,262.1943 13962.585,268.4121 13976.108,273.5373 13989.916,277.01 14003.725,280.4826 14017.821,282.3027 14032.298,281.9103 14045.291,281.5581 14057.835,279.2615 14070.041,275.5102 14082.248,271.7589 14094.117,266.553 14105.762,260.3821 14117.407,254.2113 14128.828,247.0756 14140.136,239.4647 14151.444,231.8538 14162.64,223.7678 14173.836,215.6965 14185.032,207.6251 14196.229,199.5684 14207.538,192.0161 14218.847,184.46376 14230.269,177.41584 14241.916,171.3621 14253.563,165.30835 14265.435,160.24878 14277.645,156.67314 14289.855,153.0975 14302.403,151.00579 14315.4,150.88779 14328.93,150.76495 14342.034,152.84473 14354.818,156.56281 14367.601,160.28089 14380.064,165.63727 14392.313,172.06764 14404.561,178.498 14416.595,186.00234 14428.521,194.0163 14440.446,202.0303 14452.264,210.554 14464.079,219.023 14475.894,227.492 14487.707,235.9063 14499.623,243.7016 14511.54,251.497 14523.561,258.6733 14535.791,264.6664 14548.021,270.6594 14560.462,275.4691 14573.218,278.5312 14585.974,281.5933 14599.046,282.9078 14612.54,281.9103 14622.197,281.1965 14631.306,278.8541 14640.006,275.285 14648.705,271.7158 14656.994,266.9201 14665.009,261.2996 14673.024,255.6792 14680.765,249.2342 14688.367,242.3665 14695.97,235.4988 14703.435,228.2085 14710.897,220.8976 14718.36,213.5867 14725.821,206.2552 14733.416,199.3051 14741.011,192.355 14748.741,185.78632 14756.74,180.00107 14764.74,174.21581 14773.011,169.21399 14781.687,165.39762 14790.364,161.58124 14799.448,158.95031 14809.074,157.90685 14822.472,156.45458 14835.593,157.21632 14848.508,159.64466 14861.423,162.073 14874.131,166.16795 14886.703,171.3821 14899.274,176.59625 14911.708,182.92961 14924.075,189.8348 14936.442,196.7399 14948.742,204.2169 14961.044,211.7183 14973.346,219.2196 14985.65,226.7454 14998.027,233.7481 15010.403,240.7509 15022.851,247.2307 15035.44,252.64 15048.03,258.0494 15060.761,262.3884 15073.704,265.1095 15086.646,267.8307 15099.799,268.934 15113.234,267.8722 15124.891,266.9508 15136.013,264.2158 15146.734,260.1255 15157.454,256.0353 15167.774,250.5897 15177.826,244.247 15187.878,237.9044 15197.663,230.6646 15207.315,222.986 15216.967,215.3074 15226.486,207.1899 15236.006,199.0918 15245.526,190.9936 15255.048,182.91489 15264.705,175.31373 15274.362,167.71256 15284.155,160.58899 15294.217,154.40123 15304.279,148.21348 15314.611,142.96154 15325.347,139.10363 15336.083,135.24573 15347.223,132.78187 15358.901,132.17028 15374.65,131.34548 15389.941,133.14735 15404.888,136.91746 15419.836,140.68756 15434.44,146.42589 15448.814,153.474 15463.189,160.52211 15477.334,168.88 15491.365,177.88921 15505.395,186.89842 15519.311,196.559 15533.227,206.2124 15547.142,215.8658 15561.057,225.5121 15575.086,234.4928 15589.115,243.4735 15603.258,251.7887 15617.63,258.7798 15632.001,265.7709 15646.601,271.438 15661.544,275.1226 15676.486,278.8073 15691.772,280.5094 15707.514,279.5706 15720.852,278.7753 15733.541,275.8314 15745.744,271.2713 15757.946,266.7112 15769.662,260.5348 15781.053,253.2744 15792.444,246.0141 15803.51,237.6696 15814.412,228.7734 15825.315,219.8771 15836.055,210.4291 15846.793,200.9614 15857.531,191.4938 15868.268,182.00655 15879.165,173.03196 15890.062,164.05736 15901.12,155.5954 15912.499,148.17831 15923.879,140.76121 15935.581,134.38897 15947.767,129.59382 15959.952,124.79867 15972.622,121.5806 15985.937,120.47184 16001.674,119.16141 16017.068,120.39889 16032.203,123.54614 16047.338,126.69338 16062.216,131.75041 16076.921,138.07906 16091.626,144.40772 16106.159,152.00801 16120.605,160.24181 16135.052,168.4756 16149.413,177.3429 16163.773,186.20556 16178.133,195.0682 16192.492,203.9263 16206.937,212.1415 16221.382,220.3568 16235.913,227.9293 16250.615,234.2208 16265.317,240.5124 16280.19,245.5231 16295.321,248.6147 16310.451,251.7064 16325.839,252.879 16341.57,251.4944 16355.627,250.2571 16368.977,246.7303 16381.798,241.4969 16394.618,236.2635 16406.909,229.3236 16418.847,221.2601 16430.786,213.1965 16442.372,204.0095 16453.783,194.2818 16465.195,184.55417 16476.431,174.28594 16487.67,164.06012 16498.91,153.8343 16510.152,143.65089 16521.574,134.09288 16532.996,124.53487 16544.598,115.60225 16556.559,107.87802 16568.519,100.15378 16580.836,93.637936 16593.689,88.913456 16606.542,84.188986 16619.93,81.255886 16634.031,80.697146 16649.279,80.092906 16663.963,82.128466 16678.223,86.152966 16692.483,90.177456 16706.319,96.19089 16719.873,103.5424 16733.427,110.8939 16746.699,119.58349 16759.83,128.96028 16772.961,138.33708 16785.952,148.40109 16798.943,158.50146 16811.934,168.60182 16824.926,178.73855 16838.06,188.26076 16851.194,197.783 16864.471,206.6907 16878.031,214.3331 16891.591,221.9754 16905.434,228.3524 16919.703,232.8132 16933.972,237.2739 16948.666,239.8185 16963.927,239.7959 16979.318,239.7732 16994.129,237.2724 17008.504,232.9085 17022.88,228.5446 17036.821,222.3176 17050.472,214.8426 17064.122,207.3677 17077.483,198.6447 17090.698,189.28871 17103.914,179.93275 17116.984,169.94383 17130.054,159.93698 17143.124,149.93013 17156.194,139.90536 17169.409,130.47771 17182.623,121.05007 17195.983,112.21954 17209.632,104.60118 17223.281,96.98283 17237.22,90.576636 17251.593,85.997666 17265.967,81.418706 17280.775,78.666946 17296.163,78.357456 17313.927,78.000166 17331.136,80.494026 17347.929,85.120206 17364.722,89.746376 17381.098,96.50486 17397.197,104.67681 17413.295,112.84875 17429.116,122.43416 17444.798,132.71418 17460.479,142.9942 17476.021,153.96883 17491.563,164.91923 17507.104,175.86963 17522.645,186.7958 17538.323,196.9789 17554.002,207.162 17569.818,216.602 17585.91,224.5801 17602.003,232.5582 17618.372,239.0743 17635.156,243.4097 17651.94,247.7451 17669.138,249.8997 17686.89,249.1547 17703.059,248.4761 17718.502,245.1493 17733.399,239.8381 17748.297,234.5269 17762.65,227.2313 17776.64,218.6152 17790.629,209.9992 17804.256,200.0626 17817.701,189.4696 17831.146,178.87648 17844.41,167.62683 17857.674,156.38453 17870.938,145.14223 17884.203,133.90727 17897.649,123.34356 17911.095,112.77985 17924.724,102.88739 17938.715,94.33008 17952.707,85.772766 17967.063,78.550616 17981.964,73.327526 17996.865,68.104426 18012.311,64.880396 18028.485,64.319326 18047.321,63.665896 18065.528,66.210296 18083.265,71.149546 18101.001,76.088796 18118.266,83.422886 18135.217,92.348846 18152.168,101.27482 18168.804,111.79265 18185.283,123.09937 18201.762,134.40609 18218.084,146.5017 18234.405,158.58322 18250.726,170.66473 18267.046,182.73216 18283.523,193.9825 18300,205.2329 18316.633,215.6662 18333.579,224.4794 18350.525,233.2926 18367.785,240.4858 18385.514,245.256 18403.244,250.0261 18421.443,252.3733 18440.27,251.4944 18455.755,250.7715 18470.477,247.4234 18484.628,242.1074 18498.779,236.7914 18512.359,229.5076 18525.557,220.9132 18538.755,212.3188 18551.573,202.4138 18564.2,191.8556 18576.826,181.29744 18589.263,170.08606 18601.7,158.8788 18614.136,147.67154 18626.573,136.4684 18639.201,125.92672 18651.828,115.38504 18664.647,105.50482 18677.847,96.94339 18691.047,88.381956 18704.628,81.139316 18718.781,75.872816 18732.934,70.606306 18747.659,67.315926 18763.147,66.659016 18783.018,65.816196 18802.198,68.357676 18820.861,73.446826 18839.523,78.535986 18857.669,86.172836 18875.469,95.52075 18893.27,104.86867 18910.725,115.92767 18928.009,127.86113 18945.293,139.7946 18962.406,152.60253 18979.519,165.44832 18996.632,178.29411 19013.746,191.1778 19031.034,203.2627 19048.322,215.3476 19065.784,226.6337 19083.593,236.2845 19101.402,245.9353 19119.557,253.9508 19138.232,259.4943 19156.907,265.0377 19176.102,268.1093 19195.989,267.8722 19214.691,267.6493 19232.669,264.4501 19250.104,259.0128 19267.538,253.5755 19284.429,245.9001 19300.958,236.7247 19317.486,227.5492 19333.652,216.8738 19349.637,205.4364 19365.622,193.9991 19381.425,181.79988 19397.228,169.57687 19413.03,157.35386 19428.832,145.10707 19444.815,133.57462 19460.797,122.04217 19476.96,111.22405 19493.485,101.85838 19510.009,92.492706 19526.895,84.579496 19544.323,78.856846 19561.751,73.134196 19579.722,69.602106 19598.416,68.998706 19620.474,68.286706 19641.903,71.088516 19662.862,76.517396 19683.82,81.946286 19704.307,90.002236 19724.479,99.79853 19744.65,109.59481 19764.507,121.13143 19784.206,133.52163 19803.904,145.91184 19823.445,159.15564 19842.984,172.36629 19862.523,185.57693 19882.061,198.7544 19901.753,211.012 19921.446,223.2697 19941.294,234.6074 19961.454,244.1385 19981.614,253.6696 20002.086,261.394 20023.027,266.4251 20043.967,271.4562 20065.376,273.794 20087.411,272.5516 20100.438,271.8171 20112.856,268.9526 20124.817,264.4943 20136.778,260.036 20148.282,253.9839 20159.482,246.8741 20170.682,239.7643 20181.578,231.5968 20192.321,222.9078 20203.065,214.2188 20213.657,205.0082 20224.249,195.8122 20234.842,186.61615 20245.435,177.4347 20256.182,168.80396 20266.928,160.17322 20277.828,152.09319 20289.033,145.09999 20300.239,138.10678 20311.75,132.20042 20323.719,127.91702 20335.688,123.63362 20348.116,120.97318 20361.154,120.47184 20376.803,119.87013 20391.919,121.88009 20406.637,125.85672 20421.354,129.83335 20435.673,135.77665 20449.725,143.04162 20463.778,150.30658 20477.565,158.89322 20491.219,168.15652 20504.873,177.41983 20518.395,187.3598 20531.918,197.3314 20545.44,207.3031 20558.963,217.3064 20572.621,226.6963 20586.278,236.0863 20600.069,244.8629 20614.127,252.3812 20628.185,259.8995 20642.511,266.1595 20657.237,270.5161 20671.962,274.8727 20687.089,277.326 20702.749,277.2309 20719.145,277.1314 20734.949,274.452 20750.31,269.8358 20765.671,265.2196 20780.588,258.6666 20795.209,250.8199 20809.83,242.9732 20824.155,233.8329 20838.333,224.0419 20852.51,214.251 20866.539,203.8095 20880.569,193.3606 20894.598,182.91158 20908.627,172.45514 20922.804,162.63435 20936.981,152.81356 20951.306,143.62841 20965.927,135.722 20980.547,127.8156 20995.463,121.18794 21010.823,116.48214 21026.183,111.77633 21041.986,108.99239 21058.381,108.7734 21073.831,108.56704 21088.788,110.76596 21103.375,114.77032 21117.963,118.77468 21132.18,124.58448 21146.151,131.59987 21160.122,138.61526 21173.847,146.83625 21187.448,155.66297 21201.049,164.48969 21214.528,173.92216 21228.006,183.36052 21241.484,192.7989 21254.962,202.2431 21268.564,211.0934 21282.166,219.9437 21295.89,228.2001 21309.862,235.2626 21323.833,242.3252 21338.052,248.1939 21352.64,252.269 21367.227,256.3441 21382.185,258.6255 21397.636,258.5134 21415.87,258.3812 21433.481,255.486 21450.626,250.5137 21467.77,245.5414 21484.448,238.4921 21500.815,230.0515 21517.182,221.6109 21533.237,211.7791 21549.137,201.242 21565.037,190.7048 21580.781,179.46234 21596.524,168.20038 21612.268,156.93842 21628.011,145.65699 21643.91,135.04195 21659.808,124.42692 21675.862,114.47827 21692.226,105.88189 21708.591,97.28552 21725.266,90.041396 21742.406,84.835426 21759.547,79.629446 21777.154,76.461606 21795.383,76.017766 21813.969,75.565226 21832.056,77.847766 21849.768,82.185396 21867.479,86.523026 21884.817,92.915746 21901.904,100.68357 21918.992,108.45139 21935.829,117.5943 21952.542,127.43232 21969.255,137.27033 21985.844,147.80344 22002.433,158.35166 22019.021,168.89988 22035.61,179.4632 22052.324,189.3616 22069.038,199.2601 22085.878,208.4936 22102.967,216.3823 22120.057,224.2709 22137.397,230.8147 22155.112,235.3336 22172.827,239.8525 22190.917,242.3465 22209.508,242.1356 22227.108,241.936 22244.176,239.205 22260.846,234.5767 22277.516,229.9485 22293.787,223.423 22309.792,215.6346 22325.798,207.8461 22341.537,198.7946 22357.144,189.11419 22372.751,179.43383 22388.225,169.12462 22403.7,158.82074 22419.174,148.51686 22434.648,138.21831 22450.255,128.55927 22465.862,118.90024 22481.602,109.88072 22497.608,102.1349 22513.614,94.38907 22529.886,87.916946 22546.556,83.352696 22563.226,78.788446 22580.295,76.132076 22597.896,76.017766 22616.561,75.896546 22634.697,78.500466 22652.437,83.146876 22670.177,87.793276 22687.521,94.48217 22704.6,102.53089 22721.679,110.57961 22738.494,119.98816 22755.177,130.07387 22771.86,140.15958 22788.41,150.92247 22804.961,161.67986 22821.512,172.43725 22838.062,183.18916 22854.745,193.2529 22871.427,203.3167 22888.242,212.6923 22905.321,220.6971 22922.4,228.7019 22939.743,235.3359 22957.482,239.9164 22975.221,244.497 22993.357,247.0241 23012.021,246.815 23031.183,246.6004 23049.74,243.6019 23067.843,238.5125 23085.947,233.4231 23103.596,226.2428 23120.943,217.6647 23138.29,209.0866 23155.334,199.1106 23172.227,188.42977 23189.12,177.74894 23205.861,166.36325 23222.602,154.96572 23239.343,143.56819 23256.084,132.15882 23272.976,121.43061 23289.868,110.70241 23306.911,100.65537 23324.257,91.982516 23341.602,83.309666 23359.25,76.010986 23377.351,70.779506 23395.452,65.548026 23414.006,62.383726 23433.165,61.979636 23453.038,61.560476 23472.405,64.011876 23491.393,68.615166 23510.38,73.218466 23528.987,79.973666 23547.341,88.162106 23565.695,96.35056 23583.796,105.97225 23601.771,116.30855 23619.745,126.64484 23637.592,137.69574 23655.44,148.74258 23673.287,159.78942 23691.135,170.83221 23709.109,181.1523 23727.083,191.4724 23745.183,201.0698 23763.536,209.2258 23781.89,217.3818 23800.496,224.0965 23819.482,228.6512 23838.468,233.2059 23857.834,235.6005 23877.706,235.1166 23895.928,234.6728 23913.559,231.4762 23930.746,226.2315 23947.932,220.9868 23964.675,213.6939 23981.122,205.0575 23997.569,196.4211 24013.72,186.44116 24029.722,175.8223 24045.725,165.20343 24061.579,153.94563 24077.434,142.75351 24093.288,131.56139 24109.142,120.43495 24125.143,110.0788 24141.145,99.72265 24157.294,90.136786 24173.738,82.025816 24190.183,73.914856 24206.923,67.278786 24224.106,62.822226 24241.289,58.365666 24258.915,56.088616 24277.133,56.695676 24297.165,57.363216 24316.329,61.307816 24334.841,67.708736 24353.352,74.109666 24371.212,82.966916 24388.638,93.459756 24406.063,103.95261 24423.054,116.08104 24439.828,129.02432 24456.602,141.9676 24473.159,155.72574 24489.716,169.47799 24506.273,183.23024 24522.83,196.9766 24539.605,209.8963 24556.379,222.8161 24573.371,234.9092 24590.798,245.355 24608.225,255.8007 24626.087,264.5991 24644.601,270.9294 24663.115,277.2598 24682.281,281.122 24702.316,281.6953 24722.173,282.2636 24741.356,279.5119 24760.034,274.2709 24778.713,269.0298 24796.886,261.2994 24814.722,251.9102 24832.559,242.521 24850.058,231.473 24867.39,219.5969 24884.721,207.7208 24901.884,195.0165 24919.047,182.31458 24936.21,169.61269 24953.373,156.91322 24970.704,145.04677 24988.035,133.18032 25005.534,122.14689 25023.37,112.77707 25041.206,103.40724 25059.378,95.70103 25078.056,90.489026 25096.733,85.277016 25115.915,82.559216 25135.771,83.166226 25154.05,83.725036 25173.809,87.375406 25194.391,93.335726 25214.973,99.29605 25236.378,107.56631 25257.953,117.36489 25279.527,127.16347 25301.269,138.49038 25322.525,150.56397 25343.78,162.63757 25364.549,175.45787 25384.175,188.24324 25403.801,201.0286 25422.284,213.7791 25438.97,225.713 25455.655,237.6469 25470.543,248.7642 25482.978,258.2834 25495.412,267.8026 25516.975,277.378 25523.847,282.9192 25530.72,288.4604 25570.881,294.9306 25570.881,294.9306"
+       id="path3986-2" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2)"
+       y="143.52229"
+       x="597.78589"
+       id="image3507-4-88-6-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7)"
+       y="52.529789"
+       x="1353.851"
+       id="image3507-4-88-6-7-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8)"
+       y="169.99284"
+       x="647.41809"
+       id="image3507-4-88-6-7-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4)"
+       y="201.42662"
+       x="693.74164"
+       id="image3507-4-88-6-7-39"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0)"
+       y="227.89717"
+       x="745.02826"
+       id="image3507-4-88-6-7-22"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1212.7856,5.2053584 C 1212.7856,5.2053584 1264.3202,47.444791 1294.1227,61.697311 1319.1079,73.646006 1346.1832,85.865626 1373.8957,85.097226 1403.349,84.280566 1432.2287,71.195416 1457.1537,55.567802 1481.6963,40.17999 1518.8819,-5.4590466 1518.8819,-5.4590466"
+       id="path6305"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7)"
+       y="33.504082"
+       x="1290.9833"
+       id="image3507-4-88-6-7-3-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9)"
+       y="1.2431006"
+       x="1239.6965"
+       id="image3507-4-88-6-7-3-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-0)"
+       y="-74.667068"
+       x="2160.9419"
+       id="image3507-4-88-6-7-3-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-9)"
+       y="-100.85377"
+       x="2104.6919"
+       id="image3507-4-88-6-7-3-7-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-3)"
+       y="-137.65219"
+       x="2052.72"
+       id="image3507-4-88-6-7-3-2-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3)"
+       y="-289.18372"
+       x="3319.3318"
+       id="image3507-4-88-6-7-3-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-7)"
+       y="-305.72781"
+       x="3254.8098"
+       id="image3507-4-88-6-7-3-7-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-6)"
+       y="-336.33438"
+       x="3206.0046"
+       id="image3507-4-88-6-7-3-2-72"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-8)"
+       y="43.052006"
+       x="4291.3892"
+       id="image3507-4-88-6-7-3-9-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-7-5)"
+       y="19.890282"
+       x="4222.731"
+       id="image3507-4-88-6-7-3-7-1-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-6-3)"
+       y="-14.025099"
+       x="4171.4443"
+       id="image3507-4-88-6-7-3-2-72-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-4)"
+       y="-195.59616"
+       x="5369.2998"
+       id="image3507-4-88-6-7-3-9-0"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-7-8)"
+       y="-213.79468"
+       x="5308.9136"
+       id="image3507-4-88-6-7-3-7-1-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-6-8)"
+       y="-245.22845"
+       x="5256.7998"
+       id="image3507-4-88-6-7-3-2-72-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-88)"
+       y="-391.32709"
+       x="6933.6626"
+       id="image3507-4-88-6-7-3-9-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-7-3)"
+       y="-408.69839"
+       x="6874.9312"
+       id="image3507-4-88-6-7-3-7-1-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-6-9)"
+       y="-441.78656"
+       x="6820.3354"
+       id="image3507-4-88-6-7-3-2-72-35"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-43)"
+       y="-310.32727"
+       x="3379.4724"
+       id="image3507-4-88-6-7-3-9-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-5)"
+       y="-356.19348"
+       x="3431.5303"
+       id="image3507-4-88-6-7-3-9-91"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-7)"
+       y="-407.396"
+       x="3478.1125"
+       id="image3507-4-88-6-7-3-9-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-41)"
+       y="-485.92166"
+       x="3547.698"
+       id="image3507-4-88-6-7-3-9-83"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-52)"
+       y="-551.32959"
+       x="3605.502"
+       id="image3507-4-88-6-7-3-9-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-6)"
+       y="-610.88831"
+       x="3674.9871"
+       id="image3507-4-88-6-7-3-9-84"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-1)"
+       y="-647.28534"
+       x="3739.509"
+       id="image3507-4-88-6-7-3-9-87"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-87)"
+       y="-662.17505"
+       x="3817.2664"
+       id="image3507-4-88-6-7-3-9-49"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-15)"
+       y="-645.84882"
+       x="3899.1179"
+       id="image3507-4-88-6-7-3-9-82"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-9)"
+       y="118.97575"
+       x="2792.4187"
+       id="image3507-4-88-6-7-3-9-07"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-48)"
+       y="152.79791"
+       x="2847.2981"
+       id="image3507-4-88-6-7-3-9-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-0)"
+       y="183.71269"
+       x="2897.0964"
+       id="image3507-4-88-6-7-3-9-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-522)"
+       y="215.63104"
+       x="2946.2927"
+       id="image3507-4-88-6-7-3-9-21"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-522-1)"
+       y="236.14905"
+       x="2999.8579"
+       id="image3507-4-88-6-7-3-9-21-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-43-5)"
+       y="-410.14828"
+       x="6996.9604"
+       id="image3507-4-88-6-7-3-9-9-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-5-9)"
+       y="-456.0145"
+       x="7049.0186"
+       id="image3507-4-88-6-7-3-9-91-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-7-4)"
+       y="-507.21701"
+       x="7095.6006"
+       id="image3507-4-88-6-7-3-9-5-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-41-5)"
+       y="-585.74274"
+       x="7165.186"
+       id="image3507-4-88-6-7-3-9-83-0"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-52-2)"
+       y="-651.15063"
+       x="7222.9902"
+       id="image3507-4-88-6-7-3-9-6-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-6-5)"
+       y="-710.70935"
+       x="7292.4751"
+       id="image3507-4-88-6-7-3-9-84-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-1-0)"
+       y="-747.10638"
+       x="7356.9971"
+       id="image3507-4-88-6-7-3-9-87-0"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-87-6)"
+       y="-761.99609"
+       x="7434.7544"
+       id="image3507-4-88-6-7-3-9-49-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-15-8)"
+       y="-745.66986"
+       x="7516.606"
+       id="image3507-4-88-6-7-3-9-82-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 2034.5601,-117.0573 C 2034.5601,-117.0573 2086.0947,-74.817866 2115.8972,-60.565346 2140.8824,-48.616651 2167.9577,-36.397033 2195.6702,-37.165433 2225.1235,-37.982093 2254.0032,-51.067241 2278.9282,-66.694855 2303.4708,-82.082667 2340.6564,-127.72171 2340.6564,-127.72171"
+       id="path6305-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 3171.6486,-332.3086 C 3171.6486,-332.3086 3223.1832,-290.06916 3252.9857,-275.81664 3277.9709,-263.86795 3305.0462,-251.64833 3332.7587,-252.41673 3362.212,-253.23339 3391.0917,-266.31854 3416.0167,-281.94615 3440.5593,-297.33396 3477.7449,-342.97301 3477.7449,-342.97301"
+       id="path6305-4-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 4156.6572,-0.07289324 C 4156.6572,-0.07289324 4208.1918,42.166541 4237.9943,56.419061 4262.9796,68.367756 4290.0549,80.587374 4317.7674,79.818974 4347.2207,79.002314 4376.1004,65.917166 4401.0254,50.289552 4425.568,34.90174 4462.7536,-10.737303 4462.7536,-10.737303"
+       id="path6305-4-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 5228.2344,-236.38139 C 5228.2344,-236.38139 5279.769,-194.14195 5309.5715,-179.88943 5334.5567,-167.94074 5361.632,-155.72112 5389.3445,-156.48952 5418.7978,-157.30618 5447.6775,-170.39133 5472.6025,-186.01894 5497.1451,-201.40676 5534.3307,-247.0458 5534.3307,-247.0458"
+       id="path6305-4-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 6788.8063,-430.57549 C 6788.8063,-430.57549 6840.3409,-388.33606 6870.1434,-374.08354 6895.1286,-362.13484 6922.2039,-349.91522 6949.9164,-350.68362 6979.3697,-351.50028 7008.2494,-364.58543 7033.1744,-380.21305 7057.717,-395.60086 7094.9026,-441.2399 7094.9026,-441.2399"
+       id="path6305-4-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-02)"
+       y="-49.912746"
+       x="8045.7144"
+       id="image3507-4-88-6-7-3-87"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 7904.6491,-97.237182 C 7904.6491,-97.237182 7956.1837,-54.99775 7985.9862,-40.74523 8010.9714,-28.796543 8038.0467,-16.576923 8065.7592,-17.345323 8095.2125,-18.161983 8124.0922,-31.247133 8149.0172,-46.87474 8173.5598,-62.26255 8210.7454,-107.90159 8210.7454,-107.90159"
+       id="path6305-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-3)"
+       y="-68.938438"
+       x="7982.8472"
+       id="image3507-4-88-6-7-3-7-55"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-9)"
+       y="-101.19942"
+       x="7931.5601"
+       id="image3507-4-88-6-7-3-2-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-0-1)"
+       y="-177.10957"
+       x="8852.8057"
+       id="image3507-4-88-6-7-3-8-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-9-2)"
+       y="-203.29628"
+       x="8796.5557"
+       id="image3507-4-88-6-7-3-7-5-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-3-8)"
+       y="-240.09476"
+       x="8744.584"
+       id="image3507-4-88-6-7-3-2-7-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-2)"
+       y="-391.62625"
+       x="10011.196"
+       id="image3507-4-88-6-7-3-9-94"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-7-1)"
+       y="-408.17035"
+       x="9946.6738"
+       id="image3507-4-88-6-7-3-7-1-16"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-6-4)"
+       y="-438.77692"
+       x="9897.8691"
+       id="image3507-4-88-6-7-3-2-72-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-43-55)"
+       y="-412.76981"
+       x="10071.337"
+       id="image3507-4-88-6-7-3-9-9-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-5-4)"
+       y="-458.63602"
+       x="10123.395"
+       id="image3507-4-88-6-7-3-9-91-0"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-7-3)"
+       y="-509.83853"
+       x="10169.977"
+       id="image3507-4-88-6-7-3-9-5-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-41-56)"
+       y="-588.3642"
+       x="10239.562"
+       id="image3507-4-88-6-7-3-9-83-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-52-9)"
+       y="-653.77216"
+       x="10297.366"
+       id="image3507-4-88-6-7-3-9-6-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-6-57)"
+       y="-713.33087"
+       x="10366.852"
+       id="image3507-4-88-6-7-3-9-84-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-1-3)"
+       y="-749.72791"
+       x="10431.373"
+       id="image3507-4-88-6-7-3-9-87-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-87-0)"
+       y="-764.61761"
+       x="10509.131"
+       id="image3507-4-88-6-7-3-9-49-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-3-15-4)"
+       y="-748.29138"
+       x="10590.982"
+       id="image3507-4-88-6-7-3-9-82-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 8726.4236,-219.49984 C 8726.4236,-219.49984 8777.9582,-177.26041 8807.7607,-163.00789 8832.7459,-151.05919 8859.8212,-138.83957 8887.5337,-139.60797 8916.9869,-140.42463 8945.8666,-153.50978 8970.7916,-169.1374 8995.3342,-184.52521 9032.5198,-230.16425 9032.5198,-230.16425"
+       id="path6305-4-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 9863.512,-434.75114 C 9863.512,-434.75114 9915.047,-392.5117 9944.849,-378.25918 9969.834,-366.31049 9996.91,-354.09087 10024.622,-354.85927 10054.075,-355.67593 10082.955,-368.76108 10107.88,-384.38869 10132.423,-399.7765 10169.608,-445.41555 10169.608,-445.41555"
+       id="path6305-4-6-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-74)"
+       y="-35.874611"
+       x="11218.332"
+       id="image3507-4-88-6-7-3-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 11077.267,-83.199052 C 11077.267,-83.199052 11128.801,-40.959622 11158.604,-26.707102 11183.589,-14.758412 11210.664,-2.538792 11238.377,-3.307192 11267.83,-4.123852 11296.71,-17.209002 11321.635,-32.836612 11346.177,-48.224422 11383.363,-93.863462 11383.363,-93.863462"
+       id="path6305-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-2)"
+       y="-54.900307"
+       x="11155.464"
+       id="image3507-4-88-6-7-3-7-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-0)"
+       y="-87.161293"
+       x="11104.178"
+       id="image3507-4-88-6-7-3-2-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-0-4)"
+       y="-163.07146"
+       x="12025.423"
+       id="image3507-4-88-6-7-3-8-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-9-7)"
+       y="-189.25816"
+       x="11969.173"
+       id="image3507-4-88-6-7-3-7-5-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-3-6)"
+       y="-226.05663"
+       x="11917.201"
+       id="image3507-4-88-6-7-3-2-7-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 11899.041,-205.46171 C 11899.041,-205.46171 11950.576,-163.22228 11980.378,-148.96976 12005.364,-137.02106 12032.439,-124.80144 12060.151,-125.56984 12089.605,-126.3865 12118.484,-139.47165 12143.409,-155.09927 12167.952,-170.48708 12205.137,-216.12612 12205.137,-216.12612"
+       id="path6305-4-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-74-3)"
+       y="15.382173"
+       x="13998.967"
+       id="image3507-4-88-6-7-3-5-0"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 13857.903,-31.942279 C 13857.903,-31.942279 13909.437,10.297151 13939.24,24.549671 13964.225,36.498361 13991.3,48.717981 14019.013,47.949581 14048.466,47.132921 14077.346,34.047771 14102.271,18.420161 14126.813,3.0323506 14163.999,-42.606689 14163.999,-42.606689"
+       id="path6305-8-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-2-9)"
+       y="-3.6435308"
+       x="13936.099"
+       id="image3507-4-88-6-7-3-7-9-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-0-8)"
+       y="-35.904518"
+       x="13884.812"
+       id="image3507-4-88-6-7-3-2-9-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-0-4-7)"
+       y="-111.81469"
+       x="14806.058"
+       id="image3507-4-88-6-7-3-8-9-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-9-7-8)"
+       y="-138.00139"
+       x="14749.808"
+       id="image3507-4-88-6-7-3-7-5-3-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-3-6-7)"
+       y="-174.79985"
+       x="14697.836"
+       id="image3507-4-88-6-7-3-2-7-3-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 14679.677,-154.20493 C 14679.677,-154.20493 14731.212,-111.9655 14761.014,-97.712979 14786,-85.764279 14813.075,-73.544659 14840.787,-74.313059 14870.24,-75.129719 14899.119,-88.214869 14924.044,-103.84249 14948.587,-119.2303 14985.772,-164.86934 14985.772,-164.86934"
+       id="path6305-4-5-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-74-6)"
+       y="-8.0147076"
+       x="16291.861"
+       id="image3507-4-88-6-7-3-5-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 16150.796,-55.339157 C 16150.796,-55.339157 16202.33,-13.09973 16232.133,1.1527901 16257.118,13.10148 16284.193,25.3211 16311.906,24.5527 16341.359,23.73604 16370.239,10.65089 16395.164,-4.9767199 16419.706,-20.36453 16456.892,-66.003567 16456.892,-66.003567"
+       id="path6305-8-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-2-0)"
+       y="-27.040403"
+       x="16228.993"
+       id="image3507-4-88-6-7-3-7-9-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-0-7)"
+       y="-59.301392"
+       x="16177.707"
+       id="image3507-4-88-6-7-3-2-9-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-0-4-0)"
+       y="-167.96719"
+       x="17258.053"
+       id="image3507-4-88-6-7-3-8-9-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-9-7-0)"
+       y="-194.1539"
+       x="17201.803"
+       id="image3507-4-88-6-7-3-7-5-3-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-3-6-74)"
+       y="-230.95236"
+       x="17149.83"
+       id="image3507-4-88-6-7-3-2-7-3-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 17131.669,-210.35745 C 17131.669,-210.35745 17183.204,-168.11802 17213.006,-153.8655 17237.992,-141.9168 17265.067,-129.69717 17292.779,-130.46557 17322.233,-131.28223 17351.112,-144.36739 17376.037,-159.99501 17400.58,-175.38282 17437.765,-221.02186 17437.765,-221.02186"
+       id="path6305-4-5-30"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-74-6-9)"
+       y="-27.912861"
+       x="19181.742"
+       id="image3507-4-88-6-7-3-5-8-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 19040.677,-75.237304 C 19040.677,-75.237304 19092.211,-32.997884 19122.014,-18.745364 19146.999,-6.7966744 19174.074,5.4229466 19201.787,4.6545466 19231.24,3.8378866 19260.12,-9.2472644 19285.045,-24.874874 19309.587,-40.262684 19346.773,-85.901714 19346.773,-85.901714"
+       id="path6305-8-0-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-2-0-7)"
+       y="-46.938557"
+       x="19118.875"
+       id="image3507-4-88-6-7-3-7-9-6-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-0-7-3)"
+       y="-79.199547"
+       x="19067.588"
+       id="image3507-4-88-6-7-3-2-9-5-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-0-4-0-9)"
+       y="-239.33849"
+       x="20363.186"
+       id="image3507-4-88-6-7-3-8-9-7-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-7-9-7-0-7)"
+       y="-265.52518"
+       x="20306.936"
+       id="image3507-4-88-6-7-3-7-5-3-3-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-9-3-6-74-4)"
+       y="-302.32364"
+       x="20254.963"
+       id="image3507-4-88-6-7-3-2-7-3-4-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M 20236.801,-281.72874 C 20236.801,-281.72874 20288.336,-239.48931 20318.138,-225.23679 20343.124,-213.28809 20370.199,-201.06846 20397.911,-201.83686 20427.365,-202.65352 20456.244,-215.73868 20481.169,-231.3663 20505.712,-246.75411 20542.897,-292.39315 20542.897,-292.39315"
+       id="path6305-4-5-30-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
+  </g>
 </svg>

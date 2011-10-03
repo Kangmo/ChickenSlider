@@ -39,7 +39,7 @@ static NSString * textureFiles[] =
 - (void) renderNoise;
 //- (void) generateHillKeyPoints;
 //- (void) generateBorderVertices;
-- (void) loadBorderVertices:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
+- (void) loadBorderVertices;
 - (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
 //- (void) createBox2DBody;
 - (void) calcHillVertices;
@@ -52,11 +52,15 @@ static NSString * textureFiles[] =
 
 @synthesize stripes = _stripes;
 
-+ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside {
-	return [[[self alloc] initWithWorld:w borderPoints:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset renderUpside:renderUpside] autorelease];
+@synthesize renderUpside;
+
+@synthesize thickness;
+
++ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset{
+	return [[[self alloc] initWithWorld:w borderPoints:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset] autorelease];
 }
 
-- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)r {
+- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)bp canvasHeight:(int)ch xOffset:(float)xo yOffset:(float)yo{
 	
 	if ((self = [super init])) {
 		
@@ -69,17 +73,25 @@ static NSString * textureFiles[] =
         startBorderIndex = 0;
         endBorderIndex = 0;
         
-        renderUpside = r;
-
-#ifndef DRAW_BOX2D_WORLD
-        //        textureSize = 512;
+        renderUpside = NO;
+        thickness = 128;
 		textureSize = 128;
-		self.stripes = [self generateStripesSprite];
-#endif
-		[self loadBorderVertices:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset];
-        [self calcHillVertices];
+        
+        borderPoints = bp;
+        canvasHeight = ch;
+        xOffset = xo;
+        yOffset = yo;
 	}
 	return self;
+}
+
+/** @brief Prepares rendering
+ */
+- (void) prepareRendering {
+    self.stripes = [self generateStripesSprite];
+    
+    [self loadBorderVertices];
+    [self calcHillVertices];
 }
 
 /** @brief Load border vertices from an NSArray of points into borderVertices array. 
@@ -87,7 +99,7 @@ static NSString * textureFiles[] =
  * So the given points have (0,0) on top-left corner. We need to convert the Y value in the points to openGL by subtracting it from the canvas height of the SVG file.
  * xOffset and yOffset is added to the x,y values of poins in borderPoints. These offsets are zero for now, but in the future we might have some meaningful values for border instantation. 
  */
-- (void) loadBorderVertices:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset
+- (void) loadBorderVertices
 {
     assert([borderPoints count]>1);
 
@@ -175,6 +187,9 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 #ifdef DRAW_BOX2D_WORLD
 	return;
 #endif
+    assert( self.thickness <= textureSize);
+    float thicknessRatio = self.thickness/(float)textureSize;
+    
     // vertices for visible area
     nHillVertices = 0;
     CGPoint p0, p1;
@@ -185,16 +200,16 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
         int vSegments = kTerrainVerticalSegments;
         
         for (int k=0; k<vSegments+1; k++) {
-            float vSegOffset = (float)textureSize/vSegments*k;
+            float vSegOffset = (float)textureSize/vSegments * k * thicknessRatio;
 
             // The direction of rendering terrain.
             if ( ! renderUpside )
                 vSegOffset = -vSegOffset;
             
             hillVertices[nHillVertices] = ccp(p0.x, p0.y + vSegOffset);
-            hillTexCoords[nHillVertices++] = ccp(p0.x/(float)textureSize, (float)(k)/vSegments);
+            hillTexCoords[nHillVertices++] = ccp(p0.x/(float)textureSize, (float)(k)/vSegments * thicknessRatio);
             hillVertices[nHillVertices] = ccp(p1.x, p1.y + vSegOffset);
-            hillTexCoords[nHillVertices++] = ccp(p1.x/(float)textureSize, (float)(k)/vSegments);
+            hillTexCoords[nHillVertices++] = ccp(p1.x/(float)textureSize, (float)(k)/vSegments * thicknessRatio);
         }
         
         p0 = p1;

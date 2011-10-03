@@ -38,6 +38,9 @@
 #define HERO_MAX_YPOS_RATIO (0.7)
 #define HERO_MIN_YPOS_RATIO (0.7)
 
+// If the hero is below ground by 1 meter, he is dead.
+#define HERO_DEAD_GAP_WORLD_Y (1)
+
 // BUGBUG : Adjust the position for iPad, retina...
 const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 //const float TARGET_OBJ_POS_Y = 160.0f;

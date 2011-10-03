@@ -11,6 +11,7 @@
 @synthesize body = _body;
 @synthesize awake = _awake;
 @synthesize diving = _diving;
+@synthesize isDead;
 
 + (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb{
 	return [[[self alloc] initWithWorld:world heroBody:body camera:camera scoreBoard:sb] autorelease];
@@ -30,7 +31,7 @@
 - (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb{
 	
 	if ((self = [super init])) {
-        
+        self.isDead = NO;
 		_world = world;
         _body = body;
         _camera = camera;
@@ -84,14 +85,6 @@
     }
     return sprite;
     
-}
-- (void) showMessage:(NSString*) message {
-    CCSprite * sprite = [self getSprite];
-    assert(sprite);
-    
-    CCNode * parent = sprite.parent;
-    assert( [parent isKindOfClass:[CCLayer class]] );
-    [Util showMessage:message inLayer:(CCLayer*)parent];
 }
 
 -(void) createParticle:(float)duration
@@ -252,14 +245,13 @@
         //		NSLog(@"perfect slide");
 		_nPerfectSlides++;
 		if (_nPerfectSlides == 1) {
-            [self showMessage:@"Nice!"];
+            [_scoreBoard showMessage:@"Nice!"];
         } else if (_nPerfectSlides > 1) {
 			if (_nPerfectSlides == 3) {
-                [self showMessage:@"Crazy 3 Combo!"];
                 [self createParticle:3];
-			} else {
-                [self showMessage:[NSString stringWithFormat:@"%d Combo!", _nPerfectSlides]];
 			}
+            
+            [_scoreBoard showMessage:[NSString stringWithFormat:@"%d Combo!", _nPerfectSlides]];
 		}
         
         [_scoreBoard increaseScore:SCORE_PER_COMBO * _nPerfectSlides];
@@ -270,7 +262,7 @@
     //	NSLog(@"hit");
 	_nPerfectSlides = 0;
     
-    [self showMessage:@"Oops~"];
+    [_scoreBoard showMessage:@"Oops~"];
 }
 
 - (void) setDiving:(BOOL)diving {
@@ -279,6 +271,16 @@
 		// TODO: change sprite image here
 	}
 }
+
+-(void) dead {
+    b2Vec2 vel;
+    vel.x=0; vel.y=0;
+    _body->SetLinearVelocity(vel);
+    _body->ApplyLinearImpulse(b2Vec2(0,5), _body->GetPosition());
+    self.isDead = YES;
+}
+
+
 
 
 @end

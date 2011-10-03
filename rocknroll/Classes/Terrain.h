@@ -11,6 +11,12 @@
 #define kHillSegmentWidth 15
 
 @interface Terrain : CCNode {
+    // Arguments passed on the initializer 
+    NSArray * borderPoints;
+    int canvasHeight;
+    float xOffset;
+    float yOffset;
+    
     // The the range of border indexes to borderVertices array to draw on screen. Both start/end indexes are inclusive.
 	int startBorderIndex;
 	int endBorderIndex;
@@ -26,19 +32,25 @@
 	int screenW;
 	int screenH;
 	int textureSize;
-    
-    // When rendering terrains, render up-side of the border line, not the down-side of the border line.
-    BOOL renderUpside;
 }
 @property (nonatomic, retain) CCSprite *stripes;
 
-+ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside ;
-- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset renderUpside:(BOOL)renderUpside ;
+
+// When rendering terrains, render up-side of the border line, not the down-side of the border line.
+@property (nonatomic, assign) BOOL renderUpside;
+
+// The thickness of the terrain to draw (in pixcels) below the border drawn in svg files.
+@property (nonatomic, assign) float thickness;
+
++ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
+- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
 
 - (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
 
 - (float) calcBorderMinY;
 
 - (void) reset;
+
+- (void) prepareRendering;
 
 @end

@@ -90,6 +90,10 @@ static StageScene* instanceOfStageScene;
     waterDropsLabel.setTargetCount(newDrops);
 }
 
+- (void) showMessage:(NSString*) message {
+    [Util showMessage:message inLayer:(CCLayer*)self];
+}
+
 
 -(void) initScoreLabels {
     static CGSize screenSize = [[CCDirector sharedDirector] winSize];
@@ -156,9 +160,6 @@ static StageScene* instanceOfStageScene;
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
         [self addChild:spriteSheet];
 
-        // Initialize score labels. (Requires spriteSheet);
-        [self initScoreLabels];
-        
 		// The SVG file for the given level.
         NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@.svg", levelStr];
 
@@ -233,6 +234,9 @@ static StageScene* instanceOfStageScene;
 		st =0;
 		
         instanceOfStageScene = self;
+        
+        // Initialize score labels. (Requires spriteSheet);
+        [self initScoreLabels];
         
 		[self schedule: @selector(tick:)];
         
@@ -448,6 +452,35 @@ static StageScene* instanceOfStageScene;
         }
     }
 }
+
+-(void) gotoLevelMap
+{
+    // IF the hero is already dead, go back to level map scene.
+    [[CCDirector sharedDirector] replaceScene:[GeneralScene sceneWithName:@"LevelMapScene"]];
+}
+/** @brief check if the Hero is dead. The hero is dead if he is below the ground level.
+ */
+-(void) checkHeroDead:(float)worldGroundY {
+    if ( hero.body->GetPosition().y < worldGroundY - HERO_DEAD_GAP_WORLD_Y ) {
+        if ( ! hero.isDead )
+        {
+            // Show that the hero is dead (Jump like mario!)
+            [hero dead];
+            
+            // The player is dead!
+            [self showMessage:@"Dead!"];
+            
+            CCSprite * heroSprite = [hero getSprite];
+            
+            [heroSprite runAction:[CCScaleTo actionWithDuration:2.0f scale:2.0f]];
+            [heroSprite runAction:[CCSequence actions:
+                              [CCFadeOut actionWithDuration:2.0f],
+                              [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMap) data:(void*)nil],
+                              nil]];
+        }
+    }
+}
+
 /** @brief update GameObject(s) for each tick. Box2D objects are not included here.
  */
 -(void) updateGameObjects {
@@ -545,7 +578,10 @@ static StageScene* instanceOfStageScene;
     // no change in performance.
     [self checkCollisions4GameObjects];
 
+    [self checkHeroDead:worldGroundY];
+    
     [self updateGameObjects];
+    
     
     // Update counters to look like they are increasing by 1 until they reach the target count. 
     scoreLabel.update();

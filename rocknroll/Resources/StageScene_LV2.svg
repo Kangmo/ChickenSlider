@@ -12,7 +12,7 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="48000"
-   height="3200"
+   height="320"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.48.2 r9819"
@@ -31,8 +31,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="712"
-     inkscape:window-width="1412"
+     inkscape:window-height="710"
+     inkscape:window-width="1280"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -43,10 +43,10 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="false"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="7769.4551"
-     inkscape:cy="1867.7959"
-     inkscape:window-x="25"
+     inkscape:zoom="0.26704822"
+     inkscape:cx="1157.6199"
+     inkscape:cy="330.51706"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:current-layer="layer3"
      width="480px"
@@ -61,6 +61,10 @@
        enabled="true"
        empspacing="5"
        snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="356.93383,2841.1933"
+       id="guide3805" />
   </sodipodi:namedview>
   <defs
      id="defs4">
@@ -92,46 +96,941 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-41" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-88">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-82" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-48">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-58" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-62" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-522">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-715" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-522-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-715-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-15-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-55-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-87-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-74-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-1-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-71-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-6-57">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-7-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-52-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-2-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-41-56">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-8-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-5-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-5-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-4-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-43-55">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-65-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-6-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-2-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-7-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-0-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-3-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-9-45" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-75" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-02">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6-74">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-3-6-74-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-9-4-8-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-9-7-0-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-7-8-4-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-0-4-0-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-39-0-5-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-9-0-7-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-0-6-0-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-7-2-0-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-3-4-5-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-74-6-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-18-7-7" />
+    </filter>
   </defs>
   <g
      inkscape:groupmode="layer"
      id="staticShapes"
      inkscape:label="static"
-     style="display:inline" />
+     style="display:inline"
+     transform="translate(0,-2880)" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="boxes"
      style="display:inline">
     <image
-       y="82.215424"
-       x="70.293938"
-       id="MyCar"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Car.png"
-       height="30"
-       width="97" />
+       y="45.081642"
+       x="36.971546"
+       id="MyBird"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bird.png"
+       height="48"
+       width="48" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 28.284271,36.404252 41.7193,173.58297 175.36248,213.18095 301.22749,208.2312 391.03005,227.32308"
-       id="path3969"
-       inkscape:connector-curvature="0" />
+       d="M 7.0190641,18.180244 C 7.0190641,18.180244 7.508484,19.634307 8.4271733,22.248493 9.3458627,24.862679 10.693821,28.636988 12.410899,33.27748 14.127977,37.917973 16.214173,43.424648 18.609339,49.503567 21.004504,55.582485 23.708637,62.233647 26.661589,69.163112 29.61454,76.092577 32.81631,83.300345 36.206747,90.492476 39.597184,97.684608 43.176289,104.8611 46.883911,111.72802 50.591532,118.59494 54.427671,125.15228 58.332176,131.10611 62.236681,137.05993 66.209553,142.41024 70.190641,146.86309 77.436585,154.96769 84.94945,163.18961 92.719038,171.37914 100.48863,179.56867 108.51494,187.72581 116.78778,195.70083 125.06062,203.67586 133.57998,211.46878 142.33568,218.92987 151.09137,226.39096 160.0834,233.52022 169.30156,240.16793 178.51972,246.81565 187.96402,252.98181 197.62425,258.51672 207.28448,264.05162 217.16065,268.95527 227.24256,273.07793 237.32446,277.20059 247.61211,280.54227 258.09531,282.95325"
+       id="path3990" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 396,292 C 396,292 399.04629,295.01994 404.59026,300.4664 410.13423,305.91286 418.17588,313.78584 428.1666,323.49193 438.15733,333.19802 450.09712,344.73722 463.43738,357.51612 476.77764,370.29501 491.51836,384.3136 507.11094,398.97848 522.70352,413.64335 539.14795,428.95451 555.89563,444.31853 572.64332,459.68255 589.69424,475.09944 606.49981,489.97579 623.30538,504.85213 639.86558,519.18793 655.63181,532.38977 671.39805,545.59161 686.37031,557.65949 700,568 712.23076,577.27917 724.36892,587.11396 736.48528,597.24385 748.60163,607.37374 760.69618,617.79875 772.83969,628.25835 784.98321,638.71796 797.17569,649.21217 809.48792,659.48048 821.80016,669.7488 834.23214,679.79121 846.85465,689.34723 859.47716,698.90325 872.2902,707.97286 885.36454,716.29557 898.43889,724.61828 911.77454,732.19409 925.44228,738.76249 939.11002,745.3309 953.10985,750.89189 967.51254,755.18498 981.91523,759.47806 996.72079,762.50324 1012,764 1034.7342,766.22706 1056.9365,764.6351 1078.7407,760.16903 1100.5449,755.70296 1121.9509,748.36278 1143.0926,739.09344 1164.2343,729.8241 1185.1117,718.62559 1205.8585,706.44283 1226.6054,694.26008 1247.2218,681.09309 1267.8415,667.88679 1288.4611,654.68049 1309.0841,641.43488 1329.8442,629.0949 1350.6043,616.75491 1371.5015,605.32055 1392.6696,595.73674 1413.8377,586.15294 1435.2768,578.41968 1457.1206,573.48191 1478.9644,568.54415 1501.2129,566.40187 1524,568 1568.279,571.10544 1610.517,581.09459 1651.2239,596.24832 1691.9309,611.40205 1731.1068,631.72034 1769.262,655.48406 1807.4172,679.24777 1844.5515,706.45691 1881.1752,735.39231 1917.7989,764.32772 1953.9119,794.98939 1990.0244,825.65819 2026.1369,856.32699 2062.2489,887.00291 2098.8706,915.9668 2135.4922,944.93069 2172.6235,972.18255 2210.7746,996.00323 2248.9257,1019.8239 2288.0966,1040.2134 2328.7974,1055.4526 2369.4983,1070.6918 2411.7291,1080.7806 2456,1084 2479.0937,1085.6794 2501.6558,1083.6228 2523.8187,1078.7698 2545.9816,1073.9168 2567.7453,1066.2674 2589.2424,1056.7609 2610.7394,1047.2543 2631.9698,1035.8908 2653.0659,1023.6096 2674.162,1011.3285 2695.124,998.12968 2716.0841,984.95273 2737.0443,971.77577 2758.0027,958.62063 2779.0918,946.42674 2800.181,934.23285 2821.4008,923.0002 2842.8838,913.66824 2864.3669,904.33627 2886.1131,896.90498 2908.255,892.3138 2930.3968,887.72262 2952.9343,885.97154 2976,888 3032.5768,892.97553 3086.2297,907.26448 3137.692,928.50045 3189.1544,949.73642 3238.4263,977.91943 3286.2412,1010.6831 3334.0562,1043.4467 3380.4142,1080.791 3426.0487,1120.3496 3471.6833,1159.9081 3516.5944,1201.681 3561.5156,1243.3017 3606.4368,1284.9224 3651.3681,1326.391 3697.0431,1365.3411 3742.718,1404.2911 3789.1365,1440.7227 3837.0322,1472.2694 3884.9279,1503.8161 3934.3007,1530.478 3985.8841,1549.8885 4037.4676,1569.2991 4091.2617,1581.4584 4148,1584 4173.8418,1585.1576 4201.9732,1581.8383 4231.4179,1575.1432 4260.8626,1568.4482 4291.6208,1558.3774 4322.7161,1546.0319 4353.8114,1533.6865 4385.244,1519.0664 4416.0376,1503.2728 4446.8312,1487.4793 4476.9859,1470.5122 4505.5254,1453.4728 4534.065,1436.4334 4560.9894,1419.3217 4585.3226,1403.2387 4609.6557,1387.1557 4631.3976,1372.1016 4649.572,1359.1773 4667.7465,1346.2531 4682.3535,1335.4587 4692.4168,1327.8955 4702.4802,1320.3322 4708,1316 4708,1316"
-       id="path3981"
+       d="M 258.09531,282.95325 C 268.5785,285.36423 279.25724,286.84451 290.12132,287.24437 301.41082,287.65989 312.19619,286.02626 322.6034,282.8411 333.01061,279.65594 343.03965,274.91925 352.8165,269.12864 362.59334,263.33804 372.11799,256.49352 381.51639,249.09272 390.91479,241.69192 400.18695,233.73482 409.45884,225.71906 418.73072,217.7033 428.00232,209.62887 437.3996,201.99339 446.79688,194.35791 456.31985,187.16138 466.09446,180.90143 475.86906,174.64147 485.89531,169.31809 496.29916,165.4289 506.70302,161.53971 517.48447,159.08471 528.76949,158.56153 541.46698,157.97286 553.7898,159.46892 565.83163,162.52858 577.87345,165.58825 589.63429,170.21151 601.20779,175.87725 612.7813,181.54299 624.16748,188.25121 635.46,195.48078 646.75252,202.71035 657.95139,210.46128 669.15026,218.21244 680.34914,225.9636 691.54802,233.715 702.84059,240.9455 714.13315,248.176 725.51939,254.88561 737.09299,260.5532 748.66658,266.2208 760.42752,270.84638 772.46947,273.90883 784.51143,276.97127 796.8344,278.47057 809.53206,277.88562 821.03489,277.35571 832.02699,274.99354 842.63594,271.25515 853.24489,267.51676 863.47069,262.40214 873.44092,256.36733 883.41114,250.33252 893.1258,243.37752 902.71245,235.95836 912.29911,228.5392 921.75777,220.65588 931.21601,212.76444 940.67425,204.87299 950.13207,196.97342 959.71705,189.52175 969.30202,182.07009 979.01415,175.06633 988.98102,168.9665 998.94788,162.86668 1009.1695,157.6708 1019.7734,153.83488 1030.3773,149.99897 1041.3635,147.52303 1052.8596,146.86309 1067.3181,146.03309 1081.3973,147.47032 1095.1924,150.61479 1108.9874,153.75927 1122.4982,158.611 1135.82,164.61001 1149.1418,170.60902 1162.2745,177.75532 1175.3132,185.48894 1188.3519,193.22255 1201.2967,201.54349 1214.2426,209.89177 1227.1886,218.24005 1240.1357,226.61568 1253.179,234.45869 1266.2224,242.3017 1279.362,249.61209 1292.693,255.8299 1306.024,262.0477 1319.5464,267.17292 1333.3553,270.64558 1347.1642,274.11824 1361.2596,275.93835 1375.7366,275.54593 1388.7298,275.19373 1401.2735,272.89711 1413.4801,269.14582 1425.6868,265.39454 1437.5563,260.18859 1449.2013,254.01775 1460.8462,247.84691 1472.2665,240.71117 1483.5747,233.1003 1494.8828,225.48944 1506.0788,217.40344 1517.275,209.33208 1528.4712,201.26072 1539.6677,193.204 1550.9769,185.65168 1562.2861,178.09937 1573.708,171.05145 1585.3551,164.99771 1597.0021,158.94396 1608.8743,153.88439 1621.0841,150.30875 1633.294,146.73311 1645.8414,144.6414 1658.8388,144.5234"
+       id="path8188" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2)"
+       y="143.52229"
+       x="597.78589"
+       id="image3507-4-88-6-7"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8)"
+       y="169.99284"
+       x="647.41809"
+       id="image3507-4-88-6-7-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4)"
+       y="201.42662"
+       x="693.74164"
+       id="image3507-4-88-6-7-39"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0)"
+       y="227.89717"
+       x="745.02826"
+       id="image3507-4-88-6-7-22"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 1212.7856,5.2053584 C 1212.7856,5.2053584 1264.3202,47.444791 1294.1227,61.697311 1319.1079,73.646006 1346.1832,85.865626 1373.8957,85.097226 1403.349,84.280566 1432.2287,71.195416 1457.1537,55.567802 1481.6963,40.17999 1518.8819,-5.4590466 1518.8819,-5.4590466"
+       id="path6305"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 4768,1368 C 4768,1368 4773.3405,1363.9785 4783.0813,1356.9124 4792.8221,1349.8462 4806.9632,1339.7354 4824.5644,1327.5568 4842.1656,1315.3781 4863.227,1301.1315 4886.8083,1285.7939 4910.3896,1270.4563 4936.4908,1254.0276 4964.1718,1237.4847 4991.8528,1220.9418 5021.1135,1204.2845 5051.0138,1188.4899 5080.9141,1172.6952 5111.454,1157.7631 5141.6933,1144.6703 5171.9325,1131.5775 5201.8712,1120.324 5230.569,1111.8867 5259.2669,1103.4494 5286.7239,1097.8282 5312,1096 5353.8437,1092.9734 5394.9252,1095.8781 5435.4361,1103.2488 5475.947,1110.6196 5515.8873,1122.4564 5555.4486,1137.2941 5595.0099,1152.1319 5634.1922,1169.9705 5673.187,1189.345 5712.1818,1208.7194 5750.9892,1229.6296 5789.8008,1250.6104 5828.6123,1271.5913 5867.428,1292.6427 5906.4394,1312.2996 5945.4509,1331.9565 5984.658,1350.2189 6024.2525,1365.6215 6063.847,1381.0242 6103.8288,1393.5672 6144.3895,1401.7853 6184.9503,1410.0034 6226.0899,1413.8967 6268,1412 6313.561,1409.938 6357.7197,1401.7076 6400.8273,1388.8668 6443.9349,1376.0261 6485.9914,1358.5751 6527.3478,1338.0722 6568.7042,1317.5693 6609.3606,1294.0144 6649.6681,1268.9659 6689.9756,1243.9174 6729.9341,1217.3752 6769.8948,1190.8976 6809.8556,1164.4201 6849.8185,1138.0072 6890.1348,1113.2172 6930.451,1088.4272 6971.1205,1065.2601 7012.4945,1045.2742 7053.8684,1025.2884 7095.9468,1008.4837 7139.0807,996.41859 7182.2145,984.35346 7226.404,977.02783 7272,976 7295.3637,975.47333 7321.0739,978.20333 7348.1791,983.38406 7375.2842,988.56479 7403.7842,996.19625 7432.7274,1005.4725 7461.6706,1014.7488 7491.057,1025.6698 7519.9348,1037.4297 7548.8126,1049.1896 7577.182,1061.7883 7604.091,1074.42 7631.0001,1087.0517 7656.449,1099.7163 7679.4859,1111.6078 7702.5228,1123.4994 7723.1478,1134.6179 7740.4091,1144.1575 7757.6705,1153.6971 7771.5682,1161.6577 7781.1506,1167.2334 7790.733,1172.8092 7796,1176 7796,1176"
-       id="path3983"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccc" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 7764,1200 C 7764,1200 7772.8247,1205.3489 7788.868,1214.6503 7804.9113,1223.9516 7828.1731,1237.2054 7857.0474,1253.0152 7885.9217,1268.825 7920.4084,1287.1908 7958.9014,1306.716 7997.3944,1326.2413 8039.8937,1346.9261 8084.7931,1367.3739 8129.6925,1387.8218 8176.9921,1408.0326 8225.0856,1426.6101 8273.1792,1445.1875 8322.0668,1462.1315 8370.1422,1476.0457 8418.2177,1489.9598 8465.4809,1500.844 8510.326,1507.3019 8555.171,1513.7598 8597.5977,1515.7913 8636,1512 8676.6192,1507.9898 8715.1373,1497.6671 8752.0789,1482.6026 8789.0204,1467.5381 8824.3854,1447.7318 8858.6983,1424.7546 8893.0112,1401.7774 8926.2721,1375.6292 8959.0054,1347.881 8991.7387,1320.1327 9023.9444,1290.7843 9056.1471,1261.4066 9088.3497,1232.0289 9120.5493,1202.6219 9153.2704,1174.7564 9185.9914,1146.8909 9219.2339,1120.567 9253.5223,1097.3553 9287.8107,1074.1437 9323.145,1054.0444 9360.0498,1038.6282 9396.9546,1023.2121 9435.4298,1012.479 9476,1008 9518.0663,1003.3558 9559.4427,1005.6299 9600.299,1013.0708 9641.1553,1020.5116 9681.4914,1033.1192 9721.4769,1049.1417 9761.4625,1065.1642 9801.0975,1084.6017 9840.5516,1105.7025 9880.0058,1126.8033 9919.279,1149.5674 9958.5409,1172.2431 9997.8029,1194.9188 10037.054,1217.5061 10076.463,1238.2533 10115.872,1259.0005 10155.439,1277.9076 10195.334,1293.223 10235.23,1308.5383 10275.453,1320.2618 10316.174,1326.6419 10356.895,1333.022 10398.114,1334.0586 10440,1328 10486.215,1321.3152 10529.476,1307.1418 10570.52,1287.3515 10611.564,1267.5612 10650.391,1242.1539 10687.741,1213.0011 10725.091,1183.8484 10760.963,1150.9502 10796.096,1116.1782 10831.229,1081.4061 10865.623,1044.7602 10900.016,1008.1119 10934.41,971.46365 10968.803,934.81306 11003.935,900.03168 11039.066,865.2503 11074.936,832.33814 11112.283,803.16675 11149.631,773.99536 11188.455,748.56473 11229.494,728.74643 11270.534,708.92812 11313.79,694.72213 11360,688 11414.712,680.04117 11468.537,681.02763 11521.704,688.79045 11574.872,696.55327 11627.382,711.09246 11679.463,730.23912 11731.545,749.38577 11783.197,773.13988 11834.649,799.33254 11886.101,825.52521 11937.353,854.15642 11988.633,883.05727 12039.914,911.95812 12091.222,941.12862 12142.788,968.39984 12194.354,995.67106 12246.177,1021.043 12298.486,1042.3468 12350.795,1063.6506 12403.59,1080.8862 12457.1,1091.8847 12510.609,1102.8832 12564.833,1107.6446 12620,1104 12678.016,1100.1672 12733.907,1088.3563 12788.204,1070.5513 12842.501,1052.7463 12895.203,1028.9471 12946.841,1001.1377 12998.479,973.32839 13049.053,941.50883 13099.094,907.66302 13149.135,873.81721 13198.642,837.94515 13248.146,802.03079 13297.65,766.11642 13347.151,730.15974 13397.18,696.1447 13447.208,662.12966 13497.764,630.05625 13549.378,601.90843 13600.992,573.7606 13653.664,549.53836 13707.924,531.22564 13762.184,512.91292 13818.033,500.50973 13876,496 13942.178,490.85151 14007.391,495.2691 14071.875,506.81308 14136.359,518.35705 14200.114,537.02741 14263.377,560.38446 14326.64,583.74152 14389.41,611.78526 14451.925,642.076 14514.439,672.36673 14576.698,704.90447 14638.937,737.2495 14701.176,769.59454 14763.396,801.74688 14825.832,831.26683 14888.269,860.78677 14950.922,887.67433 15014.029,909.48979 15077.136,931.30526 15140.696,948.04864 15204.945,957.28024 15269.195,966.51184 15334.134,968.23166 15400,960 15452.386,953.45299 15502.052,939.00822 15549.681,918.653 15597.31,898.29778 15642.901,872.0321 15687.135,841.84326 15731.369,811.65443 15774.247,777.54243 15816.449,741.49458 15858.651,705.44673 15900.178,667.46303 15941.711,629.53076 15983.244,591.59849 16024.783,553.71767 16067.009,517.87559 16109.236,482.03351 16152.149,448.23017 16196.432,418.45288 16240.714,388.67558 16286.365,362.92433 16334.066,343.18641 16381.767,323.4485 16431.518,309.72393 16484,304 16554.68,296.29129 16625.147,294.80122 16695.323,298.62945 16765.498,302.45769 16835.383,311.60423 16904.901,325.16874 16974.419,338.73325 17043.57,356.71574 17112.276,378.21587 17180.983,399.716 17249.246,424.73378 17316.988,452.36887 17384.73,480.00397 17451.951,510.25637 17518.576,542.22577 17585.2,574.19516 17651.227,607.88154 17716.58,642.38457 17781.934,676.88761 17846.613,712.2073 17910.542,747.44331 17974.471,782.67932 18037.649,817.83166 18100,852 18124.538,865.44692 18148.023,880.48686 18170.723,896.71244 18193.423,912.93802 18215.338,930.34923 18236.735,948.53867 18258.133,966.72812 18279.014,985.69579 18299.646,1005.0343 18320.279,1024.3728 18340.662,1044.0822 18361.065,1063.755 18381.468,1083.4277 18401.891,1103.064 18422.601,1122.2562 18443.311,1141.4485 18464.309,1160.1968 18485.862,1178.0938 18507.416,1195.9907 18529.525,1213.0363 18552.459,1228.8231 18575.393,1244.61 18599.15,1259.1381 18624,1272 18656.185,1288.6584 18689.369,1302.8073 18723.303,1315.0758 18757.236,1327.3442 18791.919,1337.7321 18827.099,1346.8685 18862.28,1356.0048 18897.959,1363.8896 18933.885,1371.1517 18969.812,1378.4138 19005.986,1385.0532 19042.156,1391.699 19078.327,1398.3447 19114.494,1404.9967 19150.408,1412.2839 19186.321,1419.5711 19221.981,1427.4935 19257.135,1436.68 19292.29,1445.8665 19326.94,1456.3171 19360.834,1468.6608 19394.728,1481.0045 19427.867,1495.2413 19460,1512 19495.404,1530.4647 19529.181,1551.3943 19561.737,1574.1787 19594.292,1596.9631 19625.624,1621.6023 19656.138,1647.486 19686.651,1673.3697 19716.345,1700.4979 19745.623,1728.2605 19774.901,1756.0231 19803.763,1784.42 19832.613,1812.8411 19861.462,1841.2622 19890.298,1869.7074 19919.525,1897.5665 19948.752,1925.4257 19978.37,1952.6988 20008.781,1978.7757 20039.192,2004.8525 20070.397,2029.7331 20102.799,2052.8072 20135.201,2075.8813 20168.801,2097.149 20204,2116 20258.929,2145.4169 20314.957,2172.2474 20371.887,2196.9498 20428.818,2221.6521 20486.65,2244.2263 20545.185,2265.1304 20603.721,2286.0345 20662.96,2305.2685 20722.704,2323.2907 20782.449,2341.3128 20842.698,2358.1231 20903.255,2374.1796 20963.812,2390.2361 21024.677,2405.5389 21085.65,2420.5461 21146.623,2435.5533 21207.705,2450.2649 21268.698,2465.1391 21329.691,2480.0132 21390.595,2495.0499 21451.211,2510.7074 21511.828,2526.3648 21572.157,2542.643 21632,2560 21672.615,2571.78 21713.106,2584.5648 21753.529,2597.941 21793.952,2611.3171 21834.307,2625.2846 21874.652,2639.4302 21914.997,2653.5758 21955.331,2667.8994 21995.711,2681.9877 22036.092,2696.0761 22076.518,2709.9291 22117.048,2723.1336 22157.578,2736.338 22198.211,2748.8939 22239.004,2760.3877 22279.797,2771.8816 22320.75,2782.3135 22361.92,2791.2702 22403.09,2800.2268 22444.477,2807.7082 22486.138,2813.3009 22527.799,2818.8937 22569.734,2822.5978 22612,2824 22668.222,2825.8652 22724.045,2823.2398 22779.569,2817.2047 22835.093,2811.1697 22890.319,2801.725 22945.346,2789.9515 23000.372,2778.1781 23055.201,2764.0758 23109.931,2748.7258 23164.66,2733.3757 23219.292,2716.7778 23273.925,2700.013 23328.557,2683.2481 23383.192,2666.3163 23437.928,2650.2985 23492.664,2634.2807 23547.502,2619.1769 23602.541,2606.0679 23657.581,2592.959 23712.822,2581.8449 23768.365,2573.8066 23823.908,2565.7683 23879.753,2560.8058 23936,2560 24008.685,2558.9587 24080.995,2563.1222 24153.023,2571.1578 24225.051,2579.1934 24296.797,2591.101 24368.354,2605.5482 24439.911,2619.9953 24511.28,2636.9819 24582.551,2655.1752 24653.823,2673.3686 24724.998,2692.7687 24796.17,2712.0429 24867.342,2731.3171 24938.511,2750.4654 25009.768,2768.1552 25081.026,2785.845 25152.372,2802.0762 25223.901,2815.5162 25295.43,2828.9561 25367.141,2839.6049 25439.126,2846.1298 25511.112,2852.6546 25583.372,2855.0556 25656,2852 25761.413,2847.5651 25865.604,2833.8997 25968.881,2813.4388 26072.158,2792.9779 26174.52,2765.7214 26276.272,2734.1043 26378.024,2702.4872 26479.167,2666.5096 26580.006,2628.6062 26680.845,2590.7029 26781.38,2550.8739 26881.916,2511.5542 26982.453,2472.2345 27082.992,2433.4241 27183.838,2397.558 27284.683,2361.6918 27385.837,2328.7698 27487.603,2301.2271 27589.369,2273.6843 27691.748,2251.5207 27795.046,2237.1712 27898.343,2222.8217 28002.56,2216.2863 28108,2220 28165.254,2222.0165 28221.415,2230.6427 28276.756,2244.1569 28332.097,2257.6711 28386.617,2276.0734 28440.59,2297.6421 28494.563,2319.2108 28547.988,2343.946 28601.14,2370.1261 28654.292,2396.3063 28707.169,2423.9313 28760.046,2451.2797 28812.922,2478.628 28865.798,2505.6997 28918.946,2530.7732 28972.093,2555.8467 29025.513,2578.9219 29079.479,2598.2774 29133.444,2617.6329 29187.955,2633.2685 29243.284,2643.4628 29298.613,2653.6571 29354.761,2658.41 29412,2656 29487.027,2652.841 29569.139,2639.3331 29655.395,2618.1124 29741.651,2596.8916 29832.051,2567.958 29923.654,2533.9475 30015.256,2499.9371 30108.062,2460.8498 30199.129,2419.3218 30290.196,2377.7937 30379.525,2333.8249 30464.175,2290.0514 30548.825,2246.278 30628.796,2202.6998 30701.147,2161.9529 30773.497,2121.2061 30838.228,2083.2906 30892.397,2050.8425 30946.566,2018.3945 30990.174,1991.4138 31020.28,1972.5367 31050.385,1953.6595 31066.989,1942.8858 31067.149,1942.8516"
-       id="path3985"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
+       sodipodi:nodetypes="caaac"
+       thickness="32" />
   </g>
 </svg>

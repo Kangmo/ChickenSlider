@@ -32,9 +32,12 @@ class HeroContactListener;
 @property (nonatomic, assign) b2Body *body;
 @property (readonly) BOOL awake;
 @property (nonatomic) BOOL diving;
+@property (nonatomic) BOOL isDead;
 
 + (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb;
 - (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb;
+
+- (CCSprite*) getSprite;
 
 - (void) reset;
 - (void) sleep;
@@ -45,5 +48,7 @@ class HeroContactListener;
 - (void) landed;
 - (void) tookOff;
 - (void) hit;
+- (void) dead;
+
 
 @end
