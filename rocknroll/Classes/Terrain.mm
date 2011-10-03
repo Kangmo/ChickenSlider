@@ -51,10 +51,9 @@ static NSString * textureFiles[] =
 @implementation Terrain
 
 @synthesize stripes = _stripes;
-
 @synthesize renderUpside;
-
 @synthesize thickness;
+@synthesize maxX;
 
 + (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset{
 	return [[[self alloc] initWithWorld:w borderPoints:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset] autorelease];
@@ -81,6 +80,8 @@ static NSString * textureFiles[] =
         canvasHeight = ch;
         xOffset = xo;
         yOffset = yo;
+        
+        maxX = -kMAX_POSITION;
 	}
 	return self;
 }
@@ -121,6 +122,9 @@ static NSString * textureFiles[] =
         p.y = canvasHeight-p.y;
         
         borderVertices[nBorderVertices++] = p;
+        
+        if ( maxX < p.x )
+            maxX = p.x;
         
         assert( nBorderVertices < kMaxBorderVertices );
     }

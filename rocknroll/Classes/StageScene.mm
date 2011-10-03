@@ -69,6 +69,16 @@ static StageScene* instanceOfStageScene;
     [classDict release];
     
 	[loader instantiateObjectsIn:filePath];
+    
+    // find out the maximum X of all terrains. If the hero goes beyond of it, the stage is cleared!
+    terrainMaxX = -kMAX_POSITION;
+    for (Terrain * t in terrains) {
+        if ( terrainMaxX < t.maxX )
+        {
+            terrainMaxX = t.maxX;
+        }
+    }
+
 	return loader;
 }
 
@@ -144,6 +154,8 @@ static StageScene* instanceOfStageScene;
 	{
         // initialize variables
         terrains = nil;
+        
+        stageCleared = NO;
         
 		// enable touches
 		self.isTouchEnabled = YES;
@@ -382,16 +394,16 @@ static StageScene* instanceOfStageScene;
 
 /** @brief Activate, move, scale terrains/sky based on the current hero position.
  */
--(float) adjustTerrainsAndSky {
+-(float) adjustTerrainsAndSky:(float)heroX_withoutZoom {
     float groundY = kMAX_POSITION;
     
     if (hero)
     {
         /////////////////////////////////////////////
         // Step1 : Adjust Terrains
-        float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
         // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
         // Convert it back to the y offset from sea level.
+        
         float cameraY = -cam.cameraPosition.y;
         
         for (Terrain * t in terrains) {
@@ -461,6 +473,11 @@ static StageScene* instanceOfStageScene;
 /** @brief check if the Hero is dead. The hero is dead if he is below the ground level.
  */
 -(void) checkHeroDead:(float)worldGroundY {
+    // if the stage is cleared, don't check if the player is dead. We will advance to the next stage soon.
+    if ( stageCleared) {
+        return;
+    }
+                        
     if ( hero.body->GetPosition().y < worldGroundY - HERO_DEAD_GAP_WORLD_Y ) {
         if ( ! hero.isDead )
         {
@@ -477,6 +494,28 @@ static StageScene* instanceOfStageScene;
                               [CCFadeOut actionWithDuration:2.0f],
                               [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMap) data:(void*)nil],
                               nil]];
+        }
+    }
+}
+
+
+/** @brief check if the Hero is dead. The hero is dead if he is below the ground level.
+ */
+-(void) checkStageClear:(float)heroX_withoutZoom {
+    if ( heroX_withoutZoom > terrainMaxX ) {
+        if ( ! stageCleared )
+        {
+            // The player went beyond the max X of all terrains! Stage is cleared!
+            [self showMessage:@"Stage Clear!"];
+            
+            CCSprite * heroSprite = [hero getSprite];
+            
+            // BUGBUG : make the hero character advance to the next stage in the map.
+            [heroSprite runAction:[CCSequence actions:
+                                   [CCScaleTo actionWithDuration:2.0f scale:4.0f],
+                                   [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMap) data:(void*)nil],
+                                   nil]];
+            stageCleared = YES;
         }
     }
 }
@@ -546,12 +585,15 @@ static StageScene* instanceOfStageScene;
     // TODO : Understand why adjusting terrain should come here.
 
     static float worldGroundY = 0.0f;
+    
     [self adjustZoomWithGroundY:worldGroundY];
 
 	[cam updateFollowPosition];
 
+    float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
+
     // groundY will be used in the next tick to decide the zoom level.
-    worldGroundY = [self adjustTerrainsAndSky] / INIT_PTM_RATIO;
+    worldGroundY = [self adjustTerrainsAndSky:heroX_withoutZoom] / INIT_PTM_RATIO;
     
     // To show bottom of terrains, lower the ground level. 
     worldGroundY -= MAX_WAVE_HEIGHT;
@@ -577,6 +619,8 @@ static StageScene* instanceOfStageScene;
 
     // no change in performance.
     [self checkCollisions4GameObjects];
+
+    [self checkStageClear:heroX_withoutZoom];
 
     [self checkHeroDead:worldGroundY];
     

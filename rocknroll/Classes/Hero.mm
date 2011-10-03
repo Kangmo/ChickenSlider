@@ -273,10 +273,12 @@
 }
 
 -(void) dead {
+/*    
     b2Vec2 vel;
     vel.x=0; vel.y=0;
     _body->SetLinearVelocity(vel);
     _body->ApplyLinearImpulse(b2Vec2(0,5), _body->GetPosition());
+ */
     self.isDead = YES;
 }
 

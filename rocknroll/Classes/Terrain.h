@@ -42,6 +42,9 @@
 // The thickness of the terrain to draw (in pixcels) below the border drawn in svg files.
 @property (nonatomic, assign) float thickness;
 
+// The maximum X position of the terrain.
+@property (nonatomic, readonly, assign) float maxX;
+
 + (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
 - (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
 

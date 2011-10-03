@@ -37,6 +37,8 @@ typedef enum {
 	Hero * hero;
     
     NSMutableArray * terrains;
+    // The maximum X of all terrains. If the hero goes beyond of it, the stage is cleared!
+    float terrainMaxX;
     
 	float st;
     
@@ -53,6 +55,8 @@ typedef enum {
     IncNumLabel scoreLabel;
     
     CCSpriteBatchNode * spriteSheet;
+    
+    BOOL stageCleared;
 }
 
 // returns a Scene that contains the HelloWorld as the only child
