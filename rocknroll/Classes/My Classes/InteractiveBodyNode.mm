@@ -80,15 +80,18 @@
 
             NSString * soundFileName = [hoverActionDescs_ valueForKey:@"Sound"];
             if ( soundFileName) {
-                // BUGBUG : TODO : play sound file
+                [[[SimpleAudioEngine sharedEngine] soundSourceForFile:soundFileName] play];
             }
             
             CCScene * newScene;
             if ( [sceneName isEqualToString:@"StageScene"] )
             {
                 // The string uniquly identifying level of stage.
-                NSString * levelStr = [touchActionDescs_ valueForKey:@"Arg1"];
-                assert(levelStr);
+                NSString * levelNumAttr = [touchActionDescs_ valueForKey:@"Arg1"];
+                assert(levelNumAttr);
+                
+                int levelNum = [levelNumAttr intValue];
+                NSString * levelStr = [NSString stringWithFormat:@"LV%d", levelNum];
                 // The stage scene is totally large, we can't use the scene.
                 newScene = [StageScene sceneWithLevel:levelStr];
             }
@@ -123,7 +126,7 @@
             
             NSString * soundFileName = [hoverActionDescs_ valueForKey:@"Sound"];
             if ( soundFileName) {
-                // BUGBUG : TODO : play sound file
+                [[[SimpleAudioEngine sharedEngine] soundSourceForFile:soundFileName] play];
             }
 
             hoverSprite_ = [CCSprite spriteWithFile:imageFileName];

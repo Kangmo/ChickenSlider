@@ -443,7 +443,7 @@
                 [bi release];
                 bi = intrBody;
             }
-            
+            // BUGBUG : Memory Leak? check who deallocates bi attached to the body.
 			if(name) body->SetUserData(bi);
 			CCLOG(@"SvgLoader: Loaded rectangle. name=%@ w=%f h=%f at %f,%f  friction = %f, density = %f",name, fWidth,fHeight,fx,fy, fixtureDef.friction, fixtureDef.density);
 		}

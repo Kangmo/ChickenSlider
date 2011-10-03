@@ -41,6 +41,9 @@
 // If the hero is below ground by 1 meter, he is dead.
 #define HERO_DEAD_GAP_WORLD_Y (1)
 
+// The maximum number of levels per map
+#define MAX_LEVELS_PER_MAP (30)
+
 // BUGBUG : Adjust the position for iPad, retina...
 const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 //const float TARGET_OBJ_POS_Y = 160.0f;
