@@ -7,4 +7,7 @@ class b2WorldEx;
 
 +(CCScene*)sceneWithName:sceneName;
 
+// initialize your instance here
+-(id) initWithSceneName:(NSString*)sceneName;
+
 @end

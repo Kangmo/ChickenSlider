@@ -11,6 +11,11 @@
 #import "GameObject.h"
 
 @interface LevelMapScene : GeneralScene
-    InteractiveSprite * levels[MAX_LEVELS_PER_MAP];
-// Have level map rocks here. 
+{
+    int levelCount;
+    InteractiveSprite * intrSprites[MAX_LEVELS_PER_MAP];
+}
+
++(CCScene*)sceneWithName:(NSString*)sceneName;
+
 @end

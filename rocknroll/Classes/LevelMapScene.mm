@@ -10,24 +10,62 @@
 
 @implementation LevelMapScene
 
-- (id)init
+// initialize your instance here
+-(id) initWithSceneName:(NSString*)sceneName
 {
-    self = [super init];
+    self = [super initWithSceneName:sceneName];
     if (self) {
         // Initialization code here.
+        levelCount = 0;
     }
     
     return self;
 }
 
-/*
++(id)nodeWithSceneName:(NSString*)sceneName
+{
+    return [[[LevelMapScene alloc] initWithSceneName:sceneName] autorelease];
+}
+
++(CCScene*)sceneWithName:(NSString*)sceneName
+{
+    // 'scene' is an autorelease object.
+	CCScene *scene = [CCScene node];
+	
+	// 'layer' is an autorelease object.
+	GeneralScene *layer = [LevelMapScene nodeWithSceneName:sceneName];
+	
+	// add layer as a child to scene
+	[scene addChild: layer];
+	
+	// return the scene
+	return scene;
+}
+
 - (void) locateLevelObjects {
-    for(id *item in self.children)
+    for(id child in self.children)
     {
-        //and if I want to make sure the child is the type I want:
-        if([item isKindOfClass:[Sprite class]])
-        {...}
+        if([child isKindOfClass:[InteractiveSprite class]])
+        {
+            InteractiveSprite * intrSprite = (InteractiveSprite*) child;
+            
+            NSString * sceneName = [intrSprite.touchActionDescs valueForKey:@"SceneName"];
+            assert(sceneName);
+                
+            if ( [sceneName isEqualToString:@"StageScene"] )
+            {
+                // The string uniquly identifying level of stage.  
+                NSString * levelNumAttr = [intrSprite.touchActionDescs valueForKey:@"Arg2"];
+                assert(levelNumAttr);
+                
+                int levelNum = [levelNumAttr intValue];
+                assert(levelNum>0);
+                assert(levelNum<MAX_LEVELS_PER_MAP);
+                
+                intrSprites[levelCount] = intrSprite;
+            }
+        }
     }
 }
-*/
+
 @end

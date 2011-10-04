@@ -797,7 +797,10 @@
 {
     CCLOG(@"The file :%@", filename);
 	NSData *data = [NSData dataWithContentsOfFile:filename]; 
+    assert(data);
+    
 	CXMLDocument *svgDocument  = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
+    assert(svgDocument);
     
 	//get world space dimensions
 	if([[svgDocument rootElement] attributeForName:@"width"])

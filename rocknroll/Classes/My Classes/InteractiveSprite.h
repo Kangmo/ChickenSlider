@@ -40,6 +40,9 @@ typedef enum body_hover_action_t
 @property(assign, nonatomic) CGFloat scale;
 @property(assign, nonatomic) CCLayer * layer;
 
+@property(assign, nonatomic, readonly) NSDictionary * touchActionDescs;
+
+
 -(id)initWithFile:(NSString*)fileName;
 
 -(void)setTouchAction:(body_touch_action_t)actionType actionDescs:(NSDictionary*)actionDescs;

@@ -148,7 +148,7 @@ static StageScene* instanceOfStageScene;
 
 
 // initialize your instance here
--(id) initWithLevel:(NSString*)levelStr
+-(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel
 {
 	if( (self=[super init])) 
 	{
@@ -156,6 +156,11 @@ static StageScene* instanceOfStageScene;
         terrains = nil;
         
         stageCleared = NO;
+        
+        mapName = aMapName;
+        level = aLevel;
+        assert( aLevel < MAX_LEVELS_PER_MAP );
+        assert( MAX_LEVELS_PER_MAP < 99 );
         
 		// enable touches
 		self.isTouchEnabled = YES;
@@ -173,7 +178,7 @@ static StageScene* instanceOfStageScene;
         [self addChild:spriteSheet];
 
 		// The SVG file for the given level.
-        NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@.svg", levelStr];
+        NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@_%02d.svg", mapName, level];
 
 		// Define the gravity vector.
 		b2Vec2 gravity;
@@ -260,9 +265,9 @@ static StageScene* instanceOfStageScene;
 }
 
 
-+(id)nodeWithLevel:(NSString*)levelStr
++(id)nodeInMap:(NSString*)mapName levelNum:(int)level
 {
-    return [[[StageScene alloc] initWithLevel:levelStr] autorelease];
+    return [[[StageScene alloc] initInMap:mapName levelNum:level] autorelease];
 }
 
 /** @brief Does the game scene require joystick?
@@ -274,13 +279,13 @@ static StageScene* instanceOfStageScene;
     return NO;
 }
 
-+(CCScene*) sceneWithLevel:(NSString*)levelStr
++(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	StageScene *layer = [StageScene nodeWithLevel:levelStr];
+	StageScene *layer = [StageScene nodeInMap:mapName levelNum:level];
 	
 	// add layer as a child to scene
 	[scene addChild:layer z:0 tag:StageSceneLayerTagStage];
@@ -625,7 +630,6 @@ static StageScene* instanceOfStageScene;
     [self checkHeroDead:worldGroundY];
     
     [self updateGameObjects];
-    
     
     // Update counters to look like they are increasing by 1 until they reach the target count. 
     scoreLabel.update();

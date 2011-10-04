@@ -1,6 +1,7 @@
 #import "InteractiveSprite.h"
 #import "StageScene.h"
 #import "GeneralScene.h"
+#import "LevelMapScene.h"
 
 @implementation InteractiveSprite
 
@@ -8,6 +9,7 @@
 @synthesize nodeSize = nodeSize_;
 @synthesize scale = scale_;
 @synthesize layer = layer_;
+@synthesize touchActionDescs = touchActionDescs_;
 
 
 /** @brief Override init to receive touch events. 
@@ -91,13 +93,20 @@
             if ( [sceneName isEqualToString:@"StageScene"] )
             {
                 // The string uniquly identifying level of stage.
-                NSString * levelNumAttr = [touchActionDescs_ valueForKey:@"Arg1"];
+                NSString * mapNameAttr = [touchActionDescs_ valueForKey:@"Arg1"];
+                assert(mapNameAttr);
+                
+                // The string uniquly identifying level of stage.
+                NSString * levelNumAttr = [touchActionDescs_ valueForKey:@"Arg2"];
                 assert(levelNumAttr);
                 
                 int levelNum = [levelNumAttr intValue];
-                NSString * levelStr = [NSString stringWithFormat:@"LV%d", levelNum];
-                // The stage scene is totally large, we can't use the scene.
-                newScene = [StageScene sceneWithLevel:levelStr];
+
+                newScene = [StageScene sceneInMap:mapNameAttr levelNum:levelNum];
+            }
+            else if ( [sceneName isEqualToString:@"LevelMapScene"] )
+            {
+                newScene = [LevelMapScene sceneWithName:sceneName];
             }
             else
             {

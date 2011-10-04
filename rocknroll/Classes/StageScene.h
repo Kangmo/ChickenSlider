@@ -26,7 +26,12 @@ typedef enum {
 // HelloWorld Layer
 @interface StageScene : CCLayer<ScoreBoardProtocol>
 {
-	b2WorldEx* world;
+    // The name of the map where the stage exists
+    NSString * mapName;
+    // The number of level in the map
+    int level;
+
+    b2WorldEx* world;
 	GLESDebugDraw *m_debugDraw;
 	
 	CCSprite * arrow;
@@ -55,12 +60,12 @@ typedef enum {
     IncNumLabel scoreLabel;
     
     CCSpriteBatchNode * spriteSheet;
-    
+
     BOOL stageCleared;
 }
 
 // returns a Scene that contains the HelloWorld as the only child
-+(CCScene*) sceneWithLevel:(NSString*)levelStr;
++(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level;
 +(StageScene*) sharedStageScene;
 -(BOOL) needJoystick;
 
