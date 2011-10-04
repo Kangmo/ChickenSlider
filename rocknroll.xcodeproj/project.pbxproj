@@ -149,7 +149,7 @@
 		6709832613DD1777003E4E75 /* BodyInfo.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830A13DD1777003E4E75 /* BodyInfo.mm */; };
 		6709832713DD1777003E4E75 /* FollowCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830C13DD1777003E4E75 /* FollowCamera.mm */; };
 		6709832813DD1777003E4E75 /* FreeCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709830E13DD1777003E4E75 /* FreeCamera.mm */; };
-		6709832913DD1777003E4E75 /* InteractiveBodyNode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831013DD1777003E4E75 /* InteractiveBodyNode.mm */; };
+		6709832913DD1777003E4E75 /* InteractiveSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831013DD1777003E4E75 /* InteractiveSprite.mm */; };
 		6709832A13DD1777003E4E75 /* JointDeclaration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6709831213DD1777003E4E75 /* JointDeclaration.m */; };
 		6709832C13DD1777003E4E75 /* StringParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831713DD1777003E4E75 /* StringParser.mm */; };
 		6709832D13DD1777003E4E75 /* svgLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6709831913DD1777003E4E75 /* svgLoader.mm */; };
@@ -866,8 +866,8 @@
 		6709830C13DD1777003E4E75 /* FollowCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FollowCamera.mm; sourceTree = "<group>"; };
 		6709830D13DD1777003E4E75 /* FreeCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeCamera.h; sourceTree = "<group>"; };
 		6709830E13DD1777003E4E75 /* FreeCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FreeCamera.mm; sourceTree = "<group>"; };
-		6709830F13DD1777003E4E75 /* InteractiveBodyNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveBodyNode.h; sourceTree = "<group>"; };
-		6709831013DD1777003E4E75 /* InteractiveBodyNode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InteractiveBodyNode.mm; sourceTree = "<group>"; };
+		6709830F13DD1777003E4E75 /* InteractiveSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; path = InteractiveSprite.h; sourceTree = "<group>"; };
+		6709831013DD1777003E4E75 /* InteractiveSprite.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InteractiveSprite.mm; sourceTree = "<group>"; };
 		6709831113DD1777003E4E75 /* JointDeclaration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JointDeclaration.h; sourceTree = "<group>"; };
 		6709831213DD1777003E4E75 /* JointDeclaration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JointDeclaration.m; sourceTree = "<group>"; };
 		6709831313DD1777003E4E75 /* RetainCountTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetainCountTrace.h; sourceTree = "<group>"; };
@@ -1840,8 +1840,8 @@
 				6709830C13DD1777003E4E75 /* FollowCamera.mm */,
 				6709830D13DD1777003E4E75 /* FreeCamera.h */,
 				6709830E13DD1777003E4E75 /* FreeCamera.mm */,
-				6709830F13DD1777003E4E75 /* InteractiveBodyNode.h */,
-				6709831013DD1777003E4E75 /* InteractiveBodyNode.mm */,
+				6709830F13DD1777003E4E75 /* InteractiveSprite.h */,
+				6709831013DD1777003E4E75 /* InteractiveSprite.mm */,
 				6709831113DD1777003E4E75 /* JointDeclaration.h */,
 				6709831213DD1777003E4E75 /* JointDeclaration.m */,
 				6709831313DD1777003E4E75 /* RetainCountTrace.h */,
@@ -2885,7 +2885,7 @@
 				6709832613DD1777003E4E75 /* BodyInfo.mm in Sources */,
 				6709832713DD1777003E4E75 /* FollowCamera.mm in Sources */,
 				6709832813DD1777003E4E75 /* FreeCamera.mm in Sources */,
-				6709832913DD1777003E4E75 /* InteractiveBodyNode.mm in Sources */,
+				6709832913DD1777003E4E75 /* InteractiveSprite.mm in Sources */,
 				6709832A13DD1777003E4E75 /* JointDeclaration.m in Sources */,
 				6709832C13DD1777003E4E75 /* StringParser.mm in Sources */,
 				6709832D13DD1777003E4E75 /* svgLoader.mm in Sources */,

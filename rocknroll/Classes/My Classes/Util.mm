@@ -2,10 +2,10 @@
 #import "Util.h"
 #import "AKHelpers.h"
 #include "Box2D.h"
-#include "InteractiveBodyNode.h"
 #include "GameConfig.h"
 #import "ClipFactory.h"
 #include "GameObject.h"
+#import "BodyInfo.h"
 
 @implementation Util
 
@@ -72,12 +72,6 @@ namespace Helper
             NSObject * object = (NSObject*) b->GetUserData();
             if ( object )
             {
-                if ([object isKindOfClass:[InteractiveBodyNode class]])
-                {
-                    InteractiveBodyNode * bodyNode = (InteractiveBodyNode*) object;
-                    [bodyNode removeFromTouchDispatcher];
-                }
-                
                 [object release];
                 b->SetUserData(NULL);
             }

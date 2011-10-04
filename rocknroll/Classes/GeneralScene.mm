@@ -3,6 +3,7 @@
 #import "Util.h"
 #import "RetainCountTrace.h"
 #import "b2WorldEx.h"
+#import "InteractiveSprite.h"
 
 @implementation GeneralScene
 
@@ -31,22 +32,9 @@
         
         // Parse svg file
         {
-            // Define the gravity vector.
-            b2Vec2 gravity;
-            gravity.Set(0.0f, -9.8f);
-            
-            // Construct a world object, which will hold and simulate the rigid bodies.
-            world_ = new b2WorldEx(gravity);
-
-            // Define the ground body.
-            b2BodyDef groundBodyDef;
-            groundBodyDef.position.Set(0, 0); // bottom-left corner
-            // load geometry from file
-            b2Body* groundBody = world_->CreateBody(&groundBodyDef);
-            
             NSString *filePath = [Util getResourcePath:svgFileName];
-            
-            svgLoader * loader = [[svgLoader alloc] initWithWorld:world_ andStaticBody:groundBody andLayer:self terrains:nil gameObjects:NULL scoreBoard:nil];
+
+            svgLoader * loader = [[svgLoader alloc] initWithWorld:nil andStaticBody:nil andLayer:self terrains:nil gameObjects:NULL scoreBoard:nil];
 
             [loader instantiateObjectsIn:filePath];
             
@@ -83,12 +71,13 @@
 {
     CCLOG(@"GeneralScene:dealloc");
 
-	// in case you have something to dealloc, do it in this method
-    // remove all body nodes attached to b2Body in the b2World.
-    Helper::removeAttachedBodyNodes(world_);
-    
-	delete world_;
-	world_ = NULL;
+    for (id child in self.children) {
+        if ([child isKindOfClass:[InteractiveSprite class]])
+        {
+            InteractiveSprite * intrSprite = (InteractiveSprite*) child;
+            [intrSprite removeFromTouchDispatcher];
+        }
+    }
     
 	// don't forget to call "super dealloc"
 	[super dealloc];

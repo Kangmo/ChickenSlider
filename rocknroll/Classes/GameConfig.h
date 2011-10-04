@@ -44,6 +44,8 @@
 // The maximum number of levels per map
 #define MAX_LEVELS_PER_MAP (30)
 
+#define INTERACTIVE_SPRITE_TOUCH_GAP (8)
+
 // BUGBUG : Adjust the position for iPad, retina...
 const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 //const float TARGET_OBJ_POS_Y = 160.0f;

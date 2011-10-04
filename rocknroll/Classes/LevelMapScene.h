@@ -7,10 +7,10 @@
 //
 
 #import "GeneralScene.h"
-#import "InteractiveBodyNode.h"
+#import "InteractiveSprite.h"
 #import "GameObject.h"
 
 @interface LevelMapScene : GeneralScene
-    InteractiveBodyNode * levels[MAX_LEVELS_PER_MAP];
+    InteractiveSprite * levels[MAX_LEVELS_PER_MAP];
 // Have level map rocks here. 
 @end

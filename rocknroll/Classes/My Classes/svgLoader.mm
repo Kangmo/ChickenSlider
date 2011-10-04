@@ -1,7 +1,7 @@
 #import "svgLoader.h"
 #import "Box2D.h"
 #import "BodyInfo.h"
-#include "InteractiveBodyNode.h"
+#include "InteractiveSprite.h"
 #include "StringParser.h"
 #import "ClassDictionary.h"
 #include "GameConfig.h"
@@ -101,6 +101,7 @@
         bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(bodyPos.x, bodyPos.y);
 
+        assert(world);
 		b2Body *body = world->CreateBody(&bodyDef);
 	
 		
@@ -330,6 +331,7 @@
                 bodyDef.type = b2_dynamicBody;
                 bodyDef.position.Set(fx, fy);
                 
+                assert(world);
                 b2Body *body = world->CreateBody(&bodyDef);
                 
                 b2CircleShape circle;
@@ -356,6 +358,55 @@
         }
         else
 		{
+            // if "objectType" attr is defined, it is simply a game object not affected by physics
+            if (objectType)
+            {
+                NSString * objectTouchAction = [[curShape attributeForName:@"objectTouchAction"] stringValue];
+                NSString * objectHoverAction = [[curShape attributeForName:@"objectHoverAction"] stringValue];
+                NSString * hoveringSpriteFile = nil;
+                
+                // Set hover action
+                NSMutableDictionary * hoverActionDescs = StringParser::getDictionary(objectHoverAction);
+                body_hover_action_t hoverAction = BHA_NONE;
+                if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
+                {
+                    hoverAction = BHA_SHOW_IMAGE;
+                    if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
+                        
+                        hoveringSpriteFile = [hoverActionDescs valueForKey:@"ImageFile"];
+                    assert(hoveringSpriteFile);
+                }
+
+                // Set touch action.
+                NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
+                body_touch_action_t touchAction = BTA_NONE;
+                if ( [[touchActionDescs valueForKey:@"Action"] isEqualToString:@"SceneTransition"] )
+                {
+                    touchAction = BTA_SCENE_TRANSITION;          
+                }
+                
+                // hoveringSpriteFile should not be NULL. We only support hovering action for now.
+                assert (hoveringSpriteFile);
+
+                InteractiveSprite * intrSprite = [[[InteractiveSprite alloc] initWithFile:hoveringSpriteFile] autorelease];
+                assert(intrSprite);
+                
+                [intrSprite setHoverAction:hoverAction actionDescs:hoverActionDescs ];
+                [intrSprite setTouchAction:touchAction actionDescs:touchActionDescs ];
+
+                CGSize winSize = [[CCDirector sharedDirector] winSize];
+                // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
+                // 2) and then subtract orgHeight to get bottomLeft
+                intrSprite.bottomLeftCorner = CGPointMake(orgX, winSize.height - orgY - orgHeight);
+                intrSprite.nodeSize = CGSizeMake(orgWidth, orgHeight);
+                intrSprite.position = ccp( intrSprite.bottomLeftCorner.x + intrSprite.nodeSize.width * 0.5 , 
+                                          intrSprite.bottomLeftCorner.y + intrSprite.nodeSize.height * 0.5 );
+                
+                [layer addChild:intrSprite];
+
+                continue;
+            }
+
 			b2BodyDef bodyDef;
             // by kangmo kim
             bodyDef.type = b2_dynamicBody;
@@ -369,6 +420,7 @@
             }
 			
 			//bodyDef.userData = sprite;
+            assert(world);
 			b2Body *body = world->CreateBody(&bodyDef);
 			
 			// Define another box shape for our dynamic body.
@@ -394,55 +446,6 @@
 			
 			bi.rect = CGSizeMake(fWidth, fHeight);
             
-            // if "objectType" attr is defined, it is simply a game object not affected by physics
-            if (objectType)
-            {
-                NSString * objectTouchAction = [[curShape attributeForName:@"objectTouchAction"] stringValue];
-                NSString * objectHoverAction = [[curShape attributeForName:@"objectHoverAction"] stringValue];
-                // Hmm the code is really dirty. Make it clean.
-                InteractiveBodyNode * intrBody = [[InteractiveBodyNode alloc] init];
-                intrBody.name = bi.name;
-                intrBody.rect = bi.rect;
-                intrBody.spriteName = bi.spriteName;
-                intrBody.textureName = bi.textureName;
-                intrBody.data = bi.data;
-                
-                CGSize winSize = [[CCDirector sharedDirector] winSize];
-                // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
-                // 2) and then subtract orgHeight to get bottomLeft
-                intrBody.bottomLeftCorner = CGPointMake(orgX, winSize.height - orgY - orgHeight);
-                intrBody.nodeSize = CGSizeMake(orgWidth, orgHeight);
-                // Set Cocos2d Layer so that hover action can show a sprite an the layer with the hovering image.
-                intrBody.layer = layer;
-
-                // Set hover action
-                {
-                    NSMutableDictionary * hoverActionDescs = StringParser::getDictionary(objectHoverAction);
-                    body_hover_action_t hoverAction = BHA_NONE;
-                    if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
-                    {
-                        hoverAction = BHA_SHOW_IMAGE;          
-                    }
-                    
-                    [intrBody setHoverAction:hoverAction actionDescs:hoverActionDescs ];
-                    
-                }
-                
-                // Set touch action.
-                {
-                    NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
-                    body_touch_action_t touchAction = BTA_NONE;
-                    if ( [[touchActionDescs valueForKey:@"Action"] isEqualToString:@"SceneTransition"] )
-                    {
-                        touchAction = BTA_SCENE_TRANSITION;          
-                    }
-                    [intrBody setTouchAction:touchAction actionDescs:touchActionDescs ];
-                }
-
-                // Switch the body info with the Interactive Body.
-                [bi release];
-                bi = intrBody;
-            }
             // BUGBUG : Memory Leak? check who deallocates bi attached to the body.
 			if(name) body->SetUserData(bi);
 			CCLOG(@"SvgLoader: Loaded rectangle. name=%@ w=%f h=%f at %f,%f  friction = %f, density = %f",name, fWidth,fHeight,fx,fy, fixtureDef.friction, fixtureDef.density);
@@ -510,6 +513,7 @@
 					bodyDef.position.Set(avg.x, avg.y);
 					
 					//bodyDef.userData = sprite;
+                    assert(world);
 					b2Body *body = world->CreateBody(&bodyDef);
 					
 					// Define another box shape for our dynamic body.
@@ -619,6 +623,9 @@
                         //edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
                         
                         float32 staticBodyDensity = 0;
+                        
+                        assert(staticBody);
+                        
                         b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
                         
                         if(friction)	edgeFixture->SetFriction([friction floatValue]);
@@ -631,6 +638,7 @@
                         assert(xOffset == 0);
                         assert(yOffset == 0);
 
+                        assert(world);
                         // Create Terrain
                         Terrain * terrain = [Terrain terrainWithWorld:world borderPoints:(NSArray*)points canvasHeight:svgCanvasHeight xOffset:xOffset yOffset:yOffset];
 
@@ -683,9 +691,13 @@
 			b2DistanceJointDef jointDef;
 			
 			if(b2) jointDef.Initialize(b1, b2, b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
-			else jointDef.Initialize(b1, staticBody, b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
-			
+			else {
+                assert( staticBody );
+                jointDef.Initialize(b1, staticBody, b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+            }
+            
 			jointDef.collideConnected = true;
+            assert(world);
 			world->CreateJoint(&jointDef);
 			CCLOG(@"SvgLoader: Loaded DistanceJoint. body1=\"%@\" body2=\"%@\" at %f,%f  %f,%F",
 				  curJointData.body1,curJointData.body2==nil?@"static":curJointData.body2,p1.x,p1.y,p2.x,p2.y);
@@ -697,12 +709,15 @@
 			b2RevoluteJointDef jointDef;
 			
 			if(b2) jointDef.Initialize(b1, b2, b2Vec2(p1.x,p1.y));
-			else jointDef.Initialize(b1, staticBody, b2Vec2(p1.x,p1.y));
-
+			else {
+                assert(staticBody);
+                jointDef.Initialize(b1, staticBody, b2Vec2(p1.x,p1.y));
+            }
             jointDef.enableMotor= curJointData.motorEnabled?true:false;
 			jointDef.motorSpeed = curJointData.motorSpeed;
 			jointDef.maxMotorTorque = curJointData.maxTorque;
 
+            assert(world);
 			world->CreateJoint(&jointDef);
 			CCLOG(@"SvgLoader: Loaded RevoluteJoint. body1=\"%@\" body2=\"%@\" at %f,%f ",
 				  curJointData.body1,curJointData.body2==nil?@"static":curJointData.body2,p1.x,p1.y);
@@ -827,6 +842,7 @@
 
 -(b2Body*) getBodyByName:(NSString*) bodyName
 {
+    assert(world);
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
@@ -842,6 +858,8 @@
 
 -(void) assignSpritesFromSheet:(CCSpriteBatchNode*)spriteSheet
 {
+    assert(world);
+
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		if (b->GetUserData() != NULL) 
@@ -883,6 +901,8 @@
 
 -(void) doCleanupShapes
 {
+    assert(world);
+
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		b->SetUserData(NULL);
