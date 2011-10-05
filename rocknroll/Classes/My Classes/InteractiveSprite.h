@@ -33,6 +33,13 @@ typedef enum body_hover_action_t
     /** @brief The scale. This is for future usage. Currently it is 1.0 
      */
     CGFloat scale_;
+    /** @brief Indicates if the touch is being handled. Need this to prohibit multiple execution of touch handler.
+     */
+    BOOL isTouchHandling_;
+    
+    /** @brief Is this interactive sprite is locked, lockSprite is not nil, and shown on the screen.
+     */
+    CCSprite *lockSprite_;
     
 }
 @property(assign, nonatomic) CGPoint bottomLeftCorner;
@@ -50,5 +57,8 @@ typedef enum body_hover_action_t
 -(void)setHoverAction:(body_hover_action_t)actionType actionDescs:(NSDictionary*)actionDescs;
 
 -(void)removeFromTouchDispatcher;
+
+-(void) setLocked:(BOOL)locked;
+-(BOOL) isLocked;
 
 @end

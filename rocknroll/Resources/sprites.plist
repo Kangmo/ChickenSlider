@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{48,48}</string>
             </dict>
-            <key>WaterDrop00.png</key>
+            <key>Locked.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{48,171},{32,32}}</string>
@@ -238,10 +238,23 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
+            <key>WaterDrop00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{81,171},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
             <key>WaterDrop01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,171},{32,30}}</string>
+                <string>{{1,214},{32,30}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -254,7 +267,7 @@
             <key>WaterDrop02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,214},{32,26}}</string>
+                <string>{{34,214},{32,26}}</string>
                 <key>offset</key>
                 <string>{0,-3}</string>
                 <key>rotated</key>
@@ -267,7 +280,7 @@
             <key>WaterDrop03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{34,214},{32,22}}</string>
+                <string>{{67,214},{32,22}}</string>
                 <key>offset</key>
                 <string>{0,-5}</string>
                 <key>rotated</key>
@@ -280,7 +293,7 @@
             <key>WaterDrop04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,214},{32,26}}</string>
+                <string>{{34,214},{32,26}}</string>
                 <key>offset</key>
                 <string>{0,-3}</string>
                 <key>rotated</key>
@@ -293,7 +306,7 @@
             <key>WaterDrop05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,171},{32,30}}</string>
+                <string>{{1,214},{32,30}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -306,7 +319,7 @@
             <key>WaterDrop06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{48,171},{32,32}}</string>
+                <string>{{81,171},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -326,7 +339,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f71ed1e22e7df12964347f673327d611$</string>
+            <string>$TexturePacker:SmartUpdate:c19d2aab24f7b2a6a3ca0a95729d3b76$</string>
             <key>textureFileName</key>
             <string>sprites.png</string>
         </dict>

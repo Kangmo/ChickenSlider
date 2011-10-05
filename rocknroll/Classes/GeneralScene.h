@@ -3,6 +3,7 @@
 class b2WorldEx;
 @interface GeneralScene : CCLayer {  
     b2WorldEx * world_;
+    NSString * sceneName_;
 }
 
 +(CCScene*)sceneWithName:sceneName;

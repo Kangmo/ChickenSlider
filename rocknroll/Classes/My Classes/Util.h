@@ -31,6 +31,8 @@ namespace Helper
 
     void runClip(REF(GameObject) refGameObject, NSDictionary* clip) ;
     
+    void runClip(CCSprite * sprite, NSDictionary* clip);
+    
     inline box_t getBox(CGPoint minPoint, CGPoint maxPoint) 
     {
         return box_t( point_t( minPoint.x, minPoint.y ), point_t( maxPoint.x, maxPoint.y ) );

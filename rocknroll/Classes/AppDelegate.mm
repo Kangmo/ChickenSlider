@@ -4,7 +4,7 @@
 #import "GeneralScene.h"
 #import "StageScene.h"
 #import "RootViewController.h"
-
+#import "PersistentGameState.h"
 
 @implementation AppDelegate
 
@@ -102,6 +102,9 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
+    // Load the sprite frames.
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
+    
     CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
     //CCScene * theFirstScene = [StageScene sceneWithLevel:@"LV2"];
 	// Run the main menu Scene
@@ -130,6 +133,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	[[director openGLView] removeFromSuperview];

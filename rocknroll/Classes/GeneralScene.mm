@@ -12,6 +12,8 @@
 {
 	if( (self=[super init])) 
 	{
+        sceneName_ = sceneName;
+        
         NSString * svgFileName = [sceneName stringByAppendingString:@".svg"];
         NSString * backgroundFileName = [sceneName stringByAppendingString:@".png"];
     

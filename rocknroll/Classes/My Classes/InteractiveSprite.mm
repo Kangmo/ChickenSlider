@@ -18,7 +18,7 @@
     if ( (self = [super initWithFile:fileName]) )
     {
         [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-
+        isTouchHandling_ = NO;
         touchActionType_ = BTA_NONE;
         touchActionDescs_ = nil;
         hoverActionType_ = BHA_NONE;
@@ -29,9 +29,45 @@
         
         // The CCSprite itself is a hovering image. Don't show the hovering image at first.
         self.visible = NO;
+        
+        lockSprite_ = nil;
     }
     
     return self;
+}
+
+-(BOOL) isLocked {
+    return lockSprite_?YES:NO;
+}
+
+-(void) setLocked:(BOOL)locked
+{
+    CCNode * parent = [self parent];
+    
+    if (locked)
+    {
+        // Should not lock twice
+        assert( ! [self isLocked] );
+        lockSprite_ = [[CCSprite spriteWithSpriteFrameName:@"Locked.png"] retain];
+        assert(lockSprite_);
+        
+        [parent addChild:lockSprite_];
+        // The lock sprite has the same position.
+        lockSprite_.position = self.position;
+    }
+    else
+    {
+        // Should not unlock twice
+        assert( [self isLocked] );
+        [lockSprite_ release];
+        
+        [lockSprite_ runAction:[CCScaleTo actionWithDuration:1.0f scale:2.0f]];
+        [lockSprite_ runAction:[CCSequence actions:
+                               [CCFadeOut actionWithDuration:1.0f],
+                               [CCCallFuncND actionWithTarget:lockSprite_ selector:@selector(removeFromParentAndCleanup:) data:(void*)YES/*failed*/],
+                               nil]];
+        lockSprite_ = nil;
+    }
 }
 
 /** @brief Set the action type and data
@@ -64,7 +100,11 @@
 -(void)dealloc
 {
     CCLOG(@"Interactive Body Node : dealloc");
-    
+    if (lockSprite_)
+    {
+        [lockSprite_ release];
+        lockSprite_ = nil;
+    }
     [touchActionDescs_ release];
     [hoverActionDescs_ release];
     [super dealloc];
@@ -76,6 +116,11 @@
 {
     assert(touchActionType_);
     assert(touchActionDescs_);
+    
+    // BUGBUG : We need this flag at the LevelMapScene
+    if (isTouchHandling_) {
+        return;
+    }
     
     switch(touchActionType_)
     {
@@ -89,9 +134,13 @@
                 [[[SimpleAudioEngine sharedEngine] soundSourceForFile:soundFileName] play];
             }
             
-            CCScene * newScene;
+            CCScene * newScene = nil;
             if ( [sceneName isEqualToString:@"StageScene"] )
             {
+                CCNode * parent = [self parent];
+                // StageScene can be run only from the LevelMapScene 
+                assert( [parent isKindOfClass:[LevelMapScene class]] );
+                
                 // The string uniquly identifying level of stage.
                 NSString * mapNameAttr = [touchActionDescs_ valueForKey:@"Arg1"];
                 assert(mapNameAttr);
@@ -102,9 +151,13 @@
                 
                 int levelNum = [levelNumAttr intValue];
 
-                newScene = [StageScene sceneInMap:mapNameAttr levelNum:levelNum];
+                LevelMapScene * levelMapScene = (LevelMapScene*) parent;
+
+                // Move the hero to the new level and start the new level stage
+                [levelMapScene playLevel:levelNum ofMap:mapNameAttr];
             }
-            else if ( [sceneName isEqualToString:@"LevelMapScene"] )
+            // If the scene name starts with "MAP", we instantiate LevelMapScene.
+            else if ( [[sceneName substringWithRange:NSMakeRange(0,3)] isEqualToString:@"MAP"] )
             {
                 newScene = [LevelMapScene sceneWithName:sceneName];
             }
@@ -112,7 +165,11 @@
             {
                 newScene = [GeneralScene sceneWithName:sceneName];
             }
-            [[CCDirector sharedDirector] replaceScene: newScene];
+            
+            if (newScene)
+                [[CCDirector sharedDirector] replaceScene: newScene];
+            
+            isTouchHandling_ = YES;
         }
         break;
         default:
@@ -165,32 +222,46 @@
 }
 
 -(BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event {
+    
     CGPoint touchPoint = [touch locationInView:[touch view]];
     touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint ];
 //    CCLOG(@"InteractiveBodyNode : Touch Began=>%f,%f", touchPoint.x, touchPoint.y );
     if ([self isTouchOnNode:touchPoint]) {
-        [self handleHoverAction];
+        if ( [self isLocked] )
+        {
+            // BUGBUG : play some sound
+            return YES;
+        }
+        if ( hoverActionType_ != BHA_NONE ) // Handle the hovering action if it is specified.
+        {
+            [self handleHoverAction];
+        }
         return YES;
     }
     return NO;
 }
 
 -(void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
-    CGPoint touchPoint = [touch locationInView:[touch view]];
-    touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint ];
-//    CCLOG(@"InteractiveBodyNode : Touch Moved=>%f,%f", touchPoint.x, touchPoint.y );
 }
 
 -(void)ccTouchEnded:(UITouch*)touch withEvent:(UIEvent *)event {
+
+    // Do not show the hovering sprite.
+    self.visible = NO;
+
+
     CGPoint touchPoint = [touch locationInView:[touch view]];
     touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint ];
 //    CCLOG(@"InteractiveBodyNode : Touch Ended=>%f,%f", touchPoint.x, touchPoint.y );
     if ([self isTouchOnNode:touchPoint]) {
+        if ( [self isLocked] )
+        {
+            // BUGBUG : play some sound
+            return;
+        }
+        
         [self handleTouchAction];
     }
-    
-    // Do not show the hovering sprite.
-    self.visible = NO;
 }
 
 @end

@@ -28,7 +28,7 @@ typedef enum {
 {
     // The name of the map where the stage exists
     NSString * mapName;
-    // The number of level in the map
+    // The current number of level in the map
     int level;
 
     b2WorldEx* world;

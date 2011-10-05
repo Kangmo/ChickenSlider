@@ -66,6 +66,8 @@ namespace Helper
      */
     void removeAttachedBodyNodes(b2World * world )
     {
+        assert(world);
+        
         //Iterate over the bodies in the physics world
         for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
         {
@@ -104,6 +106,9 @@ namespace Helper
      */
     void runClip(b2Body *body, NSDictionary* clip) 
     {
+        assert(body);
+        assert(clip);
+        
         BodyInfo *bi = (BodyInfo*)body->GetUserData();
         if(bi.data)
         {
@@ -118,10 +123,35 @@ namespace Helper
      */
     void runClip(REF(GameObject) refGameObject, NSDictionary* clip) 
     {
+        assert(clip);
+        
         CCSprite * sprite = refGameObject->getSprite();
+        assert(sprite);
+        
+        [sprite stopAllActions];
+        [AKHelpers applyAnimationClip:clip toNode:sprite];
+    }
+
+    /** @brief Apply animation clip to the given sprite.
+     */
+    void runClip(CCSprite * sprite, NSDictionary* clip)
+    {
+        assert(sprite);
+        assert(clip);
         
         [sprite stopAllActions];
         [AKHelpers applyAnimationClip:clip toNode:sprite];
     }
     
+    /** @brief Change the sprite frame with the one that has the given name.
+     */
+    void changeSpriteFrame(CCSprite *sprite, NSString * spriteFrameName)
+    {
+        assert(sprite);
+        assert(spriteFrameName);
+        
+        CCSpriteFrame * spriteFrame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:spriteFrameName];
+        assert(spriteFrame);
+        [sprite setDisplayFrame:spriteFrame];
+    }
 }

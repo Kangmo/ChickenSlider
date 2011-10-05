@@ -358,52 +358,60 @@
         }
         else
 		{
-            // if "objectType" attr is defined, it is simply a game object not affected by physics
             if (objectType)
             {
-                NSString * objectTouchAction = [[curShape attributeForName:@"objectTouchAction"] stringValue];
-                NSString * objectHoverAction = [[curShape attributeForName:@"objectHoverAction"] stringValue];
-                NSString * hoveringSpriteFile = nil;
-                
-                // Set hover action
-                NSMutableDictionary * hoverActionDescs = StringParser::getDictionary(objectHoverAction);
-                body_hover_action_t hoverAction = BHA_NONE;
-                if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
+                // if "objectType" attr is defined, it is simply a game object not affected by physics
+                if ([objectType isEqualToString:@"MenuItem"])
                 {
-                    hoverAction = BHA_SHOW_IMAGE;
+                    NSString * objectTouchAction = [[curShape attributeForName:@"objectTouchAction"] stringValue];
+                    NSString * objectHoverAction = [[curShape attributeForName:@"objectHoverAction"] stringValue];
+                    NSString * hoveringSpriteFile = nil;
+                    
+                    // Set hover action
+                    NSMutableDictionary * hoverActionDescs = StringParser::getDictionary(objectHoverAction);
+                    body_hover_action_t hoverAction = BHA_NONE;
                     if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
-                        
-                        hoveringSpriteFile = [hoverActionDescs valueForKey:@"ImageFile"];
-                    assert(hoveringSpriteFile);
+                    {
+                        hoverAction = BHA_SHOW_IMAGE;
+                        if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
+                            
+                            hoveringSpriteFile = [hoverActionDescs valueForKey:@"ImageFile"];
+                        assert(hoveringSpriteFile);
+                    }
+                    
+                    // Set touch action.
+                    NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
+                    body_touch_action_t touchAction = BTA_NONE;
+                    if ( [[touchActionDescs valueForKey:@"Action"] isEqualToString:@"SceneTransition"] )
+                    {
+                        touchAction = BTA_SCENE_TRANSITION;      
+                    }
+                    
+                    // If the hovering sprite is nil, use transparent dummy sprite for hovering.
+                    hoveringSpriteFile = @"Dummy.png";
+                    
+                    InteractiveSprite * intrSprite = [[[InteractiveSprite alloc] initWithFile:hoveringSpriteFile] autorelease];
+                    assert(intrSprite);
+                    
+                    [intrSprite setHoverAction:hoverAction actionDescs:hoverActionDescs ];
+                    [intrSprite setTouchAction:touchAction actionDescs:touchActionDescs ];
+                    
+                    CGSize winSize = [[CCDirector sharedDirector] winSize];
+                    // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
+                    // 2) and then subtract orgHeight to get bottomLeft
+                    intrSprite.bottomLeftCorner = CGPointMake(orgX, winSize.height - orgY - orgHeight);
+                    intrSprite.nodeSize = CGSizeMake(orgWidth, orgHeight);
+                    intrSprite.position = ccp( intrSprite.bottomLeftCorner.x + intrSprite.nodeSize.width * 0.5 , 
+                                              intrSprite.bottomLeftCorner.y + intrSprite.nodeSize.height * 0.5 );
+                    
+                    [layer addChild:intrSprite];
+                    
                 }
-
-                // Set touch action.
-                NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
-                body_touch_action_t touchAction = BTA_NONE;
-                if ( [[touchActionDescs valueForKey:@"Action"] isEqualToString:@"SceneTransition"] )
+                // if "objectType" attr is defined, it is simply a game object not affected by physics
+                if ([objectType isEqualToString:@"Advertisement"])
                 {
-                    touchAction = BTA_SCENE_TRANSITION;          
+                    // BUGBUG : Place iAd...
                 }
-                
-                // hoveringSpriteFile should not be NULL. We only support hovering action for now.
-                assert (hoveringSpriteFile);
-
-                InteractiveSprite * intrSprite = [[[InteractiveSprite alloc] initWithFile:hoveringSpriteFile] autorelease];
-                assert(intrSprite);
-                
-                [intrSprite setHoverAction:hoverAction actionDescs:hoverActionDescs ];
-                [intrSprite setTouchAction:touchAction actionDescs:touchActionDescs ];
-
-                CGSize winSize = [[CCDirector sharedDirector] winSize];
-                // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
-                // 2) and then subtract orgHeight to get bottomLeft
-                intrSprite.bottomLeftCorner = CGPointMake(orgX, winSize.height - orgY - orgHeight);
-                intrSprite.nodeSize = CGSizeMake(orgWidth, orgHeight);
-                intrSprite.position = ccp( intrSprite.bottomLeftCorner.x + intrSprite.nodeSize.width * 0.5 , 
-                                          intrSprite.bottomLeftCorner.y + intrSprite.nodeSize.height * 0.5 );
-                
-                [layer addChild:intrSprite];
-
                 continue;
             }
 

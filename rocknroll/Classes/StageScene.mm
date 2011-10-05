@@ -7,6 +7,7 @@
 #include "GameConfig.h"
 #include "Util.h"
 #include "GeneralScene.h"
+#import "LevelMapScene.h"
 
 #include "InputLayer.h"
 #include "b2WorldEx.h"
@@ -132,7 +133,6 @@ static StageScene* instanceOfStageScene;
         [self addChild:label];
     }
 
-    
     // Score
     {
         CCLabelBMFont *label = scoreLabel.getLabel();
@@ -157,7 +157,7 @@ static StageScene* instanceOfStageScene;
         
         stageCleared = NO;
         
-        mapName = aMapName;
+        mapName = [aMapName retain];
         level = aLevel;
         assert( aLevel < MAX_LEVELS_PER_MAP );
         assert( MAX_LEVELS_PER_MAP < 99 );
@@ -170,9 +170,6 @@ static StageScene* instanceOfStageScene;
 
         sky = [[Sky skyWithTextureSize:512] retain];
 		[self addChild:sky];
-        
-        // Load the sprite frames.
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
         [self addChild:spriteSheet];
@@ -219,7 +216,7 @@ static StageScene* instanceOfStageScene;
         [self addTerrains];
         
         b2Body * playerBody = [loader getBodyByName:@"MyCar_CarMainBody"];
-        if ( playerBody ) 
+        if ( playerBody )
         {
             car = new Car( playerBody );
         }
@@ -254,16 +251,17 @@ static StageScene* instanceOfStageScene;
         
         // Initialize score labels. (Requires spriteSheet);
         [self initScoreLabels];
-        
-		[self schedule: @selector(tick:)];
-        
-        // playbackground music
-        [[CDAudioManager sharedManager] playBackgroundMusic:@"summer_smile-stephen_burns.mp3" loop:YES];
-        [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 100;//To loop 3 times
 	}
 	return self;
 }
 
+- (void) onEnterTransitionDidFinish {
+    // playbackground music
+    [[CDAudioManager sharedManager] playBackgroundMusic:@"summer_smile-stephen_burns.mp3" loop:YES];
+    [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
+    
+    [self schedule: @selector(tick:)];
+}
 
 +(id)nodeInMap:(NSString*)mapName levelNum:(int)level
 {
@@ -322,6 +320,7 @@ static StageScene* instanceOfStageScene;
 	
 }
 */
+
 
 -(void) draw
 {
@@ -470,11 +469,50 @@ static StageScene* instanceOfStageScene;
     }
 }
 
--(void) gotoLevelMap
+-(void) gotoLevelMap:(BOOL)clearedCurrentStage
 {
-    // IF the hero is already dead, go back to level map scene.
-    [[CCDirector sharedDirector] replaceScene:[GeneralScene sceneWithName:@"LevelMapScene"]];
+    CCLOG(@"gotoLevelMap:%@", clearedCurrentStage?@"YES":@"NO");
+    
+    // IF the level is cleared, the next level is unlocked.
+    // IF the level is not cleared(the Hero is dead), go back to level map scene.
+    CCScene * levelMapScene = [LevelMapScene sceneWithName:mapName level:level cleared:clearedCurrentStage];
+    assert(levelMapScene);
+    
+    [[CCDirector sharedDirector] replaceScene:levelMapScene];
+
+    CCLOG(@"gotoLevelMap:end");
 }
+
+-(void)gotoLevelMapCallback:(id)sender data:(void*)callbackData 
+{
+    
+    BOOL clearedCurrentStage = (BOOL)(int)callbackData;
+    
+    CCLOG(@"gotoLevelMapCallback:%@, %p", clearedCurrentStage?@"YES":@"NO", callbackData);
+
+    [self gotoLevelMap:clearedCurrentStage];
+    
+    CCLOG(@"gotoLevelMapCallback:end");
+}
+
+/** @brief Show a big title on the center of the screen for 2 seconds, switch back to level map scene.
+ */
+- (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage{
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
+	label.position = ccp(screenSize.width/2, screenSize.height/2);
+    label.scale = 2.0;
+
+	[label runAction:[CCSequence actions:
+                      [CCScaleTo actionWithDuration:2.0f scale:8.0f],
+                      [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMapCallback:data:) data:(void*)clearedCurrentStage],
+					  [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
+					  nil]];
+    
+	[self addChild:label];
+}
+
 /** @brief check if the Hero is dead. The hero is dead if he is below the ground level.
  */
 -(void) checkHeroDead:(float)worldGroundY {
@@ -489,16 +527,15 @@ static StageScene* instanceOfStageScene;
             // Show that the hero is dead (Jump like mario!)
             [hero dead];
             
-            // The player is dead!
-            [self showMessage:@"Dead!"];
-            
             CCSprite * heroSprite = [hero getSprite];
+            assert(heroSprite);
             
-            [heroSprite runAction:[CCScaleTo actionWithDuration:2.0f scale:2.0f]];
+            [heroSprite stopAllActions];
+
             [heroSprite runAction:[CCSequence actions:
-                              [CCFadeOut actionWithDuration:2.0f],
-                              [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMap) data:(void*)nil],
-                              nil]];
+                                    [CCFadeOut actionWithDuration:2.0f], nil]];
+            
+            [self finishStageWithMessage:@"Failed~" stageCleared:NO];
         }
     }
 }
@@ -507,20 +544,18 @@ static StageScene* instanceOfStageScene;
 /** @brief check if the Hero is dead. The hero is dead if he is below the ground level.
  */
 -(void) checkStageClear:(float)heroX_withoutZoom {
+    if ( hero.isDead )
+        return;
+    
     if ( heroX_withoutZoom > terrainMaxX ) {
         if ( ! stageCleared )
         {
-            // The player went beyond the max X of all terrains! Stage is cleared!
-            [self showMessage:@"Stage Clear!"];
+            CCLOG(@"Stage Cleared: begin");
             
-            CCSprite * heroSprite = [hero getSprite];
-            
-            // BUGBUG : make the hero character advance to the next stage in the map.
-            [heroSprite runAction:[CCSequence actions:
-                                   [CCScaleTo actionWithDuration:2.0f scale:4.0f],
-                                   [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMap) data:(void*)nil],
-                                   nil]];
+            [self finishStageWithMessage:@"Cleared!" stageCleared:YES];
             stageCleared = YES;
+            
+            CCLOG(@"Stage Cleared: end");
         }
     }
 }
@@ -724,6 +759,8 @@ static StageScene* instanceOfStageScene;
 
 	// Reset the StageScene singleton.
     instanceOfStageScene = nil;
+    
+    [mapName release];
     
 	// don't forget to call "super dealloc"
 	[super dealloc];
