@@ -15,6 +15,8 @@
 #include "GameObjectContainer.h"
 #include "IncNumLabel.h"
 
+#import"AdLayer.h"
+
 class b2WorldEx;
 @class Sky;
 
@@ -24,7 +26,7 @@ typedef enum {
 } StageSceneLayerTags;
 
 // HelloWorld Layer
-@interface StageScene : CCLayer<ScoreBoardProtocol>
+@interface StageScene : AdLayer<ScoreBoardProtocol>
 {
     // The name of the map where the stage exists
     NSString * mapName;
@@ -64,6 +66,10 @@ typedef enum {
     BOOL stageCleared;
 }
 
+@property (nonatomic, assign) Car * car;
+@property (nonatomic, retain) Hero * hero;
+@property (nonatomic, assign) BOOL giveUpStage;
+
 // returns a Scene that contains the HelloWorld as the only child
 +(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level;
 +(StageScene*) sharedStageScene;
@@ -72,8 +78,6 @@ typedef enum {
 -(void) increaseScore:(int) scoreDiff;
 -(void) increaseWaterDrops:(int) waterDropsDiff;
 
-@property (nonatomic, assign) Car * car;
-@property (nonatomic, retain) Hero * hero;
-
+- (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
 
 @end

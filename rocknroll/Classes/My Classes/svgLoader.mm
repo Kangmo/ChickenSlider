@@ -15,7 +15,7 @@
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard;
 {
 	self = [super init];
 	if (self != nil) 
@@ -369,7 +369,7 @@
                     
                     // Set hover action
                     NSMutableDictionary * hoverActionDescs = StringParser::getDictionary(objectHoverAction);
-                    body_hover_action_t hoverAction = BHA_NONE;
+                    body_hover_action_t hoverAction = BHA_NULL;
                     if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
                     {
                         hoverAction = BHA_SHOW_IMAGE;
@@ -379,16 +379,33 @@
                         assert(hoveringSpriteFile);
                     }
                     
-                    // Set touch action.
-                    NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
-                    body_touch_action_t touchAction = BTA_NONE;
-                    if ( [[touchActionDescs valueForKey:@"Action"] isEqualToString:@"SceneTransition"] )
+                    if ( hoverAction == BHA_NULL ) // If no hovering action is specified
                     {
-                        touchAction = BTA_SCENE_TRANSITION;      
+                        hoverAction = BHA_SHOW_PARTICLE;
+                        // If the hovering sprite is nil, use transparent dummy sprite for hovering.
+                        hoveringSpriteFile = @"Dummy.png";
+                        // Set the default touch sound.
+                        [hoverActionDescs setValue:@"WaterDrop.wav" forKey:@"Sound"];
                     }
                     
-                    // If the hovering sprite is nil, use transparent dummy sprite for hovering.
-                    hoveringSpriteFile = @"Dummy.png";
+                    // Set touch action.
+                    NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
+                    body_touch_action_t touchAction = BTA_NULL;
+                    NSString * actionName = [touchActionDescs valueForKey:@"Action"];
+                    if ( [actionName isEqualToString:@"SceneTransition"] )
+                    {
+                        touchAction = BTA_SCENE_TRANSITION;
+                    }
+                    else if ( [actionName isEqualToString:@"None"] )
+                    {
+                        touchAction = BTA_NONE; // Do nothing. But process some optional actions specified "Option" field in the action descs.
+                    }
+                    else if ( [actionName isEqualToString:@"GiveUpStage"] )
+                    {
+                        touchAction = BTA_GIVEUP_STAGE; // Give up the current stage, move to the map scene where this stage exists.
+                    }
+                    
+                    assert(hoveringSpriteFile);
                     
                     InteractiveSprite * intrSprite = [[[InteractiveSprite alloc] initWithFile:hoveringSpriteFile] autorelease];
                     assert(intrSprite);
@@ -406,11 +423,20 @@
                     
                     [layer addChild:intrSprite];
                     
+                    // IAP feature :
+                    // If UnlockingProductName attribute exists it means the interactive sprites should be locked unless IAP is done.
+                    // After adding it as a child on an appropriate position, show the lock sprite if IAP is not done yet.
+                    [intrSprite checkAndLockForIAP];
+                    
                 }
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
                 if ([objectType isEqualToString:@"Advertisement"])
                 {
-                    // BUGBUG : Place iAd...
+                    // Enable AD only if no feature is not purchased
+                    if ( ! [Util didPurchaseAny ] )
+                    {
+                        layer.enableAD = YES;
+                    }
                 }
                 continue;
             }
@@ -742,7 +768,7 @@
     assert(url);
     NSRange lastSlashRange = [url rangeOfString:@"/" options:NSBackwardsSearch];
     NSRange lastDotRange = [url rangeOfString:@"." options:NSBackwardsSearch];
-    const int MIN_CLASS_NAME_LEN=1;
+#define MIN_CLASS_NAME_LEN (1)
     assert( lastSlashRange.location + MIN_CLASS_NAME_LEN < lastDotRange.location );
     NSString * className = [url substringWithRange:NSMakeRange(lastSlashRange.location +1, lastDotRange.location - lastSlashRange.location - 1) ];
     return className;

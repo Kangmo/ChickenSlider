@@ -125,7 +125,9 @@
 
 -(int)readIntAttr:(NSString*)attrName
 {
-    int attrValue =  [[PersistentGameState sharedPersistentGameState] readIntAttr:[sceneName_ stringByAppendingString:attrName]];
+    PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
+    NSString * sceneAttrName = [sceneName_ stringByAppendingString:attrName];
+    int attrValue =  [ gs readIntAttr:sceneAttrName];
     if (attrValue == 0) // It it not written yet.
     {
         attrValue = 1;
@@ -135,7 +137,9 @@
 
 -(void) writeIntAttr:(NSString*)attrName value:(int)attrValue
 {
-    [[PersistentGameState sharedPersistentGameState] writeIntAttr:[sceneName_ stringByAppendingString:attrName] value:attrValue];
+    PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
+    NSString * sceneAttrName = [sceneName_ stringByAppendingString:attrName];
+    [gs writeIntAttr:sceneAttrName value:attrValue];
 }
 
 - (int) readHighestUnlockedLevel
@@ -291,8 +295,7 @@
     
     for (int level = 1; level <= highestUnlockedLevel; level ++ )
     {
-        InteractiveSprite * intrSprite = intrSprites[level-1];
-        assert( ! [intrSprite isLocked] ); // Shouldn't be locked by default.
+        assert( ! [intrSprites[level-1] isLocked] ); // Shouldn't be locked by default.
     }
 
 }
@@ -345,9 +348,9 @@ static LevelInfo gLevelInfo = {nil, 0};
     assert( gLevelInfo.newLevel <= highestUnlockedLevel );    
     assert( gLevelInfo.newLevel <= levelCount );    
     
-    CCScene * newScene = [StageScene sceneInMap:gLevelInfo.mapName levelNum:gLevelInfo.newLevel];
-    
-    [[CCDirector sharedDirector] replaceScene:newScene];
+    // Replace the current scene to a loading scene that will again replace the scene to the new StageScene with the given map and level.
+    CCScene * loadingScene = [GeneralScene loadingSceneOfMap:gLevelInfo.mapName levelNum:gLevelInfo.newLevel];
+    [[CCDirector sharedDirector] replaceScene:loadingScene];
     
     //retained in playLevel:ofMap:
     [gLevelInfo.mapName release];

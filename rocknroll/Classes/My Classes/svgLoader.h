@@ -7,6 +7,7 @@
 #include <vector>
 #import "AKHelpers.h"
 #import "ScoreBoardProtocol.h"
+#import "AdLayer.h"
 
 class GameObjectContainer;
 
@@ -16,7 +17,7 @@ class GameObjectContainer;
 {
 	b2World* world;
 	b2Body* staticBody;
-    CCLayer * layer;
+    AdLayer * layer;
 //	CCSpriteBatchNode * spriteSheet;
     
     float svgCanvasHeight; // svg canvas height
@@ -35,7 +36,7 @@ class GameObjectContainer;
 //@property float scaleFactor; 
 @property (nonatomic, retain) ClassDictionary * classDict;
            
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects scoreBoard:(id<ScoreBoardProtocol>)sb;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects scoreBoard:(id<ScoreBoardProtocol>)sb;
 
 -(void) instantiateObjectsIn:(NSString*)filename;
 -(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset;

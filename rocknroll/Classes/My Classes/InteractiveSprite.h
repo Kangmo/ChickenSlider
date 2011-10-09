@@ -4,14 +4,17 @@
 
 typedef enum body_touch_action_t
 {
-    BTA_NONE = 0,
-    BTA_SCENE_TRANSITION = 1
+    BTA_NULL = 0,
+    BTA_SCENE_TRANSITION = 1,
+    BTA_GIVEUP_STAGE = 2, // Give up the current stage, go to the level map scene.
+    BTA_NONE = 3
 } body_touch_action_t;
 
 typedef enum body_hover_action_t
 {
-    BHA_NONE = 0,
-    BHA_SHOW_IMAGE = 1
+    BHA_NULL = 0,
+    BHA_SHOW_IMAGE = 1,
+    BHA_SHOW_PARTICLE = 2
 } body_hover_action_t;
 
 @interface InteractiveSprite : CCSprite<CCTargetedTouchDelegate> {
@@ -41,6 +44,13 @@ typedef enum body_hover_action_t
      */
     CCSprite *lockSprite_;
     
+    /** @brief The particle emitter that shows particles while hovering.
+     */
+    CCParticleSystemQuad * particleEmitter_;
+    
+    /** @brief The sound effect played when the interactive sprite is touched 
+     */
+    CDSoundSource * soundEffect_;
 }
 @property(assign, nonatomic) CGPoint bottomLeftCorner;
 @property(assign, nonatomic) CGSize nodeSize;
@@ -60,5 +70,8 @@ typedef enum body_hover_action_t
 
 -(void) setLocked:(BOOL)locked;
 -(BOOL) isLocked;
+
+-(void)checkAndLockForIAP;
+
 
 @end

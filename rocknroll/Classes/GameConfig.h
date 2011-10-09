@@ -52,6 +52,9 @@ const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 const float MIN_TARGET_OBJ_POS_Y = 320.0 * HERO_MAX_YPOS_RATIO;
 const float MAX_TARGET_OBJ_POS_Y = 320.0 * HERO_MIN_YPOS_RATIO;
 
+// BUGBUG : iPad/iPhone 4 HD might have different height.
+const float LANDSCAPE_AD_HEIGHT = 32;
+
 // Need to draw debug information of Box2D?
 //#define BOX2D_DEBUG_DRAW (1)
 

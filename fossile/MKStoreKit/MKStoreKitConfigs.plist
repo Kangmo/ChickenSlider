@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Consumables</key>
+	<dict>
+		<key>com.thankyousoft.rocknroll.consumable1</key>
+		<dict>
+			<key>Count</key>
+			<integer>500</integer>
+			<key>Name</key>
+			<string>EggBasket</string>
+		</dict>
+	</dict>
+	<key>Non-Consumables</key>
+	<array>
+		<string>com.thankyousoft.rocknroll.map02</string>
+	</array>
+	<key>Subscriptions</key>
+	<dict>
+		<key>com.thankyousoft.rocknroll.wk1</key>
+		<integer>7</integer>
+	</dict>
+</dict>
+</plist>

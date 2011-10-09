@@ -90,66 +90,8 @@
 -(void) createParticle:(float)duration
 {
     // Particle emitter.
-    CCParticleSystemQuad * emitter;
-//        [emitter resetSystem];
- 
-    //	ParticleSystem *emitter = [RockExplosion node];
-    emitter = [[CCParticleSystemQuad alloc] initWithTotalParticles:30];
-    emitter.texture = [[CCTextureCache sharedTextureCache] addImage: @"stars.png"];
-    
-    // duration
-    //	emitter.duration = -1; //continuous effect
-    emitter.duration = duration;
-    
-    // gravity
-    emitter.gravity = CGPointZero;
-    
-    // angle
-    emitter.angle = 90;
-    emitter.angleVar = 360;
-    
-    // speed of particles
-    emitter.speed = 160;
-    emitter.speedVar = 20;
-    
-    // radial
-    emitter.radialAccel = -120;
-    emitter.radialAccelVar = 0;
-    
-    // tagential
-    emitter.tangentialAccel = 30;
-    emitter.tangentialAccelVar = 0;
-    
-    // life of particles
-    emitter.life = 1;
-    emitter.lifeVar = 1;
-    
-    // spin of particles
-    emitter.startSpin = 0;
-    emitter.startSpinVar = 0;
-    emitter.endSpin = 0;
-    emitter.endSpinVar = 0;
-    
-    // color of particles
-    ccColor4F startColor = {0.5f, 0.5f, 0.5f, 1.0f};
-    emitter.startColor = startColor;
-    ccColor4F startColorVar = {0.5f, 0.5f, 0.5f, 1.0f};
-    emitter.startColorVar = startColorVar;
-    ccColor4F endColor = {0.1f, 0.1f, 0.1f, 0.2f};
-    emitter.endColor = endColor;
-    ccColor4F endColorVar = {0.1f, 0.1f, 0.1f, 0.2f};
-    emitter.endColorVar = endColorVar;
-    
-    // size, in pixels
-    emitter.startSize = 20.0f;
-    emitter.startSizeVar = 10.0f;
-    emitter.endSize = kParticleStartSizeEqualToEndSize;
-    // emits per second
-    emitter.emissionRate = emitter.totalParticles/emitter.life;
-    // additive
-    emitter.blendAdditive = YES;
-    emitter.position = ccp(0,0); // setting emitter position
-    
+    CCParticleSystemQuad * emitter = [Util createParticleEmitter:@"stars.png" count:30 duration:duration];
+
     CCSprite * sprite = [self getSprite];
     assert(sprite);
 

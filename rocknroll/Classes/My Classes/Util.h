@@ -14,7 +14,11 @@
 
 +(NSString*) retrieveResourceFile:(NSString*)fileName fromWeb:(NSString*)urlPrefix;
 
-+(void) showMessage:(NSString*)message inLayer:(CCLayer*)layer;
++(void) showMessage:(NSString*)message inLayer:(CCLayer*)layer adHeight:(float)adHeight;
+
++(CCParticleSystemQuad*)createParticleEmitter:(NSString*)particleImage count:(int)particleCount duration:(float)duration;
+
++(BOOL) didPurchaseAny;
 
 @end
 

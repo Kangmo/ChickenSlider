@@ -38,6 +38,7 @@ enum {
 
 @synthesize car;
 @synthesize hero;
+@synthesize giveUpStage;
 
 static StageScene* instanceOfStageScene;
 +(StageScene*) sharedStageScene
@@ -102,13 +103,14 @@ static StageScene* instanceOfStageScene;
 }
 
 - (void) showMessage:(NSString*) message {
-    [Util showMessage:message inLayer:(CCLayer*)self];
+    [Util showMessage:message inLayer:(CCLayer*)self adHeight:LANDSCAPE_AD_HEIGHT];
 }
 
 
 -(void) initScoreLabels {
     static CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    static float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/8;
+    float AD_SIZE_HEIGHT = super.enableAD ? LANDSCAPE_AD_HEIGHT : 0;    
+    float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/16 - AD_SIZE_HEIGHT;
     static float HORIZONTAL_MARGIN = screenSize.width/32;
     // The margin between the water drop sprite and the counter.
     static float WATER_DROP_MARGIN = HORIZONTAL_MARGIN/2;
@@ -152,6 +154,12 @@ static StageScene* instanceOfStageScene;
 {
 	if( (self=[super init])) 
 	{
+        // Show AD only if nothing is purchased
+        if ( ! [Util didPurchaseAny] )
+        {
+            super.enableAD = YES;
+        }
+
         // initialize variables
         terrains = nil;
         
@@ -234,7 +242,7 @@ static StageScene* instanceOfStageScene;
 		[cam ZoomToObject:playerBody screenPart:0.15];
 		[cam ZoomTo:INIT_ZOOM_RATIO];
 		
-		CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Menu" target:self selector:@selector(onReset:)];
+		CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPauseGame:)];
 		
 		CCMenu * m = [CCMenu menuWithItems:mi,nil];
 		[self addChild:m z:500];
@@ -248,20 +256,15 @@ static StageScene* instanceOfStageScene;
 		st =0;
 		
         instanceOfStageScene = self;
-        
+
         // Initialize score labels. (Requires spriteSheet);
         [self initScoreLabels];
+        
+        [self schedule: @selector(tick:)];
 	}
 	return self;
 }
 
-- (void) onEnterTransitionDidFinish {
-    // playbackground music
-    [[CDAudioManager sharedManager] playBackgroundMusic:@"summer_smile-stephen_burns.mp3" loop:YES];
-    [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
-    
-    [self schedule: @selector(tick:)];
-}
 
 +(id)nodeInMap:(NSString*)mapName levelNum:(int)level
 {
@@ -300,9 +303,13 @@ static StageScene* instanceOfStageScene;
 }
 
 
--(void) onReset:(id) sender
+-(void) onPauseGame:(id) sender
 {
-    [[CCDirector sharedDirector] replaceScene:[GeneralScene sceneWithName:@"MainMenuScene"]];
+    // BUGBUG : How about not playing the background music during the pause scene?
+
+    CCScene * pauseScene = [GeneralScene sceneWithName:@"PauseScene" previousLayer:self];
+
+    [[CCDirector sharedDirector] pushScene:pauseScene];
 }
 
 /*
@@ -502,10 +509,10 @@ static StageScene* instanceOfStageScene;
     
 	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
 	label.position = ccp(screenSize.width/2, screenSize.height/2);
-    label.scale = 2.0;
+    label.scale = 1.0;
 
 	[label runAction:[CCSequence actions:
-                      [CCScaleTo actionWithDuration:2.0f scale:8.0f],
+                      [CCScaleTo actionWithDuration:2.0f scale:4.0f],
                       [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMapCallback:data:) data:(void*)clearedCurrentStage],
 					  [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
 					  nil]];
@@ -520,7 +527,12 @@ static StageScene* instanceOfStageScene;
     if ( stageCleared) {
         return;
     }
-                        
+    
+    // if the user has given up the stage, don't check if the hero is dead.
+    if (giveUpStage) {
+        return;
+    }
+    
     if ( hero.body->GetPosition().y < worldGroundY - HERO_DEAD_GAP_WORLD_Y ) {
         if ( ! hero.isDead )
         {
@@ -546,7 +558,12 @@ static StageScene* instanceOfStageScene;
 -(void) checkStageClear:(float)heroX_withoutZoom {
     if ( hero.isDead )
         return;
-    
+
+    // if the user has given up the stage, don't check for stage clear.
+    if (giveUpStage) {
+        return;
+    }
+
     if ( heroX_withoutZoom > terrainMaxX ) {
         if ( ! stageCleared )
         {
@@ -558,6 +575,26 @@ static StageScene* instanceOfStageScene;
             CCLOG(@"Stage Cleared: end");
         }
     }
+}
+
+
+- (void) onEnterTransitionDidFinish {
+    if ( ! [[CDAudioManager sharedManager] isBackgroundMusicPlaying] )
+    {
+        // playbackground music
+        [[CDAudioManager sharedManager] playBackgroundMusic:@"summer_smile-stephen_burns.mp3" loop:YES];
+        [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
+        [CDAudioManager sharedManager].backgroundMusic.volume = 0.7;
+    }
+
+    // "ResumeScene.svg" of GeneralScene sets this flag if the user touches "Give Up" button.
+    if (giveUpStage) {
+        if ( ! stageCleared && ! hero.isDead ) {
+            [self finishStageWithMessage:@"Give Up!" stageCleared:NO];
+        }
+    }
+
+    [super onEnterTransitionDidFinish];
 }
 
 /** @brief update GameObject(s) for each tick. Box2D objects are not included here.

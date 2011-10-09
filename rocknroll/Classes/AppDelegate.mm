@@ -5,6 +5,7 @@
 #import "StageScene.h"
 #import "RootViewController.h"
 #import "PersistentGameState.h"
+#import "MKStoreManager.h"
 
 @implementation AppDelegate
 
@@ -102,6 +103,9 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
+    // Initialize IAP.
+    [MKStoreManager sharedManager];
+    
     // Load the sprite frames.
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
     

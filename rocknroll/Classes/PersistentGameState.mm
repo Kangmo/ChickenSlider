@@ -110,6 +110,8 @@
         thePersistentGameState = [[PersistentGameState alloc] initWithFile:@"game_state.dat"];
     }
     
+    assert( [thePersistentGameState isKindOfClass:[PersistentGameState class]] );
+    
     return thePersistentGameState;
 }
 @end
