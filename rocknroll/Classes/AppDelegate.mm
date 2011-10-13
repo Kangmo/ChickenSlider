@@ -33,6 +33,7 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 
+
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
 	// Init the window
@@ -105,6 +106,13 @@
 	
     // Initialize IAP.
     [MKStoreManager sharedManager];
+
+    //[[MKStoreManager sharedManager] removeAllKeychainData];
+#if defined(DEBUG)
+    // For testing purpose, remove IAP purchase records. 
+    // Comment out if you don't want to clear the history of purchasing products w/ IAP.
+    [Util removeIapData];
+#endif
     
     // Load the sprite frames.
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];

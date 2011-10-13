@@ -26,7 +26,7 @@ typedef enum {
 } StageSceneLayerTags;
 
 // HelloWorld Layer
-@interface StageScene : AdLayer<ScoreBoardProtocol>
+@interface StageScene : AdLayer<ScoreBoardProtocol, TutorialBoardProtocol>
 {
     // The name of the map where the stage exists
     NSString * mapName;
@@ -63,7 +63,13 @@ typedef enum {
     
     CCSpriteBatchNode * spriteSheet;
 
+    // The tutorial label to show on screen. While this is shown, the game is paused. If the user touches, the game resumes.
+    // TutorialBox game object sets this text via TutorialBoardProtocol. Touch handler sets this to null removing it from the screen.
+    CCLabelBMFont * tutorialLabel;
     BOOL stageCleared;
+
+    // Indicates that the game was paused to show the tutorial text.
+    BOOL isGamePaused;
 }
 
 @property (nonatomic, assign) Car * car;
@@ -79,5 +85,4 @@ typedef enum {
 -(void) increaseWaterDrops:(int) waterDropsDiff;
 
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
-
 @end

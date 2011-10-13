@@ -41,7 +41,7 @@
         {
             NSString *filePath = [Util getResourcePath:svgFileName];
 
-            svgLoader * loader = [[svgLoader alloc] initWithWorld:nil andStaticBody:nil andLayer:self terrains:nil gameObjects:NULL scoreBoard:nil];
+            svgLoader * loader = [[svgLoader alloc] initWithWorld:nil andStaticBody:nil andLayer:self terrains:nil gameObjects:NULL scoreBoard:nil tutorialBoard:nil];
 
             [loader instantiateObjectsIn:filePath];
             
@@ -50,9 +50,23 @@
         
         self.loadingLevel = 0;
         self.loadingLevelMapName = nil;
+        loadingProgress_ = nil;
+        didStartLoading_ = NO;
     }
     
     return self;
+}
+
+-(void)addLoadingProgress
+{
+    // should be called only once.
+    assert(!loadingProgress_);
+    
+    loadingProgress_ = [[ProgressCircle alloc] init];
+    assert(loadingProgress_);
+    [self addChild:loadingProgress_];
+    loadingProgress_.position = [Util getCenter:self]; 
+    [loadingProgress_ start];
 }
 
 +(id)nodeWithSceneName:(NSString*)sceneName
@@ -91,20 +105,19 @@
 	GeneralScene *layer = [GeneralScene nodeWithSceneName:@"LoadingScene"];
 	layer.loadingLevelMapName = mapName;
     layer.loadingLevel = level;
+    // Add the progress circle for loading scene.
+    [layer addLoadingProgress];
     // Should wait a frame to get the loading scene displayed on the screen.
     [layer scheduleUpdate];
-    
 	// add layer as a child to scene
 	[scene addChild:layer z:0 tag:GeneralSceneLayerTagMain];
-	
+
 	// return the scene
 	return scene;
 }
 
--(void) update:(ccTime)delta
+-(void) loadingThread:(id)unused
 {
-    [self unscheduleAllSelectors];
-    
     // Arguments to the loading Scene should have been specified.
     assert ( self.loadingLevel > 0 );
     assert ( self.loadingLevelMapName );
@@ -113,11 +126,31 @@
     [[CCDirector sharedDirector] replaceScene:newScene];
 }
 
+-(void) update:(ccTime)delta
+{
+    // should not unschedule, because a child node, progress circle is running scheduled update.
+    if ( ! didStartLoading_ )
+    {
+        // Start the loading thread
+        //[NSThread detachNewThreadSelector:@selector(loadingThread:) toTarget:self withObject:nil];
+        
+        // Can' use multiple threads because OpenGL calls are not thread safe.
+        [self loadingThread:nil];
+
+        didStartLoading_ = YES;
+    }
+}
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
     CCLOG(@"GeneralScene:dealloc");
-
+    [self unscheduleAllSelectors];
+    
+    [loadingProgress_ stop];
+    [loadingProgress_ release];
+    loadingProgress_ = nil;
+    
     for (id child in self.children) {
         if ([child isKindOfClass:[InteractiveSprite class]])
         {

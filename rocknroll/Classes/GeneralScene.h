@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "AdLayer.h"
+#import "ProgressCircle.h"
 
 typedef enum {
     GeneralSceneLayerTagMain=1
@@ -10,6 +11,8 @@ class b2WorldEx;
 @interface GeneralScene : AdLayer {  
     b2WorldEx * world_;
     NSString * sceneName_;
+    ProgressCircle * loadingProgress_;
+    BOOL didStartLoading_;
 }
 
 // For the case this scene is "pushed", keep the previous layer that pushed this Scene.

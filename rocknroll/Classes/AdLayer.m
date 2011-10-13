@@ -18,25 +18,9 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
-        // initialize iAd object, but don't add it as a subview yet.
-        {
-            adView = [[ADBannerView alloc]initWithFrame:CGRectZero];
-            
-            adView.requiredContentSizeIdentifiers = 
-            [NSSet setWithObjects: 
-             ADBannerContentSizeIdentifierPortrait, 
-             // Only if we support rotation
-//#if GAME_AUTOROTATION!=kGameAutorotationNone
-             ADBannerContentSizeIdentifierLandscape,
-//#endif
-             nil];
-//            adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-             adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
-            
-            // By default, the AD is disabled.
-            self.enableAD = NO;
-        }
+        // By default, the AD is disabled.
+        self.enableAD = NO;
+        adView = nil;
     }
     
     return self;
@@ -130,6 +114,23 @@
     if ( self.enableAD )
     {
         NSLog(@"onEnter called");
+     
+        if (adView == nil )
+        {
+            // initialize iAd object, but don't add it as a subview yet.
+            adView = [[ADBannerView alloc]initWithFrame:CGRectZero];
+            
+            adView.requiredContentSizeIdentifiers = 
+            [NSSet setWithObjects: 
+             ADBannerContentSizeIdentifierPortrait, 
+             // Only if we support rotation
+             //#if GAME_AUTOROTATION!=kGameAutorotationNone
+             ADBannerContentSizeIdentifierLandscape,
+             //#endif
+             nil];
+            //            adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+            adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+        }
         
         assert(adView);
         

@@ -21,7 +21,7 @@ public:
     {
         _targetCount = 0;
         _currentCount = 0;
-        
+
         _label = [CCLabelBMFont labelWithString:@"0" fntFile:@"punkboy.fnt"];
         
         [_label retain];
@@ -62,6 +62,18 @@ public:
     {
         return _targetCount; 
     }
+    
+    inline void setCount(int count)
+    {
+        _targetCount = _currentCount = count;
+        [_label setString:[NSString stringWithFormat:@"%d", count]];
+    }
+    
+    inline int getCount()
+    {
+        return _currentCount; 
+    }
+
 };
 
 #endif

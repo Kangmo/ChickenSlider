@@ -17,6 +17,7 @@
 
 #import "Sky.h"
 
+
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -60,7 +61,7 @@ static StageScene* instanceOfStageScene;
     
     NSString *filePath = [Util getResourcePath:svgFileName];
     
-	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains gameObjects:&gameObjectContainer scoreBoard:self] autorelease];
+	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains gameObjects:&gameObjectContainer scoreBoard:self tutorialBoard:self] autorelease];
     
     // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
     // In that file, a class is defined within a layer.
@@ -90,6 +91,16 @@ static StageScene* instanceOfStageScene;
     }
 }
 
+-(void) pauseGame {
+    isGamePaused = YES;
+}
+
+-(void) resumeGame {
+    isGamePaused = NO;
+}
+
+///////////////////////////////////////////////////////////////
+// ScoreBoardProtocol
 -(void) increaseScore:(int) scoreDiff
 {
     int newScore = scoreLabel.getTargetCount() + scoreDiff;
@@ -105,12 +116,41 @@ static StageScene* instanceOfStageScene;
 - (void) showMessage:(NSString*) message {
     [Util showMessage:message inLayer:(CCLayer*)self adHeight:LANDSCAPE_AD_HEIGHT];
 }
+///////////////////////////////////////////////////////////////
+// TutorialBoardProtocol
+
+-(void) showTutorialText:(NSString*) tutorialText
+{
+    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
+    
+    assert(tutorialText);
+    
+    // Weak Ref
+	tutorialLabel = [CCLabelBMFont labelWithString:tutorialText fntFile:@"punkboy.fnt"];
+    assert(tutorialLabel);
+    
+	tutorialLabel.position = ccp(screenSize.width * 0.5, screenSize.height * 0.5);
+
+	[self addChild:tutorialLabel];
+    
+    [self pauseGame];
+}
+///////////////////////////////////////////////////////////////
+
+-(void) onPushPauseScene:(id) sender
+{
+    // BUGBUG : How about not playing the background music during the pause scene?
+    
+    CCScene * pauseScene = [GeneralScene sceneWithName:@"PauseScene" previousLayer:self];
+    
+    [[CCDirector sharedDirector] pushScene:pauseScene];
+}
 
 
 -(void) initScoreLabels {
     static CGSize screenSize = [[CCDirector sharedDirector] winSize];
     float AD_SIZE_HEIGHT = super.enableAD ? LANDSCAPE_AD_HEIGHT : 0;    
-    float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/16 - AD_SIZE_HEIGHT;
+    float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/14 - AD_SIZE_HEIGHT;
     static float HORIZONTAL_MARGIN = screenSize.width/32;
     // The margin between the water drop sprite and the counter.
     static float WATER_DROP_MARGIN = HORIZONTAL_MARGIN/2;
@@ -146,6 +186,12 @@ static StageScene* instanceOfStageScene;
         [self addChild:label];
     }
     
+    CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPushPauseScene:)];
+    
+    CCMenu * m = [CCMenu menuWithItems:mi,nil];
+    [self addChild:m z:500];
+    m.position = CGPointMake(430, SCORE_VERT_CENTER_Y - 30);
+
 }
 
 
@@ -160,7 +206,14 @@ static StageScene* instanceOfStageScene;
             super.enableAD = YES;
         }
 
+        // Load water drop count
+        int waterDropCount = [Util loadWaterDropCount];
+        waterDropsLabel.setCount( waterDropCount );
+        
         // initialize variables
+        isGamePaused = NO;
+        tutorialLabel = nil;
+        
         terrains = nil;
         
         stageCleared = NO;
@@ -242,17 +295,12 @@ static StageScene* instanceOfStageScene;
 		[cam ZoomToObject:playerBody screenPart:0.15];
 		[cam ZoomTo:INIT_ZOOM_RATIO];
 		
-		CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPauseGame:)];
-		
-		CCMenu * m = [CCMenu menuWithItems:mi,nil];
-		[self addChild:m z:500];
-		m.position = CGPointMake(430, 30);
-		
+		/*
 		arrow = [CCSprite spriteWithFile:@"arrow.png"];
 		arrow.anchorPoint = CGPointMake(0, 2.5);
 		arrow.scaleX = 3;
 		[self addChild:arrow z:100 tag:0x777888];
-		
+		*/
 		st =0;
 		
         instanceOfStageScene = self;
@@ -302,15 +350,6 @@ static StageScene* instanceOfStageScene;
 	return scene;
 }
 
-
--(void) onPauseGame:(id) sender
-{
-    // BUGBUG : How about not playing the background music during the pause scene?
-
-    CCScene * pauseScene = [GeneralScene sceneWithName:@"PauseScene" previousLayer:self];
-
-    [[CCDirector sharedDirector] pushScene:pauseScene];
-}
 
 /*
 -(void) draw
@@ -479,7 +518,11 @@ static StageScene* instanceOfStageScene;
 -(void) gotoLevelMap:(BOOL)clearedCurrentStage
 {
     CCLOG(@"gotoLevelMap:%@", clearedCurrentStage?@"YES":@"NO");
-    
+
+    // Save the number of water drops persistenlty.
+    int waterDrops = waterDropsLabel.getCount();
+    [Util saveWaterDropCount:waterDrops];
+
     // IF the level is cleared, the next level is unlocked.
     // IF the level is not cleared(the Hero is dead), go back to level map scene.
     CCScene * levelMapScene = [LevelMapScene sceneWithName:mapName level:level cleared:clearedCurrentStage];
@@ -492,7 +535,6 @@ static StageScene* instanceOfStageScene;
 
 -(void)gotoLevelMapCallback:(id)sender data:(void*)callbackData 
 {
-    
     BOOL clearedCurrentStage = (BOOL)(int)callbackData;
     
     CCLOG(@"gotoLevelMapCallback:%@, %p", clearedCurrentStage?@"YES":@"NO", callbackData);
@@ -640,15 +682,19 @@ static StageScene* instanceOfStageScene;
         {
             REF(GameObject) refGameObject = *it;
             
-            // If it is not active yet, (It is the first time to come into the commingScreenBox)
-            if ( ! refGameObject->isActivated() )
+            // TutorialBox is an example of Passive Game Object : No need to update sprite position on screen. Nothing to animate
+            if ( ! refGameObject->isPassive() )
             {
-                // Activate it
-                refGameObject->activate( self );
+                // If it is not active yet, (It is the first time to come into the commingScreenBox)
+                if ( ! refGameObject->isActivated() )
+                {
+                    // Activate it
+                    refGameObject->activate( self );
+                }
+                
+                // update the sprite position, scale, rotation based on the game object and camera position considering zoom level.
+                [cam updateSpriteFromGameObject: refGameObject ];
             }
-            
-            // update the sprite position, scale, rotation based on the game object and camera position considering zoom level.
-            [cam updateSpriteFromGameObject: refGameObject ];
         }    
     }
 }
@@ -662,6 +708,11 @@ static StageScene* instanceOfStageScene;
     // TODO : Understand why adjusting terrain should come here.
 
     static float worldGroundY = 0.0f;
+
+    // if the game is paused, dont' update the game frame. 
+    if (isGamePaused)
+        return;
+
     
     [self adjustZoomWithGroundY:worldGroundY];
 
@@ -713,6 +764,17 @@ static StageScene* instanceOfStageScene;
     CCLOG(@"TouchesBegan");
 // by kmkim    
 //	[cam eventBegan:touches];
+    
+    // IF tutorial is shown, resume the game, remove the tutorial text.
+    if ( tutorialLabel )
+    {
+        // Weak Ref
+        [tutorialLabel removeFromParentAndCleanup:YES];
+        tutorialLabel = nil;
+        
+        assert(isGamePaused);
+        [self resumeGame];
+    }
     
     self.hero.diving = YES;
 //	//Add a new body/atlas sprite at the touched location

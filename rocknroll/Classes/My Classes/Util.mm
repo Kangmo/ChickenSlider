@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #import "BodyInfo.h"
 #import "MKStoreManager.h"
+#import "PersistentGameState.h"
 
 @implementation Util
 
@@ -50,7 +51,7 @@
     static CGSize screenSize = [[CCDirector sharedDirector] winSize];
 
 	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
-	label.position = ccp(screenSize.width/2, screenSize.height - screenSize.height/16 - adHeight);
+	label.position = ccp(screenSize.width/2, screenSize.height - screenSize.height/14 - adHeight);
 	[label runAction:[CCScaleTo actionWithDuration:2.0f scale:1.4f]];
 	[label runAction:[CCSequence actions:
 					  [CCFadeOut actionWithDuration:2.0f],
@@ -125,9 +126,42 @@
     return emitter;
 }
 
+/** @brief Did the user purchased any product? 
+ */
 +(BOOL) didPurchaseAny {
     return [MKStoreManager isFeaturePurchased:@"com.thankyousoft.rocknroll.map02"];
 }
+
+/** @brief Testing purpose only. Remove the key chain data about the purchase history. 
+ */
++(void) removeIapData
+{
+#if defined(NDEBUG)
+    // In the release mode, we should not run this method. (This method is only for testing purpose.)
+    assert(0);
+#endif
+#if defined(DEBUG)
+    [[MKStoreManager sharedManager] removeAllKeychainData];
+#endif
+}
+
+/** @brief Return the center of the node
+ */
++(CGPoint) getCenter:(CCNode*)node {
+    return CGPointMake([node contentSize].width * 0.5, [node contentSize].height * 0.5);
+}
+
+
++(int) loadWaterDropCount {
+    int count;
+    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"WaterDropCount"];
+    return count;
+}
+
++(void) saveWaterDropCount:(int)count {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"WaterDropCount" value:count];
+}
+
 @end
 
 namespace Helper 

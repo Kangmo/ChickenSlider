@@ -2,7 +2,7 @@
 #import "StageScene.h"
 #import "GeneralScene.h"
 #import "LevelMapScene.h"
-#import "MKStoreManager.h"
+#import "ProgressCircle.h"
 
 @implementation InteractiveSprite
 
@@ -34,9 +34,37 @@
         
         lockSprite_ = nil;
         soundEffect_ = nil;
+        
+        //tickScheduled_ = NO;
+        //tickAccDT_ = 0;
+        progressCircle_ = [[ProgressCircle alloc] init];
     }
     
     return self;
+}
+
+-(void) startProgress {
+    if ( [progressCircle_ parent] == nil )
+    {
+        [[self parent] addChild:progressCircle_];
+        // The progress node has the same position.
+        progressCircle_.position = self.position;
+        
+        // Show that IAP is on progress
+        // start the progress circle.
+        [progressCircle_ start];
+    }
+}
+
+-(void) stopProgress {
+    if ( [progressCircle_ parent] )
+    {
+        // Stop the progress circle.
+        [progressCircle_ stop];
+        
+        // Remove the progress circle.
+        [[self parent] removeChild:progressCircle_ cleanup:NO];
+    }
 }
 
 -(BOOL) isLocked {
@@ -73,20 +101,7 @@
     }
 }
 
-/** Check if we need to lock the interactive button. If "UnlockingProductName" is set in touch action descriptor, we should lock the feature in case it is not purchased yet.
- */
--(void)checkAndLockForIAP
-{
-    // Common stuff to process
-    NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
-    if ( unlockingProductName) {
-        // See if it can be unlocked
-        if ( ! [MKStoreManager isFeaturePurchased:unlockingProductName] )
-        {
-            [self setLocked:YES];
-        }
-    }
-}
+
 
 /** @brief Set the action type and data
  *
@@ -115,9 +130,72 @@
     [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
 }
 
+/** @brief called when IAP is done or canceled 
+ */
+-(void)onIAPFinish:(IAPResponse) response product: (NSString *)product
+{
+    // Common stuff to process
+    NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
+    assert(unlockingProductName);
+    
+    if (response == IAPR_PURCHASED)
+    {
+        // Make sure that the feature is purchased.
+        if ( [IAP isFeaturePurchased:unlockingProductName ] )
+        {
+            [self setLocked:NO];
+        }    
+    }
+    
+    [self stopProgress];
+}
+
+/*
+-(void) tick: (ccTime) dt
+{
+    tickAccDT_ += dt;
+    const ccTime CHECK_PURCHASE_INTERVAL = 1/4.0f;
+
+    if (tickAccDT_ < CHECK_PURCHASE_INTERVAL )
+    {
+        return;
+    }
+    tickAccDT_ = 0;
+    
+    assert(tickScheduled_);
+    
+    // Common stuff to process
+    NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
+    assert(unlockingProductName);
+    
+    // Periodically check if the feature is purchased.
+    if ( [IAP isFeaturePurchased:unlockingProductName ] )
+    {
+        [self setLocked:NO];
+        [self unschedule: @selector(tick:)];
+        tickScheduled_ = NO;
+    }
+}
+*/
+
 -(void)dealloc
 {
     CCLOG(@"Interactive Body Node : dealloc");
+    // in case you have something to dealloc, do it in this method
+    /*
+    if (tickScheduled_)
+    {
+        [self unschedule: @selector(tick:)];
+        tickScheduled_ = NO;
+    }
+    */
+    [progressCircle_ stop];
+    [progressCircle_ release];
+    progressCircle_ = nil;
+
+    // Don't notify me of any IAP purchse anymore, I am going to die!!
+    [IAP sharedIAP].delegate = nil;
+
     if (lockSprite_)
     {
         [lockSprite_ release];
@@ -310,8 +388,13 @@
     if ([self isTouchOnNode:touchPoint]) {
         if ( [self isLocked] )
         {
-            // BUGBUG : play some sound
-            return YES;
+            // Common stuff to process
+            NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
+            if (!unlockingProductName) // If it can't be unlocked by purchasing a product, don't show the hovering action. 
+            {
+                // BUGBUG : play some sound
+                return YES;
+            }
         }
         if ( hoverActionType_ != BHA_NULL ) // Handle the hovering action if it is specified.
         {
@@ -325,27 +408,19 @@
 -(void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
 }
 
-/** @brief In case UnlockingProductName is specified, do IAP to unlock the feature provided by this interactive sprite. 
+
+
+/** @brief Restore unfinished IAP transaction and finishe it 
  */
--(void) tryUnlockWithIAP {
+-(void) tryUnlockWithIAP
+{
     // Common stuff to process
     NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
+    
     if ( unlockingProductName) {
-        // See if it can be unlocked
-        [[MKStoreManager sharedManager] buyFeature:unlockingProductName 
-                                        onComplete:^(NSString* purchasedFeature)
-         {
-             NSLog(@"Purchased: %@", purchasedFeature);
-             // provide your product to the user here.
-             // if it's a subscription, allow user to use now.
-             // remembering this purchase is taken care of by MKStoreKit.
-             [self setLocked:NO];
-             [self handleTouchAction];
-         }
-                                       onCancelled:^
-         {
-             // User cancels the transaction, you can log this using any analytics software like Flurry.
-         }];
+        [[IAP sharedIAP] tryPurchase:unlockingProductName];
+        
+        [self startProgress];
     }
 }
 
@@ -367,11 +442,62 @@
         {
             // BUGBUG : play some sound
             [self tryUnlockWithIAP];
+ 
             return;
         }
         
         [self handleTouchAction];
     }
 }
+
+- (void) onEnterTransitionDidFinish {
+    // Common stuff to process
+    NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
+    
+    if ( unlockingProductName) {
+        // The feature is not purchased. Lock the feature.
+        if ( ! [IAP isFeaturePurchased:unlockingProductName] )
+        {
+            
+            [self setLocked:YES];
+            
+            // Schedule tick to check if the feature is purchased. 
+            // The tick method will detect that the feature is purchased to unlock the feature. 
+            // Why do like this? IAP response is asynchronous.
+            // Why do polling rather than notifying the purchase? The scene can be changed and this object might not exist, so we can't use notification. (Notification to non-existent object causes crash.)
+            [IAP sharedIAP].delegate = self;
+/*
+            if (!tickScheduled_)
+            {
+                [self schedule: @selector(tick:)];
+                tickScheduled_ = YES;
+            }
+*/
+        }
+        if ( [self isLocked] )
+        {
+            // However, if the player collected "UnlockingWaterDrops" number of water drops, 
+            // Unlock the feature.
+            // Load water drop count
+            
+            // Common stuff to process
+            NSString * unlockingWaterDrops = [touchActionDescs_ valueForKey:@"UnlockingWaterDrops"];
+            if ( unlockingWaterDrops )
+            {
+                int unlockingCount = [unlockingWaterDrops intValue];
+                assert( unlockingCount>0 );
+                int waterDropCount = [Util loadWaterDropCount];
+                if ( waterDropCount > unlockingCount )
+                {
+                    [IAP sharedIAP].delegate = nil;
+                    [self setLocked:NO];
+                }
+            }
+        }
+    }
+    
+    [super onEnterTransitionDidFinish];
+}
+
 
 @end

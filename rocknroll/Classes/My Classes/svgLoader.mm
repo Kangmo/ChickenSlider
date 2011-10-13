@@ -10,12 +10,13 @@
 #import "Util.h"
 #include "GameObjectContainer.h"
 #include "WaterDrop.h"
+#include "TutorialBox.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard tutorialBoard:(id<TutorialBoardProtocol>)tboard;
 {
 	self = [super init];
 	if (self != nil) 
@@ -29,6 +30,7 @@
         terrains = t;
         gameObjectContainer = objs;
         scoreBoard = sboard;
+        tutorialBoard = tboard;
 	}
 	return self;
 }
@@ -222,6 +224,8 @@
 		float fWidth =  orgWidth / scaleFactor;
 		float fHeight = orgHeight / scaleFactor;
 
+        float bottomInOpenGL = svgCanvasHeight - orgY - orgHeight;
+
 		
 		if( [curShape attributeForName:@"isRevoluteJoint"]) //this is revolute joint
 		{
@@ -287,9 +291,8 @@
   */              
                 if ( [gameObjectClass isEqualToString:@"WaterDrop"] )
                 {
-                    float yInOpenGL = svgCanvasHeight - orgY;
                     // Don't scale.
-                    refGameObject = REF(GameObject)( new WaterDrop(orgX, yInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                    refGameObject = REF(GameObject)( new WaterDrop(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
                 
                 NSAssert1(refGameObject, @"The game object class name is not supported : %@", gameObjectClass);
@@ -422,12 +425,6 @@
                                               intrSprite.bottomLeftCorner.y + intrSprite.nodeSize.height * 0.5 );
                     
                     [layer addChild:intrSprite];
-                    
-                    // IAP feature :
-                    // If UnlockingProductName attribute exists it means the interactive sprites should be locked unless IAP is done.
-                    // After adding it as a child on an appropriate position, show the lock sprite if IAP is not done yet.
-                    [intrSprite checkAndLockForIAP];
-                    
                 }
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
                 if ([objectType isEqualToString:@"Advertisement"])
@@ -437,6 +434,24 @@
                     {
                         layer.enableAD = YES;
                     }
+                }
+                
+                if ([objectType isEqualToString:@"TutorialBox"])
+                {
+                    assert( gameObjectContainer ); // When gameObjectClass attr is specified, gameObjects should not be NULL.
+                    
+                    REF(GameObject) refGameObject((GameObject*)NULL);
+
+                    NSString * tutorialText = [[curShape attributeForName:@"tutorialText"] stringValue];
+                    
+                    // Replace @@ to New Line. In SVG file of our game, we use @@ as the line saparator.
+                    tutorialText = [tutorialText stringByReplacingOccurrencesOfString:@"@@" withString:@"\n"];
+                    
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new TutorialBox(orgX,bottomInOpenGL, orgWidth, orgHeight, tutorialText, tutorialBoard) );
+                    
+                    gameObjectContainer->insert(refGameObject);
+         
                 }
                 continue;
             }

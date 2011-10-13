@@ -68,6 +68,9 @@ protected:
         assert(sprite);
 
         _sprite = [sprite retain];
+        // We will use this->x, this->y as the bottom left point of the box.
+        // The sprite position will be updated using it, so we set the anchorPoint to an appropriate position.
+        _sprite.anchorPoint = CGPointMake(0,0);
     }
     
     inline void setDefaultClip( NSDictionary * clip)
@@ -99,6 +102,10 @@ protected:
 
     inline bool isActivated() {
         return _activated;
+    }
+    
+    inline bool isPassive() {
+        return _sprite == nil ? TRUE : FALSE;
     }
     
     /** @brief Activate the game object in the game layer and run the default animation clip.

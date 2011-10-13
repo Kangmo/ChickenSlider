@@ -206,9 +206,12 @@ static MKStoreManager* _sharedStoreManager;
 
 -(NSDictionary*) storeKitItems
 {
-    return [NSDictionary dictionaryWithContentsOfFile:
+    NSDictionary * dict = 
+        [NSDictionary dictionaryWithContentsOfFile:
             [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:
              @"MKStoreKitConfigs.plist"]];
+    assert(dict);
+    return dict;
 }
 
 - (void) restorePreviousTransactionsOnComplete:(void (^)(void)) completionBlock

@@ -202,10 +202,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="-35.000256"
+     inkscape:cx="213.72045"
      inkscape:cy="198.20825"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="710"
@@ -220,7 +220,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -404,8 +404,7 @@
        x="353.92413"
        y="243.67406"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MainMenuScene,Arg1=Null,Sound=Touch.mp3"
-       objectHoverAction="Action=ShowImage,ImageFile=Common_Hover_Back.png,Sound=Hover.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MainMenuScene,Arg1=Null,Sound=Touch.mp3" />
   </g>
   <g
      inkscape:groupmode="layer"

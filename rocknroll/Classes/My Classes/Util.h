@@ -20,6 +20,14 @@
 
 +(BOOL) didPurchaseAny;
 
++(void) removeIapData;
+
++(CGPoint) getCenter:(CCNode*)node;
+
++(int) loadWaterDropCount;
+
++(void) saveWaterDropCount:(int)count;
+
 @end
 
 class GameObject;

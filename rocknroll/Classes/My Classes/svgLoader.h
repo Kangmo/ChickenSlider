@@ -7,6 +7,7 @@
 #include <vector>
 #import "AKHelpers.h"
 #import "ScoreBoardProtocol.h"
+#import "TutorialBoardProtocol.h"
 #import "AdLayer.h"
 
 class GameObjectContainer;
@@ -32,11 +33,12 @@ class GameObjectContainer;
     GameObjectContainer * gameObjectContainer; // non Box2d objects in the SVG file are added here.
     
     id<ScoreBoardProtocol> scoreBoard;
+    id<TutorialBoardProtocol> tutorialBoard;
 }
 //@property float scaleFactor; 
 @property (nonatomic, retain) ClassDictionary * classDict;
            
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects scoreBoard:(id<ScoreBoardProtocol>)sb;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects scoreBoard:(id<ScoreBoardProtocol>)sb tutorialBoard:(id<TutorialBoardProtocol>)tb;
 
 -(void) instantiateObjectsIn:(NSString*)filename;
 -(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset;

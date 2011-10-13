@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "BodyInfo.h"
 #import "cocos2d.h"
+#import "IAP.h"
+#import "ProgressCircle.h"
 
 typedef enum body_touch_action_t
 {
@@ -17,7 +19,7 @@ typedef enum body_hover_action_t
     BHA_SHOW_PARTICLE = 2
 } body_hover_action_t;
 
-@interface InteractiveSprite : CCSprite<CCTargetedTouchDelegate> {
+@interface InteractiveSprite : CCSprite<CCTargetedTouchDelegate, IAPDelegate> {
     /** @brief The action type and descriptors for touch action.
      */
     body_touch_action_t touchActionType_;
@@ -51,6 +53,18 @@ typedef enum body_hover_action_t
     /** @brief The sound effect played when the interactive sprite is touched 
      */
     CDSoundSource * soundEffect_;
+    
+    /** @brief The progress timer to show while the IAP is in progress
+     */
+    ProgressCircle * progressCircle_;
+
+    /** @brief Is tick scheduled?
+     */
+    //BOOL tickScheduled_;
+    
+    /** @brief the delta time accumulated in tick method. This is required to check if the feature is purchased every 1/8 second
+     */
+    //ccTime tickAccDT_;
 }
 @property(assign, nonatomic) CGPoint bottomLeftCorner;
 @property(assign, nonatomic) CGSize nodeSize;
@@ -70,8 +84,5 @@ typedef enum body_hover_action_t
 
 -(void) setLocked:(BOOL)locked;
 -(BOOL) isLocked;
-
--(void)checkAndLockForIAP;
-
 
 @end
