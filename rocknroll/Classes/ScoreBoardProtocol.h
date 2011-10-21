@@ -11,5 +11,7 @@
 @protocol ScoreBoardProtocol <NSObject>
 -(void) increaseScore:(int) scoreDiff;
 -(void) increaseWaterDrops:(int) waterDropsDiff;
+-(void) increaseLife:(float)lifePercentDiff;
+-(void) decreaseLife:(float)lifePercentDiff;
 -(void) showMessage:(NSString*) message;
 @end

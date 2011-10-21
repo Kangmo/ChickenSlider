@@ -21,10 +21,14 @@
  */
 -(void) loadAnimationClips
 {
-    flyingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_snail_flying.plist"] retain];
-    assert(flyingClip);
-    walkingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_snail_walking.plist"] retain];
-    assert(walkingClip);
+    _nowingsClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_nowings.plist"] retain];
+    assert(_nowingsClip);
+    _droppingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_dropping.plist"] retain];
+    assert(_droppingClip);
+    _flyingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_flying.plist"] retain];
+    assert(_flyingClip);
+    _walkingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_walking.plist"] retain];
+    assert(_walkingClip);
 }
 
 
@@ -50,8 +54,8 @@
     
 	self.world = nil;
     self.body = nil;
-    [flyingClip release];
-    [walkingClip release];
+    [_flyingClip release];
+    [_walkingClip release];
 
 	delete _contactListener;
 	[super dealloc];
@@ -87,6 +91,15 @@
     
 }
 
+- (NSDictionary *) currentClip {
+    return _currentClip;
+}
+
+- (void) playClip:(NSDictionary *) clip {
+    _currentClip = clip;
+    Helper::runClip(_body, clip);
+}
+
 -(void) createParticle:(float)duration
 {
     // Particle emitter.
@@ -112,17 +125,33 @@
 }
 
 - (void) updatePhysics {
+    if (_flying) {
+        if ( [self currentClip] != _flyingClip ) {
+            [self playClip:_flyingClip];
+        }
+    }
+    else
+    {
+        if ( [self currentClip] != _walkingClip ) {
+            [self playClip: _walkingClip];
+        }
+    }
     
 	// apply force if diving
 	if (_diving) {
 		if (!_awake) {
 			[self wake];
 			_diving = NO;
-            Helper::runClip(_body, walkingClip);
+            [self playClip:_flyingClip];
 		} else {
+            if ( [self currentClip] != _droppingClip ) {
+                [self playClip:_droppingClip];
+            }
+            
             _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
 		}
 	}
+    
 
 	// limit velocity
 	const float minVelocityX = 3;
@@ -172,14 +201,11 @@
 - (void) landed {
     //	NSLog(@"landed");
 	_flying = NO;
-    Helper::runClip(_body, walkingClip);
 }
 
 - (void) tookOff {
     //	NSLog(@"tookOff");
 	_flying = YES;
-
-    Helper::runClip(_body, flyingClip);
     
 	b2Vec2 vel = _body->GetLinearVelocity();
     //	NSLog(@"vel.y = %f",vel.y);
@@ -212,6 +238,10 @@
 		_diving = diving;
 		// TODO: change sprite image here
 	}
+}
+
+- (void) dropWings {
+    _hasWings = NO;
 }
 
 -(void) dead {

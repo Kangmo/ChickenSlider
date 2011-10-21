@@ -21,12 +21,20 @@ class HeroContactListener;
 	BOOL _awake;
 	BOOL _flying;
 	BOOL _diving;
+
+    BOOL _hasWings;
+
 	HeroContactListener *_contactListener;
 	int _nPerfectSlides;
     
+    // Currently running clip 
+    NSDictionary * _currentClip;
+    
     // Animation Clips
-    NSDictionary * flyingClip;
-    NSDictionary * walkingClip;
+    NSDictionary * _nowingsClip;
+    NSDictionary * _droppingClip;
+    NSDictionary * _flyingClip;
+    NSDictionary * _walkingClip;
 }
 @property (nonatomic, assign) b2World *world;
 @property (nonatomic, assign) b2Body *body;
@@ -47,7 +55,10 @@ class HeroContactListener;
 
 - (void) landed;
 - (void) tookOff;
+// Hit on the ground
 - (void) hit;
+// Health bar reached at 0%. Drop the wings.
+- (void) dropWings;
 - (void) dead;
 
 

@@ -9,7 +9,7 @@
 
 CDSoundSource * WaterDrop::_collideSound = NULL;
 
-void WaterDrop::onCollideWithHero() 
+void WaterDrop::onCollideWithHero(Hero * pHero) 
 {
     // Increase the water drops to show on the screen
     [_scoreBoard increaseWaterDrops:1];

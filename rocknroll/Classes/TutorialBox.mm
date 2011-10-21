@@ -9,7 +9,7 @@
 
 CDSoundSource * TutorialBox::_collideSound = NULL;
 
-void TutorialBox::onCollideWithHero() 
+void TutorialBox::onCollideWithHero(Hero * pHero) 
 {
     [_tutorialBoard showTutorialText:_tutorialText];
     

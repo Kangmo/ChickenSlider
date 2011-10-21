@@ -60,6 +60,7 @@ typedef enum {
     int targetWaterDrops;
     IncNumLabel waterDropsLabel;
     IncNumLabel scoreLabel;
+    CCProgressTimer * lifeBar;
     
     CCSpriteBatchNode * spriteSheet;
 

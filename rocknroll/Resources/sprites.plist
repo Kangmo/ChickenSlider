@@ -4,231 +4,23 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>AnimSnail_Blinking00.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Blinking01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{48,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Blinking02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,42},{46,40}}</string>
-                <key>offset</key>
-                <string>{1,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Blinking03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{48,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Breathing00.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Breathing01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{48,42},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Breathing02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,83},{46,42}}</string>
-                <key>offset</key>
-                <string>{0,-3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,6},{46,42}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Breathing03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{48,42},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Flying00.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Flying01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{48,83},{48,42}}</string>
-                <key>offset</key>
-                <string>{0,-3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,6},{48,42}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Flying02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,126},{48,44}}</string>
-                <key>offset</key>
-                <string>{0,-2}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,4},{48,44}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Flying03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{48,83},{48,42}}</string>
-                <key>offset</key>
-                <string>{0,-3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,6},{48,42}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Walking00.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Walking01.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{50,126},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Walking02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,171},{46,42}}</string>
-                <key>offset</key>
-                <string>{1,-3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,6},{46,42}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
-            <key>AnimSnail_Walking03.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,1},{46,40}}</string>
-                <key>offset</key>
-                <string>{0,-4}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
-                <key>sourceSize</key>
-                <string>{48,48}</string>
-            </dict>
             <key>Bird.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{46,40}}</string>
+                <string>{{1,1},{50,52}}</string>
                 <key>offset</key>
-                <string>{0,-4}</string>
+                <string>{-9,-3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,8},{46,40}}</string>
+                <string>{{11,22},{50,52}}</string>
                 <key>sourceSize</key>
-                <string>{48,48}</string>
+                <string>{90,90}</string>
             </dict>
             <key>Locked.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{48,171},{32,32}}</string>
+                <string>{{52,1},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +33,7 @@
             <key>WaterDrop00.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,171},{32,32}}</string>
+                <string>{{85,1},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +46,7 @@
             <key>WaterDrop01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,214},{32,30}}</string>
+                <string>{{118,1},{32,30}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -267,7 +59,7 @@
             <key>WaterDrop02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{34,214},{32,26}}</string>
+                <string>{{151,1},{32,26}}</string>
                 <key>offset</key>
                 <string>{0,-3}</string>
                 <key>rotated</key>
@@ -280,7 +72,7 @@
             <key>WaterDrop03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{67,214},{32,22}}</string>
+                <string>{{184,1},{32,22}}</string>
                 <key>offset</key>
                 <string>{0,-5}</string>
                 <key>rotated</key>
@@ -293,7 +85,7 @@
             <key>WaterDrop04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{34,214},{32,26}}</string>
+                <string>{{151,1},{32,26}}</string>
                 <key>offset</key>
                 <string>{0,-3}</string>
                 <key>rotated</key>
@@ -306,7 +98,7 @@
             <key>WaterDrop05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,214},{32,30}}</string>
+                <string>{{118,1},{32,30}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -319,7 +111,7 @@
             <key>WaterDrop06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{81,171},{32,32}}</string>
+                <string>{{85,1},{32,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -329,6 +121,240 @@
                 <key>sourceSize</key>
                 <string>{32,32}</string>
             </dict>
+            <key>bomb00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{217,1},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>bomb01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,54},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>bomb02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{34,54},{30,32}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>bomb03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,54},{32,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>explosion00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{65,54},{16,16}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,7},{16,16}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>explosion01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{82,54},{24,20}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,6},{24,20}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>explosion02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{107,54},{32,28}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{32,28}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>explosion03.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{140,54},{32,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,1},{32,30}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+            <key>icarus_dropping00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{173,54},{56,42}}</string>
+                <key>offset</key>
+                <string>{-13,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,27},{56,42}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_dropping01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,97},{56,42}}</string>
+                <key>offset</key>
+                <string>{-11,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,26},{56,42}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_flying00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{58,97},{68,62}}</string>
+                <key>offset</key>
+                <string>{-5,8}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,6},{68,62}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_flying01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{127,97},{90,48}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,20},{90,48}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_leftwing.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,160},{44,18}}</string>
+                <key>offset</key>
+                <string>{23,6}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{46,30},{44,18}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_nowings00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{46,160},{56,42}}</string>
+                <key>offset</key>
+                <string>{-3,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,26},{56,42}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_nowings01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{103,160},{52,42}}</string>
+                <key>offset</key>
+                <string>{-5,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{14,26},{52,42}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_rightwing.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{156,160},{44,30}}</string>
+                <key>offset</key>
+                <string>{-23,9}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,21},{44,30}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_walking00.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{201,160},{52,52}}</string>
+                <key>offset</key>
+                <string>{-14,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,22},{52,52}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
+            <key>icarus_walking01.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{50,52}}</string>
+                <key>offset</key>
+                <string>{-9,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{11,22},{50,52}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -337,9 +363,9 @@
             <key>realTextureFileName</key>
             <string>sprites.png</string>
             <key>size</key>
-            <string>{128,256}</string>
+            <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c6f476057cf2c315acb4c28a8209d032$</string>
+            <string>$TexturePacker:SmartUpdate:c5ad7a53dab441a13b6ebd55c74d2456$</string>
             <key>textureFileName</key>
             <string>sprites.png</string>
         </dict>

@@ -39,7 +39,7 @@ public:
         [_tutorialText release];
     }
     
-    virtual void onCollideWithHero();
+    virtual void onCollideWithHero(Hero * pHero);
 };
 
 #endif

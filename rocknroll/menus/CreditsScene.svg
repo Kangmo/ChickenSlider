@@ -138,6 +138,12 @@
        y1="287.6767"
        x2="194.45436"
        y2="461.41736" />
+    <path
+       style="fill:none;stroke:none"
+       d="M 66.829958,162.54982 C 84.381005,143.49699 84.358315,112.72832 123.39851,108.00158 139.27157,102.71056 174.95976,106.85681 181.98736,106.99143 252.20207,108.33645 328.65874,55.93124 284.01277,45.37212"
+       id="path3204-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsc" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -147,15 +153,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="148.78159"
+     inkscape:cx="32.108972"
      inkscape:cy="156.79162"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="710"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-x="71"
+     inkscape:window-y="36"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3179">
@@ -173,7 +179,8 @@
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="Background"
-     ignore="">
+     ignore=""
+     style="display:inline">
     <image
        y="-148.85281"
        x="-63.492271"
@@ -190,25 +197,16 @@
      ignore="">
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 30.606602,174.99653 76.063465,140.65135 98.28683,162.8747 179.09903,112.36707 198.29193,134.59043 255.87063,81.05235 255.87063,81.05235 264.962,89.13357"
+       d="M 60.606602,168.99653 C 60.606602,168.99653 87.117899,133.33869 106.06346,134.65135 116.5146,135.37547 117.87793,155.68925 128.28683,156.8747 159.84867,160.46921 177.68948,101.62256 209.09903,106.36707 218.77724,107.82899 218.51856,128.05535 228.29193,128.59043 254.46053,130.02313 285.87063,75.05235 285.87063,75.05235 L 285.87063,75.05235 294.962,83.13357"
        id="path3200"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaaaaac" />
     <path
-       style="fill:none;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.98265884000000003"
-       d="M 66.829958,162.54982 C 84.381005,143.49699 84.358315,112.72832 123.39851,108.00158 139.27157,102.71056 174.95976,106.85681 181.98736,106.99143 252.20207,108.33645 328.65874,55.93124 284.01277,45.37212"
+       style="fill:none;stroke:none"
+       d="M 96.829958,156.54982 C 114.38101,137.49699 114.35832,106.72832 153.39851,102.00158 169.27157,96.71056 204.95976,100.85681 211.98736,100.99143 282.20207,102.33645 358.65874,49.93124 314.01277,39.37212"
        id="path3204"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccsc" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#338000;fill-opacity:1;stroke:none;font-family:Sans"
-       id="text3206"
-       sodipodi:linespacing="125%"
-       transform="translate(-16,-14)"><textPath
-         xlink:href="#path3204"
-         id="textPath3210"><tspan
-   id="tspan3208"
-   style="fill:#338000">Rock N Roll</tspan></textPath></text>
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -227,29 +225,14 @@
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="254.91953"
-       y="77.187897"
+       x="253.6048"
+       y="162.10162"
        id="text3981-8"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4969"
-         x="254.91953"
-         y="77.187897">Kangmo Kim made it.</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000080;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="254.27347"
-       y="129.10384"
-       id="text3981-8-2"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4994"
-         x="254.27347"
-         y="129.10384">Jinseok Chae </tspan><tspan
-         sodipodi:role="line"
-         x="254.27347"
-         y="154.10384"
-         id="tspan5000">helped Kangmo.</tspan></text>
+         x="253.6048"
+         y="162.10162">by ThankYouSoft.</tspan></text>
     <g
        style="display:inline"
        id="g5311"
@@ -342,6 +325,16 @@
          x="357.71432"
          y="287.46051"
          style="font-size:22px">Back</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#b380ff;fill-opacity:1;stroke:#7f2aff;display:inline;font-family:Sans"
+       id="text3206"
+       sodipodi:linespacing="125%"
+       transform="translate(29.231381,-26.379467)"><textPath
+         xlink:href="#path3204-7"
+         id="textPath3210"><tspan
+   id="tspan3208"
+   style="fill:#b380ff;stroke:#7f2aff">Wave Fly</tspan></textPath></text>
   </g>
   <g
      inkscape:groupmode="layer"

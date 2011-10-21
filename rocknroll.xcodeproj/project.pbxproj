@@ -209,6 +209,15 @@
 		67351E78142E97CF0073575A /* PointQueue.h in Sources */ = {isa = PBXBuildFile; fileRef = 67351E77142E97CD0073575A /* PointQueue.h */; };
 		67351E7F142F55390073575A /* Terrain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67351E7E142F55330073575A /* Terrain.mm */; };
 		6742ED301432DD8B00084934 /* ClipFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6742ED2F1432DD8B00084934 /* ClipFactory.m */; };
+		67621957144FEADC00FEE843 /* clip_icarus_dropping.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67621953144FEADC00FEE843 /* clip_icarus_dropping.plist */; };
+		67621958144FEADC00FEE843 /* clip_icarus_flying.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67621954144FEADC00FEE843 /* clip_icarus_flying.plist */; };
+		67621959144FEADC00FEE843 /* clip_icarus_idle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67621955144FEADC00FEE843 /* clip_icarus_idle.plist */; };
+		6762195A144FEADC00FEE843 /* clip_icarus_walking.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67621956144FEADC00FEE843 /* clip_icarus_walking.plist */; };
+		6762195C144FEB6E00FEE843 /* clip_icarus_nowings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6762195B144FEB6E00FEE843 /* clip_icarus_nowings.plist */; };
+		6762195F144FFE9B00FEE843 /* Bomb.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6762195E144FFE9A00FEE843 /* Bomb.mm */; };
+		676219621450014900FEE843 /* clip_bomb.plist in Resources */ = {isa = PBXBuildFile; fileRef = 676219601450014800FEE843 /* clip_bomb.plist */; };
+		676219631450014900FEE843 /* clip_explosion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 676219611450014900FEE843 /* clip_explosion.plist */; };
+		676219651450166D00FEE843 /* health_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 676219641450166B00FEE843 /* health_bar.png */; };
 		676F9DC11439F17600FD5857 /* LevelMapScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 676F9DC01439F17500FD5857 /* LevelMapScene.mm */; };
 		67714D8613E04C1E00892B4C /* ClassDictionary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 67714D8513E04C1E00892B4C /* ClassDictionary.mm */; };
 		67714D8813E0708800892B4C /* game_classes.svg in Resources */ = {isa = PBXBuildFile; fileRef = 67714D8713E0708800892B4C /* game_classes.svg */; };
@@ -257,9 +266,6 @@
 		679648D914319E3000C4E87B /* AKHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 679648D014319E3000C4E87B /* AKHelpers.m */; };
 		679649001431FC0500C4E87B /* animset_objects.plist in Resources */ = {isa = PBXBuildFile; fileRef = 679648FD1431FC0500C4E87B /* animset_objects.plist */; };
 		679649011431FC0500C4E87B /* blink.wav in Resources */ = {isa = PBXBuildFile; fileRef = 679648FE1431FC0500C4E87B /* blink.wav */; };
-		679649021431FC0500C4E87B /* clip_snail_idle.plist in Resources */ = {isa = PBXBuildFile; fileRef = 679648FF1431FC0500C4E87B /* clip_snail_idle.plist */; };
-		6796490514320E3600C4E87B /* clip_snail_flying.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6796490314320E3600C4E87B /* clip_snail_flying.plist */; };
-		6796490614320E3600C4E87B /* clip_snail_walking.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6796490414320E3600C4E87B /* clip_snail_walking.plist */; };
 		679649091432BC6E00C4E87B /* clip_waterdrop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 679649081432BC6D00C4E87B /* clip_waterdrop.plist */; };
 		679669E4143AC1C400782FA1 /* PersistentGameState.mm in Sources */ = {isa = PBXBuildFile; fileRef = 679669E3143AC1C300782FA1 /* PersistentGameState.mm */; };
 		67966A0A143C3E6B00782FA1 /* StageScene_MAP01_01.svg in Resources */ = {isa = PBXBuildFile; fileRef = 679669ED143C3E6B00782FA1 /* StageScene_MAP01_01.svg */; };
@@ -951,6 +957,16 @@
 		67351E7E142F55330073575A /* Terrain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Terrain.mm; sourceTree = "<group>"; };
 		6742ED2E1432DD8A00084934 /* ClipFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipFactory.h; sourceTree = "<group>"; };
 		6742ED2F1432DD8B00084934 /* ClipFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipFactory.m; sourceTree = "<group>"; };
+		67621953144FEADC00FEE843 /* clip_icarus_dropping.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_icarus_dropping.plist; sourceTree = "<group>"; };
+		67621954144FEADC00FEE843 /* clip_icarus_flying.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_icarus_flying.plist; sourceTree = "<group>"; };
+		67621955144FEADC00FEE843 /* clip_icarus_idle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_icarus_idle.plist; sourceTree = "<group>"; };
+		67621956144FEADC00FEE843 /* clip_icarus_walking.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_icarus_walking.plist; sourceTree = "<group>"; };
+		6762195B144FEB6E00FEE843 /* clip_icarus_nowings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_icarus_nowings.plist; sourceTree = "<group>"; };
+		6762195D144FFE9A00FEE843 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
+		6762195E144FFE9A00FEE843 /* Bomb.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bomb.mm; sourceTree = "<group>"; };
+		676219601450014800FEE843 /* clip_bomb.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_bomb.plist; sourceTree = "<group>"; };
+		676219611450014900FEE843 /* clip_explosion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_explosion.plist; sourceTree = "<group>"; };
+		676219641450166B00FEE843 /* health_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = health_bar.png; path = Resources/health_bar.png; sourceTree = "<group>"; };
 		676F9DBF1439F17400FD5857 /* LevelMapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelMapScene.h; sourceTree = "<group>"; };
 		676F9DC01439F17500FD5857 /* LevelMapScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelMapScene.mm; sourceTree = "<group>"; };
 		67714D8413E04C1D00892B4C /* ClassDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDictionary.h; sourceTree = "<group>"; };
@@ -1029,9 +1045,6 @@
 		679648D114319E3000C4E87B /* AnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimationKit.h; path = cocos2d/AnimationKit.h; sourceTree = "<group>"; };
 		679648FD1431FC0500C4E87B /* animset_objects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = animset_objects.plist; sourceTree = "<group>"; };
 		679648FE1431FC0500C4E87B /* blink.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blink.wav; sourceTree = "<group>"; };
-		679648FF1431FC0500C4E87B /* clip_snail_idle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_snail_idle.plist; sourceTree = "<group>"; };
-		6796490314320E3600C4E87B /* clip_snail_flying.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_snail_flying.plist; sourceTree = "<group>"; };
-		6796490414320E3600C4E87B /* clip_snail_walking.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_snail_walking.plist; sourceTree = "<group>"; };
 		679649081432BC6D00C4E87B /* clip_waterdrop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = clip_waterdrop.plist; sourceTree = "<group>"; };
 		679669E2143AC1C200782FA1 /* PersistentGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentGameState.h; sourceTree = "<group>"; };
 		679669E3143AC1C300782FA1 /* PersistentGameState.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PersistentGameState.mm; sourceTree = "<group>"; };
@@ -1442,6 +1455,7 @@
 		6709790513DD14A7003E4E75 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				676219641450166B00FEE843 /* health_bar.png */,
 				6792EB3E144443490025DD6A /* MKStoreKitConfigs.plist */,
 				6792EB38144416E00025DD6A /* Progress.png */,
 				67EEFDEE1441C4F500F29C5C /* iTunesArtwork */,
@@ -2132,6 +2146,8 @@
 		6791FDCC143359DC004E28C0 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				6762195D144FFE9A00FEE843 /* Bomb.h */,
+				6762195E144FFE9A00FEE843 /* Bomb.mm */,
 				67924FEF144686640002F578 /* TutorialBox.h */,
 				67924FF0144686650002F578 /* TutorialBox.mm */,
 				670982FC13DD1777003E4E75 /* Car.cpp */,
@@ -2170,12 +2186,16 @@
 		679648FC1431FC0000C4E87B /* Clips */ = {
 			isa = PBXGroup;
 			children = (
+				676219601450014800FEE843 /* clip_bomb.plist */,
+				676219611450014900FEE843 /* clip_explosion.plist */,
+				6762195B144FEB6E00FEE843 /* clip_icarus_nowings.plist */,
+				67621953144FEADC00FEE843 /* clip_icarus_dropping.plist */,
+				67621954144FEADC00FEE843 /* clip_icarus_flying.plist */,
+				67621955144FEADC00FEE843 /* clip_icarus_idle.plist */,
+				67621956144FEADC00FEE843 /* clip_icarus_walking.plist */,
 				679649081432BC6D00C4E87B /* clip_waterdrop.plist */,
-				6796490314320E3600C4E87B /* clip_snail_flying.plist */,
-				6796490414320E3600C4E87B /* clip_snail_walking.plist */,
 				679648FD1431FC0500C4E87B /* animset_objects.plist */,
 				679648FE1431FC0500C4E87B /* blink.wav */,
-				679648FF1431FC0500C4E87B /* clip_snail_idle.plist */,
 			);
 			path = Clips;
 			sourceTree = "<group>";
@@ -2957,9 +2977,6 @@
 				67F5EC7614318386003FFB2D /* lgren080a.jpg in Resources */,
 				679649001431FC0500C4E87B /* animset_objects.plist in Resources */,
 				679649011431FC0500C4E87B /* blink.wav in Resources */,
-				679649021431FC0500C4E87B /* clip_snail_idle.plist in Resources */,
-				6796490514320E3600C4E87B /* clip_snail_flying.plist in Resources */,
-				6796490614320E3600C4E87B /* clip_snail_walking.plist in Resources */,
 				679649091432BC6E00C4E87B /* clip_waterdrop.plist in Resources */,
 				67077A0E1435AAEE0070F0A5 /* WaterDrop.wav in Resources */,
 				67CDB9EF1437513600E58690 /* noise.png in Resources */,
@@ -3023,6 +3040,14 @@
 				67EEFDEF1441C4F500F29C5C /* iTunesArtwork in Resources */,
 				6792EB39144416E00025DD6A /* Progress.png in Resources */,
 				6792EB3F144443490025DD6A /* MKStoreKitConfigs.plist in Resources */,
+				67621957144FEADC00FEE843 /* clip_icarus_dropping.plist in Resources */,
+				67621958144FEADC00FEE843 /* clip_icarus_flying.plist in Resources */,
+				67621959144FEADC00FEE843 /* clip_icarus_idle.plist in Resources */,
+				6762195A144FEADC00FEE843 /* clip_icarus_walking.plist in Resources */,
+				6762195C144FEB6E00FEE843 /* clip_icarus_nowings.plist in Resources */,
+				676219621450014900FEE843 /* clip_bomb.plist in Resources */,
+				676219631450014900FEE843 /* clip_explosion.plist in Resources */,
+				676219651450166D00FEE843 /* health_bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3093,6 +3118,7 @@
 				67F1253E1443E4C300153F07 /* IAP.m in Sources */,
 				6792EB3D14441AF50025DD6A /* ProgressCircle.mm in Sources */,
 				67924FF1144686650002F578 /* TutorialBox.mm in Sources */,
+				6762195F144FFE9B00FEE843 /* Bomb.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

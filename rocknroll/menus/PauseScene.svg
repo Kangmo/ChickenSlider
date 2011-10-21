@@ -235,6 +235,12 @@
        id="linearGradient8651-3"
        xlink:href="#linearGradient8947"
        inkscape:collect="always" />
+    <path
+       style="fill:none;stroke:none"
+       d="M 66.829958,162.54982 C 84.381005,143.49699 84.358315,112.72832 123.39851,108.00158 139.27157,102.71056 174.95976,106.85681 181.98736,106.99143 252.20207,108.33645 328.65874,55.93124 284.01277,45.37212"
+       id="path3204-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsc" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -244,10 +250,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="168.54032"
+     inkscape:cx="51.867702"
      inkscape:cy="150.22601"
      inkscape:document-units="px"
-     inkscape:current-layer="layer10"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="710"
@@ -262,7 +268,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -289,9 +295,10 @@
      ignore="">
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 32.606602,188.99653 78.063465,154.65135 100.28683,176.8747 181.09903,126.36707 200.29193,148.59043 257.87063,95.05235 257.87063,95.05235 266.962,103.13357"
+       d="M 32.606602,188.99653 C 32.606602,188.99653 59.117899,153.33869 78.063465,154.65135 88.514601,155.37547 89.877925,175.68925 100.28683,176.8747 131.84867,180.46921 149.68948,121.62256 181.09903,126.36707 190.77724,127.82899 190.51856,148.05535 200.29193,148.59043 226.46053,150.02313 257.87063,95.05235 257.87063,95.05235 L 257.87063,95.05235 266.962,103.13357"
        id="path3200"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaaaaac" />
     <path
        style="fill:none;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.98265884000000003"
        d="M 66.829958,150.54982 C 84.381005,131.49699 84.358315,100.72832 123.39851,96.00158 139.27157,90.71056 174.95976,94.85681 181.98736,94.99143 252.20207,96.33645 328.65874,43.93124 284.01277,33.37212"
@@ -300,16 +307,7 @@
        sodipodi:nodetypes="ccsc" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       id="text3206"
-       sodipodi:linespacing="125%"
-       transform="translate(-12,-6)"><textPath
-         xlink:href="#path3204"
-         id="textPath3210"><tspan
-   id="tspan3208">Rock N Roll</tspan></textPath></text>
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#e9afaf;fill-opacity:1;stroke:#d35f5f;font-family:Sans"
        x="66.144691"
        y="219.68176"
        id="text3981"
@@ -320,7 +318,7 @@
          y="219.68176">Run!</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#e5ffd5;fill-opacity:1;stroke:#7fff2a;display:inline;font-family:Sans"
        x="171.82147"
        y="241.48466"
        id="text3981-7"
@@ -331,7 +329,7 @@
          y="241.48466">Run!</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d7e3f4;fill-opacity:1;stroke:#5f8dd3;display:inline;font-family:Sans"
        x="103.1311"
        y="277.85016"
        id="text3981-3"
@@ -524,6 +522,16 @@
          x="311.82935"
          y="233.25867"
          style="font-size:22px;font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Zapfino;-inkscape-font-specification:Zapfino Bold Italic">Give Up</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#b380ff;fill-opacity:1;stroke:#7f2aff;display:inline;font-family:Sans"
+       id="text3206"
+       sodipodi:linespacing="125%"
+       transform="translate(11.353211,-25.43023)"><textPath
+         xlink:href="#path3204-7"
+         id="textPath3210"><tspan
+   id="tspan3208"
+   style="fill:#b380ff;stroke:#7f2aff">Wave Fly</tspan></textPath></text>
   </g>
   <g
      inkscape:groupmode="layer"

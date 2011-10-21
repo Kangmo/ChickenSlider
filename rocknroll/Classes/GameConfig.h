@@ -46,6 +46,9 @@
 
 #define INTERACTIVE_SPRITE_TOUCH_GAP (8)
 
+// Start blinking the health bar if it reaches at 25% level.
+#define HEALTH_BAR_BLINKING_THRESHOLD (25)
+
 // BUGBUG : Adjust the position for iPad, retina...
 const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 //const float TARGET_OBJ_POS_Y = 160.0f;

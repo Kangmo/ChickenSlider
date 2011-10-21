@@ -31,8 +31,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="703"
-     inkscape:window-width="1468"
+     inkscape:window-height="761"
+     inkscape:window-width="1538"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -44,10 +44,10 @@
      id="base"
      showgrid="true"
      inkscape:zoom="9.09"
-     inkscape:cx="-9.6762243"
-     inkscape:cy="327.84084"
-     inkscape:window-x="33"
-     inkscape:window-y="179"
+     inkscape:cx="17.254469"
+     inkscape:cy="301.4382"
+     inkscape:window-x="280"
+     inkscape:window-y="115"
      inkscape:current-layer="WaterDrop"
      width="480px"
      inkscape:window-maximized="0"
@@ -215,14 +215,34 @@
        phy_density="0.4"
        phy_friction="0"
        phy_restitution="0"
-       initClipFile="clip_snail_idle.plist"
-       initFrameAnim="snail_blinking" />
+       initClipFile="clip_icarus_idle.plist"
+       initFrameAnim="icarus_flying" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Bomb"
+     inkscape:label="Bomb"
+     style="display:none">
+    <rect
+       initFrameAnim="bomb"
+       initClipFile="clip_bomb.plist"
+       phy_restitution="0"
+       phy_friction="0"
+       phy_density="0.1"
+       isCircle=""
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="rect6831-0"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       gameObjectClass="Bomb" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="WaterDrop"
      inkscape:label="WaterDrop"
-     style="display:inline">
+     style="display:none">
     <rect
        initFrameAnim="waterdrop"
        initClipFile="clip_waterdrop.plist"

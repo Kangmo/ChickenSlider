@@ -16,6 +16,7 @@
 #include "CollisionDetector2D.h"
 #include "Util.h"
 
+@class Hero;
 class GameObjectContainer;
 
 class GameObject : public boost::enable_shared_from_this<GameObject>
@@ -135,7 +136,7 @@ protected:
     void removeSelf();
     
     // Called when the GameObject collides with the Hero.
-    inline virtual void onCollideWithHero() 
+    inline virtual void onCollideWithHero(Hero * pHero) 
     {}
 };
 

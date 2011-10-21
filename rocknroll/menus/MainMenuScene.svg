@@ -393,10 +393,10 @@
      inkscape:cx="365.02243"
      inkscape:cy="163.58392"
      inkscape:document-units="px"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
+     inkscape:window-height="710"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -408,7 +408,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -454,7 +454,7 @@
          xlink:href="#path3204"
          id="textPath3210"><tspan
    id="tspan3208"
-   style="fill:#b380ff;stroke:#7f2aff">Rock N Roll</tspan></textPath></text>
+   style="fill:#b380ff;stroke:#7f2aff">Wave Fly</tspan></textPath></text>
     <g
        style="display:inline"
        id="g4624"

@@ -2,66 +2,108 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>snail_blinking</key>
+	<key>icarus_blinking</key>
 	<dict>
+		<key>Duration</key>
+		<string>0.5</string>
 		<key>Atlas</key>
 		<string>sprites.plist</string>
 		<key>Frames</key>
 		<dict>
 			<key>Format</key>
-			<string>AnimSnail_Blinking%02d.png</string>
+			<string>icarus_walking%02d.png</string>
 			<key>StartIndex</key>
 			<string>0</string>
 			<key>EndIndex</key>
-			<string>3</string>
+			<string>1</string>
 		</dict>
 	</dict>
-	<key>snail_breathing</key>
+	<key>icarus_breathing</key>
 	<dict>
+		<key>Duration</key>
+		<string>0.5</string>
 		<key>Atlas</key>
 		<string>sprites.plist</string>
 		<key>Frames</key>
 		<dict>
 			<key>Format</key>
-			<string>AnimSnail_Breathing%02d.png</string>
+			<string>icarus_walking%02d.png</string>
 			<key>StartIndex</key>
 			<string>0</string>
 			<key>EndIndex</key>
-			<string>3</string>
+			<string>1</string>
 		</dict>
 	</dict>
-	<key>snail_walking</key>
+	<key>icarus_walking</key>
 	<dict>
+		<key>Duration</key>
+		<string>0.5</string>
 		<key>Atlas</key>
 		<string>sprites.plist</string>
 		<key>Frames</key>
 		<dict>
 			<key>Format</key>
-			<string>AnimSnail_Walking%02d.png</string>
+			<string>icarus_walking%02d.png</string>
 			<key>StartIndex</key>
 			<string>0</string>
 			<key>EndIndex</key>
-			<string>3</string>
+			<string>1</string>
 		</dict>
 	</dict>
-	<key>snail_flying</key>
+	<key>icarus_flying</key>
 	<dict>
+		<key>Duration</key>
+		<string>0.2</string>
 		<key>Atlas</key>
 		<string>sprites.plist</string>
 		<key>Frames</key>
 		<dict>
 			<key>Format</key>
-			<string>AnimSnail_Flying%02d.png</string>
+			<string>icarus_flying%02d.png</string>
 			<key>StartIndex</key>
 			<string>0</string>
 			<key>EndIndex</key>
-			<string>3</string>
+			<string>1</string>
+		</dict>
+	</dict>
+	<key>icarus_nowings</key>
+	<dict>
+		<key>Duration</key>
+		<string>0.5</string>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>icarus_nowings%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>1</string>
+		</dict>
+	</dict>
+	<key>icarus_dropping</key>
+	<dict>
+		<key>Duration</key>
+		<string>0.5</string>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>icarus_dropping%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>1</string>
 		</dict>
 	</dict>
 	<key>waterdrop</key>
 	<dict>
 		<key>Atlas</key>
 		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>0.3</string>
 		<key>Frames</key>
 		<dict>
 			<key>Format</key>
@@ -70,6 +112,38 @@
 			<string>0</string>
 			<key>EndIndex</key>
 			<string>6</string>
+		</dict>
+	</dict>
+	<key>explosion</key>
+	<dict>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>0.3</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>explosion%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>3</string>
+		</dict>
+	</dict>
+	<key>bomb</key>
+	<dict>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>0.3</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>bomb%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>3</string>
 		</dict>
 	</dict>
 </dict>

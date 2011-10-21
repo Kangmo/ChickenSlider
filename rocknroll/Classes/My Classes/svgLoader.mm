@@ -10,6 +10,7 @@
 #import "Util.h"
 #include "GameObjectContainer.h"
 #include "WaterDrop.h"
+#include "Bomb.h"
 #include "TutorialBox.h"
 
 @implementation svgLoader
@@ -294,7 +295,13 @@
                     // Don't scale.
                     refGameObject = REF(GameObject)( new WaterDrop(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
-                
+
+                if ( [gameObjectClass isEqualToString:@"Bomb"] )
+                {
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new Bomb(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                }
+
                 NSAssert1(refGameObject, @"The game object class name is not supported : %@", gameObjectClass);
                 
                 if ( bi.initClipFile )

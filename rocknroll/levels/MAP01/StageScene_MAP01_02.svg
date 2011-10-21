@@ -16,7 +16,7 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="StageScene_LV2.svg"
+   sodipodi:docname="StageScene_MAP01_02.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
      id="metadata2500">
@@ -43,11 +43,11 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="false"
-     inkscape:zoom="0.1888316"
-     inkscape:cx="5465.2625"
-     inkscape:cy="-626.76325"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:zoom="0.53409642"
+     inkscape:cx="2367.4723"
+     inkscape:cy="168.10289"
+     inkscape:window-x="387"
+     inkscape:window-y="261"
      inkscape:current-layer="layer3"
      width="480px"
      inkscape:window-maximized="0"
@@ -109,16 +109,6 @@
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
        id="filter8613-3-81-0-2-8">
       <feBlend
          inkscape:collect="always"
@@ -145,826 +135,6 @@
          mode="lighten"
          in2="BackgroundImage"
          id="feBlend8615-6-4-40-9-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-39" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-6">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-2" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-6-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-2-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-7-5">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-0-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-1" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-6-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-2-4" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-7-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-0-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-6-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-2-41" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-7-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-0-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-88">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-3" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-43">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-65" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-5">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-4" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-41">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-8" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-52">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-2" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-6">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-1">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-71" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-87">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-74" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-15">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-55" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-82" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-48">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-58" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-62" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-522">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-715" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-522-1">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-715-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-15-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-55-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-87-6">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-74-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-1-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-71-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-6-5">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-7-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-52-2">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-2-8" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-41-5">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-8-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-7-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-5-3" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-5-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-4-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-43-5">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-65-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-15-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-55-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-87-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-74-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-1-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-71-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-6-57">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-7-2" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-52-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-2-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-41-56">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-8-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-7-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-5-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-5-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-4-8" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-43-55">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-65-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-6-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-2-2" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-7-1">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-0-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-3-2">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-9-45" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-3-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-9-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-9-2">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-7-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-0-1">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-39-3" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-75" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-02">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-1" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-3-6">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-9-4" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-9-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-7-8" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-0-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-39-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-2">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-4" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-74">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-18" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-3-6-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-9-4-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-9-7-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-7-8-6" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-0-4-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-39-0-1" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-0-8">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-6-4" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-2-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-4-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-74-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-18-1" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-3-6-74">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-9-4-8" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-9-7-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-7-8-4" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-0-4-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-39-0-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-0-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-6-0" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-2-0">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-4-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-74-6">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-18-7" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-3-6-74-4">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-9-4-8-8" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-9-7-0-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-7-8-4-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-0-4-0-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-39-0-5-5" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-9-0-7-3">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-0-6-0-2" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-7-2-0-7">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-3-4-5-3" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-74-6-9">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-18-7-7" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
@@ -1336,6 +506,166 @@
          in2="BackgroundImage"
          id="feBlend8615-6-4-40-9-3-4-72" />
     </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-44" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-32" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-34" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-11">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-56" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-02">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-12" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-73">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-63" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-9-03">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-36-0-7" />
+    </filter>
   </defs>
   <g
      inkscape:groupmode="layer"
@@ -1370,7 +700,8 @@
        id="image3507-4-88-6-7"
        xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
        height="32"
-       width="32" />
+       width="32"
+       transform="translate(0,3.8183594e-6)" />
     <image
        style="display:inline;filter:url(#filter8613-3-81-0-2-8)"
        y="169.99284"
@@ -1752,6 +1083,134 @@
        x="12708.127"
        id="image3507-4-88-6-7-22-0-3-1"
        xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/WaterDrop.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1)"
+       y="8.1732645"
+       x="607.48291"
+       id="image3507-4-88-6-7-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-0)"
+       y="41.875046"
+       x="1348.9221"
+       id="image3507-4-88-6-7-9-0"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-2)"
+       y="83.066109"
+       x="1210.3704"
+       id="image3507-4-88-6-7-9-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9)"
+       y="244.08572"
+       x="270.46512"
+       id="image3507-4-88-6-7-9-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-1)"
+       y="197.27769"
+       x="364.08118"
+       id="image3507-4-88-6-7-9-2-4"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-9)"
+       y="150.46967"
+       x="431.48474"
+       id="image3507-4-88-6-7-9-2-2"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-0)"
+       y="109.2786"
+       x="508.24991"
+       id="image3507-4-88-6-7-9-2-8"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-2)"
+       y="96.172356"
+       x="1053.0953"
+       id="image3507-4-88-6-7-9-2-6"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-8)"
+       y="169.19289"
+       x="1199.1365"
+       id="image3507-4-88-6-7-9-2-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-7)"
+       y="229.10716"
+       x="1311.4757"
+       id="image3507-4-88-6-7-9-2-86"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-11)"
+       y="221.61787"
+       x="1421.9426"
+       id="image3507-4-88-6-7-9-2-98"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-02)"
+       y="113.02325"
+       x="2852.396"
+       id="image3507-4-88-6-7-9-2-67"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-6)"
+       y="144.85271"
+       x="2904.821"
+       id="image3507-4-88-6-7-9-2-1"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-3)"
+       y="180.4268"
+       x="2953.5012"
+       id="image3507-4-88-6-7-9-2-5"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-73)"
+       y="206.6393"
+       x="3005.9263"
+       id="image3507-4-88-6-7-9-2-25"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
+       height="32"
+       width="32" />
+    <image
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-9-03)"
+       y="234.72412"
+       x="3062.0959"
+       id="image3507-4-88-6-7-9-2-3"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bomb.png"
        height="32"
        width="32" />
   </g>

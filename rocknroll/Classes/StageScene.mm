@@ -113,6 +113,46 @@ static StageScene* instanceOfStageScene;
     waterDropsLabel.setTargetCount(newDrops);
 }
 
+-(void) increaseLife:(float)lifePercentDiff
+{
+    float newLife = lifeBar.percentage + lifePercentDiff;
+    if ( newLife > 100 )
+    {
+        newLife = 100;
+    }
+    lifeBar.percentage = newLife;
+    
+    // More than 25% left for the life...
+    if ( newLife > HEALTH_BAR_BLINKING_THRESHOLD )
+    {
+        // stop all actions to get rid of the blinking effect on the health bar
+        [lifeBar stopAllActions];
+    }
+}
+
+-(void) decreaseLife:(float)lifePercentDiff
+{
+    float newLife = lifeBar.percentage - lifePercentDiff;
+    if ( newLife < 0 )
+    {
+        newLife = 0;
+    }
+    lifeBar.percentage = newLife;
+    
+    // Only 25% left for the life...
+    if ( newLife < HEALTH_BAR_BLINKING_THRESHOLD )
+    {
+        // blink the health bar
+        [lifeBar runAction:[CCBlink action]];
+    }
+    
+    // No more life...
+    if ( newLife == 0 )
+    {
+        [hero dropWings];
+    }
+}
+
 - (void) showMessage:(NSString*) message {
     [Util showMessage:message inLayer:(CCLayer*)self adHeight:LANDSCAPE_AD_HEIGHT];
 }
@@ -185,6 +225,19 @@ static StageScene* instanceOfStageScene;
         
         [self addChild:label];
     }
+    
+    // Life Bar
+    {
+        lifeBar = [[CCProgressTimer progressWithFile:@"health_bar.png"] retain];
+        assert(lifeBar);
+        lifeBar.type = kCCProgressTimerTypeHorizontalBarRL;
+        lifeBar.percentage = 100;
+        
+        lifeBar.position = ccp(screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
+        
+        [self addChild:lifeBar];
+    }
+    
     
     CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPushPauseScene:)];
     
@@ -510,7 +563,7 @@ static StageScene* instanceOfStageScene;
         {
             REF(GameObject) refGameObject = *it;
             
-            refGameObject->onCollideWithHero();
+            refGameObject->onCollideWithHero( hero );
         }
     }
 }
@@ -846,6 +899,8 @@ static StageScene* instanceOfStageScene;
     
     self.hero = nil;
     [terrains release];
+    
+    [lifeBar release];
     
     // remove all body nodes attached to b2Body in the b2World.
     Helper::removeAttachedBodyNodes(world);

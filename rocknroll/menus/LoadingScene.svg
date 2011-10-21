@@ -16,11 +16,18 @@
    version="1.1"
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="LoadingScene.svg"
-   inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/menus/LoadingScene.svg.png"
+   inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/menus/LoadingScene.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
-     id="defs3176" />
+     id="defs3176">
+    <path
+       style="fill:none;stroke:none"
+       d="M 66.829958,162.54982 C 84.381005,143.49699 84.358315,112.72832 123.39851,108.00158 139.27157,102.71056 174.95976,106.85681 181.98736,106.99143 252.20207,108.33645 328.65874,55.93124 284.01277,45.37212"
+       id="path3204-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsc" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -29,13 +36,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="40.795422"
+     inkscape:cx="-75.877196"
      inkscape:cy="140.63399"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
+     inkscape:window-height="710"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -83,15 +90,6 @@
        id="path3204"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccsc" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       id="text3206"
-       sodipodi:linespacing="125%"
-       transform="translate(-12,-6)"><textPath
-         xlink:href="#path3204"
-         id="textPath3210"><tspan
-   id="tspan3208">Rock N Roll</tspan></textPath></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -215,6 +213,16 @@
          d="M 4.7119668,32.123004 C 5.094193,30.841596 6.1587153,29.315373 7.5279868,29.169234 8.6551276,29.048936 9.7357952,30.105956 10.273161,31.060303 11.104984,32.537598 11.056811,34.507194 10.525277,36.127623 10.232225,37.021023 9.6935472,38.203303 8.7382645,38.357958 7.453916,38.565887 6.239592,37.308293 5.53055,36.267616 4.7333514,35.097547 4.306053,33.483824 4.7119668,32.123004 z"
          style="fill:#e3d7f4;stroke:#000000;stroke-width:0.97181308px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#b380ff;fill-opacity:1;stroke:#7f2aff;display:inline;font-family:Sans"
+       id="text3206"
+       sodipodi:linespacing="125%"
+       transform="translate(88.124804,-39.572365)"><textPath
+         xlink:href="#path3204-7"
+         id="textPath3210"><tspan
+   id="tspan3208"
+   style="fill:#b380ff;stroke:#7f2aff">Wave Fly</tspan></textPath></text>
   </g>
   <g
      inkscape:groupmode="layer"
