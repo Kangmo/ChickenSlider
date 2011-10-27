@@ -44,11 +44,11 @@
      id="base"
      showgrid="true"
      inkscape:zoom="9.09"
-     inkscape:cx="17.254469"
+     inkscape:cx="-8.1580722"
      inkscape:cy="301.4382"
-     inkscape:window-x="280"
-     inkscape:window-y="115"
-     inkscape:current-layer="WaterDrop"
+     inkscape:window-x="179"
+     inkscape:window-y="114"
+     inkscape:current-layer="svg2"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -240,12 +240,12 @@
   </g>
   <g
      inkscape:groupmode="layer"
-     id="WaterDrop"
-     inkscape:label="WaterDrop"
-     style="display:none">
+     id="Feather"
+     inkscape:label="Feather"
+     style="display:inline">
     <rect
-       initFrameAnim="waterdrop"
-       initClipFile="clip_waterdrop.plist"
+       initFrameAnim="feather"
+       initClipFile="clip_feather.plist"
        phy_restitution="0"
        phy_friction="0"
        phy_density="0.1"
@@ -256,6 +256,26 @@
        width="32"
        id="rect6831"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
-       gameObjectClass="WaterDrop" />
+       gameObjectClass="Feather" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Remedy"
+     inkscape:label="Remedy"
+     style="display:none">
+    <rect
+       gameObjectClass="Remedy"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect4250"
+       width="32"
+       height="32"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_remedy.plist"
+       initFrameAnim="remedy" />
   </g>
 </svg>

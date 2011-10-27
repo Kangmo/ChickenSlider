@@ -152,14 +152,14 @@
 }
 
 
-+(int) loadWaterDropCount {
++(int) loadFeatherCount {
     int count;
-    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"WaterDropCount"];
+    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"FeatherCount"];
     return count;
 }
 
-+(void) saveWaterDropCount:(int)count {
-    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"WaterDropCount" value:count];
++(void) saveFeatherCount:(int)count {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"FeatherCount" value:count];
 }
 
 @end

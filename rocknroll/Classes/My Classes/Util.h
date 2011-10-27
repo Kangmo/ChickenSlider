@@ -24,9 +24,9 @@
 
 +(CGPoint) getCenter:(CCNode*)node;
 
-+(int) loadWaterDropCount;
++(int) loadFeatherCount;
 
-+(void) saveWaterDropCount:(int)count;
++(void) saveFeatherCount:(int)count;
 
 @end
 

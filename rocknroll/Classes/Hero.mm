@@ -11,6 +11,7 @@
 @synthesize body = _body;
 @synthesize awake = _awake;
 @synthesize diving = _diving;
+@synthesize hasWings = _hasWings;
 @synthesize isDead;
 
 + (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb{
@@ -36,6 +37,7 @@
 	
 	if ((self = [super init])) {
         self.isDead = NO;
+        _hasWings = YES;
 		_world = world;
         _body = body;
         _camera = camera;
@@ -124,33 +126,71 @@
     _body->ApplyLinearImpulse(b2Vec2(1,2), _body->GetPosition());
 }
 
+-(void) playDetachingWing:(NSString*)wingSpriteFrameName
+{
+    CCSprite * heroSprite = [self getSprite];
+    
+    CCSprite * wingSprite = [CCSprite spriteWithSpriteFrameName:wingSpriteFrameName];
+    assert(wingSprite);
+    [[heroSprite parent] addChild:wingSprite];
+    wingSprite.position = heroSprite.position;
+
+    [heroSprite addChild:wingSprite z:10];
+
+    [wingSprite runAction:[CCSequence actions:
+                      [CCFadeOut actionWithDuration:2.0f],
+					  [CCCallFuncND actionWithTarget:wingSprite selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
+					  nil]];
+
+}
+
+/** @brief Show the effect that the wings are detached from the body and disappeared
+ */
+-(void) playDetachingWings {
+// BUGBUG : Detaching wings does not work well.
+//    [self playDetachingWing:@"icarus_leftwing.png"];
+//    [self playDetachingWing:@"icarus_rightwing.png"];
+}
+
 - (void) updatePhysics {
-    if (_flying) {
-        if ( [self currentClip] != _flyingClip ) {
-            [self playClip:_flyingClip];
+    if (_hasWings)
+    {
+        if (_flying) {
+            if ( [self currentClip] != _flyingClip ) {
+                [self playClip:_flyingClip];
+            }
+        }
+        else
+        {
+            if ( [self currentClip] != _walkingClip ) {
+                [self playClip: _walkingClip];
+            }
+        }
+        
+        // apply force if diving
+        if (_diving) {
+            if (!_awake) {
+                [self wake];
+                _diving = NO;
+                [self playClip:_flyingClip];
+            } else {
+                if ( [self currentClip] != _droppingClip ) {
+                    [self playClip:_droppingClip];
+                }
+                
+                _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
+            }
         }
     }
     else
     {
-        if ( [self currentClip] != _walkingClip ) {
-            [self playClip: _walkingClip];
+        // No wings anymore.
+        // Is this the first time that the wings are detached?
+        if ( [self currentClip] != _nowingsClip ) {
+            [self playClip:_nowingsClip];
+            [self playDetachingWings];
         }
     }
-    
-	// apply force if diving
-	if (_diving) {
-		if (!_awake) {
-			[self wake];
-			_diving = NO;
-            [self playClip:_flyingClip];
-		} else {
-            if ( [self currentClip] != _droppingClip ) {
-                [self playClip:_droppingClip];
-            }
-            
-            _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
-		}
-	}
     
 
 	// limit velocity

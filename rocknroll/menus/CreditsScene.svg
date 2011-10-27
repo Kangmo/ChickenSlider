@@ -158,10 +158,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="710"
-     inkscape:window-x="71"
-     inkscape:window-y="36"
+     inkscape:window-width="1920"
+     inkscape:window-height="1036"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3179">
@@ -171,7 +171,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -332,9 +332,9 @@
        sodipodi:linespacing="125%"
        transform="translate(29.231381,-26.379467)"><textPath
          xlink:href="#path3204-7"
-         id="textPath3210"><tspan
+         id="textPath3210">Icarus Boy<tspan
    id="tspan3208"
-   style="fill:#b380ff;stroke:#7f2aff">Wave Fly</tspan></textPath></text>
+   style="fill:#b380ff;stroke:#7f2aff" /></textPath></text>
   </g>
   <g
      inkscape:groupmode="layer"

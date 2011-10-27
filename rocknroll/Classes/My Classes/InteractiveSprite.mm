@@ -476,18 +476,18 @@
         }
         if ( [self isLocked] )
         {
-            // However, if the player collected "UnlockingWaterDrops" number of water drops, 
+            // However, if the player collected "UnlockingFeathers" number of water drops, 
             // Unlock the feature.
             // Load water drop count
             
             // Common stuff to process
-            NSString * unlockingWaterDrops = [touchActionDescs_ valueForKey:@"UnlockingWaterDrops"];
-            if ( unlockingWaterDrops )
+            NSString * unlockingFeathers = [touchActionDescs_ valueForKey:@"UnlockingFeathers"];
+            if ( unlockingFeathers )
             {
-                int unlockingCount = [unlockingWaterDrops intValue];
+                int unlockingCount = [unlockingFeathers intValue];
                 assert( unlockingCount>0 );
-                int waterDropCount = [Util loadWaterDropCount];
-                if ( waterDropCount > unlockingCount )
+                int featherCount = [Util loadFeatherCount];
+                if ( featherCount > unlockingCount )
                 {
                     [IAP sharedIAP].delegate = nil;
                     [self setLocked:NO];

@@ -33,6 +33,9 @@ enum {
 };
 
 
+@interface StageScene() 
+- (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
+@end
 
 // HelloWorld implementation
 @implementation StageScene
@@ -107,49 +110,53 @@ static StageScene* instanceOfStageScene;
     scoreLabel.setTargetCount(newScore);
 }
 
--(void) increaseWaterDrops:(int) waterDropsDiff
+-(void) increaseFeathers:(int) feathersDiff
 {
-    int newDrops = waterDropsLabel.getTargetCount() + waterDropsDiff;
-    waterDropsLabel.setTargetCount(newDrops);
+    int newFeathers = feathersLabel.getTargetCount() + feathersDiff;
+    feathersLabel.setTargetCount(newFeathers);
 }
 
 -(void) increaseLife:(float)lifePercentDiff
 {
-    float newLife = lifeBar.percentage + lifePercentDiff;
+    float newLife = healthBar.getTargetPercent() + lifePercentDiff;
     if ( newLife > 100 )
     {
         newLife = 100;
     }
-    lifeBar.percentage = newLife;
+    healthBar.setTargetPercent( newLife );
     
     // More than 25% left for the life...
     if ( newLife > HEALTH_BAR_BLINKING_THRESHOLD )
     {
         // stop all actions to get rid of the blinking effect on the health bar
-        [lifeBar stopAllActions];
+        [healthBar.getProgressTimer() stopAllActions];
     }
 }
 
 -(void) decreaseLife:(float)lifePercentDiff
 {
-    float newLife = lifeBar.percentage - lifePercentDiff;
+    float newLife = healthBar.getTargetPercent() - lifePercentDiff;
     if ( newLife < 0 )
     {
         newLife = 0;
     }
-    lifeBar.percentage = newLife;
+    healthBar.setTargetPercent( newLife );
     
-    // Only 25% left for the life...
-    if ( newLife < HEALTH_BAR_BLINKING_THRESHOLD )
+    // Only 50% left for the life...
+    if ( newLife <= HEALTH_BAR_BLINKING_THRESHOLD )
     {
-        // blink the health bar
-        [lifeBar runAction:[CCBlink action]];
+        // blink the health bar. Blink twice a second.
+        [healthBar.getProgressTimer() runAction:[CCBlink actionWithDuration:3600 blinks:7200]];
     }
     
     // No more life...
-    if ( newLife == 0 )
+    if ( newLife <= 0 )
     {
-        [hero dropWings];
+        if ( hero.hasWings )
+        {
+            [hero dropWings];
+            [self finishStageWithMessage:@"Failed~" stageCleared:NO];
+        }
     }
 }
 
@@ -172,7 +179,10 @@ static StageScene* instanceOfStageScene;
 	tutorialLabel.position = ccp(screenSize.width * 0.5, screenSize.height * 0.5);
 
 	[self addChild:tutorialLabel];
-    
+
+    // blink the health bar. Blink three times a second.
+    [tutorialLabel runAction:[CCBlink actionWithDuration:1000 blinks:3000]];
+
     [self pauseGame];
 }
 ///////////////////////////////////////////////////////////////
@@ -193,23 +203,23 @@ static StageScene* instanceOfStageScene;
     float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/14 - AD_SIZE_HEIGHT;
     static float HORIZONTAL_MARGIN = screenSize.width/32;
     // The margin between the water drop sprite and the counter.
-    static float WATER_DROP_MARGIN = HORIZONTAL_MARGIN/2;
+    static float FEATHER_MARGIN = HORIZONTAL_MARGIN/2;
     // Water Drop sprite and count
     {
-        CCSprite * waterDropSprite = [CCSprite spriteWithSpriteFrameName:@"WaterDrop00.png"]; 
-        assert(waterDropSprite);
+        CCSprite * featherSprite = [CCSprite spriteWithSpriteFrameName:@"feather00.png"]; 
+        assert(featherSprite);
         
-        [spriteSheet addChild:waterDropSprite];
-        waterDropSprite.anchorPoint = ccp(0, waterDropSprite.anchorPoint.y);
+        [spriteSheet addChild:featherSprite];
+        featherSprite.anchorPoint = ccp(0, featherSprite.anchorPoint.y);
         // Y : +5 is required to move the sprite to the top of the screen by 5 pixcels because the water drop sprite have margin space on top of it.
-        waterDropSprite.position = ccp(HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y+5);
+        featherSprite.position = ccp(HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y+5);
 
         
-        CCLabelBMFont *label = waterDropsLabel.getLabel();
+        CCLabelBMFont *label = feathersLabel.getLabel();
         
         label.anchorPoint = ccp(0, label.anchorPoint.y);
         
-        label.position = ccp(waterDropSprite.position.x + waterDropSprite.contentSize.width + WATER_DROP_MARGIN, 
+        label.position = ccp(featherSprite.position.x + featherSprite.contentSize.width + FEATHER_MARGIN, 
                              SCORE_VERT_CENTER_Y);
 
         [self addChild:label];
@@ -228,14 +238,11 @@ static StageScene* instanceOfStageScene;
     
     // Life Bar
     {
-        lifeBar = [[CCProgressTimer progressWithFile:@"health_bar.png"] retain];
-        assert(lifeBar);
-        lifeBar.type = kCCProgressTimerTypeHorizontalBarRL;
-        lifeBar.percentage = 100;
+        CCProgressTimer * healthBarProgress = healthBar.getProgressTimer();
+
+        healthBarProgress.position = ccp(screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
         
-        lifeBar.position = ccp(screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
-        
-        [self addChild:lifeBar];
+        [self addChild:healthBarProgress];
     }
     
     
@@ -260,8 +267,8 @@ static StageScene* instanceOfStageScene;
         }
 
         // Load water drop count
-        int waterDropCount = [Util loadWaterDropCount];
-        waterDropsLabel.setCount( waterDropCount );
+        int featherCount = [Util loadFeatherCount];
+        feathersLabel.setCount( featherCount );
         
         // initialize variables
         isGamePaused = NO;
@@ -573,8 +580,8 @@ static StageScene* instanceOfStageScene;
     CCLOG(@"gotoLevelMap:%@", clearedCurrentStage?@"YES":@"NO");
 
     // Save the number of water drops persistenlty.
-    int waterDrops = waterDropsLabel.getCount();
-    [Util saveWaterDropCount:waterDrops];
+    int feathers = feathersLabel.getCount();
+    [Util saveFeatherCount:feathers];
 
     // IF the level is cleared, the next level is unlocked.
     // IF the level is not cleared(the Hero is dead), go back to level map scene.
@@ -809,7 +816,9 @@ static StageScene* instanceOfStageScene;
     
     // Update counters to look like they are increasing by 1 until they reach the target count. 
     scoreLabel.update();
-    waterDropsLabel.update();
+    feathersLabel.update();
+    // Update the health bar so that they look like changing gradually.
+    healthBar.update();
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -899,8 +908,6 @@ static StageScene* instanceOfStageScene;
     
     self.hero = nil;
     [terrains release];
-    
-    [lifeBar release];
     
     // remove all body nodes attached to b2Body in the b2World.
     Helper::removeAttachedBodyNodes(world);

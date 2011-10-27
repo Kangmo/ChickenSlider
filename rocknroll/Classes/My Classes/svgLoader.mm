@@ -9,8 +9,9 @@
 #import "ClipFactory.h"
 #import "Util.h"
 #include "GameObjectContainer.h"
-#include "WaterDrop.h"
+#include "Feather.h"
 #include "Bomb.h"
+#include "Remedy.h"
 #include "TutorialBox.h"
 
 @implementation svgLoader
@@ -290,16 +291,22 @@
                     continue;
                 }
   */              
-                if ( [gameObjectClass isEqualToString:@"WaterDrop"] )
+                if ( [gameObjectClass isEqualToString:@"Feather"] )
                 {
                     // Don't scale.
-                    refGameObject = REF(GameObject)( new WaterDrop(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                    refGameObject = REF(GameObject)( new Feather(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
 
                 if ( [gameObjectClass isEqualToString:@"Bomb"] )
                 {
                     // Don't scale.
                     refGameObject = REF(GameObject)( new Bomb(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                }
+
+                if ( [gameObjectClass isEqualToString:@"Remedy"] )
+                {
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new Remedy(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
 
                 NSAssert1(refGameObject, @"The game object class name is not supported : %@", gameObjectClass);

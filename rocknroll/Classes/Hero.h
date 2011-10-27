@@ -41,6 +41,7 @@ class HeroContactListener;
 @property (readonly) BOOL awake;
 @property (nonatomic) BOOL diving;
 @property (nonatomic) BOOL isDead;
+@property (readonly) BOOL hasWings;
 
 + (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb;
 - (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb;

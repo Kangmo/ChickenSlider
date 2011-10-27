@@ -10,7 +10,7 @@
 
 @protocol ScoreBoardProtocol <NSObject>
 -(void) increaseScore:(int) scoreDiff;
--(void) increaseWaterDrops:(int) waterDropsDiff;
+-(void) increaseFeathers:(int) featherDiff;
 -(void) increaseLife:(float)lifePercentDiff;
 -(void) decreaseLife:(float)lifePercentDiff;
 -(void) showMessage:(NSString*) message;

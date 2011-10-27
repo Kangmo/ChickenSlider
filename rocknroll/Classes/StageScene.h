@@ -14,6 +14,7 @@
 #include "GameConfig.h"
 #include "GameObjectContainer.h"
 #include "IncNumLabel.h"
+#include "HealthBar.h"
 
 #import"AdLayer.h"
 
@@ -56,11 +57,11 @@ typedef enum {
     // We do collision detection on these objects with the Hero.
     GameObjectContainer gameObjectContainer;
     
-    int curWaterDrops;
-    int targetWaterDrops;
-    IncNumLabel waterDropsLabel;
+    int curFeathers;
+    int targetFeathers;
+    IncNumLabel feathersLabel;
     IncNumLabel scoreLabel;
-    CCProgressTimer * lifeBar;
+    HealthBar   healthBar;
     
     CCSpriteBatchNode * spriteSheet;
 
@@ -83,7 +84,7 @@ typedef enum {
 -(BOOL) needJoystick;
 
 -(void) increaseScore:(int) scoreDiff;
--(void) increaseWaterDrops:(int) waterDropsDiff;
+-(void) increaseFeathers:(int) feathersDiff;
 
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
 @end

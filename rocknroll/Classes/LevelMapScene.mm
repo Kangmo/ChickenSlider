@@ -14,8 +14,8 @@
 
 #define HIGHEST_UNLOCKED_LEVEL_ATTR @"_highest_cleared_level"
 #define CURRENT_HERO_LEVEL_ATTR @"_current_hero_level"
-#define HERO_SPRITE_NAME @"WaterDrop00.png"
-#define HERO_WAITING_CLIP @"clip_waterdrop.plist"
+#define HERO_SPRITE_NAME @"feather00.png"
+#define HERO_WAITING_CLIP @"clip_feather.plist"
 
 
 @interface LevelMapScene()

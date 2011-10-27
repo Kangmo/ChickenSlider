@@ -98,20 +98,20 @@
 			<string>1</string>
 		</dict>
 	</dict>
-	<key>waterdrop</key>
+	<key>feather</key>
 	<dict>
 		<key>Atlas</key>
 		<string>sprites.plist</string>
 		<key>Duration</key>
-		<string>0.3</string>
+		<string>0.4</string>
 		<key>Frames</key>
 		<dict>
 			<key>Format</key>
-			<string>WaterDrop%02d.png</string>
+			<string>feather%02d.png</string>
 			<key>StartIndex</key>
 			<string>0</string>
 			<key>EndIndex</key>
-			<string>6</string>
+			<string>3</string>
 		</dict>
 	</dict>
 	<key>explosion</key>
@@ -140,6 +140,22 @@
 		<dict>
 			<key>Format</key>
 			<string>bomb%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>3</string>
+		</dict>
+	</dict>
+	<key>remedy</key>
+	<dict>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>0.3</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>remedy%02d.png</string>
 			<key>StartIndex</key>
 			<string>0</string>
 			<key>EndIndex</key>
