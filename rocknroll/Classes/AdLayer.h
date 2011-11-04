@@ -7,11 +7,24 @@
 //
 
 #import "CCLayer.h"
-#import <iAd/iAd.h>
 
-@interface AdLayer : CCLayer<ADBannerViewDelegate>
+// Followed tutorial from http://emeene.com/2010/10/adwhirl-cocos2d-iphone/
+
+#import "AdWhirlDelegateProtocol.h"
+#import "RootViewController.h"
+
+@interface AdLayer : CCLayer<AdWhirlDelegate>
 {
-    ADBannerView *adView;
+    //Here is the important code we'll use
+    AdWhirlView *adView;
+    //This is a trick, AdMob uses a viewController to display its Ads, trust me, you'll need this
+    RootViewController *viewController;
+
+    CGSize screenSize;
 }
+
+@property(assign, nonatomic) CGSize screenSize;
 @property(assign, nonatomic) BOOL enableAD;
+@property(nonatomic,retain) AdWhirlView *adView;
+
 @end

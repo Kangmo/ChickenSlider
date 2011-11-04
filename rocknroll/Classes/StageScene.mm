@@ -32,6 +32,9 @@ enum {
 	kTagAnimation1 = 1,
 };
 
+const float backgroundImageWidth = 1024;
+const float backgroundImageHeight = 512;
+
 
 @interface StageScene() 
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
@@ -74,7 +77,9 @@ static StageScene* instanceOfStageScene;
     loader.classDict = classDict;
     [classDict release];
     
+    CCLOG(@"BEGIN : Loading SVG :%@", filePath);
 	[loader instantiateObjectsIn:filePath];
+    CCLOG(@"END : Loading SVG :%@", filePath);
     
     // find out the maximum X of all terrains. If the hero goes beyond of it, the stage is cleared!
     terrainMaxX = -kMAX_POSITION;
@@ -93,6 +98,9 @@ static StageScene* instanceOfStageScene;
         [self addChild:t];
     }
 }
+
+///////////////////////////////////////////////////////////////
+// GameActivationProtocol
 
 -(void) pauseGame {
     isGamePaused = YES;
@@ -168,15 +176,13 @@ static StageScene* instanceOfStageScene;
 
 -(void) showTutorialText:(NSString*) tutorialText
 {
-    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
-    
     assert(tutorialText);
     
     // Weak Ref
 	tutorialLabel = [CCLabelBMFont labelWithString:tutorialText fntFile:@"punkboy.fnt"];
     assert(tutorialLabel);
     
-	tutorialLabel.position = ccp(screenSize.width * 0.5, screenSize.height * 0.5);
+	tutorialLabel.position = ccp(super.screenSize.width * 0.5, super.screenSize.height * 0.5);
 
 	[self addChild:tutorialLabel];
 
@@ -198,10 +204,9 @@ static StageScene* instanceOfStageScene;
 
 
 -(void) initScoreLabels {
-    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
     float AD_SIZE_HEIGHT = super.enableAD ? LANDSCAPE_AD_HEIGHT : 0;    
-    float SCORE_VERT_CENTER_Y = screenSize.height - screenSize.height/14 - AD_SIZE_HEIGHT;
-    static float HORIZONTAL_MARGIN = screenSize.width/32;
+    float SCORE_VERT_CENTER_Y = super.screenSize.height - super.screenSize.height/14 - AD_SIZE_HEIGHT;
+    static float HORIZONTAL_MARGIN = super.screenSize.width/32;
     // The margin between the water drop sprite and the counter.
     static float FEATHER_MARGIN = HORIZONTAL_MARGIN/2;
     // Water Drop sprite and count
@@ -231,7 +236,7 @@ static StageScene* instanceOfStageScene;
         
         label.anchorPoint = ccp(label.anchorPoint.x*2, label.anchorPoint.y);
         
-        label.position = ccp(screenSize.width - HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y);
+        label.position = ccp(super.screenSize.width - HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y);
         
         [self addChild:label];
     }
@@ -240,7 +245,7 @@ static StageScene* instanceOfStageScene;
     {
         CCProgressTimer * healthBarProgress = healthBar.getProgressTimer();
 
-        healthBarProgress.position = ccp(screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
+        healthBarProgress.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
         
         [self addChild:healthBarProgress];
     }
@@ -289,7 +294,7 @@ static StageScene* instanceOfStageScene;
 		// enable accelerometer
 		self.isAccelerometerEnabled = YES;
 
-        sky = [[Sky skyWithTextureSize:512] retain];
+        sky = [[Sky skyWithTextureSize:CGSizeMake(backgroundImageWidth,backgroundImageHeight)] retain];
 		[self addChild:sky];
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
@@ -456,12 +461,12 @@ static StageScene* instanceOfStageScene;
  */
 -(void) adjustZoomWithGroundY:(float)worldGroundY
 {
-    
+    // For optimization, we have static variable here rather than using super.screenSize
+    static CGSize theScreenSize = [[CCDirector sharedDirector] winSize];
     static float minHeightMeters = 0.0f;
     if (!minHeightMeters) 
     {
-        CGSize screenSize = [[CCDirector sharedDirector] winSize];
-        float maxHeroY = screenSize.height * HERO_MAX_YPOS_RATIO;
+        float maxHeroY = theScreenSize.height * HERO_MAX_YPOS_RATIO;
 		minHeightMeters = maxHeroY / INIT_PTM_RATIO;
     }
     
@@ -533,7 +538,21 @@ static StageScene* instanceOfStageScene;
         
         /////////////////////////////////////////////
         // Step 2 : Adjust Sky
-        [sky setOffsetX:heroX_withoutZoom*0.2f];
+        // BUGBUG : Screen : Change to screen width & height
+        static float onScreenBackgroundImageWidth = backgroundImageHeight*super.screenSize.width/super.screenSize.height;
+        // -50 is an workaround for not showing the outside area of the right border of the background image.
+        static float maxOffsetX = (backgroundImageWidth - onScreenBackgroundImageWidth) - 50;
+        static float heroOffsetOnScreen = super.screenSize.width * HERO_XPOS_RATIO;
+        // The hero can go three screens further from the last terrain. 
+        static float maxHeroX_withoutZoom = (terrainMaxX + super.screenSize.width * 3);
+        float offsetX = (heroX_withoutZoom-heroOffsetOnScreen)/maxHeroX_withoutZoom * maxOffsetX;
+
+        CCLOG(@"OffsetX=%f", offsetX);
+  /*      
+        if (offsetX > maxOffsetX) // Can't go further than the maximum offset X
+            offsetX = maxOffsetX;
+   */
+        [sky setOffsetX:offsetX];
         [sky setScale:1.0f-(1.0f-cam.zoom)*0.75f];
     }
     
@@ -607,10 +626,9 @@ static StageScene* instanceOfStageScene;
 /** @brief Show a big title on the center of the screen for 2 seconds, switch back to level map scene.
  */
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage{
-    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
     
 	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
-	label.position = ccp(screenSize.width/2, screenSize.height/2);
+	label.position = ccp(super.screenSize.width/2, super.screenSize.height/2);
     label.scale = 1.0;
 
 	[label runAction:[CCSequence actions:
@@ -684,7 +702,7 @@ static StageScene* instanceOfStageScene;
     if ( ! [[CDAudioManager sharedManager] isBackgroundMusicPlaying] )
     {
         // playbackground music
-        [[CDAudioManager sharedManager] playBackgroundMusic:@"summer_smile-stephen_burns.mp3" loop:YES];
+        [[CDAudioManager sharedManager] playBackgroundMusic:@"heart-of-the-sea.mp3" loop:YES];
         [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
         [CDAudioManager sharedManager].backgroundMusic.volume = 0.7;
     }
@@ -888,6 +906,19 @@ static StageScene* instanceOfStageScene;
 ////	vel*=100.0f;
 ////	carBox->ApplyImpulse(vel, b2Vec2_zero);
 //	isThrottleEnabled = NO;
+}
+
+// BUGBUG : Understand why this is called.
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    /*
+    labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
+    labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
+    labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
+    
+    self.progressX.progress = ABS(acceleration.x);
+    self.progressY.progress = ABS(acceleration.y);
+    self.progressZ.progress = ABS(acceleration.z);
+    */
 }
 
 // on "dealloc" you need to release all your retained objects

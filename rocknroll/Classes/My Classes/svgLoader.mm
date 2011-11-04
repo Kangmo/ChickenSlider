@@ -11,6 +11,8 @@
 #include "GameObjectContainer.h"
 #include "Feather.h"
 #include "Bomb.h"
+#include "Hen.h"
+#include "Chick.h"
 #include "Remedy.h"
 #include "TutorialBox.h"
 
@@ -303,6 +305,18 @@
                     refGameObject = REF(GameObject)( new Bomb(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
 
+                if ( [gameObjectClass isEqualToString:@"Hen"] )
+                {
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new Hen(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                }
+
+                if ( [gameObjectClass isEqualToString:@"Chick"] )
+                {
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new Chick(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                }
+
                 if ( [gameObjectClass isEqualToString:@"Remedy"] )
                 {
                     // Don't scale.
@@ -440,6 +454,7 @@
                     
                     [layer addChild:intrSprite];
                 }
+                
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
                 if ([objectType isEqualToString:@"Advertisement"])
                 {
@@ -449,7 +464,7 @@
                         layer.enableAD = YES;
                     }
                 }
-                
+
                 if ([objectType isEqualToString:@"TutorialBox"])
                 {
                     assert( gameObjectContainer ); // When gameObjectClass attr is specified, gameObjects should not be NULL.
@@ -528,6 +543,8 @@
 		
 		if([curShape attributeForName:@"isCustomShape"])
 		{
+            CCLOG(@"BEGIN : SvgLoader loading custom shape : %@",name);
+
 			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
 			NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
 			NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
@@ -600,14 +617,15 @@
 					body->CreateFixture(&fixtureDef);
 					
 					if(name) body->SetUserData(name);
-					CCLOG(@"SvgLoader: Loaded custom shape. name=%@ at %f,%f  friction = %f, density = %f",name, avg.x, avg.y, fixtureDef.friction, fixtureDef.density);
+					CCLOG(@"END : SvgLoader: Loaded custom shape. name=%@ at %f,%f  friction = %f, density = %f",name, avg.x, avg.y, fixtureDef.friction, fixtureDef.density);
 				}
 			}
 			
 		}
 		else if([curShape attributeForName:@"isDistanceJoint"])
 		{
-			
+            CCLOG(@"BEGIN : SvgLoader loading distance joint: %@",name);
+            
 			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
 			NSString * data = [[tmp stringByReplacingOccurrencesOfString:@" L" withString:@""]  stringByReplacingOccurrencesOfString:@"M " withString:@""];
 			NSArray * points =[data componentsSeparatedByString:@" "];
@@ -640,10 +658,15 @@
                 [curJoint release];
 
 			}
+
+            CCLOG(@"END : SvgLoader loaded distance joint: %@",name);
+
 		}
 		else // by default, a shape is an edge.
 //            if([curShape attributeForName:@"isEdge"])
         {
+            CCLOG(@"BEGIN : SvgLoader loading static edge: %@",name);
+
             NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
             NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
             
@@ -652,6 +675,8 @@
             data = [data stringByReplacingOccurrencesOfString:@" c" withString:@""];
             NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
             b2EdgeShape edgeShape;
+            
+            CCLOG(@"MID : before FOR");
             // v2.1.2
             //b2PolygonShape edgeShape;
             for (NSString * curComponent in dataComponents) 
@@ -662,6 +687,8 @@
                 if([points count]>1)
                 {
                     CGPoint p1,p2;
+                   
+                    CCLOG(@"MID : before Parsing Points");
                     
                     for (uint32 i = 1; i< [points count]; i++) 
                     {
@@ -695,6 +722,8 @@
                         else edgeFixture->SetFriction(0.5f);
                     }
 
+                    CCLOG(@"MID : before creating Terrain");
+
                     if ( terrains )
                     {
                         // x, y offset should be zero, because we don't instantiate terrain yet.
@@ -722,9 +751,9 @@
                             assert( thickness );
                             terrain.thickness = thickness;
                         }
-                        
+                        CCLOG(@"MID : BEGIN : prepareRendering");
                         [terrain prepareRendering];
-                        
+                        CCLOG(@"MID : END : prepareRendering");
                         [terrains addObject:terrain];
                         
                     }
@@ -732,9 +761,9 @@
             }
             //NSArray * points = [data componentsSeparatedByString:@" "];
             // Define the ground box shape.
-            
-            CCLOG(@"SvgLoader: loaded static edge: %@",name);
+
             //CCLOG(@"Static Edge : %@",data);
+            CCLOG(@"END : SvgLoader loaded static edge: %@",name);
         }
 	}
 }

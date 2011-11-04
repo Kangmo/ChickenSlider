@@ -2,32 +2,18 @@
 #import "GameConfig.h"
 
 
-static int textureFilesCount = 19;
+static int textureFilesCount = 7;
 static NSString * textureFiles[] =
 {
-    @"lgren008.jpg",
-    @"lgren051.jpg",
-    @"lgren062.jpg",
-    @"lgren071.gif",
-    @"lgren077.jpg",  // 5
-    @"lgren080a.jpg",
-    @"blue008.jpg",
-    @"blue011.jpg",
-    @"blue032.jpg",
-    @"blue112.jpg",  // 10
-    @"blue137.jpg",
-    @"blue148.jpg",
-    @"blue207.gif",
-    @"red009.jpg",
-    @"red020.jpg",  // 15
-    @"red079.gif",
-    @"red157.jpg",
-    @"red168.gif",
-    @"red205.gif", // 19
-    @"",
+    @"ground_01.png",
+    @"ground_02.png",
+    @"ground_03.png",
+    @"ground_04.png",
+    @"ground_05.png",
+    @"ground_tx_01.png",
+    @"ground_tx_02.png",
     NULL
 };
-
 
 @interface Terrain()
 - (CCSprite*) generateStripesSprite;
@@ -73,8 +59,8 @@ static NSString * textureFiles[] =
         endBorderIndex = 0;
         
         renderUpside = NO;
-        thickness = 128;
-		textureSize = 128;
+        thickness = TERRAIN_TEXTURE_SIZE;
+		textureSize = TERRAIN_TEXTURE_SIZE;
         
         borderPoints = bp;
         canvasHeight = ch;
@@ -149,7 +135,7 @@ static NSString * textureFiles[] =
 {
 	// key points interval for drawing
 	// _offsetX seems to be Hero's offset which is on the left side of the screen by 1/8 of screen width
-	float leftSideX = _offsetX-screenW/8/self.scale;
+	float leftSideX = _offsetX-screenW * HERO_XPOS_RATIO /self.scale;
 
 	while (startBorderIndex < nBorderVertices-1) {
         if ( borderVertices[startBorderIndex+1].x >= leftSideX)
@@ -165,7 +151,7 @@ static NSString * textureFiles[] =
  */
 -(void) calcEndBorderIndex
 {
-	float rightSideX = _offsetX+screenW*7/8/self.scale;
+	float rightSideX = _offsetX+screenW*(1.0f - HERO_XPOS_RATIO) / self.scale;
 
     while (endBorderIndex < nBorderVertices) 
     {
@@ -211,9 +197,10 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
                 vSegOffset = -vSegOffset;
             
             hillVertices[nHillVertices] = ccp(p0.x, p0.y + vSegOffset);
-            hillTexCoords[nHillVertices++] = ccp(p0.x/(float)textureSize, (float)(k)/vSegments * thicknessRatio);
+            // To map the texture from top to bottom, we subtract Y coord from 1. (OpenGL coord system => TOP=1, BOTTOM=0)
+            hillTexCoords[nHillVertices++] = ccp(p0.x/(float)textureSize, 1-(float)(k)/vSegments * thicknessRatio);
             hillVertices[nHillVertices] = ccp(p1.x, p1.y + vSegOffset);
-            hillTexCoords[nHillVertices++] = ccp(p1.x/(float)textureSize, (float)(k)/vSegments * thicknessRatio);
+            hillTexCoords[nHillVertices++] = ccp(p1.x/(float)textureSize, 1-(float)(k)/vSegments * thicknessRatio);
         }
         
         p0 = p1;
@@ -342,7 +329,7 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 		_offsetX = offsetX;
         
         // Don't scale groundY, because it is for shifting camera offset.
-		self.position = ccp(screenW/8-_offsetX*self.scale, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
+		self.position = ccp(screenW * HERO_XPOS_RATIO -_offsetX*self.scale, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
         
         // calculate the range of border indexes to borderVertices array to draw on screen. 
         [self calcStartBorderIndex];

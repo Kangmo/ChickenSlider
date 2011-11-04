@@ -33,7 +33,7 @@
 #define ZOOM_DELTA_RATIO (0.02f)
 
 // The X position of hero on the screen. It is positioned on the ride side of the screen with the offset of 1/8 of screen width.
-#define HERO_XPOS_RATIO (1.0f/8.0f)
+#define HERO_XPOS_RATIO (1.0f/4.0f)
 
 #define HERO_MAX_YPOS_RATIO (0.7)
 #define HERO_MIN_YPOS_RATIO (0.7)

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AnimationSet</key>
+	<string>animset_objects.plist</string>
+	<key>Clip</key>
+	<dict>
+		<key>Items</key>
+		<array>
+			<dict>
+				<key>Type</key>
+				<string>Animation</string>
+				<key>Name</key>
+				<string>hen_releasing</string>
+			</dict>
+			<dict>
+				<key>Item</key>
+				<dict>
+					<key>Type</key>
+					<string>Loop</string>
+					<key>Item</key>
+					<dict>
+						<key>Items</key>
+						<array>
+							<dict>
+								<key>Chance</key>
+								<real>0.8</real>
+								<key>Item</key>
+								<dict>
+									<key>Type</key>
+									<string>Animation</string>
+									<key>Name</key>
+									<string>hen_jumping</string>
+								</dict>
+							</dict>
+							<dict>
+								<key>Chance</key>
+								<real>0.2</real>
+								<key>Item</key>
+								<dict>
+									<key>MinValue</key>
+									<integer>0</integer>
+									<key>Type</key>
+									<string>RandomDelay</string>
+									<key>MaxValue</key>
+									<real>0.3</real>
+								</dict>
+							</dict>
+						</array>
+						<key>Type</key>
+						<string>RandomItem</string>
+					</dict>
+				</dict>
+			</dict>
+		</array>
+		<key>Type</key>
+		<string>Sequence</string>
+	</dict>
+</dict>
+</plist>

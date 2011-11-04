@@ -31,8 +31,8 @@
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="761"
-     inkscape:window-width="1538"
+     inkscape:window-height="756"
+     inkscape:window-width="1280"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -44,11 +44,11 @@
      id="base"
      showgrid="true"
      inkscape:zoom="9.09"
-     inkscape:cx="-8.1580722"
+     inkscape:cx="-20.864343"
      inkscape:cy="301.4382"
-     inkscape:window-x="179"
-     inkscape:window-y="114"
-     inkscape:current-layer="svg2"
+     inkscape:window-x="3"
+     inkscape:window-y="7"
+     inkscape:current-layer="Chick"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -242,7 +242,7 @@
      inkscape:groupmode="layer"
      id="Feather"
      inkscape:label="Feather"
-     style="display:inline">
+     style="display:none">
     <rect
        initFrameAnim="feather"
        initClipFile="clip_feather.plist"
@@ -277,5 +277,45 @@
        phy_restitution="0"
        initClipFile="clip_remedy.plist"
        initFrameAnim="remedy" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Chick"
+     inkscape:label="Chick"
+     style="display:inline">
+    <rect
+       gameObjectClass="Chick"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect4250-7"
+       width="90"
+       height="90"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_chick.plist"
+       initFrameAnim="chick" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Hen"
+     inkscape:label="Hen"
+     style="display:none">
+    <rect
+       gameObjectClass="Hen"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect4250-7-9"
+       width="128"
+       height="128"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_hen.plist"
+       initFrameAnim="hen" />
   </g>
 </svg>

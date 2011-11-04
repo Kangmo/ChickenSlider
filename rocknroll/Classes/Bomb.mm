@@ -7,35 +7,9 @@
 //
 #include "Bomb.h"
 #include "Util.h"
+#import "GameObjectCleaner.h"
 
 CDSoundSource * Bomb::_collideSound = NULL;
-
-@interface GameObjectCleaner : NSObject
--(void)destroyObject:(id)sender data:(void*)unused;
-@end
-
-@implementation GameObjectCleaner
-/** @brief destroy the object 
- */
--(void)destroyObject:(id)sender data:(void*)gameObjectPointer 
-{
-    CCLOG(@"destroyObject:%p", gameObjectPointer);
-    
-    GameObject * gameObject = (GameObject*)gameObjectPointer;
-
-    // For the collided objects, remove them
-    CCSprite * sprite = gameObject->getSprite();
-    assert(sprite);
-
-    [sprite removeFromParentAndCleanup:YES];
-    
-    gameObject->removeSelf();
-    
-    CCLOG(@"destroyObject:end");
-    
-    [self release];
-}
-@end
 
 void Bomb::onCollideWithHero(Hero * pHero) 
 {

@@ -2,7 +2,7 @@
 #import "AKCCRandomSpawn.h"
 #import "AKCCRandomDelayTime.h"
 #import "AKCCSoundEffect.h"
-
+#import "ClipFactory.h"
 
 @implementation AKHelpers
 
@@ -347,6 +347,8 @@ static id tagDelegate_ = nil;
 
 + (NSDictionary*)animationClipFromPlist:(NSString*)plistFile
 {
+    static int clipCount = 0;
+    CCLOG(@"animation clip count=%d",clipCount++);
     NSString *filePath = plistFile;
     if (![filePath isAbsolutePath]) {
         filePath = [[NSBundle mainBundle] pathForResource:plistFile ofType:nil];
@@ -361,7 +363,9 @@ static id tagDelegate_ = nil;
         animSet = [self animationSetFromDictionary:animationSet];
         if (!animSet) return nil;
     } else if ([animationSet isKindOfClass:[NSString class]]) {
-        animSet = [self animationSetFromPlist:animationSet];
+        // By kmkim : For boosting performance when the same animation set plist file is referenced from multiple clip files.
+        animSet = [[ClipFactory sharedFactory] animByFile:animationSet];
+        //animSet = [self animationSetFromPlist:animationSet];
         if (!animSet) return nil;
     }
     if (!animSet) return nil;

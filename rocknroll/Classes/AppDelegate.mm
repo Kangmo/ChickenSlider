@@ -6,10 +6,13 @@
 #import "RootViewController.h"
 #import "PersistentGameState.h"
 #import "MKStoreManager.h"
+#import "AdWhirlView.h"
+#import "ClipFactory.h"
 
 @implementation AppDelegate
 
 @synthesize window;
+@synthesize viewController;
 
 - (void) removeStartupFlicker
 {
@@ -134,6 +137,7 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
 	[[CCDirector sharedDirector] purgeCachedData];
+    [[ClipFactory sharedFactory] purgeCachedData];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {

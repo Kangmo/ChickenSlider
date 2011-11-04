@@ -11,10 +11,13 @@
 @interface ClipFactory : NSObject
 {
     NSMutableDictionary * clipDict;
+    NSMutableDictionary * animDict;
 }
 
 
 + (ClipFactory*) sharedFactory ;
 - (NSDictionary*) clipByFile:(NSString*) clipFileName;
+- (NSDictionary*) animByFile:(NSString*) animFileName;
+- (void) purgeCachedData;
 
 @end

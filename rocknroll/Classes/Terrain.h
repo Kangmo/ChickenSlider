@@ -10,6 +10,8 @@
 
 #define kHillSegmentWidth 15
 
+#define TERRAIN_TEXTURE_SIZE (512)
+
 @interface Terrain : CCNode {
     // Arguments passed on the initializer 
     NSArray * borderPoints;

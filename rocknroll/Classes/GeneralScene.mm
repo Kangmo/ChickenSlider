@@ -167,6 +167,15 @@
 	[super dealloc];
 }
 
+/** @brief Called by AD-Whirl. Simply do nothing for GeneralScene, which is a screen for showing menus.
+ */
+-(void) pauseGame {
+}
+
+/** @brief Called by AD-Whirl. Simply do nothing for GeneralScene, which is a screen for showing menus.
+ */
+-(void) resumeGame {
+}
 //SYNTESIZE_TRACE(GeneralScene)
 
 @end

@@ -4,7 +4,7 @@
 	CCSprite *_sprite;
 	float _offsetX;
 	float _scale;
-	int textureSize;
+	CGSize textureSize;
 	int screenW;
 	int screenH;
 }
@@ -12,7 +12,7 @@
 @property (nonatomic) float offsetX;
 @property (nonatomic) float scale;
 
-+ (id) skyWithTextureSize:(int)ts;
-- (id) initWithTextureSize:(int)ts;
++ (id) skyWithTextureSize:(CGSize)ts;
+- (id) initWithTextureSize:(CGSize)ts;
 
 @end
