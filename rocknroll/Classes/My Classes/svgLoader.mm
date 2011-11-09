@@ -327,13 +327,13 @@
                 
                 if ( bi.initClipFile )
                 {
-                    CCSprite *sprite;
-                    NSDictionary * clip;
+                    CCSprite * sprite;
+                    CCAction * action;
                     
-                    Helper::getSpriteAndClip( bi.initClipFile, bi.initFrameAnim, &sprite, &clip);
+                    Helper::getSpriteAndAction( bi.initClipFile, bi.initFrameAnim, &sprite, &action);
                     
                     refGameObject->setSprite(sprite);
-                    refGameObject->setDefaultClip(clip);
+                    refGameObject->setDefaultAction(action);
                     
                     // Do not add sprite, do not run the default clip yet. 
                     // It will be done in GameObject::activate while running tick() of the StageScene when the object gets to show on screen.
@@ -976,16 +976,16 @@
                 }
                 else if (bi.initClipFile)
                 {
-                    NSDictionary *clip;
+                    CCAction *action;
                     CCSprite *sprite;
 
                     // BUGBUG : GameObjects does not delay getting sprite and clip like this. Think about unifying the behavior.
-                    Helper::getSpriteAndClip( bi.initClipFile, bi.initFrameAnim, &sprite, &clip);
+                    Helper::getSpriteAndAction( bi.initClipFile, bi.initFrameAnim, &sprite, &action);
                     
                     [layer addChild:sprite];
                     
                     bi.data = sprite;
-                    bi.defaultClip = clip;
+                    bi.defaultAction = action;
                                                                         
                     //[AKHelpers applyAnimationClip:clip toNode:sprite];
                 }

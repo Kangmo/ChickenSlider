@@ -24,7 +24,7 @@ void Hen::onCollideWithHero(Hero * pHero)
     assert(_collideSound);
     [_collideSound play];
 
-    Helper::runClip(sprite, _releasingClip);
+    Helper::runAction(sprite, _releasingAction);
     
     // BUGBUG : Set the game cleared or not cleared based on the number of keys collected.
     // Decrease life by 10 ( total 100)

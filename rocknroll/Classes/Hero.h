@@ -28,18 +28,19 @@ class HeroContactListener;
 	int _nPerfectSlides;
     
     // Currently running clip 
-    NSDictionary * _currentClip;
+    CCAction * _currentAction;
     
     // Animation Clips
-    NSDictionary * _nowingsClip;
-    NSDictionary * _droppingClip;
-    NSDictionary * _flyingClip;
-    NSDictionary * _walkingClip;
+    CCAction * _nowingsAction;
+    CCAction * _droppingAction;
+    CCAction * _flyingAction;
+    CCAction * _walkingAction;
 }
 @property (nonatomic, assign) b2World *world;
 @property (nonatomic, assign) b2Body *body;
 @property (readonly) BOOL awake;
 @property (nonatomic) BOOL diving;
+@property (readonly, nonatomic) BOOL flying;
 @property (nonatomic) BOOL isDead;
 @property (readonly) BOOL hasWings;
 

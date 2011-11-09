@@ -12,6 +12,7 @@
 @synthesize awake = _awake;
 @synthesize diving = _diving;
 @synthesize hasWings = _hasWings;
+@synthesize flying = _flying;
 @synthesize isDead;
 
 + (id) heroWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb{
@@ -22,16 +23,15 @@
  */
 -(void) loadAnimationClips
 {
-    _nowingsClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_nowings.plist"] retain];
-    assert(_nowingsClip);
-    _droppingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_dropping.plist"] retain];
-    assert(_droppingClip);
-    _flyingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_flying.plist"] retain];
-    assert(_flyingClip);
-    _walkingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_icarus_walking.plist"] retain];
-    assert(_walkingClip);
+    _nowingsAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_nowings.plist"] retain];
+    assert(_nowingsAction);
+    _droppingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_dropping.plist"] retain];
+    assert(_droppingAction);
+    _flyingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_flying.plist"] retain];
+    assert(_flyingAction);
+    _walkingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_walking.plist"] retain];
+    assert(_walkingAction);
 }
-
 
 - (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb{
 	
@@ -53,11 +53,16 @@
 }
 
 - (void) dealloc {
+    // Stop all actions
+    Helper::runAction(_body, NULL);
     
 	self.world = nil;
     self.body = nil;
-    [_flyingClip release];
-    [_walkingClip release];
+    
+    [_nowingsAction release];
+    [_droppingAction release];
+    [_flyingAction release];
+    [_walkingAction release];
 
 	delete _contactListener;
 	[super dealloc];
@@ -93,13 +98,9 @@
     
 }
 
-- (NSDictionary *) currentClip {
-    return _currentClip;
-}
-
-- (void) playClip:(NSDictionary *) clip {
-    _currentClip = clip;
-    Helper::runClip(_body, clip);
+- (void) playClipAction:(CCAction *) action {
+    _currentAction = action;
+    Helper::runAction(_body, action);
 }
 
 -(void) createParticle:(float)duration
@@ -156,14 +157,14 @@
     if (_hasWings)
     {
         if (_flying) {
-            if ( [self currentClip] != _flyingClip ) {
-                [self playClip:_flyingClip];
+            if ( _currentAction != _flyingAction ) {
+                [self playClipAction:_flyingAction];
             }
         }
         else
         {
-            if ( [self currentClip] != _walkingClip ) {
-                [self playClip: _walkingClip];
+            if ( _currentAction != _walkingAction ) {
+                [self playClipAction: _walkingAction];
             }
         }
         
@@ -172,10 +173,13 @@
             if (!_awake) {
                 [self wake];
                 _diving = NO;
-                [self playClip:_flyingClip];
+                if ( _currentAction != _flyingAction )
+                {
+                    [self playClipAction:_flyingAction];
+                }
             } else {
-                if ( [self currentClip] != _droppingClip ) {
-                    [self playClip:_droppingClip];
+                if ( _currentAction != _droppingAction ) {
+                    [self playClipAction:_droppingAction];
                 }
                 
                 _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
@@ -186,8 +190,8 @@
     {
         // No wings anymore.
         // Is this the first time that the wings are detached?
-        if ( [self currentClip] != _nowingsClip ) {
-            [self playClip:_nowingsClip];
+        if ( _currentAction != _nowingsAction ) {
+            [self playClipAction:_nowingsAction];
             [self playDetachingWings];
         }
     }
@@ -258,9 +262,10 @@
 			if (_nPerfectSlides == 3) {
                 [self createParticle:3];
 			}
-            
             [_scoreBoard showMessage:[NSString stringWithFormat:@"%d Combo!", _nPerfectSlides]];
 		}
+        
+        [_scoreBoard increaseSpeedRatio:FRAME_SPEED_RATIO_PER_COMBO];
         
         [_scoreBoard increaseScore:SCORE_PER_COMBO * _nPerfectSlides];
 	}
@@ -271,6 +276,9 @@
 	_nPerfectSlides = 0;
     
     [_scoreBoard showMessage:@"Oops~"];
+    
+    [_scoreBoard setSpeedRatio:MIN_FRAME_SPEED_RATIO];
+
 }
 
 - (void) setDiving:(BOOL)diving {

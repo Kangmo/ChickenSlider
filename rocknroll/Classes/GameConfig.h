@@ -26,7 +26,7 @@
 #define MAX_ZOOM_RATIO (10)
 
 // The maximum wave height in meters. Used for adjusting ground level.
-#define MAX_WAVE_HEIGHT (0.0f) 
+#define MAX_WAVE_HEIGHT (0.5f) 
 // Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
 // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
 // At most, change Zoom by 10%
@@ -35,8 +35,8 @@
 // The X position of hero on the screen. It is positioned on the ride side of the screen with the offset of 1/8 of screen width.
 #define HERO_XPOS_RATIO (1.0f/4.0f)
 
-#define HERO_MAX_YPOS_RATIO (0.7)
-#define HERO_MIN_YPOS_RATIO (0.7)
+#define HERO_MAX_YPOS_RATIO (0.65)
+#define HERO_MIN_YPOS_RATIO (0.65)
 
 // If the hero is below ground by 1 meter, he is dead.
 #define HERO_DEAD_GAP_WORLD_Y (1)
@@ -48,6 +48,26 @@
 
 // Start blinking the health bar if it reaches at 50% level.
 #define HEALTH_BAR_BLINKING_THRESHOLD (50)
+
+// The default time duration to simulate in box2d for each frame.
+#define DEFAULT_FRAME_DURATION_SEC (1.0f/45.0f)
+
+// IncNumLabel.h
+
+// The maximum frame speed ratio : 150%
+#define MIN_FRAME_SPEED_RATIO (1.0f)
+
+// The maximum frame speed ratio : 150%
+#define MAX_FRAME_SPEED_RATIO (1.5f)
+
+// Increase the frame duration by 5% for each combo. 
+// This means the hero will fly faster, but not further.
+#define FRAME_SPEED_RATIO_PER_COMBO (0.05f)
+
+// When the frame duration changes, we change it gradually.
+// FRAME_DURATION_CHANGE_STEP defines How much the frame duration can be changed per frame.
+// 0.5% change per frame
+#define STEP_FRAME_SPEED_RATIO (0.005f)
 
 // BUGBUG : Adjust the position for iPad, retina...
 const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;

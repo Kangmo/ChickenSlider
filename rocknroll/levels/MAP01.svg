@@ -870,12 +870,12 @@
      inkscape:cx="221.69259"
      inkscape:cy="159.37208"
      inkscape:document-units="px"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer4"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="710"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1858"
+     inkscape:window-height="1058"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata4056">
@@ -896,13 +896,13 @@
      style="display:inline"
      ignore="">
     <image
-       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP01.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01.png"
        xlink:href="MAP01.png"
-       width="480"
-       height="320"
-       id="image5391"
+       y="0.19387098"
        x="0.41629791"
-       y="0.19387098" />
+       id="image5391"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -912,82 +912,82 @@
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level1"
-       width="97.760925"
-       height="98.296463"
-       x="25.294424"
-       y="69.211113"
+       width="78.669044"
+       height="78.497475"
+       x="127.1178"
+       y="82.646141"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=1,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level2"
-       width="97.760925"
-       height="96.882248"
-       x="135.90613"
-       y="70.059319"
+       width="77.961937"
+       height="76.376152"
+       x="213.68788"
+       y="83.494347"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=2,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level3"
-       width="97.053825"
-       height="98.296463"
-       x="247.02292"
-       y="68.706032"
+       width="77.254837"
+       height="77.790367"
+       x="299.34882"
+       y="82.848167"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=3,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level4"
-       width="98.468033"
-       height="98.296463"
-       x="358.54376"
-       y="68.908081"
+       width="75.840614"
+       height="72.840622"
+       x="382.58539"
+       y="85.878639"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=4,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level5"
-       width="98.468033"
-       height="98.296463"
-       x="25.193443"
-       y="178.63043"
+       width="79.376152"
+       height="77.790367"
+       x="127.01681"
+       y="172.26646"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=5,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level6"
-       width="99.882248"
-       height="99.003571"
-       x="135.19905"
-       y="178.63042"
+       width="78.669044"
+       height="78.497475"
+       x="214.395"
+       y="171.55936"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=6,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level7"
-       width="99.882248"
-       height="100.41778"
-       x="246.61882"
-       y="177.94363"
+       width="78.669044"
+       height="77.083252"
+       x="298.23761"
+       y="171.57967"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=7,Sound=Touch.wav" />
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level8"
-       width="97.760925"
-       height="96.882256"
-       x="357.7356"
-       y="178.24667"
+       width="73.719292"
+       height="76.376167"
+       x="381.77722"
+       y="171.88271"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=8,Sound=Touch.wav" />
     <rect
        style="opacity:0.01000001;fill:#800000;fill-rule:evenodd;stroke:none;display:inline"
        id="BackObject"
-       width="74.973656"
-       height="29.335093"
-       x="397.24802"
-       y="285.42255"
+       width="44.568062"
+       height="45.598549"
+       x="424.11807"
+       y="271.2804"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.mp3" />
   </g>

@@ -5,7 +5,7 @@
 
 @synthesize data, name, rect;
 @synthesize spriteName, textureName, spriteOffset;
-@synthesize initClipFile, initFrameAnim, defaultClip;
+@synthesize initClipFile, initFrameAnim, defaultAction;
 
 -(void)dealloc
 {
@@ -15,7 +15,7 @@
     [textureName release];
     [initClipFile release];
     [initFrameAnim release];
-    [defaultClip release]; 
+    [defaultAction release]; 
     
     [super dealloc];
 }

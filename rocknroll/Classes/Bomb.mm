@@ -24,7 +24,7 @@ void Bomb::onCollideWithHero(Hero * pHero)
     assert(_collideSound);
     [_collideSound play];
 
-    Helper::runClip(sprite, _explosionClip);
+    Helper::runAction(sprite, _explosionAction);
     
     GameObjectCleaner * cleaner = [[GameObjectCleaner alloc] init];
     [sprite runAction:[CCSequence actions:

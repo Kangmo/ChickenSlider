@@ -43,12 +43,12 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="true"
-     inkscape:zoom="9.09"
-     inkscape:cx="-20.864343"
-     inkscape:cy="301.4382"
+     inkscape:zoom="3.2138003"
+     inkscape:cx="66.205939"
+     inkscape:cy="262.73124"
      inkscape:window-x="3"
      inkscape:window-y="7"
-     inkscape:current-layer="Chick"
+     inkscape:current-layer="Bird"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -203,7 +203,7 @@
      inkscape:groupmode="layer"
      id="Bird"
      inkscape:label="Bird"
-     style="display:none">
+     style="display:inline">
     <rect
        style="fill:#00ff00;stroke:none"
        id="BirdMainBody"
@@ -212,7 +212,7 @@
        x="0"
        y="0"
        isCircle=""
-       phy_density="0.4"
+       phy_density="0.5"
        phy_friction="0"
        phy_restitution="0"
        initClipFile="clip_icarus_idle.plist"
@@ -282,7 +282,7 @@
      inkscape:groupmode="layer"
      id="Chick"
      inkscape:label="Chick"
-     style="display:inline">
+     style="display:none">
     <rect
        gameObjectClass="Chick"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"

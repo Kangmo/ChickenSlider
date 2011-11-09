@@ -31,12 +31,15 @@ public:
         }
         assert(_collideSound);
 
+        assert(tt);
         _tutorialText = [tt retain];
         _tutorialBoard = tb;
     };
     virtual ~TutorialBox()
     {
+        assert(_tutorialText);
         [_tutorialText release];
+        _tutorialText = nil;
     }
     
     virtual void onCollideWithHero(Hero * pHero);

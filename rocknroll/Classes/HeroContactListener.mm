@@ -1,8 +1,6 @@
 #import "HeroContactListener.h"
 #import "Hero.h"
 
-#include "PointQueue.h"
-
 HeroContactListener::HeroContactListener(Hero* hero) {
 	_hero = [hero retain];
 }

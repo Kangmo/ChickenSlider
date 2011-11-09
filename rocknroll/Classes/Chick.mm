@@ -24,7 +24,7 @@ void Chick::onCollideWithHero(Hero * pHero)
     assert(_collideSound);
     [_collideSound play];
 
-    Helper::runClip(sprite, _releasingClip);
+    Helper::runAction(sprite, _releasingAction);
     
     GameObjectCleaner * cleaner = [[GameObjectCleaner alloc] init];
     [sprite runAction:[CCSequence actions:

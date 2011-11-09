@@ -347,8 +347,6 @@ static id tagDelegate_ = nil;
 
 + (NSDictionary*)animationClipFromPlist:(NSString*)plistFile
 {
-    static int clipCount = 0;
-    CCLOG(@"animation clip count=%d",clipCount++);
     NSString *filePath = plistFile;
     if (![filePath isAbsolutePath]) {
         filePath = [[NSBundle mainBundle] pathForResource:plistFile ofType:nil];

@@ -19,7 +19,7 @@ class Bomb : public GameObject
 private:
     static CDSoundSource * _collideSound;
     id<ScoreBoardProtocol> _scoreBoard;
-    NSDictionary * _explosionClip;
+    CCAction * _explosionAction;
     bool _exploded;
 public:
     Bomb(float x, float y, float width, float height, id<ScoreBoardProtocol> sb)
@@ -36,12 +36,14 @@ public:
         }
         assert(_collideSound);
         
-        _explosionClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_explosion.plist"] retain];
-        assert(_explosionClip);
+        _explosionAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_explosion.plist"] retain];
+        assert(_explosionAction);
     };
     virtual ~Bomb()
     {
-        [_explosionClip release];
+        assert(_explosionAction);
+        [_explosionAction release];
+        _explosionAction = nil;
     }
     
     virtual void onCollideWithHero(Hero * pHero);

@@ -129,7 +129,9 @@
 /** @brief Did the user purchased any product? 
  */
 +(BOOL) didPurchaseAny {
-    return [MKStoreManager isFeaturePurchased:@"com.thankyousoft.rocknroll.map02"];
+    return YES; // BUGBUG : Optimization1 : Don't show AD.
+//    return [MKStoreManager isFeaturePurchased:@"com.thankyousoft.rocknroll.map02"];
+    
 }
 
 /** @brief Testing purpose only. Remove the key chain data about the purchase history. 
@@ -184,34 +186,34 @@ namespace Helper
         }
     }
     
-    void getSpriteAndClip(NSString* initClipFile, NSString* initFrameAnim, CCSprite ** oSprite, NSDictionary ** oClip)
+    void getSpriteAndAction(NSString* initClipFile, NSString* initFrameAnim, CCSprite ** oSprite, CCAction ** oAction)
     {
         assert(initClipFile);
         assert(initFrameAnim);
         assert(oSprite);
-        assert(oClip);
+        assert(oAction);
         
         //NSAssert(initFrameAnim, @"svg parsesr : You should specifiy initFrameAnim if you specified initClipName attribute for a body.");
         
-        NSDictionary *clip = [[ClipFactory sharedFactory] clipByFile:initClipFile];
-        assert(clip);
+        CCAction *action = [[ClipFactory sharedFactory] clipActionByFile:initClipFile];
+        assert(action);
         
-        NSDictionary *animSet = [AKHelpers animationSetOfClip:clip];
+        NSDictionary *animSet = [[ClipFactory sharedFactory] animationSetOfClipFile:initClipFile];
         
         CCSprite *sprite = [CCSprite spriteWithSpriteFrame:[AKHelpers initialFrameForAnimationWithName:initFrameAnim
                                                                                                fromSet:animSet]];
         assert(sprite);
         
         *oSprite = sprite;
-        *oClip = clip;
+        *oAction = action;
     }
 
     /** @brief Apply animation clip to the sprite attached to the given Box2D body.
      */
-    void runClip(b2Body *body, NSDictionary* clip) 
+    void runAction(b2Body *body, CCAction* action) 
     {
         assert(body);
-        assert(clip);
+        assert(action);
         
         BodyInfo *bi = (BodyInfo*)body->GetUserData();
         if(bi.data)
@@ -219,32 +221,32 @@ namespace Helper
             
             CCSprite*bodySprite = (CCSprite*)bi.data;
             [bodySprite stopAllActions];
-            [AKHelpers applyAnimationClip:clip toNode:bodySprite];
+            [bodySprite runAction:action];
         }
     }
 
     /** @brief Apply animation clip to the sprite attached to the given GameObject.
      */
-    void runClip(REF(GameObject) refGameObject, NSDictionary* clip) 
+    void runAction(REF(GameObject) refGameObject, CCAction* action) 
     {
-        assert(clip);
+        assert(action);
         
         CCSprite * sprite = refGameObject->getSprite();
         assert(sprite);
         
         [sprite stopAllActions];
-        [AKHelpers applyAnimationClip:clip toNode:sprite];
+        [sprite runAction:action];
     }
 
     /** @brief Apply animation clip to the given sprite.
      */
-    void runClip(CCSprite * sprite, NSDictionary* clip)
+    void runAction(CCSprite * sprite, CCAction* action)
     {
         assert(sprite);
-        assert(clip);
+        assert(action);
         
         [sprite stopAllActions];
-        [AKHelpers applyAnimationClip:clip toNode:sprite];
+        [sprite runAction:action];
     }
     
     /** @brief Change the sprite frame with the one that has the given name.

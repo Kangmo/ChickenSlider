@@ -11,7 +11,11 @@
 - (id)initWithEffectName:(NSString*)name
 {
     effectName = [NSString stringWithString:name];
+    [effectName retain];
+    
     effect = [[SimpleAudioEngine sharedEngine] soundSourceForFile:effectName];
+    [effect retain];
+    
     if (effect && (self = [super initWithDuration:effect.durationInSeconds])) {
         [effectName retain];
         [effect retain];

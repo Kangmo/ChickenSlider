@@ -1,10 +1,11 @@
 #import "Terrain.h"
 #import "GameConfig.h"
-
+#import "Profiler.h"
 
 static int textureFilesCount = 7;
 static NSString * textureFiles[] =
 {
+/*    
     @"ground_01.png",
     @"ground_02.png",
     @"ground_03.png",
@@ -12,6 +13,14 @@ static NSString * textureFiles[] =
     @"ground_05.png",
     @"ground_tx_01.png",
     @"ground_tx_02.png",
+*/
+    @"ground_01.pvr",
+    @"ground_02.pvr",
+    @"ground_03.pvr",
+    @"ground_04.pvr",
+    @"ground_05.pvr",
+    @"ground_tx_01.pvr",
+    @"ground_tx_02.pvr",
     NULL
 };
 
@@ -133,9 +142,10 @@ static NSString * textureFiles[] =
  */
 - (void) calcStartBorderIndex
 {
+    static float heroOffset = screenW * HERO_XPOS_RATIO;
 	// key points interval for drawing
 	// _offsetX seems to be Hero's offset which is on the left side of the screen by 1/8 of screen width
-	float leftSideX = _offsetX-screenW * HERO_XPOS_RATIO /self.scale;
+	float leftSideX = _offsetX - heroOffset /self.scale;
 
 	while (startBorderIndex < nBorderVertices-1) {
         if ( borderVertices[startBorderIndex+1].x >= leftSideX)
@@ -151,7 +161,8 @@ static NSString * textureFiles[] =
  */
 -(void) calcEndBorderIndex
 {
-	float rightSideX = _offsetX+screenW*(1.0f - HERO_XPOS_RATIO) / self.scale;
+    static float rightSideFromHero = screenW*(1.0f - HERO_XPOS_RATIO);
+	float rightSideX = _offsetX+rightSideFromHero / self.scale;
 
     while (endBorderIndex < nBorderVertices) 
     {
@@ -170,7 +181,10 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 {
     // For each point in a border, hillVertices and hillTextCoords have (kTerrainVerticalSegments+1) points.
     // Ex> 1 segment = 4 points, 2 segments = 8 points.
-    return borderIndex * (kTerrainVerticalSegments+1) * 2;
+    
+    assert(kTerrainVerticalSegments == 1);
+    //return borderIndex * (kTerrainVerticalSegments+1) * 2;
+    return borderIndex << 2;
 }
 
 - (void) calcHillVertices {
@@ -228,7 +242,7 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 
 
 - (void) draw {
-	
+
 #ifdef DRAW_BOX2D_WORLD
 	
 	glDisable(GL_TEXTURE_2D);
@@ -242,14 +256,16 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 	glEnable(GL_TEXTURE_2D);	
 	
 #else
+    if ( endBorderIndex - startBorderIndex <= 0  )
+    {
+        return;
+    }
+    
+PROF_BEGIN(terrain_draw);
 
     CGPoint * hillVerticesToDraw = nil;
     CGPoint * hillTexCoordsToDraw = nil;
     int drawingVertexCount = 0;
-    
-    // DEBUG
-    //startBorderIndex=nBorderVertices-10; endBorderIndex = nBorderVertices-1;
-    
     
     // calculate the pointers to pass OpenGL API based on calcStartBorderIndex and calcEndBorderIndex
     {
@@ -269,7 +285,7 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
     }
     
     // Actual drawing routine : Draw only if we have some terrain to draw. (We may not have any terrain to draw if _offsetX went too far.
-    if (drawingVertexCount > 0)
+    assert (drawingVertexCount > 0);
     {
         glBindTexture(GL_TEXTURE_2D, _stripes.texture.name);
         
@@ -287,14 +303,15 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
         
         //CCLOG(@"Drawing vertexes:%d", drawingVertexCount);
         
-/*      for (int i=0; i<drawingVertexCount; i++ )
-        {
-            CCLOG(@"V(%f,%f)", hillVerticesToDraw[i].x, hillVerticesToDraw[i].y);
-            CCLOG(@"T(%f,%f)", hillTexCoordsToDraw[i].x, hillTexCoordsToDraw[i].y);
-        }
- */
+        //for (int i=0; i<drawingVertexCount; i++ )
+        //{
+        //    CCLOG(@"V(%f,%f)", hillVerticesToDraw[i].x, hillVerticesToDraw[i].y);
+        //    CCLOG(@"T(%f,%f)", hillTexCoordsToDraw[i].x, hillTexCoordsToDraw[i].y);
+        //}
     }
+PROF_END(terrain_draw);
 #endif
+ 
 }
 
 /** @brief Calculate minimum Y value of the border we are drawing now!
@@ -303,16 +320,7 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
     float minBorderY = kMAX_POSITION;
     if ( startBorderIndex < endBorderIndex )
     {
-        // get 10% sample
-        int step = (endBorderIndex - startBorderIndex) / 10;
-
-        // Not enough samples. Don't sample but do full scan.
-        if (!step)
-            step = 1;
-        
-        step = 1;
-        
-        for (int i=startBorderIndex; i<endBorderIndex; i+=step)
+        for (int i=startBorderIndex; i<endBorderIndex; i++)
         {
             float borderY = borderVertices[i].y;
             if (minBorderY > borderY)
@@ -324,12 +332,13 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 
 - (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY {
 	static BOOL firstTime = YES;
+    static float heroOffsetX = screenW * HERO_XPOS_RATIO;
 	if (_offsetX != offsetX || firstTime) {
 		firstTime = NO;
 		_offsetX = offsetX;
         
-        // Don't scale groundY, because it is for shifting camera offset.
-		self.position = ccp(screenW * HERO_XPOS_RATIO -_offsetX*self.scale, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
+        // Don't scale cameraOffsetY, because it is for shifting camera offset.
+		self.position = ccp(heroOffsetX -_offsetX*self.scale, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
         
         // calculate the range of border indexes to borderVertices array to draw on screen. 
         [self calcStartBorderIndex];

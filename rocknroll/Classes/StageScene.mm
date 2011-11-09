@@ -16,6 +16,7 @@
 #import "AKHelpers.h"
 
 #import "Sky.h"
+#import "Profiler.h"
 
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
@@ -54,7 +55,12 @@ static StageScene* instanceOfStageScene;
 	return instanceOfStageScene;
 }
 
-
+-(void) visit
+{
+PROF_BEGIN(cocos2d_layer_visit);    
+    [super visit];
+PROF_END(cocos2d_layer_visit);    
+}
 -(svgLoader*) initGeometry:(NSString *)svgFileName
 {
 	// Define the ground body.
@@ -112,6 +118,21 @@ static StageScene* instanceOfStageScene;
 
 ///////////////////////////////////////////////////////////////
 // ScoreBoardProtocol
+// Ex> Increase the speed by 10% => sppedRatioDiff=0.1f
+-(void) increaseSpeedRatio:(float) speedRatioDiff
+{
+    float newSpeedRatio = speedRatioLabel->getTargetValue() + speedRatioDiff;
+    if ( newSpeedRatio <= MAX_FRAME_SPEED_RATIO )
+    {
+        speedRatioLabel->setTargetValue(newSpeedRatio);
+    }
+}
+
+-(void) setSpeedRatio:(float) speedRatio
+{
+    speedRatioLabel->setTargetValue(speedRatio);
+}
+
 -(void) increaseScore:(int) scoreDiff
 {
     int newScore = scoreLabel.getTargetCount() + scoreDiff;
@@ -210,6 +231,7 @@ static StageScene* instanceOfStageScene;
     // The margin between the water drop sprite and the counter.
     static float FEATHER_MARGIN = HORIZONTAL_MARGIN/2;
     // Water Drop sprite and count
+    CCLabelBMFont *keysLabel = nil;
     {
         CCSprite * featherSprite = [CCSprite spriteWithSpriteFrameName:@"feather00.png"]; 
         assert(featherSprite);
@@ -220,14 +242,14 @@ static StageScene* instanceOfStageScene;
         featherSprite.position = ccp(HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y+5);
 
         
-        CCLabelBMFont *label = feathersLabel.getLabel();
+        keysLabel = feathersLabel.getLabel();
         
-        label.anchorPoint = ccp(0, label.anchorPoint.y);
+        keysLabel.anchorPoint = ccp(0, keysLabel.anchorPoint.y);
         
-        label.position = ccp(featherSprite.position.x + featherSprite.contentSize.width + FEATHER_MARGIN, 
+        keysLabel.position = ccp(featherSprite.position.x + featherSprite.contentSize.width + FEATHER_MARGIN, 
                              SCORE_VERT_CENTER_Y);
 
-        [self addChild:label];
+        [self addChild:keysLabel];
     }
 
     // Score
@@ -240,17 +262,34 @@ static StageScene* instanceOfStageScene;
         
         [self addChild:label];
     }
-    
+
+    // Speed Ratio
+    {
+        speedRatioLabel =  new FloatLabel(MIN_FRAME_SPEED_RATIO,  /* initialValue */
+                                          STEP_FRAME_SPEED_RATIO, /* stepValue */
+                                          MIN_FRAME_SPEED_RATIO,  /* minValue */
+                                          MAX_FRAME_SPEED_RATIO  /* float maxValue */ );
+        CCLabelBMFont *label = speedRatioLabel->getLabel();
+        
+//        label.anchorPoint = ccp(0, label.anchorPoint.y);
+//        label.position = ccp(keysLabel.position.x + FEATHER_MARGIN, SCORE_VERT_CENTER_Y);
+        label.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
+        
+        [self addChild:label];
+    }
+
     // Life Bar
     {
+        /*
         CCProgressTimer * healthBarProgress = healthBar.getProgressTimer();
 
         healthBarProgress.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
         
         [self addChild:healthBarProgress];
+         */
     }
     
-    
+
     CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPushPauseScene:)];
     
     CCMenu * m = [CCMenu menuWithItems:mi,nil];
@@ -278,6 +317,8 @@ static StageScene* instanceOfStageScene;
         // initialize variables
         isGamePaused = NO;
         tutorialLabel = nil;
+        worldGroundY = 0.0f;
+        heroXatZ1_ofLastGameObjectRemoval = 0.0f;
         
         terrains = nil;
         
@@ -297,7 +338,7 @@ static StageScene* instanceOfStageScene;
         sky = [[Sky skyWithTextureSize:CGSizeMake(backgroundImageWidth,backgroundImageHeight)] retain];
 		[self addChild:sky];
         
-        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.png"];
+        spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.pvr"];
         [self addChild:spriteSheet];
 
 		// The SVG file for the given level.
@@ -459,7 +500,7 @@ static StageScene* instanceOfStageScene;
 
 /** @brief Adjust the zoom level so that both the ground and the hero are shown in the screen regardless of how far the hero jumped!
  */
--(void) adjustZoomWithGroundY:(float)worldGroundY
+-(void) adjustZoomWithGroundY:(float)groundY_worldSystem
 {
     // For optimization, we have static variable here rather than using super.screenSize
     static CGSize theScreenSize = [[CCDirector sharedDirector] winSize];
@@ -478,7 +519,7 @@ static StageScene* instanceOfStageScene;
     
     if (hero)
     {
-        float32 worldHeightToShow = hero.body->GetPosition().y - worldGroundY;
+        float32 worldHeightToShow = hero.body->GetPosition().y - groundY_worldSystem;
         
         if (worldHeightToShow < minHeightMeters) {
             worldHeightToShow = minHeightMeters;
@@ -507,35 +548,12 @@ static StageScene* instanceOfStageScene;
     }
 }
 
-/** @brief Activate, move, scale terrains/sky based on the current hero position.
+/** @brief Activate, move, scale sky based on the current hero position.
  */
--(float) adjustTerrainsAndSky:(float)heroX_withoutZoom {
-    float groundY = kMAX_POSITION;
+-(void) adjustSky:(float)heroX_withoutZoom {
     
     if (hero)
-    {
-        /////////////////////////////////////////////
-        // Step1 : Adjust Terrains
-        // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
-        // Convert it back to the y offset from sea level.
-        
-        float cameraY = -cam.cameraPosition.y;
-        
-        for (Terrain * t in terrains) {
-
-            t.scale = cam.zoom;
-            //t.scale = cam.ptmRatio / INIT_PTM_RATIO;
-
-            [t setHeroX:heroX_withoutZoom withCameraY:cameraY];
-            
-            float borderMinY = [t calcBorderMinY];
-            if ( borderMinY != kMAX_POSITION ) // The terrain is not drawn on the current screen.
-            {
-                if ( groundY > borderMinY )
-                    groundY = borderMinY;
-            }
-        }
-        
+    { 
         /////////////////////////////////////////////
         // Step 2 : Adjust Sky
         // BUGBUG : Screen : Change to screen width & height
@@ -546,14 +564,41 @@ static StageScene* instanceOfStageScene;
         // The hero can go three screens further from the last terrain. 
         static float maxHeroX_withoutZoom = (terrainMaxX + super.screenSize.width * 3);
         float offsetX = (heroX_withoutZoom-heroOffsetOnScreen)/maxHeroX_withoutZoom * maxOffsetX;
-
-        CCLOG(@"OffsetX=%f", offsetX);
-  /*      
-        if (offsetX > maxOffsetX) // Can't go further than the maximum offset X
-            offsetX = maxOffsetX;
-   */
+        
         [sky setOffsetX:offsetX];
         [sky setScale:1.0f-(1.0f-cam.zoom)*0.75f];
+    }
+}
+
+/** @brief Activate, move, scale terrains based on the current hero position.
+ */
+-(float) adjustTerrains:(float)heroX_withoutZoom {
+    float groundY = kMAX_POSITION;
+    
+    if (hero)
+    {
+        /////////////////////////////////////////////
+        // Step1 : Adjust Terrains
+        // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
+        // Convert it back to the y offset from sea level.
+        
+        float cameraY = -cam.cameraPosition.y;
+        for (Terrain * t in terrains) {
+            t.scale = cam.zoom;
+PROF_BEGIN(temp1);
+            [t setHeroX:heroX_withoutZoom withCameraY:cameraY];
+PROF_END(temp1);
+    
+PROF_BEGIN(temp2);
+            float borderMinY = [t calcBorderMinY];
+PROF_END(temp2);
+            
+            if ( borderMinY != kMAX_POSITION ) // The terrain is not drawn on the current screen.
+            {
+                if ( groundY > borderMinY )
+                    groundY = borderMinY;
+            }
+        }
     }
     
     return groundY;
@@ -561,6 +606,15 @@ static StageScene* instanceOfStageScene;
 /** @brief See if the hero collides any objects in the GameObjectContainer. Box2D objects are not included here.
  */
 -(void) checkCollisions4GameObjects {
+    // Optimization : Check collision once per 2 frames
+    {
+        static unsigned int lastCheckedTS=0; // TS = timestamp
+        static unsigned int TS=0;
+        if (++TS - lastCheckedTS < 2 )
+            return;
+        lastCheckedTS = TS;
+    }
+    
     if ( hero )
     {
         ////////////////////////////////////////////////////////////////////////////////
@@ -638,11 +692,13 @@ static StageScene* instanceOfStageScene;
 					  nil]];
     
 	[self addChild:label];
+    
+    PROF_PRINT_RESULT();
 }
 
 /** @brief check if the Hero is dead. The hero is dead if he is below the ground level.
  */
--(void) checkHeroDead:(float)worldGroundY {
+-(void) checkHeroDead:(float)groundY_worldSystem {
     // if the stage is cleared, don't check if the player is dead. We will advance to the next stage soon.
     if ( stageCleared) {
         return;
@@ -653,7 +709,7 @@ static StageScene* instanceOfStageScene;
         return;
     }
     
-    if ( hero.body->GetPosition().y < worldGroundY - HERO_DEAD_GAP_WORLD_Y ) {
+    if ( hero.body->GetPosition().y < groundY_worldSystem - HERO_DEAD_GAP_WORLD_Y ) {
         if ( ! hero.isDead )
         {
             // Show that the hero is dead (Jump like mario!)
@@ -719,17 +775,19 @@ static StageScene* instanceOfStageScene;
 
 /** @brief update GameObject(s) for each tick. Box2D objects are not included here.
  */
--(void) updateGameObjects {
-
-    // 100 : 
-    // 550 : [60->38], [15->30]
-    // Iterate over the game objects in the GameObjectContainer
-//    GameObjectContainer::GameObjectSet gameObjects = gameObjectContainer.gameObjects();
-//    for (GameObjectContainer::GameObjectSet::iterator it = gameObjects.begin(); it!= gameObjects.end(); it++)
-
+-(void) removeUnusedGameObjects:(float)heroXatZ1 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Step 1: Get the hero position X at zoom level 1.0 
-    float heroXatZ1 = hero.body->GetPosition().x * INIT_PTM_RATIO;
+    // Step 1: Check if the hero forward enough. 
+    // Why? For optimization. We check to remove game objects only if the Hero moved by enough margin.
+    // Search game objects that are shown on the left of the left side of the screen at the minimum zoom level.
+ 
+    if ( heroXatZ1 < heroXatZ1_ofLastGameObjectRemoval ) // The hero went backward. Do nothing.
+        return;
+    if ( heroXatZ1 - heroXatZ1_ofLastGameObjectRemoval < 240 ) // The hero went less than the half of the screen width. Do nothing.
+        return;
+    
+    // Ok, the hero moved forward by enough margin. We need to remove unused game objects. 
+    heroXatZ1_ofLastGameObjectRemoval = heroXatZ1;
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Step 2: Remove gone game objects 
@@ -747,9 +805,13 @@ static StageScene* instanceOfStageScene;
             refGameObject->removeSelf();
         }
     }
-    
+}
+
+/** @brief update GameObject(s) for each tick. Box2D objects are not included here.
+ */
+-(void) updateGameObjects:(float)heroXatZ1 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Step 3: Update comming game objects 
+    // Step 1: Update comming game objects 
     // Search game objects that are shown in the screen and will be shown in the screen at the minimum zoom level.
     {
         box_t commingScreenBox = [cam commingScreenRect:heroXatZ1];
@@ -779,64 +841,106 @@ static StageScene* instanceOfStageScene;
 
 -(void) tick: (ccTime) dt
 {
-//	st+=0.01;
-//	float s = sin(st)*2.0f;
-//	if(s<0) s*=-1.0f;
-//	[cam ZoomTo: s +0.2f];
+/*    
+    // Enable profiling only when the hero is not flying.
+    if (hero.flying)
+        PROF_DISABLE();
+    else
+        PROF_ENABLE();
+*/
     // TODO : Understand why adjusting terrain should come here.
-
-    static float worldGroundY = 0.0f;
 
     // if the game is paused, dont' update the game frame. 
     if (isGamePaused)
+    {    
         return;
-
+    }
     
+PROF_BEGIN(stage_tick_adjustZoomWithGroundY);
     [self adjustZoomWithGroundY:worldGroundY];
+PROF_END(stage_tick_adjustZoomWithGroundY);
 
+PROF_BEGIN(stage_tick_updateFollowPosition);
 	[cam updateFollowPosition];
+PROF_END(stage_tick_updateFollowPosition);
 
+PROF_BEGIN(stage_tick_adjustTerrains);
     float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
 
+  PROF_BEGIN(temp3);            
     // groundY will be used in the next tick to decide the zoom level.
-    worldGroundY = [self adjustTerrainsAndSky:heroX_withoutZoom] / INIT_PTM_RATIO;
-    
+    float screenGroundY_withoutZoom = [self adjustTerrains:heroX_withoutZoom];
+  PROF_END(temp3);            
+    worldGroundY = screenGroundY_withoutZoom / INIT_PTM_RATIO;
     // To show bottom of terrains, lower the ground level. 
     worldGroundY -= MAX_WAVE_HEIGHT;
     
+PROF_END(stage_tick_adjustTerrains);
+    //worldGroundY = -1000;
+    // worldGroundY will be used in the next tick to decide the zoom level.
+    
+PROF_BEGIN(stage_tick_adjustSky);
+    [self adjustSky:heroX_withoutZoom];
+PROF_END(stage_tick_adjustSky);
+/*
 	int32 velocityIterations = 8;
     int32 positionIterations = 3;
-    //	int32 positionIterations = 10;
+*/
+	int32 velocityIterations = 2;
+    int32 positionIterations = 2;
+
+PROF_BEGIN(stage_tick_hero_updatePhysics);
 	if (hero)
         [hero updatePhysics];
+PROF_END(stage_tick_hero_updatePhysics);
     
+PROF_BEGIN(stage_tick_world_step);
+    float worldStepTime = speedRatioLabel->getValue() * DEFAULT_FRAME_DURATION_SEC;
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	world->Step(1.0f/60.0f, velocityIterations, positionIterations);
+	//world->Step(1.0f/60.0f, velocityIterations, positionIterations);
+	world->Step(worldStepTime, velocityIterations, positionIterations);
+PROF_END(stage_tick_world_step);
 
+PROF_BEGIN(stage_tick_hero_updateNode);
 	if (hero)
         [hero updateNode];
+PROF_END(stage_tick_hero_updateNode);
 
+PROF_BEGIN(stage_tick_cam_updateSpriteFromBody);
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		[cam updateSpriteFromBody:b];
 	}
+PROF_END(stage_tick_cam_updateSpriteFromBody);
 
+PROF_BEGIN(stage_tick_checkCollisions4GameObjects);
     // no change in performance.
     [self checkCollisions4GameObjects];
+PROF_END(stage_tick_checkCollisions4GameObjects);
 
+PROF_BEGIN(stage_tick_checkStageClear);
     [self checkStageClear:heroX_withoutZoom];
+PROF_END(stage_tick_checkStageClear);
 
+PROF_BEGIN(stage_tick_checkHeroDead);
     [self checkHeroDead:worldGroundY];
+PROF_END(stage_tick_checkHeroDead);
     
-    [self updateGameObjects];
+PROF_BEGIN(stage_tick_updateGameObjects);
+    [self removeUnusedGameObjects:heroX_withoutZoom];
+    [self updateGameObjects:heroX_withoutZoom];
+PROF_END(stage_tick_updateGameObjects);
     
+PROF_BEGIN(stage_tick_update_labels);
     // Update counters to look like they are increasing by 1 until they reach the target count. 
     scoreLabel.update();
     feathersLabel.update();
+    speedRatioLabel->update();
     // Update the health bar so that they look like changing gradually.
     healthBar.update();
+PROF_END(stage_tick_update_labels);
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -953,6 +1057,10 @@ static StageScene* instanceOfStageScene;
     instanceOfStageScene = nil;
     
     [mapName release];
+    
+    assert(speedRatioLabel);
+    delete speedRatioLabel;
+    speedRatioLabel = NULL;
     
 	// don't forget to call "super dealloc"
 	[super dealloc];

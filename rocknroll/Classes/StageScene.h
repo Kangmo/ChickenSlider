@@ -15,6 +15,7 @@
 #include "GameObjectContainer.h"
 #include "IncNumLabel.h"
 #include "HealthBar.h"
+#include "FloatLabel.h"
 
 #import"AdLayer.h"
 
@@ -62,6 +63,7 @@ typedef enum {
     IncNumLabel feathersLabel;
     IncNumLabel scoreLabel;
     HealthBar   healthBar;
+    FloatLabel *speedRatioLabel;
     
     CCSpriteBatchNode * spriteSheet;
 
@@ -72,6 +74,10 @@ typedef enum {
 
     // Indicates that the game was paused to show the tutorial text.
     BOOL isGamePaused;
+    
+    float worldGroundY;
+    // The X position of the hero by the time we removed the game objects that went behind the left side of the screen.
+    float heroXatZ1_ofLastGameObjectRemoval;
 }
 
 @property (nonatomic, assign) Car * car;

@@ -9,6 +9,7 @@
 #import "ClipFactory.h"
 #import "AKHelpers.h"
 
+
 @implementation ClipFactory
 
 - (id)init
@@ -46,8 +47,34 @@
         
         [clipDict setValue:clip forKey:clipFileName];
     }
-
+    
     return clip;
+}
+
+/** @brief Return a new action for the clip file. 
+ Why not put the action into dict and share it for multiple CCSprites?
+ CCAction is designed to be run by only one sprite. So We put clip definition into the cache dict, but create a new CCAction from it for each CCSprite.
+*/
+ - (CCAction*) clipActionByFile:(NSString*) clipFileName
+{
+    NSDictionary * clip = [self clipByFile:clipFileName];
+    assert(clip);
+    
+    CCAction * action = [AKHelpers actionForAnimationClip:clip];
+    assert( action );
+    
+    return action;
+}
+
+- (NSDictionary*) animationSetOfClipFile:(NSString*) clipFileName
+{
+    NSDictionary * clip = [self clipByFile:clipFileName];
+    assert(clip);
+    
+    NSDictionary * animSet = [AKHelpers animationSetOfClip:clip];
+    assert( animSet );
+    
+    return animSet;
 }
 
 - (NSDictionary*) animByFile:(NSString*) animSetFileName

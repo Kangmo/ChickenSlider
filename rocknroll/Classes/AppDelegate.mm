@@ -118,10 +118,10 @@
 #endif
     
     // Load the sprite frames.
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.pvr"];
     
     CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
-    //CCScene * theFirstScene = [StageScene sceneWithLevel:@"LV2"];
+    //CCScene * theFirstScene = [StageScene sceneInMap:@"MAP01" levelNum:1];
 	// Run the main menu Scene
 	[[CCDirector sharedDirector] runWithScene: theFirstScene];
 }

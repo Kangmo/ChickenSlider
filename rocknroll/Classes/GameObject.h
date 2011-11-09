@@ -24,7 +24,7 @@ class GameObject : public boost::enable_shared_from_this<GameObject>
 protected:
     box_t _contentBox;
     CCSprite * _sprite;
-    NSDictionary * _defaultClip;
+    CCAction * _defaultAction;
     bool _activated;
     
     GameObjectContainer * _container;
@@ -34,7 +34,7 @@ protected:
     :_contentBox(point_t(x,y), point_t(x+width, y+height))
     {
         _sprite = NULL;
-        _defaultClip = NULL;
+        _defaultAction = NULL;
         _container = NULL;
         _activated = false;
     };
@@ -42,14 +42,14 @@ protected:
     virtual ~GameObject() {
         if ( _sprite)
         {
-            _sprite = NULL;
             [_sprite release];
+            _sprite = NULL;
         }
 
-        if ( _defaultClip)
+        if ( _defaultAction)
         {
-            _defaultClip = NULL;
-            [_defaultClip release];
+            [_defaultAction release];
+            _defaultAction = NULL;
         }
     };
     
@@ -74,13 +74,13 @@ protected:
         _sprite.anchorPoint = CGPointMake(0,0);
     }
     
-    inline void setDefaultClip( NSDictionary * clip)
+    inline void setDefaultAction( CCAction * action)
     {
         // The default clip can be set only once.
-        assert(!_defaultClip);
-        assert(clip);
+        assert(!_defaultAction);
+        assert(action);
 
-        _defaultClip = [clip retain];
+        _defaultAction = [action retain];
     }
     
     inline CCSprite * getSprite()
@@ -88,9 +88,9 @@ protected:
         return _sprite;
     }
     
-    inline NSDictionary * getDefaultClip()
+    inline CCAction * getDefaultAction()
     {
-        return _defaultClip;
+        return _defaultAction;
     }
     
     inline const CGPoint getPosition()
@@ -120,7 +120,7 @@ protected:
         
         // 100 : [60->60]
         // 550 : [7->15]
-        Helper::runClip( shared_from_this(), _defaultClip );
+        Helper::runAction( shared_from_this(), _defaultAction );
         
         _activated = true;
     }

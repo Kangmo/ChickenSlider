@@ -23,7 +23,7 @@
     CCSprite * _heroSprite;
     
     // Animation Clips
-    NSDictionary * _heroWaitingClip;
+    CCAction * _heroWaitingAction;
     
     // For reserving hero movement by the time scene is shown on the screen.
     BOOL moveHeroReserved;

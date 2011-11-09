@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol ScoreBoardProtocol <NSObject>
+-(void) increaseSpeedRatio:(float) speedRatioDiff;
+-(void) setSpeedRatio:(float) speedRatio;
 -(void) increaseScore:(int) scoreDiff;
 -(void) increaseFeathers:(int) featherDiff;
 -(void) increaseLife:(float)lifePercentDiff;

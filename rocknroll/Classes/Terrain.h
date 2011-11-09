@@ -10,7 +10,8 @@
 
 #define kHillSegmentWidth 15
 
-#define TERRAIN_TEXTURE_SIZE (512)
+//#define TERRAIN_TEXTURE_SIZE (512)
+#define TERRAIN_TEXTURE_SIZE (256)
 
 @interface Terrain : CCNode {
     // Arguments passed on the initializer 

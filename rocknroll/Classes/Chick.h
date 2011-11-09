@@ -19,7 +19,7 @@ class Chick : public GameObject
 private:
     static CDSoundSource * _collideSound;
     id<ScoreBoardProtocol> _scoreBoard;
-    NSDictionary * _releasingClip;
+    CCAction * _releasingAction;
     bool _released;
 public:
     Chick(float x, float y, float width, float height, id<ScoreBoardProtocol> sb)
@@ -36,12 +36,14 @@ public:
         }
         assert(_collideSound);
         
-        _releasingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_chick_released.plist"] retain];
-        assert(_releasingClip);
+        _releasingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_chick_released.plist"] retain];
+        assert(_releasingAction);
     };
     virtual ~Chick()
     {
-        [_releasingClip release];
+        assert(_releasingAction);
+        [_releasingAction release];
+        _releasingAction = nil;
     }
     
     virtual void onCollideWithHero(Hero * pHero);

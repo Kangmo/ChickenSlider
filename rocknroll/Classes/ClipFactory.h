@@ -16,7 +16,8 @@
 
 
 + (ClipFactory*) sharedFactory ;
-- (NSDictionary*) clipByFile:(NSString*) clipFileName;
+- (NSDictionary*) animationSetOfClipFile:(NSString*) clipFileName;
+- (CCAction*) clipActionByFile:(NSString*) clipFileName;
 - (NSDictionary*) animByFile:(NSString*) animFileName;
 - (void) purgeCachedData;
 

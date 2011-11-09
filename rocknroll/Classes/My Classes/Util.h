@@ -37,13 +37,11 @@ namespace Helper
 {
     void removeAttachedBodyNodes(b2World * world );
     
-    void getSpriteAndClip(NSString* initClipFile, NSString* initFrameAnim, CCSprite ** oSprite, NSDictionary ** oClip);
+    void getSpriteAndAction(NSString* initClipFile, NSString* initFrameAnim, CCSprite ** oSprite, CCAction ** oAction);
     
-    void runClip(b2Body *body, NSDictionary* clip) ;
-
-    void runClip(REF(GameObject) refGameObject, NSDictionary* clip) ;
-    
-    void runClip(CCSprite * sprite, NSDictionary* clip);
+    void runAction(b2Body *body, CCAction* action);
+    void runAction(REF(GameObject) refGameObject, CCAction* action); 
+    void runAction(CCSprite * sprite, CCAction* action);
     
     inline box_t getBox(CGPoint minPoint, CGPoint maxPoint) 
     {

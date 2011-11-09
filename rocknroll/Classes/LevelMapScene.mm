@@ -50,8 +50,8 @@
         assert(_heroSprite);
         [self addChild:_heroSprite];
         
-        _heroWaitingClip = [[[ClipFactory sharedFactory] clipByFile:HERO_WAITING_CLIP] retain];
-        assert(_heroWaitingClip);
+        _heroWaitingAction = [[[ClipFactory sharedFactory] clipActionByFile:HERO_WAITING_CLIP] retain];
+        assert(_heroWaitingAction);
         
         [self loadLevelSprites];
         [self loadMapState];
@@ -62,11 +62,11 @@
     return self;
 }
 
--(void)startHeroClip:(NSDictionary*)clip {
-    Helper::runClip(_heroSprite, clip);
+-(void)startHeroAction:(CCAction*)action {
+    Helper::runAction(_heroSprite, action);
 }
 
--(void)stopHeroClip {
+-(void)stopHeroAction {
     [_heroSprite stopAllActions];
 }
 
@@ -74,8 +74,8 @@
     [_heroSprite release];
     _heroSprite = nil;
     
-    [_heroWaitingClip release];
-    _heroWaitingClip = nil;
+    [_heroWaitingAction release];
+    _heroWaitingAction = nil;
     
     [super dealloc];
 }
@@ -212,7 +212,7 @@
     _heroSprite.position = [self heroLevelPosition:level];
     
     // Show that the hero is waiting
-    [self startHeroClip:_heroWaitingClip];
+    [self startHeroAction:_heroWaitingAction];
 }
 
 -(void)setHeroPositionCallback:(id)sender data:(void*)callbackData 

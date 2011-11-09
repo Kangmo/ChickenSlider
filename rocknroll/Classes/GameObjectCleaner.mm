@@ -14,7 +14,7 @@
  */
 -(void)destroyObject:(id)sender data:(void*)gameObjectPointer 
 {
-    CCLOG(@"Chick-destroyObject:%p", gameObjectPointer);
+    CCLOG(@"destroyObject:%p", gameObjectPointer);
     
     GameObject * gameObject = (GameObject*)gameObjectPointer;
     
@@ -26,7 +26,7 @@
     
     gameObject->removeSelf();
     
-    CCLOG(@"Chick-destroyObject:end");
+    CCLOG(@"destroyObject:end");
     
     [self release];
 }

@@ -14,7 +14,6 @@
  */
 void GameObject::removeSelf() {
     assert(_container);
-    
-    //_container->remove( refMe );
+
     _container->remove( shared_from_this() );
 }

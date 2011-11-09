@@ -38,8 +38,8 @@
 }
 
 - (CCSprite*) generateSprite {
-	CCSprite *s = [CCSprite spriteWithFile:@"sky2.png"];
-	//[s setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
+
+    CCSprite *s = [CCSprite spriteWithFile:@"sky1024.pvr"];
     s.anchorPoint = ccp(HERO_XPOS_RATIO, 0);
 	s.position = ccp(screenW * HERO_XPOS_RATIO, 0);
 	s.scale = 1;

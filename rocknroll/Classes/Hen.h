@@ -19,7 +19,7 @@ class Hen : public GameObject
 private:
     static CDSoundSource * _collideSound;
     id<ScoreBoardProtocol> _scoreBoard;
-    NSDictionary * _releasingClip;
+    CCAction * _releasingAction;
     bool _released;
 public:
     Hen(float x, float y, float width, float height, id<ScoreBoardProtocol> sb)
@@ -34,14 +34,17 @@ public:
             // BUGBUG : The object is leaked! 
             _collideSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:@"WaterDrop.wav"] retain];
         }
-        assert(_collideSound);
+        // BUGBUG : The assertion hits. Find out why.
+//        assert(_collideSound);
         
-        _releasingClip = [[[ClipFactory sharedFactory] clipByFile:@"clip_hen_released.plist"] retain];
-        assert(_releasingClip);
+        _releasingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_hen_released.plist"] retain];
+        assert(_releasingAction);
     };
     virtual ~Hen()
     {
-        [_releasingClip release];
+        assert(_releasingAction);
+        [_releasingAction release];
+        _releasingAction = nil;
     }
     
     virtual void onCollideWithHero(Hero * pHero);

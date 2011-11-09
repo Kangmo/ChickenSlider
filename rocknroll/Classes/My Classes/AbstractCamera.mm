@@ -171,7 +171,7 @@
     static float screenHeightAtMinZoom = kMAX_POSITION;
     
     float screenLeftXatMinZoom = [self viewLeftAtMinZoom:heroXatZ1];
-    
+
     CGPoint minPoint = CGPointMake(screenLeftXatMinZoom,-screenHeightAtMinZoom);
     
     CGPoint maxPoint = CGPointMake(screenLeftXatMinZoom+screenWidthAtMinZoom, screenHeightAtMinZoom);
