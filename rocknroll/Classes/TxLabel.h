@@ -97,6 +97,12 @@ public :
     CCLabelBMFont * getWidgetImpl() {
         return label_;
     }
+    
+    void setIntValue(int value)
+    {
+        NSString * intString = [NSString stringWithFormat:@"%d", value];
+        [label_ setString:intString];
+    }
 };
 
 

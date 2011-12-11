@@ -143,13 +143,44 @@
 
 +(int) loadTotalChickCount {
     int count;
-    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"TotalChickCount"];
+    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"TotalChickCount" default:0];
     return count;
 }
 
 +(void) saveTotalChickCount:(int)count {
     [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"TotalChickCount" value:count];
 }
+
++(int) loadMusicVolume {
+    int volume;
+    volume = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"MusicVolume" default:MAX_MUSIC_VOLUME];
+    return volume;
+}
+
++(void) saveMusicVolume:(int)volume {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"MusicVolume" value:volume];
+}
+
++(int) loadEffectVolume {
+    int volume;
+    volume = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"EffectVolume" default:MAX_EFFECT_VOLUME];
+    return volume;
+}
+
++(void) saveEffectVolume:(int)volume {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"EffectVolume" value:volume];
+}
+
++(int) loadDifficulty {
+    int difficulty;
+    difficulty = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"Difficulty" default:0];
+    return difficulty;
+}
+
++(void) saveDifficulty:(int)difficulty {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"Difficulty" value:difficulty];
+}
+
 
 +(CCScene*) defaultSceneTransition:(CCScene*)newScene {
 //    return [CCTransitionSlideInR transitionWithDuration:1.0 scene:newScene];
@@ -220,9 +251,6 @@
 
     [[CDAudioManager sharedManager] playBackgroundMusic:musicFileName loop:YES];
     [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
-    
-    // BUGBUG set from volume specified in Option.
-    [CDAudioManager sharedManager].backgroundMusic.volume = 0.7;
 }
 @end
 

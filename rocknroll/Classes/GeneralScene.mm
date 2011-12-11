@@ -50,7 +50,6 @@
         
         // Parse svg file
         {
-
             svgLoader * loader = [[svgLoader alloc] initWithWorld:nil andStaticBody:nil andLayer:self widgets:&widgetContainer_ terrains:nil gameObjects:NULL scoreBoard:nil tutorialBoard:nil];
 
             [loader instantiateObjectsIn:svgFilePath];

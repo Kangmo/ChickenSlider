@@ -23,7 +23,7 @@
 class TxImageArray : public TxToggleButton
 {
     public :
-    TxImageArray(TxWidgetOwner * parentNode, const TxRect & rect, REF(TxPropSet) propSetRef) : TxToggleButton(parentNode, rect, propSetRef)    
+    TxImageArray(TxWidgetOwner * parentNode, const TxRect & rect, REF(TxPropSet) propSetRef) : TxToggleButton(parentNode, rect, propSetRef)
     {
         menu_.isTouchEnabled= NO;
     }

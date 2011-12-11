@@ -23,10 +23,20 @@
 
 +(CGPoint) getCenter:(CCNode*)node;
 
+
 +(int) loadTotalChickCount;
 
 +(void) saveTotalChickCount:(int)count;
     
++(int) loadMusicVolume;
++(void) saveMusicVolume:(int)volume;
++(int) loadEffectVolume;
++(void) saveEffectVolume:(int)volume;
++(int) loadDifficulty;
++(void) saveDifficulty:(int)difficulty;
+
+
+
 +(CCScene*) defaultSceneTransition:(CCScene*)newScene;
 
 +(NSString*) toNSString:(const std::string &) stdString;

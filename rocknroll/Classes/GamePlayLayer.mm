@@ -39,6 +39,8 @@
         speed_ = boost::static_pointer_cast<TxFloatLabel> ( widgetContainer_.getWidget("Speed") );
         score_ = boost::static_pointer_cast<TxIntegerLabel> ( widgetContainer_.getWidget("Score") );
         mapPosition_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("MapPosition") );
+        
+        totalSeconds_ = 0;
     }
     return self;
 }
@@ -88,6 +90,13 @@
     int seconds = (int)secondsLeft;
     NSString * secondsString = [NSString stringWithFormat:@"%d",seconds];
     [sandClockSeconds_->getWidgetImpl() setString:secondsString];
+
+    if ( totalSeconds_ == 0 )
+    {
+        totalSeconds_ = seconds;
+    }
+    assert( totalSeconds_ > 0 );
+    sandClock_->setProgress(seconds, totalSeconds_);
 }
 
 /** @brief Set the X position of the map. This is for designing levels. 

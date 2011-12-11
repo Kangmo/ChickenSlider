@@ -11,6 +11,7 @@
 
 #include "TxWidget.h"
 #import "Slider.h"
+#import "ActionRelayer.h"
 
 /*
  options :
@@ -25,13 +26,8 @@ public :
     {
         ActionRelayer * relayer = [ActionRelayer actionRelayerWithTarget:parentNode source:this];
 
-        /*
-        NSString * amimClipFile = getPropNSString("ClipFile");
-        assert(amimClipFile);
-         */
-        
         slider_ = [[Slider alloc] initWithActionRelayer:relayer];
-        
+        slider_.liveDragging = YES;
         [parentNode addChild:slider_];
         
         TxWidget::align(slider_);

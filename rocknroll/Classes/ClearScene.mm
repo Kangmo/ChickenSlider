@@ -25,11 +25,6 @@
     return timeText;
 }
 
--(void) setIntValue:(int)value to:(REF(TxLabel))label
-{
-    NSString * intString = [NSString stringWithFormat:@"%d", value];
-    [label->getWidgetImpl() setString:intString];
-}
 
 // initialize your instance here
 -(id) initWithMap:(NSString*)m 
@@ -72,12 +67,12 @@
         if (isHighestScore)
             clearMessage_->setValue(0); // Show "New High Score! message"
 
-        [self setIntValue:keys to:keys_];
-        [self setIntValue:chicks to:chicks_];
+        keys_->setIntValue(keys);
+        chicks_->setIntValue(chicks);
         
         int totalChicks = [Util loadTotalChickCount];
-        [self setIntValue:totalChicks to:totalChicks_];
-        [self setIntValue:maxComboCount to:maxCombo_];
+        totalChicks_->setIntValue(totalChicks);
+        maxCombo_->setIntValue(maxComboCount);
 
         NSString * timeSpentString = [self getTimeText:(float)timeSpent];
         [time_->getWidgetImpl() setString:timeSpentString];

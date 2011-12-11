@@ -23,6 +23,8 @@
     REF(TxFloatLabel) speed_ ;
     REF(TxIntegerLabel) score_ ;
     REF(TxLabel) mapPosition_ ;
+    
+    int totalSeconds_;
 }
 
 +(id)layerWithSceneName:(NSString*)sceneName;

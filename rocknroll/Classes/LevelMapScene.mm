@@ -123,15 +123,13 @@
 	return scene;
 }
 
--(int)readIntAttr:(NSString*)attrName
+-(int)readIntAttr:(NSString*)attrName default:(int)defaultValue
 {
     PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
     NSString * sceneAttrName = [sceneName_ stringByAppendingString:attrName];
-    int attrValue =  [ gs readIntAttr:sceneAttrName];
-    if (attrValue == 0) // It it not written yet.
-    {
-        attrValue = 1;
-    }
+
+    int attrValue =  [ gs readIntAttr:sceneAttrName default:defaultValue];
+    
     return attrValue;
 }
 
@@ -147,13 +145,13 @@
 #if defined(UNLOCK_LEVELS_FOR_TEST)
     return 999;
 #else
-    return [self readIntAttr:HIGHEST_UNLOCKED_LEVEL_ATTR];
+    return [self readIntAttr:HIGHEST_UNLOCKED_LEVEL_ATTR default:1];
 #endif
 }
 
 - (int) readCurrentHeroLevel
 {
-    return [self readIntAttr:CURRENT_HERO_LEVEL_ATTR];
+    return [self readIntAttr:CURRENT_HERO_LEVEL_ATTR default:1];
 }
 
 - (void) writeHighestUnlockedLevel:(int)level

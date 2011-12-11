@@ -58,9 +58,15 @@ public :
         return -1;
     }
     
+    int getImageCount()
+    {
+        int count = [[toggleButton_ subItems] count];
+        return count;
+    }
+    
     void setValue(int value)
     {
-        int maxValue = [[toggleButton_ subItems] count];
+        int maxValue = getImageCount();
         assert( value < maxValue );
         if ( value < 0 )
         {

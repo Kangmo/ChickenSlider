@@ -8,6 +8,8 @@
 #import "MKStoreManager.h"
 #import "AdWhirlView.h"
 #import "ClipFactory.h"
+#import "Util.h"
+#include "GameConfig.h"
 
 @implementation AppDelegate
 
@@ -116,6 +118,13 @@
     // Comment out if you don't want to clear the history of purchasing products w/ IAP.
     [Util removeIapData];
 #endif
+
+    // Set volumes
+    int musicVolume = [Util loadMusicVolume];
+    int effectVolume = [Util loadEffectVolume];
+
+    [[SimpleAudioEngine sharedEngine] setBackgroundMusicVolume:(float)musicVolume/MAX_MUSIC_VOLUME];
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:(float)effectVolume/MAX_EFFECT_VOLUME];
     
     // Load the sprite frames.
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.pvr"];

@@ -11,8 +11,13 @@
 }
 
 +(PersistentGameState*) sharedPersistentGameState;
--(int) readIntAttr:(NSString*)attrName;
+
+
+-(int) readIntAttr:(NSString*)attrName default:(int)defaultValue;
 -(void) writeIntAttr:(NSString*)attrName value:(int)attrValue;
+
+-(float) readFloatAttr:(NSString*)attrName default:(float)defaultValue;
+-(void) writeFloatAttr:(NSString*)attrName value:(float)attrValue;
 
 -(NSString*) readStringAttr:(NSString*)attrName;
 -(void) writeStringAttr:(NSString*)attrName value:(NSString*)attrValue;

@@ -62,23 +62,16 @@
 
 /** @brief Read an integer attribute value. Return 0 if it does not exist. 
  */
--(int) readIntAttr:(NSString*)attrName 
+-(int) readIntAttr:(NSString*)attrName default:(int)defaultValue
 {
     NSMutableDictionary * gameState = [self getGameState];
     NSNumber * number = [gameState valueForKey:attrName];
-    int intValue = [number intValue];
+    int intValue = defaultValue;
+    if (number)
+    {
+        intValue = [number intValue];
+    }
     return intValue;
-/*    
-    NSMutableData * gameState = [self getGameState];
-
-    NSKeyedUnarchiver * decoder = [[NSKeyedUnarchiver alloc] initForReadingWithData:gameState ];
-    int attrValue = [decoder decodeIntForKey:attrName];
-    
-    [decoder finishDecoding];
-    [decoder release];
-    
-    return attrValue;
-*/
 }
 
 /** @brief Write an integer attribute value. 
@@ -87,20 +80,35 @@
 {
     NSMutableDictionary * gameState = [self getGameState];
     NSNumber * number = [NSNumber numberWithInt:attrValue];
+    
     [gameState setValue:number forKey:attrName];
     
     [NSKeyedArchiver archiveRootObject:gameState toFile:_gameStatePath];
-/*    
-    NSMutableData * gameState = [self getGameState];
+}
 
-    NSKeyedArchiver * encoder = [[NSKeyedArchiver alloc] initForWritingWithMutableData:gameState ];
+/** @brief Read a float attribute value. Return 0 if it does not exist. 
+ */
+-(float) readFloatAttr:(NSString*)attrName default:(float)defaultValue
+{
+    NSMutableDictionary * gameState = [self getGameState];
+    NSNumber * number = [gameState valueForKey:attrName];
+    float floatValue = defaultValue;
+    if ( number )
+    {
+        floatValue = [number floatValue];
+    }
+    return floatValue;
+}
+
+/** @brief Write a float attribute value. 
+ */
+-(void) writeFloatAttr:(NSString*)attrName value:(float)attrValue
+{
+    NSMutableDictionary * gameState = [self getGameState];
+    NSNumber * number = [NSNumber numberWithFloat:attrValue];
+    [gameState setValue:number forKey:attrName];
     
-    [encoder encodeInt:attrValue forKey:attrName];
-    [encoder finishEncoding];
-    
-    [gameState writeToFile:_gameStatePath atomically:YES];
-    [encoder release];
-*/
+    [NSKeyedArchiver archiveRootObject:gameState toFile:_gameStatePath];
 }
 
 

@@ -208,15 +208,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="-106.77808"
+     inkscape:cx="161.51253"
      inkscape:cy="211.95197"
      inkscape:document-units="px"
      inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="712"
-     inkscape:window-x="-20"
-     inkscape:window-y="19"
+     inkscape:window-height="711"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -239,11 +239,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/GamePlayLayer.jpg"
        xlink:href="GamePlayLayer.jpg"
-       width="480"
-       height="320"
-       id="image4432"
+       y="0"
        x="0"
-       y="0" />
+       id="image4432"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -328,16 +328,16 @@
        width="41.503654"
        height="56.549706"
        x="434.13199"
-       y="5.9841218"
+       y="5.9841232"
        objectType="Widget"
-       objectDesc="WidgetType=SandClock,WidgetName=SandClock" />
+       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-7"
        width="33.85413"
        height="26.225109"
        x="437.64157"
-       y="7.8822956"
+       y="5.8822956"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center" />
     <rect

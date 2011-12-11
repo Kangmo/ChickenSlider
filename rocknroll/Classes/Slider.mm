@@ -32,7 +32,7 @@
 
 -(void) setValue:(float)val
 {
-	position_ = ccp(val*self.sliderWidth-(self.sliderWidth/2), position_.y);
+	self.position = ccp(val*self.sliderWidth-(self.sliderWidth/2), position_.y);
 }
 
 @end
