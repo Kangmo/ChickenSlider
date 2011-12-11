@@ -27,6 +27,9 @@ class HeroContactListener;
 	HeroContactListener *_contactListener;
 	int _nPerfectSlides;
     
+    // The particle emitter that emitts particles from 3 combo!
+    CCParticleSystemQuad * _particleEmitter;
+    
     // Currently running clip 
     CCAction * _currentAction;
     
@@ -35,6 +38,18 @@ class HeroContactListener;
     CCAction * _droppingAction;
     CCAction * _flyingAction;
     CCAction * _walkingAction;
+
+    // Sound Effects
+    CDSoundSource * _3comboSound;
+    CDSoundSource * _7comboSound;
+    CDSoundSource * _dropSound;
+    CDSoundSource * _jumpSound;
+    CDSoundSource * _slideFailSound;
+    
+    // Attributes read from Bird layer in game_classes.svg
+    float _minSpeedX;
+    float _minSpeedY;
+    float _maxSpeed;
 }
 @property (nonatomic, assign) b2World *world;
 @property (nonatomic, assign) b2Body *body;
@@ -49,6 +64,8 @@ class HeroContactListener;
 
 - (CCSprite*) getSprite;
 
+-(void) changeSpeed:(float)speedGain;
+
 - (void) reset;
 - (void) sleep;
 - (void) wake;
@@ -62,6 +79,4 @@ class HeroContactListener;
 // Health bar reached at 0%. Drop the wings.
 - (void) dropWings;
 - (void) dead;
-
-
 @end

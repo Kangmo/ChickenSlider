@@ -2,26 +2,40 @@
 #import "cocos2d.h"
 #import "AdLayer.h"
 #import "ProgressCircle.h"
-
+#import "GeneralMessageProtocol.h"
+#import "TxWidgetContainer.h"
+#import "TxWidget.h"
 typedef enum {
-    GeneralSceneLayerTagMain=1
+    GeneralSceneLayerTagMain=100,
+    GeneralSceneLayerTagRealQuit=101 // The layer for asking if the user really wants to quit the stage.
 } GeneralSceneLayerTags;
 
 class b2WorldEx;
-@interface GeneralScene : AdLayer {  
+@interface GeneralScene : AdLayer<GeneralMessageProtocol, TxWidgetListener> {  
     b2WorldEx * world_;
     NSString * sceneName_;
     ProgressCircle * loadingProgress_;
     BOOL didStartLoading_;
+    TxWidgetContainer widgetContainer_;
+    
+    // The background music
+    NSString * backgroundMusic_;
+    
+    // For scrolling background
+    CCParallaxNode *parallaxNode_;
+    CGPoint parallexPosition_;
+    BOOL loopParallax_; // Scroll over and over?
 }
 
-// For the case this scene is "pushed", keep the previous layer that pushed this Scene.
-@property(nonatomic,retain) CCLayer * previousLayer;
+// The listener that listens to action messages from this dialog layer.
+// Ex1> GeneralScene(PauseLayer.svg) sends "Resume" or "Quit" message to StageScene. 
+// Ex2> GeneralScene(ConfirmQuitLayer.svg) sends "Quit" or "Cancel" to GeneralScene(PauseLayer.svg)
+@property(nonatomic,assign) id<GeneralMessageProtocol> actionListener;
 @property(nonatomic,assign) int loadingLevel;
 @property(nonatomic,retain) NSString * loadingLevelMapName;
 
++(id)nodeWithSceneName:(NSString*)sceneName;
 +(CCScene*)sceneWithName:(NSString*)sceneName;
-+(CCScene*)sceneWithName:(NSString*)sceneName previousLayer:(CCLayer*)pl;
 +(CCScene*)loadingSceneOfMap:(NSString*)mapName levelNum:(int)level;
 
 // initialize your instance here

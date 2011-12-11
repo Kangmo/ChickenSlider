@@ -21,10 +21,12 @@ private:
     id<ScoreBoardProtocol> _scoreBoard;
     CCAction * _releasingAction;
     bool _released;
+    float _heroSpeedGain;
 public:
     Chick(float x, float y, float width, float height, id<ScoreBoardProtocol> sb)
     :GameObject(x,y,width,height)
     {
+        _heroSpeedGain = 0;
         _scoreBoard = sb;
         _released = false;
         
@@ -32,7 +34,8 @@ public:
         {
             // BUGBUG : Change the sound file.
             // BUGBUG : The object is leaked! 
-            _collideSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:@"WaterDrop.wav"] retain];
+            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"savechick.wav"];
+            [_collideSound retain];
         }
         assert(_collideSound);
         
@@ -45,7 +48,10 @@ public:
         [_releasingAction release];
         _releasingAction = nil;
     }
-    
+    void setHeroSpeedGain(float heroSpeedGain)
+    {
+        _heroSpeedGain = heroSpeedGain;
+    }
     virtual void onCollideWithHero(Hero * pHero);
 };
 

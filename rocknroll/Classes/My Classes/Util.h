@@ -7,14 +7,13 @@
 #include "GameConfig.h"
 #include "CppInfra.h"
 
-@interface Util : NSObject {
-}
+@class CXMLElement;
+
+@interface Util : NSObject 
 
 +(NSString*) getResourcePath:(NSString*)fileName;
 
 +(NSString*) retrieveResourceFile:(NSString*)fileName fromWeb:(NSString*)urlPrefix;
-
-+(void) showMessage:(NSString*)message inLayer:(CCLayer*)layer adHeight:(float)adHeight;
 
 +(CCParticleSystemQuad*)createParticleEmitter:(NSString*)particleImage count:(int)particleCount duration:(float)duration;
 
@@ -24,9 +23,21 @@
 
 +(CGPoint) getCenter:(CCNode*)node;
 
-+(int) loadFeatherCount;
++(int) loadTotalChickCount;
 
-+(void) saveFeatherCount:(int)count;
++(void) saveTotalChickCount:(int)count;
+    
++(CCScene*) defaultSceneTransition:(CCScene*)newScene;
+
++(NSString*) toNSString:(const std::string &) stdString;
+
++(float) getFloatValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(float)defaultValue;
+
++(int) getIntValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(int)defaultValue;
+
++(NSString*) getStringValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(NSString*)defaultValue;
+
++(void) playBGM:(NSString*) musicFileName;
 
 @end
 

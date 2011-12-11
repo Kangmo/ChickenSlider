@@ -12,6 +12,7 @@
 {
     NSMutableDictionary * clipDict;
     NSMutableDictionary * animDict;
+    NSMutableDictionary * soundDict;
 }
 
 
@@ -19,6 +20,7 @@
 - (NSDictionary*) animationSetOfClipFile:(NSString*) clipFileName;
 - (CCAction*) clipActionByFile:(NSString*) clipFileName;
 - (NSDictionary*) animByFile:(NSString*) animFileName;
+- (CDSoundSource*) soundByFile:(NSString*)effectName;
 - (void) purgeCachedData;
 
 @end

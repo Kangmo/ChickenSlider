@@ -11,7 +11,6 @@
 
 #import "cocos2d.h"
 
-
 class FloatLabel {
 private :
     
@@ -29,7 +28,7 @@ private :
     }
 
 public:    
-    FloatLabel(float initialValue, float stepValue, float minValue, float maxValue)
+    FloatLabel(CCLabelBMFont * label, float initialValue, float stepValue, float minValue, float maxValue)
     {
         _targetValue = initialValue;
         _currentValue = initialValue;
@@ -37,7 +36,8 @@ public:
         _maxValue = maxValue;
         _stepValue = stepValue;
         
-        _label = [CCLabelBMFont labelWithString:@"" fntFile:@"punkboy.fnt"];
+        _label = label;
+        [_label setString:@""];
         assert(_label);
         [_label retain];
         

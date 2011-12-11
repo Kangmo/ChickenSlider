@@ -18,6 +18,7 @@
 #import "Sky.h"
 #import "Profiler.h"
 
+#import "ClearScene.h"
 
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
@@ -46,7 +47,6 @@ const float backgroundImageHeight = 512;
 
 @synthesize car;
 @synthesize hero;
-@synthesize giveUpStage;
 
 static StageScene* instanceOfStageScene;
 +(StageScene*) sharedStageScene
@@ -73,7 +73,7 @@ PROF_END(cocos2d_layer_visit);
     
     NSString *filePath = [Util getResourcePath:svgFileName];
     
-	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self terrains:terrains gameObjects:&gameObjectContainer scoreBoard:self tutorialBoard:self] autorelease];
+	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self widgets:NULL terrains:terrains gameObjects:&gameObjectContainer scoreBoard:self tutorialBoard:self] autorelease];
     
     // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
     // In that file, a class is defined within a layer.
@@ -87,7 +87,47 @@ PROF_END(cocos2d_layer_visit);
 	[loader instantiateObjectsIn:filePath];
     CCLOG(@"END : Loading SVG :%@", filePath);
     
-    // find out the maximum X of all terrains. If the hero goes beyond of it, the stage is cleared!
+	return loader;
+}
+/** @brief Read attribute values from the stage SVG file. 
+ */
+-(void) readAttributesFromSVG:(NSString*) svgFilePath
+{
+    // Load attributes from the svg file.
+    {
+        NSData *data = [NSData dataWithContentsOfFile:svgFilePath]; 
+        assert(data);
+        CXMLDocument *svgDocument  = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
+        assert(svgDocument);
+        CXMLElement * rootElement = [svgDocument rootElement];
+
+        musicFileName = [[Util getStringValue:rootElement name:@"_backgroundMusic" defaultValue:nil] retain];
+        backgroundImage = [[Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:@"nosky.pvr"] retain];
+        groundTexture = [[Util getStringValue:rootElement name:@"_groundTexture" defaultValue:@"noterrain.pvr"] retain];
+        playTimeSec  = [Util getIntValue:rootElement name:@"_playTimeSec" defaultValue:60];
+        oneStarCount = [Util getIntValue:rootElement name:@"_oneStarCount" defaultValue:1];
+        twoStarCount = [Util getIntValue:rootElement name:@"_twoStarCount" defaultValue:2];
+        threeStarCount= [Util getIntValue:rootElement name:@"_threeStarCount" defaultValue:3];
+    }
+}
+
+-(void) addTerrains {
+    for (Terrain * t in terrains) {
+        
+        // Set the ground texture.
+        t.textureFile = groundTexture;
+        
+        CCLOG(@"MID : BEGIN : prepareRendering");
+        [t prepareRendering];
+        CCLOG(@"MID : END : prepareRendering");
+
+        [self addChild:t];
+    }
+}
+
+// find out the maximum X of all terrains. If the hero goes beyond of it, the stage is cleared!
+-(void) calcMaxTerrains 
+{
     terrainMaxX = -kMAX_POSITION;
     for (Terrain * t in terrains) {
         if ( terrainMaxX < t.maxX )
@@ -95,56 +135,120 @@ PROF_END(cocos2d_layer_visit);
             terrainMaxX = t.maxX;
         }
     }
-
-	return loader;
-}
-
--(void) addTerrains {
-    for (Terrain * t in terrains) {
-        [self addChild:t];
-    }
 }
 
 ///////////////////////////////////////////////////////////////
 // GameActivationProtocol
 
 -(void) pauseGame {
-    isGamePaused = YES;
-}
+    if ( ! isGamePaused )
+    {
+        [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+
+        [[CCDirector sharedDirector] pause];
+
+        isGamePaused = YES;
+    }
+    
+/*    [node pauseSchedulerAndActions];
+    for (CCNode *child in [node children]) {
+        [self pauseSchedulerAndActionsRecursive:child];
+    }
+ */
+}    
 
 -(void) resumeGame {
-    isGamePaused = NO;
+    if ( isGamePaused ) 
+    {
+        [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+
+        [[CCDirector sharedDirector] resume];
+        
+        isGamePaused = NO;
+    }
+    /*
+    [node resumeSchedulerAndActions];
+    for (CCNode *child in [node children]) {
+        [self resumeSchedulerAndActionsRecursive:child];
+    }*/
 }
 
+-(void) giveUpGame:(NSString*)message {
+    if (!gaveUpStage)
+    {
+        gaveUpStage = YES;
+        // "PauseLayer.svg" sets this flag if the user touches "Give Up" button.
+        if ( ! stageCleared && ! hero.isDead ) {
+            [self finishStageWithMessage:message stageCleared:NO];
+        }
+    }
+}
 ///////////////////////////////////////////////////////////////
 // ScoreBoardProtocol
 // Ex> Increase the speed by 10% => sppedRatioDiff=0.1f
 -(void) increaseSpeedRatio:(float) speedRatioDiff
 {
-    float newSpeedRatio = speedRatioLabel->getTargetValue() + speedRatioDiff;
+    float newSpeedRatio = sbSpeedRatio + speedRatioDiff;
+    // BUGBUG : Need to get MAX_FRAME_SPEED_RATIO from FloatLabel in GamePlayLayer.svg?
     if ( newSpeedRatio <= MAX_FRAME_SPEED_RATIO )
     {
-        speedRatioLabel->setTargetValue(newSpeedRatio);
+        sbSpeedRatio = newSpeedRatio;
+        [playUI setSpeedRatio:newSpeedRatio];
     }
 }
 
 -(void) setSpeedRatio:(float) speedRatio
 {
-    speedRatioLabel->setTargetValue(speedRatio);
+    sbSpeedRatio = speedRatio;
+    [playUI setSpeedRatio:speedRatio];
 }
 
 -(void) increaseScore:(int) scoreDiff
 {
-    int newScore = scoreLabel.getTargetCount() + scoreDiff;
-    scoreLabel.setTargetCount(newScore);
+    sbScore = sbScore + scoreDiff;
+    [playUI setScore:sbScore];
 }
 
--(void) increaseFeathers:(int) feathersDiff
+-(void) increaseKeys:(int) keysDiff
 {
-    int newFeathers = feathersLabel.getTargetCount() + feathersDiff;
-    feathersLabel.setTargetCount(newFeathers);
+    sbKeys = sbKeys + keysDiff;
+    [playUI setKeys:sbKeys];
 }
 
+-(int) getKeys
+{
+    return sbKeys;
+}
+
+-(void) setKeys:(int)keys
+{
+    sbKeys = keys;
+    [playUI setKeys:sbKeys];
+}
+
+-(void) increaseChicks:(int) chicksDiff
+{
+    sbChicks = sbChicks + chicksDiff;
+    [playUI setChicks:sbChicks];
+}
+
+-(int) getChicks
+{
+    return sbChicks;
+}
+
+-(void) setChicks:(int)chicks
+{
+    sbChicks = chicks;
+    [playUI setChicks:sbChicks];
+}
+
+-(void) setSecondsLeft:(float)secondsLeft
+{
+    [playUI setSecondsLeft:secondsLeft];
+}
+
+/*
 -(void) increaseLife:(float)lifePercentDiff
 {
     float newLife = healthBar.getTargetPercent() + lifePercentDiff;
@@ -188,10 +292,39 @@ PROF_END(cocos2d_layer_visit);
         }
     }
 }
+*/
 
 - (void) showMessage:(NSString*) message {
-    [Util showMessage:message inLayer:(CCLayer*)self adHeight:LANDSCAPE_AD_HEIGHT];
+    [playUI showMessage:message];
 }
+
+-(void) showCombo:(int)combo
+{
+    if ( maxComboCount < combo )
+        maxComboCount = combo;
+    [playUI showCombo:combo];
+}
+
+///////////////////////////////////////////////////////////////
+-(void) onPausePressed
+{
+    // BUGBUG : How about not playing the background music during the pause scene?
+    // Get the parent Scene that has the current layer.
+    CCScene * parentScene = (CCScene*)[self parent];
+    assert(parentScene);
+    assert( [parentScene isKindOfClass:[CCScene class]] );
+    
+    // 'layer' is an autorelease object.
+	GeneralScene *pauseLayer = [GeneralScene nodeWithSceneName:@"PauseLayer"];
+    //[pauseLayer swallowTouch];
+    pauseLayer.actionListener = self;
+    
+	// add layer as a child to scene
+	[parentScene addChild:pauseLayer z:100 tag:GeneralSceneLayerTagMain];
+    
+    [self pauseGame];
+}
+
 ///////////////////////////////////////////////////////////////
 // TutorialBoardProtocol
 
@@ -200,7 +333,7 @@ PROF_END(cocos2d_layer_visit);
     assert(tutorialText);
     
     // Weak Ref
-	tutorialLabel = [CCLabelBMFont labelWithString:tutorialText fntFile:@"punkboy.fnt"];
+	tutorialLabel = [CCLabelBMFont labelWithString:tutorialText fntFile:@"yellow34.fnt"];
     assert(tutorialLabel);
     
 	tutorialLabel.position = ccp(super.screenSize.width * 0.5, super.screenSize.height * 0.5);
@@ -212,17 +345,34 @@ PROF_END(cocos2d_layer_visit);
 
     [self pauseGame];
 }
-///////////////////////////////////////////////////////////////
 
--(void) onPushPauseScene:(id) sender
+///////////////////////////////////////////////////////////////
+// GeneralMessageProtocol
+-(void)onMessage:(NSString*) message
 {
-    // BUGBUG : How about not playing the background music during the pause scene?
+    // Resume : Sent by PauseLayer.svg
+    if ( [message isEqualToString:@"Resume"] )
+    {
+        [self resumeGame];
+    }
     
-    CCScene * pauseScene = [GeneralScene sceneWithName:@"PauseScene" previousLayer:self];
-    
-    [[CCDirector sharedDirector] pushScene:pauseScene];
+    // Quit : Sent by PauseLayer.svg
+    if ( [message isEqualToString:@"Quit"] )
+    {
+        [self resumeGame];
+        [self giveUpGame:@"Give Up!"];
+    }
+
+    // PausePressed : Sent by GamePlayLayer.svg
+    if ( [message isEqualToString:@"PausePressed"] )
+    {
+        [self onPausePressed];
+    }
 }
 
+///////////////////////////////////////////////////////////////
+
+/*
 
 -(void) initScoreLabels {
     float AD_SIZE_HEIGHT = super.enableAD ? LANDSCAPE_AD_HEIGHT : 0;    
@@ -265,10 +415,10 @@ PROF_END(cocos2d_layer_visit);
 
     // Speed Ratio
     {
-        speedRatioLabel =  new FloatLabel(MIN_FRAME_SPEED_RATIO,  /* initialValue */
-                                          STEP_FRAME_SPEED_RATIO, /* stepValue */
-                                          MIN_FRAME_SPEED_RATIO,  /* minValue */
-                                          MAX_FRAME_SPEED_RATIO  /* float maxValue */ );
+        speedRatioLabel =  new FloatLabel(MIN_FRAME_SPEED_RATIO,  // initialValue 
+                                          STEP_FRAME_SPEED_RATIO, // stepValue 
+                                          MIN_FRAME_SPEED_RATIO,  // minValue 
+                                          MAX_FRAME_SPEED_RATIO); // float maxValue
         CCLabelBMFont *label = speedRatioLabel->getLabel();
         
 //        label.anchorPoint = ccp(0, label.anchorPoint.y);
@@ -280,41 +430,40 @@ PROF_END(cocos2d_layer_visit);
 
     // Life Bar
     {
-        /*
-        CCProgressTimer * healthBarProgress = healthBar.getProgressTimer();
-
-        healthBarProgress.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
         
-        [self addChild:healthBarProgress];
-         */
-    }
-    
+        //CCProgressTimer * healthBarProgress = healthBar.getProgressTimer();
 
-    CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPushPauseScene:)];
+        //healthBarProgress.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
+        
+        //[self addChild:healthBarProgress];
+    }
+        
+    // BUGBUG : Replace to loading SVG on top of StageScene layer.
+    CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPauseButton:)];
     
     CCMenu * m = [CCMenu menuWithItems:mi,nil];
-    [self addChild:m z:500];
+//    [self addChild:m z:50];
+    [self addChild:m];
     m.position = CGPointMake(430, SCORE_VERT_CENTER_Y - 30);
-
 }
-
+*/
 
 // initialize your instance here
--(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel
+-(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel playUI:(GamePlayLayer*)aPlayUI
 {
 	if( (self=[super init])) 
 	{
-        // Show AD only if nothing is purchased
-        if ( ! [Util didPurchaseAny] )
-        {
-            super.enableAD = YES;
-        }
-
-        // Load water drop count
-        int featherCount = [Util loadFeatherCount];
-        feathersLabel.setCount( featherCount );
+        assert(aMapName);
+        assert(aLevel>0);
+        
+        sbChicks = 0;
+        sbScore = 0;
+        sbKeys = 0;
+        // BUGBUG, this is the InitValue of the TxFloatLabel in GamePlayLayer.svg. Do we need to get it from there?
+        sbSpeedRatio = 1.0;
         
         // initialize variables
+        maxComboCount = 0;
         isGamePaused = NO;
         tutorialLabel = nil;
         worldGroundY = 0.0f;
@@ -324,25 +473,41 @@ PROF_END(cocos2d_layer_visit);
         
         stageCleared = NO;
         
-        mapName = [aMapName retain];
-        level = aLevel;
-        assert( aLevel < MAX_LEVELS_PER_MAP );
-        assert( MAX_LEVELS_PER_MAP < 99 );
-        
 		// enable touches
 		self.isTouchEnabled = YES;
 		
 		// enable accelerometer
 		self.isAccelerometerEnabled = YES;
 
-        sky = [[Sky skyWithTextureSize:CGSizeMake(backgroundImageWidth,backgroundImageHeight)] retain];
-		[self addChild:sky];
+        playUI = [aPlayUI retain];
+        mapName = [aMapName retain];
+        level = aLevel;
+        assert( aLevel < MAX_LEVELS_PER_MAP );
+        assert( MAX_LEVELS_PER_MAP < 99 );
+
+        // The SVG file for the given level.
+        NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@_%02d.svg", mapName, level];
+
+        NSString * svgFilePath = [Util getResourcePath:svgFileName];
+        
+        // Read attributes from SVG file
+        [self readAttributesFromSVG:svgFilePath];
+        // Assign the play time read from SVG file to the sbSecondsLeft variable that we decrease within tick function.
+        sbSecondsLeft = (float)playTimeSec;
+        sbRecentSecond = playTimeSec + 1; // To show playTimeSec on the score board, sbRecentSecond should be greater than playTimeSec.
+        
+        // Show AD only if nothing is purchased
+        if ( ! [Util didPurchaseAny] )
+        {
+            super.enableAD = YES;
+        }
+
+        assert ( backgroundImage );
+        sky = [[Sky skyWithTexture:backgroundImage size:CGSizeMake(backgroundImageWidth,backgroundImageHeight)] retain];
+        [self addChild:sky];
         
         spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"sprites.pvr"];
         [self addChild:spriteSheet];
-
-		// The SVG file for the given level.
-        NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@_%02d.svg", mapName, level];
 
 		// Define the gravity vector.
 		b2Vec2 gravity;
@@ -379,8 +544,9 @@ PROF_END(cocos2d_layer_visit);
 		//init stuff from svg file
 		svgLoader* loader = [self initGeometry:svgFileName];
         [loader assignSpritesFromSheet:spriteSheet];
-       
+        
         [self addTerrains];
+        [self calcMaxTerrains];
         
         b2Body * playerBody = [loader getBodyByName:@"MyCar_CarMainBody"];
         if ( playerBody )
@@ -393,6 +559,8 @@ PROF_END(cocos2d_layer_visit);
             
             assert(playerBody);
             playerBody->SetLinearDamping(0.05f);
+            
+            // Attributes in the Bird layer in game_classes.svg are all set inside heroWithWorld
             self.hero = [Hero heroWithWorld:world heroBody:playerBody camera:cam scoreBoard:self];
         }
         
@@ -412,7 +580,7 @@ PROF_END(cocos2d_layer_visit);
         instanceOfStageScene = self;
 
         // Initialize score labels. (Requires spriteSheet);
-        [self initScoreLabels];
+        //[self initScoreLabels];
         
         [self schedule: @selector(tick:)];
 	}
@@ -420,9 +588,9 @@ PROF_END(cocos2d_layer_visit);
 }
 
 
-+(id)nodeInMap:(NSString*)mapName levelNum:(int)level
++(id)nodeInMap:(NSString*)mapName levelNum:(int)level playUI:(GamePlayLayer*)playUI
 {
-    return [[[StageScene alloc] initInMap:mapName levelNum:level] autorelease];
+    return [[[StageScene alloc] initInMap:mapName levelNum:level playUI:playUI] autorelease];
 }
 
 /** @brief Does the game scene require joystick?
@@ -439,17 +607,25 @@ PROF_END(cocos2d_layer_visit);
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
+    GamePlayLayer * gamePlayLayer = [GamePlayLayer layerWithSceneName:@"GamePlayLayer"];
+    
 	// 'layer' is an autorelease object.
-	StageScene *layer = [StageScene nodeInMap:mapName levelNum:level];
+	StageScene *stageLayer = [StageScene nodeInMap:mapName levelNum:level playUI:gamePlayLayer];
 	
+    // GamePlayLayer sends "PausePressed" message when users touch the sand clock in it.
+    gamePlayLayer.actionListener = stageLayer;
+    
 	// add layer as a child to scene
-	[scene addChild:layer z:0 tag:StageSceneLayerTagStage];
+	[scene addChild:stageLayer z:0 tag:StageSceneLayerTagStage];
 
-    if ( [layer needJoystick] )
+    // add game play UI layer
+	[scene addChild:gamePlayLayer z:1 tag:StageSceneLayerTagGamePlayUI];
+    
+    if ( [stageLayer needJoystick] )
     {
         // add the input layer that has a joystick and buttons
         InputLayer * inputLayer = [InputLayer node];
-        [scene addChild:inputLayer z:1 tag:StageSceneLayerTagInput];
+        [scene addChild:inputLayer z:2 tag:StageSceneLayerTagInput];
     }
     
 	// return the scene
@@ -648,47 +824,94 @@ PROF_END(temp2);
     }
 }
 
--(void) gotoLevelMap:(BOOL)clearedCurrentStage
+-(void) gotoLevelMapWithFail
 {
-    CCLOG(@"gotoLevelMap:%@", clearedCurrentStage?@"YES":@"NO");
-
-    // Save the number of water drops persistenlty.
-    int feathers = feathersLabel.getCount();
-    [Util saveFeatherCount:feathers];
 
     // IF the level is cleared, the next level is unlocked.
     // IF the level is not cleared(the Hero is dead), go back to level map scene.
-    CCScene * levelMapScene = [LevelMapScene sceneWithName:mapName level:level cleared:clearedCurrentStage];
+    CCScene * levelMapScene = [LevelMapScene sceneWithName:mapName level:level cleared:NO];
     assert(levelMapScene);
     
-    [[CCDirector sharedDirector] replaceScene:levelMapScene];
+    [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:levelMapScene]];
 
     CCLOG(@"gotoLevelMap:end");
 }
 
--(void)gotoLevelMapCallback:(id)sender data:(void*)callbackData 
+/** @brief push the "Stage Clear" scene.
+ */
+-(void)onStageFail:(id)sender data:(void*)callbackData 
 {
-    BOOL clearedCurrentStage = (BOOL)(int)callbackData;
+    [self gotoLevelMapWithFail];
     
-    CCLOG(@"gotoLevelMapCallback:%@, %p", clearedCurrentStage?@"YES":@"NO", callbackData);
+    CCLOG(@"onStageFail:data");
+}
 
-    [self gotoLevelMap:clearedCurrentStage];
+/** @brief Calculate the number of stars based on the chicks saved in the stage and star counts defined in the level svg file 
+ */
+-(int)calcStars {
+    int stars = 0;
+    if (sbChicks >= threeStarCount)
+    {
+        stars = 3;
+    }
+    else if (sbChicks >= twoStarCount)
+    {
+        stars = 2;
+    }
+    else if (sbChicks >= oneStarCount)
+    {
+        stars = 1;
+    }
+    return stars;
+}
+
+/** @brief Replace to the "Stage Clear" scene.
+ */
+-(void)onStageClear:(id)sender data:(void*)callbackData 
+{
+    int stars = [self calcStars];
+    // 'layer' is an autorelease object.
+	CCScene *clearScene = [ClearScene sceneWithMap:mapName 
+                                             level:level 
+                                             score:sbScore 
+                                              keys:sbKeys 
+                                            chicks:sbChicks 
+                                             stars:stars 
+                                          maxCombo:maxComboCount
+                                         timeSpent:(playTimeSec-sbSecondsLeft)];
     
-    CCLOG(@"gotoLevelMapCallback:end");
+    [[CCDirector sharedDirector] replaceScene:clearScene];
+    
+    CCLOG(@"onStageClear:data");
 }
 
 /** @brief Show a big title on the center of the screen for 2 seconds, switch back to level map scene.
  */
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage{
     
-	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
+	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"yellow34.fnt"];
 	label.position = ccp(super.screenSize.width/2, super.screenSize.height/2);
     label.scale = 1.0;
 
+    // Save the number of total saved chicks persistenlty.
+    int totalChicks = [Util loadTotalChickCount];
+    totalChicks += sbChicks;
+    [Util saveTotalChickCount:totalChicks];
+
+    id lastAction = nil;
+    if ( clearedCurrentStage )
+    {
+        lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageClear:data:) data:(void*)nil];
+    }
+    else
+    {
+        lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageFail:data:) data:(void*)nil];
+    }
+    
 	[label runAction:[CCSequence actions:
                       [CCScaleTo actionWithDuration:2.0f scale:4.0f],
-                      [CCCallFuncND actionWithTarget:self selector:@selector(gotoLevelMapCallback:data:) data:(void*)clearedCurrentStage],
-					  [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
+                      [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
+                      lastAction,
 					  nil]];
     
 	[self addChild:label];
@@ -705,7 +928,7 @@ PROF_END(temp2);
     }
     
     // if the user has given up the stage, don't check if the hero is dead.
-    if (giveUpStage) {
+    if (gaveUpStage) {
         return;
     }
     
@@ -736,7 +959,7 @@ PROF_END(temp2);
         return;
 
     // if the user has given up the stage, don't check for stage clear.
-    if (giveUpStage) {
+    if (gaveUpStage) {
         return;
     }
 
@@ -755,22 +978,21 @@ PROF_END(temp2);
 
 
 - (void) onEnterTransitionDidFinish {
-    if ( ! [[CDAudioManager sharedManager] isBackgroundMusicPlaying] )
+    if (musicFileName)
     {
-        // playbackground music
-        [[CDAudioManager sharedManager] playBackgroundMusic:@"heart-of-the-sea.mp3" loop:YES];
-        [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
-        [CDAudioManager sharedManager].backgroundMusic.volume = 0.7;
-    }
-
-    // "ResumeScene.svg" of GeneralScene sets this flag if the user touches "Give Up" button.
-    if (giveUpStage) {
-        if ( ! stageCleared && ! hero.isDead ) {
-            [self finishStageWithMessage:@"Give Up!" stageCleared:NO];
-        }
+        [Util playBGM:musicFileName];
     }
 
     [super onEnterTransitionDidFinish];
+}
+
+- (void) onExit {
+    [[CDAudioManager sharedManager] stopBackgroundMusic];
+    
+	// in case you have something to dealloc, do it in this method
+    [self unschedule: @selector(tick:)];
+
+    [super onExit];
 }
 
 /** @brief update GameObject(s) for each tick. Box2D objects are not included here.
@@ -839,6 +1061,30 @@ PROF_END(temp2);
     }
 }
 
+/** @brief Show the time left, Decrease the time counter, Check if the time is up.
+ */
+-(void) checkTimeOut:(ccTime) dt
+{
+    if (sbRecentSecond > 0)
+    {
+        int newSecond = (int) sbSecondsLeft;
+        if ( newSecond < sbRecentSecond )
+        {
+            if (newSecond < 0)
+                newSecond = 0;
+            sbRecentSecond = newSecond;
+            [self setSecondsLeft:(float)sbRecentSecond];
+        }
+    }
+
+    sbSecondsLeft -= dt;
+
+    if ( sbSecondsLeft < 0.0f ) // Time is up!
+    {
+        [self giveUpGame:@"Time Out!"];
+    }
+}
+
 -(void) tick: (ccTime) dt
 {
 /*    
@@ -895,7 +1141,7 @@ PROF_BEGIN(stage_tick_hero_updatePhysics);
 PROF_END(stage_tick_hero_updatePhysics);
     
 PROF_BEGIN(stage_tick_world_step);
-    float worldStepTime = speedRatioLabel->getValue() * DEFAULT_FRAME_DURATION_SEC;
+    float worldStepTime = sbSpeedRatio * DEFAULT_FRAME_DURATION_SEC;
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	//world->Step(1.0f/60.0f, velocityIterations, positionIterations);
@@ -934,12 +1180,10 @@ PROF_BEGIN(stage_tick_updateGameObjects);
 PROF_END(stage_tick_updateGameObjects);
     
 PROF_BEGIN(stage_tick_update_labels);
-    // Update counters to look like they are increasing by 1 until they reach the target count. 
-    scoreLabel.update();
-    feathersLabel.update();
-    speedRatioLabel->update();
-    // Update the health bar so that they look like changing gradually.
-    healthBar.update();
+    [playUI update:dt];
+    // See if the time is up.
+    [self checkTimeOut:dt];
+    [playUI setMapPosition:heroX_withoutZoom];
 PROF_END(stage_tick_update_labels);
 }
 
@@ -1025,16 +1269,19 @@ PROF_END(stage_tick_update_labels);
     */
 }
 
+// Called by TxWidget when the value of the widget changes. 
+// Ex> If the scene definition SVG contains TxToggleButton, this is called whenever the button is toggled. 
+// Ex> If the scene definition SVG contains TxSlideBar, this is called whenever the sliding button is dragged. 
+-(void)onWidgetAction:(TxWidget*)sender
+{
+    // By default, do nothing.
+}
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
     CCLOG(@"StageScene:dealloc");
     
-    [[CDAudioManager sharedManager] stopBackgroundMusic];
-    
-	// in case you have something to dealloc, do it in this method
-    [self unschedule: @selector(tick:)];
-
     if (car)
         delete car;
 
@@ -1056,11 +1303,11 @@ PROF_END(stage_tick_update_labels);
 	// Reset the StageScene singleton.
     instanceOfStageScene = nil;
     
+    [playUI release];
     [mapName release];
-    
-    assert(speedRatioLabel);
-    delete speedRatioLabel;
-    speedRatioLabel = NULL;
+    [musicFileName release];
+    [backgroundImage release];
+    [groundTexture release];
     
 	// don't forget to call "super dealloc"
 	[super dealloc];

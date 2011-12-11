@@ -2,7 +2,7 @@
 #import "GameConfig.h"
 
 @interface Sky()
-- (CCSprite*) generateSprite;
+- (CCSprite*) generateSprite:(NSString*)fileName;
 - (CCTexture2D*) generateTexture;
 @end
 
@@ -12,11 +12,11 @@
 @synthesize offsetX = _offsetX;
 @synthesize scale = _scale;
 
-+ (id) skyWithTextureSize:(CGSize)ts {
-	return [[[self alloc] initWithTextureSize:ts] autorelease];
++ (id) skyWithTexture:(NSString*)fileName size:(CGSize)ts {
+	return [[[self alloc] initWithTexture:(NSString*)fileName size:ts] autorelease];
 }
 
-- (id) initWithTextureSize:(CGSize)ts {
+- (id) initWithTexture:(NSString*)fileName size:(CGSize)ts {
 	
 	if ((self = [super init])) {
 		
@@ -26,7 +26,7 @@
 		screenW = screenSize.width;
 		screenH = screenSize.height;
 		
-		self.sprite = [self generateSprite];
+		self.sprite = [self generateSprite:fileName];
 		[self addChild:_sprite];
 	}
 	return self;
@@ -37,9 +37,9 @@
 	[super dealloc];
 }
 
-- (CCSprite*) generateSprite {
+- (CCSprite*) generateSprite:(NSString*)fileName {
 
-    CCSprite *s = [CCSprite spriteWithFile:@"sky1024.pvr"];
+    CCSprite *s = [CCSprite spriteWithFile:fileName];
     s.anchorPoint = ccp(HERO_XPOS_RATIO, 0);
 	s.position = ccp(screenW * HERO_XPOS_RATIO, 0);
 	s.scale = 1;

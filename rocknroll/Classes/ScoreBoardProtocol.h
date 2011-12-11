@@ -12,8 +12,13 @@
 -(void) increaseSpeedRatio:(float) speedRatioDiff;
 -(void) setSpeedRatio:(float) speedRatio;
 -(void) increaseScore:(int) scoreDiff;
--(void) increaseFeathers:(int) featherDiff;
--(void) increaseLife:(float)lifePercentDiff;
--(void) decreaseLife:(float)lifePercentDiff;
+-(void) increaseKeys:(int) keysDiff;
+-(int) getKeys;
+-(void) setKeys:(int)keys;
+-(void) increaseChicks:(int) chicksDiff;
+-(int) getChicks;
+-(void) setChicks:(int)chicks;
+-(void) setSecondsLeft:(float)secondsLeft;
 -(void) showMessage:(NSString*) message;
+-(void) showCombo:(int)combo;
 @end

@@ -20,7 +20,8 @@ void Remedy::onCollideWithHero(Hero * pHero)
     [_collideSound play];
 
     // Decrease life by 10 ( total 100)
-    [_scoreBoard increaseLife:10];
+    // BUGBUG : Implement IncreaseLife
+    //[_scoreBoard increaseLife:10];
     
     [sprite removeFromParentAndCleanup:YES];
     

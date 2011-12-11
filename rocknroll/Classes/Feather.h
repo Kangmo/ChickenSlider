@@ -12,6 +12,7 @@
 #include "GameObject.h"
 #include "GameObjectContainer.h"
 #import "ScoreBoardProtocol.h"
+#import "ClipFactory.h"
 
 class Feather : public GameObject
 {
@@ -25,7 +26,8 @@ public:
         if ( !_collideSound )
         {
             // BUGBUG : The object is leaked! 
-            _collideSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:@"WaterDrop.wav"] retain];
+            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"WaterDrop.wav"];
+            [_collideSound retain];
         }
         assert(_collideSound);
         

@@ -138,6 +138,7 @@
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
 	[[CCDirector sharedDirector] purgeCachedData];
     [[ClipFactory sharedFactory] purgeCachedData];
+    [[CCTextureCache sharedTextureCache] removeAllTextures];
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {

@@ -14,6 +14,9 @@
 //#define GAME_AUTOROTATION kGameAutorotationCCDirector
 #define GAME_AUTOROTATION kGameAutorotationNone
 
+// How many keys do we need to save a chick?
+#define KEYS_PER_CHICK (5)
+
 /** @brief The maximum position for X or Y axis for a valid point.
  */
 #define kMAX_POSITION (9999999.0f)
@@ -26,7 +29,7 @@
 #define MAX_ZOOM_RATIO (10)
 
 // The maximum wave height in meters. Used for adjusting ground level.
-#define MAX_WAVE_HEIGHT (0.5f) 
+#define MAX_WAVE_HEIGHT (3.0f) 
 // Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
 // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
 // At most, change Zoom by 10%
@@ -54,7 +57,7 @@
 
 // IncNumLabel.h
 
-// The maximum frame speed ratio : 150%
+// The minimum frame speed ratio : 100%
 #define MIN_FRAME_SPEED_RATIO (1.0f)
 
 // The maximum frame speed ratio : 150%
@@ -82,8 +85,10 @@ const float LANDSCAPE_AD_HEIGHT = 32;
 //#define BOX2D_DEBUG_DRAW (1)
 
 //#define LOAD_RESOURCE_FROM_TEST_WEB (1)
-#define TEST_WEB_URL_PREFIX @"http://192.168.123.147/~kmkim/rocknroll_Resources/"
+#define TEST_WEB_URL_PREFIX @"http://thankyousoft.com/game01/"
 
+// Unlock all stage levels for testing
+#define UNLOCK_LEVELS_FOR_TEST (1)
 
 #endif // __GAME_CONFIG_H
 

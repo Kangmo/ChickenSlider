@@ -12,7 +12,7 @@ CDSoundSource * Feather::_collideSound = NULL;
 void Feather::onCollideWithHero(Hero * pHero) 
 {
     // Increase the water drops to show on the screen
-    [_scoreBoard increaseFeathers:1];
+    [_scoreBoard increaseKeys:1];
     
     // For the collided objects, remove them
     CCSprite * sprite = this->getSprite();

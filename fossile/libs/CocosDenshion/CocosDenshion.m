@@ -1038,10 +1038,13 @@ static BOOL _mixerRateSet = NO;
 
 @end
 
+//#import "RetainCountTrace.h"
 ///////////////////////////////////////////////////////////////////////////////////////
 @implementation CDSoundSource
 
 @synthesize lastError;
+
+//SYNTESIZE_TRACE(CDSoundSource);
 
 //Macro for handling the al error code
 #define CDSOUNDSOURCE_UPDATE_LAST_ERROR (lastError = alGetError())

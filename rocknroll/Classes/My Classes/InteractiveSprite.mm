@@ -3,6 +3,9 @@
 #import "GeneralScene.h"
 #import "LevelMapScene.h"
 #import "ProgressCircle.h"
+#import "ClipFactory.h"
+#import "GeneralMessageProtocol.h"
+#import "OptionScene.h"
 
 @implementation InteractiveSprite
 
@@ -19,7 +22,6 @@
     if ( (self = [super initWithFile:fileName]) )
     {
         [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-        isTouchHandling_ = NO;
         touchActionType_ = BTA_NULL;
         touchActionDescs_ = nil;
         hoverActionType_ = BHA_NULL;
@@ -73,10 +75,12 @@
 
 -(void) setLocked:(BOOL)locked
 {
-    CCNode * parent = [self parent];
     
     if (locked)
     {
+#if ! defined(UNLOCK_LEVELS_FOR_TEST)        
+        CCNode * parent = [self parent];
+        
         // Should not lock twice
         assert( ! [self isLocked] );
         lockSprite_ = [[CCSprite spriteWithSpriteFrameName:@"Locked.png"] retain];
@@ -85,6 +89,7 @@
         [parent addChild:lockSprite_];
         // The lock sprite has the same position.
         lockSprite_.position = self.position;
+#endif /*UNLOCK_LEVELS_FOR_TEST*/
     }
     else
     {
@@ -215,9 +220,24 @@
     assert(touchActionType_);
     assert(touchActionDescs_);
     
-    // BUGBUG : We need this flag at the LevelMapScene
-    if (isTouchHandling_) {
-        return;
+    // BUGBUG : We need isTouchHandling_ at the LevelMapScene
+    
+    CCLayer * owningLayer = (CCLayer*)[self parent];
+    assert(owningLayer);
+    assert([owningLayer isKindOfClass:[CCLayer class]] );
+
+    BOOL pushScene = NO;
+
+    // See if there is any option that we need to process for all types of touch actions.
+    NSString * actionMessage = [touchActionDescs_ valueForKey:@"ActionMessage"];
+    if (actionMessage)
+    {
+        assert( [owningLayer isKindOfClass:[GeneralScene class]] );
+        GeneralScene * generalScene = (GeneralScene*) owningLayer;
+        assert( generalScene.actionListener );
+        
+        // Send action to the action listener.
+        [generalScene.actionListener onMessage:actionMessage];
     }
 
     // See if there is any option that we need to process for all types of touch actions.
@@ -231,6 +251,20 @@
             [[CCDirector sharedDirector] popScene];
             CCLOG(@"Option=PopCurrentScene. Popped current scene");
         }
+        
+        if ( [option isEqualToString:@"RemoveOwningLayer"] )
+        {
+            // Remove the owning layer of this interactive sprite.
+            // BUGBUG : Access Freed : "this" interactive sprite is owned by the popped scene. Is "this" interactive sprite deallocated?
+
+            CCScene * scene = (CCScene*)[owningLayer parent];
+            assert(scene);
+            assert([scene isKindOfClass:[CCScene class]] );
+            
+            [scene removeChild:owningLayer cleanup:YES];
+            
+            CCLOG(@"Option=RemoveOwningLayer. Removed owning layer of the interactive sprite");
+        }
     }
     
     switch(touchActionType_)
@@ -241,29 +275,30 @@
         }
         break;
             
-        case BTA_GIVEUP_STAGE : 
+        case BTA_ADD_LAYER : 
         {
-            // Even though we poped the current scene from CCDirector, it is still running.
-            // So the running scene should be GeneralScene with "ResumeGame.svg"
-            CCScene * stageScene = [[CCDirector sharedDirector] runningScene];
-            CCNode * generalLayerNode = [stageScene getChildByTag:GeneralSceneLayerTagMain];
-            assert(generalLayerNode);
+            // The running scene should be StageScene with a level svg file.
+            CCScene * runningScene = [[CCDirector sharedDirector] runningScene];
             
-            // StageScene can be run only from the LevelMapScene 
-            assert( [generalLayerNode isKindOfClass:[GeneralScene class]] );
-
+            assert( [runningScene isKindOfClass:[CCScene class]] );
             
-            GeneralScene * generalLayer = (GeneralScene *)generalLayerNode;
-            StageScene * stageLayer = (StageScene*)generalLayer.previousLayer;
-            assert(stageLayer);
-            assert( [stageLayer isKindOfClass:[StageScene class]] );
-            stageLayer.giveUpStage = YES;
+            // 'layer' is an autorelease object.
+            GeneralScene *confirmQuitLayer = [GeneralScene nodeWithSceneName:@"ConfirmQuitLayer"];
+            //[confirmQuitLayer swallowTouch];
             
-            // After the current scene is popped, onEnterTransitionDidFinish of the previously running scene(StageScene) is called.
-            // In the function, we give up the currently running stage.
+            // The current layer (which owns this interactive sprite, IOW GeneralScene with PauseLayer.svg) becomes the action listener
+            assert( [owningLayer conformsToProtocol:@protocol(GeneralMessageProtocol)] );
+            id<GeneralMessageProtocol> messageProtocol = (id<GeneralMessageProtocol>) owningLayer;
+            confirmQuitLayer.actionListener = messageProtocol;
+            
+            // add layer as a child to scene
+            [runningScene addChild:confirmQuitLayer z:200 tag:GeneralSceneLayerTagMain];
         }
         break;
             
+        case BTA_PUSH_SCENE : 
+            pushScene = YES;
+            // fall through...
         case BTA_SCENE_TRANSITION : 
         {
             NSString * sceneName = [touchActionDescs_ valueForKey:@"SceneName"];
@@ -271,7 +306,8 @@
 
             NSString * soundFileName = [hoverActionDescs_ valueForKey:@"Sound"];
             if ( soundFileName) {
-                [[[SimpleAudioEngine sharedEngine] soundSourceForFile:soundFileName] play];
+                CDSoundSource * sound = [[ClipFactory sharedFactory] soundByFile:soundFileName];
+                [sound play];
             }
             
             CCScene * newScene = nil;
@@ -301,13 +337,22 @@
             {
                 newScene = [LevelMapScene sceneWithName:sceneName];
             }
+            else if ( [sceneName isEqualToString:@"OptionScene"] )
+            {
+                newScene = [OptionScene sceneWithName:sceneName];
+            }
             else
             {
                 newScene = [GeneralScene sceneWithName:sceneName];
             }
             
             if (newScene)
-                [[CCDirector sharedDirector] replaceScene: newScene];
+            {
+                if (pushScene)
+                    [[CCDirector sharedDirector] pushScene:newScene ];
+                else
+                    [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:newScene] ];
+            }
         }
         break;
             
@@ -317,8 +362,6 @@
         }
         break;
     }
-    
-    isTouchHandling_ = YES;
 }
 
 /** @brief Handles hover action based on the action type and descriptor.
@@ -355,17 +398,19 @@
         }
         break;
     }
-
+/*
     // Common stuff to process
     NSString * soundFileName = [hoverActionDescs_ valueForKey:@"Sound"];
     if ( soundFileName) {
         if ( ! soundEffect_ )
         {
-            soundEffect_ = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:soundFileName] retain];
+            soundEffect_ = [[ClipFactory sharedFactory] soundByFile:soundFileName];
             assert(soundEffect_);
+            [soundEffect_ retain];
         }
         [soundEffect_ play];
     }
+*/
 }
 
 -(BOOL) isTouchOnNode:(CGPoint)touch{
@@ -481,13 +526,15 @@
             // Load water drop count
             
             // Common stuff to process
+            // BUGBUG : Change key to UnlockingChicks
             NSString * unlockingFeathers = [touchActionDescs_ valueForKey:@"UnlockingFeathers"];
             if ( unlockingFeathers )
             {
                 int unlockingCount = [unlockingFeathers intValue];
                 assert( unlockingCount>0 );
-                int featherCount = [Util loadFeatherCount];
-                if ( featherCount > unlockingCount )
+                // BUGBUG Need to change game UI to the number of UnlockingFeathers..
+                int chickCount = [Util loadTotalChickCount];
+                if ( chickCount > unlockingCount )
                 {
                     [IAP sharedIAP].delegate = nil;
                     [self setLocked:NO];

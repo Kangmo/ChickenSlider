@@ -18,7 +18,9 @@
    sodipodi:docname="MAP01.svg"
    inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP01.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   _backgroundImage="cloud960.png"
+   _backgroundMusic="music_menu.m4a">
   <defs
      id="defs4053">
     <linearGradient
@@ -872,10 +874,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
      showgrid="false"
-     inkscape:window-width="1858"
-     inkscape:window-height="1058"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1280"
+     inkscape:window-height="711"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata4056">
@@ -896,7 +898,7 @@
      style="display:inline"
      ignore="">
     <image
-       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01.png"
+       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP01.png"
        xlink:href="MAP01.png"
        y="0.19387098"
        x="0.41629791"
@@ -975,19 +977,19 @@
     <rect
        style="opacity:0.1;fill:#ff7f2a;display:inline"
        id="level8"
-       width="73.719292"
+       width="77.961929"
        height="76.376167"
-       x="381.77722"
+       x="383.89853"
        y="171.88271"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=8,Sound=Touch.wav" />
     <rect
        style="opacity:0.01000001;fill:#800000;fill-rule:evenodd;stroke:none;display:inline"
        id="BackObject"
-       width="44.568062"
-       height="45.598549"
+       width="39.618313"
+       height="37.113266"
        x="424.11807"
-       y="271.2804"
+       y="275.52304"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.mp3" />
   </g>

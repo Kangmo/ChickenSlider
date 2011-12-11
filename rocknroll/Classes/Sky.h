@@ -12,7 +12,7 @@
 @property (nonatomic) float offsetX;
 @property (nonatomic) float scale;
 
-+ (id) skyWithTextureSize:(CGSize)ts;
-- (id) initWithTextureSize:(CGSize)ts;
++ (id) skyWithTexture:(NSString*)fileName size:(CGSize)ts;
+- (id) initWithTexture:(NSString*)fileName size:(CGSize)ts;
 
 @end

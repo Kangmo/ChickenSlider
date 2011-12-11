@@ -103,6 +103,27 @@
 */
 }
 
+
+/** @brief Read a string attribute value. Return nil if it does not exist. 
+ */
+-(NSString*) readStringAttr:(NSString*)attrName 
+{
+    NSMutableDictionary * gameState = [self getGameState];
+    NSString * string = [gameState valueForKey:attrName];
+    return string;
+}
+
+/** @brief Write a string attribute value. 
+ */
+-(void) writeStringAttr:(NSString*)attrName value:(NSString*)attrValue
+{
+    NSMutableDictionary * gameState = [self getGameState];
+
+    [gameState setValue:attrValue forKey:attrName];
+    
+    [NSKeyedArchiver archiveRootObject:gameState toFile:_gameStatePath];
+}
+
 +(PersistentGameState*) sharedPersistentGameState {
     // BUGBUG : Memory Leak : Need to destroy the singleton
     static PersistentGameState * thePersistentGameState = nil;

@@ -1,5 +1,6 @@
 #import "AKCCSoundEffect.h"
 #import "SimpleAudioEngine.h"
+#import "ClipFactory.h"
 
 @implementation AKCCSoundEffect
 
@@ -13,7 +14,7 @@
     effectName = [NSString stringWithString:name];
     [effectName retain];
     
-    effect = [[SimpleAudioEngine sharedEngine] soundSourceForFile:effectName];
+    effect = [[ClipFactory sharedFactory] soundByFile:effectName];
     [effect retain];
     
     if (effect && (self = [super initWithDuration:effect.durationInSeconds])) {

@@ -9,6 +9,8 @@
 #import "ClipFactory.h"
 #import "Util.h"
 #include "GameObjectContainer.h"
+#include "TxWidgetContainer.h"
+#include "TxWidgetFactory.h"
 #include "Feather.h"
 #include "Bomb.h"
 #include "Hen.h"
@@ -20,7 +22,7 @@
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard tutorialBoard:(id<TutorialBoardProtocol>)tboard;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer<TxWidgetListener>*)l widgets:(TxWidgetContainer*)widgets terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard tutorialBoard:(id<TutorialBoardProtocol>)tboard;
 {
 	self = [super init];
 	if (self != nil) 
@@ -33,6 +35,7 @@
         classDict = nil;
         terrains = t;
         gameObjectContainer = objs;
+        widgetContainer = widgets;
         scoreBoard = sboard;
         tutorialBoard = tboard;
 	}
@@ -274,6 +277,7 @@
 		bi.initClipFile = [[curShape attributeForName:@"initClipFile"] stringValue];
 
 		bi.data = nil;
+        bi.xmlElement = curShape;
         NSString * objectType = [[curShape attributeForName:@"objectType"] stringValue];
         
 		if([curShape attributeForName:@"isCircle"])
@@ -314,7 +318,15 @@
                 if ( [gameObjectClass isEqualToString:@"Chick"] )
                 {
                     // Don't scale.
-                    refGameObject = REF(GameObject)( new Chick(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
+                    
+                    Chick * pChick = new Chick(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard);
+
+                    // Chick speeds up the hero upon collision. The amount of speed gain is specified in the Chick in game_classes.svg
+                    float heroSpeedGain = [Util getFloatValue:curShape name:@"heroSpeedGain" defaultValue:8];
+                    pChick->setHeroSpeedGain( heroSpeedGain );
+                    
+                    refGameObject = REF(GameObject)( pChick );
+
                 }
 
                 if ( [gameObjectClass isEqualToString:@"Remedy"] )
@@ -416,24 +428,28 @@
                         // If the hovering sprite is nil, use transparent dummy sprite for hovering.
                         hoveringSpriteFile = @"Dummy.png";
                         // Set the default touch sound.
-                        [hoverActionDescs setValue:@"WaterDrop.wav" forKey:@"Sound"];
+                        //[hoverActionDescs setValue:@"WaterDrop.wav" forKey:@"Sound"];
                     }
                     
                     // Set touch action.
                     NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
                     body_touch_action_t touchAction = BTA_NULL;
                     NSString * actionName = [touchActionDescs valueForKey:@"Action"];
-                    if ( [actionName isEqualToString:@"SceneTransition"] )
+                    if ( [actionName isEqualToString:@"SceneTransition"] ) // Cocos2d: Replace Scene
                     {
                         touchAction = BTA_SCENE_TRANSITION;
+                    }
+                    else if ( [actionName isEqualToString:@"PushScene"] ) // Cocos2d: Push Scene
+                    {
+                        touchAction = BTA_PUSH_SCENE;
+                    }
+                    else if ( [actionName isEqualToString:@"AddLayer"] )
+                    {
+                        touchAction = BTA_ADD_LAYER; // Give up the current stage, move to the map scene where this stage exists.
                     }
                     else if ( [actionName isEqualToString:@"None"] )
                     {
                         touchAction = BTA_NONE; // Do nothing. But process some optional actions specified "Option" field in the action descs.
-                    }
-                    else if ( [actionName isEqualToString:@"GiveUpStage"] )
-                    {
-                        touchAction = BTA_GIVEUP_STAGE; // Give up the current stage, move to the map scene where this stage exists.
                     }
                     
                     assert(hoveringSpriteFile);
@@ -444,15 +460,25 @@
                     [intrSprite setHoverAction:hoverAction actionDescs:hoverActionDescs ];
                     [intrSprite setTouchAction:touchAction actionDescs:touchActionDescs ];
                     
-                    CGSize winSize = [[CCDirector sharedDirector] winSize];
+                    //CGSize winSize = [[CCDirector sharedDirector] winSize];
                     // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
                     // 2) and then subtract orgHeight to get bottomLeft
-                    intrSprite.bottomLeftCorner = CGPointMake(orgX, winSize.height - orgY - orgHeight);
+                    
+                    intrSprite.bottomLeftCorner = CGPointMake(orgX, bottomInOpenGL);
                     intrSprite.nodeSize = CGSizeMake(orgWidth, orgHeight);
                     intrSprite.position = ccp( intrSprite.bottomLeftCorner.x + intrSprite.nodeSize.width * 0.5 , 
                                               intrSprite.bottomLeftCorner.y + intrSprite.nodeSize.height * 0.5 );
                     
                     [layer addChild:intrSprite];
+                }
+                if ([objectType isEqualToString:@"Widget"])
+                {
+                    assert(widgetContainer);
+                    NSString * objectDesc = [[curShape attributeForName:@"objectDesc"] stringValue];
+                    const std::string objectDescCStr = std::string([objectDesc cStringUsingEncoding: NSASCIIStringEncoding]);
+                    REF(TxWidget) widgetRef = TxWidgetFactory::newWidget( layer, TxRectMake(orgX, bottomInOpenGL, orgWidth, orgHeight), objectDescCStr );
+                    
+                    widgetContainer->addWidget(widgetRef);
                 }
                 
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
@@ -751,11 +777,7 @@
                             assert( thickness );
                             terrain.thickness = thickness;
                         }
-                        CCLOG(@"MID : BEGIN : prepareRendering");
-                        [terrain prepareRendering];
-                        CCLOG(@"MID : END : prepareRendering");
                         [terrains addObject:terrain];
-                        
                     }
                 }
             }
@@ -894,18 +916,19 @@
 	CXMLDocument *svgDocument  = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
     assert(svgDocument);
     
+    CXMLElement * rootElement = [svgDocument rootElement];
 	//get world space dimensions
-	if([[svgDocument rootElement] attributeForName:@"width"])
+	if([rootElement attributeForName:@"width"])
 	{
-		worldWidth = [[[[svgDocument rootElement] attributeForName:@"width"] stringValue] floatValue] / scaleFactor;
+		worldWidth = [[[rootElement attributeForName:@"width"] stringValue] floatValue] / scaleFactor;
 	}
 	else
 	{
         assert(0);
 	}
-	if([[svgDocument rootElement] attributeForName:@"height"])
+	if([rootElement attributeForName:@"height"])
 	{
-        svgCanvasHeight = [[[[svgDocument rootElement] attributeForName:@"height"] stringValue] floatValue];
+        svgCanvasHeight = [[[rootElement attributeForName:@"height"] stringValue] floatValue];
         
 		worldHeight = svgCanvasHeight / scaleFactor;
 	}
@@ -914,6 +937,8 @@
 		assert(0);
 	}
 	
+    
+    
     NSArray *layers = NULL;
 	
     // root groups are layers for geometry

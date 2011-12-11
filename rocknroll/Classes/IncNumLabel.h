@@ -17,12 +17,13 @@ private :
     int _targetCount;
     int _currentCount;
 public:    
-    IncNumLabel()
+    IncNumLabel(CCLabelBMFont * label)
     {
         _targetCount = 0;
         _currentCount = 0;
 
-        _label = [CCLabelBMFont labelWithString:@"0" fntFile:@"punkboy.fnt"];
+        _label = label;
+        [label setString:@"0"];
         
         [_label retain];
     }
@@ -40,14 +41,17 @@ public:
     
     inline void update()
     {
-        if ( _currentCount < _targetCount ) {
+        if ( _currentCount != _targetCount ) {
+            // The amount of value to increase. (can have a negative value.)
+            // Increase 1/8 of the gap at once.
+            int stepCount = (_targetCount - _currentCount) >> 3;
+            if (stepCount==0)
+                stepCount = _currentCount < _targetCount ? 1 : -1;
+             
+            _currentCount += stepCount;
             
-            // Increase half of the diff to the target count at most.
-            int incCount = (_targetCount - _currentCount) >> 1;
-            if (incCount == 0)
-                incCount = 1;
-            
-            _currentCount +=incCount ;
+            if(_currentCount < 0 )
+                _currentCount = 0;
             
             [_label setString:[NSString stringWithFormat:@"%d", _currentCount]];
         }

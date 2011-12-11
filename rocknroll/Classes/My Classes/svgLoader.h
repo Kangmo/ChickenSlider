@@ -9,7 +9,9 @@
 #import "ScoreBoardProtocol.h"
 #import "TutorialBoardProtocol.h"
 #import "AdLayer.h"
+#include "TxWidget.h"
 
+class TxWidgetContainer;
 class GameObjectContainer;
 
 @class ClassDictionary;
@@ -18,7 +20,7 @@ class GameObjectContainer;
 {
 	b2World* world;
 	b2Body* staticBody;
-    AdLayer * layer;
+    AdLayer<TxWidgetListener> * layer;
 //	CCSpriteBatchNode * spriteSheet;
     
     float svgCanvasHeight; // svg canvas height
@@ -31,6 +33,7 @@ class GameObjectContainer;
     NSMutableArray * terrains; // indicates if we need to load terrain. For menu screens we don't need to load terrain.
     
     GameObjectContainer * gameObjectContainer; // non Box2d objects in the SVG file are added here.
+    TxWidgetContainer   * widgetContainer; // Widgets defined in menu svg files.
     
     id<ScoreBoardProtocol> scoreBoard;
     id<TutorialBoardProtocol> tutorialBoard;
@@ -38,7 +41,7 @@ class GameObjectContainer;
 //@property float scaleFactor; 
 @property (nonatomic, retain) ClassDictionary * classDict;
            
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer*)l terrains:(NSMutableArray*)t gameObjects:(GameObjectContainer *) gameObjects scoreBoard:(id<ScoreBoardProtocol>)sb tutorialBoard:(id<TutorialBoardProtocol>)tb;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer<TxWidgetListener>*)l widgets:(TxWidgetContainer*)widgets terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard tutorialBoard:(id<TutorialBoardProtocol>)tboard;
 
 -(void) instantiateObjectsIn:(NSString*)filename;
 -(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset;

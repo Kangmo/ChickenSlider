@@ -144,7 +144,11 @@
 
 - (int) readHighestUnlockedLevel
 {
+#if defined(UNLOCK_LEVELS_FOR_TEST)
+    return 999;
+#else
     return [self readIntAttr:HIGHEST_UNLOCKED_LEVEL_ATTR];
+#endif
 }
 
 - (int) readCurrentHeroLevel
@@ -192,18 +196,20 @@
             }
         }
     }
-    
+/*    
     // Make sure there is no hole in the intrSprites array.
     for (int l=1; l<levelCount; l++ )
     {
         assert(intrSprites[l-1]);
     }
+ */
 }
 
 -(CGPoint) heroLevelPosition:(int)level
 {
     assert( level >= 1);
-    assert( level <= levelCount );
+    // BUGBUG : changed to minLevel, maxLevel
+    // assert( level <= levelCount );
     return intrSprites[level-1].position;
 }
 
@@ -268,6 +274,8 @@
     {
         [self setHeroPosition:currentHeroLevel];
     }
+    
+    [super onEnterTransitionDidFinish];
 }
 
 - (void) loadMapState {
@@ -292,12 +300,12 @@
         InteractiveSprite * intrSprite = intrSprites[level-1];
         [intrSprite setLocked:YES];
     }
-    
+#if ! defined( UNLOCK_LEVELS_FOR_TEST )    
     for (int level = 1; level <= highestUnlockedLevel; level ++ )
     {
         assert( ! [intrSprites[level-1] isLocked] ); // Shouldn't be locked by default.
     }
-
+#endif
 }
 
 /** @brief Before the scene transition, the StageScene calls this function if the level is cleared. */
@@ -322,7 +330,8 @@
  On the screen, the hero character moves one level backward.
  */
 -(void) setLevelFailed:(int)level{
-    assert( level <= levelCount );
+    // BUGBUG : change to minLevel, maxLevel
+    // assert( level <= levelCount );
     
     if ( level > 1 )
     {

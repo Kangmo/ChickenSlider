@@ -2,28 +2,6 @@
 #import "GameConfig.h"
 #import "Profiler.h"
 
-static int textureFilesCount = 7;
-static NSString * textureFiles[] =
-{
-/*    
-    @"ground_01.png",
-    @"ground_02.png",
-    @"ground_03.png",
-    @"ground_04.png",
-    @"ground_05.png",
-    @"ground_tx_01.png",
-    @"ground_tx_02.png",
-*/
-    @"ground_01.pvr",
-    @"ground_02.pvr",
-    @"ground_03.pvr",
-    @"ground_04.pvr",
-    @"ground_05.pvr",
-    @"ground_tx_01.pvr",
-    @"ground_tx_02.pvr",
-    NULL
-};
-
 @interface Terrain()
 - (CCSprite*) generateStripesSprite;
 - (CCTexture2D*) generateStripesTexture;
@@ -45,6 +23,7 @@ static NSString * textureFiles[] =
 
 @implementation Terrain
 
+@synthesize textureFile;
 @synthesize stripes = _stripes;
 @synthesize renderUpside;
 @synthesize thickness;
@@ -84,6 +63,8 @@ static NSString * textureFiles[] =
 /** @brief Prepares rendering
  */
 - (void) prepareRendering {
+    assert(self.textureFile);
+    
     self.stripes = [self generateStripesSprite];
     
     [self loadBorderVertices];
@@ -128,6 +109,8 @@ static NSString * textureFiles[] =
 
 - (void) dealloc {
 
+    self.textureFile = nil;
+    
 #ifndef DRAW_BOX2D_WORLD
 	
 	self.stripes = nil;
@@ -349,7 +332,6 @@ PROF_END(terrain_draw);
 }
 
 - (void) reset {
-	
 #ifndef DRAW_BOX2D_WORLD
 	self.stripes = [self generateStripesSprite];
 #endif
@@ -375,8 +357,8 @@ PROF_END(terrain_draw);
 	CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureSize height:textureSize];
 	[rt begin];
     
-    int textureIndex = arc4random() % textureFilesCount;
-    [self renderImage:textureFiles[textureIndex]];
+    assert(self.textureFile);
+    [self renderImage:self.textureFile];
 	//[self renderStripes];
 	[self renderGradient];
 	[self renderHighlight];

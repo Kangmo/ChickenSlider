@@ -33,7 +33,8 @@ void Bomb::onCollideWithHero(Hero * pHero)
 					  nil]];
 
     // Decrease life by 10 ( total 100)
-    [_scoreBoard decreaseLife:10];
+    // BUGBUG : Implement decrease life.
+    //[_scoreBoard decreaseLife:10];
     
     _exploded = true;
 }

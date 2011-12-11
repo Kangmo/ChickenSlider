@@ -1,3 +1,4 @@
+
 #import <Foundation/Foundation.h>
 #import "Util.h"
 #import "AKHelpers.h"
@@ -8,6 +9,7 @@
 #import "BodyInfo.h"
 #import "MKStoreManager.h"
 #import "PersistentGameState.h"
+#import "TouchXML.h"
 
 @implementation Util
 
@@ -45,20 +47,6 @@
     return filePath;
 }
 
-/** @brief Show message on top of the screen for 2 seconds.
- */
-+ (void) showMessage:(NSString*)message inLayer:(CCLayer*)layer adHeight:(float)adHeight{
-    static CGSize screenSize = [[CCDirector sharedDirector] winSize];
-
-	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"punkboy.fnt"];
-	label.position = ccp(screenSize.width/2, screenSize.height - screenSize.height/14 - adHeight);
-	[label runAction:[CCScaleTo actionWithDuration:2.0f scale:1.4f]];
-	[label runAction:[CCSequence actions:
-					  [CCFadeOut actionWithDuration:2.0f],
-					  [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
-					  nil]];
-	[layer addChild:label];
-}
 
 +(CCParticleSystemQuad*)createParticleEmitter:(NSString*)particleImage count:(int)particleCount duration:(float)duration{
     
@@ -153,17 +141,89 @@
     return CGPointMake([node contentSize].width * 0.5, [node contentSize].height * 0.5);
 }
 
-
-+(int) loadFeatherCount {
++(int) loadTotalChickCount {
     int count;
-    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"FeatherCount"];
+    count = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"TotalChickCount"];
     return count;
 }
 
-+(void) saveFeatherCount:(int)count {
-    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"FeatherCount" value:count];
++(void) saveTotalChickCount:(int)count {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"TotalChickCount" value:count];
 }
 
++(CCScene*) defaultSceneTransition:(CCScene*)newScene {
+//    return [CCTransitionSlideInR transitionWithDuration:1.0 scene:newScene];
+    return  [CCTransitionTurnOffTiles transitionWithDuration:0.3 scene:newScene];
+}
+
++(NSString*) toNSString:(const std::string &) stdString
+{
+    NSString * string = [NSString stringWithCString:stdString.c_str() 
+                         encoding:[NSString defaultCStringEncoding]];
+    return string;
+}
+
+/** @brief Get a float value from XML element with the give attribute name. Return the defaultValue if the value does not exist*/
++(float) getFloatValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(float)defaultValue
+{
+    NSString * attrValueString = [[xmlElement attributeForName:attrName] stringValue];
+    if ( attrValueString )
+    {
+        return [attrValueString floatValue];
+    }
+    return defaultValue;
+}
+
+/** @brief Get an integer value from XML element with the give attribute name. Return the defaultValue if the value does not exist*/
++(int) getIntValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(int)defaultValue
+{
+    NSString * attrValueString = [[xmlElement attributeForName:attrName] stringValue];
+    if ( attrValueString )
+    {
+        return [attrValueString intValue];
+    }
+    return defaultValue;
+}
+
+/** @brief Get a string value from XML element with the give attribute name. Return the defaultValue if the value does not exist*/
++(NSString*) getStringValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(NSString*)defaultValue
+{
+    NSString * attrValueString = [[xmlElement attributeForName:attrName] stringValue];
+    if ( attrValueString )
+    {
+        return attrValueString;
+    }
+    return defaultValue;
+}
+
+/** @brief Play the background music. If the background music is already being played, do nothing. 
+ */
++(void) playBGM:(NSString*) musicFileName
+{
+    static NSString * currentMusicFileName = nil;
+    
+    if ( [[CDAudioManager sharedManager] isBackgroundMusicPlaying] )
+    {
+        assert( currentMusicFileName );
+        if ( [musicFileName isEqualToString:currentMusicFileName] )
+        {
+            // The same file is already being played. do nothing!
+            return;
+        }
+        [currentMusicFileName release];
+        currentMusicFileName = nil;
+
+        [[CDAudioManager sharedManager] stopBackgroundMusic];
+    }
+
+    currentMusicFileName = [musicFileName retain];
+
+    [[CDAudioManager sharedManager] playBackgroundMusic:musicFileName loop:YES];
+    [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
+    
+    // BUGBUG set from volume specified in Option.
+    [CDAudioManager sharedManager].backgroundMusic.volume = 0.7;
+}
 @end
 
 namespace Helper 

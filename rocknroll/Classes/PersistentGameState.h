@@ -14,4 +14,7 @@
 -(int) readIntAttr:(NSString*)attrName;
 -(void) writeIntAttr:(NSString*)attrName value:(int)attrValue;
 
+-(NSString*) readStringAttr:(NSString*)attrName;
+-(void) writeStringAttr:(NSString*)attrName value:(NSString*)attrValue;
+
 @end

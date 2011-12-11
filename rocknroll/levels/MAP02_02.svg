@@ -18,7 +18,9 @@
    sodipodi:docname="MAP02_02.svg"
    inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP02.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   _backgroundImage="cloud960.png"
+   _backgroundMusic="music_menu.m4a">
   <defs
      id="defs4053">
     <linearGradient
@@ -2026,11 +2028,11 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
      showgrid="false"
-     inkscape:window-width="1858"
-     inkscape:window-height="1058"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1280"
+     inkscape:window-height="711"
+     inkscape:window-x="-90"
+     inkscape:window-y="40"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata4056">
     <rdf:RDF>
@@ -2050,7 +2052,7 @@
      style="display:inline"
      ignore="">
     <image
-       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP02_02.png"
+       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP02_02.png"
        xlink:href="MAP02_02.png"
        y="0"
        x="1"
@@ -2067,36 +2069,36 @@
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level1"
        width="77.247795"
-       height="78.624367"
+       height="75.624367"
        x="128.69849"
-       y="79.172012"
+       y="82.172012"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=9,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level2"
        width="77.070206"
-       height="79.552139"
+       height="77.552139"
        x="213.03455"
-       y="80.203293"
+       y="82.203293"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=10,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level3"
-       width="81.355339"
+       width="78.355339"
        height="79.756241"
-       x="295.89801"
+       x="298.89801"
        y="81.64978"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=11,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level4"
-       width="74.15583"
+       width="77.15583"
        height="78.984749"
-       x="381.44421"
-       y="80.239166"
+       x="384.44421"
+       y="81.239166"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=12,Sound=Touch.wav" />
     <rect
@@ -2104,8 +2106,8 @@
        id="level5"
        width="78.285004"
        height="77.862907"
-       x="129.18867"
-       y="179.51517"
+       x="128.18867"
+       y="188.51517"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=13,Sound=Touch.wav" />
     <rect
@@ -2113,8 +2115,8 @@
        id="level6"
        width="76.306786"
        height="77.031235"
-       x="214.12022"
-       y="182.38699"
+       x="216.12022"
+       y="188.38699"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=14,Sound=Touch.wav" />
     <rect
@@ -2123,7 +2125,7 @@
        width="80.102432"
        height="76.160538"
        x="296.54343"
-       y="183.06534"
+       y="192.06534"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=15,Sound=Touch.wav" />
     <rect
@@ -2131,17 +2133,17 @@
        id="level8"
        width="73.324043"
        height="75.179489"
-       x="381.3107"
-       y="182.75987"
+       x="388.3107"
+       y="189.75987"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=16,Sound=Touch.wav" />
     <rect
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:none;display:inline"
        id="BackObject"
-       width="46.745171"
-       height="41.949749"
-       x="422.94931"
-       y="271.45227"
+       width="37.745171"
+       height="35.949749"
+       x="424.94931"
+       y="276.45227"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.mp3" />
     <flowRoot
@@ -2157,20 +2159,11 @@
          id="flowPara6030" /></flowRoot>    <rect
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:none;display:inline"
        id="BackObject-7"
-       width="38.745171"
-       height="26.949749"
-       x="5.6274147"
-       y="261.52512"
+       width="93.745171"
+       height="41.949749"
+       x="7.6274147"
+       y="272.52512"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,Sound=Touch.mp3" />
-    <rect
-       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:none;display:inline"
-       id="BackObject-7-9"
-       width="38.745171"
-       height="26.949749"
-       x="46.627411"
-       y="261.52512"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP02_02,Arg1=Null,Sound=Touch.mp3" />
   </g>
 </svg>

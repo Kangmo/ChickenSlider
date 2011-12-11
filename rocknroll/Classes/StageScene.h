@@ -17,24 +17,53 @@
 #include "HealthBar.h"
 #include "FloatLabel.h"
 
-#import"AdLayer.h"
+#import "AdLayer.h"
+#import "GeneralMessageProtocol.h"
+
+#import "TxWidget.h"
+#import "GamePlayLayer.h"
 
 class b2WorldEx;
 @class Sky;
 
 typedef enum {
     StageSceneLayerTagStage=1,
-    StageSceneLayerTagInput
+    StageSceneLayerTagGamePlayUI=2,
+    StageSceneLayerTagInput=3
 } StageSceneLayerTags;
 
+@class GamePlayLayer;
+
 // HelloWorld Layer
-@interface StageScene : AdLayer<ScoreBoardProtocol, TutorialBoardProtocol>
+@interface StageScene : AdLayer<ScoreBoardProtocol, TutorialBoardProtocol, GeneralMessageProtocol, TxWidgetListener>
 {
+    // The layer containing game play UI such as scores, time left etc.
+    GamePlayLayer * playUI;
     // The name of the map where the stage exists
     NSString * mapName;
     // The current number of level in the map
     int level;
 
+    // +++++++++ Attributes read from the stage SVG file +++++++++++++
+    // The background music file.
+    NSString * musicFileName;
+    // The background image file.
+    NSString * backgroundImage;
+    // The ground texture image
+    NSString * groundTexture;
+    // The play time(second) that the user should finish the game for the stage.
+    int playTimeSec;
+    // The number of chicks to save for one star.
+    int oneStarCount;
+    // The number of chicks to save for two stars.
+    int twoStarCount;
+    // The number of chicks to save for three stars.
+    int threeStarCount;
+    // -------- Attributes read from the stage SVG file ------------
+    
+    // Did we gave up stage?
+    BOOL gaveUpStage;
+    
     b2WorldEx* world;
 	GLESDebugDraw *m_debugDraw;
 	
@@ -60,10 +89,17 @@ typedef enum {
     
     int curFeathers;
     int targetFeathers;
-    IncNumLabel feathersLabel;
-    IncNumLabel scoreLabel;
-    HealthBar   healthBar;
-    FloatLabel *speedRatioLabel;
+    
+    // sb means score board
+    int sbChicks;
+    int sbScore;
+    int sbKeys;
+    float sbSpeedRatio;
+    float sbSecondsLeft;
+    // The recent second that we printed on the scoreboard.
+    int   sbRecentSecond;
+    // The maximum combo count
+    int   maxComboCount;
     
     CCSpriteBatchNode * spriteSheet;
 
@@ -82,15 +118,16 @@ typedef enum {
 
 @property (nonatomic, assign) Car * car;
 @property (nonatomic, retain) Hero * hero;
-@property (nonatomic, assign) BOOL giveUpStage;
 
 // returns a Scene that contains the HelloWorld as the only child
 +(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level;
 +(StageScene*) sharedStageScene;
 -(BOOL) needJoystick;
 
--(void) increaseScore:(int) scoreDiff;
--(void) increaseFeathers:(int) feathersDiff;
+-(void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
 
-- (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
+-(void) giveUpGame:(NSString*)message;
+-(void) resumeGame;
+
+
 @end

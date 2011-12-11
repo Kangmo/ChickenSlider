@@ -5,6 +5,8 @@
 #import "Util.h"
 #import "AKHelpers.h"
 #import "ClipFactory.h"
+#import "BodyInfo.h"
+#import "TouchXML.h"
 
 @implementation Hero
 @synthesize world = _world;
@@ -42,9 +44,36 @@
         _body = body;
         _camera = camera;
         _scoreBoard = sb;
+        _particleEmitter = nil;
+
+        // Init Sound Effects
+        {
+            _3comboSound = [[[ClipFactory sharedFactory] soundByFile:@"3combo.wav"] retain];
+            assert(_3comboSound);
+            _7comboSound = [[[ClipFactory sharedFactory] soundByFile:@"7combo.wav"] retain];
+            assert( _7comboSound);
+            _dropSound = [[[ClipFactory sharedFactory] soundByFile:@"drop.wav"] retain];
+            assert(_dropSound);
+            _jumpSound = [[[ClipFactory sharedFactory] soundByFile:@"jump.wav"] retain];
+            assert(_jumpSound);
+            _slideFailSound = [[[ClipFactory sharedFactory] soundByFile:@"slidefail.wav"] retain];
+            assert(_slideFailSound);
+        }
+        
+        { // Get attribute values from XML.
+            BodyInfo * bi = (BodyInfo*) body->GetUserData();
+            
+            _minSpeedX = [Util getFloatValue:bi.xmlElement name:@"minSpeedX" defaultValue:3];
+            _minSpeedY = [Util getFloatValue:bi.xmlElement name:@"minSpeedY" defaultValue:-40];
+            _maxSpeed = [Util getFloatValue:bi.xmlElement name:@"maxSpeed" defaultValue:60];
+            
+            // Not necessary anymore.
+            bi.xmlElement = nil;
+        }
         
 		_contactListener = new HeroContactListener(self);
 		_world->SetContactListener(_contactListener);
+
         
         [self loadAnimationClips];
 		[self reset];
@@ -64,6 +93,12 @@
     [_flyingAction release];
     [_walkingAction release];
 
+    [_3comboSound release];
+    [_7comboSound release];
+    [_dropSound release];
+    [_jumpSound release];
+    [_slideFailSound release]; 
+    
 	delete _contactListener;
 	[super dealloc];
 }
@@ -106,14 +141,22 @@
 -(void) createParticle:(float)duration
 {
     // Particle emitter.
-    CCParticleSystemQuad * emitter = [Util createParticleEmitter:@"stars.png" count:30 duration:duration];
+    _particleEmitter = [Util createParticleEmitter:@"stars.png" count:30 duration:duration];
 
     CCSprite * sprite = [self getSprite];
     assert(sprite);
 
-    [sprite addChild:emitter z:10]; // adding the emitter
-    
-    emitter.autoRemoveOnFinish = YES; // this removes/deallocs the emitter after its animation
+    [sprite addChild:_particleEmitter z:10]; // adding the emitter
+}
+
+-(void) removeParticle
+{
+    if (_particleEmitter)
+    {
+        [_particleEmitter stopSystem];
+        [_particleEmitter removeFromParentAndCleanup:YES];
+        _particleEmitter = nil;
+    }
 }
 
 - (void) sleep {
@@ -153,6 +196,33 @@
 //    [self playDetachingWing:@"icarus_rightwing.png"];
 }
 
+-(void) changeSpeed:(float)speedGain
+{
+	b2Vec2 vel = _body->GetLinearVelocity();
+    
+    if ( speedGain > 0.0f )
+    {
+        // The length of the vector is the speed
+        float speed = sqrt(vel.x * vel.x + vel.y * vel.y); 
+        float newSpeed = speed + speedGain;
+
+        if (newSpeed > _maxSpeed )
+            newSpeed = _maxSpeed;
+        float factor = newSpeed / speed;
+        
+        vel.x *= factor;
+        vel.y *= factor;
+    }
+    
+	if (vel.x < _minSpeedX) {
+		vel.x = _minSpeedX;
+	}
+	if (vel.y < _minSpeedY) {
+		vel.y = _minSpeedY;
+	}
+	_body->SetLinearVelocity(vel);
+}
+
 - (void) updatePhysics {
     if (_hasWings)
     {
@@ -179,6 +249,8 @@
                 }
             } else {
                 if ( _currentAction != _droppingAction ) {
+                    //The dropping sound is not really good. Don't play it.
+                    //[_dropSound play];
                     [self playClipAction:_droppingAction];
                 }
                 
@@ -196,20 +268,11 @@
         }
     }
     
-
-	// limit velocity
-	const float minVelocityX = 3;
-	const float minVelocityY = -40;
-
-	b2Vec2 vel = _body->GetLinearVelocity();
-	if (vel.x < minVelocityX) {
-		vel.x = minVelocityX;
-	}
-	if (vel.y < minVelocityY) {
-		vel.y = minVelocityY;
-	}
-	_body->SetLinearVelocity(vel);
+    // 0 means no change in speed.
+    // Need to do this to check the minimum/maximum speed of the Hero.
+    [self changeSpeed:0];
 }
+
 
 - (void) updateNode {
     
@@ -256,14 +319,30 @@
 	if (vel.y > kPerfectTakeOffVelocityY) {
         //		NSLog(@"perfect slide");
 		_nPerfectSlides++;
+        
+        BOOL effectPlayed = NO;
+        
 		if (_nPerfectSlides == 1) {
             [_scoreBoard showMessage:@"Nice!"];
         } else if (_nPerfectSlides > 1) {
 			if (_nPerfectSlides == 3) {
-                [self createParticle:3];
+                [self createParticle:1000];
+                [_3comboSound play];
+                effectPlayed = YES;
 			}
-            [_scoreBoard showMessage:[NSString stringWithFormat:@"%d Combo!", _nPerfectSlides]];
+            else if (_nPerfectSlides == 7) {
+                [_7comboSound play];
+                effectPlayed = YES;
+            }
+
+            [_scoreBoard showCombo:_nPerfectSlides];
 		}
+        
+        if (!effectPlayed)
+        {
+            // Play jump sound if no effect is played.
+            [_jumpSound play];
+        }
         
         [_scoreBoard increaseSpeedRatio:FRAME_SPEED_RATIO_PER_COMBO];
         
@@ -275,10 +354,12 @@
     //	NSLog(@"hit");
 	_nPerfectSlides = 0;
     
+    [self removeParticle];
+    [_slideFailSound play];
+    
     [_scoreBoard showMessage:@"Oops~"];
     
     [_scoreBoard setSpeedRatio:MIN_FRAME_SPEED_RATIO];
-
 }
 
 - (void) setDiving:(BOOL)diving {

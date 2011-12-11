@@ -10,8 +10,8 @@
 
 #define kHillSegmentWidth 15
 
-//#define TERRAIN_TEXTURE_SIZE (512)
-#define TERRAIN_TEXTURE_SIZE (256)
+#define TERRAIN_TEXTURE_SIZE (512)
+//#define TERRAIN_TEXTURE_SIZE (256)
 
 @interface Terrain : CCNode {
     // Arguments passed on the initializer 
@@ -36,8 +36,10 @@
 	int screenH;
 	int textureSize;
 }
-@property (nonatomic, retain) CCSprite *stripes;
+// The texture file to render the terrain.
+@property (nonatomic, retain) NSString * textureFile;
 
+@property (nonatomic, retain) CCSprite *stripes;
 
 // When rendering terrains, render up-side of the border line, not the down-side of the border line.
 @property (nonatomic, assign) BOOL renderUpside;

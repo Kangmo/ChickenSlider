@@ -44,11 +44,11 @@
      id="base"
      showgrid="true"
      inkscape:zoom="3.2138003"
-     inkscape:cx="66.205939"
+     inkscape:cx="30.267178"
      inkscape:cy="262.73124"
-     inkscape:window-x="3"
-     inkscape:window-y="7"
-     inkscape:current-layer="Bird"
+     inkscape:window-x="129"
+     inkscape:window-y="161"
+     inkscape:current-layer="Chick"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -216,7 +216,10 @@
        phy_friction="0"
        phy_restitution="0"
        initClipFile="clip_icarus_idle.plist"
-       initFrameAnim="icarus_flying" />
+       initFrameAnim="icarus_flying"
+       minSpeedX="3"
+       minSpeedY="-40"
+       maxSpeed="60" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -282,7 +285,7 @@
      inkscape:groupmode="layer"
      id="Chick"
      inkscape:label="Chick"
-     style="display:none">
+     style="display:inline">
     <rect
        gameObjectClass="Chick"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
@@ -296,7 +299,8 @@
        phy_friction="0"
        phy_restitution="0"
        initClipFile="clip_chick.plist"
-       initFrameAnim="chick" />
+       initFrameAnim="chick"
+       heroSpeedGain="8" />
   </g>
   <g
      inkscape:groupmode="layer"

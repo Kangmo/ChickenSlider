@@ -12,6 +12,7 @@
 #include "GameObject.h"
 #include "GameObjectContainer.h"
 #import "TutorialBoardProtocol.h"
+#import "ClipFactory.h"
 
 class TutorialBox : public GameObject
 {
@@ -27,7 +28,8 @@ public:
         {
             // BUGBUG : The object is leaked! 
             // BUGBUG : Change the sound!
-            _collideSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:@"WaterDrop.wav"] retain];
+            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"WaterDrop.wav"];
+            [_collideSound retain];
         }
         assert(_collideSound);
 

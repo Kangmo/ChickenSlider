@@ -19,6 +19,7 @@
         // Initialization code here.
         clipDict = [[NSMutableDictionary dictionary] retain];
         animDict = [[NSMutableDictionary dictionary] retain];
+        soundDict = [[NSMutableDictionary dictionary] retain];
     }
     
     return self;
@@ -96,16 +97,32 @@
     }    
 }
 
+- (CDSoundSource*) soundByFile:(NSString*)effectName
+{
+    CDSoundSource * sound = [soundDict valueForKey:effectName];
+    if ( ! sound )
+    {
+        // CCLOG(@"Sound not found in cache :%@", effectName);
+        sound = [[SimpleAudioEngine sharedEngine] soundSourceForFile:effectName];
+        assert( sound );
+        [soundDict setValue:sound forKey:effectName];
+    }
+    
+    return sound;
+}
+
 - (void) purgeCachedData
 {
     [clipDict removeAllObjects];
     [animDict removeAllObjects];
+    [soundDict removeAllObjects];
 }
 
 
 - (void) dealloc {
     [clipDict release];
     [animDict release];
+    [soundDict release];
     [super dealloc];
 }
 @end

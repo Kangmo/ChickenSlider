@@ -8,8 +8,9 @@ typedef enum body_touch_action_t
 {
     BTA_NULL = 0,
     BTA_SCENE_TRANSITION = 1,
-    BTA_GIVEUP_STAGE = 2, // Give up the current stage, go to the level map scene.
-    BTA_NONE = 3
+    BTA_PUSH_SCENE = 2,
+    BTA_ADD_LAYER = 3, // Give up the current stage, go to the level map scene.
+    BTA_NONE = 4
 } body_touch_action_t;
 
 typedef enum body_hover_action_t

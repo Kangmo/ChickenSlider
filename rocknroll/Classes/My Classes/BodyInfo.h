@@ -1,4 +1,5 @@
 #pragma once
+@class CXMLElement;
 @interface BodyInfo : NSObject 
 {
 	CGSize rect;
@@ -21,6 +22,7 @@
 @property(nonatomic,retain) NSString * initClipFile;
 @property(nonatomic,retain) NSString * initFrameAnim;
 @property(nonatomic,retain) CCAction * defaultAction;
+@property(nonatomic,retain) CXMLElement * xmlElement;
 @property CGSize rect;
 @property CGPoint spriteOffset;
 @end

@@ -11,7 +11,7 @@ NSLog(@"%@\n", [NSThread callStackSymbols]  );\
 return result;\
 }\
 \
-- (void)release {\
+- (oneway void)release {\
 NSUInteger oldRetainCount = [super retainCount];\
 BOOL gonnaDealloc = oldRetainCount == 1;\
 if (gonnaDealloc) {\

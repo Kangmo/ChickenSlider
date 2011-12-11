@@ -27,15 +27,15 @@ public:
     {
         _scoreBoard = sb;
         _released = false;
-        
+
         if ( !_collideSound )
         {
             // BUGBUG : Change the sound file.
             // BUGBUG : The object is leaked! 
-            _collideSound = [[[SimpleAudioEngine sharedEngine] soundSourceForFile:@"WaterDrop.wav"] retain];
+            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"WaterDrop.wav"];
+            [_collideSound retain];
         }
-        // BUGBUG : The assertion hits. Find out why.
-//        assert(_collideSound);
+        assert(_collideSound);
         
         _releasingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_hen_released.plist"] retain];
         assert(_releasingAction);
