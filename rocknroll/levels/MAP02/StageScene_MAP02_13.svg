@@ -17,7 +17,14 @@
    sodipodi:version="0.32"
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="StageScene_MAP01_02.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   _backgroundImage="sky_05.pvr"
+   _backgroundMusic="music_05.m4a"
+   _groundTexture="ground_tx_05.pvr"
+   _playTimeSec="600"
+   _oneStarCount="1000"
+   _twoStarCount="2000"
+   _threeStarCount="3000">
   <metadata
      id="metadata2500">
     <rdf:RDF>
