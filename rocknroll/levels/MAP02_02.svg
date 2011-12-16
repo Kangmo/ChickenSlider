@@ -2023,15 +2023,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="15.26099"
+     inkscape:cx="241.42513"
      inkscape:cy="139.13138"
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="711"
-     inkscape:window-x="-90"
-     inkscape:window-y="40"
+     inkscape:window-x="-17"
+     inkscape:window-y="0"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata4056">
@@ -2054,11 +2054,89 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP02_02.png"
        xlink:href="MAP02_02.png"
-       y="0"
-       x="1"
-       id="image8608"
+       width="480"
        height="320"
-       width="480" />
+       id="image8608"
+       x="1"
+       y="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="staticWidgets"
+     style="display:none">
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8"
+       width="78.347542"
+       height="77.127769"
+       x="128.19342"
+       y="81.770546"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_09,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8"
+       width="78.347542"
+       height="77.127769"
+       x="213.28195"
+       y="81.770546"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_10,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3"
+       width="78.347542"
+       height="77.127769"
+       x="298.37048"
+       y="81.770546"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_11,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9"
+       width="78.347542"
+       height="77.127769"
+       x="383.45901"
+       y="81.770546"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_12,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0"
+       width="78.347542"
+       height="77.127769"
+       x="128.19342"
+       y="189.10168"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_13,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0-5"
+       width="78.347542"
+       height="77.127769"
+       x="213.28195"
+       y="189.10168"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_14,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0-5-2"
+       width="78.347542"
+       height="77.127769"
+       x="298.37048"
+       y="189.10168"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_15,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0-5-2-2"
+       width="78.347542"
+       height="77.127769"
+       x="383.45901"
+       y="189.10168"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP02_16,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -2069,7 +2147,7 @@
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level1"
        width="77.247795"
-       height="75.624367"
+       height="77.624367"
        x="128.69849"
        y="82.172012"
        objectType="MenuItem"
@@ -2077,64 +2155,64 @@
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level2"
-       width="77.070206"
-       height="77.552139"
+       width="78.248001"
+       height="77.624001"
        x="213.03455"
-       y="82.203293"
+       y="82.172012"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=10,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level3"
-       width="78.355339"
-       height="79.756241"
+       width="77.248001"
+       height="77.624001"
        x="298.89801"
-       y="81.64978"
+       y="82.172012"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=11,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level4"
-       width="77.15583"
-       height="78.984749"
+       width="77.248001"
+       height="77.624001"
        x="384.44421"
-       y="81.239166"
+       y="82.172012"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=12,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level5"
-       width="78.285004"
-       height="77.862907"
+       width="78.248001"
+       height="77.624001"
        x="128.18867"
-       y="188.51517"
+       y="189.75407"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=13,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level6"
-       width="76.306786"
-       height="77.031235"
-       x="216.12022"
-       y="188.38699"
+       width="79.248001"
+       height="77.624001"
+       x="213.03455"
+       y="189.75407"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=14,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level7"
-       width="80.102432"
-       height="76.160538"
-       x="296.54343"
-       y="192.06534"
+       width="77.248001"
+       height="77.624001"
+       x="298.89801"
+       y="189.75407"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=15,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;display:inline"
        id="level8"
-       width="73.324043"
-       height="75.179489"
-       x="388.3107"
-       y="189.75987"
+       width="77.248001"
+       height="77.624001"
+       x="384.44421"
+       y="189.75407"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP02,Arg2=16,Sound=Touch.wav" />
     <rect
@@ -2145,7 +2223,7 @@
        x="424.94931"
        y="276.45227"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.wav" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot6024"
@@ -2160,10 +2238,10 @@
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:none;display:inline"
        id="BackObject-7"
        width="93.745171"
-       height="41.949749"
-       x="7.6274147"
-       y="272.52512"
+       height="36.949749"
+       x="38.627415"
+       y="277.52512"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,Sound=Touch.wav" />
   </g>
 </svg>

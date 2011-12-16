@@ -314,7 +314,7 @@
        x="290.14038"
        y="251.12033"
        objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.mp3,Option=RemoveOwningLayer" />
+       objectTouchAction="Action=None,Sound=Touch.wav,Option=RemoveOwningLayer" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54259717px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
@@ -323,7 +323,7 @@
        x="234.10146"
        y="251.82193"
        objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=Quit,Sound=Touch.mp3,Option=RemoveOwningLayer" />
+       objectTouchAction="Action=None,ActionMessage=Quit,Sound=Touch.wav,Option=RemoveOwningLayer" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3370"

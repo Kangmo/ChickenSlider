@@ -65,17 +65,6 @@ public :
         return [Util toNSString:fontName];
     }
     
-    const BOOL getIsPersistent()
-    {
-        const std::string & isPersistent = getPropValue("IsPersistent");
-        
-        if ( isPersistent == "YES" || isPersistent == "Yes" || isPersistent == "yes" || 
-             isPersistent == "TRUE" || isPersistent == "True" || isPersistent == "true" )
-        {
-            return YES;
-        }
-        return NO;
-    }
 
     /** @brief Show message for two seconds gradually enlarging the message 
      */

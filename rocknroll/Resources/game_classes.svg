@@ -46,9 +46,9 @@
      inkscape:zoom="3.2138003"
      inkscape:cx="30.267178"
      inkscape:cy="262.73124"
-     inkscape:window-x="129"
-     inkscape:window-y="161"
-     inkscape:current-layer="Chick"
+     inkscape:window-x="-37"
+     inkscape:window-y="13"
+     inkscape:current-layer="svg2"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -203,7 +203,7 @@
      inkscape:groupmode="layer"
      id="Bird"
      inkscape:label="Bird"
-     style="display:inline">
+     style="display:none">
     <rect
        style="fill:#00ff00;stroke:none"
        id="BirdMainBody"
@@ -263,6 +263,161 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="Fruit01"
+     inkscape:label="Fruit01"
+     style="display:none">
+    <rect
+       gameObjectClass="EatenItem"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect3129"
+       width="45"
+       height="45"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_fruit01.plist"
+       initFrameAnim="fruit01"
+       score="10"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Fruit02"
+     inkscape:label="Fruit02"
+     style="display:none">
+    <rect
+       score="10"
+       initFrameAnim="fruit02"
+       initClipFile="clip_fruit02.plist"
+       phy_restitution="0"
+       phy_friction="0"
+       phy_density="0.1"
+       isCircle=""
+       y="0"
+       x="0"
+       height="45"
+       width="45"
+       id="rect3132"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       gameObjectClass="EatenItem"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Fruit03"
+     inkscape:label="Fruit03"
+     style="display:none">
+    <rect
+       gameObjectClass="EatenItem"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect3135"
+       width="45"
+       height="45"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_fruit03.plist"
+       initFrameAnim="fruit03"
+       score="10"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Fruit04"
+     inkscape:label="Fruit04"
+     style="display:none">
+    <rect
+       score="10"
+       initFrameAnim="fruit04"
+       initClipFile="clip_fruit04.plist"
+       phy_restitution="0"
+       phy_friction="0"
+       phy_density="0.1"
+       isCircle=""
+       y="0"
+       x="0"
+       height="45"
+       width="45"
+       id="rect3138"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       gameObjectClass="EatenItem"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Fruit05"
+     inkscape:label="Fruit05"
+     style="display:none">
+    <rect
+       gameObjectClass="EatenItem"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect3141"
+       width="45"
+       height="45"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_fruit05.plist"
+       initFrameAnim="fruit05"
+       score="10"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Fruit06"
+     inkscape:label="Fruit06"
+     style="display:inline">
+    <rect
+       score="10"
+       initFrameAnim="fruit06"
+       initClipFile="clip_fruit06.plist"
+       phy_restitution="0"
+       phy_friction="0"
+       phy_density="0.1"
+       isCircle=""
+       y="0"
+       x="0"
+       height="45"
+       width="45"
+       id="rect3144"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       gameObjectClass="EatenItem"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="FinishBar"
+     inkscape:label="FinishBar"
+     style="display:none">
+    <rect
+       gameObjectClass="EatenItem"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect3148"
+       width="38"
+       height="304"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       initClipFile="clip_finishbar.plist"
+       initFrameAnim="finishbar"
+       score="0"
+       removeWhenEaten="0"
+       soundFile="key.wav" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="Remedy"
      inkscape:label="Remedy"
      style="display:none">
@@ -285,7 +440,7 @@
      inkscape:groupmode="layer"
      id="Chick"
      inkscape:label="Chick"
-     style="display:inline">
+     style="display:none">
     <rect
        gameObjectClass="Chick"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"

@@ -391,11 +391,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/MapSelectScene.png"
        xlink:href="MapSelectScene.png"
-       width="480"
-       height="320"
-       id="image3559"
+       y="0"
        x="0"
-       y="0" />
+       id="image3559"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -410,7 +410,7 @@
        x="71.555916"
        y="97.762962"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP01,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MAP01,Arg1=Null,Sound=Touch.wav" />
     <rect
        style="opacity:0.2;fill:#ff7f2a;fill-rule:evenodd;stroke:#000000;stroke-width:2.10037303px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
@@ -419,7 +419,7 @@
        x="269.93979"
        y="97.991859"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.rocknroll.map02,UnlockingFeathers=99000,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.rocknroll.map02,UnlockingFeathers=2000,Sound=Touch.wav" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3817"
@@ -448,7 +448,7 @@
        x="421.04636"
        y="272.30841"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MainMenuScene,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MainMenuScene,Arg1=Null,Sound=Touch.wav" />
   </g>
   <g
      inkscape:groupmode="layer"

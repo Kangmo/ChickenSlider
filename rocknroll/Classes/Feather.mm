@@ -14,6 +14,9 @@ void Feather::onCollideWithHero(Hero * pHero)
     // Increase the water drops to show on the screen
     [_scoreBoard increaseKeys:1];
     
+    // Increase score
+    [_scoreBoard increaseScore:SCORE_PER_KEY];
+
     // For the collided objects, remove them
     CCSprite * sprite = this->getSprite();
     

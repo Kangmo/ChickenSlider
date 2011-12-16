@@ -14,7 +14,7 @@ class b2WorldEx;
 @interface GeneralScene : AdLayer<GeneralMessageProtocol, TxWidgetListener> {  
     b2WorldEx * world_;
     NSString * sceneName_;
-    ProgressCircle * loadingProgress_;
+
     BOOL didStartLoading_;
     TxWidgetContainer widgetContainer_;
     
@@ -22,6 +22,8 @@ class b2WorldEx;
     NSString * backgroundMusic_;
     
     // For scrolling background
+    float beforeScrollSleepSec_; // Before scrolling, sleep beforeScrollSleepSec_ seconds.
+    int backgroundWidth_; 
     CCParallaxNode *parallaxNode_;
     CGPoint parallexPosition_;
     BOOL loopParallax_; // Scroll over and over?
@@ -33,6 +35,7 @@ class b2WorldEx;
 @property(nonatomic,assign) id<GeneralMessageProtocol> actionListener;
 @property(nonatomic,assign) int loadingLevel;
 @property(nonatomic,retain) NSString * loadingLevelMapName;
+
 
 +(id)nodeWithSceneName:(NSString*)sceneName;
 +(CCScene*)sceneWithName:(NSString*)sceneName;

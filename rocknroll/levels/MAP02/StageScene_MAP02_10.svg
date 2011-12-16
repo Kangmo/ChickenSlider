@@ -16,8 +16,9 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="StageScene_MAP01_02.svg"
+   sodipodi:docname="StageScene_MAP02_10.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   _stageName="France 2"
    _backgroundImage="sky_04.pvr"
    _backgroundMusic="music_04.m4a"
    _groundTexture="ground_tx_04.pvr"
@@ -33,13 +34,13 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <sodipodi:namedview
-     inkscape:window-height="711"
-     inkscape:window-width="1280"
+     inkscape:window-height="1058"
+     inkscape:window-width="1858"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -50,14 +51,14 @@
      pagecolor="#ffffff"
      id="base"
      showgrid="false"
-     inkscape:zoom="0.1888316"
-     inkscape:cx="1429.0136"
-     inkscape:cy="-626.76325"
-     inkscape:window-x="132"
-     inkscape:window-y="40"
+     inkscape:zoom="0.53409642"
+     inkscape:cx="45239.947"
+     inkscape:cy="-1611.8893"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:current-layer="layer3"
      width="480px"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      inkscape:snap-grids="true"
      showguides="true"
      inkscape:guide-bbox="true">
@@ -186,332 +187,1052 @@
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-0-8-3">
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-5-9-0" />
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-4-6-0">
+       id="filter8613-3-81-0-2-1-8">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-8-0-3" />
+         id="feBlend8615-6-4-40-9-7-3" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-8">
+       id="filter8613-3-81-0-2-0-7">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-3" />
+         id="feBlend8615-6-4-40-9-9-67" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-3-6">
+       id="filter8613-3-81-0-2-8-35">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-3-0" />
+         id="feBlend8615-6-4-40-9-2-0-8" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-0-8-9">
+       id="filter8613-3-81-0-2-5-03">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-5-9-2" />
+         id="feBlend8615-6-4-40-9-1-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-4-6-9">
+       id="filter8613-3-81-0-2-11-4">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-8-0-1" />
+         id="feBlend8615-6-4-40-9-5-99" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-0">
+       id="filter8613-3-81-0-2-7-47">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-9" />
+         id="feBlend8615-6-4-40-9-6-21" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-3-3">
+       id="filter8613-3-81-0-2-4-0">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-3-00" />
+         id="feBlend8615-6-4-40-9-23-5-6" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-0-8-0">
+       id="filter8613-3-81-0-2-16-5">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-5-9-1" />
+         id="feBlend8615-6-4-40-9-8-84" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-4-6-6">
+       id="filter8613-3-81-0-2-76-355">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-8-0-4" />
+         id="feBlend8615-6-4-40-9-18-15" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4">
+       id="filter8613-3-81-0-2-2-68">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8" />
+         id="feBlend8615-6-4-40-9-79-98" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-3-61">
+       id="filter8613-3-81-0-2-1-8-5">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-3-4" />
+         id="feBlend8615-6-4-40-9-7-3-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-1">
+       id="filter8613-3-81-0-2-0-7-6">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-5" />
+         id="feBlend8615-6-4-40-9-9-67-7" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-8">
+       id="filter8613-3-81-0-2-8-35-1">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-4" />
+         id="feBlend8615-6-4-40-9-2-0-8-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-3">
+       id="filter8613-3-81-0-2-5-03-5">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-0" />
+         id="feBlend8615-6-4-40-9-1-0-3" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-3-2">
+       id="filter8613-3-81-0-2-11-4-0">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-0-3" />
+         id="feBlend8615-6-4-40-9-5-99-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-8-8">
+       id="filter8613-3-81-0-2-7-47-3">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-4-7" />
+         id="feBlend8615-6-4-40-9-6-21-4" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-1-8">
+       id="filter8613-3-81-0-2-4-0-7">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-5-0" />
+         id="feBlend8615-6-4-40-9-23-5-6-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-3-0">
+       id="filter8613-3-81-0-2-16-5-4">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-0-6" />
+         id="feBlend8615-6-4-40-9-8-84-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-8-0">
+       id="filter8613-3-81-0-2-76-355-2">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-4-3" />
+         id="feBlend8615-6-4-40-9-18-15-6" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-1-3">
+       id="filter8613-3-81-0-2-2-68-2">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-5-5" />
+         id="feBlend8615-6-4-40-9-79-98-2" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-0-8-0-7">
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-3">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-5-9-1-1" />
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-1" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-4-6-6-0">
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-8">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-8-0-4-0" />
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-49" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-9">
+       id="filter8613-3-81-0-2-1-8-8">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-7" />
+         id="feBlend8615-6-4-40-9-7-3-3" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-3-61-1">
+       id="filter8613-3-81-0-2-0-7-7">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-3-4-7" />
+         id="feBlend8615-6-4-40-9-9-67-9" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-0-8-0-2">
+       id="filter8613-3-81-0-2-8-35-4">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-5-9-1-5" />
+         id="feBlend8615-6-4-40-9-2-0-8-5" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-4-6-6-4">
+       id="filter8613-3-81-0-2-5-03-57">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-8-0-4-5" />
+         id="feBlend8615-6-4-40-9-1-0-7" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-30">
+       id="filter8613-3-81-0-2-11-4-2">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-1" />
+         id="feBlend8615-6-4-40-9-5-99-6" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-3-61-9">
+       id="filter8613-3-81-0-2-7-47-38">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-3-4-4" />
+         id="feBlend8615-6-4-40-9-6-21-49" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-0-8-0-6">
+       id="filter8613-3-81-0-2-4-0-6">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-5-9-1-4" />
+         id="feBlend8615-6-4-40-9-23-5-6-7" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-4-6-6-08">
+       id="filter8613-3-81-0-2-16-5-7">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-8-0-4-2" />
+         id="feBlend8615-6-4-40-9-8-84-05" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-8-4-4-0">
+       id="filter8613-3-81-0-2-76-355-0">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-0-2-8-6" />
+         id="feBlend8615-6-4-40-9-18-15-60" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"
        inkscape:collect="always"
-       id="filter8613-3-81-0-2-3-61-0">
+       id="filter8613-3-81-0-2-2-68-0">
       <feBlend
          inkscape:collect="always"
          mode="lighten"
          in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-3-4-72" />
+         id="feBlend8615-6-4-40-9-79-98-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-8-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-49-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-8-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-7-3-30" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0-7-70">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-67-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8-35-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-2-0-8-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-5-03-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-1-0-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-11-4-29">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5-99-03" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-47-30">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-6-21-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4-0-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-23-5-6-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-16-5-73">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8-84-00" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-76-355-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-18-15-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-2-68-06">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-79-98-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-45" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-8-92">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-7-3-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0-7-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-67-95" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8-35-51">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-2-0-8-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-5-03-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-1-0-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-11-4-27">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5-99-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-47-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-6-21-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4-0-71">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-23-5-6-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-16-5-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8-84-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-76-355-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-18-15-67" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-2-68-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-79-98-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-8-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-7-3-65" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0-7-74">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-67-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8-35-13">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-2-0-8-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-5-03-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-1-0-89" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-11-4-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5-99-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-47-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-6-21-64" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4-0-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-23-5-6-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-16-5-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8-84-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-76-355-24">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-18-15-11" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-2-68-58">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-79-98-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-48">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-30">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-8-54">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-7-3-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0-7-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-67-92" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8-35-10">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-2-0-8-48" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-5-03-05">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-1-0-34" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-11-4-07">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5-99-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-47-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-6-21-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4-0-9">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-23-5-6-10" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-16-5-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8-84-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-76-355-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-18-15-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-2-68-28">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-79-98-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-03">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-41" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-53">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-32" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-29">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-08" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-56">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-39-7-6-3-1-1-3-7">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-7-4-43" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-8-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-7-3-35" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0-7-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-67-1" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8-35-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-2-0-8-74" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-5-03-59">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-1-0-32" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-11-4-20">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5-99-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-47-14">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-6-21-8" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4-0-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-23-5-6-93" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-16-5-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8-84-4" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-76-355-01">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-18-15-9" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-2-68-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-79-98-63" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-2-68-28-8">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-79-98-0-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-76-355-7-5">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-18-15-2-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-16-5-2-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-8-84-5-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-4-0-9-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-23-5-6-10-5" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-7-47-8-1">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-6-21-5-7" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-11-4-07-6">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-5-99-9-0" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-5-03-05-0">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-1-0-34-2" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-8-35-10-4">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-2-0-8-48-3" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-0-7-5-3">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-9-67-92-6" />
+    </filter>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter8613-3-81-0-2-1-8-54-2">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend8615-6-4-40-9-7-3-1-8" />
     </filter>
   </defs>
   <g
@@ -526,95 +1247,963 @@
      inkscape:label="boxes"
      style="display:inline">
     <image
-       y="45.081642"
-       x="36.971546"
+       style="display:inline"
+       y="104.29476"
+       x="118.73463"
        id="MyBird"
        xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Bird.png"
        height="48"
        width="48" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7"
+       x="1824.8108"
+       y="297.03012"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07"
+       x="369.68384"
+       y="306.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7"
+       x="402.07446"
+       y="324.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4"
+       x="434.46313"
+       y="336.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3"
+       x="466.85181"
+       y="348.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1"
+       x="499.24048"
+       y="356.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3"
+       x="531.62915"
+       y="362.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6"
+       x="564.01782"
+       y="364.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3"
+       x="596.40649"
+       y="360.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0"
+       x="628.79517"
+       y="348.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1"
+       x="661.18579"
+       y="322.13022"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 7.0190641,18.180244 C 7.0190641,18.180244 7.508484,19.634307 8.4271733,22.248493 9.3458627,24.862679 10.693821,28.636988 12.410899,33.27748 14.127977,37.917973 16.214173,43.424648 18.609339,49.503567 21.004504,55.582485 23.708637,62.233647 26.661589,69.163112 29.61454,76.092577 32.81631,83.300345 36.206747,90.492476 39.597184,97.684608 43.176289,104.8611 46.883911,111.72802 50.591532,118.59494 54.427671,125.15228 58.332176,131.10611 62.236681,137.05993 66.209553,142.41024 70.190641,146.86309 77.436585,154.96769 84.94945,163.18961 92.719038,171.37914 100.48863,179.56867 108.51494,187.72581 116.78778,195.70083 125.06062,203.67586 133.57998,211.46878 142.33568,218.92987 151.09137,226.39096 160.0834,233.52022 169.30156,240.16793 178.51972,246.81565 187.96402,252.98181 197.62425,258.51672 207.28448,264.05162 217.16065,268.95527 227.24256,273.07793 237.32446,277.20059 247.61211,280.54227 258.09531,282.95325"
-       id="path3990" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 258.09531,282.95325 C 268.5785,285.36423 279.25724,286.84451 290.12132,287.24437 301.41082,287.65989 312.19619,286.02626 322.6034,282.8411 333.01061,279.65594 343.03965,274.91925 352.8165,269.12864 362.59334,263.33804 372.11799,256.49352 381.51639,249.09272 390.91479,241.69192 400.18695,233.73482 409.45884,225.71906 418.73072,217.7033 428.00232,209.62887 437.3996,201.99339 446.79688,194.35791 456.31985,187.16138 466.09446,180.90143 475.86906,174.64147 485.89531,169.31809 496.29916,165.4289 506.70302,161.53971 517.48447,159.08471 528.76949,158.56153 541.46698,157.97286 553.7898,159.46892 565.83163,162.52858 577.87345,165.58825 589.63429,170.21151 601.20779,175.87725 612.7813,181.54299 624.16748,188.25121 635.46,195.48078 646.75252,202.71035 657.95139,210.46128 669.15026,218.21244 680.34914,225.9636 691.54802,233.715 702.84059,240.9455 714.13315,248.176 725.51939,254.88561 737.09299,260.5532 748.66658,266.2208 760.42752,270.84638 772.46947,273.90883 784.51143,276.97127 796.8344,278.47057 809.53206,277.88562 821.03489,277.35571 832.02699,274.99354 842.63594,271.25515 853.24489,267.51676 863.47069,262.40214 873.44092,256.36733 883.41114,250.33252 893.1258,243.37752 902.71245,235.95836 912.29911,228.5392 921.75777,220.65588 931.21601,212.76444 940.67425,204.87299 950.13207,196.97342 959.71705,189.52175 969.30202,182.07009 979.01415,175.06633 988.98102,168.9665 998.94788,162.86668 1009.1695,157.6708 1019.7734,153.83488 1030.3773,149.99897 1041.3635,147.52303 1052.8596,146.86309 1067.3181,146.03309 1081.3973,147.47032 1095.1924,150.61479 1108.9874,153.75927 1122.4982,158.611 1135.82,164.61001 1149.1418,170.60902 1162.2745,177.75532 1175.3132,185.48894 1188.3519,193.22255 1201.2967,201.54349 1214.2426,209.89177 1227.1886,218.24005 1240.1357,226.61568 1253.179,234.45869 1266.2224,242.3017 1279.362,249.61209 1292.693,255.8299 1306.024,262.0477 1319.5464,267.17292 1333.3553,270.64558 1347.1642,274.11824 1361.2596,275.93835 1375.7366,275.54593 1388.7298,275.19373 1401.2735,272.89711 1413.4801,269.14582 1425.6868,265.39454 1437.5563,260.18859 1449.2013,254.01775 1460.8462,247.84691 1472.2665,240.71117 1483.5747,233.1003 1494.8828,225.48944 1506.0788,217.40344 1517.275,209.33208 1528.4712,201.26072 1539.6677,193.204 1550.9769,185.65168 1562.2861,178.09937 1573.708,171.05145 1585.3551,164.99771 1597.0021,158.94396 1608.8743,153.88439 1621.0841,150.30875 1633.294,146.73311 1645.8414,144.6414 1658.8388,144.5234"
-       id="path8188" />
-    <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2)"
-       y="143.52229"
-       x="597.78589"
-       id="image3507-4-88-6-7"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
-       height="32"
-       width="32" />
-    <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-8)"
-       y="169.99284"
-       x="647.41809"
-       id="image3507-4-88-6-7-2"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
-       height="32"
-       width="32" />
-    <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-4)"
-       y="201.42662"
-       x="693.74164"
-       id="image3507-4-88-6-7-39"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
-       height="32"
-       width="32" />
-    <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-0)"
-       y="227.89717"
-       x="745.02826"
-       id="image3507-4-88-6-7-22"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
-       height="32"
-       width="32" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.00269449px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 1212.7856,5.2053584 C 1212.7856,5.2053584 1264.3202,47.444791 1294.1227,61.697311 1319.1079,73.646006 1346.1832,85.865626 1373.8957,85.097226 1403.349,84.280566 1432.2287,71.195416 1457.1537,55.567802 1481.6963,40.17999 1518.8819,-5.4590466 1518.8819,-5.4590466"
-       id="path6305"
+       style="fill:none;stroke:#000000;stroke-width:0.96715987px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="M -140.72003,-65.697418 C -140.72003,-65.697418 -133.70344,-58.273726 -120.85666,-45.305604 -108.00989,-32.337483 -89.332928,-13.824931 -66.012202,8.3527864 -42.691475,30.530504 -14.726979,56.373389 16.694874,84.002178 48.116728,111.63097 82.995939,141.04566 120.14609,170.36699 157.29625,199.68833 196.71735,228.9163 237.22299,256.17166 277.72862,283.42701 319.31879,308.70975 360.80708,330.14059 402.29537,351.57144 443.68178,369.15041 483.7799,380.99823 523.87802,392.84605 562.68784,398.96272 599.02297,397.46898 613.78122,396.86227 627.32022,393.0929 639.9601,386.96095 652.59997,380.829 664.34073,372.33446 675.50249,362.27742 686.66424,352.22038 697.24701,340.60082 707.5709,328.21883 717.89479,315.83684 727.95981,302.69242 738.0861,289.58563 748.21238,276.47884 758.39992,263.40969 768.96884,251.17825 779.53776,238.94682 790.48807,227.55309 802.13989,217.79714 813.79171,208.0412 826.14504,199.92304 839.52001,194.24274 852.89499,188.56244 867.2916,185.31999 883.02997,185.31548 901.4591,185.3102 918.60109,188.48438 934.74829,194.06035 950.89549,199.63631 966.04791,207.61405 980.49791,217.21588 994.9479,226.81771 1008.6955,238.04363 1022.033,250.11594 1035.3705,262.18825 1048.2979,275.10696 1061.1076,288.09438 1073.9173,301.08179 1086.6093,314.13791 1099.476,326.48505 1112.3427,338.83218 1125.384,350.47033 1138.8923,360.6218 1152.4006,370.77327 1166.3759,379.43807 1181.1105,385.83849 1195.8452,392.23892 1211.3393,396.37498 1227.885,397.46898 1241.7751,398.38739 1255.2629,396.93347 1268.4494,393.68306 1281.6359,390.43266 1294.521,385.38578 1307.2058,379.11829 1319.8906,372.85079 1332.375,365.36268 1344.76,357.2298 1357.145,349.09693 1369.4307,340.3193 1381.7179,331.47276 1394.0051,322.62623 1406.2939,313.71079 1418.6853,305.30232 1431.0766,296.89384 1443.5706,288.99232 1456.268,282.17362 1468.9655,275.35492 1481.8665,269.61903 1495.072,265.54182 1508.2775,261.46461 1521.7875,259.04608 1535.703,258.86208 1550.1896,258.67053 1564.3025,260.71937 1578.1349,264.44264 1591.9674,268.1659 1605.5193,273.56359 1618.8842,280.06971 1632.249,286.57584 1645.4267,294.1904 1658.5105,302.34743 1671.5944,310.50446 1684.5844,319.20395 1697.5739,327.87992 1710.5633,336.5559 1723.5523,345.20836 1736.634,353.27133 1749.7157,361.33429 1762.8901,368.80776 1776.2506,375.12577 1789.6112,381.44377 1803.1578,386.60629 1816.9837,390.04737 1830.8097,393.48845 1844.915,395.20808 1859.393,394.64028 1873.9131,394.07083 1887.9,391.11127 1901.4871,386.36967 1915.0742,381.62806 1928.2615,375.10442 1941.1824,367.40681 1954.1034,359.7092 1966.758,350.83761 1979.2798,341.40012 1991.8016,331.96263 2004.1905,321.95924 2016.58,311.99801 2028.9695,302.03678 2041.3596,292.11772 2053.8837,282.84889 2066.4079,273.58006 2079.0661,264.96147 2091.9918,257.60117 2104.9175,250.24088 2118.1108,244.13889 2131.705,239.90327 2145.2992,235.66764 2159.2944,233.29839 2173.824,233.40358 2188.2039,233.50768 2202.0216,236.15257 2215.4177,240.70101 2228.8138,245.24945 2241.7883,251.70144 2254.4817,259.41975 2267.1751,267.13806 2279.5875,276.12268 2291.8593,285.73639 2304.1311,295.3501 2316.2624,305.59289 2328.3938,315.82753 2340.5251,326.06217 2352.6564,336.28866 2364.9283,345.86976 2377.2002,355.45086 2389.6126,364.38658 2402.3062,372.03968 2414.9997,379.69278 2427.9744,386.06326 2441.3706,390.51389 2454.7669,394.96452 2468.5849,397.49529 2482.965,397.46898 2497.493,397.4424 2511.4449,394.84767 2524.9648,390.32313 2538.4846,385.79859 2551.5723,379.34425 2564.372,371.59843 2577.1716,363.85261 2589.6831,354.81531 2602.0505,345.12488 2614.4179,335.43444 2626.6412,325.09087 2638.8644,314.73249 2651.0875,304.37412 2663.3106,294.00094 2675.6774,284.25129 2688.0443,274.50164 2700.555,265.37553 2713.3536,257.51128 2726.1522,249.64703 2739.2386,243.04465 2752.7568,238.34247 2766.2751,233.64029 2780.2251,230.83832 2794.751,230.57488 2809.285,230.3113 2823.3236,232.60065 2836.9905,236.80183 2850.6574,241.003 2863.9527,247.11598 2877.0001,254.49964 2890.0476,261.88331 2902.8472,270.53765 2915.5228,279.82153 2928.1983,289.10542 2940.7498,299.01885 2953.3011,308.9207 2965.8524,318.82255 2978.4034,328.71281 2991.078,337.95035 3003.7526,347.18789 3016.5508,355.7727 3029.5963,363.06367 3042.6418,370.35464 3055.9347,376.35175 3069.5987,380.41388 3083.2627,384.47601 3097.2979,386.60316 3111.828,386.15418 3125.693,385.72576 3138.9529,382.84596 3151.759,378.12816 3164.5652,373.41036 3176.9175,366.85457 3188.9673,359.07417 3201.0172,351.29377 3212.7645,342.28876 3224.3605,332.67253 3235.9566,323.05629 3247.4015,312.82883 3258.8464,302.60352 3270.2913,292.37822 3281.7362,282.15507 3293.3325,272.54747 3304.9288,262.93987 3316.6765,253.94781 3328.7267,246.18468 3340.777,238.42154 3353.1299,231.88734 3365.9367,227.19544 3378.7434,222.50355 3392.0041,219.65397 3405.87,219.26008 3421.0398,218.82915 3435.6812,221.07172 3449.9264,225.32587 3464.1717,229.58001 3478.0208,235.84573 3491.6059,243.4611 3505.191,251.07647 3518.5121,260.0415 3531.7013,269.69426 3544.8906,279.34702 3557.948,289.68751 3571.0058,300.05381 3584.0635,310.42012 3597.1216,320.81223 3610.3121,330.56824 3623.5027,340.32424 3636.8258,349.44414 3650.4135,357.26601 3664.0012,365.08787 3677.8536,371.61171 3692.1028,376.1756 3706.352,380.73948 3720.998,383.34342 3736.173,383.32548 3750.7554,383.30824 3764.8238,380.79717 3778.5067,376.41886 3792.1897,372.04055 3805.4871,365.79501 3818.5276,358.30884 3831.5681,350.82268 3844.3515,342.09589 3857.0065,332.75508 3869.6614,323.41427 3882.1878,313.45944 3894.7141,303.51721 3907.2405,293.57497 3919.7668,283.64532 3932.4215,274.35487 3945.0762,265.06442 3957.8593,256.41316 3970.8993,249.02771 3983.9394,241.64225 3997.2363,235.5226 4010.9186,231.29536 4024.6008,227.06812 4038.6685,224.73329 4053.25,224.91748 4067.6291,225.09911 4081.4464,227.77158 4094.8424,232.31276 4108.2383,236.85393 4121.2129,243.26381 4133.9066,250.92024 4146.6002,258.57668 4159.013,267.47968 4171.2853,277.00711 4183.5575,286.53453 4195.6893,296.68638 4207.8211,306.84051 4219.9529,316.99464 4232.0847,327.15106 4244.3568,336.68762 4256.629,346.22419 4269.0416,355.1409 4281.7351,362.81561 4294.4286,370.49033 4307.4029,376.92305 4320.7986,381.49164 4334.1943,386.06023 4348.0112,388.76469 4362.39,388.98288 4376.3319,389.19444 4389.7936,387.05717 4402.8951,383.14915 4415.9966,379.24113 4428.7379,373.56236 4441.239,366.69092 4453.7401,359.81948 4466.0011,351.75537 4478.1418,343.07666 4490.2826,334.39795 4502.3031,325.10465 4514.3235,315.77483 4526.3439,306.44501 4538.3641,297.07867 4550.5041,288.25389 4562.6441,279.42911 4574.9039,271.14589 4587.4035,263.98231 4599.9031,256.81873 4612.6426,250.77478 4625.7418,246.42855 4638.8411,242.08232 4652.3001,239.4338 4666.239,239.06108 4680.7117,238.67408 4694.7938,240.8062 4708.5829,244.80163 4722.3719,248.79707 4735.868,254.65581 4749.1689,261.72205 4762.4697,268.78828 4775.5753,277.06202 4788.5834,285.88743 4801.5915,294.71284 4814.5021,304.08994 4827.4129,313.3629 4840.3237,322.63587 4853.2346,331.8047 4866.2436,340.21358 4879.2525,348.62246 4892.3594,356.2714 4905.6619,362.50457 4918.9645,368.73775 4932.4627,373.55516 4946.2543,376.301 4960.0459,379.04684 4974.1309,379.72111 4988.607,377.66798 5005.6398,375.25225 5021.2641,369.60593 5035.8329,361.54176 5050.4017,353.4776 5063.9148,342.99558 5076.7252,330.90846 5089.5355,318.82135 5101.643,305.12913 5113.4004,290.64455 5125.1578,276.15998 5136.5651,260.88305 5147.9751,245.62651 5159.3852,230.36997 5170.7979,215.13382 5182.5661,200.73081 5194.3343,186.32779 5206.4579,172.75791 5219.2898,160.83392 5232.1217,148.90992 5245.6618,138.6318 5260.2629,130.81232 5274.864,122.99283 5290.5261,117.63197 5307.602,115.54248 5336.8039,111.9692 5365.1339,114.1025 5392.7953,120.5627 5420.4567,127.0229 5447.4495,137.81001 5473.977,151.54432 5500.5044,165.27863 5526.5665,181.96015 5552.3665,200.20919 5578.1665,218.45823 5603.7044,238.2748 5629.1834,258.27919 5654.6624,278.28358 5680.0826,298.47581 5705.6472,317.47617 5731.2118,336.47654 5756.9207,354.28505 5782.9774,369.52201 5809.034,384.75897 5835.4383,397.42438 5862.3935,406.13855 5889.3487,414.85273 5916.8548,419.61567 5945.115,419.04768 6002.0416,417.90354 6056.4267,397.09599 6108.5263,361.55951 6160.6259,326.02303 6210.44,275.75762 6258.2248,215.69777 6306.0095,155.63791 6351.7649,85.783615 6395.747,11.069359 6439.7291,-63.644897 6481.938,-143.21911 6522.6296,-222.7188 6563.3213,-302.21849 6602.4958,-381.64365 6640.4092,-456.0598 6678.3225,-530.47595 6714.9749,-599.88309 6750.6222,-659.34673 6786.2695,-718.81037 6820.9118,-768.33051 6854.8053,-802.97268 6888.6987,-837.61484 6921.8432,-857.37902 6954.495,-857.33073 6973.55,-857.30255 6990.6461,-854.65086 7006.1947,-850.03172 7021.7432,-845.41258 7035.7443,-838.82599 7048.6092,-830.92803 7061.4741,-823.03006 7073.2028,-813.82072 7084.2068,-803.95606 7095.2108,-794.0914 7105.49,-783.57142 7115.4559,-773.0522 7125.4217,-762.53298 7135.0742,-752.01451 7144.8246,-742.15287 7154.5751,-732.29122 7164.4236,-723.08639 7174.7814,-715.19444 7185.1392,-707.3025 7196.0064,-700.72344 7207.7944,-696.11333 7219.5824,-691.50322 7232.2911,-688.86207 7246.332,-688.84593 7260.2959,-688.82988 7273.5653,-691.36422 7286.3139,-695.81928 7299.0624,-700.27433 7311.29,-706.6501 7323.1701,-714.3169 7335.0502,-721.9837 7346.5829,-730.94154 7357.9415,-740.56072 7369.3001,-750.17991 7380.4848,-760.46045 7391.6689,-770.77266 7402.853,-781.08487 7414.0365,-791.42876 7425.393,-801.17464 7436.7495,-810.92051 7448.2789,-820.06839 7460.1547,-827.98857 7472.0305,-835.90876 7484.2527,-842.60126 7496.9948,-847.4364 7509.7368,-852.27153 7522.9987,-855.2493 7536.954,-855.74003 7552.3585,-856.28172 7567.1877,-854.14016 7581.5855,-849.98126 7595.9833,-845.82237 7609.9497,-839.64614 7623.6287,-832.11849 7637.3077,-824.59084 7650.6993,-815.71176 7663.9474,-806.14717 7677.1955,-796.58257 7690.3001,-786.33246 7703.4052,-776.06275 7716.5104,-765.79304 7729.616,-755.50372 7742.866,-745.86071 7756.1161,-736.2177 7769.5106,-727.22099 7783.1934,-719.5365 7796.8763,-711.85201 7810.8476,-705.47974 7825.2512,-701.08559 7839.6548,-696.69144 7854.4907,-694.27542 7869.903,-694.50343 7884.179,-694.71463 7897.849,-697.33911 7911.0644,-701.77138 7924.2799,-706.20365 7937.0409,-712.44371 7949.4989,-719.88607 7961.9569,-727.32842 7974.1119,-735.97308 7986.1155,-745.21455 7998.1191,-754.45602 8009.9712,-764.2943 8021.8235,-774.1239 8033.6757,-783.9535 8045.528,-793.77443 8057.532,-802.98119 8069.536,-812.18795 8081.6915,-820.78054 8094.1503,-828.15348 8106.609,-835.52641 8119.3709,-841.6797 8132.5875,-846.00783 8145.8041,-850.33597 8159.4754,-852.83897 8173.7529,-852.91133 8188.5744,-852.98645 8202.7924,-850.55307 8216.5578,-846.23345 8230.3231,-841.91383 8243.6358,-835.70796 8256.6467,-828.23809 8269.6576,-820.76823 8282.3667,-812.03437 8294.9248,-802.65875 8307.4829,-793.28314 8319.8901,-783.26578 8332.2971,-773.22893 8344.7041,-763.19207 8357.1111,-753.13571 8369.6687,-743.6821 8382.2264,-734.2285 8394.9347,-725.37764 8407.9447,-717.75178 8420.9546,-710.12593 8434.2661,-703.72507 8448.0301,-699.17146 8461.794,-694.61785 8476.0104,-691.91149 8490.83,-691.67463 8505.5417,-691.43949 8519.732,-693.60188 8533.5312,-697.56657 8547.3304,-701.53125 8560.7385,-707.29824 8573.8859,-714.27227 8587.0333,-721.24631 8599.92,-729.42741 8612.6765,-738.22033 8625.4329,-747.01325 8638.0591,-756.418 8650.6854,-765.83933 8663.3117,-775.26066 8675.9381,-784.69858 8688.695,-793.55785 8701.4519,-802.41712 8714.3393,-810.69774 8727.4877,-817.80448 8740.636,-824.91122 8754.0453,-830.84408 8767.8459,-835.00781 8781.6465,-839.17155 8795.8384,-841.56617 8810.552,-841.59643 8825.1159,-841.62638 8839.187,-839.57848 8852.8866,-835.94322 8866.5863,-832.30796 8879.9146,-827.08535 8892.993,-820.76588 8906.0713,-814.44641 8918.8996,-807.03009 8931.5994,-799.00741 8944.2991,-790.98473 8956.8703,-782.3557 8969.4344,-773.61082 8981.9984,-764.86594 8994.5553,-756.0052 9007.2264,-747.51912 9019.8975,-739.03303 9032.6829,-730.9216 9045.7039,-723.67531 9058.7249,-716.42903 9071.9815,-710.0479 9085.5952,-705.02241 9099.209,-699.99693 9113.1798,-696.3271 9127.629,-694.50343 9145.457,-692.25331 9163.2178,-692.00856 9180.9292,-693.27613 9198.6405,-694.54369 9216.3024,-697.32358 9233.9325,-701.12276 9251.5626,-704.92194 9269.161,-709.74041 9286.7454,-715.08513 9304.3298,-720.42985 9321.9001,-726.30082 9339.4741,-732.20501 9357.0482,-738.1092 9374.6259,-744.04661 9392.225,-749.5242 9409.8242,-755.0018 9427.4447,-760.01957 9445.1044,-764.08449 9462.7641,-768.14942 9480.4629,-771.26149 9498.2186,-772.92767 9515.9743,-774.59386 9533.7869,-774.81416 9551.674,-773.09553 9562.5149,-772.05392 9573.0852,-769.74 9583.4533,-766.49279 9593.8214,-763.24559 9603.9873,-759.06511 9614.0194,-754.29038 9624.0514,-749.51566 9633.9496,-744.14669 9643.7823,-738.52251 9653.6151,-732.89834 9663.3823,-727.01896 9673.1524,-721.2234 9682.9225,-715.42785 9692.6954,-709.71612 9702.5396,-704.42726 9712.3838,-699.1384 9722.2992,-694.27241 9732.3542,-690.16831 9742.4092,-686.06421 9752.6038,-682.72202 9763.0063,-680.48076 9773.4088,-678.2395 9784.0193,-677.09918 9794.906,-677.39883 9808.4696,-677.77216 9821.0068,-678.82553 9832.7521,-680.38029 9844.4973,-681.93505 9855.4507,-683.9912 9865.8465,-686.37009 9876.2423,-688.74898 9886.0807,-691.45061 9895.5961,-694.29633 9905.1115,-697.14204 9914.3039,-700.13185 9923.4077,-703.08709 9932.5116,-706.04233 9941.527,-708.96301 9950.6883,-711.67048 9959.8496,-714.37795 9969.1569,-716.8722 9978.8446,-718.97459 9988.5323,-721.07698 9998.6005,-722.7875 10009.284,-723.92751 10019.967,-725.06751 10031.265,-725.63701 10043.412,-725.45733 10057.412,-725.25025 10069.776,-723.67548 10080.863,-721.06163 10091.949,-718.44777 10101.759,-714.79483 10110.652,-710.43141 10119.546,-706.06798 10127.522,-700.99407 10134.941,-695.53827 10142.361,-690.08247 10149.223,-684.24478 10155.888,-678.35381 10162.554,-672.46284 10169.022,-666.51858 10175.654,-660.84963 10182.285,-655.18068 10189.079,-649.78705 10196.397,-644.99732 10203.714,-640.2076 10211.554,-636.02179 10220.276,-632.76849 10228.999,-629.51519 10238.605,-627.1944 10249.453,-626.13473 10261.304,-624.97708 10271.913,-625.16337 10281.627,-626.37727 10291.341,-627.59117 10300.161,-629.83269 10308.435,-632.7855 10316.709,-635.73831 10324.436,-639.40242 10331.966,-643.4615 10339.495,-647.52058 10346.827,-651.97463 10354.309,-656.50734 10361.791,-661.04005 10369.423,-665.65142 10377.554,-670.02511 10385.685,-674.39881 10394.314,-678.53484 10403.79,-682.11688 10413.266,-685.69892 10423.588,-688.72698 10435.106,-690.88473 10446.624,-693.04248 10459.336,-694.32992 10473.592,-694.43073 10503.698,-694.64363 10529.595,-684.52813 10552.399,-666.65779 10575.203,-648.78745 10594.914,-623.16228 10612.647,-592.35582 10630.379,-561.54936 10646.134,-525.56163 10661.026,-486.96617 10675.917,-448.37072 10689.946,-407.16755 10704.228,-365.93023 10718.51,-324.6929 10733.044,-283.42142 10748.946,-244.68934 10764.848,-205.95726 10782.118,-169.76459 10801.871,-138.68488 10821.625,-107.60518 10843.861,-81.638435 10869.696,-63.35822 10895.531,-45.078006 10924.964,-34.484318 10959.111,-34.150718 10990.779,-33.841335 11018.473,-43.038061 11043.102,-59.369184 11067.73,-75.700307 11089.293,-99.165828 11108.699,-127.39403 11128.104,-155.62224 11145.353,-188.61313 11161.352,-223.995 11177.352,-259.37687 11192.103,-297.14972 11206.514,-334.94183 11220.925,-372.73393 11234.996,-410.54531 11249.635,-446.00424 11264.274,-481.46316 11279.481,-514.56964 11296.165,-542.95197 11312.85,-571.33429 11331.01,-594.99246 11351.557,-611.55475 11372.103,-628.11705 11395.035,-637.58348 11421.26,-637.58233 11435.628,-637.5817 11450.781,-635.04374 11466.599,-630.61611 11482.418,-626.18849 11498.901,-619.87119 11515.927,-612.3119 11532.953,-604.7526 11550.523,-595.9513 11568.514,-586.55566 11586.506,-577.16002 11604.919,-567.17004 11623.633,-557.23338 11642.346,-547.29672 11661.361,-537.41338 11680.554,-528.23104 11699.747,-519.04869 11719.12,-510.56732 11738.55,-503.43461 11757.98,-496.3019 11777.468,-490.51783 11796.892,-486.73008 11816.316,-482.94233 11835.676,-481.15089 11854.851,-482.00343 11869.151,-482.63922 11882.959,-485.39699 11896.397,-489.73295 11909.836,-494.06891 11922.905,-499.98308 11935.728,-506.93166 11948.552,-513.88024 11961.13,-521.86324 11973.585,-530.33689 11986.04,-538.81053 11998.372,-547.77482 12010.706,-556.68598 12023.039,-565.59714 12035.373,-574.45517 12047.831,-582.71628 12060.29,-590.9774 12072.872,-598.64161 12085.702,-605.16513 12098.531,-611.68865 12111.609,-617.07149 12125.057,-620.76987 12138.505,-624.46824 12152.323,-626.48215 12166.636,-626.26783 12181.403,-626.0467 12195.586,-623.39983 12209.332,-618.93784 12223.078,-614.47584 12236.386,-608.19873 12249.403,-600.71713 12262.42,-593.23552 12275.145,-584.54943 12287.724,-575.26949 12300.303,-565.98954 12312.737,-556.11574 12325.17,-546.2587 12337.604,-536.40167 12350.037,-526.56142 12362.617,-517.34856 12375.197,-508.13571 12387.922,-499.55026 12400.94,-492.20285 12413.957,-484.85543 12427.266,-478.74605 12441.014,-474.48534 12454.761,-470.22463 12468.945,-467.81258 12483.714,-467.85983 12498.036,-467.90565 12511.776,-470.35587 12525.08,-474.61055 12538.383,-478.86524 12551.251,-484.92439 12563.828,-492.18808 12576.405,-499.45176 12588.691,-507.91998 12600.832,-516.99281 12612.972,-526.06564 12624.967,-535.74306 12636.963,-545.42517 12648.958,-555.10727 12660.953,-564.79404 12673.094,-573.88555 12685.234,-582.97707 12697.52,-591.47332 12710.097,-598.77439 12722.673,-606.07545 12735.541,-612.18132 12748.844,-616.49208 12762.148,-620.80283 12775.888,-623.31845 12790.209,-623.43903 12805.024,-623.56376 12819.279,-621.20057 12833.114,-616.97273 12846.949,-612.74488 12860.364,-606.65237 12873.5,-599.31846 12886.635,-591.98455 12899.491,-583.40923 12912.206,-574.21577 12924.922,-565.02231 12937.498,-555.2107 12950.073,-545.40419 12962.649,-535.59769 12975.224,-525.7963 12987.939,-516.62327 13000.655,-507.45025 13013.51,-498.90559 13026.645,-491.61255 13039.78,-484.31951 13053.194,-478.27809 13067.029,-474.11155 13080.863,-469.94501 13095.117,-467.65335 13109.931,-467.85983 13124.457,-468.0623 13138.366,-470.7303 13151.812,-475.2447 13165.258,-479.75909 13178.242,-486.11988 13190.916,-493.7079 13203.591,-501.29592 13215.957,-510.11117 13228.169,-519.5345 13240.381,-528.95784 13252.439,-538.98926 13264.497,-549.0096 13276.555,-559.02995 13288.613,-569.03922 13300.825,-578.41827 13313.037,-587.79732 13325.404,-596.54615 13338.079,-604.0456 13350.755,-611.54505 13363.739,-617.79512 13377.186,-622.17666 13390.633,-626.5582 13404.543,-629.07121 13419.071,-629.09653 13433.696,-629.12203 13447.71,-626.67344 13461.264,-622.36245 13474.818,-618.05146 13487.913,-611.87806 13500.701,-604.45391 13513.49,-597.02977 13525.972,-588.35489 13538.301,-579.04093 13550.63,-569.72697 13562.806,-559.77395 13574.981,-549.79352 13587.157,-539.81309 13599.332,-529.80525 13611.659,-520.38169 13623.987,-510.95812 13636.467,-502.11882 13649.253,-494.47545 13662.038,-486.83209 13675.13,-480.38466 13688.679,-475.74483 13702.229,-471.105 13716.237,-468.27278 13730.857,-467.85983 13745.567,-467.44433 13759.798,-469.32344 13773.669,-472.93792 13787.541,-476.5524 13801.054,-481.90225 13814.327,-488.42823 13827.6,-494.95421 13840.634,-502.65634 13853.548,-510.97536 13866.461,-519.29438 13879.255,-528.23031 13892.049,-537.22391 13904.843,-546.2175 13917.637,-555.26877 13930.55,-563.81847 13943.463,-572.36817 13956.495,-580.4163 13969.767,-587.40364 13983.039,-594.39098 13996.549,-600.31752 14010.419,-604.62403 14024.289,-608.93054 14038.517,-611.61702 14053.224,-612.12423 14067.035,-612.60055 14080.538,-611.32474 14093.808,-608.70827 14107.079,-606.0918 14120.117,-602.13468 14133,-597.24838 14145.882,-592.36208 14158.609,-586.5466 14171.256,-580.21343 14183.904,-573.88026 14196.472,-567.0294 14209.037,-560.07233 14221.602,-553.11525 14234.165,-546.05197 14246.801,-539.29395 14259.437,-532.53593 14272.146,-526.08318 14285.006,-520.34718 14297.865,-514.61118 14310.875,-509.59193 14324.11,-505.70091 14337.346,-501.80989 14350.809,-499.0471 14364.574,-497.82403 14377.1,-496.71107 14389.589,-496.95829 14402.048,-498.21021 14414.507,-499.46213 14426.935,-501.71874 14439.342,-504.62453 14451.748,-507.53033 14464.132,-511.08531 14476.501,-514.93398 14488.869,-518.78264 14501.222,-522.92499 14513.567,-527.00552 14525.913,-531.08606 14538.25,-535.10477 14550.587,-538.70616 14562.923,-542.30755 14575.259,-545.49162 14587.602,-547.90287 14599.944,-550.31411 14612.294,-551.95254 14624.657,-552.46263 14637.02,-552.97273 14649.397,-552.35449 14661.796,-550.25243 14671.681,-548.57651 14681.125,-545.56557 14690.239,-541.56918 14699.354,-537.57278 14708.139,-532.59093 14716.708,-526.97318 14725.276,-521.35543 14733.628,-515.10177 14741.875,-508.56178 14750.121,-502.02179 14758.264,-495.19546 14766.413,-488.43235 14774.563,-481.66923 14782.719,-474.96934 14790.996,-468.68222 14799.273,-462.3951 14807.669,-456.52076 14816.297,-451.40875 14824.925,-446.29675 14833.785,-441.94708 14842.988,-438.70931 14852.192,-435.47153 14861.74,-433.34565 14871.744,-432.68123 14884.572,-431.82922 14896.308,-432.16694 14907.227,-433.40283 14918.146,-434.63872 14928.249,-436.77279 14937.81,-439.51347 14947.372,-442.25415 14956.393,-445.60144 14965.149,-449.2638 14973.906,-452.92616 14982.397,-456.90359 14990.9,-460.90452 14999.403,-464.90545 15007.917,-468.92989 15016.718,-472.68628 15025.519,-476.44267 15034.608,-479.93101 15044.259,-482.85975 15053.911,-485.78849 15064.125,-488.15763 15075.179,-489.67561 15086.233,-491.19359 15098.126,-491.86042 15111.134,-491.38453 15127.073,-490.8014 15142.552,-487.38789 15157.809,-481.86079 15173.065,-476.33369 15188.098,-468.69301 15203.146,-459.65551 15218.193,-450.61801 15233.256,-440.18371 15248.571,-429.06938 15263.885,-417.95505 15279.452,-406.16069 15295.509,-394.40309 15311.566,-382.64549 15328.113,-370.92464 15345.387,-359.95734 15362.662,-348.99003 15380.663,-338.77626 15399.63,-330.03282 15418.597,-321.28937 15438.529,-314.01624 15459.663,-308.93021 15480.797,-303.84419 15503.135,-300.94527 15526.912,-300.95023 15539.393,-300.95283 15550.514,-303.30065 15560.693,-307.42313 15570.872,-311.54561 15580.108,-317.44277 15588.821,-324.54406 15597.534,-331.64535 15605.724,-339.95077 15613.808,-348.8898 15621.892,-357.82883 15629.87,-367.40145 15638.162,-377.03714 15646.454,-386.67284 15655.059,-396.3716 15664.395,-405.56288 15673.732,-414.75417 15683.799,-423.43799 15695.017,-431.0438 15706.235,-438.64961 15718.603,-445.17742 15732.539,-450.05669 15746.475,-454.93595 15761.979,-458.16668 15779.47,-459.17833 15801.568,-460.45647 15822.516,-449.99719 15842.712,-430.71093 15862.907,-411.42467 15882.351,-383.31144 15901.44,-349.28166 15920.53,-315.25189 15939.265,-275.30558 15958.045,-232.35317 15976.825,-189.40077 15995.65,-143.44226 16014.917,-97.388107 16034.185,-51.33395 16053.895,-5.1841376 16074.447,38.150888 16094.998,81.485914 16116.391,122.00615 16139.024,156.80117 16161.657,191.59618 16185.529,220.66596 16211.04,241.10008 16236.55,261.5342 16263.699,273.33264 16292.884,273.58498 16319.604,273.816 16343.576,265.54252 16365.412,250.89818 16387.247,236.25384 16406.945,215.23863 16425.116,189.98621 16443.287,164.73379 16459.932,135.24415 16475.659,103.65093 16491.387,72.057718 16506.197,38.360928 16520.702,4.6942056 16535.206,-28.972516 16549.404,-62.60917 16563.905,-94.082113 16578.406,-125.55506 16593.211,-154.86429 16608.93,-179.87616 16624.649,-204.88804 16641.282,-225.60256 16659.439,-239.88609 16677.596,-254.16961 16697.277,-262.02214 16719.093,-261.31003 16731.784,-260.89576 16743.872,-258.35656 16755.507,-254.2176 16767.141,-250.07864 16778.323,-244.33994 16789.203,-237.52666 16800.083,-230.71338 16810.66,-222.82553 16821.086,-214.3883 16831.511,-205.95106 16841.785,-196.96444 16852.058,-187.95361 16862.331,-178.94279 16872.602,-169.90776 16883.023,-161.3737 16893.444,-152.83965 16904.014,-144.80657 16914.885,-137.79965 16925.755,-130.79273 16936.925,-124.81198 16948.546,-120.38256 16960.167,-115.95314 16972.238,-113.07507 16984.911,-112.27352 16999.017,-111.38131 17012.743,-112.71201 17026.183,-115.72248 17039.624,-118.73294 17052.781,-123.42317 17065.748,-129.25 17078.715,-135.07684 17091.492,-142.04028 17104.176,-149.59718 17116.86,-157.15408 17129.451,-165.30444 17142.043,-173.50509 17154.635,-181.70575 17167.228,-189.95671 17179.919,-197.71481 17192.61,-205.47292 17205.398,-212.73817 17218.379,-218.96742 17231.36,-225.19667 17244.534,-230.38991 17257.996,-234.004 17271.458,-237.61808 17285.208,-239.65301 17299.342,-239.56562 17313.668,-239.47705 17327.575,-237.31823 17341.17,-233.60999 17354.764,-229.90175 17368.045,-224.64409 17381.118,-218.35784 17394.19,-212.07159 17407.053,-204.75674 17419.812,-196.93413 17432.571,-189.11152 17445.226,-180.78115 17457.88,-172.46384 17470.535,-164.14653 17483.189,-155.84228 17495.948,-148.07193 17508.707,-140.30157 17521.571,-133.06511 17534.643,-126.88336 17547.715,-120.70161 17560.996,-115.57458 17574.591,-112.0231 17588.185,-108.47162 17602.093,-106.49568 17616.418,-106.61612 17630.486,-106.73439 17644.109,-108.94188 17657.398,-112.71478 17670.686,-116.48768 17683.641,-121.82598 17696.374,-128.20589 17709.106,-134.58579 17721.616,-142.0073 17734.014,-149.94659 17746.413,-157.88589 17758.7,-166.34297 17770.987,-174.79404 17783.274,-183.24511 17795.561,-191.69016 17807.96,-199.60539 17820.359,-207.52062 17832.868,-214.90602 17845.601,-221.23778 17858.334,-227.56955 17871.289,-232.84769 17884.578,-236.54838 17897.867,-240.24907 17911.49,-242.37232 17925.559,-242.39432 17939.729,-242.41648 17953.456,-240.33463 17966.853,-236.67156 17980.249,-233.00848 17993.314,-227.76418 18006.158,-221.46141 18019.002,-215.15864 18031.626,-207.79741 18044.138,-199.90049 18056.651,-192.00356 18069.053,-183.57095 18081.455,-175.12542 18093.858,-166.67989 18106.26,-158.22143 18118.772,-150.27283 18131.284,-142.32422 18143.907,-134.88547 18156.751,-128.47933 18169.594,-122.0732 18182.659,-116.69968 18196.054,-112.88156 18209.45,-109.06343 18223.177,-106.8007 18237.345,-106.61612 18251.478,-106.43201 18265.224,-108.29912 18278.68,-111.70549 18292.136,-115.11187 18305.301,-120.05751 18318.274,-126.03045 18331.246,-132.00339 18344.024,-139.00363 18356.706,-146.51921 18369.388,-154.03479 18381.974,-162.06571 18394.559,-170.10002 18407.144,-178.13432 18419.73,-186.17199 18432.412,-193.70109 18445.094,-201.23018 18457.873,-208.2507 18470.846,-214.25066 18483.818,-220.25063 18496.984,-225.23005 18510.44,-228.67696 18523.897,-232.12388 18537.643,-234.03828 18551.777,-233.90822 18565.899,-233.77826 18579.597,-231.60737 18592.977,-227.90731 18606.356,-224.20725 18619.418,-218.97803 18632.267,-212.73143 18645.117,-206.48482 18657.754,-199.22083 18670.285,-191.45123 18682.817,-183.68163 18695.242,-175.40643 18707.667,-167.13739 18720.093,-158.86835 18732.518,-150.60548 18745.049,-142.86055 18757.581,-135.11563 18770.218,-127.88865 18783.068,-121.69139 18795.918,-115.49413 18808.98,-110.32659 18822.36,-106.70056 18835.741,-103.07452 18849.439,-100.98998 18863.562,-100.95872 18878.137,-100.92646 18892.283,-103.01924 18906.108,-106.70688 18919.933,-110.39452 18933.436,-115.67702 18946.725,-122.02418 18960.014,-128.37135 18973.089,-135.78319 18986.057,-143.72951 18999.024,-151.67583 19011.885,-160.15663 19024.745,-168.64172 19037.606,-177.12681 19050.467,-185.6162 19063.434,-193.57969 19076.402,-201.54319 19089.477,-208.98079 19102.766,-215.3623 19116.055,-221.74382 19129.558,-227.06926 19143.383,-230.80842 19157.208,-234.54759 19171.354,-236.70048 19185.929,-236.73692 19199.757,-236.77149 19213.189,-234.83885 19226.323,-231.42646 19239.458,-228.01407 19252.295,-223.12193 19264.934,-217.23751 19277.573,-211.35309 19290.014,-204.4764 19302.356,-197.09489 19314.698,-189.71338 19326.94,-181.82706 19339.183,-173.9234 19351.425,-166.01973 19363.667,-158.09872 19376.008,-150.64784 19388.349,-143.19695 19400.79,-136.21619 19413.428,-130.19302 19426.066,-124.16985 19438.902,-119.10427 19452.035,-115.48374 19465.168,-111.86322 19478.598,-109.68776 19492.424,-109.44482 19506.53,-109.19696 19520.301,-110.89048 19533.82,-114.04103 19547.339,-117.19157 19560.606,-121.79914 19573.705,-127.37938 19586.804,-132.95962 19599.736,-139.51252 19612.584,-146.55374 19625.431,-153.59495 19638.195,-161.12448 19650.959,-168.65797 19663.723,-176.19145 19676.487,-183.72889 19689.335,-190.78593 19702.183,-197.84296 19715.115,-204.4196 19728.214,-210.03148 19741.314,-215.64336 19754.582,-220.29048 19768.102,-223.48849 19781.621,-226.6865 19795.393,-228.43539 19809.5,-228.25082 19823.633,-228.06591 19837.379,-225.92343 19850.835,-222.31752 19864.29,-218.71162 19877.456,-213.64228 19890.428,-207.60365 19903.4,-201.56502 19916.179,-194.5571 19928.86,-187.07403 19941.542,-179.59096 19954.128,-171.63273 19966.713,-163.69349 19979.298,-155.75425 19991.883,-147.83399 20004.566,-140.42686 20017.248,-133.01973 20030.027,-126.12572 20042.999,-120.23897 20055.972,-114.35222 20069.138,-109.47273 20082.594,-106.09465 20096.051,-102.71656 20109.797,-100.83987 20123.931,-100.95872 20137.804,-101.07538 20151.264,-103.19215 20164.414,-106.80767 20177.563,-110.42318 20190.403,-115.53744 20203.036,-121.64908 20215.668,-127.76071 20228.094,-134.86972 20240.417,-142.47474 20252.739,-150.07975 20264.958,-158.18078 20277.178,-166.27644 20289.397,-174.3721 20301.616,-182.4624 20313.939,-190.04598 20326.261,-197.62955 20338.687,-204.7064 20351.32,-210.77514 20363.953,-216.84389 20376.793,-221.90454 20389.943,-225.45573 20403.093,-229.00691 20416.553,-231.04863 20430.427,-231.07952 20444.753,-231.11141 20458.671,-229.25094 20472.283,-225.94657 20485.894,-222.6422 20499.199,-217.89394 20512.297,-212.15027 20525.396,-206.40659 20538.288,-199.6675 20551.074,-192.38147 20563.86,-185.09543 20576.54,-177.26246 20589.216,-169.33103 20601.891,-161.39959 20614.561,-153.36969 20627.326,-145.6898 20640.092,-138.00992 20652.952,-130.68004 20666.009,-124.14866 20679.066,-117.61727 20692.318,-111.88437 20705.867,-107.39844 20719.416,-102.91251 20733.261,-99.673543 20747.504,-98.130018 20759.49,-96.831026 20771.423,-96.7619 20783.316,-97.624132 20795.209,-98.486363 20807.062,-100.27995 20818.89,-102.7064 20830.718,-105.13284 20842.521,-108.19213 20854.313,-111.58577 20866.105,-114.9794 20877.885,-118.70739 20889.669,-122.47121 20901.452,-126.23503 20913.239,-130.03468 20925.043,-133.57167 20936.847,-137.10866 20948.668,-140.38298 20960.52,-143.09612 20972.372,-145.80927 20984.256,-147.96124 20996.185,-149.25352 21008.115,-150.54581 21020.09,-150.97841 21032.124,-150.25282 21047.175,-149.34538 21061.648,-147.02228 21075.73,-143.64702 21089.812,-140.27175 21103.503,-135.84432 21116.988,-130.7282 21130.473,-125.61207 21143.752,-119.80726 21157.012,-113.67724 21170.272,-107.54722 21183.512,-101.09199 21196.918,-94.675024 21210.325,-88.258063 21223.897,-81.879373 21237.822,-75.902434 21251.747,-69.925494 21266.023,-64.350306 21280.838,-59.540348 21295.653,-54.730391 21311.005,-50.685665 21327.082,-47.76965 21343.158,-44.853634 21359.959,-43.06633 21377.669,-42.771218 21389.533,-42.573527 21401.45,-43.411927 21413.395,-45.016844 21425.339,-46.621761 21437.312,-48.993195 21449.285,-51.861572 21461.259,-54.729949 21473.234,-58.095268 21485.185,-61.687955 21497.136,-65.280642 21509.062,-69.100696 21520.938,-72.878544 21532.814,-76.656392 21544.64,-80.392033 21556.389,-83.815893 21568.138,-87.239753 21579.81,-90.351831 21591.381,-92.882553 21602.951,-95.413276 21614.419,-97.362642 21625.758,-98.461078 21637.097,-99.559513 21648.308,-99.807018 21659.365,-98.934018 21673.528,-97.815786 21686.338,-94.289353 21698.264,-88.975376 21710.191,-83.661399 21721.233,-76.559878 21731.858,-68.29147 21742.483,-60.023063 21752.691,-50.587769 21762.95,-40.606246 21773.209,-30.624723 21783.519,-20.096971 21794.348,-9.6436472 21805.176,0.80967624 21816.522,11.188571 21828.855,20.87238 21841.187,30.556189 21854.505,39.544912 21869.277,47.217891 21884.048,54.89087 21900.273,61.248106 21918.419,65.668941 21936.566,70.089775 21956.632,72.574209 21979.088,72.501584 21992.92,72.45685 22005.79,69.875636 22017.98,65.399313 22030.17,60.922989 22041.679,54.551555 22052.788,46.926379 22063.896,39.301203 22074.605,30.422285 22085.194,20.930993 22095.783,11.439702 22106.252,1.3360373 22116.882,-8.7386324 22127.512,-18.813302 22138.303,-28.858977 22149.535,-38.234288 22160.767,-47.609598 22172.441,-56.314546 22184.836,-63.707761 22197.232,-71.100976 22210.349,-77.182459 22224.469,-81.310841 22238.589,-85.439224 22253.711,-87.614505 22270.116,-87.195318 22291.118,-86.658683 22310.163,-75.138824 22327.987,-55.387981 22345.81,-35.637137 22362.412,-7.6553102 22378.526,25.805261 22394.64,59.265833 22410.266,98.205148 22426.139,139.87097 22442.012,181.53679 22458.131,225.92911 22475.231,270.2957 22492.331,314.66229 22510.412,359.00314 22530.207,400.56602 22550.003,442.12889 22571.513,480.91379 22595.472,514.16848 22619.432,547.42316 22645.84,575.14763 22675.431,594.58965 22705.023,614.03166 22737.797,625.19122 22774.489,625.31608 22800.906,625.40598 22823.873,617.08333 22844.147,602.43931 22864.42,587.79528 22882.001,566.82989 22897.647,541.63431 22913.293,516.43873 22927.003,487.01297 22939.537,455.44819 22952.07,423.88341 22963.425,390.17962 22974.361,356.428 22985.297,322.67638 22995.814,288.87694 23006.668,257.12084 23017.522,225.36474 23028.714,195.65199 23041.002,170.07378 23053.29,144.49556 23066.674,123.05188 23081.911,107.8339 23097.148,92.615924 23114.238,83.623659 23133.94,82.948284 23148.246,82.457876 23161.568,84.203558 23174.125,87.639831 23186.682,91.076103 23198.472,96.202967 23209.714,102.47492 23220.956,108.74688 23231.649,116.16393 23242.01,124.18058 23252.372,132.19722 23262.402,140.81346 23272.317,149.4838 23282.233,158.15413 23292.034,166.87856 23301.939,175.1116 23311.843,183.34463 23321.851,191.08626 23332.178,197.79099 23342.506,204.49572 23353.154,210.16355 23364.339,214.24898 23375.525,218.33441 23387.247,220.83744 23399.725,221.21258 23414.185,221.64731 23428.176,219.75672 23441.815,216.11619 23455.454,212.47565 23468.742,207.08517 23481.796,200.52012 23494.849,193.95508 23507.668,186.21546 23520.371,177.87665 23533.073,169.53784 23545.659,160.59984 23558.244,151.63802 23570.83,142.6762 23583.416,133.69056 23596.12,125.25649 23608.824,116.82241 23621.646,108.93989 23634.703,102.1843 23647.759,95.428711 23661.051,89.800057 23674.695,85.873713 23688.339,81.947369 23702.336,79.723334 23716.802,79.776984 23731.317,79.830814 23745.343,82.170705 23759.004,86.218627 23772.664,90.26655 23785.958,96.022503 23799.008,102.90846 23812.058,109.79441 23824.864,117.81037 23837.548,126.37829 23850.231,134.94622 23862.793,144.06612 23875.354,153.15996 23887.915,162.2538 23900.476,171.32158 23913.158,179.78527 23925.841,188.24896 23938.645,196.10856 23951.693,202.78605 23964.74,209.46353 23978.032,214.95889 23991.689,218.69411 24005.346,222.42933 24019.369,224.40439 24033.879,224.04128 24048.25,223.68166 24062.021,220.97892 24075.341,216.51921 24088.662,212.0595 24101.532,205.84281 24114.102,198.45528 24126.673,191.06775 24138.943,182.50938 24151.063,173.3663 24163.184,164.22321 24175.154,154.49542 24187.124,144.76905 24199.094,135.04267 24211.065,125.31772 24223.185,116.18033 24235.306,107.04294 24247.576,98.4931 24260.147,91.116951 24272.717,83.740802 24285.588,77.538341 24298.909,73.095702 24312.23,68.653064 24326.001,65.970247 24340.373,65.633384 24354.783,65.295607 24368.703,67.351648 24382.255,71.201425 24395.807,75.051201 24408.991,80.694713 24421.93,87.531879 24434.868,94.369045 24447.561,102.39986 24460.131,111.02426 24472.702,119.64865 24485.149,128.86661 24497.597,138.07806 24510.044,147.28952 24522.491,156.49446 24535.061,165.09281 24547.631,173.69116 24560.323,181.68292 24573.26,188.46801 24586.197,195.25309 24599.379,200.83151 24612.929,204.60316 24626.479,208.37482 24640.396,210.33972 24654.804,209.89778 24669.282,209.45368 24683.119,206.55095 24696.476,201.81196 24709.832,197.07297 24722.708,190.49771 24735.263,182.70856 24747.818,174.9194 24760.052,165.91635 24772.127,156.32175 24784.202,146.72715 24796.116,136.54101 24808.031,126.3857 24819.946,116.23038 24831.862,106.10588 24843.938,96.634566 24856.014,87.16325 24868.252,78.345117 24880.81,70.802526 24893.368,63.259935 24906.248,56.992887 24919.609,52.623743 24932.971,48.254599 24946.814,45.783359 24961.299,45.832384 24976.59,45.884136 24991.184,48.660184 25005.255,53.479028 25019.326,58.297873 25032.874,65.159516 25046.074,73.382459 25059.273,81.605402 25072.124,91.189646 25084.801,101.45369 25097.478,111.71774 25109.98,122.66159 25122.483,133.60375 25134.985,144.54591 25147.488,155.48638 25160.164,165.74365 25172.841,176.00093 25185.692,185.57501 25198.892,193.78441 25212.091,201.99381 25225.64,208.83852 25239.711,213.63705 25253.782,218.43557 25268.376,221.18792 25283.667,221.21258 25298.305,221.23619 25312.284,218.64624 25325.769,214.09574 25339.254,209.54524 25352.244,203.0342 25364.906,195.21562 25377.567,187.39705 25389.899,178.27094 25402.066,168.49031 25414.233,158.70968 25426.235,148.27453 25438.237,137.83787 25450.239,127.40122 25462.242,116.96306 25474.409,107.1764 25486.576,97.389748 25498.908,88.254602 25511.569,80.423976 25524.23,72.593351 25537.221,66.067247 25550.706,61.498677 25564.191,56.930107 25578.17,54.319072 25592.808,54.318584 25607.696,54.318088 25621.914,56.942926 25635.63,61.540109 25649.346,66.137293 25662.559,72.706823 25675.438,80.595712 25688.316,88.4846 25700.859,97.692848 25713.235,107.56747 25725.611,117.44209 25737.82,127.98308 25750.028,138.53746 25762.236,149.09183 25774.445,159.6596 25786.82,169.58776 25799.196,179.51591 25811.739,188.80447 25824.616,196.80044 25837.494,204.79641 25850.706,211.49979 25864.421,216.25759 25878.136,221.01539 25892.352,223.82762 25907.239,224.04128 25921.658,224.24823 25935.506,222.13304 25948.927,218.25296 25962.348,214.37288 25975.34,208.72791 25988.046,201.87527 26000.753,195.02263 26013.172,186.96232 26025.446,178.25158 26037.721,169.54085 26049.85,160.17968 26061.976,150.72531 26074.102,141.27094 26086.225,131.72336 26098.485,122.63982 26110.746,113.55629 26123.144,104.93678 26135.822,97.338533 26148.501,89.740288 26161.458,83.163307 26174.837,78.164822 26188.216,73.166336 26202.016,69.746347 26216.379,68.462084 26230.811,67.171674 26245.043,67.557381 26259.125,69.243993 26273.207,70.930605 26287.14,73.918123 26300.972,77.831336 26314.805,81.744549 26328.537,86.583456 26342.218,91.972848 26355.899,97.36224 26369.529,103.30212 26383.158,109.41726 26396.787,115.53241 26410.414,121.82284 26424.09,127.91332 26437.766,134.00381 26451.49,139.89435 26465.311,145.20975 26479.132,150.52515 26493.051,155.2654 26507.118,159.05529 26521.184,162.84519 26535.397,165.68472 26549.807,167.19868 26562.71,168.55435 26575.642,168.90427 26588.592,168.51434 26601.542,168.1244 26614.511,166.99461 26627.49,165.39086 26640.47,163.78711 26653.459,161.7094 26666.449,159.42361 26679.439,157.13783 26692.429,154.64398 26705.412,152.20795 26718.395,149.77193 26731.369,147.39372 26744.326,145.33924 26757.283,143.28475 26770.223,141.55399 26783.137,140.41283 26796.051,139.27168 26808.938,138.72013 26821.79,139.02409 26834.642,139.32805 26847.459,140.48752 26860.231,142.76838 26870.27,144.56116 26879.955,147.47794 26889.382,151.21332 26898.81,154.9487 26907.979,159.50267 26916.987,164.56983 26925.995,169.63699 26934.841,175.21734 26943.623,181.00547 26952.404,186.79361 26961.12,192.78953 26969.868,198.68783 26978.615,204.58612 26987.394,210.3868 26996.3,215.78445 27005.206,221.18211 27014.24,226.17673 27023.497,230.46293 27032.755,234.74912 27042.236,238.32688 27052.038,240.89081 27061.84,243.45474 27071.962,245.00483 27082.5,245.23568 27091.085,245.42374 27099.349,244.79964 27107.376,243.56411 27115.403,242.32859 27123.192,240.48165 27130.826,238.22402 27138.459,235.9664 27145.938,233.29809 27153.344,230.41983 27160.749,227.54157 27168.082,224.45337 27175.425,221.35595 27182.768,218.25854 27190.12,215.15191 27197.565,212.23682 27205.01,209.32172 27212.547,206.59815 27220.259,204.26684 27227.972,201.93554 27235.858,199.9965 27244.003,198.65046 27252.147,197.30442 27260.548,196.55138 27269.29,196.59208 27278.272,196.6339 27287.493,198.98772 27296.966,203.07897 27306.439,207.17023 27316.163,212.99893 27326.154,219.99052 27336.145,226.98211 27346.401,235.13659 27356.937,243.87942 27367.473,252.62224 27378.289,261.9534 27389.398,271.29836 27400.507,280.64331 27411.91,290.00206 27423.619,298.80004 27435.329,307.59802 27447.346,315.83524 27459.683,322.93716 27472.021,330.03907 27484.68,336.00567 27497.673,340.2624 27510.666,344.51914 27523.994,347.06602 27537.671,347.32848 27553.763,347.6373 27568.22,344.8416 27581.485,339.71232 27594.751,334.58304 27606.826,327.12018 27618.154,318.09471 27629.483,309.06923 27640.066,298.48114 27650.348,287.10139 27660.63,275.72163 27670.611,263.55021 27680.736,251.35809 27690.861,239.16596 27701.129,226.95312 27711.987,215.49053 27722.845,204.02794 27734.292,193.3156 27746.772,184.12446 27759.252,174.93332 27772.767,167.26338 27787.76,161.8856 27802.753,156.50782 27819.224,153.42219 27837.62,153.39968 27865.637,153.36539 27891.367,167.24285 27915.615,191.54138 27939.863,215.83992 27962.63,250.55954 27984.72,292.20958 28006.81,333.85963 28028.224,382.4401 28049.766,434.46033 28071.309,486.48057 28092.98,541.94057 28115.586,597.34968 28138.192,652.75879 28161.732,708.11701 28187.012,759.93368 28212.291,811.75035 28239.31,860.02547 28268.874,901.26838 28298.438,942.51129 28330.547,976.722 28366.006,1000.4098 28401.465,1024.0977 28440.274,1037.2627 28483.239,1036.4141 28515.305,1035.7808 28543.697,1026.4235 28569.136,1010.5423 28594.575,994.66105 28617.06,972.25584 28637.313,945.52668 28657.565,918.79752 28675.584,887.7444 28692.089,854.56734 28708.595,821.39028 28723.587,786.08927 28737.785,750.86433 28751.984,715.63939 28765.389,680.49052 28778.721,647.61772 28792.053,614.74493 28805.311,584.14821 28819.216,558.02758 28833.121,531.90695 28847.673,510.26242 28863.591,495.29398 28879.509,480.32554 28896.793,472.03321 28916.164,472.61698 28930.474,473.04824 28944.327,475.53727 28957.838,479.56354 28971.349,483.5898 28984.518,489.1533 28997.458,495.73348 29010.398,502.31367 29023.11,509.91054 29035.708,518.00355 29048.307,526.09656 29060.791,534.68571 29073.276,543.25047 29085.76,551.81522 29098.245,560.35557 29110.845,568.35097 29123.445,576.34637 29136.159,583.79682 29149.103,590.18178 29162.046,596.56674 29175.219,601.88621 29188.735,605.61964 29202.25,609.35307 29216.109,611.50047 29230.426,611.54128 29244.742,611.58209 29258.612,609.47425 29272.147,605.75377 29285.683,602.03328 29298.884,596.70016 29311.861,590.2904 29324.839,583.88064 29337.594,576.39425 29350.237,568.36723 29362.881,560.34021 29375.412,551.77257 29387.944,543.20031 29400.476,534.62805 29413.008,526.05118 29425.651,518.0057 29438.294,509.96021 29451.049,502.44612 29464.027,495.99943 29477.005,489.55274 29490.206,484.17346 29503.741,480.39758 29517.277,476.6217 29531.147,474.44923 29545.463,474.41618 29559.51,474.38375 29573.13,476.42789 29586.428,480.03142 29599.727,483.63495 29612.704,488.79787 29625.468,495.00299 29638.231,501.20811 29650.781,508.45544 29663.223,516.22777 29675.666,524.00011 29688.001,532.29747 29700.336,540.60265 29712.672,548.90784 29725.007,557.22085 29737.45,565.02452 29749.892,572.82818 29762.441,580.12248 29775.205,586.39025 29787.968,592.65802 29800.945,597.89924 29814.244,601.59674 29827.542,605.29424 29841.162,607.44802 29855.209,607.54088 29869.501,607.63536 29883.385,605.65582 29896.964,602.11921 29910.542,598.5826 29923.814,593.48892 29936.883,587.35511 29949.951,581.2213 29962.816,574.04737 29975.578,566.35027 29988.341,558.65317 30001.001,550.43289 30013.662,542.20638 30026.322,533.97988 30038.983,525.74715 30051.746,518.02514 30064.508,510.30313 30077.373,503.09185 30090.442,496.90823 30103.51,490.72462 30116.783,485.56867 30130.361,481.95735 30143.94,478.34602 30157.824,476.27932 30172.117,476.27418 30185.998,476.26919 30199.484,478.25515 30212.674,481.73425 30225.864,485.21335 30238.758,490.18559 30251.454,496.15318 30264.151,502.12076 30276.65,509.08368 30289.05,516.54413 30301.451,524.00459 30313.752,531.96258 30326.054,539.9203 30338.356,547.87802 30350.658,555.83547 30363.058,563.29484 30375.458,570.75422 30387.958,577.71552 30400.654,583.68094 30413.351,589.64636 30426.245,594.6159 30439.435,598.09176 30452.625,601.56762 30466.111,603.54979 30479.992,603.54048 30494.337,603.53086 30508.272,601.46296 30521.899,597.85138 30535.526,594.23979 30548.844,589.08452 30561.957,582.90014 30575.071,576.71577 30587.978,569.50228 30600.784,561.77427 30613.589,554.04626 30626.291,545.80372 30638.994,537.56125 30651.696,529.31877 30664.399,521.07635 30677.204,513.34856 30690.009,505.62078 30702.917,498.40764 30716.03,492.22371 30729.143,486.03979 30742.462,480.88509 30756.089,477.27419 30769.716,473.66329 30783.65,471.59619 30797.996,471.58748 30812.165,471.57887 30825.934,473.51616 30839.401,476.92385 30852.868,480.33153 30866.035,485.20962 30879,491.08261 30891.965,496.95561 30904.729,503.82351 30917.392,511.21083 30930.055,518.59815 30942.616,526.50488 30955.177,534.45554 30967.738,542.4062 30980.298,550.40078 30992.956,557.96379 31005.615,565.5268 31018.373,572.65825 31031.329,578.88263 31044.286,585.10702 31057.442,590.42434 31070.896,594.35911 31084.351,598.29389 31098.104,600.84611 31112.257,601.54028 31125.76,602.20259 31139.057,601.06866 31152.199,598.59735 31165.341,596.12603 31178.328,592.31732 31191.21,587.63008 31204.093,582.94284 31216.871,577.37707 31229.596,571.39161 31242.32,565.40615 31254.991,559.00101 31267.659,552.63504 31280.327,546.26907 31292.993,539.94227 31305.706,534.11349 31318.419,528.28471 31331.18,522.95395 31344.04,518.58006 31356.9,514.20618 31369.859,510.78917 31382.967,508.78789 31396.075,506.78661 31409.332,506.20105 31422.79,507.49008 31434.186,508.58164 31445.2,511.36202 31455.916,515.39696 31466.632,519.43191 31477.05,524.72143 31487.253,530.83125 31497.457,536.94107 31507.446,543.87119 31517.304,551.18737 31527.163,558.50355 31536.89,566.20577 31546.571,573.85979 31556.252,581.5138 31565.886,589.1196 31575.557,596.24294 31585.227,603.36627 31594.935,610.00714 31604.764,615.73127 31614.592,621.45541 31624.541,626.26282 31634.694,629.71924 31644.848,633.17566 31655.206,635.28109 31665.852,635.60128 31677.631,635.95553 31689.335,634.99979 31701.007,633.07131 31712.679,631.14284 31724.318,628.24164 31735.964,624.70496 31747.611,621.16828 31759.266,616.99613 31770.969,612.52577 31782.673,608.05541 31794.425,603.28684 31806.267,598.55731 31818.109,593.82778 31830.04,589.1373 31842.102,584.82313 31854.164,580.50895 31866.357,576.57108 31878.721,573.34677 31891.085,570.12247 31903.621,567.61172 31916.369,566.15181 31929.116,564.69189 31942.077,564.28279 31955.29,565.26178 31968.329,566.22782 31980.547,569.05092 31992.177,573.26354 32003.806,577.47616 32014.847,583.0783 32025.53,589.60242 32036.214,596.12655 32046.539,603.57265 32056.738,611.4732 32066.938,619.37375 32077.011,627.72875 32087.188,636.07065 32097.366,644.41255 32107.649,652.74136 32118.268,660.58954 32128.887,668.43772 32139.842,675.80527 32151.365,682.22464 32162.887,688.64402 32174.977,694.11523 32187.866,698.17073 32200.755,702.22624 32214.442,704.86603 32229.16,705.62258 32240.639,706.21265 32251.445,705.66027 32261.766,704.26585 32272.087,702.87142 32281.922,700.63496 32291.459,697.85684 32300.996,695.07873 32310.234,691.75897 32319.361,688.19797 32328.488,684.63697 32337.503,680.83472 32346.595,677.09164 32355.686,673.34855 32364.853,669.66462 32374.283,666.34026 32383.713,663.01589 32393.405,660.05108 32403.548,657.74623 32413.69,655.44138 32424.282,653.79649 32435.512,653.11197 32446.741,652.42744 32458.607,652.70328 32471.297,654.23988 32482.346,655.57776 32493.943,659.51237 32506.056,665.35251 32518.169,671.19264 32530.797,678.93831 32543.907,687.89832 32557.018,696.85832 32570.612,707.03266 32584.655,717.73014 32598.699,728.42762 32613.192,739.64824 32628.103,750.70081 32643.014,761.75338 32658.342,772.6379 32674.054,782.66317 32689.766,792.68844 32705.863,801.85446 32722.312,809.47005 32738.76,817.08563 32755.561,823.15077 32772.68,826.97427 32789.799,830.79777 32807.238,832.37964 32824.962,831.02868 32838.814,829.97292 32851.142,826.10122 32862.436,820.13359 32873.729,814.16595 32883.987,806.10239 32893.696,796.6629 32903.405,787.22341 32912.565,776.408 32921.664,764.93666 32930.763,753.46532 32939.8,741.33807 32949.262,729.27489 32958.724,717.21172 32968.612,705.21263 32979.411,693.99764 32990.211,682.78264 33001.922,672.35174 33015.033,663.42493 33028.144,654.49812 33042.654,647.07541 33059.05,641.8768 33075.446,636.67819 33093.728,633.70368 33114.383,633.67328 33141.971,633.63268 33167.651,649.2208 33192.092,676.52381 33216.534,703.82682 33239.737,742.84472 33262.371,789.66367 33285.005,836.48262 33307.07,891.10263 33329.236,949.60985 33351.402,1008.1171 33373.668,1070.5115 33396.704,1132.8793 33419.74,1195.2472 33443.547,1257.5884 33468.793,1315.9891 33494.038,1374.3899 33520.724,1428.8502 33549.518,1475.4562 33578.312,1522.0622 33609.215,1560.8139 33642.897,1587.7975 33676.579,1614.7811 33713.039,1629.9966 33752.947,1629.5301 33788.335,1629.1164 33820.045,1617.5556 33848.72,1597.642 33877.395,1577.7285 33903.036,1549.4622 33926.286,1515.6375 33949.535,1481.8129 33970.394,1442.43 33989.506,1400.2833 34008.618,1358.1365 34025.983,1313.2259 34042.244,1268.3459 34058.505,1223.4659 34073.663,1178.6165 34088.361,1136.5921 34103.059,1094.5677 34117.297,1055.3684 34131.718,1021.7885 34146.14,988.20868 34160.746,960.24831 34176.179,940.70187 34191.612,921.15543 34207.873,910.02292 34225.605,910.09878 34242.532,910.1712 34258.036,912.37515 34272.416,916.18734 34286.797,919.99953 34300.053,925.41994 34312.486,931.92528 34324.918,938.43062 34336.527,946.02089 34347.61,954.17276 34358.693,962.32464 34369.252,971.03813 34379.585,979.78993 34389.918,988.54173 34400.025,997.33184 34410.207,1005.6369 34420.388,1013.9421 34430.643,1021.7622 34441.271,1028.574 34451.899,1035.3858 34462.901,1041.1893 34474.574,1045.4611 34486.248,1049.733 34498.595,1052.4733 34511.913,1053.1586 34525.923,1053.8795 34539.601,1052.4833 34553.031,1049.4981 34566.46,1046.5129 34579.641,1041.9387 34592.656,1036.3037 34605.671,1030.6686 34618.52,1023.9727 34631.286,1016.744 34644.053,1009.5154 34656.736,1001.754 34669.42,993.98807 34682.104,986.22211 34694.788,978.45156 34707.555,971.20456 34720.323,963.95756 34733.173,957.23411 34746.19,951.56235 34759.207,945.89058 34772.39,941.2705 34785.822,938.23025 34799.254,935.18999 34812.935,933.72955 34826.949,934.37708 34838.438,934.90794 34849.495,937.16445 34860.229,940.71052 34870.963,944.25659 34881.373,949.09221 34891.568,954.78128 34901.763,960.47036 34911.742,967.01288 34921.614,973.97275 34931.486,980.93263 34941.251,988.30985 34951.016,995.66832 34960.782,1003.0268 34970.548,1010.3665 34980.422,1017.2514 34990.297,1024.1362 35000.28,1030.5662 35010.48,1036.1053 35020.68,1041.6443 35031.096,1046.2924 35041.837,1049.6134 35052.578,1052.9344 35063.644,1054.9284 35075.143,1055.1592 35089.461,1055.4466 35102.974,1053.5495 35115.928,1050.0044 35128.882,1046.4593 35141.278,1041.2662 35153.36,1034.9615 35165.441,1028.6568 35177.21,1021.2404 35188.91,1013.2489 35200.61,1005.2573 35212.241,996.69058 35224.05,988.08505 35235.859,979.47953 35247.846,970.83522 35260.254,962.68854 35272.663,954.54187 35285.495,946.89283 35298.994,940.27783 35312.494,933.66284 35326.661,928.0819 35341.742,924.07142 35356.823,920.06093 35372.817,917.62092 35389.97,917.28778 35407.929,916.93899 35424.729,919.30315 35440.687,923.70404 35456.644,928.10492 35471.758,934.54254 35486.344,942.34068 35500.93,950.13882 35514.987,959.29747 35528.831,969.14044 35542.676,978.98341 35556.306,989.51068 35570.038,1000.0461 35583.77,1010.5814 35597.604,1021.1249 35611.853,1031.0003 35626.103,1040.8756 35640.769,1050.0829 35656.167,1057.9458 35671.564,1065.8087 35687.693,1072.3273 35704.868,1076.8253 35722.042,1081.3234 35740.263,1083.8009 35759.845,1083.5817 35779.665,1083.3598 35796.534,1082.3184 35811.217,1080.6647 35825.9,1079.011 35838.399,1076.745 35849.478,1074.0739 35860.558,1071.4027 35870.219,1068.3264 35879.228,1065.0521 35888.237,1061.7778 35896.594,1058.3055 35905.066,1054.8425 35913.539,1051.3794 35922.126,1047.9255 35931.594,1044.6879 35941.062,1041.4504 35951.412,1038.4292 35963.41,1035.8316 35975.408,1033.2339 35989.055,1031.0598 36005.116,1029.5163 36021.177,1027.9729 36039.653,1027.0601 36061.31,1026.9852 36081.303,1026.9161 36099.741,1029.4817 36116.9,1034.0196 36134.058,1038.5576 36149.937,1045.0679 36164.813,1052.8881 36179.688,1060.7083 36193.559,1069.8385 36206.703,1079.6161 36219.846,1089.3937 36232.261,1099.8188 36244.224,1110.2289 36256.187,1120.6391 36267.697,1131.0343 36279.031,1140.7522 36290.365,1150.47 36301.522,1159.5105 36312.778,1167.2112 36324.034,1174.9119 36335.389,1181.2728 36347.118,1185.6315 36358.848,1189.9902 36370.952,1192.3467 36383.707,1192.0385 36399.285,1191.6621 36413.093,1190.4114 36425.501,1188.5122 36437.909,1186.613 36448.916,1184.0653 36458.894,1181.0948 36468.871,1178.1243 36477.818,1174.7311 36486.104,1171.1409 36494.39,1167.5507 36502.016,1163.7636 36509.351,1160.0052 36516.685,1156.2469 36523.729,1152.5174 36530.852,1149.0424 36537.975,1145.5675 36545.176,1142.3472 36552.827,1139.6072 36560.477,1136.8672 36568.576,1134.6076 36577.494,1133.0542 36586.411,1131.5007 36596.147,1130.6534 36607.071,1130.738 36619.335,1130.833 36630.821,1133.2197 36641.695,1137.3361 36652.568,1141.4525 36662.828,1147.2985 36672.639,1154.3122 36682.45,1161.3258 36691.813,1169.507 36700.892,1178.2937 36709.97,1187.0803 36718.765,1196.4725 36727.44,1205.9081 36736.116,1215.3437 36744.672,1224.8227 36753.273,1233.7831 36761.874,1242.7434 36770.52,1251.1851 36779.376,1258.546 36788.232,1265.9069 36797.298,1272.1871 36806.738,1276.8244 36816.179,1281.4618 36825.993,1284.4563 36836.347,1285.2459 36850.077,1286.293 36862.657,1285.1342 36874.4,1282.306 36886.143,1279.4777 36897.051,1274.9799 36907.438,1269.3492 36917.824,1263.7184 36927.691,1256.9546 36937.352,1249.5941 36947.013,1242.2337 36956.469,1234.2767 36966.035,1226.2595 36975.602,1218.2423 36985.278,1210.165 36995.38,1202.5639 37005.481,1194.9629 37016.009,1187.8381 37027.277,1181.726 37038.545,1175.6139 37050.554,1170.5146 37063.619,1166.9644 37076.684,1163.4142 37090.805,1161.4131 37106.298,1161.4977 37128.102,1161.6167 37149.486,1176.2611 37170.761,1201.8001 37192.036,1227.3391 37213.201,1263.7728 37234.568,1307.4704 37255.935,1351.168 37277.503,1402.1296 37299.583,1456.7243 37321.664,1511.319 37344.257,1569.5469 37367.673,1627.7773 37391.089,1686.0076 37415.328,1744.2405 37440.702,1798.845 37466.075,1853.4496 37492.583,1904.4259 37520.535,1948.1432 37548.487,1991.8605 37577.885,2028.3188 37609.038,2053.8874 37640.191,2079.456 37673.1,2094.1348 37708.076,2094.2932 37736.144,2094.4203 37762.066,2082.1497 37786.23,2060.5783 37810.394,2039.0069 37832.8,2008.1346 37853.833,1971.0584 37874.867,1933.9821 37894.528,1890.7018 37913.205,1844.3143 37931.882,1797.9269 37949.574,1748.4322 37966.667,1698.9272 37983.761,1649.4222 38000.256,1599.9069 38016.54,1553.478 38032.824,1507.0491 38048.897,1463.7068 38065.145,1426.5477 38081.392,1389.3886 38097.816,1358.4129 38114.801,1336.7173 38131.787,1315.0217 38149.334,1302.6063 38167.831,1302.5678 38184.969,1302.5322 38200.481,1304.6939 38214.84,1308.5088 38229.199,1312.3237 38242.404,1317.7917 38254.925,1324.3688 38267.447,1330.9458 38279.285,1338.6318 38290.91,1346.8825 38302.536,1355.1332 38313.949,1363.9487 38325.62,1372.7847 38337.291,1381.6208 38349.22,1390.4774 38361.878,1398.8103 38374.536,1407.1432 38387.923,1414.9525 38402.51,1421.6939 38417.097,1428.4353 38432.883,1434.1089 38450.34,1438.1703 38467.797,1442.2318 38486.924,1444.6813 38508.192,1444.9744 38526.946,1445.2329 38543.862,1443.5178 38559.355,1440.3118 38574.847,1437.1058 38588.917,1432.4087 38601.979,1426.7033 38615.041,1420.9979 38627.095,1414.284 38638.558,1407.0443 38650.021,1399.8046 38660.892,1392.039 38671.588,1384.2302 38682.283,1376.4214 38692.803,1368.5693 38703.562,1361.1565 38714.321,1353.7437 38725.321,1346.7702 38736.975,1340.7186 38748.63,1334.6669 38760.94,1329.5371 38774.322,1325.8118 38787.703,1322.0865 38802.156,1319.7656 38818.096,1319.3317 38831.108,1318.9775 38843.551,1320.544 38855.601,1323.5573 38867.651,1326.5706 38879.31,1331.0306 38890.754,1336.4633 38902.198,1341.896 38913.427,1348.3015 38924.62,1355.2056 38935.813,1362.1098 38946.97,1369.5126 38958.268,1376.9402 38969.565,1384.3678 38981.005,1391.82 38992.763,1398.823 39004.521,1405.826 39016.598,1412.3796 39029.173,1418.0099 39041.747,1423.6403 39054.818,1428.3473 39068.564,1431.657 39082.309,1434.9666 39096.73,1436.879 39112.003,1436.92 39127.895,1436.9627 39142.685,1434.9481 39156.657,1431.3872 39170.629,1427.8263 39183.785,1422.7192 39196.41,1416.5766 39209.035,1410.434 39221.129,1403.2561 39232.979,1395.5537 39244.83,1387.8513 39256.436,1379.6245 39268.084,1371.3842 39279.732,1363.1439 39291.422,1354.89 39303.441,1347.1336 39315.46,1339.3772 39327.807,1332.1183 39340.769,1325.8677 39353.731,1319.617 39367.308,1314.3748 39381.786,1310.6519 39396.264,1306.9289 39411.643,1304.7253 39428.21,1304.5519 39446.416,1304.3613 39463.998,1307.417 39481.134,1312.9077 39498.27,1318.3984 39514.959,1326.3242 39531.378,1335.8737 39547.797,1345.4233 39563.946,1356.5968 39580.002,1368.5829 39596.059,1380.569 39612.022,1393.3678 39628.07,1406.1681 39644.117,1418.9684 39660.249,1431.7702 39676.641,1443.7623 39693.033,1455.7543 39709.687,1466.9367 39726.778,1476.4982 39743.869,1486.0597 39761.398,1494.0003 39779.542,1499.5089 39797.685,1505.0175 39816.444,1508.094 39835.994,1507.9272 39854.087,1507.7729 39871.025,1507.1558 39887.07,1506.182 39903.115,1505.2083 39918.267,1503.8779 39932.787,1502.2971 39947.308,1500.7163 39961.197,1498.885 39974.717,1496.9095 39988.237,1494.934 40001.388,1492.8142 40014.43,1490.6564 40027.473,1488.4985 40040.408,1486.3026 40053.497,1484.1748 40066.585,1482.0469 40079.828,1479.9872 40093.487,1478.1018 40107.145,1476.2164 40121.22,1474.5053 40135.971,1473.0746 40150.723,1471.6439 40166.152,1470.4937 40182.521,1469.7302 40199.737,1468.9271 40214.987,1470.528 40228.724,1473.9875 40242.461,1477.4469 40254.684,1482.765 40265.845,1489.3963 40277.006,1496.0276 40287.105,1503.9721 40296.593,1512.6846 40306.081,1521.3971 40314.958,1530.8775 40323.676,1540.5805 40332.393,1550.2834 40340.952,1560.209 40349.803,1569.8118 40358.653,1579.4147 40367.796,1588.6947 40377.682,1597.1067 40387.568,1605.5187 40398.198,1613.0626 40410.023,1619.1931 40421.848,1625.3236 40434.868,1630.0407 40449.534,1632.799 40461.806,1635.1071 40473.276,1636.039 40484.157,1635.914 40495.039,1635.789 40505.333,1634.6071 40515.254,1632.6876 40525.175,1630.7681 40534.723,1628.1109 40544.112,1625.0354 40553.501,1621.9599 40562.732,1618.466 40572.02,1614.873 40581.307,1611.2799 40590.651,1607.5878 40600.266,1604.1158 40609.881,1600.6438 40619.767,1597.3919 40630.139,1594.6795 40640.51,1591.967 40651.368,1589.7939 40662.926,1588.4795 40674.484,1587.1651 40686.743,1586.7093 40699.917,1587.4315 40709.942,1587.981 40720.844,1591.6851 40732.505,1597.7491 40744.166,1603.8132 40756.587,1612.2371 40769.647,1622.2264 40782.708,1632.2157 40796.409,1643.7703 40810.632,1656.0956 40824.855,1668.4209 40839.6,1681.5169 40854.748,1694.589 40869.897,1707.6611 40885.448,1720.7092 40901.284,1732.9388 40917.12,1745.1684 40933.241,1756.5794 40949.528,1766.3772 40965.815,1776.175 40982.268,1784.3597 40998.769,1790.1365 41015.27,1795.9133 41031.818,1799.2823 41048.295,1799.4489 41065.17,1799.6195 41080.788,1797.5744 41095.452,1793.8621 41110.115,1790.1498 41123.825,1784.7704 41136.885,1778.2723 41149.946,1771.7742 41162.356,1764.1574 41174.422,1755.9705 41186.487,1747.7836 41198.207,1739.0265 41209.886,1730.2478 41221.565,1721.4692 41233.203,1712.6689 41245.105,1704.3955 41257.006,1696.1221 41269.17,1688.3757 41281.902,1681.7046 41294.634,1675.0336 41307.933,1669.4379 41322.104,1665.4663 41336.275,1661.4946 41351.318,1659.1469 41367.537,1658.9716 41385.614,1658.7763 41403.071,1673.3836 41420.331,1699.0874 41437.59,1724.7913 41454.652,1761.5916 41471.938,1805.7822 41489.225,1849.9728 41506.736,1901.5537 41524.894,1956.8187 41543.052,2012.0837 41561.857,2071.0328 41581.73,2129.9597 41601.604,2188.8867 41622.546,2247.7916 41644.98,2302.9682 41667.414,2358.1448 41691.338,2409.5931 41717.176,2453.6069 41743.015,2497.6207 41770.766,2534.2 41800.853,2559.6386 41830.94,2585.0772 41863.362,2599.3751 41898.542,2598.8261 41932.334,2598.2988 41961.97,2585.7988 41988.346,2564.3237 42014.722,2542.8485 42037.839,2512.3981 42058.595,2475.9698 42079.351,2439.5415 42097.745,2397.1353 42114.677,2351.7486 42131.609,2306.3619 42147.077,2257.9947 42161.98,2209.6443 42176.884,2161.2939 42191.222,2112.9604 42205.893,2067.6411 42220.564,2022.3218 42235.568,1980.0167 42251.803,1943.7231 42268.038,1907.4296 42285.504,1877.1476 42305.099,1855.8746 42324.694,1834.6015 42346.418,1822.3374 42371.169,1822.0796 42390.308,1821.8802 42406.645,1824.2473 42420.779,1828.5398 42434.912,1832.8323 42446.843,1839.0502 42457.167,1846.5526 42467.492,1854.055 42476.211,1862.8418 42483.924,1872.2721 42491.636,1881.7024 42498.341,1891.7762 42504.636,1901.8524 42510.932,1911.9287 42516.819,1922.0075 42522.895,1931.4478 42528.97,1940.8881 42535.235,1949.6899 42542.287,1957.2122 42549.339,1964.7345 42557.178,1970.9774 42566.403,1975.2998 42575.627,1979.6223 42586.237,1982.0242 42598.83,1981.8648 42613.475,1981.6794 42627.584,1979.3176 42641.306,1975.318 42655.027,1971.3183 42668.361,1965.6808 42681.456,1958.9439 42694.55,1952.2069 42707.406,1944.3706 42720.171,1935.9733 42732.936,1927.576 42745.61,1918.6178 42758.341,1909.6371 42771.073,1900.6563 42783.863,1891.6531 42796.858,1883.1659 42809.854,1874.6787 42823.056,1866.7075 42836.612,1859.7908 42850.168,1852.874 42864.079,1847.0117 42878.493,1842.7424 42892.907,1838.473 42907.824,1835.7966 42923.393,1835.2515 42941.84,1834.6057 42959.046,1836.4125 42975.355,1840.0672 42991.664,1843.7218 43007.077,1849.2243 43021.939,1855.9697 43036.801,1862.7151 43051.113,1870.7034 43065.22,1879.3297 43079.327,1887.9561 43093.229,1897.2204 43107.272,1906.518 43121.315,1915.8155 43135.499,1925.1462 43150.17,1933.9051 43164.841,1942.6641 43179.998,1950.8513 43195.988,1957.8619 43211.978,1964.8725 43228.8,1970.7065 43246.801,1974.759 43264.801,1978.8114 43283.98,1981.0824 43304.683,1980.967 43324.752,1980.8551 43343.355,1978.2289 43360.813,1973.7191 43378.271,1969.2094 43394.585,1962.8162 43410.076,1955.1703 43425.567,1947.5245 43440.235,1938.626 43454.401,1929.1058 43468.567,1919.5856 43482.232,1909.4437 43495.716,1899.3109 43509.2,1889.1781 43522.505,1879.0545 43535.95,1869.5708 43549.395,1860.0872 43562.982,1851.2436 43577.031,1843.6708 43591.08,1836.0981 43605.592,1829.7963 43620.888,1825.3962 43636.184,1820.9961 43652.264,1818.4979 43669.449,1818.5322 43684.767,1818.5628 43699.524,1820.958 43713.868,1825.1181 43728.212,1829.2782 43742.143,1835.2031 43755.81,1842.2933 43769.477,1849.3835 43782.879,1857.6388 43796.166,1866.4597 43809.452,1875.2806 43822.622,1884.667 43835.825,1894.0192 43849.028,1903.3714 43862.264,1912.6895 43875.68,1921.3736 43889.097,1930.0578 43902.694,1938.1081 43916.621,1944.9249 43930.547,1951.7417 43944.803,1957.3249 43959.537,1961.0749 43974.271,1964.8249 43989.483,1966.7417 44005.321,1966.2255 44019.402,1965.7666 44032.866,1963.205 44045.892,1959.0687 44058.918,1954.9323 44071.504,1949.2213 44083.829,1942.4636 44096.154,1935.7059 44108.217,1927.9016 44120.196,1919.5786 44132.175,1911.2556 44144.069,1902.4139 44156.056,1893.5817 44168.043,1884.7494 44180.123,1875.9266 44192.473,1867.6411 44204.823,1859.3557 44217.443,1851.6076 44230.51,1844.925 44243.577,1838.2425 44257.092,1832.6253 44271.231,1828.6016 44285.369,1824.578 44300.133,1822.1478 44315.698,1821.8391 44330.881,1821.538 44344.575,1823.4899 44357.269,1827.149 44369.964,1830.8081 44381.659,1836.1745 44392.845,1842.7023 44404.032,1849.2301 44414.709,1856.9194 44425.369,1865.2244 44436.028,1873.5294 44446.669,1882.4501 44457.782,1891.4408 44468.895,1900.4314 44480.481,1909.492 44493.029,1918.0767 44505.577,1926.6615 44519.088,1934.7704 44534.052,1941.8577 44549.016,1948.9451 44565.433,1955.0108 44583.793,1959.5092 44602.154,1964.0076 44622.459,1966.9386 44645.197,1967.7565 44663.675,1968.4211 44681.352,1966.8271 44698.421,1963.5214 44715.49,1960.2158 44731.951,1955.1986 44747.993,1949.0169 44764.035,1942.8351 44779.659,1935.4889 44795.056,1927.5253 44810.453,1919.5617 44825.623,1910.9807 44840.757,1902.3294 44855.891,1893.6781 44870.989,1884.9565 44886.242,1876.7117 44901.494,1868.4669 44916.901,1860.6988 44932.654,1853.9547 44948.407,1847.2106 44964.506,1841.4904 44981.141,1837.3412 44997.777,1833.192 45014.949,1830.6137 45032.848,1830.1536 45046.915,1829.792 45060.322,1831.7794 45073.256,1835.5415 45086.189,1839.3036 45098.65,1844.8403 45110.826,1851.5774 45123.001,1858.3145 45134.892,1866.2519 45146.685,1874.8153 45158.478,1883.3787 45170.174,1892.568 45181.96,1901.809 45193.746,1911.05 45205.622,1920.3425 45217.777,1929.1123 45229.932,1937.8821 45242.365,1946.1292 45255.263,1953.2792 45268.162,1960.4291 45281.527,1966.4819 45295.546,1970.8633 45309.564,1975.2447 45324.236,1977.9546 45339.75,1978.4187 45356.077,1978.9071 45371.232,1976.9239 45385.542,1973.0729 45399.853,1969.2218 45413.321,1963.5028 45426.273,1956.5195 45439.226,1949.5362 45451.663,1941.2887 45463.915,1932.3806 45476.166,1923.4725 45488.232,1913.9037 45500.44,1904.2781 45512.649,1894.6524 45525,1884.9699 45537.822,1875.834 45550.645,1866.6982 45563.939,1858.1091 45578.034,1850.6703 45592.128,1843.2316 45607.023,1836.9433 45623.047,1832.409 45639.071,1827.8747 45656.225,1825.0945 45674.836,1824.672 45690.477,1824.3169 45705.678,1826.5126 45720.579,1830.6328 45735.481,1834.7529 45750.083,1840.7975 45764.527,1848.1403 45778.972,1855.483 45793.259,1864.1239 45807.53,1873.4367 45821.801,1882.7494 45836.055,1892.734 45850.436,1902.7642 45864.816,1912.7943 45879.322,1922.8699 45894.094,1932.3648 45908.867,1941.8597 45923.907,1950.7739 45939.355,1958.4809 45954.804,1966.1879 45970.661,1972.6879 45987.068,1977.3545 46003.475,1982.021 46020.432,1984.8542 46038.081,1985.2277 46056.923,1985.6264 46074.283,1983.1167 46090.558,1978.4227 46106.832,1973.7287 46122.021,1966.8505 46136.521,1958.5124 46151.02,1950.1743 46164.831,1940.3762 46178.349,1929.8426 46191.867,1919.3089 46205.093,1908.0397 46218.423,1896.7591 46231.753,1885.4785 46245.186,1874.1866 46259.121,1863.6077 46273.055,1853.0288 46287.49,1843.1628 46302.822,1834.7342 46318.154,1826.3055 46334.383,1819.3141 46351.905,1814.4843 46369.428,1809.6545 46388.245,1806.9863 46408.751,1807.2039 46424.552,1807.3716 46440.112,1810.3326 46455.5,1815.3916 46470.889,1820.4507 46486.106,1827.6079 46501.222,1836.1682 46516.338,1844.7284 46531.353,1854.6917 46546.337,1865.3629 46561.322,1876.0341 46576.276,1887.4132 46591.27,1898.8051 46606.264,1910.1971 46621.299,1921.6018 46636.443,1932.3242 46651.588,1943.0466 46666.843,1953.0867 46682.279,1961.7495 46697.715,1970.4122 46713.332,1977.6975 46729.201,1982.9102 46745.069,1988.123 46761.189,1991.2633 46777.631,1991.6359 46792.607,1991.9753 46807.234,1989.215 46821.624,1984.1373 46836.014,1979.0596 46850.167,1971.6644 46864.197,1962.7341 46878.226,1953.8038 46892.132,1943.3384 46906.026,1932.12 46919.921,1920.9017 46933.804,1908.9304 46947.789,1896.9886 46961.773,1885.0467 46975.86,1873.1343 46990.16,1862.0335 47004.461,1850.9327 47018.976,1840.6435 47033.818,1831.9483 47048.66,1823.2531 47063.828,1816.1517 47079.437,1811.4266 47095.046,1806.7015 47111.094,1804.3526 47127.695,1805.1622 47294.066,1813.2755 47466.454,1821.8746 47640.755,1830.7114 47815.056,1839.5483 47991.27,1848.6227 48165.294,1857.6866 48339.317,1866.7504 48511.151,1875.8037 48676.689,1884.5981 48842.228,1893.3925 49001.473,1901.9281 49150.319,1909.9566 49299.165,1917.9851 49437.613,1925.5065 49561.559,1932.2726 49685.505,1939.0387 49794.949,1945.0495 49885.788,1950.0567 49976.626,1955.0639 50048.859,1959.0676 50098.382,1961.8194 50147.905,1964.5713 50174.718,1966.0713 50174.718,1966.0713"
+       id="path3519-1"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="caaac"
-       thickness="32" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="M 2018.2385,291.52737 C 2028.7217,293.93835 2039.4004,295.41863 2050.2645,295.81849 2061.554,296.23401 2072.3393,294.60038 2082.7466,291.41522 2093.1538,288.23006 2103.1828,283.49337 2112.9597,277.70276 2122.7365,271.91216 2132.2611,265.06764 2141.6595,257.66684 2151.0579,250.26604 2160.3301,242.30893 2169.602,234.29317 2178.8739,226.27741 2188.1455,218.20298 2197.5428,210.5675 2206.94,202.93202 2216.463,195.73549 2226.2376,189.47554 2236.0122,183.21558 2246.0385,177.8922 2256.4423,174.00301 2266.8462,170.11382 2277.6276,167.65882 2288.9126,167.13564 2301.6101,166.54697 2313.933,168.04303 2325.9748,171.10269 2338.0166,174.16236 2349.7774,178.78562 2361.3509,184.45136 2372.9245,190.1171 2384.3106,196.82532 2395.6032,204.05489 2406.8957,211.28446 2418.0945,219.03539 2429.2934,226.78655 2440.4923,234.53771 2451.6912,242.28911 2462.9837,249.51962 2474.2763,256.75012 2485.6625,263.45973 2497.2361,269.12732 2508.8097,274.79492 2520.5707,279.4205 2532.6126,282.48295 2544.6546,285.54539 2556.9776,287.04469 2569.6752,286.45974 2581.178,285.92983 2592.1701,283.56766 2602.7791,279.82927 2613.388,276.09088 2623.6138,270.97626 2633.5841,264.94145 2643.5543,258.90664 2653.269,251.95164 2662.8556,244.53247 2672.4423,237.11331 2681.9009,229.22999 2691.3592,221.33855 2700.8174,213.4471 2710.2752,205.54753 2719.8602,198.09586 2729.4452,190.6442 2739.1573,183.64044 2749.1242,177.54061 2759.091,171.44079 2769.3127,166.24491 2779.9166,162.40899 2790.5205,158.57308 2801.5067,156.09714 2813.0028,155.4372 2827.4613,154.6072 2841.5405,156.04443 2855.3356,159.1889 2869.1306,162.33338 2882.6414,167.18511 2895.9632,173.18412 2909.285,179.18313 2922.4177,186.32943 2935.4564,194.06305 2948.4951,201.79666 2961.4399,210.1176 2974.3858,218.46588 2987.3318,226.81416 3000.2789,235.18979 3013.3222,243.0328 3026.3656,250.87582 3039.5052,258.18621 3052.8362,264.40402 3066.1672,270.62182 3079.6896,275.74704 3093.4985,279.2197 3107.3074,282.69236 3121.4028,284.51247 3135.8798,284.12005 3148.873,283.76785 3161.4167,281.47123 3173.6233,277.71994 3185.83,273.96866 3197.6995,268.76271 3209.3445,262.59187 3220.9894,256.42103 3232.4097,249.28529 3243.7179,241.67441 3255.026,234.06355 3266.222,225.97755 3277.4182,217.90619 3288.6144,209.83483 3299.8109,201.77811 3311.1201,194.22579 3322.4293,186.67348 3333.8512,179.62556 3345.4983,173.57182 3357.1453,167.51807 3369.0175,162.4585 3381.2273,158.88286 3393.4372,155.30722 3405.9846,153.21551 3418.982,153.09751"
-       id="path8188-7" />
+       sodipodi:nodetypes="csssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssc" />
     <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-3)"
-       y="152.09641"
-       x="2357.929"
-       id="image3507-4-88-6-7-0"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
+       width="32"
        height="32"
-       width="32" />
+       id="image3507-4-88-6-7-4-1-07-4"
+       x="3574.426"
+       y="272.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
     <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-8-4)"
-       y="178.56696"
-       x="2407.561"
-       id="image3507-4-88-6-7-2-0"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
+       width="32"
        height="32"
-       width="32" />
+       id="image3507-4-88-6-7-48-3-7-9"
+       x="3606.8147"
+       y="298.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-6)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
     <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-4-6)"
-       y="210.00073"
-       x="2453.8845"
-       id="image3507-4-88-6-7-39-1"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
+       width="32"
        height="32"
-       width="32" />
+       id="image3507-4-88-6-7-45-4-4-5"
+       x="3639.2034"
+       y="320.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-1)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
     <image
-       style="display:inline;filter:url(#filter8613-3-81-0-2-0-8)"
-       y="236.47128"
-       x="2505.1711"
-       id="image3507-4-88-6-7-22-0"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/GameClasses/Feather.png"
+       width="32"
        height="32"
-       width="32" />
+       id="image3507-4-88-6-7-7-7-3-6"
+       x="3671.592"
+       y="338.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-4"
+       x="3703.9807"
+       y="346.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-8"
+       x="3736.3694"
+       y="346.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-3)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-2"
+       x="3768.76"
+       y="338.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-7)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-1"
+       x="3801.1487"
+       y="322.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-4)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-6"
+       x="3833.5374"
+       y="300.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-2)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-8"
+       x="3865.926"
+       y="274.96371"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-2)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-4"
+       x="5909.0024"
+       y="320.40341"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-3)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-2"
+       x="6158.8091"
+       y="176.36897"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-8)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-0"
+       x="8987.9648"
+       y="-788.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-2"
+       x="9020.3535"
+       y="-766.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-7)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-2"
+       x="9052.7422"
+       y="-748.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-4)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-3"
+       x="9085.1328"
+       y="-734.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-57)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-6"
+       x="9117.5215"
+       y="-726.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-2)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-7"
+       x="9149.9102"
+       y="-726.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-38)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-1"
+       x="9182.2988"
+       y="-728.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-6)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-5"
+       x="9214.6875"
+       y="-734.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-7)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-5"
+       x="9247.0762"
+       y="-742.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-4"
+       x="9279.4648"
+       y="-754.17871"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-2-6"
+       x="9346.6816"
+       y="-837.12329"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-8-0)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-7"
+       x="11711.619"
+       y="-544.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-9)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-4"
+       x="11744.008"
+       y="-532.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-70)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-7"
+       x="11776.396"
+       y="-524.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-8"
+       x="11808.786"
+       y="-518.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-3"
+       x="11841.175"
+       y="-518.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-29)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-71"
+       x="11873.563"
+       y="-522.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-30)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-0"
+       x="11905.951"
+       y="-534.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-4)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-0"
+       x="11938.342"
+       y="-552.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-73)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-8"
+       x="11970.73"
+       y="-576.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-1)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-3"
+       x="12003.119"
+       y="-598.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-06)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-0"
+       x="12044.369"
+       y="-699.35181"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-4)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-6"
+       x="15505.369"
+       y="-394.35178"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-1)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-3"
+       x="21937.369"
+       y="-28.351728"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-2)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-5"
+       x="17450.15"
+       y="-204.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-92)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-3"
+       x="17482.539"
+       y="-182.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-9)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-24"
+       x="17514.928"
+       y="-164.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-51)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-4"
+       x="17547.316"
+       y="-150.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-7)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-42"
+       x="17579.707"
+       y="-142.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-27)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-79"
+       x="17612.096"
+       y="-140.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-1)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-23"
+       x="17644.484"
+       y="-148.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-71)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-7"
+       x="17676.873"
+       y="-162.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-6)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-3"
+       x="17709.262"
+       y="-178.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-6)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-1"
+       x="17741.65"
+       y="-200.25041"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-8"
+       x="19535.232"
+       y="-240.66484"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-5)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-2"
+       x="24484.053"
+       y="103.21957"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-3)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-8"
+       x="24516.441"
+       y="127.21957"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-74)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-1"
+       x="24548.83"
+       y="147.21956"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-13)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-0"
+       x="24581.219"
+       y="165.21956"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-31"
+       x="24613.607"
+       y="175.2198"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-5"
+       x="24645.996"
+       y="175.2198"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-5"
+       x="24678.385"
+       y="167.2198"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-2"
+       x="24710.775"
+       y="153.21956"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-2"
+       x="24743.164"
+       y="131.21956"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-24)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-17"
+       x="24775.553"
+       y="103.21957"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-58)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-36"
+       x="24809.621"
+       y="-5.8636918"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-48)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-5"
+       x="27547.369"
+       y="243.64827"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-30)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-3"
+       x="30962.541"
+       y="513.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-54)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-95"
+       x="30994.93"
+       y="533.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-8"
+       x="31027.318"
+       y="547.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-10)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-2"
+       x="31059.707"
+       y="561.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-05)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-7"
+       x="31092.096"
+       y="567.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-07)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-9"
+       x="31124.486"
+       y="567.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-6"
+       x="31156.875"
+       y="561.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-9)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-17"
+       x="31189.264"
+       y="547.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-2)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-7"
+       x="31221.652"
+       y="533.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-7)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-19"
+       x="31254.041"
+       y="513.09552"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-28)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-7"
+       x="32787.828"
+       y="734.75787"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-03)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-41"
+       x="36826.82"
+       y="1187.892"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-53)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-74"
+       x="41019.367"
+       y="1691.6478"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-29)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-07"
+       x="47502.031"
+       y="1719.0675"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-56)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       height="90"
+       id="image3507-4-88-6-7-3-1-3-5-2-5-7-1"
+       x="47973.367"
+       y="1747.6478"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-39-7-6-3-1-1-3-7)"
+       width="90"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Chick.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-52"
+       x="5479.6196"
+       y="121.64828"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-4)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-6"
+       x="5512.0083"
+       y="147.64827"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-89"
+       x="5544.397"
+       y="171.64827"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-29"
+       x="5576.7856"
+       y="195.64827"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-59)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-5"
+       x="5609.1743"
+       y="215.64827"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-20)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-94"
+       x="5641.563"
+       y="241.64827"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-14)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-50"
+       x="5673.9536"
+       y="267.64828"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-2)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-58"
+       x="5706.3423"
+       y="291.64828"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-80"
+       x="5738.731"
+       y="315.64828"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-01)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-13"
+       x="5771.1196"
+       y="333.64828"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-3)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-4-1-07-3-2"
+       x="44486.496"
+       y="1873.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-1-8-54-2)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-48-3-7-95-3"
+       x="44518.887"
+       y="1893.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-0-7-5-3)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-45-4-4-8-4"
+       x="44551.273"
+       y="1907.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-8-35-10-4)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-7-7-3-2-3"
+       x="44583.664"
+       y="1921.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-5-03-05-0)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-2-4-1-7-4"
+       x="44616.051"
+       y="1927.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-11-4-07-6)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-1-6-3-9-3"
+       x="44648.441"
+       y="1927.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-7-47-8-1)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-22-3-6-6-6"
+       x="44680.832"
+       y="1921.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-4-0-9-1)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-5-6-3-17-8"
+       x="44713.219"
+       y="1907.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-16-5-2-1)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-9-5-0-7-4"
+       x="44745.609"
+       y="1893.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-76-355-7-5)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
+    <image
+       width="32"
+       height="32"
+       id="image3507-4-88-6-7-54-2-1-19-7"
+       x="44777.996"
+       y="1873.6606"
+       style="display:inline;filter:url(#filter8613-3-81-0-2-2-68-28-8)"
+       xlink:href="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png"
+       sodipodi:absref="E:\Yoon\01_플라잉닭\Yoon1028 - 수정본\levels\MAP01\../../Resources/GameClasses/Feather.png" />
   </g>
 </svg>

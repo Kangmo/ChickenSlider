@@ -191,11 +191,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/OptionScene.png"
        xlink:href="OptionScene.png"
-       y="0"
-       x="0"
-       id="image4279"
+       width="480"
        height="320"
-       width="480" />
+       id="image4279"
+       x="0"
+       y="0" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -219,7 +219,7 @@
        x="427.26382"
        y="276.75449"
        objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.mp3,Option=PopCurrentScene" />
+       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene" />
     <rect
        style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.00459158px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject"
@@ -228,7 +228,7 @@
        x="17.112631"
        y="268.95145"
        objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=CreditsScene,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=PushScene,SceneName=CreditsScene,Arg1=Null,Sound=Touch.wav" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8"

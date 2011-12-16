@@ -23,10 +23,10 @@ protected:
 public :
     TxFloatLabel(TxWidgetOwner * parentNode, const TxRect & rect, REF(TxPropSet) propSetRef) : TxLabel(parentNode, rect, propSetRef)
     {
-        float initValue = getFloatPropValue("InitValue");
-        float stepValue = getFloatPropValue("StepValue");
-        float minValue = getFloatPropValue("MinValue");
-        float maxValue = getFloatPropValue("MaxValue");
+        float initValue = getFloatPropValue("InitValue", 0.0);
+        float stepValue = getFloatPropValue("StepValue", 0.1);
+        float minValue = getFloatPropValue("MinValue", 0.0);
+        float maxValue = getFloatPropValue("MaxValue", 1.0);
         
         _floatLabel = new FloatLabel(label_, initValue, stepValue, minValue, maxValue);
     }

@@ -37,7 +37,19 @@ public :
         
         TxWidget::align(menu_);
         
-        int defaultIndex = getIntPropValue("DefaultIndex");
+        int defaultIndex = -1;
+        if (getIsPersistent()) {
+            // The default value is -1 : Don't show any image if the persistent attribute does not exist.
+            defaultIndex = [Util loadIntAttr:[Util toNSString:getName()] default:-1];
+        }
+        
+        if (defaultIndex == -1)
+        {
+            NSString * defaultIndexString = getPropNSString("DefaultIndex");
+            if (defaultIndexString)
+                defaultIndex = [defaultIndexString intValue];
+        }
+        
         setValue(defaultIndex);
     }
     
@@ -63,11 +75,15 @@ public :
         int count = [[toggleButton_ subItems] count];
         return count;
     }
-    
+    void disable() {
+        menu_.isTouchEnabled= NO;
+    }
     void setValue(int value)
     {
+#if defined(DEBUG)
         int maxValue = getImageCount();
         assert( value < maxValue );
+#endif
         if ( value < 0 )
         {
             toggleButton_.visible = NO;

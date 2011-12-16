@@ -29,6 +29,7 @@
         // WidgetType=IntegerLabel,WidgetName=Score,Font=yellow34.fnt,Align=Left
          
 
+        stageName_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("StageName") );
         keyCount_ = boost::static_pointer_cast<TxIntegerLabel>( widgetContainer_.getWidget("KeyCount") );
         chickCount_ = boost::static_pointer_cast<TxIntegerLabel>( widgetContainer_.getWidget("ChickCount") );
         sandClockSeconds_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("SandClockSeconds") );
@@ -38,9 +39,13 @@
         sandClock_ = boost::static_pointer_cast<TxSandClock> ( widgetContainer_.getWidget("SandClock") );
         speed_ = boost::static_pointer_cast<TxFloatLabel> ( widgetContainer_.getWidget("Speed") );
         score_ = boost::static_pointer_cast<TxIntegerLabel> ( widgetContainer_.getWidget("Score") );
+        highScore_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("HighScore") );
         mapPosition_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("MapPosition") );
         
         totalSeconds_ = 0;
+        nHighScore_ = 0;
+        nScore_ = 0;
+        prevX=0;
     }
     return self;
 }
@@ -70,8 +75,29 @@
     speed_->getWidgetImpl()->setTargetValue(speedRatio);
 }
 
+
+-(BOOL) isNewHighScore {
+    if (nScore_ >= nHighScore_)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+-(void) setHighScore:(int)highScore
+{
+    nHighScore_ = highScore;
+    NSString * highScoreString = [NSString stringWithFormat:@"High Score:%d", nHighScore_];
+    [highScore_->getWidgetImpl() setString:highScoreString];
+}
+
 -(void) setScore:(int) score
 {
+    nScore_ = score;
+    if (nScore_ >= nHighScore_) // is New high score?
+    {
+        [self setHighScore:nScore_];
+    }
     score_->getWidgetImpl()->setTargetCount(score);
 }
 
@@ -103,12 +129,21 @@
  */
 -(void) setMapPosition:(float)mapPositionX
 {
-    static int prevX = 0;
     int nowX = (int)mapPositionX;
-    if ( nowX != prevX )
+    if ( nowX - prevX >= 50 )
     {
         NSString *positionString = [NSString stringWithFormat:@"%d",nowX];
         [mapPosition_->getWidgetImpl() setString:positionString];
+        prevX = nowX;
+    }
+}
+
+/** @brief Set the stage name.
+ */
+-(void) setStageName:(NSString*)stageName
+{
+    if(stageName) {
+        [stageName_->getWidgetImpl() setString:stageName];
     }
 }
 

@@ -68,6 +68,8 @@
             
             backgroundMusic_ = [[Util getStringValue:rootElement name:@"_backgroundMusic" defaultValue:nil] retain];
             backgroundImageFile = [[Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:nil] retain];
+            
+            beforeScrollSleepSec_ = [Util getIntValue:rootElement name:@"_beforeScrollSleepSec" defaultValue:0];
             NSString * scrollbackgroundOnce = [[Util getStringValue:rootElement name:@"_scrollBackgroundOnce" defaultValue:nil] retain];
             
             if (scrollbackgroundOnce)
@@ -75,13 +77,16 @@
             else
                 loopParallax_ = YES;
         }
-
+        
+        backgroundWidth_ = 0;
+        
         if (backgroundImageFile) // If the background image file is specified, do infinite scrolling
         {
             parallaxNode_ = [CCParallaxNode node];
             parallexPosition_ = CGPointZero;
             
             CCSprite * backgroundSprite = [CCSprite spriteWithFile:backgroundImageFile];
+            backgroundWidth_ = backgroundSprite.contentSize.width;
             backgroundSprite.anchorPoint = ccp(0,0);
             [parallaxNode_ addChild:backgroundSprite z:-1 parallaxRatio:ccp(1/SCROLL_FACTOR,1/SCROLL_FACTOR) positionOffset:CGPointZero];
             [self addChild:parallaxNode_ z:-1 tag:0];
@@ -92,34 +97,43 @@
         
         self.loadingLevel = 0;
         self.loadingLevelMapName = nil;
-        loadingProgress_ = nil;
+
         didStartLoading_ = NO;
     }
     return self;
 }
 
 - (void) step:(ccTime)dt {
+    static int screenWidth = [[CCDirector sharedDirector] winSize].width;
+    assert( backgroundWidth_ > screenWidth );
     
-    if (loopParallax_)
+    // Before scrolling, we sleep for beforeScrollSleepSec_ seconds
+    if (beforeScrollSleepSec_ > 0 )
     {
-        // BUGBUG : iPad : Change 480 to 1024
-        if (parallexPosition_.x < -480*SCROLL_FACTOR ) // Reached half of the image?
-        {
-            // Go back to start.
-            parallexPosition_.x = 0;
-        }
-        else
-        {
-            parallexPosition_.x -= dt*16*SCROLL_FACTOR; // 16 pixcels per second
-        }
+        beforeScrollSleepSec_ -= dt;
     }
     else
     {
-        // Scroll only once.
-        // BUGBUG : iPad : Change 480 to 1024
-        if (parallexPosition_.x >= -480*SCROLL_FACTOR )
+        int scrollPixcels = backgroundWidth_ - screenWidth;
+        if (loopParallax_)
         {
-            parallexPosition_.x -= dt*16*SCROLL_FACTOR; // 16 pixcels per second
+            if (parallexPosition_.x < -scrollPixcels*SCROLL_FACTOR ) // Reached half of the image?
+            {
+                // Go back to start.
+                parallexPosition_.x = 0;
+            }
+            else
+            {
+                parallexPosition_.x -= dt*16*SCROLL_FACTOR; // 16 pixcels per second
+            }
+        }
+        else
+        {
+            // Scroll only once.
+            if (parallexPosition_.x >= -scrollPixcels*SCROLL_FACTOR )
+            {
+                parallexPosition_.x -= dt*16*SCROLL_FACTOR; // 16 pixcels per second
+            }
         }
     }
     
@@ -127,11 +141,16 @@
 }
 
 - (void) onEnterTransitionDidFinish {
-    if ( backgroundMusic_ )
-    {
+    if ( backgroundMusic_ ) {
         [Util playBGM:backgroundMusic_];
     }
     
+    if ( self.loadingLevelMapName ) {
+        assert( self.loadingLevel > 0 );
+        // Should wait a frame to get the loading scene displayed on the screen.
+        [self scheduleUpdate];
+    }
+
     [super onEnterTransitionDidFinish];
 }
 
@@ -148,10 +167,6 @@
 
     [self unscheduleAllSelectors];
     
-    [loadingProgress_ stop];
-    [loadingProgress_ release];
-    loadingProgress_ = nil;
-    
     for (id child in self.children) {
         if ([child isKindOfClass:[InteractiveSprite class]])
         {
@@ -165,18 +180,6 @@
     
 	// don't forget to call "super dealloc"
 	[super dealloc];
-}
-
--(void)addLoadingProgress
-{
-    // should be called only once.
-    assert(!loadingProgress_);
-    
-    loadingProgress_ = [[ProgressCircle alloc] init];
-    assert(loadingProgress_);
-    [self addChild:loadingProgress_];
-    loadingProgress_.position = [Util getCenter:self]; 
-    [loadingProgress_ start];
 }
 
 +(id)nodeWithSceneName:(NSString*)sceneName
@@ -212,10 +215,7 @@
 	GeneralScene *layer = [GeneralScene nodeWithSceneName:@"LoadingScene"];
 	layer.loadingLevelMapName = mapName;
     layer.loadingLevel = level;
-    // Add the progress circle for loading scene.
-    [layer addLoadingProgress];
-    // Should wait a frame to get the loading scene displayed on the screen.
-    [layer scheduleUpdate];
+
 	// add layer as a child to scene
 	[scene addChild:layer z:0 tag:GeneralSceneLayerTagMain];
 

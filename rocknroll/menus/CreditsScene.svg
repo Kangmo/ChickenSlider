@@ -191,11 +191,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/CreditsScene.png"
        xlink:href="CreditsScene.png"
-       width="480"
-       height="320"
-       id="image4279"
+       y="0"
        x="0"
-       y="0" />
+       id="image4279"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -219,7 +219,7 @@
        x="426.75876"
        y="275.84485"
        objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.mp3,Option=PopCurrentScene" />
+       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene" />
   </g>
   <g
      inkscape:groupmode="layer"

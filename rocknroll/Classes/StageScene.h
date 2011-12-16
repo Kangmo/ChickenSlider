@@ -43,7 +43,8 @@ typedef enum {
     NSString * mapName;
     // The current number of level in the map
     int level;
-
+    // The name of the ending scene. The scene will be shown using IntermediateScene class before showing the clear scene.
+    NSString * closingScene;
     // +++++++++ Attributes read from the stage SVG file +++++++++++++
     // The background music file.
     NSString * musicFileName;
@@ -114,6 +115,8 @@ typedef enum {
     float worldGroundY;
     // The X position of the hero by the time we removed the game objects that went behind the left side of the screen.
     float heroXatZ1_ofLastGameObjectRemoval;
+    
+    BOOL isHardMode;
 }
 
 @property (nonatomic, assign) Car * car;

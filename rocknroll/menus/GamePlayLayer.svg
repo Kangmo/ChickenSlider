@@ -209,14 +209,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
      inkscape:cx="161.51253"
-     inkscape:cy="211.95197"
+     inkscape:cy="171.54587"
      inkscape:document-units="px"
      inkscape:current-layer="layer6"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="711"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1191"
+     inkscape:window-height="643"
+     inkscape:window-x="81"
+     inkscape:window-y="93"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -239,11 +239,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/GamePlayLayer.jpg"
        xlink:href="GamePlayLayer.jpg"
-       y="0"
-       x="0"
-       id="image4432"
+       width="480"
        height="320"
-       width="480" />
+       id="image4432"
+       x="0"
+       y="0" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -291,37 +291,37 @@
        id="StartObject-7-7-9-8-3-9"
        width="91.17347"
        height="26.225109"
-       x="191.93587"
-       y="4.9230576"
+       x="195.93587"
+       y="22.923058"
        objectType="Widget"
-       objectDesc="WidgetType=FloatLabel,WidgetName=Speed,InitValue=1.0,MinValue=1.0,MaxValue=1.5,StepValue=0.005,Font=yellow34.fnt,Align=Center,Prefix=x " />
+       objectDesc="WidgetType=FloatLabel,WidgetName=Speed,InitValue=1.0,MinValue=1.0,MaxValue=1.5,StepValue=0.005,Font=yellow34.fnt,Align=Center,Prefix=x ,AdShiftY=-1" />
     <rect
-       style="display:inline;opacity:0.50000000000000000;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.84260475999999984px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.84260476px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-4"
        width="66.377655"
        height="60.326031"
        x="5.1969686"
-       y="6.4892001"
+       y="4.4892001"
        objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=KeysAndChicks,Images=amount.png,Align=Center" />
+       objectDesc="WidgetType=ImageArray,WidgetName=KeysAndChicks,Images=amount.png,Align=Center,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8"
        width="33.85413"
        height="26.225109"
        x="35.205166"
-       y="9.9025993"
+       y="7.9025993"
        objectType="Widget"
-       objectDesc="WidgetType=IntegerLabel,WidgetName=KeyCount,Font=yellow25.fnt,Align=Center" />
+       objectDesc="WidgetType=IntegerLabel,WidgetName=KeyCount,Font=yellow25.fnt,Align=Center,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-6"
        width="33.85413"
        height="26.225109"
        x="34.570408"
-       y="40.207176"
+       y="38.207176"
        objectType="Widget"
-       objectDesc="WidgetType=IntegerLabel,WidgetName=ChickCount,Font=yellow25.fnt,Align=Center" />
+       objectDesc="WidgetType=IntegerLabel,WidgetName=ChickCount,Font=yellow25.fnt,Align=Center,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.64508796px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-4-5"
@@ -330,7 +330,7 @@
        x="434.13199"
        y="5.9841232"
        objectType="Widget"
-       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center" />
+       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-7"
@@ -339,7 +339,16 @@
        x="437.64157"
        y="5.8822956"
        objectType="Widget"
-       objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center" />
+       objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center,AdShiftY=-1" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.5513745px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-7"
+       width="48.486141"
+       height="35.363449"
+       x="430.32556"
+       y="32.102474"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=PauseSign,Images=Pause.png,Align=Center,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.7478627px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
@@ -348,16 +357,34 @@
        x="429.62283"
        y="2.8707275"
        objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.mp3" />
+       objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.wav,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.80499262px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-79"
        width="139.36234"
        height="26.225109"
        x="334.15369"
-       y="289.71484"
+       y="243.00418"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=MapPosition,Font=yellow25.fnt,Align=Right" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.72395158px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-3-7"
+       width="171.10139"
+       height="17.276049"
+       x="302.73703"
+       y="298.74768"
+       objectType="Widget"
+       objectDesc="WidgetType=IntegerLabel,WidgetName=HighScore,Font=white23.fnt,Align=Right" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.72395158px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-3-7-7"
+       width="171.10139"
+       height="17.276049"
+       x="302.34784"
+       y="276.44312"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=StageName,Font=white23.fnt,Align=Right" />
   </g>
   <g
      inkscape:groupmode="layer"

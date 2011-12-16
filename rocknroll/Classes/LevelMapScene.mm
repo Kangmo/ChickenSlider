@@ -24,7 +24,6 @@
 -(void) lockLevels;
 
 -(void) setLevelCleared:(int)level;
--(void) setLevelFailed:(int)level;
 @end
 
 @implementation LevelMapScene
@@ -32,26 +31,21 @@
 // initialize your instance here
 -(id) initWithSceneName:(NSString*)sceneName
 {
+    NSString * mapName = sceneName;
+    if ([sceneName isEqualToString:@"MAP02_02"])
+        mapName = @"MAP02";
+    
     self = [super initWithSceneName:sceneName];
     if (self) {
+        mapName_ = [mapName retain];
+        
         // Initialization code here.
         isTryingToPlayLevel = NO;
         
-        // For reserving hero movement by the time scene is shown on the screen.
-        moveHeroReserved = NO;
-        reservedCurrentLevel = -1;
-        reservedTargetLevel = -1;
-
-        levelCount = 0;
+        minLevel = MAX_LEVELS_PER_MAP;
+        maxLevel = 0;
+        
         highestUnlockedLevel = 1;
-        currentHeroLevel = 1;
-        
-        _heroSprite = [[CCSprite spriteWithSpriteFrameName:HERO_SPRITE_NAME] retain]; 
-        assert(_heroSprite);
-        [self addChild:_heroSprite];
-        
-        _heroWaitingAction = [[[ClipFactory sharedFactory] clipActionByFile:HERO_WAITING_CLIP] retain];
-        assert(_heroWaitingAction);
         
         [self loadLevelSprites];
         [self loadMapState];
@@ -62,21 +56,10 @@
     return self;
 }
 
--(void)startHeroAction:(CCAction*)action {
-    Helper::runAction(_heroSprite, action);
-}
-
--(void)stopHeroAction {
-    [_heroSprite stopAllActions];
-}
 
 -(void) dealloc {
-    [_heroSprite release];
-    _heroSprite = nil;
-    
-    [_heroWaitingAction release];
-    _heroWaitingAction = nil;
-    
+    [mapName_ release];
+    mapName_ = nil;
     [super dealloc];
 }
 
@@ -90,15 +73,15 @@
     // 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
+    // TODO : Think about not hardcoding the map select scene.
+    if ([sceneName isEqualToString:@"MAP02"] && level >= 9 )
+        sceneName = @"MAP02_02";
+
 	// 'layer' is an autorelease object.
 	LevelMapScene *layer = [LevelMapScene nodeWithSceneName:sceneName];
     if (cleared)
     {
         [layer setLevelCleared:level];
-    }
-    else
-    {
-        [layer setLevelFailed:level];
     }
 	
 	// add layer as a child to scene
@@ -123,51 +106,12 @@
 	return scene;
 }
 
--(int)readIntAttr:(NSString*)attrName default:(int)defaultValue
-{
-    PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
-    NSString * sceneAttrName = [sceneName_ stringByAppendingString:attrName];
-
-    int attrValue =  [ gs readIntAttr:sceneAttrName default:defaultValue];
-    
-    return attrValue;
-}
-
--(void) writeIntAttr:(NSString*)attrName value:(int)attrValue
-{
-    PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
-    NSString * sceneAttrName = [sceneName_ stringByAppendingString:attrName];
-    [gs writeIntAttr:sceneAttrName value:attrValue];
-}
-
-- (int) readHighestUnlockedLevel
-{
-#if defined(UNLOCK_LEVELS_FOR_TEST)
-    return 999;
-#else
-    return [self readIntAttr:HIGHEST_UNLOCKED_LEVEL_ATTR default:1];
-#endif
-}
-
-- (int) readCurrentHeroLevel
-{
-    return [self readIntAttr:CURRENT_HERO_LEVEL_ATTR default:1];
-}
-
-- (void) writeHighestUnlockedLevel:(int)level
-{
-    [self writeIntAttr:HIGHEST_UNLOCKED_LEVEL_ATTR value:level];
-}
-
-- (void) writeCurrentHeroLevel:(int)level
-{
-    [self writeIntAttr:CURRENT_HERO_LEVEL_ATTR value:level];
-}
 
 - (void) loadLevelSprites {
     
     // No levels should have been loaded.
-    assert(levelCount == 0);
+    assert(minLevel == MAX_LEVELS_PER_MAP);
+    assert(maxLevel == 0);
     
     for(id child in self.children)
     {
@@ -186,229 +130,65 @@
                 
                 int levelNum = [levelNumAttr intValue];
                 assert(levelNum>0);
-                assert(levelNum<MAX_LEVELS_PER_MAP);
+                assert(levelNum<=MAX_LEVELS_PER_MAP);
                 
                 intrSprites[levelNum-1] = intrSprite;
-                if ( levelCount < levelNum )
-                    levelCount = levelNum;
+                if ( minLevel > levelNum )
+                    minLevel = levelNum;
+                if ( maxLevel < levelNum )
+                    maxLevel = levelNum;
             }
         }
     }
-/*    
     // Make sure there is no hole in the intrSprites array.
-    for (int l=1; l<levelCount; l++ )
+    for (int l=minLevel; l<maxLevel; l++ )
     {
         assert(intrSprites[l-1]);
     }
- */
-}
-
--(CGPoint) heroLevelPosition:(int)level
-{
-    assert( level >= 1);
-    // BUGBUG : changed to minLevel, maxLevel
-    // assert( level <= levelCount );
-    return intrSprites[level-1].position;
-}
-
--(void) setHeroPosition:(int)level
-{
-    _heroSprite.position = [self heroLevelPosition:level];
-    
-    // Show that the hero is waiting
-    [self startHeroAction:_heroWaitingAction];
-}
-
--(void)setHeroPositionCallback:(id)sender data:(void*)callbackData 
-{
-    int level = (int)callbackData;
-    [self setHeroPosition:level];
-
-    currentHeroLevel = level;
-    [self writeCurrentHeroLevel:currentHeroLevel];
-}
-
-/** @brief Reserve the movement of Hero so that the hero moves forward or backward from a level based on whether the level was cleard or not. 
- */
-- (void) reserveHeroMovementFrom:(int)fromLevel to:(int)toLevel
-{
-    reservedCurrentLevel = fromLevel;
-    reservedTargetLevel = toLevel;
-    
-    moveHeroReserved = YES;
-}
-
-- (void) moveHeroPositionTo:(int)toLevel
-{
-    assert(toLevel>=1);
-    assert(toLevel<=highestUnlockedLevel);
-    assert(toLevel<=levelCount);
-    
-    // Stop all actions first.
-    [_heroSprite stopAllActions];
-
-    CGPoint newPosition = [self heroLevelPosition:toLevel];
-    
-    [_heroSprite runAction:[CCSequence actions:
-                           [CCMoveTo actionWithDuration:1.0f position:newPosition],
-                           [CCCallFuncND actionWithTarget:self selector:@selector(setHeroPositionCallback:data:) data:(void*)toLevel],
-                       nil]];
-}
-
-- (void) onEnterTransitionDidFinish {
-    
-    if (moveHeroReserved)
-    {
-        // Set the current position
-        [self setHeroPosition:reservedCurrentLevel];
-        
-        assert (reservedCurrentLevel != reservedTargetLevel);
-
-        [self moveHeroPositionTo:reservedTargetLevel];
-
-        // BUGBUG:play some sound!
-    }
-    else
-    {
-        [self setHeroPosition:currentHeroLevel];
-    }
-    
-    [super onEnterTransitionDidFinish];
 }
 
 - (void) loadMapState {
-    highestUnlockedLevel = [self readHighestUnlockedLevel];
-    currentHeroLevel = [self readCurrentHeroLevel];
-    
-    assert (currentHeroLevel <= highestUnlockedLevel );
+    highestUnlockedLevel = [Util loadHighestUnlockedLevel:mapName_];
 }
 
 -(void) unlockLevel:(int)level {
-    assert(level>=1);
-    assert(level<=levelCount);
-    assert(level<=highestUnlockedLevel);
-    
-    InteractiveSprite * intrSprite = intrSprites[level-1];
-    [intrSprite setLocked:NO];
+    assert(level>=minLevel);
+
+    // If the level we are going to unlock is within this MapSelectScene, unlock the level.
+    if(level<=maxLevel)
+    {
+        InteractiveSprite * intrSprite = intrSprites[level-1];
+        [intrSprite setLocked:NO];
+    }
 }
 
 -(void) lockLevels {
-    for (int level = highestUnlockedLevel+1; level <=levelCount; level++ )
+    for (int level = highestUnlockedLevel+1; level <=maxLevel; level++ )
     {
         InteractiveSprite * intrSprite = intrSprites[level-1];
-        [intrSprite setLocked:YES];
+        [intrSprite setLocked:YES spriteFrameName:@"stagelocked.png"];
     }
-#if ! defined( UNLOCK_LEVELS_FOR_TEST )    
-    for (int level = 1; level <= highestUnlockedLevel; level ++ )
-    {
-        assert( ! [intrSprites[level-1] isLocked] ); // Shouldn't be locked by default.
-    }
-#endif
 }
 
 /** @brief Before the scene transition, the StageScene calls this function if the level is cleared. */
 -(void) setLevelCleared:(int)level{
-    assert( level <= levelCount );
-    
+    assert( level >= minLevel );
+    assert( level <= maxLevel );
+
     // Can we unlock the next level?
-    if ( level == highestUnlockedLevel && (level+1) <= levelCount )
+    if ( level == highestUnlockedLevel )
     {
         highestUnlockedLevel++;
-        // Remove the lock sprite and make the level playable.
-        [self unlockLevel:highestUnlockedLevel];
-        // Write that the level was unlocked.
-        [self writeHighestUnlockedLevel:highestUnlockedLevel];
-    }
-    
-    currentHeroLevel = level;
-    [self writeCurrentHeroLevel:currentHeroLevel];
-}
-
-/** @brief Before the scene transition, the StageScene calls this function if the level is failed.
- On the screen, the hero character moves one level backward.
- */
--(void) setLevelFailed:(int)level{
-    // BUGBUG : change to minLevel, maxLevel
-    // assert( level <= levelCount );
-    
-    if ( level > 1 )
-    {
-        [self reserveHeroMovementFrom:level to:level-1];
-    }
-    
-    currentHeroLevel = level;
-    [self writeCurrentHeroLevel:currentHeroLevel];
-}
-
-typedef struct LevelInfo
-{
-    NSString * mapName;
-    int newLevel;
-} LevelInfo;
-
-static LevelInfo gLevelInfo = {nil, 0};
-
--(void) replaceSceneCallback:(id)sender data:(void*)unusedData
-{
-    assert( gLevelInfo.mapName != nil);
-    assert( gLevelInfo.newLevel >= 1 );
-    assert( gLevelInfo.newLevel <= highestUnlockedLevel );    
-    assert( gLevelInfo.newLevel <= levelCount );    
-    
-    // Replace the current scene to a loading scene that will again replace the scene to the new StageScene with the given map and level.
-    CCScene * loadingScene = [GeneralScene loadingSceneOfMap:gLevelInfo.mapName levelNum:gLevelInfo.newLevel];
-    [[CCDirector sharedDirector] replaceScene:loadingScene];
-    
-    //retained in playLevel:ofMap:
-    [gLevelInfo.mapName release];
-    
-    gLevelInfo.mapName = nil;
-    gLevelInfo.newLevel = 0;
-}
-
-/** @brief Move the character to the level, transition to the StageScene with the give level.
- */
--(void) playLevel:(int)newLevel ofMap:(NSString*)mapNameAttr {
-    if (isTryingToPlayLevel)
-        return;
-    
-    NSMutableArray * actions = [NSMutableArray array];
-    
-    // Make the Hero pass by each level between the last played level and the new level
-    if (currentHeroLevel < newLevel) 
-    {
-        for (int level=currentHeroLevel; level <= newLevel; level++ )
+        
+        // Write that the next level was unlocked.
+        [Util saveHighestUnlockedLevel:mapName_ level:highestUnlockedLevel];
+        
+        if ((level+1) <= maxLevel)
         {
-            CGPoint levelPosition = [self heroLevelPosition:level];
-            CCMoveTo * moveToAction = [CCMoveTo actionWithDuration:0.2f position:levelPosition];
-            [actions addObject:moveToAction];
+            // Remove the lock sprite and make the level playable.
+            [self unlockLevel:highestUnlockedLevel];
         }
     }
-    else if (currentHeroLevel > newLevel)
-    {
-        for (int level=currentHeroLevel; level >= newLevel; level-- )
-        {
-            CGPoint levelPosition = [self heroLevelPosition:level];
-            CCMoveTo * moveToAction = [CCMoveTo actionWithDuration:0.2f position:levelPosition];
-            [actions addObject:moveToAction];
-        }
-    }
-    
-    [actions addObject:[CCScaleTo actionWithDuration:0.2f scale:4.0f]];
-    
-    // released on replaceSceneCallback
-    assert(gLevelInfo.mapName == nil);
-    assert(gLevelInfo.newLevel == 0);
-    
-    gLevelInfo.mapName = [mapNameAttr retain];
-    gLevelInfo.newLevel = newLevel;
-    
-    [actions addObject:[CCCallFuncND actionWithTarget:self selector:@selector(replaceSceneCallback:data:) data:(void*)nil]];
-             
-    [_heroSprite stopAllActions];
-    [_heroSprite runAction:[CCSequence actionsWithArray:actions]];
-     
-     isTryingToPlayLevel = YES;
 }
 
 @end

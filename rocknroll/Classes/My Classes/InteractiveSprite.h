@@ -51,10 +51,6 @@ typedef enum body_hover_action_t
      */
     CCParticleSystemQuad * particleEmitter_;
     
-    /** @brief The sound effect played when the interactive sprite is touched 
-     */
-    CDSoundSource * soundEffect_;
-    
     /** @brief The progress timer to show while the IAP is in progress
      */
     ProgressCircle * progressCircle_;
@@ -84,6 +80,7 @@ typedef enum body_hover_action_t
 -(void)removeFromTouchDispatcher;
 
 -(void) setLocked:(BOOL)locked;
+-(void) setLocked:(BOOL)locked spriteFrameName:(NSString*)spriteFrameName;
 -(BOOL) isLocked;
 
 @end

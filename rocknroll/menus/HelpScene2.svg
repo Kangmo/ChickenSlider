@@ -240,11 +240,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/HelpScene2.png"
        xlink:href="HelpScene2.png"
-       y="0"
-       x="0"
-       id="image4432"
+       width="480"
        height="320"
-       width="480" />
+       id="image4432"
+       x="0"
+       y="0" />
   </g>
   <g
      inkscape:label="Others"
@@ -274,20 +274,9 @@
        x="425.26273"
        y="276.85498"
        objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.mp3,Option=PopCurrentScene"
+       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene"
        inkscape:transform-center-y="-18.134885"
        inkscape:transform-center-x="1.0514602e-05" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.72903621px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7"
-       width="83.773666"
-       height="35.782413"
-       x="10.230123"
-       y="279.88544"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.mp3,Option=PopCurrentScene"
-       inkscape:transform-center-y="-18.134885"
-       inkscape:transform-center-x="2.490588e-05" />
   </g>
   <g
      inkscape:groupmode="layer"

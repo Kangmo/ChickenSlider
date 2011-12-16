@@ -45,6 +45,7 @@
 
         startBorderIndex = 0;
         endBorderIndex = 0;
+        rightBeforeHeroIndex = 0;
         
         renderUpside = NO;
         thickness = TERRAIN_TEXTURE_SIZE;
@@ -120,6 +121,35 @@
 	[super dealloc];
 }
 
+/** @brief Is the terrain below the Hero?
+ */
+- (BOOL) isBelowHero:(float)heroY_withoutZoom {
+    // Is the terrain within the screen?
+    if ( startBorderIndex < endBorderIndex )
+    {
+        // Is Hero between the start point and end point of the terrain to draw on screen?
+        if ( borderVertices[startBorderIndex].x <= _offsetX &&
+            _offsetX <= borderVertices[endBorderIndex].x )
+        {
+            if (heroY_withoutZoom > borderVertices[rightBeforeHeroIndex].y)
+                return YES;
+        }
+    }
+    return NO;
+}
+
+/** @brief Calculate the index to the borderVertices array for the point right before the hero X( _offsetX ), 
+    set it to heroIndex.
+ */
+- (void) calcRightBeforeHeroIndex
+{
+	while (rightBeforeHeroIndex < nBorderVertices-1) {
+        if ( borderVertices[rightBeforeHeroIndex+1].x >= _offsetX)
+            break;
+		rightBeforeHeroIndex++;
+	}
+}
+
 
 /** @brief Calculate the starting index to the borderVertices array to draw on screen based on _offsetX, set it to startBorderIndex.
  */
@@ -128,7 +158,9 @@
     static float heroOffset = screenW * HERO_XPOS_RATIO;
 	// key points interval for drawing
 	// _offsetX seems to be Hero's offset which is on the left side of the screen by 1/8 of screen width
-	float leftSideX = _offsetX - heroOffset /self.scale;
+    // The left side that went out of screen can come back to screen when the screen is zoomed out quickly. 
+    // So we don't use self.scale but use MIN_ZOOM_RATIO to calculate the left side to draw
+	float leftSideX = _offsetX - heroOffset / MIN_ZOOM_RATIO;
 
 	while (startBorderIndex < nBorderVertices-1) {
         if ( borderVertices[startBorderIndex+1].x >= leftSideX)
@@ -297,6 +329,8 @@ PROF_END(terrain_draw);
  
 }
 
+
+
 /** @brief Calculate minimum Y value of the border we are drawing now!
  */
 - (float) calcBorderMinY {
@@ -326,6 +360,7 @@ PROF_END(terrain_draw);
         // calculate the range of border indexes to borderVertices array to draw on screen. 
         [self calcStartBorderIndex];
         [self calcEndBorderIndex];
+        [self calcRightBeforeHeroIndex];
         //CCLOG(@"StartBorderIndex: %d, EndBorderIndex:%d", startBorderIndex, endBorderIndex);
 //		[self resetHillVertices];
 	}
@@ -338,6 +373,7 @@ PROF_END(terrain_draw);
 	
 	startBorderIndex = 0;
 	endBorderIndex = 0;
+    rightBeforeHeroIndex = 0;
 }
 
 

@@ -43,8 +43,8 @@ public:
     {
         if ( _currentCount != _targetCount ) {
             // The amount of value to increase. (can have a negative value.)
-            // Increase 1/8 of the gap at once.
-            int stepCount = (_targetCount - _currentCount) >> 3;
+            // Increase 1/4 of the gap at once.
+            int stepCount = (_targetCount - _currentCount) >> 2;
             if (stepCount==0)
                 stepCount = _currentCount < _targetCount ? 1 : -1;
              

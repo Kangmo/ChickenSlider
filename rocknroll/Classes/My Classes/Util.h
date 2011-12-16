@@ -18,11 +18,14 @@
 +(CCParticleSystemQuad*)createParticleEmitter:(NSString*)particleImage count:(int)particleCount duration:(float)duration;
 
 +(BOOL) didPurchaseAny;
++(int) getAdHeight;
 
 +(void) removeIapData;
 
 +(CGPoint) getCenter:(CCNode*)node;
 
++(int) loadIntAttr:(NSString*)attrName default:(int)defaultValue;
++(void) saveIntAttr:(NSString*)attrName value:(int)attrValue;
 
 +(int) loadTotalChickCount;
 
@@ -35,7 +38,13 @@
 +(int) loadDifficulty;
 +(void) saveDifficulty:(int)difficulty;
 
++(int) loadHighScore:(NSString*)mapName level:(int)level;
++(void) saveHighScore:(NSString*)mapName level:(int)level highScore:(int)highScore;
++(int) loadStarCount:(NSString*)mapName level:(int)level;
++(void) saveStarCount:(NSString*)mapName level:(int)level starCount:(int)starCount;
 
++(int) loadHighestUnlockedLevel:(NSString*)mapName;
++(void) saveHighestUnlockedLevel:(NSString*)mapName level:(int)level;
 
 +(CCScene*) defaultSceneTransition:(CCScene*)newScene;
 

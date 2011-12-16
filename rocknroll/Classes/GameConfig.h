@@ -20,20 +20,25 @@
 /** @brief The maximum position for X or Y axis for a valid point.
  */
 #define kMAX_POSITION (9999999.0f)
-#define SCORE_PER_COMBO (1000)
+
+#define SCORE_PER_COMBO (100)
+#define SCORE_PER_CHICK (1500)
+#define SCORE_PER_KEY (10)
+#define SCORE_PER_SECOND_FOR_HARD_MODE (500)
 
 #define INIT_PTM_RATIO (32)
 #define INIT_ZOOM_RATIO (1)
 
-#define MIN_ZOOM_RATIO (0.15)
-#define MAX_ZOOM_RATIO (10)
+#define MIN_ZOOM_RATIO (0.10)
+#define MAX_ZOOM_RATIO (7)
 
 // The maximum wave height in meters. Used for adjusting ground level.
 #define MAX_WAVE_HEIGHT (3.0f) 
 // Zoom gradually to the target zoom value when Zooming ratio suddenly changes.
 // This is necessary because the hero hits on the ground suddenly making a sudden change of zoom.
-// At most, change Zoom by 10%
-#define ZOOM_DELTA_RATIO (0.02f)
+// At most, change Zoom by 5%
+//#define ZOOM_DELTA_RATIO (0.02f)
+#define ZOOM_DELTA_RATIO (0.025f)
 
 // The X position of hero on the screen. It is positioned on the ride side of the screen with the offset of 1/8 of screen width.
 #define HERO_XPOS_RATIO (1.0f/4.0f)
@@ -52,8 +57,11 @@
 // Start blinking the health bar if it reaches at 50% level.
 #define HEALTH_BAR_BLINKING_THRESHOLD (50)
 
+#define EASY_MODE_PLAY_TIME_FACTOR (1.5f)
+
 // The default time duration to simulate in box2d for each frame.
-#define DEFAULT_FRAME_DURATION_SEC (1.0f/45.0f)
+#define EASY_MODE_FRAME_DURATION_SEC (1.0f/60.0f)
+#define HARD_MODE_FRAME_DURATION_SEC (1.0f/45.0f)
 
 // IncNumLabel.h
 
@@ -78,6 +86,8 @@ const float TARGET_OBJ_POS_X = 480.0f * HERO_XPOS_RATIO;
 const float MIN_TARGET_OBJ_POS_Y = 320.0 * HERO_MAX_YPOS_RATIO;
 const float MAX_TARGET_OBJ_POS_Y = 320.0 * HERO_MIN_YPOS_RATIO;
 
+const float GROUND_TO_NEWGROUND_GAP = 320.0;
+
 // BUGBUG : iPad/iPhone 4 HD might have different height.
 const float LANDSCAPE_AD_HEIGHT = 32;
 
@@ -92,6 +102,10 @@ const float LANDSCAPE_AD_HEIGHT = 32;
 
 // Unlock all stage levels for testing
 #define UNLOCK_LEVELS_FOR_TEST (1)
+
+#define DISABLE_IAP (1)
+
+//#define DISABLE_ADS (1)
 
 #endif // __GAME_CONFIG_H
 

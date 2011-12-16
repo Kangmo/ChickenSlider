@@ -117,9 +117,20 @@
 /** @brief Did the user purchased any product? 
  */
 +(BOOL) didPurchaseAny {
+#if defined(DISABLE_ADS)    
     return YES; // BUGBUG : Optimization1 : Don't show AD.
-//    return [MKStoreManager isFeaturePurchased:@"com.thankyousoft.rocknroll.map02"];
-    
+#else
+    return [MKStoreManager isFeaturePurchased:@"com.thankyousoft.rocknroll.map02"];
+#endif
+}
+
+/** @brief Get the height of AD. Return 0 if we don't show any AD because the user purchased any feature.
+ */
++(int) getAdHeight {
+    if ( [self didPurchaseAny] ) {
+        return 0;
+    }
+    return LANDSCAPE_AD_HEIGHT;
 }
 
 /** @brief Testing purpose only. Remove the key chain data about the purchase history. 
@@ -140,6 +151,23 @@
 +(CGPoint) getCenter:(CCNode*)node {
     return CGPointMake([node contentSize].width * 0.5, [node contentSize].height * 0.5);
 }
+
+
++(int)loadIntAttr:(NSString*)attrName default:(int)defaultValue
+{
+    PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
+    
+    int attrValue =  [ gs readIntAttr:attrName default:defaultValue];
+    
+    return attrValue;
+}
+
++(void) saveIntAttr:(NSString*)attrName value:(int)attrValue
+{
+    PersistentGameState * gs = [PersistentGameState sharedPersistentGameState];
+    [gs writeIntAttr:attrName value:attrValue];
+}
+
 
 +(int) loadTotalChickCount {
     int count;
@@ -179,6 +207,61 @@
 
 +(void) saveDifficulty:(int)difficulty {
     [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"Difficulty" value:difficulty];
+}
+
++(NSString*) levelStateName:(NSString*)stateName mapName:(NSString*)mapName level:(int)level {
+    return [NSString stringWithFormat:@"%@_%@_%02d",stateName,mapName,level];
+}
+
++(NSString*) mapStateName:(NSString*)stateName mapName:(NSString*)mapName {
+    return [NSString stringWithFormat:@"%@_%@",stateName,mapName];
+}
+
++(int) loadHighScore:(NSString*)mapName level:(int)level {
+    NSString * stateName = [Util levelStateName:@"HighScore" mapName:mapName level:level];
+    
+    int highScore;
+    highScore = [[PersistentGameState sharedPersistentGameState] readIntAttr:stateName default:0];
+    return highScore;
+}
+
++(void) saveHighScore:(NSString*)mapName level:(int)level highScore:(int)highScore {
+    NSString * stateName = [Util levelStateName:@"HighScore" mapName:mapName level:level];
+    
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:stateName value:highScore];
+}
+
+/** @brief load the star count for the specific map and level.
+    The default star count is -1, not to show anything at all.
+ */
++(int) loadStarCount:(NSString*)mapName level:(int)level {
+    NSString * stateName = [Util levelStateName:@"StarCount" mapName:mapName level:level];
+    
+    int highScore;
+    highScore = [[PersistentGameState sharedPersistentGameState] readIntAttr:stateName default:-1];
+    return highScore;
+}
+
++(void) saveStarCount:(NSString*)mapName level:(int)level starCount:(int)starCount {
+    NSString * stateName = [Util levelStateName:@"StarCount" mapName:mapName level:level];
+    
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:stateName value:starCount];
+}
+
++ (int) loadHighestUnlockedLevel:(NSString*)mapName
+{
+#if defined(UNLOCK_LEVELS_FOR_TEST)
+    return 999;
+#else
+    NSString * stateName = [Util mapStateName:@"HighestUnlockedLevel" mapName:mapName];
+    return [Util loadIntAttr:stateName default:1];
+#endif
+}
+
++ (void) saveHighestUnlockedLevel:(NSString*)mapName level:(int)level
+{
+    NSString * stateName = [Util mapStateName:@"HighestUnlockedLevel" mapName:mapName];
+    [Util saveIntAttr:stateName value:level];
 }
 
 

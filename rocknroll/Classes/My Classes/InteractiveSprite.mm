@@ -6,6 +6,7 @@
 #import "ClipFactory.h"
 #import "GeneralMessageProtocol.h"
 #import "OptionScene.h"
+#import "IntermediateScene.h"
 
 @implementation InteractiveSprite
 
@@ -35,7 +36,6 @@
         particleEmitter_ = nil;
         
         lockSprite_ = nil;
-        soundEffect_ = nil;
         
         //tickScheduled_ = NO;
         //tickAccDT_ = 0;
@@ -73,7 +73,7 @@
     return lockSprite_?YES:NO;
 }
 
--(void) setLocked:(BOOL)locked
+-(void) setLocked:(BOOL)locked spriteFrameName:(NSString*)spriteFrameName
 {
     
     if (locked)
@@ -83,7 +83,7 @@
         
         // Should not lock twice
         assert( ! [self isLocked] );
-        lockSprite_ = [[CCSprite spriteWithSpriteFrameName:@"Locked.png"] retain];
+        lockSprite_ = [[CCSprite spriteWithSpriteFrameName:spriteFrameName] retain];
         assert(lockSprite_);
         
         [parent addChild:lockSprite_];
@@ -106,7 +106,10 @@
     }
 }
 
-
+-(void) setLocked:(BOOL)locked 
+{
+    [self setLocked:locked spriteFrameName:@"Locked.png"];
+}
 
 /** @brief Set the action type and data
  *
@@ -155,34 +158,6 @@
     [self stopProgress];
 }
 
-/*
--(void) tick: (ccTime) dt
-{
-    tickAccDT_ += dt;
-    const ccTime CHECK_PURCHASE_INTERVAL = 1/4.0f;
-
-    if (tickAccDT_ < CHECK_PURCHASE_INTERVAL )
-    {
-        return;
-    }
-    tickAccDT_ = 0;
-    
-    assert(tickScheduled_);
-    
-    // Common stuff to process
-    NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
-    assert(unlockingProductName);
-    
-    // Periodically check if the feature is purchased.
-    if ( [IAP isFeaturePurchased:unlockingProductName ] )
-    {
-        [self setLocked:NO];
-        [self unschedule: @selector(tick:)];
-        tickScheduled_ = NO;
-    }
-}
-*/
-
 -(void)dealloc
 {
     CCLOG(@"Interactive Body Node : dealloc");
@@ -208,8 +183,7 @@
     }
     [touchActionDescs_ release];
     [hoverActionDescs_ release];
-    [soundEffect_ stop];
-    [soundEffect_ release];
+
     [super dealloc];
 }
 
@@ -227,6 +201,12 @@
     assert([owningLayer isKindOfClass:[CCLayer class]] );
 
     BOOL pushScene = NO;
+
+    NSString * soundFileName = [touchActionDescs_ valueForKey:@"Sound"];
+    if ( soundFileName) {
+        CDSoundSource * sound = [[ClipFactory sharedFactory] soundByFile:soundFileName];
+        [sound play];
+    }
 
     // See if there is any option that we need to process for all types of touch actions.
     NSString * actionMessage = [touchActionDescs_ valueForKey:@"ActionMessage"];
@@ -303,20 +283,10 @@
         {
             NSString * sceneName = [touchActionDescs_ valueForKey:@"SceneName"];
             assert(sceneName);
-
-            NSString * soundFileName = [hoverActionDescs_ valueForKey:@"Sound"];
-            if ( soundFileName) {
-                CDSoundSource * sound = [[ClipFactory sharedFactory] soundByFile:soundFileName];
-                [sound play];
-            }
             
             CCScene * newScene = nil;
             if ( [sceneName isEqualToString:@"StageScene"] )
             {
-                CCNode * parent = [self parent];
-                // StageScene can be run only from the LevelMapScene 
-                assert( [parent isKindOfClass:[LevelMapScene class]] );
-                
                 // The string uniquly identifying the name of a map that has multiple stages.
                 NSString * mapNameAttr = [touchActionDescs_ valueForKey:@"Arg1"];
                 assert(mapNameAttr);
@@ -327,10 +297,8 @@
                 
                 int levelNum = [levelNumAttr intValue];
 
-                LevelMapScene * levelMapScene = (LevelMapScene*) parent;
-
                 // Move the hero to the new level and start the new level stage
-                [levelMapScene playLevel:levelNum ofMap:mapNameAttr];
+                newScene = [GeneralScene loadingSceneOfMap:mapNameAttr levelNum:levelNum];
             }
             // If the scene name starts with "MAP", we instantiate LevelMapScene.
             else if ( [[sceneName substringWithRange:NSMakeRange(0,3)] isEqualToString:@"MAP"] )
@@ -348,10 +316,21 @@
             
             if (newScene)
             {
-                if (pushScene)
+                if (pushScene) {
                     [[CCDirector sharedDirector] pushScene:newScene ];
-                else
+                }
+                else {
+                    // Do we have a scene to show before starting the actual scene?
+                    // Ex> Show opening scene before playing stage 1.
+                    NSString * intermediateSceneName = [touchActionDescs_ valueForKey:@"IntermediateScene"];
+                    if ( intermediateSceneName ) {
+                        CCScene * intermediateScene = [IntermediateScene sceneWithName:intermediateSceneName 
+                                                                                       nextScene:newScene];
+                        // replace the scene with the intermediate scene.
+                        newScene = intermediateScene;
+                    } 
                     [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:newScene] ];
+                }
             }
         }
         break;
@@ -398,19 +377,7 @@
         }
         break;
     }
-/*
-    // Common stuff to process
-    NSString * soundFileName = [hoverActionDescs_ valueForKey:@"Sound"];
-    if ( soundFileName) {
-        if ( ! soundEffect_ )
-        {
-            soundEffect_ = [[ClipFactory sharedFactory] soundByFile:soundFileName];
-            assert(soundEffect_);
-            [soundEffect_ retain];
-        }
-        [soundEffect_ play];
-    }
-*/
+
 }
 
 -(BOOL) isTouchOnNode:(CGPoint)touch{
@@ -496,6 +463,15 @@
 }
 
 - (void) onEnterTransitionDidFinish {
+    // Move the InteractiveSprite down if the AD is enabled. 
+    NSString * AdShiftYStr = [touchActionDescs_ valueForKey:@"AdShiftY"];
+    // AdShiftY is either -1 or 1. For Ad banners on top, we use AdShiftY==-1 to move widgets down by LANDSCAPE_AD_HEIGHT;
+    if (AdShiftYStr) {
+        int AdShiftY = [AdShiftYStr intValue];
+        assert( AdShiftY >= -1 && AdShiftY <= 1);
+        self.position = CGPointMake( self.position.x, self.position.y + [Util getAdHeight] * AdShiftY);
+    }
+    
     // Common stuff to process
     NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
     
@@ -540,6 +516,12 @@
                     [self setLocked:NO];
                 }
             }
+            
+#if defined(DISABLE_IAP)
+            [IAP sharedIAP].delegate = nil;
+            [self setLocked:NO];
+#endif
+
         }
     }
     

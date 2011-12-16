@@ -23,6 +23,7 @@
     // The the range of border indexes to borderVertices array to draw on screen. Both start/end indexes are inclusive.
 	int startBorderIndex;
 	int endBorderIndex;
+    int rightBeforeHeroIndex;
 	CGPoint hillVertices[kMaxHillVertices];
 	CGPoint hillTexCoords[kMaxHillVertices];
 	int nHillVertices;
@@ -56,6 +57,8 @@
 - (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
 
 - (float) calcBorderMinY;
+
+- (BOOL) isBelowHero:(float)heroY_withoutZoom;
 
 - (void) reset;
 

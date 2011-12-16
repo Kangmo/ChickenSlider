@@ -212,7 +212,7 @@
      inkscape:cx="154.22048"
      inkscape:cy="158.8123"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="711"
@@ -240,11 +240,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/ScoreScene.png"
        xlink:href="ScoreScene.png"
-       width="480"
-       height="320"
-       id="image4432"
+       y="0"
        x="0"
-       y="0" />
+       id="image4432"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:label="Others"
@@ -274,7 +274,7 @@
        x="426.52444"
        y="276.85498"
        objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.mp3,Option=PopCurrentScene" />
+       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.68436635px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7"

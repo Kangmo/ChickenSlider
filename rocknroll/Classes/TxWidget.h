@@ -69,30 +69,50 @@ protected:
         // If the propName does not exist, @"" is returned.
         return [Util toNSString:propValue];
     }
-    float getFloatPropValue(const char * propName)
+    float getFloatPropValue(const char * propName, float defaultValue)
     {
         NSString * propValueString = getPropNSString(propName);
-        assert(propValueString);
-        float floatValue = [propValueString floatValue];
-        if ( floatValue == 0.0 )
-        {
-            assert( [propValueString isEqualToString:@""] || 
-                    [propValueString isEqualToString:@"0"] || 
-                    [propValueString isEqualToString:@"0.0"] );
+        
+        float floatValue = defaultValue;
+        if(propValueString) {
+            floatValue = [propValueString floatValue];
+            
+            if ( floatValue == 0.0 )
+            {
+                assert( [propValueString isEqualToString:@""] || 
+                       [propValueString isEqualToString:@"0"] || 
+                       [propValueString isEqualToString:@"0.0"] );
+            }
         }
         return floatValue;
     }
-    int getIntPropValue(const char * propName)
+    int getIntPropValue(const char * propName, int defaultValue)
     {
         NSString * propValueString = getPropNSString(propName);
-        assert(propValueString);
-        int intValue = [propValueString intValue];
-        if ( intValue == 0 )
-        {
-            assert( [propValueString isEqualToString:@""] || 
-                    [propValueString isEqualToString:@"0"] );
+        int intValue = defaultValue;
+        
+        if ( propValueString ) {
+            intValue = [propValueString intValue];
+            if ( intValue == 0 )
+            {
+                assert( [propValueString isEqualToString:@""] || 
+                       [propValueString isEqualToString:@"0"] );
+            }
         }
+
         return intValue;
+    }
+
+    const BOOL getIsPersistent()
+    {
+        const std::string & isPersistent = getPropValue("IsPersistent");
+        
+        if ( isPersistent == "YES" || isPersistent == "Yes" || isPersistent == "yes" || 
+            isPersistent == "TRUE" || isPersistent == "True" || isPersistent == "true" )
+        {
+            return YES;
+        }
+        return NO;
     }
 
 public :
@@ -135,6 +155,12 @@ public :
         {
             // Should never come here.
             assert(0);
+        }
+        
+        int AdShiftY = getIntPropValue("AdShiftY", 0);
+        // AdShiftY is either -1 or 1. For Ad banners on top, we use AdShiftY==-1 to move widgets down by LANDSCAPE_AD_HEIGHT;
+        if (AdShiftY) {
+            node.position = CGPointMake( node.position.x, node.position.y + [Util getAdHeight] * AdShiftY);
         }
     }
 };

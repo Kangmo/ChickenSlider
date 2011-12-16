@@ -20,6 +20,8 @@
 
 #import "ClearScene.h"
 
+#import "IntermediateScene.h"
+
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -100,14 +102,23 @@ PROF_END(cocos2d_layer_visit);
         CXMLDocument *svgDocument  = [[[CXMLDocument alloc] initWithData:data options:0 error:nil] autorelease];
         assert(svgDocument);
         CXMLElement * rootElement = [svgDocument rootElement];
-
+        
         musicFileName = [[Util getStringValue:rootElement name:@"_backgroundMusic" defaultValue:nil] retain];
         backgroundImage = [[Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:@"nosky.pvr"] retain];
         groundTexture = [[Util getStringValue:rootElement name:@"_groundTexture" defaultValue:@"noterrain.pvr"] retain];
         playTimeSec  = [Util getIntValue:rootElement name:@"_playTimeSec" defaultValue:60];
+        if (! isHardMode ) {
+            // In easy mode, we give 50% more time.
+            playTimeSec = playTimeSec * EASY_MODE_PLAY_TIME_FACTOR;
+        }
         oneStarCount = [Util getIntValue:rootElement name:@"_oneStarCount" defaultValue:1];
         twoStarCount = [Util getIntValue:rootElement name:@"_twoStarCount" defaultValue:2];
         threeStarCount= [Util getIntValue:rootElement name:@"_threeStarCount" defaultValue:3];
+
+        closingScene = [[Util getStringValue:rootElement name:@"_closingScene" defaultValue:nil] retain];
+
+        NSString * stageName = [[Util getStringValue:rootElement name:@"_stageName" defaultValue:nil] retain];
+        [playUI setStageName:stageName];
     }
 }
 
@@ -346,6 +357,12 @@ PROF_END(cocos2d_layer_visit);
     [self pauseGame];
 }
 
+-(void)retryGame {
+    // Move the hero to the new level and start the new level stage
+    CCScene * newScene = [GeneralScene loadingSceneOfMap:mapName levelNum:level];
+    [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:newScene] ];
+}
+
 ///////////////////////////////////////////////////////////////
 // GeneralMessageProtocol
 -(void)onMessage:(NSString*) message
@@ -354,6 +371,12 @@ PROF_END(cocos2d_layer_visit);
     if ( [message isEqualToString:@"Resume"] )
     {
         [self resumeGame];
+    }
+    
+    if ( [message isEqualToString:@"Retry"] )
+    {
+        [self resumeGame];
+        [self retryGame];
     }
     
     // Quit : Sent by PauseLayer.svg
@@ -372,81 +395,6 @@ PROF_END(cocos2d_layer_visit);
 
 ///////////////////////////////////////////////////////////////
 
-/*
-
--(void) initScoreLabels {
-    float AD_SIZE_HEIGHT = super.enableAD ? LANDSCAPE_AD_HEIGHT : 0;    
-    float SCORE_VERT_CENTER_Y = super.screenSize.height - super.screenSize.height/14 - AD_SIZE_HEIGHT;
-    static float HORIZONTAL_MARGIN = super.screenSize.width/32;
-    // The margin between the water drop sprite and the counter.
-    static float FEATHER_MARGIN = HORIZONTAL_MARGIN/2;
-    // Water Drop sprite and count
-    CCLabelBMFont *keysLabel = nil;
-    {
-        CCSprite * featherSprite = [CCSprite spriteWithSpriteFrameName:@"feather00.png"]; 
-        assert(featherSprite);
-        
-        [spriteSheet addChild:featherSprite];
-        featherSprite.anchorPoint = ccp(0, featherSprite.anchorPoint.y);
-        // Y : +5 is required to move the sprite to the top of the screen by 5 pixcels because the water drop sprite have margin space on top of it.
-        featherSprite.position = ccp(HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y+5);
-
-        
-        keysLabel = feathersLabel.getLabel();
-        
-        keysLabel.anchorPoint = ccp(0, keysLabel.anchorPoint.y);
-        
-        keysLabel.position = ccp(featherSprite.position.x + featherSprite.contentSize.width + FEATHER_MARGIN, 
-                             SCORE_VERT_CENTER_Y);
-
-        [self addChild:keysLabel];
-    }
-
-    // Score
-    {
-        CCLabelBMFont *label = scoreLabel.getLabel();
-        
-        label.anchorPoint = ccp(label.anchorPoint.x*2, label.anchorPoint.y);
-        
-        label.position = ccp(super.screenSize.width - HORIZONTAL_MARGIN, SCORE_VERT_CENTER_Y);
-        
-        [self addChild:label];
-    }
-
-    // Speed Ratio
-    {
-        speedRatioLabel =  new FloatLabel(MIN_FRAME_SPEED_RATIO,  // initialValue 
-                                          STEP_FRAME_SPEED_RATIO, // stepValue 
-                                          MIN_FRAME_SPEED_RATIO,  // minValue 
-                                          MAX_FRAME_SPEED_RATIO); // float maxValue
-        CCLabelBMFont *label = speedRatioLabel->getLabel();
-        
-//        label.anchorPoint = ccp(0, label.anchorPoint.y);
-//        label.position = ccp(keysLabel.position.x + FEATHER_MARGIN, SCORE_VERT_CENTER_Y);
-        label.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
-        
-        [self addChild:label];
-    }
-
-    // Life Bar
-    {
-        
-        //CCProgressTimer * healthBarProgress = healthBar.getProgressTimer();
-
-        //healthBarProgress.position = ccp(super.screenSize.width * 0.5, SCORE_VERT_CENTER_Y);
-        
-        //[self addChild:healthBarProgress];
-    }
-        
-    // BUGBUG : Replace to loading SVG on top of StageScene layer.
-    CCMenuItemFont * mi = [CCMenuItemFont itemFromString:@"Pause" target:self selector:@selector(onPauseButton:)];
-    
-    CCMenu * m = [CCMenu menuWithItems:mi,nil];
-//    [self addChild:m z:50];
-    [self addChild:m];
-    m.position = CGPointMake(430, SCORE_VERT_CENTER_Y - 30);
-}
-*/
 
 // initialize your instance here
 -(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel playUI:(GamePlayLayer*)aPlayUI
@@ -456,6 +404,10 @@ PROF_END(cocos2d_layer_visit);
         assert(aMapName);
         assert(aLevel>0);
         
+        isHardMode = [Util loadDifficulty] ? YES:NO;
+
+        closingScene = nil;
+
         sbChicks = 0;
         sbScore = 0;
         sbKeys = 0;
@@ -479,6 +431,9 @@ PROF_END(cocos2d_layer_visit);
 		// enable accelerometer
 		self.isAccelerometerEnabled = YES;
 
+        int highScore = [Util loadHighScore:aMapName level:aLevel];
+        [aPlayUI setHighScore:highScore];
+        
         playUI = [aPlayUI retain];
         mapName = [aMapName retain];
         level = aLevel;
@@ -715,9 +670,17 @@ PROF_END(cocos2d_layer_visit);
         {
             // At most, allow 10% change of zoom
             if ( targetZoom > cam.zoom)
+            {
                 newZoom = cam.zoom + cam.zoom * ZOOM_DELTA_RATIO;
+                // the new zoom should not go beyond the target zoom
+                assert( targetZoom >= newZoom );
+            }
             else
+            {
                 newZoom = cam.zoom - cam.zoom * ZOOM_DELTA_RATIO;
+                // the new zoom should not go beyond the target zoom
+                assert( targetZoom <= newZoom);
+            }
         }
         
         [cam ZoomTo:newZoom];
@@ -742,15 +705,16 @@ PROF_END(cocos2d_layer_visit);
         float offsetX = (heroX_withoutZoom-heroOffsetOnScreen)/maxHeroX_withoutZoom * maxOffsetX;
         
         [sky setOffsetX:offsetX];
-        [sky setScale:1.0f-(1.0f-cam.zoom)*0.75f];
+        [sky setScale:1.0f-(1.0f-cam.zoom)*0.30f];
     }
 }
 
 /** @brief Activate, move, scale terrains based on the current hero position.
  */
--(float) adjustTerrains:(float)heroX_withoutZoom {
+-(float) adjustTerrains:(float)heroX_withoutZoom heroY:(float)heroY_withoutZoom{
     float groundY = kMAX_POSITION;
-    
+    // The MAX(borderMinY) where the terrain is below the hero and the hero is within the drawing range of the terrain.
+    float maxTerrainY_belowHero = -kMAX_POSITION;
     if (hero)
     {
         /////////////////////////////////////////////
@@ -765,10 +729,17 @@ PROF_BEGIN(temp1);
             [t setHeroX:heroX_withoutZoom withCameraY:cameraY];
 PROF_END(temp1);
     
+            
 PROF_BEGIN(temp2);
             float borderMinY = [t calcBorderMinY];
 PROF_END(temp2);
             
+            if ( [t isBelowHero:heroY_withoutZoom] )
+            {
+                if ( maxTerrainY_belowHero < borderMinY)
+                    maxTerrainY_belowHero = borderMinY;
+            }
+
             if ( borderMinY != kMAX_POSITION ) // The terrain is not drawn on the current screen.
             {
                 if ( groundY > borderMinY )
@@ -776,7 +747,11 @@ PROF_END(temp2);
             }
         }
     }
-    
+
+    // Is the hero on a terrain which is far enough from the ground?
+    if ( maxTerrainY_belowHero > groundY + GROUND_TO_NEWGROUND_GAP )
+        return maxTerrainY_belowHero;
+
     return groundY;
 }
 /** @brief See if the hero collides any objects in the GameObjectContainer. Box2D objects are not included here.
@@ -850,15 +825,15 @@ PROF_END(temp2);
  */
 -(int)calcStars {
     int stars = 0;
-    if (sbChicks >= threeStarCount)
+    if (sbScore >= threeStarCount)
     {
         stars = 3;
     }
-    else if (sbChicks >= twoStarCount)
+    else if (sbScore >= twoStarCount)
     {
         stars = 2;
     }
-    else if (sbChicks >= oneStarCount)
+    else if (sbScore >= oneStarCount)
     {
         stars = 1;
     }
@@ -870,17 +845,28 @@ PROF_END(temp2);
 -(void)onStageClear:(id)sender data:(void*)callbackData 
 {
     int stars = [self calcStars];
+    
+    BOOL isLastStage = closingScene?YES:NO;
+    
     // 'layer' is an autorelease object.
-	CCScene *clearScene = [ClearScene sceneWithMap:mapName 
+	CCScene *nextScene = [ClearScene sceneWithMap:mapName 
                                              level:level 
+                                         lastStage:isLastStage
                                              score:sbScore 
                                               keys:sbKeys 
                                             chicks:sbChicks 
                                              stars:stars 
                                           maxCombo:maxComboCount
-                                         timeSpent:(playTimeSec-sbSecondsLeft)];
+                                         timeSpent:(playTimeSec-sbSecondsLeft)
+                                          timeLeft:sbSecondsLeft];
     
-    [[CCDirector sharedDirector] replaceScene:clearScene];
+    if ( closingScene )
+    {
+        CCScene * theClosingScene = [IntermediateScene sceneWithName:closingScene nextScene:nextScene];
+        nextScene = theClosingScene; 
+    }
+    
+    [[CCDirector sharedDirector] replaceScene:nextScene];
     
     CCLOG(@"onStageClear:data");
 }
@@ -892,11 +878,6 @@ PROF_END(temp2);
 	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"yellow34.fnt"];
 	label.position = ccp(super.screenSize.width/2, super.screenSize.height/2);
     label.scale = 1.0;
-
-    // Save the number of total saved chicks persistenlty.
-    int totalChicks = [Util loadTotalChickCount];
-    totalChicks += sbChicks;
-    [Util saveTotalChickCount:totalChicks];
 
     id lastAction = nil;
     if ( clearedCurrentStage )
@@ -1103,7 +1084,11 @@ PROF_END(temp2);
     }
     
 PROF_BEGIN(stage_tick_adjustZoomWithGroundY);
-    [self adjustZoomWithGroundY:worldGroundY];
+    // TODO : Understaind why the terrain is not adjusted correctly if we adjust zoom when the hero is sleeping.
+    if ( [hero awake] )
+    {
+        [self adjustZoomWithGroundY:worldGroundY];
+    }
 PROF_END(stage_tick_adjustZoomWithGroundY);
 
 PROF_BEGIN(stage_tick_updateFollowPosition);
@@ -1112,10 +1097,11 @@ PROF_END(stage_tick_updateFollowPosition);
 
 PROF_BEGIN(stage_tick_adjustTerrains);
     float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
+    float heroY_withoutZoom = hero.body->GetPosition().y * INIT_PTM_RATIO;
 
   PROF_BEGIN(temp3);            
     // groundY will be used in the next tick to decide the zoom level.
-    float screenGroundY_withoutZoom = [self adjustTerrains:heroX_withoutZoom];
+    float screenGroundY_withoutZoom = [self adjustTerrains:heroX_withoutZoom heroY:heroY_withoutZoom];
   PROF_END(temp3);            
     worldGroundY = screenGroundY_withoutZoom / INIT_PTM_RATIO;
     // To show bottom of terrains, lower the ground level. 
@@ -1141,7 +1127,12 @@ PROF_BEGIN(stage_tick_hero_updatePhysics);
 PROF_END(stage_tick_hero_updatePhysics);
     
 PROF_BEGIN(stage_tick_world_step);
-    float worldStepTime = sbSpeedRatio * DEFAULT_FRAME_DURATION_SEC;
+    float worldStepTime ;
+    if ( isHardMode)
+        worldStepTime = sbSpeedRatio * HARD_MODE_FRAME_DURATION_SEC;
+    else
+        worldStepTime = sbSpeedRatio * EASY_MODE_FRAME_DURATION_SEC;
+    
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	//world->Step(1.0f/60.0f, velocityIterations, positionIterations);
@@ -1308,6 +1299,7 @@ PROF_END(stage_tick_update_labels);
     [musicFileName release];
     [backgroundImage release];
     [groundTexture release];
+    [closingScene release];
     
 	// don't forget to call "super dealloc"
 	[super dealloc];

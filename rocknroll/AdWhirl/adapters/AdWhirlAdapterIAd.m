@@ -30,66 +30,6 @@
 + (AdWhirlAdNetworkType)networkType {
   return AdWhirlAdNetworkTypeIAd;
 }
-- (void)fixBannerToDeviceOrientation:(UIInterfaceOrientation)orientation
-{
-    ADBannerView *adView = (ADBannerView *)self.adNetworkView;
-    //Don't rotate ad if it doesn't exist
-    if (adView != nil)
-    {
-        // ask director the the window size
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        
-        CGFloat portraitScreenHeight = (size.width>size.height)?size.width:size.height;
-        CGFloat portraitScreenWidth = (size.width<size.height)?size.width:size.height;
-        
-        //Set the transformation for each orientation
-        switch (orientation)
-        {
-            case UIInterfaceOrientationPortrait:
-            {
-                NSLog(@"fixBannerToDeviceOrientation UIDeviceOrientationPortrait");
-                [adView setTransform:CGAffineTransformIdentity];
-                [adView setCurrentContentSizeIdentifier:ADBannerContentSizeIdentifierPortrait];
-                adView.center = CGPointMake(portraitScreenWidth/2, adView.frame.size.height/2);
-                //                [adView setCenter:CGPointMake(160, 455)];
-            }
-                break;
-            case UIInterfaceOrientationPortraitUpsideDown:
-            {
-                NSLog(@"fixBannerToDeviceOrientation UIDeviceOrientationPortraitUpsideDown");
-                [adView setTransform:CGAffineTransformIdentity];
-                [adView setCurrentContentSizeIdentifier:ADBannerContentSizeIdentifierPortrait];
-                [adView setTransform:CGAffineTransformMakeRotation(CC_DEGREES_TO_RADIANS(180))];
-                adView.center = CGPointMake(portraitScreenWidth/2, portraitScreenHeight - adView.frame.size.height/2);
-                //                [adView setCenter:CGPointMake(160, 25)];
-            }
-                break;
-            case UIInterfaceOrientationLandscapeLeft:
-            {
-                NSLog(@"fixBannerToDeviceOrientation UIDeviceOrientationLandscapeLeft");
-                [adView setTransform:CGAffineTransformIdentity];
-                [adView setCurrentContentSizeIdentifier:ADBannerContentSizeIdentifierLandscape];
-                [adView setTransform:CGAffineTransformMakeRotation(CC_DEGREES_TO_RADIANS(90))];
-                adView.center = CGPointMake(portraitScreenWidth-adView.frame.size.width/2,  portraitScreenHeight / 2 );
-                //                [adView setCenter:CGPointMake(16, 240)];
-            }
-                break;
-            case UIInterfaceOrientationLandscapeRight:
-            {
-                NSLog(@"fixBannerToDeviceOrientation UIDeviceOrientationLandscapeRight");
-                [adView setTransform:CGAffineTransformIdentity];
-                [adView setCurrentContentSizeIdentifier:ADBannerContentSizeIdentifierLandscape];
-                [adView setTransform:CGAffineTransformMakeRotation(CC_DEGREES_TO_RADIANS(-90))];
-                adView.center = CGPointMake(adView.frame.size.width/2,  portraitScreenHeight / 2 );
-                //                [adView setCenter:CGPointMake(304, 240)];
-            }
-                break;
-            default:
-                break;
-        }
-        //        adView.center = CGPointMake(adView.frame.size.width/2, adView.frame.size.height/2);
-    }
-}
 
 + (void)load {
   if(NSClassFromString(@"ADBannerView") != nil) {
@@ -139,7 +79,6 @@
 }
 
 - (void)rotateToOrientation:(UIInterfaceOrientation)orientation {
-    
   ADBannerView *iAdView = (ADBannerView *)self.adNetworkView;
   if (iAdView == nil) return;
   if (UIInterfaceOrientationIsLandscape(orientation)) {
@@ -148,8 +87,6 @@
   else {
     iAdView.currentContentSizeIdentifier = kADBannerContentSizeIdentifierPortrait;
   }
- 
-  // [self fixBannerToDeviceOrientation:orientation];
   // ADBanner positions itself in the center of the super view, which we do not
   // want, since we rely on publishers to resize the container view.
   // position back to 0,0

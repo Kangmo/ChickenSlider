@@ -11,6 +11,7 @@
 #include "GameObjectContainer.h"
 #include "TxWidgetContainer.h"
 #include "TxWidgetFactory.h"
+#include "EatenItem.h"
 #include "Feather.h"
 #include "Bomb.h"
 #include "Hen.h"
@@ -297,6 +298,20 @@
                     continue;
                 }
   */              
+                if ( [gameObjectClass isEqualToString:@"EatenItem"] )
+                {
+                    NSString * soundFileName = [[curShape attributeForName:@"soundFile"] stringValue];
+                    int score = [[[curShape attributeForName:@"score"] stringValue] intValue];
+                    NSString * removeWhenEatenStr = [[curShape attributeForName:@"removeWhenEaten"] stringValue];
+                    BOOL removeWhenEaten = YES; // By defaul, remove when the item is eaten.
+                    if (removeWhenEatenStr) {
+                        if ( ! [removeWhenEatenStr intValue] ) 
+                            removeWhenEaten = NO;
+                    }
+                    // Don't scale.
+                    refGameObject = REF(GameObject)( new EatenItem(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard, soundFileName, score, removeWhenEaten) );
+                }
+                
                 if ( [gameObjectClass isEqualToString:@"Feather"] )
                 {
                     // Don't scale.
@@ -427,8 +442,6 @@
                         hoverAction = BHA_SHOW_PARTICLE;
                         // If the hovering sprite is nil, use transparent dummy sprite for hovering.
                         hoveringSpriteFile = @"Dummy.png";
-                        // Set the default touch sound.
-                        //[hoverActionDescs setValue:@"WaterDrop.wav" forKey:@"Sound"];
                     }
                     
                     // Set touch action.

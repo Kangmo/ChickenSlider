@@ -869,7 +869,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142136"
-     inkscape:cx="221.69259"
+     inkscape:cx="192.84137"
      inkscape:cy="159.37208"
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
@@ -908,90 +908,168 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="staticWidgets"
+     style="display:none">
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8"
+       width="78.347542"
+       height="77.127769"
+       x="127.70342"
+       y="82.50341"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_01,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8"
+       width="78.347542"
+       height="77.127769"
+       x="212.79195"
+       y="82.50341"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_02,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3"
+       width="78.347542"
+       height="77.127769"
+       x="298.11612"
+       y="82.50341"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_03,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9"
+       width="78.347542"
+       height="77.127769"
+       x="382.96902"
+       y="82.50341"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_04,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0"
+       width="78.347542"
+       height="77.127769"
+       x="127.70342"
+       y="171.83456"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_05,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0-5"
+       width="78.347542"
+       height="77.127769"
+       x="212.79195"
+       y="171.83456"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_06,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0-5-2"
+       width="78.347542"
+       height="77.127769"
+       x="298.11612"
+       y="171.83456"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_07,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.03509128px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-8-3-9-0-5-2-2"
+       width="78.347542"
+       height="77.127769"
+       x="382.96902"
+       y="171.83456"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=StarCount_MAP01_08,Images=S_Star_0.png|S_Star_1.png|S_Star_2.png|S_Star_3.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="interactiveSprites"
      style="display:inline">
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level1"
-       width="78.669044"
-       height="78.497475"
+       width="79.376152"
+       height="79.204582"
        x="127.1178"
-       y="82.646141"
+       y="81.939034"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=1,Sound=Touch.wav" />
+       objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=1,Sound=Touch.wav,IntermediateScene=OpeningScene" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level2"
-       width="77.961937"
-       height="76.376152"
-       x="213.68788"
-       y="83.494347"
+       width="79.375999"
+       height="79.205002"
+       x="212.98077"
+       y="81.939034"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=2,Sound=Touch.wav" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level3"
-       width="77.254837"
-       height="77.790367"
-       x="299.34882"
-       y="82.848167"
+       width="79.375999"
+       height="79.205002"
+       x="297.93463"
+       y="81.939034"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=3,Sound=Touch.wav" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level4"
-       width="75.840614"
-       height="72.840622"
+       width="79.375999"
+       height="79.205002"
        x="382.58539"
-       y="85.878639"
+       y="81.939034"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=4,Sound=Touch.wav" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level5"
        width="79.376152"
-       height="77.790367"
-       x="127.01681"
-       y="172.26646"
+       height="79.205002"
+       x="127.1178"
+       y="170.85184"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=5,Sound=Touch.wav" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level6"
-       width="78.669044"
-       height="78.497475"
-       x="214.395"
-       y="171.55936"
+       width="79.375999"
+       height="79.205002"
+       x="212.98077"
+       y="170.85184"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=6,Sound=Touch.wav" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level7"
-       width="78.669044"
-       height="77.083252"
-       x="298.23761"
-       y="171.57967"
+       width="79.375999"
+       height="79.205002"
+       x="297.93463"
+       y="170.85184"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=7,Sound=Touch.wav" />
     <rect
-       style="opacity:0.1;fill:#ff7f2a;display:inline"
+       style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level8"
-       width="77.961929"
-       height="76.376167"
-       x="383.89853"
-       y="171.88271"
+       width="79.375999"
+       height="79.205002"
+       x="382.58539"
+       y="170.85184"
        objectType="MenuItem"
        objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=8,Sound=Touch.wav" />
     <rect
-       style="opacity:0.01000001;fill:#800000;fill-rule:evenodd;stroke:none;display:inline"
+       style="opacity:0.3;fill:#800000;fill-rule:evenodd;stroke:none;display:inline"
        id="BackObject"
        width="39.618313"
        height="37.113266"
        x="424.11807"
        y="275.52304"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.wav" />
   </g>
   <g
      inkscape:groupmode="layer"

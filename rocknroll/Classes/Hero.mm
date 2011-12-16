@@ -346,7 +346,7 @@
         
         [_scoreBoard increaseSpeedRatio:FRAME_SPEED_RATIO_PER_COMBO];
         
-        [_scoreBoard increaseScore:SCORE_PER_COMBO * _nPerfectSlides];
+        [_scoreBoard increaseScore:SCORE_PER_COMBO * ((_nPerfectSlides<10)?_nPerfectSlides:10)];
 	}
 }
 

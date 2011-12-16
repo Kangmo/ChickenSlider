@@ -22,10 +22,8 @@
 #import "AdWhirlDelegateProtocol.h"
 #import "AWNetworkReachabilityWrapper.h"
 #import "AdWhirlConfig.h"
-#import "UIColor+AdWhirlConfig.h"
 
-//#define kAdWhirlAppVer 262
-#define kAdWhirlAppVer 300
+#define kAdWhirlAppVer 310
 
 #define kAdWhirlViewWidth 320
 #define kAdWhirlViewHeight 50

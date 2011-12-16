@@ -392,8 +392,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="64.62473"
-     inkscape:cy="170.90102"
+     inkscape:cx="399.16988"
+     inkscape:cy="142.32959"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
@@ -436,32 +436,23 @@
      inkscape:label="InteractiveSprites"
      style="display:inline">
     <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.9281733px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.99564838px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject"
-       width="126.1886"
-       height="38.505001"
-       x="346.94849"
-       y="175.59055"
+       width="127.34026"
+       height="43.906147"
+       x="334.09134"
+       y="215.90367"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.wav" />
     <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.92459434px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.99875122px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
-       width="126.18541"
-       height="38.209599"
-       x="346.98691"
-       y="224.13797"
+       width="128.82251"
+       height="43.671898"
+       x="333.41547"
+       y="265.10425"
        objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=HelpScene1,Sound=Touch.mp3" />
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.90138316px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="CreditsObject"
-       width="127.13371"
-       height="36.04435"
-       x="347.96869"
-       y="273.97229"
-       objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=ScoreScene,Sound=Touch.mp3" />
+       objectTouchAction="Action=PushScene,SceneName=HelpScene1,Sound=Touch.wav" />
     <rect
        style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
        id="rect3891"
@@ -475,10 +466,10 @@
        id="StartObject-9"
        width="132.26764"
        height="46.219784"
-       x="17.382059"
-       y="267.89441"
+       x="19.524916"
+       y="263.6087"
        objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=OptionScene,Arg1=Null,Sound=Touch.mp3" />
+       objectTouchAction="Action=PushScene,SceneName=OptionScene,Arg1=Null,Sound=Touch.wav" />
     <rect
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:2.07041478px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7"

@@ -43,6 +43,12 @@
         effectVolumeSlide->setValue((float)effectVolume / MAX_MUSIC_VOLUME);
         
         difficultyToggle->setValue(difficulty);
+        
+        // If the OptionScene.svg is shown while the user pressed Pause button during the game play,
+        // Disable the "Easy" "Hard" mode switch. 
+        if ( [CCDirector sharedDirector].isPaused ) {
+            difficultyToggle->disable();
+        }
     }
     return self;
 }

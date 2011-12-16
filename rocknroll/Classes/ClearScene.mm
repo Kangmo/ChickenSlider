@@ -29,12 +29,14 @@
 // initialize your instance here
 -(id) initWithMap:(NSString*)m 
             level:(int)l
+        lastStage:(BOOL)lastStage
             score:(int)score 
              keys:(int)keys 
            chicks:(int)chicks 
             stars:(int)stars 
          maxCombo:(int)maxComboCount
         timeSpent:(float)timeSpent
+         timeLeft:(float)timeLeft
 {
 	if( (self=[super initWithSceneName:@"ClearScene"])) 
 	{
@@ -43,6 +45,7 @@
         
         mapName_ = [m retain];
         level_ = l;
+        lastStage_ = lastStage;
 /*        
         WidgetType=ImageArray,WidgetName=StarPoints,Images=B_Star_0.png|B_Star_1.png|B_Star_2.png|B_Star_3.png
         WidgetType=ImageArray,WidgetName=ClearMessage,Images=new_high_score.png,DefaultIndex=-1
@@ -61,27 +64,52 @@
         time_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("Time") );
         maxCombo_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("MaxCombo") );
         score_ = boost::static_pointer_cast<TxIntegerLabel>( widgetContainer_.getWidget("Score") );
+        nextStageButton_ = boost::static_pointer_cast<TxImageArray>( widgetContainer_.getWidget("NextStageButton") );
+
+        
+        // Convert time left(seconds) to score only in the Hard Mode.
+        if ( [Util loadDifficulty] ) // Difficulty == 1 means Hard
+        {
+            // Increase score
+            score += ((int)timeLeft)*SCORE_PER_SECOND_FOR_HARD_MODE;
+        }
         
         starPoints_->setValue(stars);
-        BOOL isHighestScore = [self checkHighestScore:score];
-        if (isHighestScore)
+        [Util saveStarCount:(NSString*)m level:(int)l starCount:stars];
+        
+        int highScore = [Util loadHighScore:m level:l];
+        
+        if (highScore < score)
+        {
             clearMessage_->setValue(0); // Show "New High Score! message"
+            [Util saveHighScore:m level:l highScore:score];
+        }
 
         keys_->setIntValue(keys);
         chicks_->setIntValue(chicks);
         
         int totalChicks = [Util loadTotalChickCount];
+        totalChicks += chicks;
+        [Util saveTotalChickCount:totalChicks];
+        
         totalChicks_->setIntValue(totalChicks);
+
         maxCombo_->setIntValue(maxComboCount);
 
         NSString * timeSpentString = [self getTimeText:(float)timeSpent];
         [time_->getWidgetImpl() setString:timeSpentString];
         score_->getWidgetImpl()->setTargetCount(score);
-        
+
         [self schedule: @selector(tick:)];
 
         // ClearScene receives the action message.
         self.actionListener = self;
+        
+        if ( [mapName_ isEqualToString:@"MAP02"] && lastStage ) {
+            // Hide next stage button.
+            // For "MAP01", don't hide the next stage button because it will initiate IAP.
+            nextStageButton_->setValue(-1);
+        }
     }
     
     return self;
@@ -89,33 +117,39 @@
 
 +(id)nodeWithMap:(NSString*)mapName 
            level:(int)level
+       lastStage:(BOOL)lastStage
            score:(int)score 
             keys:(int)keys 
           chicks:(int)chicks 
            stars:(int)stars 
         maxCombo:(int)maxComboCount
        timeSpent:(float)timeSpent
+        timeLeft:(float)timeLeft
 {
     ClearScene * clearLayer = [[ClearScene alloc] initWithMap:mapName 
                                                         level:level
+                                                    lastStage:lastStage
                                                         score:score 
                                                          keys:keys 
                                                        chicks:chicks 
                                                         stars:stars 
                                                      maxCombo:maxComboCount
                                                     timeSpent:timeSpent
+                                                     timeLeft:timeLeft
                                ];
     return [clearLayer autorelease];
 }
 
 +(CCScene*) sceneWithMap:(NSString*)mapName 
                    level:(int)level
+               lastStage:(BOOL)lastStage
                    score:(int)score 
                     keys:(int)keys 
                   chicks:(int)chicks 
                    stars:(int)stars 
                 maxCombo:(int)maxComboCount
                timeSpent:(float)timeSpent
+                timeLeft:(float)timeLeft
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -123,12 +157,14 @@
 	// 'layer' is an autorelease object.
 	ClearScene *layer = [ClearScene nodeWithMap:mapName 
                                           level:level
+                                      lastStage:lastStage
                                           score:score 
                                            keys:keys 
                                          chicks:chicks 
                                           stars:stars 
                                        maxCombo:maxComboCount
                                       timeSpent:timeSpent
+                                       timeLeft:timeLeft
                          ];
 	
 	// add layer as a child to scene
@@ -144,14 +180,30 @@
 {
     if ( [message isEqualToString:@"NextStage"] )
     {
-        // BUGBUG : check if the next level exists.
-        // BUGBUG : unlock the next level if it exists
-        CCScene * loadingScene = [GeneralScene loadingSceneOfMap:mapName_ levelNum:level_+1];
-        [[CCDirector sharedDirector] replaceScene:loadingScene];
+        if (lastStage_) {
+            if ( [mapName_ isEqualToString:@"MAP01"] ) {
+                // TODO : Show IAP.
+            }
+        } else {
+            // Unlock the next level if it exists
+            int highestUnlockedLevel = [Util loadHighestUnlockedLevel:mapName_];
+            int newLevel = level_ + 1;
+            if (level_ == highestUnlockedLevel)
+                [Util saveHighestUnlockedLevel:mapName_ level:newLevel];
+            
+            CCScene * loadingScene = [GeneralScene loadingSceneOfMap:mapName_ levelNum:newLevel];
+            [[CCDirector sharedDirector] replaceScene:loadingScene];
+        }
+    }
+    
+    if ( [message isEqualToString:@"Retry" ] ) {
+        CCScene * newScene = [GeneralScene loadingSceneOfMap:mapName_ levelNum:level_];
+        [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:newScene] ];
     }
     
     if ( [message isEqualToString:@"SelectStage"] )
     {
+        // LevelMapScene will unlock the next level if it exists.
         CCScene * levelMapScene = [LevelMapScene sceneWithName:mapName_ level:level_ cleared:YES];
         assert(levelMapScene);
         
