@@ -18,11 +18,11 @@
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="StageScene_MAP01_03.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   _stageName="USA 3"
+   _stageName="USA 03"   
    _backgroundImage="sky_01.pvr"
    _backgroundMusic="music_01.m4a"
    _groundTexture="ground_tx_01.pvr"
-   _playTimeSec="60"
+   _playTimeSec="70"
    _oneStarCount="1000"
    _twoStarCount="2000"
    _threeStarCount="3000">
@@ -34,7 +34,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

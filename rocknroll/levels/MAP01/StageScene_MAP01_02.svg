@@ -18,11 +18,11 @@
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="StageScene_MAP01_02.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   _stageName="USA 2"
+   _stageName="USA 02"
    _backgroundImage="sky_01.pvr"
    _backgroundMusic="music_01.m4a"
    _groundTexture="ground_tx_01.pvr"
-   _playTimeSec="60"
+   _playTimeSec="70"
    _oneStarCount="1000"
    _twoStarCount="2000"
    _threeStarCount="3000">
@@ -1054,16 +1054,6 @@
          mode="lighten"
          in2="BackgroundImage"
          id="feBlend8615-6-4-40-9-9-99-2-5-1-5-41-9" />
-    </filter>
-    <filter
-       color-interpolation-filters="sRGB"
-       inkscape:collect="always"
-       id="filter8613-3-81-0-2-7-39-7-6-3-1-64-6">
-      <feBlend
-         inkscape:collect="always"
-         mode="lighten"
-         in2="BackgroundImage"
-         id="feBlend8615-6-4-40-9-9-99-2-5-1-5-41-0" />
     </filter>
     <filter
        color-interpolation-filters="sRGB"

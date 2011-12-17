@@ -27,7 +27,7 @@ public :
         ActionRelayer * relayer = [ActionRelayer actionRelayerWithTarget:parentNode source:this];
 
         slider_ = [[Slider alloc] initWithActionRelayer:relayer];
-        slider_.liveDragging = YES;
+        //slider_.liveDragging = YES;
         [parentNode addChild:slider_];
         
         TxWidget::align(slider_);

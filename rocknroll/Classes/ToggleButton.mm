@@ -22,10 +22,12 @@
     BOOST_FOREACH(std::string & imageString, *imageStringVector)
     {
         NSString * imageNSString = [Util toNSString:imageString];
-        CCMenuItem * toggleItem = [CCMenuItemImage itemFromNormalImage:imageNSString
-                                                        selectedImage:imageNSString
-                                                               target:nil
-                                                             selector:nil];
+        CCSprite * normalSprite = [CCSprite spriteWithSpriteFrameName:imageNSString];
+        CCSprite * selectedsprite = [CCSprite spriteWithSpriteFrameName:imageNSString];
+        CCMenuItem * toggleItem = [CCMenuItemSprite itemFromNormalSprite:normalSprite
+                                                          selectedSprite:selectedsprite
+                                                                 target:nil
+                                                               selector:nil];
         if (imageCount==0)
         {
             self = [CCMenuItemToggle itemWithTarget:relayer

@@ -87,7 +87,7 @@
 -(void) setHighScore:(int)highScore
 {
     nHighScore_ = highScore;
-    NSString * highScoreString = [NSString stringWithFormat:@"High Score:%d", nHighScore_];
+    NSString * highScoreString = [NSString stringWithFormat:@"%d", nHighScore_];
     [highScore_->getWidgetImpl() setString:highScoreString];
 }
 
@@ -130,7 +130,7 @@
 -(void) setMapPosition:(float)mapPositionX
 {
     int nowX = (int)mapPositionX;
-    if ( nowX - prevX >= 50 )
+    if ( nowX != prevX )
     {
         NSString *positionString = [NSString stringWithFormat:@"%d",nowX];
         [mapPosition_->getWidgetImpl() setString:positionString];

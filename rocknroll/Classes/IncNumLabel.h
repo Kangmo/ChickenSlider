@@ -16,12 +16,14 @@ private :
     CCLabelBMFont *_label;
     int _targetCount;
     int _currentCount;
+    int _updateCount;
 public:    
     IncNumLabel(CCLabelBMFont * label)
     {
         _targetCount = 0;
         _currentCount = 0;
-
+        _updateCount = 0;
+        
         _label = label;
         [label setString:@"0"];
         
@@ -41,10 +43,15 @@ public:
     
     inline void update()
     {
+        // Update the label once per 4 times.
+        _updateCount ++;
+        if ( (_updateCount & 0x04) != 0 )
+            return;
+        
         if ( _currentCount != _targetCount ) {
             // The amount of value to increase. (can have a negative value.)
-            // Increase 1/4 of the gap at once.
-            int stepCount = (_targetCount - _currentCount) >> 2;
+            // Increase 1/2 of the gap at once.
+            int stepCount = (_targetCount - _currentCount) >> 1;
             if (stepCount==0)
                 stepCount = _currentCount < _targetCount ? 1 : -1;
              

@@ -53,8 +53,11 @@
 
 + (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
 - (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset;
+// Set the heroX, position of the terrain, the area of window that can be drawn on screen.
+- (void) setHeroX:(float)offsetX position:(CGPoint)position windowLeftX:(int)windowLeftX windowRightX:(int)windowRightX;
 
-- (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
+- (float) borderMinX;
+- (float) borderMaxX;
 
 - (float) calcBorderMinY;
 

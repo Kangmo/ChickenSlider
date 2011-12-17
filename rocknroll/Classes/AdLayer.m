@@ -78,8 +78,8 @@
 -(void)adjustAdSize {
     assert ( self.enableAD );
 
-    [UIView beginAnimations:@"AdResize" context:nil];
-    [UIView setAnimationDuration:0.7];
+//    [UIView beginAnimations:@"AdResize" context:nil];
+//    [UIView setAnimationDuration:0.7];
     // Get the actual Ad size
     CGSize adSize = [adView actualAdSize];
     // Create a new frame so we can assign the actual size
@@ -96,7 +96,7 @@
     adView.frame = newFrame;
     
     // Apply animations
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
 }
 
 -(void)adWhirlDidReceiveAd:(AdWhirlView *)adWhirlView {

@@ -154,8 +154,9 @@ PROF_END(cocos2d_layer_visit);
 -(void) pauseGame {
     if ( ! isGamePaused )
     {
-        [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
-
+//        [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+        [self unschedule: @selector(tick:)];
+        
         [[CCDirector sharedDirector] pause];
 
         isGamePaused = YES;
@@ -171,8 +172,10 @@ PROF_END(cocos2d_layer_visit);
 -(void) resumeGame {
     if ( isGamePaused ) 
     {
-        [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+//        [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
 
+        [self schedule: @selector(tick:)];
+        
         [[CCDirector sharedDirector] resume];
         
         isGamePaused = NO;
@@ -408,6 +411,8 @@ PROF_END(cocos2d_layer_visit);
 
         closingScene = nil;
 
+        prevMapPosition_heroX = 0;
+        
         sbChicks = 0;
         sbScore = 0;
         sbKeys = 0;
@@ -712,45 +717,70 @@ PROF_END(cocos2d_layer_visit);
 /** @brief Activate, move, scale terrains based on the current hero position.
  */
 -(float) adjustTerrains:(float)heroX_withoutZoom heroY:(float)heroY_withoutZoom{
+    static int screenW = [CCDirector sharedDirector].winSize.width;
     float groundY = kMAX_POSITION;
     // The MAX(borderMinY) where the terrain is below the hero and the hero is within the drawing range of the terrain.
     float maxTerrainY_belowHero = -kMAX_POSITION;
+    
+    
     if (hero)
     {
         /////////////////////////////////////////////
         // Step1 : Adjust Terrains
         // When the camera is above the sea level(y=0), cam.cameraPosition contains negative offsets to subtract from sprites position.
         // Convert it back to the y offset from sea level.
+        float cameraOffsetY = -cam.cameraPosition.y;
         
-        float cameraY = -cam.cameraPosition.y;
-        for (Terrain * t in terrains) {
+        static float heroOffsetX_atZoom1 = screenW * HERO_XPOS_RATIO;
+        // key points interval for drawing
+        // _offsetX seems to be Hero's offset which is on the left side of the screen by 1/8 of screen width
+        // The left side that went out of screen can come back to screen when the screen is zoomed out quickly. 
+        // So we don't use self.scale but use MIN_ZOOM_RATIO to calculate the left side to draw
+        float leftSideX = heroX_withoutZoom - heroOffsetX_atZoom1 / MIN_ZOOM_RATIO;
+        
+        static float rightSideFromHero = screenW*(1.0f - HERO_XPOS_RATIO);
+        
+        float rightSideX = heroX_withoutZoom + rightSideFromHero / cam.zoom;
+        
+        // Don't scale cameraOffsetY, because it is for shifting camera offset.
+        CGPoint terrainPosition = ccp( -heroX_withoutZoom*cam.zoom + heroOffsetX_atZoom1, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
+        
+PROF_BEGIN(temp5);
+        for(Terrain * t in terrains) {
+            // Skip terrains that are not shown at all.
+            if ( [t borderMaxX] < leftSideX ||
+                 [t borderMinX] > rightSideX )
+                continue;
+    PROF_BEGIN(temp8);
+            
             t.scale = cam.zoom;
-PROF_BEGIN(temp1);
-            [t setHeroX:heroX_withoutZoom withCameraY:cameraY];
-PROF_END(temp1);
-    
             
-PROF_BEGIN(temp2);
+            [t setHeroX:heroX_withoutZoom position:terrainPosition windowLeftX:leftSideX windowRightX:rightSideX];
+            
+    PROF_END(temp8);
+    PROF_BEGIN(temp9);
             float borderMinY = [t calcBorderMinY];
-PROF_END(temp2);
-            
+                
             if ( [t isBelowHero:heroY_withoutZoom] )
             {
                 if ( maxTerrainY_belowHero < borderMinY)
                     maxTerrainY_belowHero = borderMinY;
             }
-
-            if ( borderMinY != kMAX_POSITION ) // The terrain is not drawn on the current screen.
+                
+            if ( borderMinY != kMAX_POSITION ) // The terrain is drawn on the current screen.
             {
                 if ( groundY > borderMinY )
                     groundY = borderMinY;
             }
+    PROF_END(temp9);
         }
+PROF_END(temp5);
     }
 
     // Is the hero on a terrain which is far enough from the ground?
     if ( maxTerrainY_belowHero > groundY + GROUND_TO_NEWGROUND_GAP )
         return maxTerrainY_belowHero;
+
 
     return groundY;
 }
@@ -890,7 +920,7 @@ PROF_END(temp2);
     }
     
 	[label runAction:[CCSequence actions:
-                      [CCScaleTo actionWithDuration:2.0f scale:4.0f],
+                      [CCScaleTo actionWithDuration:2.0f scale:2.0f],
                       [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
                       lastAction,
 					  nil]];
@@ -959,16 +989,20 @@ PROF_END(temp2);
 
 
 - (void) onEnterTransitionDidFinish {
-    if (musicFileName)
+    if (!didPlayMusic) // Play music only once. We need it because this function is called whenever OptionScene, HelpScene in PauseScene is popped. We don't want the music to play start again whenever the game resumes from the PauseScene.
     {
-        [Util playBGM:musicFileName];
+        if (musicFileName)
+        {
+            [Util playBGM:musicFileName];
+        }
+        didPlayMusic = YES;
     }
 
     [super onEnterTransitionDidFinish];
 }
 
 - (void) onExit {
-    [[CDAudioManager sharedManager] stopBackgroundMusic];
+//    [[CDAudioManager sharedManager] stopBackgroundMusic];
     
 	// in case you have something to dealloc, do it in this method
     [self unschedule: @selector(tick:)];
@@ -1099,10 +1133,9 @@ PROF_BEGIN(stage_tick_adjustTerrains);
     float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
     float heroY_withoutZoom = hero.body->GetPosition().y * INIT_PTM_RATIO;
 
-  PROF_BEGIN(temp3);            
     // groundY will be used in the next tick to decide the zoom level.
     float screenGroundY_withoutZoom = [self adjustTerrains:heroX_withoutZoom heroY:heroY_withoutZoom];
-  PROF_END(temp3);            
+
     worldGroundY = screenGroundY_withoutZoom / INIT_PTM_RATIO;
     // To show bottom of terrains, lower the ground level. 
     worldGroundY -= MAX_WAVE_HEIGHT;
@@ -1172,9 +1205,18 @@ PROF_END(stage_tick_updateGameObjects);
     
 PROF_BEGIN(stage_tick_update_labels);
     [playUI update:dt];
-    // See if the time is up.
+    // See if the time isrup.
     [self checkTimeOut:dt];
-    [playUI setMapPosition:heroX_withoutZoom];
+    
+    // Show the map position with 1/100 scale
+    if ( heroX_withoutZoom - prevMapPosition_heroX > 50 )
+    {
+        float mapPosition = (terrainMaxX - heroX_withoutZoom) / 100;
+        if (mapPosition < 0.0)
+            mapPosition = 0;
+        prevMapPosition_heroX = heroX_withoutZoom;
+        [playUI setMapPosition:mapPosition];
+    }
 PROF_END(stage_tick_update_labels);
 }
 

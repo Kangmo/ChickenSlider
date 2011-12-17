@@ -15,8 +15,8 @@ class TimeProfiler
 {
 private :    
     // The accumlated time
-    float accTime;
-    float beginTime;
+    double accTime;
+    double beginTime;
     int profileCount;
     const char * profilerName;
     // 10 items : 0~100,~200,~300,...,~1000ns(1ms)
@@ -42,7 +42,8 @@ public :
         if (IsEnabled)
         {
             assert(beginTime == 0.0f);
-            beginTime = CACurrentMediaTime(); 
+            beginTime = CFAbsoluteTimeGetCurrent(); 
+//            beginTime = CACurrentMediaTime(); 
         }
     }
     void end()
@@ -50,8 +51,9 @@ public :
         if (IsEnabled)
         {
             assert(beginTime > 0.0f);
-            
-            float timeDiff = CACurrentMediaTime() - beginTime; 
+            double timeDiff = CFAbsoluteTimeGetCurrent() - beginTime; 
+            assert(timeDiff >= 0.0f);
+//            float timeDiff = CACurrentMediaTime() - beginTime; 
             // BUGBUG : Sometimes timeDiff is less than 0.0f. Find out Why.
             updateDistArray( timeDiff );
             accTime += timeDiff;
@@ -61,7 +63,7 @@ public :
         }
     }
     
-    float getTotalTime()
+    double getTotalTime()
     {
         return accTime;
     }
@@ -69,7 +71,7 @@ public :
     {
         return profileCount;
     }
-    void updateDistArray(float timeDiff)
+    void updateDistArray(double timeDiff)
     {
 
         int distArrayIndex=DIST_ARRAY_ITEM_COUNT;
@@ -195,7 +197,7 @@ public :
 
     void print()
     {
-        printf("[profiler name=%s, count=%d, total=%f, avg=%f\n", profilerName, profileCount, accTime, accTime/(float)profileCount );
+        printf("[profiler name=%s, count=%d, total=%lf, avg=%lf\n", profilerName, profileCount, accTime, accTime/(float)profileCount );
         printDist();
     }
 };
@@ -243,9 +245,15 @@ PROF_DECLARE(stage_tick_updateGameObjects);
 PROF_DECLARE(stage_tick_update_labels);
 PROF_DECLARE(terrain_draw);
 PROF_DECLARE(cocos2d_layer_visit);
+PROF_DECLARE(temp0);
 PROF_DECLARE(temp1);
 PROF_DECLARE(temp2);
 PROF_DECLARE(temp3);
-
+PROF_DECLARE(temp4);
+PROF_DECLARE(temp5);
+PROF_DECLARE(temp6);
+PROF_DECLARE(temp7);
+PROF_DECLARE(temp8);
+PROF_DECLARE(temp9);
 
 #endif

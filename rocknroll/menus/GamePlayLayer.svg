@@ -209,14 +209,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
      inkscape:cx="161.51253"
-     inkscape:cy="171.54587"
+     inkscape:cy="211.95197"
      inkscape:document-units="px"
      inkscape:current-layer="layer6"
      showgrid="false"
-     inkscape:window-width="1191"
-     inkscape:window-height="643"
-     inkscape:window-x="81"
-     inkscape:window-y="93"
+     inkscape:window-width="931"
+     inkscape:window-height="561"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -291,10 +291,10 @@
        id="StartObject-7-7-9-8-3-9"
        width="91.17347"
        height="26.225109"
-       x="195.93587"
-       y="22.923058"
+       x="6.0068851"
+       y="71.410378"
        objectType="Widget"
-       objectDesc="WidgetType=FloatLabel,WidgetName=Speed,InitValue=1.0,MinValue=1.0,MaxValue=1.5,StepValue=0.005,Font=yellow34.fnt,Align=Center,Prefix=x ,AdShiftY=-1" />
+       objectDesc="WidgetType=FloatLabel,WidgetName=Speed,InitValue=1.0,MinValue=1.0,MaxValue=1.5,StepValue=0.005,Font=yellow25.fnt,Align=Left,Prefix=x ,AdShiftY=-1" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.84260476px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-4"
@@ -350,39 +350,39 @@
        objectType="Widget"
        objectDesc="WidgetType=ImageArray,WidgetName=PauseSign,Images=Pause.png,Align=Center,AdShiftY=-1" />
     <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.7478627px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.80304396px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
-       width="48.88147"
-       height="64.532516"
-       x="429.62283"
-       y="2.8707275"
+       width="53.877052"
+       height="67.50779"
+       x="424.59967"
+       y="2.8983181"
        objectType="MenuItem"
        objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.wav,AdShiftY=-1" />
     <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.80499262px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.47143051px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-79"
-       width="139.36234"
+       width="47.7966"
        height="26.225109"
-       x="334.15369"
-       y="243.00418"
+       x="427.76004"
+       y="71.379768"
        objectType="Widget"
-       objectDesc="WidgetType=Label,WidgetName=MapPosition,Font=yellow25.fnt,Align=Right" />
+       objectDesc="WidgetType=Label,WidgetName=MapPosition,Font=yellow25.fnt,Align=Center,AdShiftY=-1" />
     <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.72395158px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.71162283px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-7"
-       width="171.10139"
+       width="165.32336"
        height="17.276049"
-       x="302.73703"
-       y="298.74768"
+       x="7.7724886"
+       y="266.83426"
        objectType="Widget"
-       objectDesc="WidgetType=IntegerLabel,WidgetName=HighScore,Font=white23.fnt,Align=Right" />
+       objectDesc="WidgetType=IntegerLabel,WidgetName=HighScore,Font=yellow25.fnt,Align=Left" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.72395158px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-7-7"
        width="171.10139"
        height="17.276049"
-       x="302.34784"
-       y="276.44312"
+       x="305.358"
+       y="299.43295"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=StageName,Font=white23.fnt,Align=Right" />
   </g>

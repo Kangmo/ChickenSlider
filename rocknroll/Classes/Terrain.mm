@@ -13,7 +13,6 @@
 //- (void) generateHillKeyPoints;
 //- (void) generateBorderVertices;
 - (void) loadBorderVertices;
-- (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY;
 //- (void) createBox2DBody;
 - (void) calcHillVertices;
 - (ccColor4F) randomColor;
@@ -153,17 +152,11 @@
 
 /** @brief Calculate the starting index to the borderVertices array to draw on screen based on _offsetX, set it to startBorderIndex.
  */
-- (void) calcStartBorderIndex
+- (void) calcStartBorderIndex:(int)windowLeftX
 {
-    static float heroOffset = screenW * HERO_XPOS_RATIO;
-	// key points interval for drawing
-	// _offsetX seems to be Hero's offset which is on the left side of the screen by 1/8 of screen width
-    // The left side that went out of screen can come back to screen when the screen is zoomed out quickly. 
-    // So we don't use self.scale but use MIN_ZOOM_RATIO to calculate the left side to draw
-	float leftSideX = _offsetX - heroOffset / MIN_ZOOM_RATIO;
 
 	while (startBorderIndex < nBorderVertices-1) {
-        if ( borderVertices[startBorderIndex+1].x >= leftSideX)
+        if ( borderVertices[startBorderIndex+1].x >= windowLeftX)
             break;
 		startBorderIndex++;
 	}
@@ -174,14 +167,11 @@
 
 /** @brief Calculate the ending index to the borderVertices array to draw on screen based on _offsetX, set it to endBorderIndex.
  */
--(void) calcEndBorderIndex
+-(void) calcEndBorderIndex:(int)windowRightX
 {
-    static float rightSideFromHero = screenW*(1.0f - HERO_XPOS_RATIO);
-	float rightSideX = _offsetX+rightSideFromHero / self.scale;
-
     while (endBorderIndex < nBorderVertices) 
     {
-        if (borderVertices[endBorderIndex].x >= rightSideX)
+        if (borderVertices[endBorderIndex].x >= windowRightX)
             break;
 		endBorderIndex++;
     }
@@ -254,7 +244,6 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
 	}
 	return ccc4FFromccc3B(ccc3(r, g, b));
 }
-
 
 - (void) draw {
 
@@ -329,7 +318,12 @@ PROF_END(terrain_draw);
  
 }
 
-
+- (float) borderMinX {
+    return borderVertices[0].x;
+}
+- (float) borderMaxX {
+    return borderVertices[nBorderVertices-1].x;
+}
 
 /** @brief Calculate minimum Y value of the border we are drawing now!
  */
@@ -347,19 +341,17 @@ PROF_END(terrain_draw);
     return minBorderY;
 }
 
-- (void) setHeroX:(float)offsetX withCameraY:(float)cameraOffsetY {
+- (void) setHeroX:(float)offsetX position:(CGPoint)position windowLeftX:(int)windowLeftX windowRightX:(int)windowRightX{
 	static BOOL firstTime = YES;
-    static float heroOffsetX = screenW * HERO_XPOS_RATIO;
 	if (_offsetX != offsetX || firstTime) {
 		firstTime = NO;
 		_offsetX = offsetX;
         
-        // Don't scale cameraOffsetY, because it is for shifting camera offset.
-		self.position = ccp(heroOffsetX -_offsetX*self.scale, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
+		self.position = position;
         
         // calculate the range of border indexes to borderVertices array to draw on screen. 
-        [self calcStartBorderIndex];
-        [self calcEndBorderIndex];
+        [self calcStartBorderIndex:windowLeftX];
+        [self calcEndBorderIndex:windowRightX];
         [self calcRightBeforeHeroIndex];
         //CCLOG(@"StartBorderIndex: %d, EndBorderIndex:%d", startBorderIndex, endBorderIndex);
 //		[self resetHillVertices];

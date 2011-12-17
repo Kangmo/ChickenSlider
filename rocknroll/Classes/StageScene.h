@@ -116,6 +116,11 @@ typedef enum {
     // The X position of the hero by the time we removed the game objects that went behind the left side of the screen.
     float heroXatZ1_ofLastGameObjectRemoval;
     
+    // Previous hero position that we set the map position
+    float prevMapPosition_heroX;
+    
+    // Did we play music?
+    BOOL didPlayMusic;
     BOOL isHardMode;
 }
 

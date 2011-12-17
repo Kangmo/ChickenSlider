@@ -463,15 +463,6 @@
 }
 
 - (void) onEnterTransitionDidFinish {
-    // Move the InteractiveSprite down if the AD is enabled. 
-    NSString * AdShiftYStr = [touchActionDescs_ valueForKey:@"AdShiftY"];
-    // AdShiftY is either -1 or 1. For Ad banners on top, we use AdShiftY==-1 to move widgets down by LANDSCAPE_AD_HEIGHT;
-    if (AdShiftYStr) {
-        int AdShiftY = [AdShiftYStr intValue];
-        assert( AdShiftY >= -1 && AdShiftY <= 1);
-        self.position = CGPointMake( self.position.x, self.position.y + [Util getAdHeight] * AdShiftY);
-    }
-    
     // Common stuff to process
     NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
     

@@ -57,10 +57,10 @@
 // Start blinking the health bar if it reaches at 50% level.
 #define HEALTH_BAR_BLINKING_THRESHOLD (50)
 
-#define EASY_MODE_PLAY_TIME_FACTOR (1.5f)
+#define EASY_MODE_PLAY_TIME_FACTOR (1.35f)
 
 // The default time duration to simulate in box2d for each frame.
-#define EASY_MODE_FRAME_DURATION_SEC (1.0f/60.0f)
+#define EASY_MODE_FRAME_DURATION_SEC (1.0f/55.0f)
 #define HARD_MODE_FRAME_DURATION_SEC (1.0f/45.0f)
 
 // IncNumLabel.h
@@ -89,7 +89,7 @@ const float MAX_TARGET_OBJ_POS_Y = 320.0 * HERO_MIN_YPOS_RATIO;
 const float GROUND_TO_NEWGROUND_GAP = 320.0;
 
 // BUGBUG : iPad/iPhone 4 HD might have different height.
-const float LANDSCAPE_AD_HEIGHT = 32;
+const float LANDSCAPE_AD_HEIGHT = 40;
 
 #define MAX_MUSIC_VOLUME (10)
 #define MAX_EFFECT_VOLUME (10)
@@ -105,7 +105,7 @@ const float LANDSCAPE_AD_HEIGHT = 32;
 
 #define DISABLE_IAP (1)
 
-//#define DISABLE_ADS (1)
+#define DISABLE_ADS (1)
 
 #endif // __GAME_CONFIG_H
 

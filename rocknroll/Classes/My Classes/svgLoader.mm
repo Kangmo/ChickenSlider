@@ -477,6 +477,15 @@
                     // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
                     // 2) and then subtract orgHeight to get bottomLeft
                     
+                    // Move the InteractiveSprite down if the AD is enabled. 
+                    NSString * AdShiftYStr = [touchActionDescs valueForKey:@"AdShiftY"];
+                    // AdShiftY is either -1 or 1. For Ad banners on top, we use AdShiftY==-1 to move widgets down by LANDSCAPE_AD_HEIGHT;
+                    if (AdShiftYStr) {
+                        int AdShiftY = [AdShiftYStr intValue];
+                        assert( AdShiftY >= -1 && AdShiftY <= 1);
+                        bottomInOpenGL += [Util getAdHeight] * AdShiftY;
+                    }
+
                     intrSprite.bottomLeftCorner = CGPointMake(orgX, bottomInOpenGL);
                     intrSprite.nodeSize = CGSizeMake(orgWidth, orgHeight);
                     intrSprite.position = ccp( intrSprite.bottomLeftCorner.x + intrSprite.nodeSize.width * 0.5 , 
