@@ -44,11 +44,11 @@
      id="base"
      showgrid="true"
      inkscape:zoom="3.2138003"
-     inkscape:cx="30.267178"
-     inkscape:cy="262.73124"
-     inkscape:window-x="-37"
-     inkscape:window-y="13"
-     inkscape:current-layer="svg2"
+     inkscape:cx="-77.549104"
+     inkscape:cy="302.68824"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:current-layer="Fruit06"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -278,10 +278,9 @@
        phy_density="0.1"
        phy_friction="0"
        phy_restitution="0"
-       initClipFile="clip_fruit01.plist"
-       initFrameAnim="fruit01"
        score="10"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       sprite="fruit01.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -290,8 +289,6 @@
      style="display:none">
     <rect
        score="10"
-       initFrameAnim="fruit02"
-       initClipFile="clip_fruit02.plist"
        phy_restitution="0"
        phy_friction="0"
        phy_density="0.1"
@@ -303,7 +300,8 @@
        id="rect3132"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
        gameObjectClass="EatenItem"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       sprite="fruit02.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -322,10 +320,9 @@
        phy_density="0.1"
        phy_friction="0"
        phy_restitution="0"
-       initClipFile="clip_fruit03.plist"
-       initFrameAnim="fruit03"
        score="10"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       sprite="fruit03.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -334,8 +331,6 @@
      style="display:none">
     <rect
        score="10"
-       initFrameAnim="fruit04"
-       initClipFile="clip_fruit04.plist"
        phy_restitution="0"
        phy_friction="0"
        phy_density="0.1"
@@ -347,7 +342,8 @@
        id="rect3138"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
        gameObjectClass="EatenItem"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       sprite="fruit04.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -366,10 +362,9 @@
        phy_density="0.1"
        phy_friction="0"
        phy_restitution="0"
-       initClipFile="clip_fruit05.plist"
-       initFrameAnim="fruit05"
        score="10"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       sprite="fruit05.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -378,8 +373,6 @@
      style="display:inline">
     <rect
        score="10"
-       initFrameAnim="fruit06"
-       initClipFile="clip_fruit06.plist"
        phy_restitution="0"
        phy_friction="0"
        phy_density="0.1"
@@ -391,7 +384,8 @@
        id="rect3144"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
        gameObjectClass="EatenItem"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       sprite="fruit06.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -456,25 +450,5 @@
        initClipFile="clip_chick.plist"
        initFrameAnim="chick"
        heroSpeedGain="8" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="Hen"
-     inkscape:label="Hen"
-     style="display:none">
-    <rect
-       gameObjectClass="Hen"
-       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
-       id="rect4250-7-9"
-       width="128"
-       height="128"
-       x="0"
-       y="0"
-       isCircle=""
-       phy_density="0.1"
-       phy_friction="0"
-       phy_restitution="0"
-       initClipFile="clip_hen.plist"
-       initFrameAnim="hen" />
   </g>
 </svg>

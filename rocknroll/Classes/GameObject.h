@@ -116,11 +116,15 @@ protected:
         // 100 : [60-> 60]
         // 200 : [60-> 55]
         // 550 : [38->16], [27-> 60]
+        assert(_sprite);
         [gameLayer addChild:_sprite];
         
-        // 100 : [60->60]
-        // 550 : [7->15]
-        Helper::runAction( shared_from_this(), _defaultAction );
+        if (_defaultAction)
+        {
+            // 100 : [60->60]
+            // 550 : [7->15]
+            Helper::runAction( shared_from_this(), _defaultAction );
+        }
         
         _activated = true;
     }

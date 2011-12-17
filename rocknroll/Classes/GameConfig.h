@@ -105,7 +105,7 @@ const float LANDSCAPE_AD_HEIGHT = 40;
 
 #define DISABLE_IAP (1)
 
-#define DISABLE_ADS (1)
+//#define DISABLE_ADS (1)
 
 #endif // __GAME_CONFIG_H
 

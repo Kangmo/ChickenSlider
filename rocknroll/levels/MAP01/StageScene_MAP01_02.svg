@@ -24,8 +24,8 @@
    _groundTexture="ground_tx_01.pvr"
    _playTimeSec="70"
    _oneStarCount="1000"
-   _twoStarCount="2000"
-   _threeStarCount="3000">
+   _twoStarCount="23000"
+   _threeStarCount="28000">
   <metadata
      id="metadata2500">
     <rdf:RDF>

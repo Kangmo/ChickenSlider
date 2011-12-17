@@ -85,15 +85,21 @@
     // Create a new frame so we can assign the actual size
     CGRect newFrame = adView.frame;
     // Set the height
-    newFrame.size.height = screenSize.width;
+    newFrame.size.height = adSize.width;
     newFrame.size.width = adSize.height;
 
     newFrame.origin.x = (screenSize.height - adSize.height);
 
     newFrame.origin.y = (screenSize.width - adSize.width)/2;
-
-    // Assign the new frame to the current one
-    adView.frame = newFrame;
+    
+    if ( adView.frame.origin.x != newFrame.origin.x ||
+        adView.frame.origin.y != newFrame.origin.y ||  
+        adView.frame.size.width != newFrame.size.width || 
+        adView.frame.size.height != newFrame.size.height )
+    {
+        // Assign the new frame to the current one
+        adView.frame = newFrame;
+    }
     
     // Apply animations
 //    [UIView commitAnimations];
@@ -112,11 +118,6 @@
     // BUGBUG : Need to understand if this is necessary.
     //[self removeChild:adBanner cleanup:YES];
     
-    //In case your game is in Landscape mode, set the interface orientation to that
-    //of your game (actually, UIInterfaceOrientationLandscapeLeft and UIInterfaceOrientationLandscapeRight
-    //will have the same effect on the ad... i.e. iAd). If your game is in Portrait mode, comment
-    //the following line
-    [self.adView rotateToOrientation:UIInterfaceOrientationLandscapeLeft];
     //Different networks have different Ad sizes, we want our Ad to display in it's right size so
     //we're invoking the method to resize the Ad
     [self adjustAdSize];
@@ -175,6 +176,12 @@
         
         //adView.center = CGPointMake(portraitScreenWidth-adView.frame.size.width/2,  portraitScreenHeight / 2 );
         //                [adView setCenter:CGPointMake(16, 240)];
+        
+        //In case your game is in Landscape mode, set the interface orientation to that
+        //of your game (actually, UIInterfaceOrientationLandscapeLeft and UIInterfaceOrientationLandscapeRight
+        //will have the same effect on the ad... i.e. iAd). If your game is in Portrait mode, comment
+        //the following line
+        [self.adView rotateToOrientation:UIInterfaceOrientationLandscapeLeft];
     }
     
     [super onEnter];

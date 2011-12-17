@@ -18,14 +18,14 @@
    inkscape:version="0.48.2 r9819"
    sodipodi:docname="StageScene_MAP01_07.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   _stageName="USA 07"   
+   _stageName="USA 07"
    _backgroundImage="sky_01.pvr"
    _backgroundMusic="music_01.m4a"
    _groundTexture="ground_tx_01.pvr"
    _playTimeSec="70"
    _oneStarCount="1000"
-   _twoStarCount="2000"
-   _threeStarCount="3000">
+   _twoStarCount="25000"
+   _threeStarCount="33000">
   <metadata
      id="metadata2500">
     <rdf:RDF>

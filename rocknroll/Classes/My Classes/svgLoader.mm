@@ -14,7 +14,6 @@
 #include "EatenItem.h"
 #include "Feather.h"
 #include "Bomb.h"
-#include "Hen.h"
 #include "Chick.h"
 #include "Remedy.h"
 #include "TutorialBox.h"
@@ -324,12 +323,6 @@
                     refGameObject = REF(GameObject)( new Bomb(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
                 }
 
-                if ( [gameObjectClass isEqualToString:@"Hen"] )
-                {
-                    // Don't scale.
-                    refGameObject = REF(GameObject)( new Hen(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard) );
-                }
-
                 if ( [gameObjectClass isEqualToString:@"Chick"] )
                 {
                     // Don't scale.
@@ -364,19 +357,14 @@
                     
                     // Do not add sprite, do not run the default clip yet. 
                     // It will be done in GameObject::activate while running tick() of the StageScene when the object gets to show on screen.
-                    /*
-                    // 100 : [60-> 60]
-                    // 200 : [60-> 55]
-                    // 550 : [38->16], [27-> 60]
-                    [layer addChild:sprite];
-
-                    // 100 : [60->60]
-                    // 550 : [7->15]
-                    Helper::runClip( refGameObject, clip );
-                     */
-                    
                 }
 
+                if ( bi.spriteName )
+                {
+                    CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:bi.spriteName];
+                    refGameObject->setSprite(sprite);
+                }
+                
                 gameObjectContainer->insert(refGameObject);
             }
             else // No logic class. Create Box2d body.

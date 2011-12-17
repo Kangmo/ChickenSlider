@@ -23,8 +23,8 @@
    _groundTexture="ground_tx_05.pvr"
    _playTimeSec="50"
    _oneStarCount="1000"
-   _twoStarCount="2000"
-   _threeStarCount="3000"
+   _twoStarCount="27000"
+   _threeStarCount="31000"
    _closingScene="MAP02_ClosingScene">
   <metadata
      id="metadata2500">

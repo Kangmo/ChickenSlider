@@ -46,6 +46,8 @@
         nHighScore_ = 0;
         nScore_ = 0;
         prevX=0;
+        
+        super.enableAD = NO;
     }
     return self;
 }
