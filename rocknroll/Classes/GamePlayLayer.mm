@@ -14,7 +14,10 @@
 {
 	if( (self=[super initWithSceneName:sceneName])) 
 	{
-        // TODO : Read data, set control values.
+        // For GamePlayLayer, we don't try to refresh ADs for the best performance.
+        // GeneralScene checks this flag to refresh ads onEnterTransitionDidFinish.
+        tryToRefreshAD_ = NO;
+
         
         // WidgetType=IntegerLabel,WidgetName=KeyCount,Font=yellow25.fnt,Align=Center
         // WidgetType=IntegerLabel,WidgetName=ChickCount,Font=yellow25.fnt,Align=Center
@@ -29,27 +32,30 @@
         // WidgetType=IntegerLabel,WidgetName=Score,Font=yellow34.fnt,Align=Left
          
 
-        stageName_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("StageName") );
-        keyCount_ = boost::static_pointer_cast<TxIntegerLabel>( widgetContainer_.getWidget("KeyCount") );
-        chickCount_ = boost::static_pointer_cast<TxIntegerLabel>( widgetContainer_.getWidget("ChickCount") );
-        sandClockSeconds_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("SandClockSeconds") );
-        count_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("Count") );
-        unit_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("Unit") );
-        message_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("Message") );
-        sandClock_ = boost::static_pointer_cast<TxSandClock> ( widgetContainer_.getWidget("SandClock") );
-        speed_ = boost::static_pointer_cast<TxFloatLabel> ( widgetContainer_.getWidget("Speed") );
-        score_ = boost::static_pointer_cast<TxIntegerLabel> ( widgetContainer_.getWidget("Score") );
-        highScore_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("HighScore") );
-        mapPosition_ = boost::static_pointer_cast<TxLabel> ( widgetContainer_.getWidget("MapPosition") );
+        stageName_ = (TxLabel*) widgetContainer_->getWidget("StageName").get();
+        keyCount_ = (TxIntegerLabel*) widgetContainer_->getWidget("KeyCount").get();
+        chickCount_ = (TxIntegerLabel*) widgetContainer_->getWidget("ChickCount").get();
+        sandClockSeconds_ = (TxLabel*) widgetContainer_->getWidget("SandClockSeconds").get();
+        count_ = (TxLabel*) widgetContainer_->getWidget("Count").get();
+        unit_ = (TxLabel*) widgetContainer_->getWidget("Unit").get();
+        message_ = (TxLabel*) widgetContainer_->getWidget("Message").get();
+        sandClock_ = (TxSandClock*) widgetContainer_->getWidget("SandClock").get();
+        speed_ = (TxFloatLabel*) widgetContainer_->getWidget("Speed").get();
+        score_ = (TxIntegerLabel*) widgetContainer_->getWidget("Score").get();
+        highScore_ = (TxLabel*) widgetContainer_->getWidget("HighScore").get();
+        mapPosition_ = (TxLabel*) widgetContainer_->getWidget("MapPosition").get();
         
         totalSeconds_ = 0;
         nHighScore_ = 0;
         nScore_ = 0;
         prevX=0;
-        
-        super.enableAD = NO;
+
     }
     return self;
+}
+
+-(void)dealloc {
+    [super dealloc];
 }
 
 -(void)onWidgetAction:(TxWidget*)source

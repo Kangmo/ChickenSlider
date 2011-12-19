@@ -30,7 +30,7 @@ PROF_DEFINE(stage_tick_update_labels);
 
 PROF_DEFINE(terrain_draw);
 PROF_DEFINE(cocos2d_layer_visit);
-
+/*
 PROF_DEFINE(temp0);
 PROF_DEFINE(temp1);
 PROF_DEFINE(temp2);
@@ -41,7 +41,7 @@ PROF_DEFINE(temp6);
 PROF_DEFINE(temp7);
 PROF_DEFINE(temp8);
 PROF_DEFINE(temp9);
-
+*/
 void printProfResult()
 {// CCDirectorIOS.drawScene
  //   (1) scheduler schedule=>tick=>StageScene.tick
@@ -65,7 +65,7 @@ void printProfResult()
     
     PROF_PRINT(cocos2d_layer_visit); //(2)
     PROF_PRINT(terrain_draw); //(3)
-    
+/*    
     PROF_PRINT(temp0); //(3)
     PROF_PRINT(temp1); //(3)
     PROF_PRINT(temp2); //(3)
@@ -76,7 +76,7 @@ void printProfResult()
     PROF_PRINT(temp7); //(3)
     PROF_PRINT(temp8); //(3)
     PROF_PRINT(temp9); //(3)
-    
+ */   
     double totalTickTime = 0;
     totalTickTime += PROF_TOTAL_TIME(stage_tick_adjustZoomWithGroundY);
     totalTickTime += PROF_TOTAL_TIME(stage_tick_updateFollowPosition);
@@ -118,6 +118,25 @@ void printProfResult()
     printf("checkHeroDead=%lf%%\n", PROF_TOTAL_TIME(stage_tick_checkHeroDead) * 100.0f / totalTickTime);
     printf("updateGameObjects=%lf%%\n", PROF_TOTAL_TIME(stage_tick_updateGameObjects) * 100.0f / totalTickTime);
     printf("update_labels=%lf%%\n", PROF_TOTAL_TIME(stage_tick_update_labels) * 100.0f / totalTickTime);
+}
+
+void resetAllProfilers() {
+    PROF_RESET(stage_tick_adjustZoomWithGroundY);
+    PROF_RESET(stage_tick_updateFollowPosition);
+    PROF_RESET(stage_tick_adjustTerrains);
+    PROF_RESET(stage_tick_adjustSky);
+    PROF_RESET(stage_tick_hero_updatePhysics);
+    PROF_RESET(stage_tick_world_step);
+    PROF_RESET(stage_tick_hero_updateNode);
+    PROF_RESET(stage_tick_cam_updateSpriteFromBody);
+    PROF_RESET(stage_tick_checkCollisions4GameObjects);
+    PROF_RESET(stage_tick_checkStageClear);
+    PROF_RESET(stage_tick_checkHeroDead);
+    PROF_RESET(stage_tick_updateGameObjects);
+    PROF_RESET(stage_tick_update_labels);
+    
+    PROF_RESET(terrain_draw);
+    PROF_RESET(cocos2d_layer_visit);
 }
 
 #endif /*DO_PROFILE*/

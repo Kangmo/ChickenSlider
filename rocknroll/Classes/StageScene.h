@@ -17,7 +17,7 @@
 #include "HealthBar.h"
 #include "FloatLabel.h"
 
-#import "AdLayer.h"
+#import "CCLayer.h"
 #import "GeneralMessageProtocol.h"
 
 #import "TxWidget.h"
@@ -35,8 +35,10 @@ typedef enum {
 @class GamePlayLayer;
 
 // HelloWorld Layer
-@interface StageScene : AdLayer<ScoreBoardProtocol, TutorialBoardProtocol, GeneralMessageProtocol, TxWidgetListener>
+@interface StageScene : CCLayer<ScoreBoardProtocol, TutorialBoardProtocol, GeneralMessageProtocol, TxWidgetListener>
 {
+    // The screen size.
+    CGSize screenSize;
     // The layer containing game play UI such as scores, time left etc.
     GamePlayLayer * playUI;
     // The name of the map where the stage exists
@@ -86,7 +88,7 @@ typedef enum {
     // The container that holds game objects. These are not defined as Box2D objects. 
     // Puting these objects (ex> 1000 Water Drops, not box2d objects, just stay at a static position) into Box2d make the game terribly slow.
     // We do collision detection on these objects with the Hero.
-    GameObjectContainer gameObjectContainer;
+    GameObjectContainer * gameObjectContainer;
     
     int curFeathers;
     int targetFeathers;
@@ -119,6 +121,9 @@ typedef enum {
     // Previous hero position that we set the map position
     float prevMapPosition_heroX;
     
+    // The number of time tick called.
+    int totalFrameCount;
+    
     // Did we play music?
     BOOL didPlayMusic;
     BOOL isHardMode;
@@ -127,7 +132,7 @@ typedef enum {
 @property (nonatomic, assign) Car * car;
 @property (nonatomic, retain) Hero * hero;
 
-// returns a Scene that contains the HelloWorld as the only child
+
 +(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level;
 +(StageScene*) sharedStageScene;
 -(BOOL) needJoystick;
@@ -136,6 +141,6 @@ typedef enum {
 
 -(void) giveUpGame:(NSString*)message;
 -(void) resumeGame;
-
+-(void) pauseGame;
 
 @end

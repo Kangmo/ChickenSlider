@@ -8,7 +8,7 @@
 
 #import "ClearScene.h"
 #import "LevelMapScene.h"
-
+#include "AppAnalytics.h"
 @implementation ClearScene
 -(BOOL) checkHighestScore:(int)score
 {
@@ -56,16 +56,15 @@
         WidgetType=Label,WidgetName=MaxCombo,Font=yellow25.fnt
         WidgetType=IntegerLabel,WidgetName=Score,Font=yellow34.fnt
 */
-        starPoints_ = boost::static_pointer_cast<TxImageArray>( widgetContainer_.getWidget("StarPoints") );
-        clearMessage_ = boost::static_pointer_cast<TxImageArray>( widgetContainer_.getWidget("ClearMessage") );
-        keys_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("Keys") );
-        chicks_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("Chicks") );
-        totalChicks_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("TotalChicks") );
-        time_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("Time") );
-        maxCombo_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("MaxCombo") );
-        score_ = boost::static_pointer_cast<TxIntegerLabel>( widgetContainer_.getWidget("Score") );
-        nextStageButton_ = boost::static_pointer_cast<TxImageArray>( widgetContainer_.getWidget("NextStageButton") );
-
+        starPoints_ = (TxImageArray*) widgetContainer_->getWidget("StarPoints").get();
+        clearMessage_ = (TxImageArray*) widgetContainer_->getWidget("ClearMessage").get();
+        keys_ = (TxLabel*) widgetContainer_->getWidget("Keys").get();
+        chicks_ = (TxLabel*) widgetContainer_->getWidget("Chicks").get();
+        totalChicks_ = (TxLabel*) widgetContainer_->getWidget("TotalChicks").get();
+        time_ = (TxLabel*) widgetContainer_->getWidget("Time").get();
+        maxCombo_ = (TxLabel*) widgetContainer_->getWidget("MaxCombo").get();
+        score_ = (TxIntegerLabel*) widgetContainer_->getWidget("Score").get();
+        nextStageButton_ = (TxImageArray*) widgetContainer_->getWidget("NextStageButton").get();
         
         // Convert time left(seconds) to score only in the Hard Mode.
         if ( [Util loadDifficulty] ) // Difficulty == 1 means Hard
@@ -110,6 +109,27 @@
             // For "MAP01", don't hide the next stage button because it will initiate IAP.
             nextStageButton_->setValue(-1);
         }
+        
+        // log App analysis event.
+        {
+            int totalChicks = [Util loadTotalChickCount];
+            
+            AppAnalytics::sharedAnalytics().beginEventProperty();
+            AppAnalytics::sharedAnalytics().addStageNameEventProperty(m, l);
+            AppAnalytics::sharedAnalytics().addEventProperty("score", score);
+            AppAnalytics::sharedAnalytics().addEventProperty("highScore", highScore);
+            AppAnalytics::sharedAnalytics().addEventProperty("keys", keys);
+            AppAnalytics::sharedAnalytics().addEventProperty("chicks", chicks);
+            AppAnalytics::sharedAnalytics().addEventProperty("totalChicks", totalChicks);
+            AppAnalytics::sharedAnalytics().addEventProperty("stars", stars);
+            AppAnalytics::sharedAnalytics().addEventProperty("maxCombo", maxComboCount);
+            AppAnalytics::sharedAnalytics().addEventProperty("timeSpent", timeSpent);
+            AppAnalytics::sharedAnalytics().addEventProperty("timeLeft", timeLeft);
+            AppAnalytics::sharedAnalytics().endEventProperty();
+            
+            AppAnalytics::sharedAnalytics().logEvent( "StageScene:Cleared" );
+        }
+        
     }
     
     return self;
@@ -209,6 +229,12 @@
         
         [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:levelMapScene]];
     }
+    
+    AppAnalytics::sharedAnalytics().beginEventProperty();
+    AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName_, level_);
+    AppAnalytics::sharedAnalytics().endEventProperty();
+    
+    AppAnalytics::sharedAnalytics().logEvent( "ClearScene:"+[Util toStdString:message] );
 }
 
 -(void) tick: (ccTime) dt

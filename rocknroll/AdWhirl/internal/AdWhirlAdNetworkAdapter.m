@@ -68,7 +68,8 @@
 }
 
 - (BOOL)isBannerAnimationOK:(AWBannerAnimationType)animType {
-  return YES;
+    // by kmkim : Don't alow Banner Animation by default. It makes ga
+  return NO;
 }
 
 - (void)dealloc {

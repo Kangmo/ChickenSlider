@@ -22,6 +22,10 @@
 
 #import "IntermediateScene.h"
 
+#import "AppAnalytics.h"
+
+#import "AdManager.h"
+
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -75,7 +79,7 @@ PROF_END(cocos2d_layer_visit);
     
     NSString *filePath = [Util getResourcePath:svgFileName];
     
-	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self widgets:NULL terrains:terrains gameObjects:&gameObjectContainer scoreBoard:self tutorialBoard:self] autorelease];
+	svgLoader * loader = [[[svgLoader alloc] initWithWorld:world andStaticBody:groundBody andLayer:self widgets:NULL terrains:terrains gameObjects:gameObjectContainer scoreBoard:self tutorialBoard:self] autorelease];
     
     // Set the class dictionary to the loader, so that it can initiate objects of classes defined in "classes.svg" file. 
     // In that file, a class is defined within a layer.
@@ -121,10 +125,16 @@ PROF_END(cocos2d_layer_visit);
         [playUI setStageName:stageName];
     }
 }
-
+/*
 -(void) addTerrains {
+    
+    NSAutoreleasePool * autoPool = nil;
+    int processingPoints = 0;
+
     for (Terrain * t in terrains) {
-        
+        if ( !autoPool ) {
+            autoPool = [[NSAutoreleasePool alloc] init];
+        }
         // Set the ground texture.
         t.textureFile = groundTexture;
         
@@ -133,8 +143,28 @@ PROF_END(cocos2d_layer_visit);
         CCLOG(@"MID : END : prepareRendering");
 
         [self addChild:t];
+        
+        processingPoints += [t borderPointCount];
+        if ( processingPoints >= SVG_LOADER_SHAPE_POINTS_PER_AUTOPOOL ) {
+            [autoPool drain];
+            
+            autoPool = [[NSAutoreleasePool alloc] init];
+        }
     }
 }
+*/
+-(void) addTerrains {
+    CCSprite * groundSprite = [Terrain groundSprite:groundTexture];
+    for (Terrain * t in terrains) {
+        
+        CCLOG(@"MID : BEGIN : prepareRendering");
+        [t prepareRendering:groundSprite];
+        CCLOG(@"MID : END : prepareRendering");
+        
+        [self addChild:t];
+    }
+}
+
 
 // find out the maximum X of all terrains. If the hero goes beyond of it, the stage is cleared!
 -(void) calcMaxTerrains 
@@ -350,7 +380,7 @@ PROF_END(cocos2d_layer_visit);
 	tutorialLabel = [CCLabelBMFont labelWithString:tutorialText fntFile:@"yellow34.fnt"];
     assert(tutorialLabel);
     
-	tutorialLabel.position = ccp(super.screenSize.width * 0.5, super.screenSize.height * 0.5);
+	tutorialLabel.position = ccp(screenSize.width * 0.5, screenSize.height * 0.5);
 
 	[self addChild:tutorialLabel];
 
@@ -394,6 +424,12 @@ PROF_END(cocos2d_layer_visit);
     {
         [self onPausePressed];
     }
+    
+    AppAnalytics::sharedAnalytics().beginEventProperty();
+    AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName, level);
+    AppAnalytics::sharedAnalytics().endEventProperty();
+    
+    AppAnalytics::sharedAnalytics().logEvent( "StageScene:"+[Util toStdString:message] );
 }
 
 ///////////////////////////////////////////////////////////////
@@ -404,8 +440,14 @@ PROF_END(cocos2d_layer_visit);
 {
 	if( (self=[super init])) 
 	{
+        PROF_RESET_ALL();
+        
+        gameObjectContainer = new GameObjectContainer();
+        screenSize = [CCDirector sharedDirector].winSize;
         assert(aMapName);
         assert(aLevel>0);
+        
+        totalFrameCount = 0;
         
         isHardMode = [Util loadDifficulty] ? YES:NO;
 
@@ -456,12 +498,6 @@ PROF_END(cocos2d_layer_visit);
         sbSecondsLeft = (float)playTimeSec;
         sbRecentSecond = playTimeSec + 1; // To show playTimeSec on the score board, sbRecentSecond should be greater than playTimeSec.
         
-        // Show AD only if nothing is purchased
-        if ( ! [Util didPurchaseAny] )
-        {
-            super.enableAD = YES;
-        }
-
         assert ( backgroundImage );
         sky = [[Sky skyWithTexture:backgroundImage size:CGSizeMake(backgroundImageWidth,backgroundImageHeight)] retain];
         [self addChild:sky];
@@ -562,11 +598,14 @@ PROF_END(cocos2d_layer_visit);
     return NO;
 }
 
+
 +(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
+
+    AppAnalytics::sharedAnalytics().beginTimedEvent( "StageScene:Load");
+
     GamePlayLayer * gamePlayLayer = [GamePlayLayer layerWithSceneName:@"GamePlayLayer"];
     
 	// 'layer' is an autorelease object.
@@ -587,7 +626,13 @@ PROF_END(cocos2d_layer_visit);
         InputLayer * inputLayer = [InputLayer node];
         [scene addChild:inputLayer z:2 tag:StageSceneLayerTagInput];
     }
+
+    AppAnalytics::sharedAnalytics().beginEventProperty();
+    AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName, level);
+    AppAnalytics::sharedAnalytics().endEventProperty();
     
+    AppAnalytics::sharedAnalytics().endTimedEvent( "StageScene:Load");
+
 	// return the scene
 	return scene;
 }
@@ -638,7 +683,7 @@ PROF_END(cocos2d_layer_visit);
  */
 -(void) adjustZoomWithGroundY:(float)groundY_worldSystem
 {
-    // For optimization, we have static variable here rather than using super.screenSize
+    // For optimization, we have static variable here rather than using screenSize
     static CGSize theScreenSize = [[CCDirector sharedDirector] winSize];
     static float minHeightMeters = 0.0f;
     if (!minHeightMeters) 
@@ -701,12 +746,12 @@ PROF_END(cocos2d_layer_visit);
         /////////////////////////////////////////////
         // Step 2 : Adjust Sky
         // BUGBUG : Screen : Change to screen width & height
-        static float onScreenBackgroundImageWidth = backgroundImageHeight*super.screenSize.width/super.screenSize.height;
+        static float onScreenBackgroundImageWidth = backgroundImageHeight*screenSize.width/screenSize.height;
         // -50 is an workaround for not showing the outside area of the right border of the background image.
         static float maxOffsetX = (backgroundImageWidth - onScreenBackgroundImageWidth) - 50;
-        static float heroOffsetOnScreen = super.screenSize.width * HERO_XPOS_RATIO;
+        static float heroOffsetOnScreen = screenSize.width * HERO_XPOS_RATIO;
         // The hero can go three screens further from the last terrain. 
-        static float maxHeroX_withoutZoom = (terrainMaxX + super.screenSize.width * 3);
+        static float maxHeroX_withoutZoom = (terrainMaxX + screenSize.width * 3);
         float offsetX = (heroX_withoutZoom-heroOffsetOnScreen)/maxHeroX_withoutZoom * maxOffsetX;
         
         [sky setOffsetX:offsetX];
@@ -745,20 +790,16 @@ PROF_END(cocos2d_layer_visit);
         // Don't scale cameraOffsetY, because it is for shifting camera offset.
         CGPoint terrainPosition = ccp( -heroX_withoutZoom*cam.zoom + heroOffsetX_atZoom1, -cameraOffsetY /* Caution: should not scale cameraOffsetY */);
         
-PROF_BEGIN(temp5);
         for(Terrain * t in terrains) {
             // Skip terrains that are not shown at all.
             if ( [t borderMaxX] < leftSideX ||
                  [t borderMinX] > rightSideX )
                 continue;
-    PROF_BEGIN(temp8);
             
             t.scale = cam.zoom;
             
             [t setHeroX:heroX_withoutZoom position:terrainPosition windowLeftX:leftSideX windowRightX:rightSideX];
             
-    PROF_END(temp8);
-    PROF_BEGIN(temp9);
             float borderMinY = [t calcBorderMinY];
                 
             if ( [t isBelowHero:heroY_withoutZoom] )
@@ -772,9 +813,7 @@ PROF_BEGIN(temp5);
                 if ( groundY > borderMinY )
                     groundY = borderMinY;
             }
-    PROF_END(temp9);
         }
-PROF_END(temp5);
     }
 
     // Is the hero on a terrain which is far enough from the ground?
@@ -818,7 +857,7 @@ PROF_END(temp5);
         // Step 2 : Get all game objects colliding with the bounding rectangle of Hero. 
         ////////////////////////////////////////////////////////////////////////////////
         std::deque<REF(GameObject)> v;
-        v = gameObjectContainer.getCollidingObjects(heroContentBox);
+        v = gameObjectContainer->getCollidingObjects(heroContentBox);
         
         for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
         {
@@ -846,6 +885,7 @@ PROF_END(temp5);
  */
 -(void)onStageFail:(id)sender data:(void*)callbackData 
 {
+
     [self gotoLevelMapWithFail];
     
     CCLOG(@"onStageFail:data");
@@ -897,7 +937,7 @@ PROF_END(temp5);
     }
     
     [[CCDirector sharedDirector] replaceScene:nextScene];
-    
+
     CCLOG(@"onStageClear:data");
 }
 
@@ -906,7 +946,7 @@ PROF_END(temp5);
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage{
     
 	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"yellow34.fnt"];
-	label.position = ccp(super.screenSize.width/2, super.screenSize.height/2);
+	label.position = ccp(screenSize.width/2, screenSize.height/2);
     label.scale = 1.0;
 
     id lastAction = nil;
@@ -917,6 +957,19 @@ PROF_END(temp5);
     else
     {
         lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageFail:data:) data:(void*)nil];
+
+        AppAnalytics::sharedAnalytics().beginEventProperty();
+        AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName, level);
+        AppAnalytics::sharedAnalytics().addDeviceProperties();
+        float timeSpent = (playTimeSec-sbSecondsLeft);
+        if (timeSpent) {
+            float averageFPS = totalFrameCount/timeSpent;
+            AppAnalytics::sharedAnalytics().addEventProperty("averageFPS", averageFPS);
+            NSLog(@"averageFPS=%f\n", averageFPS);
+        }
+        AppAnalytics::sharedAnalytics().endEventProperty();
+            
+        AppAnalytics::sharedAnalytics().logEvent( "StageScene:Failed:"+[Util toStdString:message] );
     }
     
 	[label runAction:[CCSequence actions:
@@ -997,7 +1050,9 @@ PROF_END(temp5);
         }
         didPlayMusic = YES;
     }
-
+    
+    // Disable refreshing ADs for the best performance.
+    [[AdManager sharedAdManager] disableRefresh];
     [super onEnterTransitionDidFinish];
 }
 
@@ -1006,6 +1061,11 @@ PROF_END(temp5);
     
 	// in case you have something to dealloc, do it in this method
     [self unschedule: @selector(tick:)];
+
+    // Enable refreshing ADs for the best performance.
+    [[AdManager sharedAdManager] enableRefresh];
+    // Show next AD
+    [[AdManager sharedAdManager] refresh];
 
     [super onExit];
 }
@@ -1033,7 +1093,7 @@ PROF_END(temp5);
     {
         box_t goneScreenBox = [cam goneScreenRect:heroXatZ1];
         std::deque<REF(GameObject)> v;
-        v = gameObjectContainer.getCollidingObjects(goneScreenBox);
+        v = gameObjectContainer->getCollidingObjects(goneScreenBox);
         
         for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
         {
@@ -1053,7 +1113,7 @@ PROF_END(temp5);
     {
         box_t commingScreenBox = [cam commingScreenRect:heroXatZ1];
         std::deque<REF(GameObject)> v;
-        v = gameObjectContainer.getCollidingObjects(commingScreenBox);
+        v = gameObjectContainer->getCollidingObjects(commingScreenBox);
         
         for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
         {
@@ -1207,7 +1267,9 @@ PROF_BEGIN(stage_tick_update_labels);
     [playUI update:dt];
     // See if the time isrup.
     [self checkTimeOut:dt];
+    totalFrameCount++;
     
+
     // Show the map position with 1/100 scale
     if ( heroX_withoutZoom - prevMapPosition_heroX > 50 )
     {
@@ -1315,6 +1377,8 @@ PROF_END(stage_tick_update_labels);
 {
     CCLOG(@"StageScene:dealloc");
     
+
+    
     if (car)
         delete car;
 
@@ -1322,10 +1386,12 @@ PROF_END(stage_tick_update_labels);
     sky = nil;
     
     self.hero = nil;
+    
     [terrains release];
     
     // remove all body nodes attached to b2Body in the b2World.
     Helper::removeAttachedBodyNodes(world);
+    
 	delete world;
 	world = NULL;
     
@@ -1342,6 +1408,9 @@ PROF_END(stage_tick_update_labels);
     [backgroundImage release];
     [groundTexture release];
     [closingScene release];
+
+    delete gameObjectContainer;
+    gameObjectContainer = NULL;
     
 	// don't forget to call "super dealloc"
 	[super dealloc];

@@ -11,6 +11,7 @@
 #import "Util.h"
 #include "TxSlideBar.h"
 #include "TxToggleButton.h"
+#include "AppAnalytics.h"
 
 @implementation OptionScene
 
@@ -21,8 +22,8 @@
 	if( (self=[super initWithSceneName:sceneName])) 
 	{
         // TODO : Read data, set control values.
-        musicVolumeLabel_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("MusicVolumeLabel") );
-        effectVolumeLabel_ = boost::static_pointer_cast<TxLabel>( widgetContainer_.getWidget("EffectVolumeLabel") );
+        musicVolumeLabel_ = (TxLabel*) widgetContainer_->getWidget("MusicVolumeLabel").get();
+        effectVolumeLabel_ = (TxLabel*) widgetContainer_->getWidget("EffectVolumeLabel").get();
         
         int musicVolume = [Util loadMusicVolume];
         int effectVolume = [Util loadEffectVolume];
@@ -32,9 +33,9 @@
         assert(effectVolume>=0 && effectVolume<=10);
         assert(difficulty == 0 || difficulty == 1);
 
-        REF(TxSlideBar) musicVolumeSlide = boost::static_pointer_cast<TxSlideBar>( widgetContainer_.getWidget("MusicVolumeSlide") );
-        REF(TxSlideBar) effectVolumeSlide = boost::static_pointer_cast<TxSlideBar>( widgetContainer_.getWidget("EffectVolumeSlide") );
-        REF(TxToggleButton) difficultyToggle = boost::static_pointer_cast<TxToggleButton>( widgetContainer_.getWidget("Difficulty") );
+        TxSlideBar * musicVolumeSlide = (TxSlideBar*) widgetContainer_->getWidget("MusicVolumeSlide").get();
+        TxSlideBar * effectVolumeSlide = (TxSlideBar*) widgetContainer_->getWidget("EffectVolumeSlide").get();
+        TxToggleButton * difficultyToggle = (TxToggleButton*) widgetContainer_->getWidget("Difficulty").get();
         
         musicVolumeLabel_->setIntValue(musicVolume);
         musicVolumeSlide->setValue((float)musicVolume / MAX_MUSIC_VOLUME );
@@ -84,8 +85,8 @@
         int difficulty = difficultyToggle->getValue();
         [Util saveDifficulty:difficulty];
     }
-    // TODO : Read control values, write data.
-//    CCLOG(@"OptionScene:onAction:%s", source->getName().c_str());
+    
+    AppAnalytics::sharedAnalytics().logEvent( std::string("OptionScene:") + widgetName );
 }
 
 +(id)nodeWithSceneName:(NSString*)sceneName

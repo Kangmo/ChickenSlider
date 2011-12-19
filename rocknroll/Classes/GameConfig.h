@@ -1,6 +1,8 @@
 #ifndef __GAME_CONFIG_H
 #define __GAME_CONFIG_H
 
+#define SND_EXT @".wav"
+
 //
 // Supported Autorotations:
 //		None,
@@ -100,12 +102,18 @@ const float LANDSCAPE_AD_HEIGHT = 40;
 //#define LOAD_RESOURCE_FROM_TEST_WEB (1)
 #define TEST_WEB_URL_PREFIX @"http://thankyousoft.com/game01/"
 
+// For Terrains, how many points are we going to keep for an auto released pool?
+// The higher, the better loading performance. The lower, the smaller memory foot print during loading.
+#define SVG_LOADER_SHAPE_POINTS_PER_AUTOPOOL (32)
+
 // Unlock all stage levels for testing
 #define UNLOCK_LEVELS_FOR_TEST (1)
 
 #define DISABLE_IAP (1)
 
 //#define DISABLE_ADS (1)
+
+#define DO_PROFILE (1)
 
 #endif // __GAME_CONFIG_H
 

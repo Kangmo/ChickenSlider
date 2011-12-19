@@ -26,7 +26,7 @@ public:
         if ( !_collideSound )
         {
             // BUGBUG : The object is leaked! 
-            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"key.wav"];
+            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"key"SND_EXT];
             [_collideSound retain];
         }
         assert(_collideSound);

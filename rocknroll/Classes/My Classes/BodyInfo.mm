@@ -1,7 +1,10 @@
 #import "BodyInfo.h"
 #import "TouchXML.h"
+//#include "RetainCountTrace.h"
 
 @implementation BodyInfo
+
+//SYNTESIZE_TRACE(BodyInfo);
 
 @synthesize data, name, rect;
 @synthesize spriteName, textureName, spriteOffset;

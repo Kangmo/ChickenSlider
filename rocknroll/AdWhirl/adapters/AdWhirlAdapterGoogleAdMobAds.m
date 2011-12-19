@@ -196,4 +196,8 @@
   return networkConfig.pubId;
 }
 
+- (BOOL)isBannerAnimationOK:(AWBannerAnimationType)animType {
+    return NO;
+}
+
 @end

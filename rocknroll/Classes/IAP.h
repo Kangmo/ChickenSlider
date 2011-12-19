@@ -26,8 +26,11 @@ typedef enum IAPResponse
 
 +(IAP*) sharedIAP;
 
+-(void)restoreIAP;
+
 -(void) tryPurchase:(NSString*)featureName;
 
 +(BOOL) isFeaturePurchased:(NSString*)featureName;
+
 
 @end

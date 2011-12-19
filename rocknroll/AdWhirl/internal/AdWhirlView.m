@@ -579,6 +579,9 @@ static BOOL randSeeded = NO;
       animType = AWBannerAnimationTypeNone;
     }
 
+    // By kmkim : Don't animate the transition of ADs.
+    //animType = AWBannerAnimationTypeNone;
+      
     if (animType == AWBannerAnimationTypeNone) {
       [currAdView removeFromSuperview];
       [self addSubview:view];
@@ -592,6 +595,8 @@ static BOOL randSeeded = NO;
       }
     }
     else {
+      // by kmkim : Should never come here, Because we disabled animation from the isBannerAnimationOK for all ADs.
+      assert(0);
       switch (animType) {
         case AWBannerAnimationTypeSlideFromLeft:
         {

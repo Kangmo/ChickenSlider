@@ -5,7 +5,9 @@
 #import "b2WorldEx.h"
 #import "InteractiveSprite.h"
 #import "StageScene.h"
+#include "AppAnalytics.h"
 //#import "RetainCountTrace.h"
+#include "AdManager.h"
 
 @implementation GeneralScene
 
@@ -22,6 +24,13 @@
 {
 	if( (self=[super init])) 
 	{
+        tryToRefreshAD_ = YES;
+        
+        widgetContainer_ = new TxWidgetContainer();
+
+        const std::string sceneNameStdStr = [Util toStdString:sceneName]; 
+        AppAnalytics::sharedAnalytics().logEvent( sceneNameStdStr );
+        
         sceneName_ = [sceneName retain];
         
         NSString * svgFileName = [sceneName stringByAppendingString:@".svg"];
@@ -50,7 +59,7 @@
         
         // Parse svg file
         {
-            svgLoader * loader = [[svgLoader alloc] initWithWorld:nil andStaticBody:nil andLayer:self widgets:&widgetContainer_ terrains:nil gameObjects:NULL scoreBoard:nil tutorialBoard:nil];
+            svgLoader * loader = [[svgLoader alloc] initWithWorld:nil andStaticBody:nil andLayer:self widgets:widgetContainer_ terrains:nil gameObjects:NULL scoreBoard:nil tutorialBoard:nil];
 
             [loader instantiateObjectsIn:svgFilePath];
             
@@ -151,6 +160,13 @@
         [self scheduleUpdate];
     }
 
+    if ( tryToRefreshAD_ ) {
+        // Make sure refreshing the AD is enabled.
+        assert( [[AdManager sharedAdManager] isRefreshEnabled] );
+        // Try to show next AD when the screen changes.
+        [[AdManager sharedAdManager] refresh];
+    }
+    
     [super onEnterTransitionDidFinish];
 }
 
@@ -177,7 +193,10 @@
     
     self.loadingLevelMapName = nil;
     [sceneName_ release];
-    
+
+    delete widgetContainer_;
+    widgetContainer_ = NULL;
+
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
@@ -271,15 +290,6 @@
     // By default, do nothing.
 }
 
-/** @brief Called by AD-Whirl. Simply do nothing for GeneralScene, which is a screen for showing menus.
- */
--(void) pauseGame {
-}
-
-/** @brief Called by AD-Whirl. Simply do nothing for GeneralScene, which is a screen for showing menus.
- */
--(void) resumeGame {
-}
 //SYNTESIZE_TRACE(GeneralScene)
 
 @end

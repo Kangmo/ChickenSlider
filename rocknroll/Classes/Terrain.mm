@@ -3,36 +3,27 @@
 #import "Profiler.h"
 
 @interface Terrain()
-- (CCSprite*) generateStripesSprite;
-- (CCTexture2D*) generateStripesTexture;
-- (void) renderStripes;
-- (void) renderGradient;
-- (void) renderHighlight;
-- (void) renderTopBorder;
-- (void) renderNoise;
+
 //- (void) generateHillKeyPoints;
 //- (void) generateBorderVertices;
 - (void) loadBorderVertices;
 //- (void) createBox2DBody;
 - (void) calcHillVertices;
 - (ccColor4F) randomColor;
-- (void) renderImage:(NSString*)imageFileName;
-
 @end
 
 @implementation Terrain
 
-@synthesize textureFile;
 @synthesize stripes = _stripes;
 @synthesize renderUpside;
 @synthesize thickness;
 @synthesize maxX;
 
-+ (id) terrainWithWorld:(b2World*)w borderPoints:(NSArray*)borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset{
++ (id) terrainWithWorld:(b2World*)w borderPoints:(REF(PointVector)) borderPoints canvasHeight:(int)canvasHeight xOffset:(float)xOffset yOffset:(float)yOffset{
 	return [[[self alloc] initWithWorld:w borderPoints:borderPoints canvasHeight:canvasHeight xOffset:xOffset yOffset:yOffset] autorelease];
 }
 
-- (id) initWithWorld:(b2World*)w borderPoints:(NSArray*)bp canvasHeight:(int)ch xOffset:(float)xo yOffset:(float)yo{
+- (id) initWithWorld:(b2World*)w borderPoints:(REF(PointVector))bp canvasHeight:(int)ch xOffset:(float)xo yOffset:(float)yo{
 	
 	if ((self = [super init])) {
 		
@@ -50,26 +41,40 @@
         thickness = TERRAIN_TEXTURE_SIZE;
 		textureSize = TERRAIN_TEXTURE_SIZE;
         
-        borderPoints = bp;
+        borderPoints = new REF(PointVector);
+        *borderPoints = bp;
         canvasHeight = ch;
         xOffset = xo;
         yOffset = yo;
         
         maxX = -kMAX_POSITION;
+        
+        nMaxBorderVertices = bp->size();
+        borderVertices = new CGPoint[nMaxBorderVertices];
+        assert(borderVertices);
+        
+        nMaxHillVertices = HILL_VERTICES(nMaxBorderVertices);
+        hillVertices = new CGPoint[nMaxHillVertices];
+        hillTexCoords = new CGPoint[nMaxHillVertices];
+        assert(hillVertices);
+        assert(hillTexCoords);
+        
 	}
 	return self;
 }
 
 /** @brief Prepares rendering
  */
-- (void) prepareRendering {
-    assert(self.textureFile);
-    
-    self.stripes = [self generateStripesSprite];
+- (void) prepareRendering:(CCSprite*)groundSprite {
+    assert(groundSprite);
+
+    self.stripes = groundSprite;
     
     [self loadBorderVertices];
     [self calcHillVertices];
 }
+
+
 
 /** @brief Load border vertices from an NSArray of points into borderVertices array. 
  * These vertices are from svg file written by Inkscape. 
@@ -78,18 +83,15 @@
  */
 - (void) loadBorderVertices
 {
-    assert([borderPoints count]>1);
+    assert((*borderPoints)->size()>1);
 
     CGPoint p;
     
     nBorderVertices = 0;
     
-    for (uint32 i = 0; i< [borderPoints count]; i++) 
+    for (uint32 i = 0; i< (*borderPoints)->size(); i++) 
     {
-        // BUGBUG : understand why this is needed.
-        if([[borderPoints objectAtIndex:i] length]<2) continue;
-            
-        p = CGPointFromString([NSString stringWithFormat:@"{%@}",[borderPoints objectAtIndex:i]]);
+        p = (*borderPoints)->at(i);
             
         p.x += xOffset; 
         p.y += yOffset;
@@ -97,19 +99,30 @@
         // convert Svg(top-left is 0,0) to OpenGL(bottom left is 0,0)
         p.y = canvasHeight-p.y;
         
+        assert( nBorderVertices < nMaxBorderVertices );
         borderVertices[nBorderVertices++] = p;
         
         if ( maxX < p.x )
             maxX = p.x;
         
-        assert( nBorderVertices < kMaxBorderVertices );
     }
+    
+    // We finished loading border points. We don't need it anymore.
+    delete borderPoints;
+    borderPoints = NULL;
 }
 
 
 - (void) dealloc {
+    
+    delete[] hillVertices;
+	delete[] hillTexCoords;
 
-    self.textureFile = nil;
+	delete[] borderVertices;
+    
+    if (borderPoints) {
+        delete borderPoints;
+    }
     
 #ifndef DRAW_BOX2D_WORLD
 	
@@ -215,9 +228,12 @@ inline int getVertexIndexFromBorderIndex(int borderIndex)
             if ( ! renderUpside )
                 vSegOffset = -vSegOffset;
             
+            assert(nHillVertices<nMaxHillVertices);
             hillVertices[nHillVertices] = ccp(p0.x, p0.y + vSegOffset);
             // To map the texture from top to bottom, we subtract Y coord from 1. (OpenGL coord system => TOP=1, BOTTOM=0)
             hillTexCoords[nHillVertices++] = ccp(p0.x/(float)textureSize, 1-(float)(k)/vSegments * thicknessRatio);
+
+            assert(nHillVertices<nMaxHillVertices);
             hillVertices[nHillVertices] = ccp(p1.x, p1.y + vSegOffset);
             hillTexCoords[nHillVertices++] = ccp(p1.x/(float)textureSize, 1-(float)(k)/vSegments * thicknessRatio);
         }
@@ -359,10 +375,6 @@ PROF_END(terrain_draw);
 }
 
 - (void) reset {
-#ifndef DRAW_BOX2D_WORLD
-	self.stripes = [self generateStripesSprite];
-#endif
-	
 	startBorderIndex = 0;
 	endBorderIndex = 0;
     rightBeforeHeroIndex = 0;
@@ -370,161 +382,43 @@ PROF_END(terrain_draw);
 
 
 
-- (CCSprite*) generateStripesSprite {
-	
-	CCTexture2D *texture = [self generateStripesTexture];
-	CCSprite *sprite = [CCSprite spriteWithTexture:texture];
-	ccTexParams tp = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_CLAMP_TO_EDGE};
-	[sprite.texture setTexParameters:&tp];
-	
-	return sprite;
-}
 
-- (CCTexture2D*) generateStripesTexture {
-	
-	CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:textureSize height:textureSize];
-	[rt begin];
-    
-    assert(self.textureFile);
-    [self renderImage:self.textureFile];
-	//[self renderStripes];
-	[self renderGradient];
-	[self renderHighlight];
-	[self renderTopBorder];
-	[self renderNoise];
-    
-	[rt end];
-	
-	return rt.sprite.texture;
-}
 
-- (void) renderStripes {
-	
-	const int minStripes = 4;
-	const int maxStripes = 30;
-	
-	// random even number of stripes
-	int nStripes = arc4random()%(maxStripes-minStripes)+minStripes;
-	if (nStripes%2) {
-		nStripes++;
-	}
-    //	NSLog(@"nStripes = %d", nStripes);
-	
-	CGPoint *vertices = (CGPoint*)malloc(sizeof(CGPoint)*nStripes*6);
-	ccColor4F *colors = (ccColor4F*)malloc(sizeof(ccColor4F)*nStripes*6);
-	int nVertices = 0;
-	
-	float x1, x2, y1, y2, dx, dy;
-	ccColor4F c;
-	
-	if (arc4random()%2) {
-		
-		// diagonal stripes
-		
-		dx = (float)textureSize*2 / (float)nStripes;
-		dy = 0;
-		
-		x1 = -textureSize;
-		y1 = 0;
-		
-		x2 = 0;
-		y2 = textureSize;
-		
-		for (int i=0; i<nStripes/2; i++) {
-			c = [self randomColor];
-			for (int j=0; j<2; j++) {
-				for (int k=0; k<6; k++) {
-					colors[nVertices+k] = c;
-				}
-				vertices[nVertices++] = ccp(x1+j*textureSize, y1);
-				vertices[nVertices++] = ccp(x1+j*textureSize+dx, y1);
-				vertices[nVertices++] = ccp(x2+j*textureSize, y2);
-				vertices[nVertices++] = vertices[nVertices-2];
-				vertices[nVertices++] = vertices[nVertices-2];
-				vertices[nVertices++] = ccp(x2+j*textureSize+dx, y2);
-			}
-			x1 += dx;
-			x2 += dx;
-		}
-		
-	} else {
-		
-		// horizontal stripes
-		
-		dx = 0;
-		dy = (float)textureSize / (float)nStripes;
-		
-		x1 = 0;
-		y1 = 0;
-		
-		x2 = textureSize;
-		y2 = 0;
-		
-		for (int i=0; i<nStripes; i++) {
-			c = [self randomColor];
-			for (int k=0; k<6; k++) {
-				colors[nVertices+k] = c;
-			}
-			vertices[nVertices++] = ccp(x1, y1);
-			vertices[nVertices++] = ccp(x2, y2);
-			vertices[nVertices++] = ccp(x1, y1+dy);
-			vertices[nVertices++] = vertices[nVertices-2];
-			vertices[nVertices++] = vertices[nVertices-2];
-			vertices[nVertices++] = ccp(x2, y2+dy);
-			y1 += dy;
-			y2 += dy;
-		}
-		
-	}
-	
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	
-	glColor4f(1, 1, 1, 1);
-	glVertexPointer(2, GL_FLOAT, 0, vertices);
-	glColorPointer(4, GL_FLOAT, 0, colors);
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-	glDrawArrays(GL_TRIANGLES, 0, (GLsizei)nVertices);
-	
-	free(vertices);
-	free(colors);
-}
-
-- (void) renderGradient {
++(void) renderGradient: (int)aTextureSize{
 	
 	float gradientAlpha = 0.5f;
-	float gradientWidth = textureSize;
+	float gradientWidth = aTextureSize;
 	
 	CGPoint vertices[6];
 	ccColor4F colors[6];
 	int nVertices = 0;
 	
 	vertices[nVertices] = ccp(0, 0);
-	colors[nVertices++] = (ccColor4F){0, 0, 0, 0};
-	vertices[nVertices] = ccp(textureSize, 0);
-	colors[nVertices++] = (ccColor4F){0, 0, 0, 0};
+	colors[nVertices++] = (ccColor4F){0, 0, 0, gradientAlpha};
+	vertices[nVertices] = ccp(aTextureSize, 0);
+	colors[nVertices++] = (ccColor4F){0, 0, 0, gradientAlpha};
 	
 	vertices[nVertices] = ccp(0, gradientWidth);
-	colors[nVertices++] = (ccColor4F){0, 0, 0, gradientAlpha};
-	vertices[nVertices] = ccp(textureSize, gradientWidth);
-	colors[nVertices++] = (ccColor4F){0, 0, 0, gradientAlpha};
-	
-	if (gradientWidth < textureSize) {
-		vertices[nVertices] = ccp(0, textureSize);
+	colors[nVertices++] = (ccColor4F){0, 0, 0, 0};
+	vertices[nVertices] = ccp(aTextureSize, gradientWidth);
+	colors[nVertices++] = (ccColor4F){0, 0, 0, 0};
+	/*
+	if (gradientWidth < aTextureSize) {
+		vertices[nVertices] = ccp(0, aTextureSize);
 		colors[nVertices++] = (ccColor4F){0, 0, 0, gradientAlpha};
-		vertices[nVertices] = ccp(textureSize, textureSize);
+		vertices[nVertices] = ccp(aTextureSize, aTextureSize);
 		colors[nVertices++] = (ccColor4F){0, 0, 0, gradientAlpha};
 	}
-	
+	*/
 	glVertexPointer(2, GL_FLOAT, 0, vertices);
 	glColorPointer(4, GL_FLOAT, 0, colors);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)nVertices);
 }
 
-- (void) renderHighlight {
++ (void) renderHighlight:(int)aTextureSize {
 	
 	float highlightAlpha = 0.5f;
-	float highlightWidth = textureSize/4;
+	float highlightWidth = aTextureSize/4;
 	
 	CGPoint vertices[4];
 	ccColor4F colors[4];
@@ -532,12 +426,12 @@ PROF_END(terrain_draw);
 	
 	vertices[nVertices] = ccp(0, 0);
 	colors[nVertices++] = (ccColor4F){1, 1, 0.5f, highlightAlpha}; // yellow
-	vertices[nVertices] = ccp(textureSize, 0);
+	vertices[nVertices] = ccp(aTextureSize, 0);
 	colors[nVertices++] = (ccColor4F){1, 1, 0.5f, highlightAlpha};
 	
 	vertices[nVertices] = ccp(0, highlightWidth);
 	colors[nVertices++] = (ccColor4F){0, 0, 0, 0};
-	vertices[nVertices] = ccp(textureSize, highlightWidth);
+	vertices[nVertices] = ccp(aTextureSize, highlightWidth);
 	colors[nVertices++] = (ccColor4F){0, 0, 0, 0};
 	
 	glVertexPointer(2, GL_FLOAT, 0, vertices);
@@ -546,16 +440,18 @@ PROF_END(terrain_draw);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)nVertices);
 }
 
-- (void) renderTopBorder {
++ (void) renderTopBorder:(int)aTextureSize {
 	
 	float borderAlpha = 0.5f;
 	float borderWidth = 2.0f;
 	
 	CGPoint vertices[2];
 	int nVertices = 0;
-	
-	vertices[nVertices++] = ccp(0, borderWidth/2);
-	vertices[nVertices++] = ccp(textureSize, borderWidth/2);
+    
+	float borderY = aTextureSize - borderWidth/2 ;
+    
+	vertices[nVertices++] = ccp(0, borderY);
+	vertices[nVertices++] = ccp(aTextureSize, borderY);
 	
 	glDisableClientState(GL_COLOR_ARRAY);
 	
@@ -566,22 +462,22 @@ PROF_END(terrain_draw);
 	glDrawArrays(GL_LINE_STRIP, 0, (GLsizei)nVertices);
 }
 
-- (void) renderNoise {
++ (void) renderNoise:(int)aTextureSize {
 	
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_TEXTURE_2D);
 	
 	CCSprite *s = [CCSprite spriteWithFile:@"noise.png"];
 	[s setBlendFunc:(ccBlendFunc){GL_DST_COLOR, GL_ZERO}];
-	s.position = ccp(textureSize/2, textureSize/2);
-	s.scale = (float)textureSize/512.0f;
+	s.position = ccp(aTextureSize/2, aTextureSize/2);
+	s.scale = (float)aTextureSize/512.0f;
 	glColor4f(1, 1, 1, 1);
 	[s visit];
 	[s visit]; // more contrast
 }
 
 
-- (void) renderImage:(NSString*)imageFileName {
++ (void) renderImage:(NSString*)imageFileName {
 	
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glEnable(GL_TEXTURE_2D);
@@ -594,6 +490,36 @@ PROF_END(terrain_draw);
 	glColor4f(1, 1, 1, 1);
 	[s visit];
 	[s visit]; // more contrast
+}
+
++ (CCTexture2D*) generateStripesTexture:(NSString*) textureFile aTextureSize:(int)aTextureSize {
+	
+	CCRenderTexture *rt = [CCRenderTexture renderTextureWithWidth:aTextureSize height:aTextureSize];
+	[rt begin];
+    
+    assert(textureFile);
+    [Terrain renderImage:textureFile];
+
+	[Terrain renderGradient:aTextureSize];
+	[Terrain renderHighlight:aTextureSize];
+	[Terrain renderTopBorder:aTextureSize];
+	//[Terrain renderNoise:aTextureSize];
+    
+	[rt end];
+	
+	return rt.sprite.texture;
+}
+
++ (CCSprite*) groundSprite:(NSString*) textureFile{
+	CCTexture2D *texture = [Terrain generateStripesTexture:textureFile aTextureSize:TERRAIN_TEXTURE_SIZE];
+	
+    CCSprite *sprite = [CCSprite spriteWithTexture:texture];
+	
+    ccTexParams tp = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_CLAMP_TO_EDGE};
+	
+    [sprite.texture setTexParameters:&tp];
+    
+	return sprite;
 }
 
 @end

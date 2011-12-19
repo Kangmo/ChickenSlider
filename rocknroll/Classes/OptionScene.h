@@ -20,8 +20,12 @@
  */
 @interface OptionScene : GeneralScene
 {
-    REF(TxLabel) musicVolumeLabel_;
-    REF(TxLabel) effectVolumeLabel_;
+    // These pointers are all weak references. 
+    // It is fine to use weak references here, because widgetContainer_ in GeneralScene has strong reference to these objects.
+    // We should not use boost::shared_ptr, because Objective-C++ class does not call destructors on member variables whose types are C++ classes 
+
+    TxLabel * musicVolumeLabel_;
+    TxLabel * effectVolumeLabel_;
 }
 +(CCScene*)sceneWithName:(NSString*)sceneName;
 

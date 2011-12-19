@@ -41,6 +41,7 @@ class TxWidget;
 -(void)onWidgetAction:(TxWidget*)sender;
 @end
 
+
 #define TxWidgetOwner CCLayer<TxWidgetListener>
 
 

@@ -19,15 +19,18 @@
     // Indicates if the cleared stage was the last stage
     BOOL lastStage_;
     
-    REF(TxImageArray) starPoints_;
-    REF(TxImageArray) clearMessage_;
-    REF(TxLabel) keys_;
-    REF(TxLabel) chicks_;
-    REF(TxLabel) totalChicks_;
-    REF(TxLabel) time_;
-    REF(TxLabel) maxCombo_;
-    REF(TxIntegerLabel) score_;
-    REF(TxImageArray) nextStageButton_;
+    // These pointers are all weak references. 
+    // It is fine to use weak references here, because widgetContainer_ in GeneralScene has strong reference to these objects.
+    // We should not use boost::shared_ptr, because Objective-C++ class does not call destructors on member variables whose types are C++ classes 
+    TxImageArray * starPoints_;
+    TxImageArray * clearMessage_;
+    TxLabel * keys_;
+    TxLabel * chicks_;
+    TxLabel * totalChicks_;
+    TxLabel * time_;
+    TxLabel * maxCombo_;
+    TxIntegerLabel * score_;
+    TxImageArray * nextStageButton_;
 
 //    int maxLevel_;
 }

@@ -13,18 +13,22 @@
 
 @interface GamePlayLayer : GeneralScene
 {
-    REF(TxLabel) stageName_ ;
-    REF(TxIntegerLabel) keyCount_ ;
-    REF(TxIntegerLabel) chickCount_ ;
-    REF(TxLabel) sandClockSeconds_ ;
-    REF(TxLabel) count_ ;
-    REF(TxLabel) unit_ ;
-    REF(TxLabel) message_ ;
-    REF(TxSandClock) sandClock_ ;
-    REF(TxFloatLabel) speed_ ;
-    REF(TxIntegerLabel) score_ ;
-    REF(TxLabel) highScore_ ;
-    REF(TxLabel) mapPosition_ ;
+    // These pointers are all weak references. 
+    // It is fine to use weak references here, because widgetContainer_ in GeneralScene has strong reference to these objects.
+    // We should not use boost::shared_ptr, because Objective-C++ class does not call destructors on member variables whose types are C++ classes 
+
+    TxLabel * stageName_ ;
+    TxIntegerLabel * keyCount_ ;
+    TxIntegerLabel * chickCount_ ;
+    TxLabel * sandClockSeconds_ ;
+    TxLabel * count_ ;
+    TxLabel * unit_ ;
+    TxLabel * message_ ;
+    TxSandClock * sandClock_ ;
+    TxFloatLabel * speed_ ;
+    TxIntegerLabel * score_ ;
+    TxLabel * highScore_ ;
+    TxLabel * mapPosition_ ;
     
     int totalSeconds_;
     int nHighScore_;

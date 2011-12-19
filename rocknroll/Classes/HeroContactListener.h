@@ -6,7 +6,7 @@
 
 class HeroContactListener : public b2ContactListener {
 public:
-	Hero *_hero;
+	Hero *_hero; // Weak Reference. We don't retain count here, because Hero owns HeroContactListener by retaining it.
 	
 	HeroContactListener(Hero* hero);
 	~HeroContactListener();

@@ -7,6 +7,8 @@
 #import "GeneralMessageProtocol.h"
 #import "OptionScene.h"
 #import "IntermediateScene.h"
+#import "AppDelegate.h"
+#include "AppAnalytics.h"
 
 @implementation InteractiveSprite
 
@@ -151,8 +153,16 @@
         // Make sure that the feature is purchased.
         if ( [IAP isFeaturePurchased:unlockingProductName ] )
         {
+            AppAnalytics::sharedAnalytics().logEvent( "IAP:CONFIRM_PURCHASED:"+[Util toStdString:unlockingProductName] );
             [self setLocked:NO];
-        }    
+        }
+        
+        AdManager * adManager = [AdManager sharedAdManager];
+        if (adManager) { // If this is 2nd purchase, we don't have AdManager.
+            if (adManager.hasAD) {
+                [adManager removeAD];
+            }
+        }
     }
     
     [self stopProgress];

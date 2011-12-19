@@ -28,7 +28,7 @@ public:
         {
             // BUGBUG : The object is leaked! 
             // BUGBUG : Change the sound!
-            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"WaterDrop.wav"];
+            _collideSound = [[ClipFactory sharedFactory] soundByFile:@"key"SND_EXT];
             [_collideSound retain];
         }
         assert(_collideSound);

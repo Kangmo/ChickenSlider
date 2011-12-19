@@ -10,6 +10,7 @@
 #import "MKStoreManager.h"
 #import "PersistentGameState.h"
 #import "TouchXML.h"
+#import "AppAnalytics.h"
 
 @implementation Util
 
@@ -55,7 +56,7 @@
     //        [emitter resetSystem];
     
     //	ParticleSystem *emitter = [RockExplosion node];
-    emitter = [[CCParticleSystemQuad alloc] initWithTotalParticles:particleCount];
+    emitter = [[[CCParticleSystemQuad alloc] initWithTotalParticles:particleCount] autorelease];
     emitter.texture = [[CCTextureCache sharedTextureCache] addImage: particleImage];
     
     // duration
@@ -270,6 +271,10 @@
     return  [CCTransitionTurnOffTiles transitionWithDuration:0.3 scene:newScene];
 }
 
++(std::string)toStdString:(NSString*)nsString {
+    std::string str = [nsString cStringUsingEncoding: NSASCIIStringEncoding];
+    return str;
+}
 +(NSString*) toNSString:(const std::string &) stdString
 {
     NSString * string = [NSString stringWithCString:stdString.c_str() 
@@ -335,6 +340,8 @@
     [[CDAudioManager sharedManager] playBackgroundMusic:musicFileName loop:YES];
     [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
 }
+
+
 @end
 
 namespace Helper 
@@ -380,11 +387,12 @@ namespace Helper
     }
 
     /** @brief Apply animation clip to the sprite attached to the given Box2D body.
+     *         If action is NULL, stop the currently running action.
      */
     void runAction(b2Body *body, CCAction* action) 
     {
         assert(body);
-        assert(action);
+
         
         BodyInfo *bi = (BodyInfo*)body->GetUserData();
         if(bi.data)
@@ -392,7 +400,11 @@ namespace Helper
             
             CCSprite*bodySprite = (CCSprite*)bi.data;
             [bodySprite stopAllActions];
-            [bodySprite runAction:action];
+            
+            if (action)
+            {
+                [bodySprite runAction:action];
+            }
         }
     }
 

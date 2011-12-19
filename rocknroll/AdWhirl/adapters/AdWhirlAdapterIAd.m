@@ -96,10 +96,7 @@
 }
 
 - (BOOL)isBannerAnimationOK:(AWBannerAnimationType)animType {
-  if (animType == AWBannerAnimationTypeFadeIn) {
     return NO;
-  }
-  return YES;
 }
 
 - (void)dealloc {

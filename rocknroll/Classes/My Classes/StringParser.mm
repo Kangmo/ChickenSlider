@@ -80,4 +80,73 @@ namespace StringParser {
         REF(TxPropSet) propSetRef = getPropSetFromKVPair(keyValuesArrayRef);
         return propSetRef;
     }
+    
+    /** For parsing float pairs and putting them into a vector 
+     M -170.79104,-37.50073 C -170.79104,-37.50073 -165.73754,-32.39133  */
+    BOOL isFloatChar(unichar ch) {
+        return ((ch>='0' && ch<='9') || ch == '.' || ch == '-') ? YES : NO;
+    }
+    
+    int eatSpaces(NSString * pointListStr, int pointListStrLen, int index) {
+        assert (pointListStr);
+        assert (pointListStrLen > 0);
+        assert (index >= 0);
+        assert (index < pointListStrLen);
+        
+        if (index >= pointListStrLen)
+            return index;
+        
+        unichar ch; 
+        do {
+            ch = [pointListStr characterAtIndex:index];
+            if (!isFloatChar(ch))
+                index ++;
+        } while ( (!isFloatChar(ch)) && index < pointListStrLen );
+        
+        return index;
+    }
+    
+    int parseFloatValue(NSString * pointListStr, int pointListStrLen, int index, CGFloat * floatValue) {
+        assert (pointListStr);
+        assert (pointListStrLen > 0);
+        assert (index >= 0);
+        assert (index < pointListStrLen);
+        assert (floatValue);
+        
+        NSMutableString * floatStr = [[NSMutableString alloc] initWithCapacity:10];
+        unichar ch; 
+        do {
+            ch = [pointListStr characterAtIndex:index++];
+            if (isFloatChar(ch)) {
+                [floatStr appendFormat:@"%c", (char)ch];
+            }
+        } while ( isFloatChar(ch) && index < pointListStrLen );
+        assert( [floatStr length] > 0 );
+        *floatValue = [floatStr floatValue];
+        
+        return index;
+    }
+    
+    /** @brief Return an array containing CGPoint(s)
+     */
+    REF(PointVector) parsePointList(NSString * pointListStr) {
+        int strLen = [pointListStr length];
+        REF(PointVector) vec = REF(PointVector)(new PointVector()); 
+        for (int i=0; i<strLen; ) {
+            CGPoint p;
+            i = eatSpaces(pointListStr, strLen, i);
+            if (i>=strLen) 
+                break;
+            
+            i = parseFloatValue(pointListStr, strLen, i, &p.x);
+            assert(i<strLen);
+            i = eatSpaces(pointListStr, strLen, i);
+            assert(i<strLen);
+            i = parseFloatValue(pointListStr, strLen, i, &p.y);
+            assert(i<=strLen);
+            
+            vec->push_back(p);
+        }
+        return vec;
+    }
 }

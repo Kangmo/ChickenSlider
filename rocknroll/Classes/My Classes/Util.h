@@ -48,6 +48,7 @@
 
 +(CCScene*) defaultSceneTransition:(CCScene*)newScene;
 
++(std::string)toStdString:(NSString*)nsString;
 +(NSString*) toNSString:(const std::string &) stdString;
 
 +(float) getFloatValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(float)defaultValue;
@@ -77,6 +78,7 @@ namespace Helper
     {
         return box_t( point_t( minPoint.x, minPoint.y ), point_t( maxPoint.x, maxPoint.y ) );
     }
+    
 }
 
 #endif /* __THX_UTIL_H_ */

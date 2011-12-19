@@ -17,12 +17,13 @@
 #include "Chick.h"
 #include "Remedy.h"
 #include "TutorialBox.h"
+#include "CppInfra.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
 @synthesize classDict;
 
--(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(AdLayer<TxWidgetListener>*)l widgets:(TxWidgetContainer*)widgets terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard tutorialBoard:(id<TutorialBoardProtocol>)tboard;
+-(id) initWithWorld:(b2World*) w andStaticBody:(b2Body*) sb andLayer:(CCLayer<TxWidgetListener>*)l widgets:(TxWidgetContainer*)widgets terrains:(NSMutableArray*)t  gameObjects:(GameObjectContainer *) objs scoreBoard:(id<ScoreBoardProtocol>)sboard tutorialBoard:(id<TutorialBoardProtocol>)tboard;
 {
 	self = [super init];
 	if (self != nil) 
@@ -45,6 +46,7 @@
 - (void) dealloc
 {
     [classDict release];
+    
 	[super dealloc];
 }
 
@@ -114,7 +116,7 @@
 		b2Body *body = world->CreateBody(&bodyDef);
 	
 		
-
+        // StageScene.dealloc release bi using Helper::removeAttachedBodyNodes
 		body->SetUserData(bi);
 		
 		CCLOG(@"SvgLoader: Composite body created name=%@ x=%f,y=%f   rect = (%f ; %f)",bi.name, bodyPos.x, bodyPos.y,bi.rect.width,bi.rect.height);
@@ -200,7 +202,6 @@
 				CCLOG(@"SvgLoader: \tLoaded rectangle. w=%f h=%f at %f,%f  friction = %f, density = %f", fWidth,fHeight,fx,fy, fixtureDef.friction, fixtureDef.density);
 			}
 		}	
-		
 	}	
 }
 
@@ -268,7 +269,7 @@
 		//CCLOG(@"SvgLoader: loading shape: %@",name);
 
 		
-		BodyInfo * bi = [[BodyInfo alloc] init];
+		BodyInfo * bi = [[[BodyInfo alloc] init] autorelease];
 		bi.name = [objectNamePrefix stringByAppendingString:name];
 
 		bi.spriteName = [[curShape attributeForName:@"sprite"] stringValue];
@@ -398,7 +399,10 @@
                 body->CreateFixture(&fixtureDef);
                 bi.rect = CGSizeMake(fWidth, fHeight);
                 
-                if(name) body->SetUserData(bi);
+                if(name) {
+                    [bi retain];
+                    body->SetUserData(bi);            
+                }
                 CCLOG(@"SvgLoader: Loaded circle. name=%@ x=%f,y=%f r=%f, density=%f, friction = %f",name, fx, fy, r,fixtureDef.density,fixtureDef.friction);
             }
         }
@@ -494,11 +498,8 @@
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
                 if ([objectType isEqualToString:@"Advertisement"])
                 {
-                    // Enable AD only if no feature is not purchased
-                    if ( ! [Util didPurchaseAny ] )
-                    {
-                        layer.enableAD = YES;
-                    }
+                    // BUGBUG : Deprecated : Advertisement. Remove it.
+                    // Do nothing. 
                 }
 
                 if ([objectType isEqualToString:@"TutorialBox"])
@@ -560,111 +561,44 @@
 			
 			bi.rect = CGSizeMake(fWidth, fHeight);
             
-            // BUGBUG : Memory Leak? check who deallocates bi attached to the body.
-			if(name) body->SetUserData(bi);
+			if(name) {
+                [bi retain];
+                body->SetUserData(bi);   
+            }
+            
 			CCLOG(@"SvgLoader: Loaded rectangle. name=%@ w=%f h=%f at %f,%f  friction = %f, density = %f",name, fWidth,fHeight,fx,fy, fixtureDef.friction, fixtureDef.density);
 		}
 	}
 }
 
+
 -(void) initShapes:(NSArray *) shapes delayedJoints:(NSMutableSet*)delayedJoints namePrefix:(NSString*)objectNamePrefix  xOffset:(float)xOffset yOffset:(float)yOffset
 {
+    // Shapes are consuming lots of memory to load them. We release memory in auto release pool for each shape.
+    NSAutoreleasePool * autoPool = nil;
+    int processingPoints = 0;
 	for (CXMLElement * curShape in shapes) 
 	{
+        if ( !autoPool ) {
+            autoPool = [[NSAutoreleasePool alloc] init];
+        }
 		
-		NSString * density = [[curShape attributeForName:@"phy_density"] stringValue];
+//		NSString * density = [[curShape attributeForName:@"phy_density"] stringValue];
 		NSString * friction = [[curShape attributeForName:@"phy_friction"] stringValue];
+#if defined(DEBUG)        
 		NSString * name = [[curShape attributeForName:@"id"] stringValue];
-		
-		
-		if([curShape attributeForName:@"isCustomShape"])
-		{
-            CCLOG(@"BEGIN : SvgLoader loading custom shape : %@",name);
-
-			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
-			NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
-			NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
-			
-			b2PolygonShape customShape;
-			for (NSString * curComponent in dataComponents) 
-			{
-				if([curComponent length] < 3) continue;
-				NSArray * points = [[[curComponent stringByReplacingOccurrencesOfString:@"  " withString:@""] stringByReplacingOccurrencesOfString:@"Z " withString:@""] componentsSeparatedByString:@" "];
-				
-				if([points count]>2 &&[points count]<=8)
-				{
-#define MAX_VECTOR_COUNT 4096
-					b2Vec2 p[MAX_VECTOR_COUNT];
-                    b2Vec2 avg(0,0);
-					
-					int vx=[points count];
-                    
-                    assert(vx < MAX_VECTOR_COUNT);
-                    
-					for (int i =0; i<vx; i++) 
-					{
-						CGPoint cp = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i]]);
-						p[i] = b2Vec2(cp.x, cp.y);
-						p[i].y = worldHeight-p[i].y;
-                        p[i].x += xOffset;
-                        p[i].y += yOffset;
-                        // BUGBUG no need to devide with scaleFactor?
-						avg+=p[i];
-					}
-					
-					avg*=1.0f/vx;
-					
-					///TODO: add graham scan there
-					
-					//std::vector <b2Vec2> inVec(p,p);
-//					std::vector <b2Vec2> outVec;
-//					
-//					ConvexHull* hull_generator = new GrahamScanConvexHull();
-//					(*hull_generator)(p, p);
-					//delete hull_generator;
-					
-					b2BodyDef bodyDef;
-                    // by kangmo kim
-                    bodyDef.type = b2_dynamicBody;
-					bodyDef.position.Set(avg.x, avg.y);
-					
-					//bodyDef.userData = sprite;
-                    assert(world);
-					b2Body *body = world->CreateBody(&bodyDef);
-					
-					// Define another box shape for our dynamic body.
-					b2PolygonShape dynamicBox;
-					
-					dynamicBox.Set(p,vx);
-					
-					
-					// Define the dynamic body fixture.
-					b2FixtureDef fixtureDef;
-					fixtureDef.shape = &dynamicBox;	
-					
-					if(density)	fixtureDef.density =[density floatValue];
-					else fixtureDef.density = 0.0f;
-					
-					if(friction) fixtureDef.friction =[friction floatValue];
-					else fixtureDef.friction = 0.5f;
-					
-					//fixtureDef.density = 0.0f;
-					//fixtureDef.density = 0.1f;
-					body->CreateFixture(&fixtureDef);
-					
-					if(name) body->SetUserData(name);
-					CCLOG(@"END : SvgLoader: Loaded custom shape. name=%@ at %f,%f  friction = %f, density = %f",name, avg.x, avg.y, fixtureDef.friction, fixtureDef.density);
-				}
-			}
-			
-		}
-		else if([curShape attributeForName:@"isDistanceJoint"])
+#endif
+        
+        if([curShape attributeForName:@"isDistanceJoint"])
 		{
             CCLOG(@"BEGIN : SvgLoader loading distance joint: %@",name);
             
 			NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
 			NSString * data = [[tmp stringByReplacingOccurrencesOfString:@" L" withString:@""]  stringByReplacingOccurrencesOfString:@"M " withString:@""];
 			NSArray * points =[data componentsSeparatedByString:@" "];
+            
+            processingPoints += 2;
+            
 			//CCLOG(@"joint data : %@",points);
 			if([points count]==2)
 			{
@@ -702,102 +636,92 @@
 //            if([curShape attributeForName:@"isEdge"])
         {
             CCLOG(@"BEGIN : SvgLoader loading static edge: %@",name);
-
-            NSString * tmp = [[[curShape attributeForName:@"d"] stringValue] uppercaseString];
-            NSString * data = [tmp stringByReplacingOccurrencesOfString:@" L" withString:@""];
+            NSString * pointListStr = [[curShape attributeForName:@"d"] stringValue];
+            REF(PointVector) points = StringParser::parsePointList(pointListStr);
             
-            // After converting nodes to cusps, " C" or " c" is added to the svg document. We can simply remove it.
-            data = [data stringByReplacingOccurrencesOfString:@" C" withString:@""];
-            data = [data stringByReplacingOccurrencesOfString:@" c" withString:@""];
-            NSArray * dataComponents =[data componentsSeparatedByString:@"M "]; 
             b2EdgeShape edgeShape;
             
-            CCLOG(@"MID : before FOR");
-            // v2.1.2
-            //b2PolygonShape edgeShape;
-            for (NSString * curComponent in dataComponents) 
-            {
-                if([curComponent length] < 3) continue;
-                NSArray * points = [[[curComponent stringByReplacingOccurrencesOfString:@"  " withString:@""] stringByReplacingOccurrencesOfString:@"Z " withString:@""] componentsSeparatedByString:@" "];
-                //CCLOG(@"%@",points);
-                if([points count]>1)
-                {
-                    CGPoint p1,p2;
-                   
-                    CCLOG(@"MID : before Parsing Points");
+            CCLOG(@"MID : before Parsing Points");
+
+            processingPoints += points->size();
+            
+            if (points->size() > 1) {
+                for (int i=1; i<points->size();i++) {
+                    CGPoint p1 = points->at(i-1);
+                    CGPoint p2 = points->at(i);
                     
-                    for (uint32 i = 1; i< [points count]; i++) 
-                    {
-                        if([[points objectAtIndex:i] length]<2) continue;
-                        
-                        p1 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i-1]]);
-                        p2 = CGPointFromString([NSString stringWithFormat:@"{%@}",[points objectAtIndex:i]]);
-                        
-                        p1.x += xOffset; p1.y += yOffset;
-                        p2.x += xOffset; p2.y += yOffset;
-                        
-                        p1.y /=scaleFactor;
-                        p2.y /=scaleFactor;
-                        
-                        p1.y = worldHeight-p1.y;
-                        p2.y = worldHeight-p2.y;
-                        p1.x /=scaleFactor;
-                        p2.x /=scaleFactor;
-                        
-                        edgeShape.Set( b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
-                        // 2.1.2
-                        //edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
-                        
-                        float32 staticBodyDensity = 0;
-                        
-                        assert(staticBody);
-                        
-                        b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
-                        
-                        if(friction)	edgeFixture->SetFriction([friction floatValue]);
-                        else edgeFixture->SetFriction(0.5f);
-                    }
-
-                    CCLOG(@"MID : before creating Terrain");
-
-                    if ( terrains )
-                    {
-                        // x, y offset should be zero, because we don't instantiate terrain yet.
-                        assert(xOffset == 0);
-                        assert(yOffset == 0);
-
-                        assert(world);
-                        // Create Terrain
-                        Terrain * terrain = [Terrain terrainWithWorld:world borderPoints:(NSArray*)points canvasHeight:svgCanvasHeight xOffset:xOffset yOffset:yOffset];
-
-                        // Read Attributes
-                        // If "upTerrain" attribute exists, rendering is done on the upper part of the terrain border.
-                        NSString * renderUpsideAttr = [[curShape attributeForName:@"upTerrain"] stringValue];
-                        
-                        // If "upTerrain" attribute exists, rendering is done on the upper part of the terrain border.
-                        NSString * thicknessAttr = [[curShape attributeForName:@"thickness"] stringValue];
-
-                        if (renderUpsideAttr)
-                        {
-                            terrain.renderUpside = YES;
-                        }
-                        if (thicknessAttr)
-                        {
-                            float thickness = [thicknessAttr floatValue];
-                            assert( thickness );
-                            terrain.thickness = thickness;
-                        }
-                        [terrains addObject:terrain];
-                    }
+                    p1.x += xOffset; p1.y += yOffset;
+                    p2.x += xOffset; p2.y += yOffset;
+                    
+                    p1.y /=scaleFactor;
+                    p2.y /=scaleFactor;
+                    
+                    p1.y = worldHeight-p1.y;
+                    p2.y = worldHeight-p2.y;
+                    p1.x /=scaleFactor;
+                    p2.x /=scaleFactor;
+                    
+                    edgeShape.Set( b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+                    // 2.1.2
+                    //edgeShape.SetAsEdge(b2Vec2(p1.x,p1.y), b2Vec2(p2.x,p2.y));
+                    
+                    float32 staticBodyDensity = 0;
+                    
+                    assert(staticBody);
+                    
+                    b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
+                    
+                    if(friction)	edgeFixture->SetFriction([friction floatValue]);
+                    else edgeFixture->SetFriction(0.5f);
+                    
                 }
             }
-            //NSArray * points = [data componentsSeparatedByString:@" "];
-            // Define the ground box shape.
 
-            //CCLOG(@"Static Edge : %@",data);
+            CCLOG(@"MID : before creating Terrain");
+            
+            if ( terrains )
+            {
+                // x, y offset should be zero, because we don't instantiate terrain yet.
+                assert(xOffset == 0);
+                assert(yOffset == 0);
+                
+                assert(world);
+                // Create Terrain
+                Terrain * terrain = [Terrain terrainWithWorld:world borderPoints:points canvasHeight:svgCanvasHeight xOffset:xOffset yOffset:yOffset];
+                
+                // Read Attributes
+                // If "upTerrain" attribute exists, rendering is done on the upper part of the terrain border.
+                NSString * renderUpsideAttr = [[curShape attributeForName:@"upTerrain"] stringValue];
+                
+                // If "upTerrain" attribute exists, rendering is done on the upper part of the terrain border.
+                NSString * thicknessAttr = [[curShape attributeForName:@"thickness"] stringValue];
+                
+                if (renderUpsideAttr)
+                {
+                    terrain.renderUpside = YES;
+                }
+                if (thicknessAttr)
+                {
+                    float thickness = [thicknessAttr floatValue];
+                    assert( thickness );
+                    terrain.thickness = thickness;
+                }
+                [terrains addObject:terrain];
+            }
+            
             CCLOG(@"END : SvgLoader loaded static edge: %@",name);
         }
+        if (processingPoints >= SVG_LOADER_SHAPE_POINTS_PER_AUTOPOOL ) {
+            [autoPool drain];
+            processingPoints = 0;
+            autoPool =  [[NSAutoreleasePool alloc] init];
+        }
 	}
+    // Release auto pool
+    if ( autoPool ) {
+        [autoPool drain];
+        processingPoints = 0;
+    }
 }
 
 -(void) initJoints:(NSMutableSet*)delayedJoints
@@ -895,15 +819,29 @@
 {
     NSMutableSet * delayedJoints = [[NSMutableSet alloc] initWithCapacity:10];
     
-    //add boxes first
-    NSArray *rects = [svgLayer elementsForName:@"rect"];
-    [self initRectangles:rects delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    // The auto release pool to reduce memory footprint during loading time
+    NSAutoreleasePool *autoPool = [[NSAutoreleasePool alloc] init];
+    {
+        //add boxes first
+        NSArray *rects = [svgLayer elementsForName:@"rect"];
+        [self initRectangles:rects delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    }
+    [autoPool drain];
+
+    // Auto release pool is used within the loop to release objects for each terrain.
+    {
+        NSArray *nonrectangles = [svgLayer elementsForName:@"path"];
+        [self initShapes:nonrectangles delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    }
     
-    NSArray *nonrectangles = [svgLayer elementsForName:@"path"];
-    [self initShapes:nonrectangles delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    autoPool = [[NSAutoreleasePool alloc] init];
+    {
+        NSArray *groups = [svgLayer elementsForName:@"g"];
+        [self initGroups:groups delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+    }
+    [autoPool drain];
     
-    NSArray *groups = [svgLayer elementsForName:@"g"];
-    [self initGroups:groups delayedJoints:delayedJoints namePrefix:objectNamePrefix xOffset:xOffset yOffset:yOffset];
+//    autoPool = [[NSAutoreleasePool alloc] init];
 
     /** Treat images as objects of classes
      If the image has 'xlink:href' attribute with 'http://.../aa/bb/ClassName.png'
@@ -912,7 +850,13 @@
     NSArray *gameObjects = [svgLayer elementsForName:@"image"];
     [self initGameObjects:gameObjects];
 
+//    [autoPool drain];
+    
+//    autoPool = [[NSAutoreleasePool alloc] init];
+
     [self initJoints:delayedJoints];
+
+//    [autoPool drain];
     
     [delayedJoints release];
 }
@@ -1029,13 +973,4 @@
 	}
 }
 
--(void) doCleanupShapes
-{
-    assert(world);
-
-	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-	{
-		b->SetUserData(NULL);
-	}
-}
 @end

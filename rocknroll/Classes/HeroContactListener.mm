@@ -2,11 +2,10 @@
 #import "Hero.h"
 
 HeroContactListener::HeroContactListener(Hero* hero) {
-	_hero = [hero retain];
+	_hero = hero;
 }
 
 HeroContactListener::~HeroContactListener() {
-	[_hero release];
 }
 
 void HeroContactListener::BeginContact(b2Contact* contact) {}

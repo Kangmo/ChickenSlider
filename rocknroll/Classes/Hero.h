@@ -34,7 +34,6 @@ class HeroContactListener;
     CCAction * _currentAction;
     
     // Animation Clips
-    CCAction * _nowingsAction;
     CCAction * _droppingAction;
     CCAction * _flyingAction;
     CCAction * _walkingAction;

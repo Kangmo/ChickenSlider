@@ -10,6 +10,10 @@
 #import "ClipFactory.h"
 #import "Util.h"
 #include "GameConfig.h"
+#import "AdManager.h"
+#import "FlurryAnalytics.h"
+#include "AppAnalytics.h"
+#import "IAP.h"
 
 @implementation AppDelegate
 
@@ -38,6 +42,20 @@
 #endif // GAME_AUTOROTATION == kGameAutorotationUIViewController	
 }
 
+static NSUncaughtExceptionHandler * defaultExceptionHandler = nil;
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAnalytics logError:@"Uncaught Exception" message:@"App Crash!" exception:exception];
+    
+    assert(defaultExceptionHandler);
+    defaultExceptionHandler(exception);
+}
+
+-(void) installExceptionHandler {
+    defaultExceptionHandler = NSGetUncaughtExceptionHandler();
+    
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+}
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
@@ -111,7 +129,10 @@
 	
     // Initialize IAP.
     [MKStoreManager sharedManager];
-
+    // Restore previous purchasing transaction.
+    // BUGBUG: This makes users to log in;
+    //[[IAP sharedIAP] restoreIAP];
+    
     //[[MKStoreManager sharedManager] removeAllKeychainData];
 #if defined(DEBUG)
     // For testing purpose, remove IAP purchase records. 
@@ -129,10 +150,28 @@
     // Load the sprite frames.
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.pvr"];
     
+    // Enable AD only if no feature is not purchased
+    if ( ! [Util didPurchaseAny ] )
+    {
+        adManager = [[AdManager alloc] init];
+        [adManager createAD];
+    }
+    [self installExceptionHandler];
+    
+    // Start Flurry Analytics
+    AppAnalytics::sharedAnalytics().startSession("3CJN3GNYVFBEKMBCNPG2");
+
+    AppAnalytics::sharedAnalytics().beginEventProperty();
+    AppAnalytics::sharedAnalytics().addDeviceProperties();
+    AppAnalytics::sharedAnalytics().endEventProperty();
+    AppAnalytics::sharedAnalytics().beginTimedEvent("AppPlayTime");
+
     CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
     //CCScene * theFirstScene = [StageScene sceneInMap:@"MAP01" levelNum:1];
-	// Run the main menu Scene
+	
+    // Run the main menu Scene
 	[[CCDirector sharedDirector] runWithScene: theFirstScene];
+
 }
 
 
@@ -161,7 +200,14 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    
+    AppAnalytics::sharedAnalytics().endTimedEvent("AppPlayTime");
 
+    if (adManager)
+    {
+        if (adManager.hasAD)
+            [adManager removeAD];
+    }
 	CCDirector *director = [CCDirector sharedDirector];
 	
 	[[director openGLView] removeFromSuperview];
@@ -178,6 +224,11 @@
 }
 
 - (void)dealloc {
+    if (adManager)
+    {
+        [adManager release];
+        adManager = nil;
+    }
 	[[CCDirector sharedDirector] end];
 	[window release];
 	[super dealloc];

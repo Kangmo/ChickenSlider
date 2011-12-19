@@ -9,6 +9,8 @@
 #ifndef rocknroll_Profiler_h
 #define rocknroll_Profiler_h
 
+#include "GameConfig.h"
+
 const int DIST_ARRAY_ITEM_COUNT = 29;
 
 class TimeProfiler 
@@ -27,12 +29,16 @@ private :
 public :
     static BOOL IsEnabled;
 
-    TimeProfiler(const char * name) {
+    void reset() {
         accTime = 0.0f;
         beginTime = 0.0f;
         profileCount = 0;
-        profilerName = name;
         memset(distArray, 0, sizeof(distArray));
+    }
+    
+    TimeProfiler(const char * name) {
+        profilerName = name;
+        reset();
     }
     ~TimeProfiler() {
         
@@ -202,7 +208,6 @@ public :
     }
 };
 
-#define DO_PROFILE (1)
 
 #if defined(DO_PROFILE)
 #  define PROF_ENABLE() TimeProfiler::IsEnabled = TRUE
@@ -215,7 +220,10 @@ public :
 #  define PROF_TOTAL_TIME(x) (prof##x.getTotalTime())
 #  define PROF_COUNT(x) (prof##x.getProfileCount())
 #  define PROF_PRINT_RESULT() printProfResult()
+#  define PROF_RESET(x) (prof##x.reset())
+#  define PROF_RESET_ALL() resetAllProfilers()
 extern void printProfResult();
+extern void resetAllProfilers();
 #else
 #  define PROF_ENABLE()
 #  define PROF_DISABLE()
@@ -227,7 +235,10 @@ extern void printProfResult();
 #  define PROF_TOTAL_TIME(x)
 #  define PROF_COUNT(x)
 #  define PROF_PRINT_RESULT()
+#  define PROF_RESET(x)
+#  define PROF_RESET_ALL() 
 #endif
+
 
 
 PROF_DECLARE(stage_tick_adjustZoomWithGroundY);
@@ -245,6 +256,7 @@ PROF_DECLARE(stage_tick_updateGameObjects);
 PROF_DECLARE(stage_tick_update_labels);
 PROF_DECLARE(terrain_draw);
 PROF_DECLARE(cocos2d_layer_visit);
+/*
 PROF_DECLARE(temp0);
 PROF_DECLARE(temp1);
 PROF_DECLARE(temp2);
@@ -255,5 +267,5 @@ PROF_DECLARE(temp6);
 PROF_DECLARE(temp7);
 PROF_DECLARE(temp8);
 PROF_DECLARE(temp9);
-
+*/
 #endif

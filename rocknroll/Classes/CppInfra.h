@@ -19,6 +19,7 @@
 #include <boost/foreach.hpp>
 #include <boost/tokenizer.hpp>
 
+
 #define REF(ClassName) boost::shared_ptr<ClassName>
 typedef boost::geometry::model::d2::point_xy<float> point_t;
 typedef boost::geometry::model::box<point_t> box_t;

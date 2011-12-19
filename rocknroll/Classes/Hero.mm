@@ -25,8 +25,6 @@
  */
 -(void) loadAnimationClips
 {
-    _nowingsAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_nowings.plist"] retain];
-    assert(_nowingsAction);
     _droppingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_dropping.plist"] retain];
     assert(_droppingAction);
     _flyingAction = [[[ClipFactory sharedFactory] clipActionByFile:@"clip_icarus_flying.plist"] retain];
@@ -48,15 +46,15 @@
 
         // Init Sound Effects
         {
-            _3comboSound = [[[ClipFactory sharedFactory] soundByFile:@"3combo.wav"] retain];
+            _3comboSound = [[[ClipFactory sharedFactory] soundByFile:@"3combo"SND_EXT] retain];
             assert(_3comboSound);
-            _7comboSound = [[[ClipFactory sharedFactory] soundByFile:@"7combo.wav"] retain];
+            _7comboSound = [[[ClipFactory sharedFactory] soundByFile:@"7combo"SND_EXT] retain];
             assert( _7comboSound);
-            _dropSound = [[[ClipFactory sharedFactory] soundByFile:@"drop.wav"] retain];
+            _dropSound = [[[ClipFactory sharedFactory] soundByFile:@"drop"SND_EXT] retain];
             assert(_dropSound);
-            _jumpSound = [[[ClipFactory sharedFactory] soundByFile:@"jump.wav"] retain];
+            _jumpSound = [[[ClipFactory sharedFactory] soundByFile:@"jump"SND_EXT] retain];
             assert(_jumpSound);
-            _slideFailSound = [[[ClipFactory sharedFactory] soundByFile:@"slidefail.wav"] retain];
+            _slideFailSound = [[[ClipFactory sharedFactory] soundByFile:@"slidefail"SND_EXT] retain];
             assert(_slideFailSound);
         }
         
@@ -81,27 +79,6 @@
 	return self;
 }
 
-- (void) dealloc {
-    // Stop all actions
-    Helper::runAction(_body, NULL);
-    
-	self.world = nil;
-    self.body = nil;
-    
-    [_nowingsAction release];
-    [_droppingAction release];
-    [_flyingAction release];
-    [_walkingAction release];
-
-    [_3comboSound release];
-    [_7comboSound release];
-    [_dropSound release];
-    [_jumpSound release];
-    [_slideFailSound release]; 
-    
-	delete _contactListener;
-	[super dealloc];
-}
 
 
 - (void) reset {
@@ -141,7 +118,7 @@
 -(void) createParticle:(float)duration
 {
     // Particle emitter.
-    _particleEmitter = [Util createParticleEmitter:@"stars.png" count:30 duration:duration];
+    _particleEmitter = [[Util createParticleEmitter:@"stars.png" count:30 duration:duration] retain];
 
     CCSprite * sprite = [self getSprite];
     assert(sprite);
@@ -155,6 +132,7 @@
     {
         [_particleEmitter stopSystem];
         [_particleEmitter removeFromParentAndCleanup:YES];
+        [_particleEmitter release];
         _particleEmitter = nil;
     }
 }
@@ -256,15 +234,6 @@
                 
                 _body->ApplyForce(b2Vec2(0,-40),_body->GetPosition());
             }
-        }
-    }
-    else
-    {
-        // No wings anymore.
-        // Is this the first time that the wings are detached?
-        if ( _currentAction != _nowingsAction ) {
-            [self playClipAction:_nowingsAction];
-            [self playDetachingWings];
         }
     }
     
@@ -383,6 +352,28 @@
     self.isDead = YES;
 }
 
+- (void) dealloc {
+    [self removeParticle];
+    
+    // Stop all actions
+    Helper::runAction(_body, NULL);
+    
+	self.world = nil;
+    self.body = nil;
+    
+    [_droppingAction release];
+    [_flyingAction release];
+    [_walkingAction release];
+    
+    [_3comboSound release];
+    [_7comboSound release];
+    [_dropSound release];
+    [_jumpSound release];
+    [_slideFailSound release]; 
+    
+	delete _contactListener;
+	[super dealloc];
+}
 
 
 

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "AdLayer.h"
+#import "CCLayer.h"
 #import "ProgressCircle.h"
 #import "GeneralMessageProtocol.h"
 #import "TxWidgetContainer.h"
@@ -11,12 +11,12 @@ typedef enum {
 } GeneralSceneLayerTags;
 
 class b2WorldEx;
-@interface GeneralScene : AdLayer<GeneralMessageProtocol, TxWidgetListener> {  
+@interface GeneralScene : CCLayer<GeneralMessageProtocol, TxWidgetListener> {  
     b2WorldEx * world_;
     NSString * sceneName_;
 
     BOOL didStartLoading_;
-    TxWidgetContainer widgetContainer_;
+    TxWidgetContainer * widgetContainer_;
     
     // The background music
     NSString * backgroundMusic_;
@@ -27,6 +27,8 @@ class b2WorldEx;
     CCParallaxNode *parallaxNode_;
     CGPoint parallexPosition_;
     BOOL loopParallax_; // Scroll over and over?
+    
+    BOOL tryToRefreshAD_; // Need to try to refresh ADs whenever this scene is shown?
 }
 
 // The listener that listens to action messages from this dialog layer.

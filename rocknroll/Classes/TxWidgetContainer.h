@@ -32,6 +32,14 @@ public :
     }
     virtual ~TxWidgetContainer()
     {
+#if defined (DEBUG)
+        // For checking memory leak : Print the reference count of each widget
+        for (WidgetMap::iterator it = widgetMap_.begin(); it != widgetMap_.end(); it++) {
+            REF(TxWidget) widget = it->second;
+            long use_count = widget.use_count();
+            CCLOG(@"TxWidget[Name=%s] refCount=%ld", widget->getName().c_str(), use_count );
+        }
+#endif
     }
 
     void addWidget(REF(TxWidget) widgetRef)

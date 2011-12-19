@@ -8,8 +8,10 @@
 
 #import "GameObjectCleaner.h"
 #import "GameObject.h"
-
+//#import "RetainCountTrace.h"
 @implementation GameObjectCleaner
+
+//SYNTESIZE_TRACE(GameObjectCleaner);
 /** @brief destroy the object 
  */
 -(void)destroyObject:(id)sender data:(void*)gameObjectPointer 
@@ -27,7 +29,5 @@
     gameObject->removeSelf();
     
     CCLOG(@"destroyObject:end");
-    
-    [self release];
 }
 @end

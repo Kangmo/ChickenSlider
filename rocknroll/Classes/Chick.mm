@@ -43,14 +43,12 @@ void Chick::onCollideWithHero(Hero * pHero)
 
     Helper::runAction(sprite, _releasingAction);
     
-    GameObjectCleaner * cleaner = [[GameObjectCleaner alloc] init];
+    GameObjectCleaner * cleaner = [[[GameObjectCleaner alloc] init] autorelease];
     [sprite runAction:[CCSequence actions:
-                      [CCScaleTo actionWithDuration:3.0f scale:1.0f],
-                      [CCCallFuncND actionWithTarget:cleaner selector:@selector(destroyObject:data:) data:(void*)this],
-					  nil]];
+                        [CCScaleTo actionWithDuration:3.0f scale:1.0f],
+                        [CCCallFuncND actionWithTarget:cleaner selector:@selector(destroyObject:data:) data:(void*)this],
+					    nil]];
     
-    // Decrease life by 10 ( total 100)
-    //[_scoreBoard decreaseLife:10];
     
     _released = true;
 }

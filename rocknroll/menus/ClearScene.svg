@@ -210,10 +210,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="221.37526"
-     inkscape:cy="144.21843"
+     inkscape:cx="224.2324"
+     inkscape:cy="52.432716"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer7"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="710"
@@ -241,11 +241,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/ClearScene.png"
        xlink:href="ClearScene.png"
-       y="0"
-       x="0"
-       id="image4432"
+       width="480"
        height="320"
-       width="480" />
+       id="image4432"
+       x="0"
+       y="0" />
   </g>
   <g
      inkscape:label="Others"
@@ -282,7 +282,7 @@
        width="168.89096"
        height="23.282373"
        x="136.95166"
-       y="283.85287"
+       y="283.49573"
        objectType="Widget"
        objectDesc="WidgetType=IntegerLabel,WidgetName=Score,Font=yellow34.fnt" />
     <rect

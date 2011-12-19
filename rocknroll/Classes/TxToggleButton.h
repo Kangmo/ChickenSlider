@@ -11,7 +11,7 @@
 
 #include "TxLabel.h"
 #import "ActionRelayer.h"
-#import "ToggleButton.h"
+
 /*
  options :
  WidgetType=ImageSwitch,WidgetName=Difficulty,Images=Sel_Easy.png|Sel_Hard.png
@@ -19,7 +19,7 @@
 class TxToggleButton : public TxWidget
 {
 protected:
-    ToggleButton * toggleButton_;
+    CCMenuItemToggle * toggleButton_;
     CCMenu * menu_;
 public :
     TxToggleButton(TxWidgetOwner * parentNode, const TxRect & rect, REF(TxPropSet) propSetRef) : TxWidget(rect, propSetRef)    
@@ -28,8 +28,34 @@ public :
         
         REF(StringVector) imageStringVector = getPropArray("Images");
 
-        toggleButton_ = [[ToggleButton alloc] initWithImages:imageStringVector actionRelayer:relayer];
+        // Create toggleButton_ from imageStringVector
+        {
+            int imageCount=0;
+            
+            BOOST_FOREACH(std::string & imageString, *imageStringVector)
+            {
+                NSString * imageNSString = [Util toNSString:imageString];
+                CCSprite * normalSprite = [CCSprite spriteWithSpriteFrameName:imageNSString];
+                CCSprite * selectedsprite = [CCSprite spriteWithSpriteFrameName:imageNSString];
+                CCMenuItem * toggleItem = [[CCMenuItemSprite itemFromNormalSprite:normalSprite
+                                                                   selectedSprite:selectedsprite
+                                                                           target:nil
+                                                                         selector:nil] retain];
+                if (imageCount==0)
+                {
+                    toggleButton_ = [[CCMenuItemToggle itemWithTarget:relayer
+                                                             selector:@selector(relayAction:)
+                                                                items:toggleItem, nil] retain];        
+                }
+                else
+                {
+                    [toggleButton_.subItems addObject:toggleItem];
+                }
+                imageCount++;
+            }
+        }
 
+        
         menu_ = [[CCMenu menuWithItems:toggleButton_, nil] retain];
         menu_.isTouchEnabled= YES;
         
@@ -55,10 +81,16 @@ public :
     
     virtual ~TxToggleButton()
     {
+        assert(toggleButton_);
+        [toggleButton_ release];
+        toggleButton_ = NULL;
+        
         assert(menu_);
         [menu_ release];
         menu_ = NULL;
     }
+
+    
     
     int getValue()
     {
