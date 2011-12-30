@@ -119,7 +119,7 @@ const float LANDSCAPE_AD_HEIGHT = 40;
 //#define UNLOCK_LEVELS_FOR_TEST (1)
 
 //#define DISABLE_IAP (1)
-//#define RESET_IAP_DATA (1)
+#define RESET_IAP_DATA (1)
 
 //#define DISABLE_ADS (1)
 

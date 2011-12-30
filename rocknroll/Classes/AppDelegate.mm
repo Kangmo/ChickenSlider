@@ -150,6 +150,7 @@ void uncaughtExceptionHandler(NSException *exception) {
         [adManager createAD];
         // Enable refreshing ADs for the best performance.
         [[AdManager sharedAdManager] enableRefresh];
+        [[AdManager sharedAdManager] refresh];
     }
     [self installExceptionHandler];
     
