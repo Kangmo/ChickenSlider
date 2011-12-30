@@ -462,7 +462,7 @@ PROF_END(cocos2d_layer_visit);
 	if( (self=[super init])) 
 	{
         // Disable refreshing ADs for the best performance.
-        [[AdManager sharedAdManager] disableRefresh];
+        //[[AdManager sharedAdManager] disableRefresh];
 
         PROF_RESET_ALL();
         
@@ -1514,7 +1514,7 @@ PROF_END(stage_tick_update_labels);
     gameObjectContainer = NULL;
     
     // Enable refreshing ADs for the best performance.
-    [[AdManager sharedAdManager] enableRefresh];
+    //[[AdManager sharedAdManager] enableRefresh];
 
 	// don't forget to call "super dealloc"
 	[super dealloc];

@@ -290,6 +290,7 @@ static MKStoreManager* _sharedStoreManager;
     [productsArray addObjectsFromArray:nonConsumables];
     [productsArray addObjectsFromArray:subscriptions];
     
+    // BUGBUG : Memory Leak
 	SKProductsRequest *request= [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productsArray]];
 	request.delegate = self;
 	[request start];
