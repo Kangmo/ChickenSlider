@@ -7,6 +7,12 @@
 #import "ClipFactory.h"
 #import "BodyInfo.h"
 #import "TouchXML.h"
+#include "ParticleManager.h"
+
+@interface Hero()
+-(void)addDustParticle;
+-(void)addMaxSpeedParticle;
+@end
 
 @implementation Hero
 @synthesize world = _world;
@@ -36,20 +42,24 @@
 - (id) initWithWorld:(b2World*)world heroBody:(b2Body*)body camera:(AbstractCamera*)camera scoreBoard:(id<ScoreBoardProtocol>)sb{
 	
 	if ((self = [super init])) {
+        
+        _scorePerCombo = [Util loadDifficulty] ? SCORE_PER_COMBO_FOR_HARD_MODE : SCORE_PER_COMBO_FOR_EASY_MODE;
+        
         self.isDead = NO;
         _hasWings = YES;
 		_world = world;
         _body = body;
         _camera = camera;
         _scoreBoard = sb;
-        _particleEmitter = nil;
+        _maxSpeedParticleEmitter = nil;
+        _dustParticleEmitter = nil;
 
         // Init Sound Effects
         {
             _3comboSound = [[[ClipFactory sharedFactory] soundByFile:@"3combo"SND_EXT] retain];
             assert(_3comboSound);
-            _7comboSound = [[[ClipFactory sharedFactory] soundByFile:@"7combo"SND_EXT] retain];
-            assert( _7comboSound);
+            _5comboSound = [[[ClipFactory sharedFactory] soundByFile:@"5combo"SND_EXT] retain];
+            assert( _5comboSound);
             _dropSound = [[[ClipFactory sharedFactory] soundByFile:@"drop"SND_EXT] retain];
             assert(_dropSound);
             _jumpSound = [[[ClipFactory sharedFactory] soundByFile:@"jump"SND_EXT] retain];
@@ -67,7 +77,17 @@
             
             // Not necessary anymore.
             bi.xmlElement = nil;
+            
         }
+
+        // Change the sprite z layer above other objects such as terrain
+        CCSprite * heroSprite = [self getSprite];
+        [[heroSprite parent] reorderChild:heroSprite z:100];
+
+        // Add particle emitters.
+        [self addDustParticle];        
+        [self addMaxSpeedParticle];
+
         
 		_contactListener = new HeroContactListener(self);
 		_world->SetContactListener(_contactListener);
@@ -115,25 +135,109 @@
     Helper::runAction(_body, action);
 }
 
--(void) createParticle:(float)duration
+-(void) addMaxSpeedParticle
 {
+    assert( ! _maxSpeedParticleEmitter);
     // Particle emitter.
-    _particleEmitter = [[Util createParticleEmitter:@"stars.png" count:30 duration:duration] retain];
+//    _particleEmitter = ParticleManager::createParticleEmitter(@"stars.png", 30, duration);
+    _maxSpeedParticleEmitter = ParticleManager::createMeteor();
+    [_maxSpeedParticleEmitter retain];
 
+    // by default, stop emission.
+    _maxSpeedParticleEmitter.emissionRate = 0;   
+    
     CCSprite * sprite = [self getSprite];
     assert(sprite);
 
-    [sprite addChild:_particleEmitter z:10]; // adding the emitter
+    [sprite addChild:_maxSpeedParticleEmitter z:-10]; // adding the emitter
+    
+    // Add at the back of the Hero.
+    _maxSpeedParticleEmitter.position = ccp( sprite.contentSize.width * 0.5, sprite.contentSize.height * 0.5);
+}
+-(void) pauseMaxSpeedParticle
+{
+    _maxSpeedParticleEmitter.emissionRate = 0;   
 }
 
--(void) removeParticle
+-(void) resumeMaxSpeedParticle
 {
-    if (_particleEmitter)
+    _maxSpeedParticleEmitter.emissionRate = 20;   
+}
+
+-(void) addDustParticle
+{
+    if (!_dustParticleEmitter) { // Add dust particle only once even though the Hero hits on the ground multiple times.
+        // Particle emitter.
+        //    _particleEmitter = ParticleManager::createParticleEmitter(@"stars.png", 30, duration);
+        _dustParticleEmitter = ParticleManager::createDust();
+        [_dustParticleEmitter retain];
+        
+        // by default, stop emission.
+        _dustParticleEmitter.emissionRate = 0;   
+
+        CCSprite * sprite = [self getSprite];
+        assert(sprite);
+        
+        [sprite addChild:_dustParticleEmitter z:10]; // adding the emitter
+        
+        // Add at the back of the Hero.
+        _dustParticleEmitter.position = ccp( sprite.contentSize.height * 0.25, sprite.contentSize.height * 0.25);
+        
+    }
+}
+-(void) pauseDustParticle
+{
+    _dustParticleEmitter.emissionRate = 0;   
+}
+
+-(void) resumeDustParticle
+{
+    // BUGBUG : Optimize dust particles... If we emitt dust partcles, FPS drops from 60 to 50.
+    _dustParticleEmitter.emissionRate = 0;   
+//    _dustParticleEmitter.emissionRate = 5;   
+}
+
+-(void) addParticleAtHeroPosition:(ARCH_OPTIMAL_PARTICLE_SYSTEM*)emitter {
+    CCSprite * sprite = [self getSprite];
+    assert(sprite);
+    
+    // Don't add the particle as a child of the Hero sprite, because it will make the particles rotate as the Hero sprite rotates.
+    [[sprite parent] addChild:emitter z:10]; 
+    emitter.position = sprite.position;
+}
+-(void) addSaveChickParticle
+{
+    ARCH_OPTIMAL_PARTICLE_SYSTEM * emitter = ParticleManager::createChickSaveParticle();
+    
+    [self addParticleAtHeroPosition:emitter];
+}
+
+-(void) add5ComboParticle
+{
+    ARCH_OPTIMAL_PARTICLE_SYSTEM * emitter = ParticleManager::createExplosion();
+    
+    [self addParticleAtHeroPosition:emitter];
+}
+
+-(void) removemaxSpeedParticle
+{
+    if (_maxSpeedParticleEmitter)
     {
-        [_particleEmitter stopSystem];
-        [_particleEmitter removeFromParentAndCleanup:YES];
-        [_particleEmitter release];
-        _particleEmitter = nil;
+        [_maxSpeedParticleEmitter stopSystem];
+        [_maxSpeedParticleEmitter removeFromParentAndCleanup:YES];
+        [_maxSpeedParticleEmitter release];
+        _maxSpeedParticleEmitter = nil;
+    }
+}
+
+-(void) removeDustParticle
+{
+    if (_dustParticleEmitter)
+    {
+        [_dustParticleEmitter stopSystem];
+        [_dustParticleEmitter removeFromParentAndCleanup:YES];
+        [_dustParticleEmitter release];
+        _dustParticleEmitter = nil;
     }
 }
 
@@ -145,7 +249,9 @@
 - (void) wake {
 	_awake = YES;
 	_body->SetActive(true);
-    _body->ApplyLinearImpulse(b2Vec2(1,2), _body->GetPosition());
+
+    //Don't Jump
+    //_body->ApplyLinearImpulse(b2Vec2(1,2), _body->GetPosition());
 }
 
 -(void) playDetachingWing:(NSString*)wingSpriteFrameName
@@ -220,7 +326,7 @@
         if (_diving) {
             if (!_awake) {
                 [self wake];
-                _diving = NO;
+                //_diving = YES;
                 if ( _currentAction != _flyingAction )
                 {
                     [self playClipAction:_flyingAction];
@@ -264,10 +370,12 @@
         b2Contact *c = _world->GetContactList();
         if (c) {
             if (_flying) {
+                [self resumeDustParticle];
                 [self landed];
             }
         } else {
             if (!_flying) {
+                [self pauseDustParticle];
                 [self tookOff];
             }
         }
@@ -295,12 +403,13 @@
             [_scoreBoard showMessage:@"Nice!"];
         } else if (_nPerfectSlides > 1) {
 			if (_nPerfectSlides == 3) {
-                [self createParticle:1000];
                 [_3comboSound play];
                 effectPlayed = YES;
 			}
-            else if (_nPerfectSlides == 7) {
-                [_7comboSound play];
+            else if (_nPerfectSlides == 5) {
+                [self resumeMaxSpeedParticle];
+                [self add5ComboParticle];
+                [_5comboSound play];
                 effectPlayed = YES;
             }
 
@@ -315,7 +424,7 @@
         
         [_scoreBoard increaseSpeedRatio:FRAME_SPEED_RATIO_PER_COMBO];
         
-        [_scoreBoard increaseScore:SCORE_PER_COMBO * ((_nPerfectSlides<10)?_nPerfectSlides:10)];
+        [_scoreBoard increaseScore:_scorePerCombo * ((_nPerfectSlides<10)?_nPerfectSlides:10)];
 	}
 }
 
@@ -323,10 +432,11 @@
     //	NSLog(@"hit");
 	_nPerfectSlides = 0;
     
-    [self removeParticle];
+    [self pauseMaxSpeedParticle];
+    
     [_slideFailSound play];
     
-    [_scoreBoard showMessage:@"Oops~"];
+//    [_scoreBoard showMessage:@"Oops~"];
     
     [_scoreBoard setSpeedRatio:MIN_FRAME_SPEED_RATIO];
 }
@@ -353,7 +463,8 @@
 }
 
 - (void) dealloc {
-    [self removeParticle];
+    [self removemaxSpeedParticle];
+    [self removeDustParticle];
     
     // Stop all actions
     Helper::runAction(_body, NULL);
@@ -366,7 +477,7 @@
     [_walkingAction release];
     
     [_3comboSound release];
-    [_7comboSound release];
+    [_5comboSound release];
     [_dropSound release];
     [_jumpSound release];
     [_slideFailSound release]; 

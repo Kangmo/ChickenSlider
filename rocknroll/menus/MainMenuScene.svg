@@ -479,5 +479,32 @@
        y="-41.460693"
        objectType="Widget"
        objectDesc="WidgetType=AnimationClip,WidgetName=Title,ClipFile=clip_title.plist,InitFrameAnimation=title,Align=Center" />
+    <rect
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.44135329px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7"
+       width="33.982441"
+       height="32.329369"
+       x="354.29865"
+       y="170.04959"
+       objectType="MenuItem"
+       objectTouchAction="Action=OpenURL,URL=http://facebook.com/ThankyouSoft,Sound=Touch.wav" />
+    <rect
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.43689626px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-9"
+       width="33.299561"
+       height="32.329369"
+       x="393.16858"
+       y="170.26389"
+       objectType="MenuItem"
+       objectTouchAction="Action=OpenURL,URL=http://twitter.com/ThankyouSoft,Sound=Touch.wav" />
+    <rect
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.43669224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-9-3"
+       width="33.268467"
+       height="32.329369"
+       x="430.88287"
+       y="170.26389"
+       objectType="MenuItem"
+       objectTouchAction="Action=OpenURL,URL=http://plus.google.com/118264395094960225876,Sound=Touch.wav" />
   </g>
 </svg>

@@ -17,7 +17,7 @@
  /Users/kmkim/Games/refs//boost_trunk/boost/geometry/extensions/index/rtree/rtree_node.hpp
  */
 #include "CppInfra.h"
-
+#include "GameConfig.h"
 template<typename Value> 
 class CollisionDetector2D
 {
@@ -29,7 +29,13 @@ class CollisionDetector2D
     CollisionDetector2D() : rtree(MAX_ITEMS_PER_NODE, MIN_ITEMS_PER_NODE)
     {
     }
-    
+    virtual ~CollisionDetector2D() {
+        //GameObjectContainer removes all game objects in its destructor
+        /*
+        box_t all_area = box_t(point_t(-kMAX_POSITION, -kMAX_POSITION), point_t(kMAX_POSITION, kMAX_POSITION));
+        rtree.remove(all_area);
+         */
+    }
     inline void insertBox(const box_t & box, Value value) {
         rtree.insert(box, value);
     }

@@ -21,13 +21,15 @@ private:
     id<ScoreBoardProtocol> _scoreBoard;
     int _score;
     BOOL _removeWhenEaten;
+    NSString * _particleWhenEaten;
 public:
-    EatenItem(float x, float y, float width, float height, id<ScoreBoardProtocol> sb, NSString * soundFileName, int score, BOOL removeWhenEaten)
+    EatenItem(float x, float y, float width, float height, id<ScoreBoardProtocol> sb, NSString * soundFileName, int score, BOOL removeWhenEaten, NSString * particleWhenEaten)
     :GameObject(x,y,width,height)
     {
         _scoreBoard = sb;
         _score = score;  
         _removeWhenEaten = removeWhenEaten;
+        _particleWhenEaten = [particleWhenEaten retain];
         
         if ( !_collideSound )
         {
@@ -40,6 +42,8 @@ public:
     };
     virtual ~EatenItem()
     {
+        [_particleWhenEaten release];
+        _particleWhenEaten = NULL;
     }
     
     virtual void onCollideWithHero(Hero * pHero);

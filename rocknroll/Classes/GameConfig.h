@@ -16,6 +16,13 @@
 //#define GAME_AUTOROTATION kGameAutorotationCCDirector
 #define GAME_AUTOROTATION kGameAutorotationNone
 
+
+// The width and height of the terrain texture.
+#define TERRAIN_TEXTURE_SIZE (512)
+
+// The default terrain thickness for low-end devices such as iPhone 1G, 3G and iPod 1G.
+#define TERRAIN_THICKNESS_LOWEND (128)
+
 // How many keys do we need to save a chick?
 #define KEYS_PER_CHICK (5)
 
@@ -23,8 +30,10 @@
  */
 #define kMAX_POSITION (9999999.0f)
 
-#define SCORE_PER_COMBO (100)
-#define SCORE_PER_CHICK (1500)
+#define SCORE_PER_COMBO_FOR_HARD_MODE (100)
+#define SCORE_PER_COMBO_FOR_EASY_MODE (80)
+#define SCORE_PER_CHICK_FOR_HARD_MODE (1500)
+#define SCORE_PER_CHICK_FOR_EASY_MODE (1000)
 #define SCORE_PER_KEY (10)
 #define SCORE_PER_SECOND_FOR_HARD_MODE (500)
 
@@ -71,11 +80,11 @@
 #define MIN_FRAME_SPEED_RATIO (1.0f)
 
 // The maximum frame speed ratio : 150%
-#define MAX_FRAME_SPEED_RATIO (1.5f)
+#define MAX_FRAME_SPEED_RATIO (1.51f)
 
-// Increase the frame duration by 5% for each combo. 
+// Increase the frame duration by 10% for each combo. 
 // This means the hero will fly faster, but not further.
-#define FRAME_SPEED_RATIO_PER_COMBO (0.05f)
+#define FRAME_SPEED_RATIO_PER_COMBO (0.10f)
 
 // When the frame duration changes, we change it gradually.
 // FRAME_DURATION_CHANGE_STEP defines How much the frame duration can be changed per frame.
@@ -107,13 +116,14 @@ const float LANDSCAPE_AD_HEIGHT = 40;
 #define SVG_LOADER_SHAPE_POINTS_PER_AUTOPOOL (32)
 
 // Unlock all stage levels for testing
-#define UNLOCK_LEVELS_FOR_TEST (1)
+//#define UNLOCK_LEVELS_FOR_TEST (1)
 
-#define DISABLE_IAP (1)
+//#define DISABLE_IAP (1)
+//#define RESET_IAP_DATA (1)
 
 //#define DISABLE_ADS (1)
 
-#define DO_PROFILE (1)
+//#define DO_PROFILE (1)
 
 #endif // __GAME_CONFIG_H
 

@@ -36,7 +36,7 @@
 @interface MKSKProduct : NSObject 
 
 @property (nonatomic, copy) void (^onReceiptVerificationSucceeded)();
-@property (nonatomic, copy) void (^onReceiptVerificationFailed)();
+@property (nonatomic, copy) void (^onReceiptVerificationFailed)(NSError *error);
 
 @property (nonatomic, strong) NSData *receipt;
 

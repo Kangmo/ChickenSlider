@@ -79,8 +79,11 @@ public:
     
     inline void setTargetValue(float targetValue)
     {
-        assert(targetValue >= _minValue );
-        assert(targetValue <= _maxValue );
+        if(targetValue < _minValue )
+            targetValue = _minValue;
+        
+        if(targetValue > _maxValue )
+            targetValue = _maxValue;
         
         _targetValue = targetValue;
     }

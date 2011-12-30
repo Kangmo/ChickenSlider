@@ -191,11 +191,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/OptionScene.png"
        xlink:href="OptionScene.png"
-       width="480"
-       height="320"
-       id="image4279"
+       y="0"
        x="0"
-       y="0" />
+       id="image4279"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -235,7 +235,7 @@
        width="33.85413"
        height="26.225109"
        x="419.45883"
-       y="93.745255"
+       y="76.7351"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=MusicVolumeLabel,Font=yellow34.fnt,Align=Center" />
     <rect
@@ -244,7 +244,7 @@
        width="33.85413"
        height="26.225109"
        x="419.45883"
-       y="159.40518"
+       y="125.22252"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=EffectVolumeLabel,Font=yellow34.fnt,Align=Center" />
     <rect
@@ -253,7 +253,7 @@
        width="176.60265"
        height="24.714111"
        x="217.0853"
-       y="95.005829"
+       y="77.995674"
        objectType="Widget"
        objectDesc="WidgetType=SlideBar,WidgetName=MusicVolumeSlide,SlideImage=gage.png,SlideMin=0,SlideMax=10,SlideDefault=10,Align=Center" />
     <rect
@@ -262,7 +262,7 @@
        width="176.68417"
        height="24.714111"
        x="217.00377"
-       y="160.16066"
+       y="125.97798"
        objectType="Widget"
        objectDesc="WidgetType=SlideBar,WidgetName=EffectVolumeSlide,SlideImage=gage.png,SlideMin=0,SlideMax=10,SlideDefault=10,Align=Center" />
     <rect
@@ -271,9 +271,18 @@
        width="147.53419"
        height="33.985462"
        x="220.69238"
-       y="218.65953"
+       y="226.65953"
        objectType="Widget"
        objectDesc="WidgetType=ToggleButton,WidgetName=Difficulty,Images=Sel_Easy.png|Sel_Hard.png,Align=Center" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.62128556px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-7"
+       width="69.378716"
+       height="31.378714"
+       x="220.0265"
+       y="174.47528"
+       objectType="Widget"
+       objectDesc="WidgetType=ToggleButton,WidgetName=TouchTutor,Images=offbt.png|onbt.png,Align=Center" />
   </g>
   <g
      inkscape:groupmode="layer"

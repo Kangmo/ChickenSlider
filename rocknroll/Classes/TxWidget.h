@@ -164,6 +164,7 @@ public :
             node.position = CGPointMake( node.position.x, node.position.y + [Util getAdHeight] * AdShiftY);
         }
     }
+    
 };
 
 #endif

@@ -37,10 +37,13 @@
 #import "SFHFKeychainUtils.h"
 #import "MKSKSubscriptionProduct.h"
 #import "MKSKProduct.h"
+#import "Util.h"
+#import "FlurryAnalytics.h"
+#import "AppAnalytics.h"
 
 @interface MKStoreManager () //private methods and properties
 
-@property (nonatomic, copy) void (^onTransactionCancelled)();
+@property (nonatomic, copy) void (^onTransactionCanceled)();
 @property (nonatomic, copy) void (^onTransactionCompleted)(NSString *productId);
 
 @property (nonatomic, copy) void (^onRestoreFailed)(NSError* error);
@@ -66,7 +69,7 @@
 
 @synthesize isProductsAvailable;
 
-@synthesize onTransactionCancelled;
+@synthesize onTransactionCanceled;
 @synthesize onTransactionCompleted;
 @synthesize onRestoreFailed;
 @synthesize onRestoreCompleted;
@@ -89,13 +92,15 @@ static MKStoreManager* _sharedStoreManager;
                           updateExisting:YES 
                                    error:&error];
         
-        if(error)
+        if(error) {
+            // BUGBUG : Use flurry, show dialog
             NSLog(@"%@", [error localizedDescription]);
+        }
     }];    
 }
 
 +(BOOL) iCloudAvailable {
-    
+    /*
     if(NSClassFromString(@"NSUbiquitousKeyValueStore")) { // is iOS 5?
         
         if([NSUbiquitousKeyValueStore defaultStore]) {  // is iCloud enabled
@@ -103,7 +108,7 @@ static MKStoreManager* _sharedStoreManager;
             return YES;
         }
     }
-    
+    */
     return NO;
 }
 
@@ -111,7 +116,7 @@ static MKStoreManager* _sharedStoreManager;
     
     _purchasableObjects = nil;
     _storeObserver = nil;
-    onTransactionCancelled = nil;
+    onTransactionCanceled = nil;
     onTransactionCompleted = nil;
     onRestoreFailed = nil;
     onRestoreCompleted = nil;    
@@ -122,6 +127,31 @@ static MKStoreManager* _sharedStoreManager;
 	_sharedStoreManager = nil;
 	[super dealloc];
 }
+
++(void) logFailureWithError:(NSError*) error title:(NSString*)title {
+    
+    NSString * message = [NSString stringWithFormat:@"%@:%@, Reason:%@, Recovery Suggestion:%@", title, error, [error localizedFailureReason], [error localizedRecoverySuggestion]];
+
+
+    [Util showAlertWithTitle:title message:message];
+
+    [FlurryAnalytics logError:@"IAP:TRANSACTION_FAILED" message:message error:error];
+    
+    NSLog(@"IAP:TRANSACTION_FAILED:%@",message);
+}
+
++(void) logFailureWithPID:(NSString*) productId title:(NSString*)title {
+    
+    NSString * message = [NSString stringWithFormat:@"%@:%@", title, productId];
+    
+    
+    [Util showAlertWithTitle:title message:message];
+
+    AppAnalytics::sharedAnalytics().logEvent( "IAP:TRANSACTION_FAILED:" + [Util toStdString:message] );
+    
+    NSLog(@"IAP:TRANSACTION_FAILED:%@", message);
+}
+
 
 +(void) setObject:(id) object forKey:(NSString*) key
 {
@@ -141,8 +171,9 @@ static MKStoreManager* _sharedStoreManager;
                       updateExisting:YES 
                                error:&error];
     
-    if(error)
-        NSLog(@"%@", [error localizedDescription]);
+    if(error) {
+        [MKStoreManager logFailureWithPID:key title:@"Failed Storing Keychain" ];
+    }
     
     if([self iCloudAvailable]) {
         [[NSUbiquitousKeyValueStore defaultStore] setObject:objectString forKey:key];
@@ -156,8 +187,9 @@ static MKStoreManager* _sharedStoreManager;
     NSObject *object = [SFHFKeychainUtils getPasswordForUsername:key 
                                                   andServiceName:@"MKStoreKit" 
                                                            error:&error];
-    if(error)
-        NSLog(@"%@", [error localizedDescription]);
+    if(error) {
+        [MKStoreManager logFailureWithPID:key title:@"Failed Retrieving Keychain" ];
+    }
     
     return object;
 }
@@ -291,7 +323,6 @@ static MKStoreManager* _sharedStoreManager;
 {
 	[self.purchasableObjects addObjectsFromArray:response.products];
 	
-#ifndef NDEBUG	
 	for(int i=0;i<[self.purchasableObjects count];i++)
 	{		
 		SKProduct *product = [self.purchasableObjects objectAtIndex:i];
@@ -299,9 +330,14 @@ static MKStoreManager* _sharedStoreManager;
 			  [[product price] doubleValue], [product productIdentifier]);
 	}
 	
-	for(NSString *invalidProduct in response.invalidProductIdentifiers)
-		NSLog(@"Problem in iTunes connect configuration for product: %@", invalidProduct);
-#endif
+	for(NSString *invalidProductId in response.invalidProductIdentifiers) {
+        std::string invalidProductIdStr = [Util toStdString:invalidProductId];
+        
+        [Util showAlertWithTitle:@"Invalid Product ID" message:invalidProductId];
+        
+        AppAnalytics::sharedAnalytics().logEvent( "IAP:INVALID_PROD_ID:"+invalidProductIdStr );
+        NSLog(@"IAP:INVALID_PROD_ID:%@", invalidProductId);
+    }
 		
 	isProductsAvailable = YES;    
     [[NSNotificationCenter defaultCenter] postNotificationName:kProductFetchedNotification 
@@ -346,9 +382,8 @@ static MKStoreManager* _sharedStoreManager;
 		// you might probably need to change this line to suit your UI needs
 		NSString *description = [NSString stringWithFormat:@"%@ (%@)",[product localizedTitle], formattedString];
 		
-#ifndef NDEBUG
-		NSLog(@"Product %d - %@", i, description);
-#endif
+		NSLog(@"purchasableObjectsDescription : Product %d - %@", i, description);
+
 		[productDescriptions addObject: description];
 	}
 	
@@ -383,42 +418,20 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
     return priceDict;
 }
 
--(void) showAlertWithTitle:(NSString*) title message:(NSString*) message {
-    
-#if TARGET_OS_IPHONE
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:message
-                                                   delegate:nil 
-                                          cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
-                                          otherButtonTitles:nil];
-    [alert show];             
-#elif TARGET_OS_MAC
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:NSLocalizedString(@"Dismiss", @"")];
-    
-    [alert setMessageText:title];
-    [alert setInformativeText:message];             
-    [alert setAlertStyle:NSInformationalAlertStyle];
-    
-    [alert runModal];
-    
-#endif
-}
-
 - (void) buyFeature:(NSString*) featureId
          onComplete:(void (^)(NSString*)) completionBlock         
-        onCancelled:(void (^)(void)) cancelBlock
+         onCanceled:(void (^)(void)) cancelBlock
 {
     self.onTransactionCompleted = completionBlock;
-    self.onTransactionCancelled = cancelBlock;
+    self.onTransactionCanceled = cancelBlock;
     
     [MKSKProduct verifyProductForReviewAccess:featureId                                                              
                                    onComplete:^(NSNumber * isAllowed)
      {
          if([isAllowed boolValue])
          {
-             [self showAlertWithTitle:NSLocalizedString(@"Review request approved", @"")
-                              message:NSLocalizedString(@"You can use this feature for reviewing the app.", @"")];
+             [Util showAlertWithTitle:@"Review request approved"
+                              message:@"You can use this feature for reviewing the app."];
              
              if(self.onTransactionCompleted)
                  self.onTransactionCompleted(featureId);                                         
@@ -431,19 +444,26 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
      }                                                                   
                                       onError:^(NSError* error)
      {
-         NSLog(@"Review request cannot be checked now: %@", [error description]);
          [self addToQueue:featureId];
      }];    
 }
 
 -(void) addToQueue:(NSString*) productId
 {
+    NSLog(@"Adding to purchase queue : %@", productId);
+
+    std::string productIdStr = [Util toStdString:productId];
+
     if ([SKPaymentQueue canMakePayments])
 	{
         NSArray *allIds = [self.purchasableObjects valueForKey:@"productIdentifier"];
         int index = [allIds indexOfObject:productId];
         
-        if(index == NSNotFound) return;
+        if(index == NSNotFound) {
+            [MKStoreManager logFailureWithPID:productId title:@"Product Not Found"];
+
+            return;   
+        }
         
         SKProduct *thisProduct = [self.purchasableObjects objectAtIndex:index];
 		SKPayment *payment = [SKPayment paymentWithProduct:thisProduct];
@@ -451,8 +471,7 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
 	}
 	else
 	{
-        [self showAlertWithTitle:NSLocalizedString(@"In-App Purchasing disabled", @"")
-                         message:NSLocalizedString(@"Check your parental control settings and try again later", @"")];
+        [MKStoreManager logFailureWithPID:productId title:@"In-App-Purchase Disabled"];
 	}
 }
 
@@ -503,16 +522,18 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
                  {
                      [[NSNotificationCenter defaultCenter] postNotificationName:kSubscriptionsInvalidNotification 
                                                                          object:product.productId];
-                     
+                     // BUGBUG : Use flurry, show dialog
                      NSLog(@"Subscription: %@ is inactive", product.productId);
                  }
                  else
                  {
+                     // BUGBUG : Use flurry, show dialog
                      NSLog(@"Subscription: %@ is active", product.productId);                     
                  }
              }
                                      onError:^(NSError* error)
              {
+                 // BUGBUG : Use flurry, show dialog
                  NSLog(@"Unable to check for subscription validity right now");                                      
              }]; 
         }
@@ -547,6 +568,7 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
          }
                                              onError:^(NSError* error)
          {
+             // BUGBUG : Use flurry, show dialog
              NSLog(@"%@", [error description]);
          }];
     }        
@@ -558,14 +580,8 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
             // read from receipts and verify here
             receiptData = [self receiptFromBundle];
             if(!receiptData) {
-                if(self.onTransactionCancelled)
-                {
-                    self.onTransactionCancelled(productIdentifier);
-                }
-                else
-                {
-                    NSLog(@"Receipt invalid");
-                }
+                // BUGBUG : Should we continue to call rememberPurchaseOfProduct?
+                [MKStoreManager logFailureWithPID:productIdentifier title:@"Receipt invalid"];
             }
         }
         
@@ -582,14 +598,8 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
              }
                                          onError:^(NSError* error)
              {
-                 if(self.onTransactionCancelled)
-                 {
-                     self.onTransactionCancelled(productIdentifier);
-                 }
-                 else
-                 {
-                     NSLog(@"The receipt could not be verified");
-                 }
+                 // BUGBUG : Can we end the IAP transaction with success???
+                 [MKStoreManager logFailureWithError:error title:@"Receipt Verification Failed"];
              }];            
         }
         else
@@ -622,30 +632,20 @@ NSString *upgradePrice = [prices objectForKey:@"com.mycompany.upgrade"]
     }
 }
 
-- (void) transactionCanceled: (SKPaymentTransaction *)transaction
+- (void) transactionFailed: (SKPaymentTransaction *)transaction
 {
-    
-#ifndef NDEBUG
-	NSLog(@"User cancelled transaction: %@", [transaction description]);
-    NSLog(@"error: %@", transaction.error);
-#endif
-    
-    if(self.onTransactionCancelled)
-        self.onTransactionCancelled();
-}
-
-- (void) failedTransaction: (SKPaymentTransaction *)transaction
-{
-    
-#ifndef NDEBUG
-    NSLog(@"Failed transaction: %@", [transaction description]);
-    NSLog(@"error: %@", transaction.error);    
-#endif
-	
-    [self showAlertWithTitle:[transaction.error localizedFailureReason]  message:[transaction.error localizedRecoverySuggestion]];
-
-    if(self.onTransactionCancelled)
-        self.onTransactionCancelled();
+    if (transaction.error.code != SKErrorPaymentCancelled)
+    {
+        [MKStoreManager logFailureWithError:transaction.error title:@"Payment Failed"];
+    }
+    else
+    {
+        // BUGBUG : Append Product ID
+        AppAnalytics::sharedAnalytics().logEvent( "IAP:USER_CANCELED" );
+        
+        if(self.onTransactionCanceled)
+            self.onTransactionCanceled();
+    }
 }
 
 @end

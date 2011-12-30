@@ -36,16 +36,16 @@ public :
     }
 
     void addEventProperty(const std::string & key, const std::string & value ) {
-        [eventParams setValue:[Util toNSString:value] forKey:[Util toNSString:key]];
+        [eventParams setObject:[Util toNSString:value] forKey:[Util toNSString:key]];
     }
 
     void addEventProperty(const std::string & key, NSString * value ) {
-        [eventParams setValue:value forKey:[Util toNSString:key]];
+        [eventParams setObject:value forKey:[Util toNSString:key]];
     }
 
     void addEventProperty(const std::string & key, const int value ) {
         NSString * strValue = [NSString stringWithFormat:@"%d", value];
-        [eventParams setValue:strValue forKey:[Util toNSString:key]];
+        [eventParams setObject:strValue forKey:[Util toNSString:key]];
     }
 
     void addEventProperty(const std::string & key, const float value ) {
@@ -89,7 +89,7 @@ public :
     }
     
     void addDeviceProperties() {
-        addEventProperty("UUID", DeviceInfo::getUUID());
+//        addEventProperty("UUID", DeviceInfo::getUUID());
         addEventProperty("Platform", DeviceInfo::getPlatform());
         addEventProperty("OSVersion", DeviceInfo::getOSVersion());
         addEventProperty("OSBuild", DeviceInfo::getOSBuild());

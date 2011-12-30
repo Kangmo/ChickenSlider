@@ -127,6 +127,9 @@ typedef enum {
     // Did we play music?
     BOOL didPlayMusic;
     BOOL isHardMode;
+    
+    BOOL isTouchTutorEnabled;
+    BOOL isTouchTutorShown;
 }
 
 @property (nonatomic, assign) Car * car;

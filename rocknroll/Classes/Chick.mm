@@ -24,13 +24,17 @@ void Chick::onCollideWithHero(Hero * pHero)
     {
         return;
     }
+
+    [pHero addSaveChickParticle];
     
     // Decrease Keys by KEYS_PER_CHICK(5)
     [_scoreBoard setKeys:keyCount - KEYS_PER_CHICK];
     // Increase Chicks saved.
     [_scoreBoard increaseChicks:1];
+    
+    int scorePerChick = [Util loadDifficulty] ? SCORE_PER_CHICK_FOR_HARD_MODE : SCORE_PER_CHICK_FOR_EASY_MODE;
     // Increase score
-    [_scoreBoard increaseScore:SCORE_PER_CHICK];
+    [_scoreBoard increaseScore:scorePerChick];
     
     // Speed Up. _heroSpeedGain is from the heroSpeedGain attribute in the Bird class in game_classes.svg
     [pHero changeSpeed:_heroSpeedGain];

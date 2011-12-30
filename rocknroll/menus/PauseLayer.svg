@@ -311,8 +311,8 @@
        id="StartObject"
        width="155.37425"
        height="53.849991"
-       x="5.6126108"
-       y="196.90733"
+       x="320.78021"
+       y="139.32864"
        objectType="MenuItem"
        objectTouchAction="Action=None,ActionMessage=Resume,Sound=Touch.wav,Option=RemoveOwningLayer" />
     <rect
@@ -357,8 +357,8 @@
        id="StartObject-7"
        width="155.37425"
        height="53.849991"
-       x="320.33328"
-       y="137.51152"
+       x="5.165688"
+       y="198.12068"
        objectType="MenuItem"
        objectTouchAction="Action=None,ActionMessage=Retry,Sound=Touch.wav,Option=RemoveOwningLayer" />
   </g>

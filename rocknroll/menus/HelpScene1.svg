@@ -215,10 +215,10 @@
      inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-height="712"
+     inkscape:window-x="36"
+     inkscape:window-y="70"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
     <rdf:RDF>
@@ -267,24 +267,32 @@
        objectType="MenuItem"
        objectTouchAction="Action=None" />
     <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.46860877px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7"
-       width="34.612274"
-       height="35.782413"
-       x="426.75876"
-       y="276.85498"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene"
-       inkscape:transform-center-y="-18.134885" />
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.70004892px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4"
+       width="78.29995"
+       height="35.29995"
+       x="389.19531"
+       y="276.04501"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=NextButtonImage,Images=nextbt.png,DefaultIndex=0,Align=Center" />
     <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.72730482px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.82970589px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
-       width="78.079964"
-       height="38.209599"
-       x="41.963154"
-       y="276.65155"
+       width="92.119698"
+       height="42.147808"
+       x="381.38501"
+       y="271.65198"
        objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=HelpScene2,Sound=Touch.wav" />
+       objectTouchAction="Action=SceneTransition,SceneName=HelpScene2,Sound=Touch.wav" />
+    <rect
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.90135062px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7"
+       width="164.2531"
+       height="124.13373"
+       x="9.7770348"
+       y="116.0067"
+       objectType="Widget"
+       objectDesc="WidgetType=AnimationClip,WidgetName=HelpAnimation,ClipFile=clip_help.plist,InitFrameAnimation=help_D,Align=Center" />
   </g>
   <g
      inkscape:groupmode="layer"

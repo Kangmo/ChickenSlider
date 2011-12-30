@@ -875,7 +875,7 @@
      inkscape:current-layer="layer4"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
+     inkscape:window-height="712"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -900,11 +900,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/levels/MAP01.png"
        xlink:href="MAP01.png"
-       y="0.19387098"
-       x="0.41629791"
-       id="image5391"
+       width="480"
        height="320"
-       width="480" />
+       id="image5391"
+       x="0.41629791"
+       y="0.19387098" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -997,7 +997,7 @@
        x="127.1178"
        y="81.939034"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=1,Sound=Touch.wav,IntermediateScene=OpeningScene" />
+       objectTouchAction="Action=SceneTransition,SceneName=LV1_HelpScene1,Sound=Touch.wav,IntermediateScene=OpeningScene" />
     <rect
        style="opacity:0.4;fill:#ff7f2a;display:inline"
        id="level2"

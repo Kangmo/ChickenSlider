@@ -42,7 +42,7 @@
 			case SKPaymentTransactionStatePurchased:
 				
                 [self completeTransaction:transaction];
-				
+                
                 break;
 				
             case SKPaymentTransactionStateFailed:
@@ -74,7 +74,7 @@
 
 - (void) failedTransaction: (SKPaymentTransaction *)transaction
 {	
-	[[MKStoreManager sharedManager] transactionCanceled:transaction];
+	[[MKStoreManager sharedManager] transactionFailed:transaction];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];	
 }
 

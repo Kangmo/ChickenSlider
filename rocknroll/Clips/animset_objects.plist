@@ -101,7 +101,7 @@
 	<key>title</key>
 	<dict>
 		<key>Atlas</key>
-		<string>sprites.plist</string>
+		<string>title_anim_sprites.plist</string>
 		<key>Duration</key>
 		<string>0.5</string>
 		<key>Frames</key>
@@ -192,6 +192,68 @@
 			<string>0</string>
 			<key>EndIndex</key>
 			<string>7</string>
+		</dict>
+	</dict>
+	<key>stage_clear</key>
+	<dict>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>2</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>clear%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>15</string>
+		</dict>
+	</dict>
+	<key>stage_timeout</key>
+	<dict>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>3</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>timeout%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>5</string>
+		</dict>
+	</dict>
+	<key>touch</key>
+	<dict>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Duration</key>
+		<string>0.5</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>touch%02d.png</string>
+			<key>StartIndex</key>
+			<string>1</string>
+			<key>EndIndex</key>
+			<string>3</string>
+		</dict>
+	</dict>
+	<key>help_D</key>
+	<dict>
+		<key>Duration</key>
+		<string>3.8</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>help%02d.png</string>
+			<key>StartIndex</key>
+			<string>09</string>
+			<key>EndIndex</key>
+			<string>83</string>
 		</dict>
 	</dict>
 	<key>chick_releasing</key>

@@ -203,9 +203,13 @@ BOOL awDoubleVal(double *var, id val) {
       bLocationServiceEnabled = [CLLocationManager locationServicesEnabled];
     }
     else {
+      // By Kmkim
+        /*
       CLLocationManager* locMan = [[CLLocationManager alloc] init];
       bLocationServiceEnabled = locMan.locationServicesEnabled;
       [locMan release], locMan = nil;
+         */
+      bLocationServiceEnabled = NO;
     }
 
     if (locationOn == YES && bLocationServiceEnabled == NO) {

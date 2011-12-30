@@ -33,7 +33,8 @@ class GameObject;
 -(void) updateFollowPosition;
 
 -(void) updateSpriteFromBody:(b2Body*) body;
--(void) updateSpriteFromGameObject:(REF(GameObject)) gameObject;
+-(void) updateSpriteFromGameObject:(GameObject*) gameObject;
+
 
 -(void) ZoomTo:(float)newZoom;
 

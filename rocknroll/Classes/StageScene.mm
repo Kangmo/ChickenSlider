@@ -46,6 +46,7 @@ const float backgroundImageHeight = 512;
 
 @interface StageScene() 
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
+- (void) decideTouchTutorEnabled;
 @end
 
 // HelloWorld implementation
@@ -111,6 +112,8 @@ PROF_END(cocos2d_layer_visit);
         backgroundImage = [[Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:@"nosky.pvr"] retain];
         groundTexture = [[Util getStringValue:rootElement name:@"_groundTexture" defaultValue:@"noterrain.pvr"] retain];
         playTimeSec  = [Util getIntValue:rootElement name:@"_playTimeSec" defaultValue:60];
+        
+        //playTimeSec = 1000;
         if (! isHardMode ) {
             // In easy mode, we give 50% more time.
             playTimeSec = playTimeSec * EASY_MODE_PLAY_TIME_FACTOR;
@@ -184,29 +187,31 @@ PROF_END(cocos2d_layer_visit);
 -(void) pauseGame {
     if ( ! isGamePaused )
     {
-//        [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+        // In Help menu in Pause Layer, we have animation to snow. If we pause the director, the animation won't be done.
+        // So we don't pause the director, but unschedule the tick while the game is in pause mode.
+        
         [self unschedule: @selector(tick:)];
         
-        [[CCDirector sharedDirector] pause];
+        //[[CCDirector sharedDirector] pause];
 
         isGamePaused = YES;
     }
-    
-/*    [node pauseSchedulerAndActions];
-    for (CCNode *child in [node children]) {
-        [self pauseSchedulerAndActionsRecursive:child];
-    }
- */
-}    
+}
 
 -(void) resumeGame {
     if ( isGamePaused ) 
     {
-//        [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
-
+        // Users may have turned on or off touch Tutor.
+        [self decideTouchTutorEnabled];
+        if (!isTouchTutorEnabled) {
+            [playUI showTouchTutor:NO];
+        }
+        
+        // We need to schedule tick again in resumeGame, because scenes in PauseLayer can unschedule all selectors.
+        // GeneralScene.onExit unschedules all selectors.
         [self schedule: @selector(tick:)];
         
-        [[CCDirector sharedDirector] resume];
+        //[[CCDirector sharedDirector] resume];
         
         isGamePaused = NO;
     }
@@ -403,6 +408,9 @@ PROF_END(cocos2d_layer_visit);
     // Resume : Sent by PauseLayer.svg
     if ( [message isEqualToString:@"Resume"] )
     {
+        // Hide AD for the game Play.
+        [[AdManager sharedAdManager] setVisible:NO];
+        
         [self resumeGame];
     }
     
@@ -416,12 +424,15 @@ PROF_END(cocos2d_layer_visit);
     if ( [message isEqualToString:@"Quit"] )
     {
         [self resumeGame];
-        [self giveUpGame:@"Give Up!"];
+        [self giveUpGame:@"_giveup_"];
     }
 
     // PausePressed : Sent by GamePlayLayer.svg
     if ( [message isEqualToString:@"PausePressed"] )
     {
+        // Show AD for the pause Scene.
+        [[AdManager sharedAdManager] setVisible:YES];
+
         [self onPausePressed];
     }
     
@@ -434,12 +445,25 @@ PROF_END(cocos2d_layer_visit);
 
 ///////////////////////////////////////////////////////////////
 
-
+/** @brief See if we need to enable touch tutor. Touch tutor can be enabled only in level 1,2,3,4 in MAP01.
+ Users can choose to enable or disable it in the Options menu.
+*/
+ 
+-(void) decideTouchTutorEnabled
+{
+    isTouchTutorEnabled = NO;
+    if ([mapName isEqualToString:@"MAP01"] && level <=4 ) {
+        isTouchTutorEnabled = [Util loadTouchTutor] ? YES:NO;
+    }
+}
 // initialize your instance here
 -(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel playUI:(GamePlayLayer*)aPlayUI
 {
 	if( (self=[super init])) 
 	{
+        // Disable refreshing ADs for the best performance.
+        [[AdManager sharedAdManager] disableRefresh];
+
         PROF_RESET_ALL();
         
         gameObjectContainer = new GameObjectContainer();
@@ -447,6 +471,8 @@ PROF_END(cocos2d_layer_visit);
         assert(aMapName);
         assert(aLevel>0);
         
+        isTouchTutorShown = NO;
+
         totalFrameCount = 0;
         
         isHardMode = [Util loadDifficulty] ? YES:NO;
@@ -478,6 +504,7 @@ PROF_END(cocos2d_layer_visit);
 		// enable accelerometer
 		self.isAccelerometerEnabled = YES;
 
+        
         int highScore = [Util loadHighScore:aMapName level:aLevel];
         [aPlayUI setHighScore:highScore];
         
@@ -486,6 +513,8 @@ PROF_END(cocos2d_layer_visit);
         level = aLevel;
         assert( aLevel < MAX_LEVELS_PER_MAP );
         assert( MAX_LEVELS_PER_MAP < 99 );
+
+        [self decideTouchTutorEnabled]; // Needs mapName and level.
 
         // The SVG file for the given level.
         NSString * svgFileName = [NSString stringWithFormat:@"StageScene_%@_%02d.svg", mapName, level];
@@ -759,6 +788,48 @@ PROF_END(cocos2d_layer_visit);
     }
 }
 
+// Convert the distance between the Hero and terrain to the border vertice index in terrain.
+// The higher the Hero, we need to look ahead more, because the Hero is likely to land further.
+#define HERO_HEIGHT (30)
+// The X distance between border vertices in level svg file.
+#define TERRAIN_BORDER_INDEX_DIST_IN_PIXCELS (40)
+// The hero can land on the ground by going to x axis by 15% of it's distance from terrain
+#define HERO_DROP_X_PER_Y_RATIO (0.15)
+//#define TERRAIN_BORDER_INDEX_DIST_IN_METERS ((TERRAIN_BORDER_INDEX_DIST_IN_PIXCELS)/(INIT_PTM_RATIO))
+#define HERO_DISTANCE_TO_LOOKAHEAD_INDEX(HeroDist) ((HeroDist) * HERO_DROP_X_PER_Y_RATIO / (TERRAIN_BORDER_INDEX_DIST_IN_PIXCELS))
+
+/** @brief process to see if we need to show touch tutor.
+ */
+-(void) processTouchTutor:(Terrain*)t heroY:(float)heroY_withoutZoom{
+    // Calculate the distance between the hero and the terrain (in meters).
+    float terrainY;
+    if ( [t terrainYatHero:&terrainY] ) {
+        float heroDistence = heroY_withoutZoom - HERO_HEIGHT - terrainY;
+        if (heroDistence < 0.0f)
+            heroDistence = 0.0;
+
+        int lookAheadIndex = (int) HERO_DISTANCE_TO_LOOKAHEAD_INDEX(heroDistence);
+        
+//        CCLOG(@"HeroY=%f, terrainY:%f, dist=%f, lookAheadIndex=%d", heroY_withoutZoom, terrainY, heroDistence, lookAheadIndex);
+        
+        if ( heroDistence < 10 ) { // BUGBUG : Currently we show touch tutor only when the Hero is on the ground.
+            if ([t isDownHill:lookAheadIndex]) {
+                if ( ! isTouchTutorShown ) {
+                    [playUI showTouchTutor:YES];
+                    
+                    isTouchTutorShown = YES;
+                }
+            }
+            else {
+                if ( isTouchTutorShown ) {
+                    [playUI showTouchTutor:NO];
+                    isTouchTutorShown = NO;
+                }
+            }
+            
+        }
+    }
+}
 /** @brief Activate, move, scale terrains based on the current hero position.
  */
 -(float) adjustTerrains:(float)heroX_withoutZoom heroY:(float)heroY_withoutZoom{
@@ -806,6 +877,10 @@ PROF_END(cocos2d_layer_visit);
             {
                 if ( maxTerrainY_belowHero < borderMinY)
                     maxTerrainY_belowHero = borderMinY;
+
+                if (isTouchTutorEnabled) {
+                    [self processTouchTutor:t heroY:heroY_withoutZoom];
+                }
             }
                 
             if ( borderMinY != kMAX_POSITION ) // The terrain is drawn on the current screen.
@@ -856,12 +931,12 @@ PROF_END(cocos2d_layer_visit);
         ////////////////////////////////////////////////////////////////////////////////
         // Step 2 : Get all game objects colliding with the bounding rectangle of Hero. 
         ////////////////////////////////////////////////////////////////////////////////
-        std::deque<REF(GameObject)> v;
+        std::deque<GameObject*> v;
         v = gameObjectContainer->getCollidingObjects(heroContentBox);
         
-        for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
+        for (std::deque<GameObject*>::iterator it = v.begin(); it != v.end(); it++)
         {
-            REF(GameObject) refGameObject = *it;
+            GameObject * refGameObject = *it;
             
             refGameObject->onCollideWithHero( hero );
         }
@@ -914,9 +989,17 @@ PROF_END(cocos2d_layer_visit);
  */
 -(void)onStageClear:(id)sender data:(void*)callbackData 
 {
-    int stars = [self calcStars];
     
     BOOL isLastStage = closingScene?YES:NO;
+    
+    // Convert time left(seconds) to score only in the Hard Mode.
+    if ( [Util loadDifficulty] ) // Difficulty == 1 means Hard
+    {
+        // Increase score
+        sbScore += ((int)sbSecondsLeft)*SCORE_PER_SECOND_FOR_HARD_MODE;
+    }
+    
+    int stars = [self calcStars];
     
     // 'layer' is an autorelease object.
 	CCScene *nextScene = [ClearScene sceneWithMap:mapName 
@@ -941,9 +1024,21 @@ PROF_END(cocos2d_layer_visit);
     CCLOG(@"onStageClear:data");
 }
 
+
 /** @brief Show a big title on the center of the screen for 2 seconds, switch back to level map scene.
  */
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage{
+    // By default we wait for 3 seconds before switching to the next scene.
+    float sceneTransitionWaitSec = 3.0f;
+    
+    if ( ! clearedCurrentStage ) {
+        // Don't do any animation, but simply proceed with stage failure to go to map selection scene. 
+        if ( [message isEqualToString:@"_giveup_"] ) {
+            [self onStageFail:self data:nil];
+            return;
+        }
+    }
+    
     
 	CCLabelBMFont *label = [CCLabelBMFont labelWithString:message fntFile:@"yellow34.fnt"];
 	label.position = ccp(screenSize.width/2, screenSize.height/2);
@@ -953,11 +1048,23 @@ PROF_END(cocos2d_layer_visit);
     if ( clearedCurrentStage )
     {
         lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageClear:data:) data:(void*)nil];
+        // Instead of showing label, show stage clear animation
+        [label setString:@""]; 
+        [playUI startStageClearAnim];
+        
+        // Wait more to show stars particle for longer time...
+        sceneTransitionWaitSec = 6.0;
     }
     else
     {
         lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageFail:data:) data:(void*)nil];
 
+        if ( [message isEqualToString:@"_timeout_"] ) {
+            // Instead of showing label, show stage timeout animation
+            [label setString:@""]; 
+            [playUI startStageTimeoutAnim];
+        }
+        
         AppAnalytics::sharedAnalytics().beginEventProperty();
         AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName, level);
         AppAnalytics::sharedAnalytics().addDeviceProperties();
@@ -973,7 +1080,7 @@ PROF_END(cocos2d_layer_visit);
     }
     
 	[label runAction:[CCSequence actions:
-                      [CCScaleTo actionWithDuration:2.0f scale:2.0f],
+                      [CCScaleTo actionWithDuration:sceneTransitionWaitSec scale:2.0f],
                       [CCCallFuncND actionWithTarget:label selector:@selector(removeFromParentAndCleanup:) data:(void*)YES],
                       lastAction,
 					  nil]];
@@ -1050,22 +1157,20 @@ PROF_END(cocos2d_layer_visit);
         }
         didPlayMusic = YES;
     }
-    
-    // Disable refreshing ADs for the best performance.
-    [[AdManager sharedAdManager] disableRefresh];
+    // When the game is paused, we still show the AD. 
+    // This function is called when the Option or Help scene is popped and came back to the StageScene to show the pause layer while to game is in puase.
+    if (!isGamePaused) { 
+        // Hide ADs during game play.
+        [[AdManager sharedAdManager] setVisible:NO];
+    }
+
     [super onEnterTransitionDidFinish];
 }
 
 - (void) onExit {
-//    [[CDAudioManager sharedManager] stopBackgroundMusic];
-    
-	// in case you have something to dealloc, do it in this method
-    [self unschedule: @selector(tick:)];
 
-    // Enable refreshing ADs for the best performance.
-    [[AdManager sharedAdManager] enableRefresh];
-    // Show next AD
-    [[AdManager sharedAdManager] refresh];
+    // Hide ADs during game play.
+    [[AdManager sharedAdManager] setVisible:YES];
 
     [super onExit];
 }
@@ -1092,15 +1197,7 @@ PROF_END(cocos2d_layer_visit);
     //
     {
         box_t goneScreenBox = [cam goneScreenRect:heroXatZ1];
-        std::deque<REF(GameObject)> v;
-        v = gameObjectContainer->getCollidingObjects(goneScreenBox);
-        
-        for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
-        {
-            REF(GameObject) refGameObject = *it;
-            refGameObject->deactivate();
-            refGameObject->removeSelf();
-        }
+        gameObjectContainer->removeCollidingObjects(goneScreenBox);
     }
 }
 
@@ -1112,25 +1209,25 @@ PROF_END(cocos2d_layer_visit);
     // Search game objects that are shown in the screen and will be shown in the screen at the minimum zoom level.
     {
         box_t commingScreenBox = [cam commingScreenRect:heroXatZ1];
-        std::deque<REF(GameObject)> v;
+        std::deque<GameObject*> v;
         v = gameObjectContainer->getCollidingObjects(commingScreenBox);
         
-        for (std::deque<REF(GameObject)>::iterator it = v.begin(); it != v.end(); it++)
+        for (std::deque<GameObject*>::iterator it = v.begin(); it != v.end(); it++)
         {
-            REF(GameObject) refGameObject = *it;
+            GameObject* pGameObject = *it;
             
             // TutorialBox is an example of Passive Game Object : No need to update sprite position on screen. Nothing to animate
-            if ( ! refGameObject->isPassive() )
+            if ( ! pGameObject->isPassive() )
             {
                 // If it is not active yet, (It is the first time to come into the commingScreenBox)
-                if ( ! refGameObject->isActivated() )
+                if ( ! pGameObject->isActivated() )
                 {
                     // Activate it
-                    refGameObject->activate( self );
+                    pGameObject->activate( self );
                 }
-                
+
                 // update the sprite position, scale, rotation based on the game object and camera position considering zoom level.
-                [cam updateSpriteFromGameObject: refGameObject ];
+                [cam updateSpriteFromGameObject: pGameObject ];
             }
         }    
     }
@@ -1156,7 +1253,7 @@ PROF_END(cocos2d_layer_visit);
 
     if ( sbSecondsLeft < 0.0f ) // Time is up!
     {
-        [self giveUpGame:@"Time Out!"];
+        [self giveUpGame:@"_timeout_"];
     }
 }
 
@@ -1172,10 +1269,7 @@ PROF_END(cocos2d_layer_visit);
     // TODO : Understand why adjusting terrain should come here.
 
     // if the game is paused, dont' update the game frame. 
-    if (isGamePaused)
-    {    
-        return;
-    }
+    assert (!isGamePaused);
     
 PROF_BEGIN(stage_tick_adjustZoomWithGroundY);
     // TODO : Understaind why the terrain is not adjusted correctly if we adjust zoom when the hero is sleeping.
@@ -1265,19 +1359,26 @@ PROF_END(stage_tick_updateGameObjects);
     
 PROF_BEGIN(stage_tick_update_labels);
     [playUI update:dt];
-    // See if the time isrup.
-    [self checkTimeOut:dt];
-    totalFrameCount++;
     
+    if ([hero awake]) { // start reducing the time left only if the hero is awake.
+        // See if the time is up.
+        [self checkTimeOut:dt];
+        totalFrameCount++;
+    }
+    else {
+        [self setSecondsLeft:(float)sbRecentSecond];
+    }
 
     // Show the map position with 1/100 scale
-    if ( heroX_withoutZoom - prevMapPosition_heroX > 50 )
+    if ( heroX_withoutZoom - prevMapPosition_heroX > 100 )
     {
-        float mapPosition = (terrainMaxX - heroX_withoutZoom) / 100;
-        if (mapPosition < 0.0)
-            mapPosition = 0;
-        prevMapPosition_heroX = heroX_withoutZoom;
-        [playUI setMapPosition:mapPosition];
+        int mapProgress =  (int) (heroX_withoutZoom * 100 / terrainMaxX);
+        if (mapProgress > 100)
+            mapProgress = 100;
+        
+        // BUGBUG : DO OPT
+//        prevMapPosition_heroX = heroX_withoutZoom;
+        [playUI setMapProgress:mapProgress];
     }
 PROF_END(stage_tick_update_labels);
 }
@@ -1377,7 +1478,7 @@ PROF_END(stage_tick_update_labels);
 {
     CCLOG(@"StageScene:dealloc");
     
-
+    [self unschedule: @selector(tick:)];
     
     if (car)
         delete car;
@@ -1412,6 +1513,9 @@ PROF_END(stage_tick_update_labels);
     delete gameObjectContainer;
     gameObjectContainer = NULL;
     
+    // Enable refreshing ADs for the best performance.
+    [[AdManager sharedAdManager] enableRefresh];
+
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }

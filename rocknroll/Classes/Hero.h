@@ -17,6 +17,7 @@ class HeroContactListener;
     
     AbstractCamera * _camera;
 
+    int _scorePerCombo;
 	float _radius;
 	BOOL _awake;
 	BOOL _flying;
@@ -27,9 +28,11 @@ class HeroContactListener;
 	HeroContactListener *_contactListener;
 	int _nPerfectSlides;
     
-    // The particle emitter that emitts particles from 3 combo!
-    CCParticleSystemQuad * _particleEmitter;
-    
+    // The meteor particle emitter that emitts particles from 3 combo!
+    ARCH_OPTIMAL_PARTICLE_SYSTEM * _maxSpeedParticleEmitter;
+    // The dust particle emiiter to show when the Hero is on the ground.
+    ARCH_OPTIMAL_PARTICLE_SYSTEM * _dustParticleEmitter;
+
     // Currently running clip 
     CCAction * _currentAction;
     
@@ -40,7 +43,7 @@ class HeroContactListener;
 
     // Sound Effects
     CDSoundSource * _3comboSound;
-    CDSoundSource * _7comboSound;
+    CDSoundSource * _5comboSound;
     CDSoundSource * _dropSound;
     CDSoundSource * _jumpSound;
     CDSoundSource * _slideFailSound;
@@ -65,6 +68,8 @@ class HeroContactListener;
 
 -(void) changeSpeed:(float)speedGain;
 
+-(void) addSaveChickParticle;
+
 - (void) reset;
 - (void) sleep;
 - (void) wake;
@@ -78,4 +83,7 @@ class HeroContactListener;
 // Health bar reached at 0%. Drop the wings.
 - (void) dropWings;
 - (void) dead;
+
+-(void) addParticleAtHeroPosition:(ARCH_OPTIMAL_PARTICLE_SYSTEM*)emitter;
+
 @end

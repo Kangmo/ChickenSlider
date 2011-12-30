@@ -360,7 +360,7 @@
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
+     inkscape:window-height="712"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -419,7 +419,7 @@
        x="269.93979"
        y="97.991859"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.rocknroll.map02,UnlockingFeathers=2000,Sound=Touch.wav" />
+       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.chickenslider.maps.map02,UnlockingFeathers=10000,Sound=Touch.wav" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3817"

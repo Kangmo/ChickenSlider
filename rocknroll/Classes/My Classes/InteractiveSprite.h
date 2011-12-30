@@ -10,7 +10,8 @@ typedef enum body_touch_action_t
     BTA_SCENE_TRANSITION = 1,
     BTA_PUSH_SCENE = 2,
     BTA_ADD_LAYER = 3, // Give up the current stage, go to the level map scene.
-    BTA_NONE = 4
+    BTA_OPEN_URL = 4,
+    BTA_NONE = 5
 } body_touch_action_t;
 
 typedef enum body_hover_action_t
@@ -82,5 +83,9 @@ typedef enum body_hover_action_t
 -(void) setLocked:(BOOL)locked;
 -(void) setLocked:(BOOL)locked spriteFrameName:(NSString*)spriteFrameName;
 -(BOOL) isLocked;
+
+/** @brief Convert the touch action type in SVG file into body_touch_action_t enumeration 
+ */
++(body_touch_action_t)getTouchAction:(NSString*)actionName;
 
 @end

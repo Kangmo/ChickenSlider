@@ -28,6 +28,7 @@
         int musicVolume = [Util loadMusicVolume];
         int effectVolume = [Util loadEffectVolume];
         int difficulty = [Util loadDifficulty];
+        int touchTutor = [Util loadTouchTutor];
 
         assert(musicVolume>=0 && musicVolume<=10);
         assert(effectVolume>=0 && effectVolume<=10);
@@ -36,6 +37,7 @@
         TxSlideBar * musicVolumeSlide = (TxSlideBar*) widgetContainer_->getWidget("MusicVolumeSlide").get();
         TxSlideBar * effectVolumeSlide = (TxSlideBar*) widgetContainer_->getWidget("EffectVolumeSlide").get();
         TxToggleButton * difficultyToggle = (TxToggleButton*) widgetContainer_->getWidget("Difficulty").get();
+        TxToggleButton * touchTutorToggle = (TxToggleButton*) widgetContainer_->getWidget("TouchTutor").get();
         
         musicVolumeLabel_->setIntValue(musicVolume);
         musicVolumeSlide->setValue((float)musicVolume / MAX_MUSIC_VOLUME );
@@ -44,6 +46,7 @@
         effectVolumeSlide->setValue((float)effectVolume / MAX_MUSIC_VOLUME);
         
         difficultyToggle->setValue(difficulty);
+        touchTutorToggle->setValue(touchTutor);
         
         // If the OptionScene.svg is shown while the user pressed Pause button during the game play,
         // Disable the "Easy" "Hard" mode switch. 
@@ -84,6 +87,12 @@
         TxToggleButton * difficultyToggle = (TxToggleButton*) source;
         int difficulty = difficultyToggle->getValue();
         [Util saveDifficulty:difficulty];
+    }
+    if ( widgetName == "TouchTutor")
+    {
+        TxToggleButton * difficultyToggle = (TxToggleButton*) source;
+        int touchTutor = difficultyToggle->getValue();
+        [Util saveTouchTutor:touchTutor];
     }
     
     AppAnalytics::sharedAnalytics().logEvent( std::string("OptionScene:") + widgetName );

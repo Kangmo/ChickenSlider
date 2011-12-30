@@ -19,11 +19,12 @@ NSString * DeviceInfo::getPlatformVersion() {
     return platform;
 }
 
+/** Collecting UUID is not allowed by Apple except for Advertising.
 NSString * DeviceInfo::getUUID() {
     NSString * uuid = [[UIDevice currentDevice] uniqueIdentifier];
     return uuid;
 }
-
+*/
 
 NSString * DeviceInfo::getPlatform() {
     
@@ -47,6 +48,16 @@ NSString * DeviceInfo::getPlatform() {
     if ([platform isEqualToString:@"x86_64"])       return @"Simulator";
     
     return platform;
+}
+
+/** Is this a low end device? We will reduce graphic/sound processing to get optimal game play experience.
+ */
+BOOL DeviceInfo::isLowEnd() {
+    NSString *platform = DeviceInfo::getPlatformVersion();
+    if ([platform hasPrefix:@"iPod1,"] || [platform hasPrefix:@"iPhone1,"]) {
+        return YES;
+    }
+    return NO;
 }
 
 NSString * DeviceInfo::getOSVersion() 

@@ -113,7 +113,7 @@ namespace StringParser {
         assert (index < pointListStrLen);
         assert (floatValue);
         
-        NSMutableString * floatStr = [[NSMutableString alloc] initWithCapacity:10];
+        NSMutableString * floatStr = [[[NSMutableString alloc] initWithCapacity:10] autorelease];
         unichar ch; 
         do {
             ch = [pointListStr characterAtIndex:index++];

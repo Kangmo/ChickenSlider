@@ -43,12 +43,17 @@ static AdManager * theAdManager = nil;
     //Remove the adView controller
     self.adView.delegate = nil;
     self.adView = nil;
-
+    [offlineAdView release];
+    offlineAdView = nil;
+    
     [super dealloc];
 }
 
 -(void)refresh {
     [self.adView rollOver];
+}
+-(void)setVisible:(BOOL)bVisible {
+    self.adView.hidden = bVisible? NO:YES;
 }
 -(void)enableRefresh {
     [self.adView doNotIgnoreAutoRefreshTimer];
@@ -70,25 +75,27 @@ static AdManager * theAdManager = nil;
 //These are the methods for the AdWhirl Delegate, you have to implement them
 #pragma mark AdWhirlDelegate methods
 -(void) pauseGame {
-    // By default, do nothing.
-    [[StageScene sharedStageScene] pauseGame];
+    [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+    
+    [[CCDirector sharedDirector] pause];
 }
 
 -(void) resumeGame {
-    // By default, do nothing.
-    [[StageScene sharedStageScene] resumeGame];
+    [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+    
+	[[CCDirector sharedDirector] resume];
 }
 
 - (void)adWhirlWillPresentFullScreenModal {
     //It's recommended to invoke whatever you're using as a "Pause Menu" so your
     //game won't keep running while the user is "playing" with the Ad (for example, iAds)
-    [self pauseGame];
+    [(AppDelegate*)[[UIApplication sharedApplication] delegate] pauseApp];
 }
 
 - (void)adWhirlDidDismissFullScreenModal {
     //Once the user closes the Ad he'll want to return to the game and continue where
     //he left it
-    [self resumeGame];
+    [(AppDelegate*)[[UIApplication sharedApplication] delegate] resumeApp];
 }
 
 - (NSString *)adWhirlApplicationKey {
@@ -117,8 +124,8 @@ static AdManager * theAdManager = nil;
     newFrame.size.width = adSize.height;
 
     newFrame.origin.x = (screenSize.height - adSize.height);
-
-    newFrame.origin.y = (screenSize.width - adSize.width)/2;
+    newFrame.origin.y = 0;
+//    newFrame.origin.y = (screenSize.width - adSize.width)/2;
     
     if ( adView.frame.origin.x != newFrame.origin.x ||
         adView.frame.origin.y != newFrame.origin.y ||  
@@ -140,7 +147,9 @@ static AdManager * theAdManager = nil;
     //This is a little trick I'm using... on my game I created a CCMenu with an image to promote
     //my own paid game so this way I can guarantee that there will always be an Ad on-screen
     //even if there's no internet connection... it's up to you if you want to implement this or not.
-    //[self removeChild:adBanner cleanup:YES];
+    [offlineAdView removeFromSuperview];
+    [offlineAdView release];
+    offlineAdView = nil;
 
     //In case your game is in Landscape mode, set the interface orientation to that
     //of your game (actually, UIInterfaceOrientationLandscapeLeft and UIInterfaceOrientationLandscapeRight
@@ -161,9 +170,27 @@ static AdManager * theAdManager = nil;
 -(void)createAD {
     assert( ! self.hasAD );
     self.hasAD = YES;
+    
     //Let's allocate the viewController (it's the same RootViewController as declared
     //in our AppDelegate; will be used for the Ads)
     viewController = [(AppDelegate*)[[UIApplication sharedApplication] delegate] viewController];
+    
+    // Create the offline Ad view
+    {
+        /*
+        offlineAdView = [[OfflineAdView alloc] init];
+        
+        offlineAdView.autoresizingMask = UIViewAutoresizingNone; 
+        offlineAdView.frame = CGRectMake((screenSize.width/2)-(OFFLINE_AD_WIDTH/2),screenSize.height-OFFLINE_AD_HEIGHT,screenSize.width,OFFLINE_AD_HEIGHT);
+      
+        [viewController.view addSubview:offlineAdView];
+        [viewController.view bringSubviewToFront:offlineAdView];
+
+        [offlineAdView setTransform:CGAffineTransformMakeRotation(CC_DEGREES_TO_RADIANS(90))];
+        offlineAdView.frame = CGRectMake(screenSize.width - OFFLINE_AD_WIDTH, 0, OFFLINE_AD_HEIGHT, OFFLINE_AD_WIDTH);
+         */
+    }
+    
     //Assign the AdWhirl Delegate to our adView
     self.adView = [AdWhirlView requestAdWhirlViewWithDelegate:self];
     assert(self.adView);
@@ -184,7 +211,10 @@ static AdManager * theAdManager = nil;
     //for this example, the Ad will be positioned in the bottom+center of the screen
     //(in landscape mode):
     //Same explanation as the one in the method "adjustAdSize" for the Ad's width
+    /*
     self.adView.frame = CGRectMake((screenSize.width/2)-(adSize.width/2),screenSize.height-adSize.height,screenSize.width,adSize.height);
+     */
+    self.adView.frame = CGRectMake(0,screenSize.height-adSize.height,screenSize.width,adSize.height);
     //
     //NOTE:
     //adSize.height = the height of the requested Ad
@@ -232,6 +262,9 @@ static AdManager * theAdManager = nil;
         [adView release];
         //set adView to "nil"
         adView = nil;
+        
+        [offlineAdView release];
+        offlineAdView = nil;
     }
 }
 

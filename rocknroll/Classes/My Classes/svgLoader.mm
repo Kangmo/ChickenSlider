@@ -18,6 +18,7 @@
 #include "Remedy.h"
 #include "TutorialBox.h"
 #include "CppInfra.h"
+#include "DeviceInfo.h"
 
 @implementation svgLoader
 //@synthesize scaleFactor;
@@ -302,6 +303,7 @@
                 {
                     NSString * soundFileName = [[curShape attributeForName:@"soundFile"] stringValue];
                     int score = [[[curShape attributeForName:@"score"] stringValue] intValue];
+                    NSString * particleWhenEatenStr = [[curShape attributeForName:@"particleWhenEaten"] stringValue];
                     NSString * removeWhenEatenStr = [[curShape attributeForName:@"removeWhenEaten"] stringValue];
                     BOOL removeWhenEaten = YES; // By defaul, remove when the item is eaten.
                     if (removeWhenEatenStr) {
@@ -309,7 +311,7 @@
                             removeWhenEaten = NO;
                     }
                     // Don't scale.
-                    refGameObject = REF(GameObject)( new EatenItem(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard, soundFileName, score, removeWhenEaten) );
+                    refGameObject = REF(GameObject)( new EatenItem(orgX, bottomInOpenGL, orgWidth, orgHeight, scoreBoard, soundFileName, score, removeWhenEaten, particleWhenEatenStr) );
                 }
                 
                 if ( [gameObjectClass isEqualToString:@"Feather"] )
@@ -346,6 +348,14 @@
 
                 NSAssert1(refGameObject, @"The game object class name is not supported : %@", gameObjectClass);
                 
+                // Optimization : For low-end devices, don't run animation clips if both clip file and sprite are specified.
+                if (DeviceInfo::isLowEnd() ) {
+                    if (bi.initClipFile && bi.initFrameAnim && bi.spriteName) {
+                        bi.initClipFile  = nil;
+                        bi.initFrameAnim = nil;
+                    }
+                }
+                
                 if ( bi.initClipFile )
                 {
                     CCSprite * sprite;
@@ -359,9 +369,8 @@
                     // Do not add sprite, do not run the default clip yet. 
                     // It will be done in GameObject::activate while running tick() of the StageScene when the object gets to show on screen.
                 }
-
-                if ( bi.spriteName )
-                {
+                else {
+                    assert( bi.spriteName );
                     CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:bi.spriteName];
                     refGameObject->setSprite(sprite);
                 }
@@ -440,22 +449,7 @@
                     NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
                     body_touch_action_t touchAction = BTA_NULL;
                     NSString * actionName = [touchActionDescs valueForKey:@"Action"];
-                    if ( [actionName isEqualToString:@"SceneTransition"] ) // Cocos2d: Replace Scene
-                    {
-                        touchAction = BTA_SCENE_TRANSITION;
-                    }
-                    else if ( [actionName isEqualToString:@"PushScene"] ) // Cocos2d: Push Scene
-                    {
-                        touchAction = BTA_PUSH_SCENE;
-                    }
-                    else if ( [actionName isEqualToString:@"AddLayer"] )
-                    {
-                        touchAction = BTA_ADD_LAYER; // Give up the current stage, move to the map scene where this stage exists.
-                    }
-                    else if ( [actionName isEqualToString:@"None"] )
-                    {
-                        touchAction = BTA_NONE; // Do nothing. But process some optional actions specified "Option" field in the action descs.
-                    }
+                    touchAction = [InteractiveSprite getTouchAction:actionName];
                     
                     assert(hoveringSpriteFile);
                     
@@ -706,6 +700,13 @@
                     assert( thickness );
                     terrain.thickness = thickness;
                 }
+                else {
+                    if (DeviceInfo::isLowEnd() ) {
+                        // Optimization : Set the thickness of the terrain thiner for low end devices to get the highest FPS.
+                        terrain.thickness = TERRAIN_THICKNESS_LOWEND;
+                    }
+                    
+                }
                 [terrains addObject:terrain];
             }
             
@@ -880,6 +881,7 @@
 	{
         assert(0);
 	}
+    
 	if([rootElement attributeForName:@"height"])
 	{
         svgCanvasHeight = [[[rootElement attributeForName:@"height"] stringValue] floatValue];

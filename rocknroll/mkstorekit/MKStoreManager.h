@@ -65,7 +65,7 @@
 // use this method to invoke a purchase
 - (void) buyFeature:(NSString*) featureId
          onComplete:(void (^)(NSString*)) completionBlock         
-        onCancelled:(void (^)(void)) cancelBlock;
+         onCanceled:(void (^)(void)) cancelBlock;
 
 // use this method to restore a purchase
 - (void) restorePreviousTransactionsOnComplete:(void (^)(void)) completionBlock
@@ -82,4 +82,10 @@
 
 -(void) restoreCompleted;
 -(void) restoreFailedWithError:(NSError*) error;
+
+- (void) transactionFailed: (SKPaymentTransaction *)transaction;
+
++(void) logFailureWithError:(NSError*) error title:(NSString*)title ;
++(void) logFailureWithPID:(NSString*) productId title:(NSString*)title ;
+
 @end

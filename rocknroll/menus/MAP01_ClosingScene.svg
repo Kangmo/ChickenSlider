@@ -400,7 +400,7 @@
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
+     inkscape:window-height="712"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -425,12 +425,12 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/MainMenuScene.png"
        xlink:href="MainMenuScene.png"
-       width="480"
-       height="320"
-       id="image3363"
-       x="0.71428353"
+       style="display:inline"
        y="1.0899134e-06"
-       style="display:inline" />
+       x="0.71428353"
+       id="image3363"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -480,6 +480,6 @@
        x="288.76617"
        y="255.42609"
        objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.rocknroll.map02,UnlockingFeathers=2000,Sound=Touch.wav" />
+       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.chickenslider.maps.map02,UnlockingFeathers=10000,Sound=Touch.wav" />
   </g>
 </svg>

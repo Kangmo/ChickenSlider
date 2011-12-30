@@ -8,15 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum IAPResponse 
-{
-    IAPR_PURCHASED=1,
-    IAPR_CANCELED
-}IAPResponse;
-
 @protocol IAPDelegate <NSObject>
 
--(void)onIAPFinish:(IAPResponse)response product: (NSString *)product;
+-(void)onFinishIAP:(NSString *)product;
+-(void)onCancelIAP:(NSString *)product;
 
 @end
 
@@ -30,7 +25,7 @@ typedef enum IAPResponse
 
 -(void) tryPurchase:(NSString*)featureName;
 
-+(BOOL) isFeaturePurchased:(NSString*)featureName;
+-(BOOL) isFeaturePurchased:(NSString*)featureName;
 
 
 @end

@@ -7,10 +7,11 @@
 #import "ClipFactory.h"
 #include "GameObject.h"
 #import "BodyInfo.h"
-#import "MKStoreManager.h"
 #import "PersistentGameState.h"
 #import "TouchXML.h"
 #import "AppAnalytics.h"
+#import "IAP.h"
+#import "AppDelegate.h"
 
 @implementation Util
 
@@ -49,71 +50,7 @@
 }
 
 
-+(CCParticleSystemQuad*)createParticleEmitter:(NSString*)particleImage count:(int)particleCount duration:(float)duration{
-    
-    // Particle emitter.
-    CCParticleSystemQuad * emitter;
-    //        [emitter resetSystem];
-    
-    //	ParticleSystem *emitter = [RockExplosion node];
-    emitter = [[[CCParticleSystemQuad alloc] initWithTotalParticles:particleCount] autorelease];
-    emitter.texture = [[CCTextureCache sharedTextureCache] addImage: particleImage];
-    
-    // duration
-    //	emitter.duration = -1; //continuous effect
-    emitter.duration = duration;
-    
-    // gravity
-    emitter.gravity = CGPointZero;
-    
-    // angle
-    emitter.angle = 90;
-    emitter.angleVar = 360;
-    
-    // speed of particles
-    emitter.speed = 160;
-    emitter.speedVar = 20;
-    
-    // radial
-    emitter.radialAccel = -120;
-    emitter.radialAccelVar = 0;
-    
-    // tagential
-    emitter.tangentialAccel = 30;
-    emitter.tangentialAccelVar = 0;
-    
-    // life of particles
-    emitter.life = 1;
-    emitter.lifeVar = 1;
-    
-    // spin of particles
-    emitter.startSpin = 0;
-    emitter.startSpinVar = 0;
-    emitter.endSpin = 0;
-    emitter.endSpinVar = 0;
-    
-    // color of particles
-    ccColor4F startColor = {0.5f, 0.5f, 0.5f, 1.0f};
-    emitter.startColor = startColor;
-    ccColor4F startColorVar = {0.5f, 0.5f, 0.5f, 1.0f};
-    emitter.startColorVar = startColorVar;
-    ccColor4F endColor = {0.1f, 0.1f, 0.1f, 0.2f};
-    emitter.endColor = endColor;
-    ccColor4F endColorVar = {0.1f, 0.1f, 0.1f, 0.2f};
-    emitter.endColorVar = endColorVar;
-    
-    // size, in pixels
-    emitter.startSize = 20.0f;
-    emitter.startSizeVar = 10.0f;
-    emitter.endSize = kParticleStartSizeEqualToEndSize;
-    // emits per second
-    emitter.emissionRate = emitter.totalParticles/emitter.life;
-    // additive
-    emitter.blendAdditive = YES;
-    emitter.position = ccp(0,0); // setting emitter position
-    
-    return emitter;
-}
+
 
 /** @brief Did the user purchased any product? 
  */
@@ -121,7 +58,7 @@
 #if defined(DISABLE_ADS)    
     return YES; // BUGBUG : Optimization1 : Don't show AD.
 #else
-    return [MKStoreManager isFeaturePurchased:@"com.thankyousoft.rocknroll.map02"];
+    return [[IAP sharedIAP] isFeaturePurchased:@"com.thankyousoft.chickenslider.maps.map02"];
 #endif
 }
 
@@ -134,8 +71,10 @@
     return LANDSCAPE_AD_HEIGHT;
 }
 
+
 /** @brief Testing purpose only. Remove the key chain data about the purchase history. 
  */
+/*
 +(void) removeIapData
 {
 #if defined(NDEBUG)
@@ -146,7 +85,7 @@
     [[MKStoreManager sharedManager] removeAllKeychainData];
 #endif
 }
-
+*/
 /** @brief Return the center of the node
  */
 +(CGPoint) getCenter:(CCNode*)node {
@@ -210,6 +149,17 @@
     [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"Difficulty" value:difficulty];
 }
 
++(int) loadTouchTutor {
+    int touchTutor;
+    // By default, the touch tutor is turned on(=1).
+    touchTutor = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"TouchTutor" default:1];
+    return touchTutor;
+}
+
++(void) saveTouchTutor:(int)touchTutor {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"TouchTutor" value:touchTutor];
+}
+
 +(NSString*) levelStateName:(NSString*)stateName mapName:(NSString*)mapName level:(int)level {
     return [NSString stringWithFormat:@"%@_%@_%02d",stateName,mapName,level];
 }
@@ -267,8 +217,11 @@
 
 
 +(CCScene*) defaultSceneTransition:(CCScene*)newScene {
+    return newScene;
+//    return newScene;
 //    return [CCTransitionSlideInR transitionWithDuration:1.0 scene:newScene];
-    return  [CCTransitionTurnOffTiles transitionWithDuration:0.3 scene:newScene];
+//    return [CCTransitionSlideInB transitionWithDuration:1.0 scene:newScene];
+//    return  [CCTransitionTurnOffTiles transitionWithDuration:0.3 scene:newScene];
 }
 
 +(std::string)toStdString:(NSString*)nsString {
@@ -341,6 +294,26 @@
     [CDAudioManager sharedManager].backgroundMusic.numberOfLoops = 1000;
 }
 
++ (void) showAlertWithTitle:(NSString*)title message:(NSString*) message {
+#if TARGET_OS_IPHONE
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:nil 
+//                                          cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];             
+#elif TARGET_OS_MAC
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:NSLocalizedString(@"Dismiss", @"")];
+    
+    [alert setMessageText:title];
+    [alert setInformativeText:message];             
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    
+    [alert runModal];
+#endif    
+}
 
 @end
 
@@ -386,6 +359,18 @@ namespace Helper
         *oAction = action;
     }
 
+    /** @brief Apply animation clip to the given sprite.
+     */
+    void runAction(CCSprite * sprite, CCAction* action)
+    {
+        assert(sprite);
+        
+        [sprite stopAllActions];
+        if (action) {
+            [sprite runAction:action];
+        }
+    }
+
     /** @brief Apply animation clip to the sprite attached to the given Box2D body.
      *         If action is NULL, stop the currently running action.
      */
@@ -399,12 +384,8 @@ namespace Helper
         {
             
             CCSprite*bodySprite = (CCSprite*)bi.data;
-            [bodySprite stopAllActions];
             
-            if (action)
-            {
-                [bodySprite runAction:action];
-            }
+            runAction(bodySprite, action);
         }
     }
 
@@ -412,25 +393,11 @@ namespace Helper
      */
     void runAction(REF(GameObject) refGameObject, CCAction* action) 
     {
-        assert(action);
-        
         CCSprite * sprite = refGameObject->getSprite();
-        assert(sprite);
         
-        [sprite stopAllActions];
-        [sprite runAction:action];
+        runAction(sprite, action);
     }
 
-    /** @brief Apply animation clip to the given sprite.
-     */
-    void runAction(CCSprite * sprite, CCAction* action)
-    {
-        assert(sprite);
-        assert(action);
-        
-        [sprite stopAllActions];
-        [sprite runAction:action];
-    }
     
     /** @brief Change the sprite frame with the one that has the given name.
      */

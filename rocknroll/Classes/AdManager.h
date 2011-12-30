@@ -10,11 +10,13 @@
 
 #import "AdWhirlDelegateProtocol.h"
 #import "RootViewController.h"
-
+#import "OfflineAdView.h"
 @interface AdManager : NSObject<AdWhirlDelegate>
 {
     //Here is the important code we'll use
     AdWhirlView *adView;
+    //The offlineAdView to show when the device is not connected to a network.
+    OfflineAdView *offlineAdView;
     //This is a trick, AdMob uses a viewController to display its Ads, trust me, you'll need this
     RootViewController *viewController;
 
@@ -37,5 +39,7 @@
 -(void)enableRefresh;
 -(void)disableRefresh;
 -(BOOL)isRefreshEnabled;
+-(void)setVisible:(BOOL)bVisible;
+
 
 @end

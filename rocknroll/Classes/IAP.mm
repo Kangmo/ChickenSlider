@@ -9,6 +9,7 @@
 #import "IAP.h"
 #import "MKStoreManager.h"
 #import "AppAnalytics.h"
+#import "GameConfig.h"
 
 @implementation IAP
 @synthesize delegate;
@@ -34,6 +35,13 @@
     
     if (! theIAP)
     {
+        [MKStoreManager sharedManager];
+// We should never run this in release mode
+#if defined(DEBUG)
+#  if defined(RESET_IAP_DATA)
+        [[MKStoreManager sharedManager] removeAllKeychainData];
+#  endif
+#endif
         // BUGBUG : leak
         theIAP = [[IAP alloc] init];
     }
@@ -70,14 +78,16 @@
                                     onComplete:^(NSString* purchasedFeature)
      {
          NSLog(@"Purchased: %@", purchasedFeature);
-         [self.delegate onIAPFinish:IAPR_PURCHASED product:featureName];
+         [self.delegate onFinishIAP:featureName];
          
          AppAnalytics::sharedAnalytics().logEvent( "IAP:RECEIVED_PURCHASED:"+featureNameStdStr );
      }
-         onCancelled:^
+         onCanceled:^
      {
          NSLog(@"Canceled purchasing the product: %@", featureName);
-         [self.delegate onIAPFinish:IAPR_CANCELED product:featureName];
+         [self.delegate onCancelIAP:featureName];
+         
+         [Util showAlertWithTitle:@"Purchase Canceled" message:@"Thank you! We will continue to make this game better for your next purchase!"];
          // User cancels the transaction, you can log this using any analytics software like Flurry.
          
          AppAnalytics::sharedAnalytics().logEvent( "IAP:RECEIVED_CANCELED:"+featureNameStdStr );
@@ -85,7 +95,7 @@
 
 }
 
-+(BOOL) isFeaturePurchased:(NSString*)featureName
+-(BOOL) isFeaturePurchased:(NSString*)featureName
 {
     BOOL purchased = [MKStoreManager isFeaturePurchased:featureName];
     return purchased;

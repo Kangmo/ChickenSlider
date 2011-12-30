@@ -44,11 +44,11 @@
      id="base"
      showgrid="true"
      inkscape:zoom="3.2138003"
-     inkscape:cx="-77.549104"
+     inkscape:cx="-83.476017"
      inkscape:cy="302.68824"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:current-layer="Fruit06"
+     inkscape:current-layer="FinishBar"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -259,7 +259,8 @@
        width="32"
        id="rect6831"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
-       gameObjectClass="Feather" />
+       gameObjectClass="Feather"
+       sprite="feather00.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -370,7 +371,7 @@
      inkscape:groupmode="layer"
      id="Fruit06"
      inkscape:label="Fruit06"
-     style="display:inline">
+     style="display:none">
     <rect
        score="10"
        phy_restitution="0"
@@ -389,9 +390,51 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="Fruit07"
+     inkscape:label="Fruit07"
+     style="display:none">
+    <rect
+       sprite="fruit07.png"
+       soundFile="key.wav"
+       gameObjectClass="EatenItem"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       id="rect3420"
+       width="45"
+       height="45"
+       x="0"
+       y="0"
+       isCircle=""
+       phy_density="0.1"
+       phy_friction="0"
+       phy_restitution="0"
+       score="10" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="Fruit08"
+     inkscape:label="Fruit08"
+     style="display:none">
+    <rect
+       score="10"
+       phy_restitution="0"
+       phy_friction="0"
+       phy_density="0.1"
+       isCircle=""
+       y="0"
+       x="0"
+       height="45"
+       width="45"
+       id="rect3121"
+       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
+       gameObjectClass="EatenItem"
+       soundFile="key.wav"
+       sprite="fruit08.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="FinishBar"
      inkscape:label="FinishBar"
-     style="display:none">
+     style="display:inline">
     <rect
        gameObjectClass="EatenItem"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
@@ -408,7 +451,8 @@
        initFrameAnim="finishbar"
        score="0"
        removeWhenEaten="0"
-       soundFile="key.wav" />
+       soundFile="key.wav"
+       particleWhenEaten="RotatingStars" />
   </g>
   <g
      inkscape:groupmode="layer"

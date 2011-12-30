@@ -161,7 +161,40 @@
 		rightBeforeHeroIndex++;
 	}
 }
-
+/** @brief Check if the X position of the hero is Up Hill or Down Hill. 
+ This is for checking to show the touch tutor on the screen.
+ Add lookAheadIndex to see further when the Hero is flying high.
+ If the point to check is out of terrain border index, return NO so that no touch tutor is shown.
+ 
+ */
+- (BOOL) isDownHill:(int)lookAheadIndex {
+    int rightAfterHeroIndex = rightBeforeHeroIndex;
+    int indexToCheck = rightAfterHeroIndex+ lookAheadIndex;
+    
+    if ( indexToCheck + 1 < nBorderVertices ) {
+        // The point to check
+        int y0 = borderVertices[indexToCheck].y;
+        // The next point of the point to check
+        int y1 = borderVertices[indexToCheck+1].y;
+        
+        if ( y0 > y1 )
+            return YES;
+        else
+            return NO;
+    }
+    
+    return NO;
+}
+/** @brief Return YES : The hero is above the terrain. set the Y position of the terrain where Hero is to *y 
+ Return NO : The hero is below the terrain. 
+ */
+-(BOOL) terrainYatHero:(float*)y {
+    if (rightBeforeHeroIndex < nBorderVertices) {
+        *y = borderVertices[rightBeforeHeroIndex].y;
+        return YES;
+    }
+    return NO;
+}
 
 /** @brief Calculate the starting index to the borderVertices array to draw on screen based on _offsetX, set it to startBorderIndex.
  */
@@ -356,6 +389,7 @@ PROF_END(terrain_draw);
     }
     return minBorderY;
 }
+
 
 - (void) setHeroX:(float)offsetX position:(CGPoint)position windowLeftX:(int)windowLeftX windowRightX:(int)windowRightX{
 	static BOOL firstTime = YES;

@@ -9,7 +9,7 @@
 #import "IntermediateScene.h"
 #import "AppDelegate.h"
 #include "AppAnalytics.h"
-
+#include "ParticleManager.h"
 @implementation InteractiveSprite
 
 @synthesize bottomLeftCorner = bottomLeftCorner_;
@@ -18,6 +18,33 @@
 @synthesize layer = layer_;
 @synthesize touchActionDescs = touchActionDescs_;
 
+/** @brief Convert the touch action type in SVG file into body_touch_action_t enumeration 
+ */
++(body_touch_action_t)getTouchAction:(NSString*)actionName {
+    body_touch_action_t touchAction = BTA_NULL;
+    
+    if ( [actionName isEqualToString:@"SceneTransition"] ) // Cocos2d: Replace Scene
+    {
+        touchAction = BTA_SCENE_TRANSITION;
+    }
+    else if ( [actionName isEqualToString:@"PushScene"] ) // Cocos2d: Push Scene
+    {
+        touchAction = BTA_PUSH_SCENE;
+    }
+    else if ( [actionName isEqualToString:@"AddLayer"] )
+    {
+        touchAction = BTA_ADD_LAYER; // Give up the current stage, move to the map scene where this stage exists.
+    }
+    else if ( [actionName isEqualToString:@"OpenURL"] )
+    {
+        touchAction = BTA_OPEN_URL; // Open URL. This is for opening Facebook, Twitter, G+.
+    }
+    else if ( [actionName isEqualToString:@"None"] )
+    {
+        touchAction = BTA_NONE; // Do nothing. But process some optional actions specified "Option" field in the action descs.
+    }
+    return touchAction;
+}
 
 /** @brief Override init to receive touch events. 
  */
@@ -140,18 +167,17 @@
     [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
 }
 
-/** @brief called when IAP is done or canceled 
+/** @brief called when IAP is done
  */
--(void)onIAPFinish:(IAPResponse) response product: (NSString *)product
+-(void)onFinishIAP:(NSString *)product
 {
     // Common stuff to process
     NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
     assert(unlockingProductName);
     
-    if (response == IAPR_PURCHASED)
-    {
+    {    
         // Make sure that the feature is purchased.
-        if ( [IAP isFeaturePurchased:unlockingProductName ] )
+        if ( [[IAP sharedIAP] isFeaturePurchased:unlockingProductName ] )
         {
             AppAnalytics::sharedAnalytics().logEvent( "IAP:CONFIRM_PURCHASED:"+[Util toStdString:unlockingProductName] );
             [self setLocked:NO];
@@ -165,6 +191,13 @@
         }
     }
     
+    [self stopProgress];
+}
+
+/** @brief called when IAP is canceled 
+ */
+-(void)onCancelIAP:(NSString *)product
+{
     [self stopProgress];
 }
 
@@ -262,6 +295,14 @@
         case BTA_NONE : 
         {
             // Do Nothing.
+        }
+        break;
+            
+        case BTA_OPEN_URL : 
+        {
+            NSString * URLString = [touchActionDescs_ valueForKey:@"URL"];
+            AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [appDelegate openWebView:URLString];
         }
         break;
             
@@ -365,7 +406,7 @@
         case BHA_SHOW_PARTICLE:
         {
             // Particle emitter. Emit partcles until the hovering is done. (3600 seconds means 1 hour)
-            particleEmitter_ = [Util createParticleEmitter:@"stars.png" count:30 duration:3600];
+            particleEmitter_ = ParticleManager::createParticleEmitter(@"stars.png", 30, 3600);
             
             [self addChild:particleEmitter_ z:10]; // adding the emitter
             
@@ -478,7 +519,7 @@
     
     if ( unlockingProductName) {
         // The feature is not purchased. Lock the feature.
-        if ( ! [IAP isFeaturePurchased:unlockingProductName] )
+        if ( ! [[IAP sharedIAP] isFeaturePurchased:unlockingProductName] )
         {
             
             [self setLocked:YES];

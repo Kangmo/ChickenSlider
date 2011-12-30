@@ -32,7 +32,7 @@
 #import "MKSKProduct.h"
 
 static void (^onReviewRequestVerificationSucceeded)();
-static void (^onReviewRequestVerificationFailed)();
+static void (^onReviewRequestVerificationFailed)(NSError * error);
 static NSURLConnection *sConnection;
 static NSMutableData *sDataFromConnection;
 
@@ -63,6 +63,7 @@ static NSMutableData *sDataFromConnection;
             [defaults setObject:uniqueID forKey:@"uniqueID"];
         }
     }
+    return uniqueID;
 #elif TARGET_OS_MAC 
     
     kern_return_t			 kernResult;
@@ -74,19 +75,19 @@ static NSMutableData *sDataFromConnection;
     
 	kernResult = IOMasterPort(MACH_PORT_NULL, &master_port);
 	if (kernResult != KERN_SUCCESS) {
-		printf("IOMasterPort returned %d\n", kernResult);
+		NSLog("IOMasterPort returned %d\n", kernResult);
 		return nil;
 	}
     
 	matchingDict = IOBSDNameMatching(master_port, 0, "en0");
 	if(!matchingDict) {
-		printf("IOBSDNameMatching returned empty dictionary\n");
+		NSLog("IOBSDNameMatching returned empty dictionary\n");
 		return nil;
 	}
     
 	kernResult = IOServiceGetMatchingServices(master_port, matchingDict, &iterator);
 	if (kernResult != KERN_SUCCESS) {
-		printf("IOServiceGetMatchingServices returned %d\n", kernResult);
+		NSLog("IOServiceGetMatchingServices returned %d\n", kernResult);
 		return nil;
 	}
     
@@ -103,7 +104,7 @@ static NSMutableData *sDataFromConnection;
 			IOObjectRelease(parentService);
 		}
 		else {
-			printf("IORegistryEntryGetParentEntry returned %d\n", kernResult);
+			NSLog("IORegistryEntryGetParentEntry returned %d\n", kernResult);
 		}
         
 		IOObjectRelease(service);
@@ -134,6 +135,7 @@ static NSMutableData *sDataFromConnection;
 {
     if(REVIEW_ALLOWED)
     {
+        NSLog(@"REVIEW_ALLOWED is Turned On");
         onReviewRequestVerificationSucceeded = [completionBlock copy];
         onReviewRequestVerificationFailed = [errorBlock copy];
 

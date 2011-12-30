@@ -9,7 +9,7 @@ public:
 	Hero *_hero; // Weak Reference. We don't retain count here, because Hero owns HeroContactListener by retaining it.
 	
 	HeroContactListener(Hero* hero);
-	~HeroContactListener();
+	virtual ~HeroContactListener();
 	
 	void BeginContact(b2Contact* contact);
 	void EndContact(b2Contact* contact);

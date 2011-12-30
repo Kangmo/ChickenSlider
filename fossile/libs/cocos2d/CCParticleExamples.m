@@ -454,7 +454,7 @@
 		self.emitterMode = kCCParticleModeGravity;
 
 		// Gravity Mode: gravity
-		self.gravity = ccp(-200,200);
+		self.gravity = ccp(-240,0);
 
 		// Gravity Mode: speed of particles
 		self.speed = 15;
@@ -606,7 +606,7 @@
 @implementation CCParticleExplosion
 -(id) init
 {
-	return [self initWithTotalParticles:700];
+	return [self initWithTotalParticles:100];
 }
 
 -(id) initWithTotalParticles:(NSUInteger)p
@@ -622,7 +622,7 @@
 		self.gravity = ccp(0,0);
 		
 		// Gravity Mode: speed of particles
-		self.speed = 70;
+		self.speed = 200;
 		self.speedVar = 40;
 		
 		// Gravity Mode: radial
@@ -643,8 +643,8 @@
 		posVar = CGPointZero;
 		
 		// life of particles
-		life = 5.0f;
-		lifeVar = 2;
+		life = 0.5f;
+		lifeVar = 0.3;
 		
 		// size, in pixels
 		startSize = 15.0f;
@@ -655,9 +655,9 @@
 		emissionRate = totalParticles/duration;
 		
 		// color of particles
-		startColor.r = 0.7f;
-		startColor.g = 0.1f;
-		startColor.b = 0.2f;
+		startColor.r = 0.9f;
+		startColor.g = 0.9f;
+		startColor.b = 0.0f;
 		startColor.a = 1.0f;
 		startColorVar.r = 0.5f;
 		startColorVar.g = 0.5f;
@@ -666,7 +666,7 @@
 		endColor.r = 0.5f;
 		endColor.g = 0.5f;
 		endColor.b = 0.5f;
-		endColor.a = 0.0f;
+		endColor.a = 0.7f;
 		endColorVar.r = 0.5f;
 		endColorVar.g = 0.5f;
 		endColorVar.b = 0.5f;

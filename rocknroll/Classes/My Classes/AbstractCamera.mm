@@ -211,7 +211,7 @@
 	}
 }
 
--(void) updateSpriteFromGameObject:(REF(GameObject)) gameObject
+-(void) updateSpriteFromGameObject:(GameObject*) gameObject
 {
     CCSprite * actor = gameObject->getSprite();
     

@@ -10,7 +10,7 @@
 #import "../../fossile/SneakyInput/SneakyExtensions.h"
 //#import "../../fossile/AdWhirl/internal/UIColor+AdWhirlConfig.h"
 //#import "../../fossile/AdWhirl/internal/AdWhirlAdNetworkAdapter+Helpers.h"
-#import "../../fossile/MKStoreKit/Externals/NSData+Base64.h"
+//#import "../../fossile/MKStoreKit/Externals/NSData+Base64.h"
 
 
 @interface CategoryDummy : NSObject {

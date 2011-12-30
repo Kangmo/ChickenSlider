@@ -10,10 +10,6 @@
 
 #define kHillSegmentWidth 15
 
-#define TERRAIN_TEXTURE_SIZE (512)
-//#define TERRAIN_TEXTURE_SIZE (256)
-
-
 @interface Terrain : CCNode {
     // Objective-C++ can't deallocate C++ instances such as shared_ptr. So we define it as a pointer.
     REF(PointVector) * borderPoints;
@@ -73,5 +69,9 @@
 - (void) prepareRendering:(CCSprite*)groundSprite;
 
 + (CCSprite*) groundSprite:(NSString*) textureFile;
+
+- (BOOL) isDownHill:(int)lookAheadIndex ;
+
+- (BOOL) terrainYatHero:(float*)y ;
 
 @end

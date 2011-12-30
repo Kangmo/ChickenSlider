@@ -19,12 +19,13 @@
 class TxToggleButton : public TxWidget
 {
 protected:
+    ActionRelayer * relayer_;
     CCMenuItemToggle * toggleButton_;
     CCMenu * menu_;
 public :
     TxToggleButton(TxWidgetOwner * parentNode, const TxRect & rect, REF(TxPropSet) propSetRef) : TxWidget(rect, propSetRef)    
     {
-        ActionRelayer * relayer = [ActionRelayer actionRelayerWithTarget:parentNode source:this];
+        relayer_ = [[ActionRelayer actionRelayerWithTarget:parentNode source:this] retain];
         
         REF(StringVector) imageStringVector = getPropArray("Images");
 
@@ -37,13 +38,13 @@ public :
                 NSString * imageNSString = [Util toNSString:imageString];
                 CCSprite * normalSprite = [CCSprite spriteWithSpriteFrameName:imageNSString];
                 CCSprite * selectedsprite = [CCSprite spriteWithSpriteFrameName:imageNSString];
-                CCMenuItem * toggleItem = [[CCMenuItemSprite itemFromNormalSprite:normalSprite
+                CCMenuItem * toggleItem = [CCMenuItemSprite itemFromNormalSprite:normalSprite
                                                                    selectedSprite:selectedsprite
                                                                            target:nil
-                                                                         selector:nil] retain];
+                                                                         selector:nil];
                 if (imageCount==0)
                 {
-                    toggleButton_ = [[CCMenuItemToggle itemWithTarget:relayer
+                    toggleButton_ = [[CCMenuItemToggle itemWithTarget:relayer_
                                                              selector:@selector(relayAction:)
                                                                 items:toggleItem, nil] retain];        
                 }
@@ -88,6 +89,10 @@ public :
         assert(menu_);
         [menu_ release];
         menu_ = NULL;
+        
+        assert(relayer_);
+        [relayer_ release];
+        relayer_ = NULL;
     }
 
     

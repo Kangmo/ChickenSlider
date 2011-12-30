@@ -44,15 +44,27 @@
         score_ = (TxIntegerLabel*) widgetContainer_->getWidget("Score").get();
         highScore_ = (TxLabel*) widgetContainer_->getWidget("HighScore").get();
         mapPosition_ = (TxLabel*) widgetContainer_->getWidget("MapPosition").get();
+        stageClearClip_ = (TxAnimationClip*) widgetContainer_->getWidget("StageClear").get();
+        stageTimeoutClip_ = (TxAnimationClip*) widgetContainer_->getWidget("StageTimeout").get();
+        touchTutorClip_ = (TxAnimationClip*) widgetContainer_->getWidget("TouchTutor").get();
+
+        // By default we don't run the clip , we don't show the clip for StageClear and StageTimeout
+        stageClearClip_->setVisible(NO);
+        stageClearClip_->setEnable(NO);
+        stageTimeoutClip_->setVisible(NO);
+        stageTimeoutClip_->setEnable(NO);
+        touchTutorClip_->setVisible(NO);
+        touchTutorClip_->setEnable(NO);
         
         totalSeconds_ = 0;
         nHighScore_ = 0;
         nScore_ = 0;
-        prevX=0;
+        prevMapProgress = -1;
 
     }
     return self;
 }
+
 
 -(void)dealloc {
     [super dealloc];
@@ -76,6 +88,22 @@
     chickCount_->getWidgetImpl()->update();
     speed_->getWidgetImpl()->update();
     score_->getWidgetImpl()->update();
+}
+
+
+-(void) startStageClearAnim {
+    stageClearClip_->setVisible(YES);
+    stageClearClip_->setEnable(YES);
+}
+
+-(void) startStageTimeoutAnim {
+    stageTimeoutClip_->setVisible(YES);
+    stageTimeoutClip_->setEnable(YES);
+}
+
+-(void) showTouchTutor:(BOOL)bShow {
+    touchTutorClip_->setVisible(bShow);
+    touchTutorClip_->setEnable(bShow);
 }
 
 -(void) setSpeedRatio:(float) speedRatio
@@ -135,14 +163,14 @@
 
 /** @brief Set the X position of the map. This is for designing levels. 
  */
--(void) setMapPosition:(float)mapPositionX
+-(void) setMapProgress:(int)mapProgress
 {
-    int nowX = (int)mapPositionX;
-    if ( nowX != prevX )
+
+    if ( mapProgress != prevMapProgress )
     {
-        NSString *positionString = [NSString stringWithFormat:@"%d",nowX];
+        NSString *positionString = [NSString stringWithFormat:@"%d%%",mapProgress];
         [mapPosition_->getWidgetImpl() setString:positionString];
-        prevX = nowX;
+        prevMapProgress = mapProgress;
     }
 }
 

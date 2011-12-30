@@ -9,7 +9,9 @@
 #import "ClearScene.h"
 #import "LevelMapScene.h"
 #include "AppAnalytics.h"
+
 @implementation ClearScene
+
 -(BOOL) checkHighestScore:(int)score
 {
     // No score board for now.
@@ -66,15 +68,10 @@
         score_ = (TxIntegerLabel*) widgetContainer_->getWidget("Score").get();
         nextStageButton_ = (TxImageArray*) widgetContainer_->getWidget("NextStageButton").get();
         
-        // Convert time left(seconds) to score only in the Hard Mode.
-        if ( [Util loadDifficulty] ) // Difficulty == 1 means Hard
-        {
-            // Increase score
-            score += ((int)timeLeft)*SCORE_PER_SECOND_FOR_HARD_MODE;
-        }
-        
         starPoints_->setValue(stars);
-        [Util saveStarCount:(NSString*)m level:(int)l starCount:stars];
+        if ( [Util loadStarCount:m level:l] < stars ) { // Save the new star count only if the user has got more stars than the saved one.
+            [Util saveStarCount:(NSString*)m level:(int)l starCount:stars];
+        }
         
         int highScore = [Util loadHighScore:m level:l];
         
@@ -99,14 +96,11 @@
         [time_->getWidgetImpl() setString:timeSpentString];
         score_->getWidgetImpl()->setTargetCount(score);
 
-        [self schedule: @selector(tick:)];
-
         // ClearScene receives the action message.
         self.actionListener = self;
         
-        if ( [mapName_ isEqualToString:@"MAP02"] && lastStage ) {
+        if ( lastStage ) {
             // Hide next stage button.
-            // For "MAP01", don't hide the next stage button because it will initiate IAP.
             nextStageButton_->setValue(-1);
         }
         
@@ -133,6 +127,13 @@
     }
     
     return self;
+}
+
+-(void) onEnterTransitionDidFinish {
+    // Schedule tick to gradually increase score.
+    [self schedule: @selector(tick:)];
+    
+    [super onEnterTransitionDidFinish];
 }
 
 +(id)nodeWithMap:(NSString*)mapName 
@@ -201,11 +202,9 @@
     if ( [message isEqualToString:@"NextStage"] )
     {
         if (lastStage_) {
-            if ( [mapName_ isEqualToString:@"MAP01"] ) {
-                // TODO : Show IAP.
-            }
+            // Do nothing.
         } else {
-            // Unlock the next level if it exists
+            // Unlock the next level if it exists.
             int highestUnlockedLevel = [Util loadHighestUnlockedLevel:mapName_];
             int newLevel = level_ + 1;
             if (level_ == highestUnlockedLevel)

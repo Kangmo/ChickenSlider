@@ -15,12 +15,10 @@
 
 +(NSString*) retrieveResourceFile:(NSString*)fileName fromWeb:(NSString*)urlPrefix;
 
-+(CCParticleSystemQuad*)createParticleEmitter:(NSString*)particleImage count:(int)particleCount duration:(float)duration;
-
 +(BOOL) didPurchaseAny;
 +(int) getAdHeight;
 
-+(void) removeIapData;
+//+(void) removeIapData;
 
 +(CGPoint) getCenter:(CCNode*)node;
 
@@ -37,6 +35,8 @@
 +(void) saveEffectVolume:(int)volume;
 +(int) loadDifficulty;
 +(void) saveDifficulty:(int)difficulty;
++(int) loadTouchTutor;
++(void) saveTouchTutor:(int)touchTutor;
 
 +(int) loadHighScore:(NSString*)mapName level:(int)level;
 +(void) saveHighScore:(NSString*)mapName level:(int)level highScore:(int)highScore;
@@ -58,6 +58,9 @@
 +(NSString*) getStringValue:(CXMLElement*)xmlElement name:(NSString*)attrName defaultValue:(NSString*)defaultValue;
 
 +(void) playBGM:(NSString*) musicFileName;
+
++(void) showAlertWithTitle:(NSString*)title message:(NSString*) message;
+
 
 @end
 

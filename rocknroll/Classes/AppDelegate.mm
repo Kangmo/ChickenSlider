@@ -5,7 +5,7 @@
 #import "StageScene.h"
 #import "RootViewController.h"
 #import "PersistentGameState.h"
-#import "MKStoreManager.h"
+
 #import "AdWhirlView.h"
 #import "ClipFactory.h"
 #import "Util.h"
@@ -19,6 +19,7 @@
 
 @synthesize window;
 @synthesize viewController;
+@synthesize webBrowserController;
 
 - (void) removeStartupFlicker
 {
@@ -45,7 +46,9 @@
 static NSUncaughtExceptionHandler * defaultExceptionHandler = nil;
 
 void uncaughtExceptionHandler(NSException *exception) {
-    [FlurryAnalytics logError:@"Uncaught Exception" message:@"App Crash!" exception:exception];
+    NSString * callStack = [NSString stringWithFormat:@"%@", [NSThread callStackSymbols]];
+    
+    [FlurryAnalytics logError:@"Uncaught Exception" message:callStack exception:exception];
     
     assert(defaultExceptionHandler);
     defaultExceptionHandler(exception);
@@ -108,7 +111,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	//[director setDisplayFPS:YES];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -128,17 +131,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[self removeStartupFlicker];
 	
     // Initialize IAP.
-    [MKStoreManager sharedManager];
-    // Restore previous purchasing transaction.
-    // BUGBUG: This makes users to log in;
-    //[[IAP sharedIAP] restoreIAP];
-    
-    //[[MKStoreManager sharedManager] removeAllKeychainData];
-#if defined(DEBUG)
-    // For testing purpose, remove IAP purchase records. 
-    // Comment out if you don't want to clear the history of purchasing products w/ IAP.
-    [Util removeIapData];
-#endif
+    [IAP sharedIAP];
 
     // Set volumes
     int musicVolume = [Util loadMusicVolume];
@@ -155,6 +148,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     {
         adManager = [[AdManager alloc] init];
         [adManager createAD];
+        // Enable refreshing ADs for the best performance.
+        [[AdManager sharedAdManager] enableRefresh];
     }
     [self installExceptionHandler];
     
@@ -172,15 +167,39 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Run the main menu Scene
 	[[CCDirector sharedDirector] runWithScene: theFirstScene];
 
+    appDelegateCalledPause = NO;
+    webBrowserController = nil;
 }
 
+-(void) pauseApp {
+    [[SimpleAudioEngine sharedEngine] pauseBackgroundMusic];
+    
+    // If the director is already paused, stay paused.
+    if (! [[CCDirector sharedDirector] isPaused] ) {
+        [[CCDirector sharedDirector] pause];
+        appDelegateCalledPause = YES;
+    }
+    else
+    {
+        appDelegateCalledPause = NO;
+    }
+}
 
+-(void) resumeApp {
+    [[SimpleAudioEngine sharedEngine] resumeBackgroundMusic];
+    
+    // resume the director only if the app delegate paused it.
+    // Ex> The user pressed pause button in the game play screen. We should not resume the director in this case.
+    if (appDelegateCalledPause) { 
+        [[CCDirector sharedDirector] resume];
+    }
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] pause];
+    [self pauseApp];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] resume];
+    [self resumeApp];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -222,6 +241,32 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
 }
+
+-(void)openWebView:(NSString*)URLString {
+    if (self.webBrowserController == nil) {
+        AdWhirlWebBrowserController *ctrlr = [[AdWhirlWebBrowserController alloc] init];
+        self.webBrowserController = ctrlr;
+        [ctrlr release];
+    }
+    webBrowserController.delegate = self;
+    [webBrowserController presentWithController:self.viewController
+                                     transition:AWCustomAdWebViewAnimTypeFlipFromLeft];
+
+    [self pauseApp];
+    
+    NSURL * url = [NSURL URLWithString: URLString];
+    [webBrowserController loadURL:url];
+}
+
+/** @brief implements AdWhirlWebBrowserController. Called when the web browser view is closed.
+ */
+- (void)webBrowserClosed:(AdWhirlWebBrowserController *)controller {
+    if (controller != webBrowserController) return;
+    self.webBrowserController = nil; // don't keep around to save memory
+
+    [self resumeApp];
+}
+
 
 - (void)dealloc {
     if (adManager)

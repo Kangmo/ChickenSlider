@@ -209,16 +209,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="95.631632"
+     inkscape:cx="-56.960736"
      inkscape:cy="198.20825"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer7"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-height="712"
+     inkscape:window-x="36"
+     inkscape:window-y="70"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
     <rdf:RDF>
@@ -240,11 +240,11 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/HelpScene2.png"
        xlink:href="HelpScene2.png"
-       width="480"
-       height="320"
-       id="image4432"
+       y="0"
        x="0"
-       y="0" />
+       id="image4432"
+       height="320"
+       width="480" />
   </g>
   <g
      inkscape:label="Others"
@@ -256,7 +256,7 @@
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="InteractiveSprites"
-     style="display:inline">
+     style="display:none">
     <rect
        style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:3.65572906px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="LayerForSwallowingTouch"
@@ -267,16 +267,23 @@
        objectType="MenuItem"
        objectTouchAction="Action=None" />
     <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.49183646px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7"
-       width="38.128593"
-       height="35.782413"
-       x="425.26273"
-       y="276.85498"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.70004892px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4"
+       width="78.29995"
+       height="35.29995"
+       x="389.19531"
+       y="276.04501"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=NextButtonImage,Images=nextbt.png,DefaultIndex=0,Align=Center" />
+    <rect
+       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.82970589px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="HelpObject"
+       width="92.119698"
+       height="42.147808"
+       x="381.38501"
+       y="271.65198"
        objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene"
-       inkscape:transform-center-y="-18.134885"
-       inkscape:transform-center-x="1.0514602e-05" />
+       objectTouchAction="Action=SceneTransition,SceneName=HelpScene3,Sound=Touch.wav" />
   </g>
   <g
      inkscape:groupmode="layer"

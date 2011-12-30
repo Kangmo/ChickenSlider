@@ -21,6 +21,7 @@ public :
     static NSString * getPlatform();
     static NSString * getOSVersion();
     static NSString * getOSBuild();
+    static BOOL isLowEnd();
 };
 
 

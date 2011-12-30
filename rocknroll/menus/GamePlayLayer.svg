@@ -213,10 +213,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer6"
      showgrid="false"
-     inkscape:window-width="931"
-     inkscape:window-height="561"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="994"
+     inkscape:window-height="594"
+     inkscape:window-x="42"
+     inkscape:window-y="8"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -294,7 +294,7 @@
        x="6.0068851"
        y="71.410378"
        objectType="Widget"
-       objectDesc="WidgetType=FloatLabel,WidgetName=Speed,InitValue=1.0,MinValue=1.0,MaxValue=1.5,StepValue=0.005,Font=yellow25.fnt,Align=Left,Prefix=x ,AdShiftY=-1" />
+       objectDesc="WidgetType=FloatLabel,WidgetName=Speed,InitValue=1.0,MinValue=1.0,MaxValue=1.5,StepValue=0.005,Font=yellow25.fnt,Align=Left,Prefix=x " />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.84260476px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-4"
@@ -303,7 +303,7 @@
        x="5.1969686"
        y="4.4892001"
        objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=KeysAndChicks,Images=amount.png,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=ImageArray,WidgetName=KeysAndChicks,Images=amount.png,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8"
@@ -312,7 +312,7 @@
        x="35.205166"
        y="7.9025993"
        objectType="Widget"
-       objectDesc="WidgetType=IntegerLabel,WidgetName=KeyCount,Font=yellow25.fnt,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=IntegerLabel,WidgetName=KeyCount,Font=yellow25.fnt,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-6"
@@ -321,7 +321,7 @@
        x="34.570408"
        y="38.207176"
        objectType="Widget"
-       objectDesc="WidgetType=IntegerLabel,WidgetName=ChickCount,Font=yellow25.fnt,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=IntegerLabel,WidgetName=ChickCount,Font=yellow25.fnt,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.64508796px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-4-5"
@@ -330,7 +330,7 @@
        x="434.13199"
        y="5.9841232"
        objectType="Widget"
-       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-7"
@@ -339,7 +339,7 @@
        x="437.64157"
        y="5.8822956"
        objectType="Widget"
-       objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.5513745px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-4-7"
@@ -348,7 +348,7 @@
        x="430.32556"
        y="32.102474"
        objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=PauseSign,Images=Pause.png,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=ImageArray,WidgetName=PauseSign,Images=Pause.png,Align=Center" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.80304396px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="HelpObject"
@@ -357,7 +357,7 @@
        x="424.59967"
        y="2.8983181"
        objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.wav,AdShiftY=-1" />
+       objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.wav" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.47143051px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-79"
@@ -366,7 +366,7 @@
        x="427.76004"
        y="71.379768"
        objectType="Widget"
-       objectDesc="WidgetType=Label,WidgetName=MapPosition,Font=yellow25.fnt,Align=Center,AdShiftY=-1" />
+       objectDesc="WidgetType=Label,WidgetName=MapPosition,Font=yellow25.fnt,Align=Right" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.71162283px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-7"
@@ -385,6 +385,33 @@
        y="299.43295"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=StageName,Font=white23.fnt,Align=Right" />
+    <rect
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:2.34522724px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7"
+       width="317.65475"
+       height="97.65477"
+       x="83.699486"
+       y="122.06066"
+       objectType="Widget"
+       objectDesc="WidgetType=AnimationClip,WidgetName=StageTimeout,ClipFile=clip_stage_timeout.plist,InitFrameAnimation=stage_timeout,Align=Center" />
+    <rect
+       objectDesc="WidgetType=AnimationClip,WidgetName=StageClear,ClipFile=clip_stage_clear.plist,InitFrameAnimation=stage_clear,Align=Center"
+       objectType="Widget"
+       y="122.06066"
+       x="83.699486"
+       height="97.65477"
+       width="317.65475"
+       id="rect3391"
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:2.34522724px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    <rect
+       objectDesc="WidgetType=AnimationClip,WidgetName=TouchTutor,ClipFile=clip_touch.plist,InitFrameAnimation=touch,Align=Center"
+       objectType="Widget"
+       y="240.0256"
+       x="203.1983"
+       height="76.892952"
+       width="89.892952"
+       id="rect3391-7"
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.10704827px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
   </g>
   <g
      inkscape:groupmode="layer"

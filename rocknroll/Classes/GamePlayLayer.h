@@ -17,6 +17,7 @@
     // It is fine to use weak references here, because widgetContainer_ in GeneralScene has strong reference to these objects.
     // We should not use boost::shared_ptr, because Objective-C++ class does not call destructors on member variables whose types are C++ classes 
 
+    
     TxLabel * stageName_ ;
     TxIntegerLabel * keyCount_ ;
     TxIntegerLabel * chickCount_ ;
@@ -30,11 +31,16 @@
     TxLabel * highScore_ ;
     TxLabel * mapPosition_ ;
     
+    
+    TxAnimationClip * touchTutorClip_ ;
+    TxAnimationClip * stageClearClip_ ;
+    TxAnimationClip * stageTimeoutClip_ ;
+
     int totalSeconds_;
     int nHighScore_;
     int nScore_;
     
-    int prevX;
+    int prevMapProgress;
 }
 
 +(id)layerWithSceneName:(NSString*)sceneName;
@@ -48,7 +54,10 @@
 -(void) setChicks:(int)chicks;
 -(void) setSecondsLeft:(float)secondsLeft;
 -(void) showMessage:(NSString*) message ;
--(void) setMapPosition:(float)mapPositionX;
+-(void) setMapProgress:(int)mapProgress;
 -(void) showCombo:(int)combo;
+-(void) startStageClearAnim ;
+-(void) startStageTimeoutAnim;
+-(void) showTouchTutor:(BOOL)bShow;
 
 @end

@@ -36,26 +36,6 @@
         NSString * svgFileName = [sceneName stringByAppendingString:@".svg"];
         NSString * svgFilePath = [Util getResourcePath:svgFileName];
 
-        NSString * backgroundFileName = [sceneName stringByAppendingString:@".png"];
-    
-        // ask director the the window size
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        
-        // Set background
-        {
-            
-            CCSprite * bg = [CCSprite spriteWithFile:backgroundFileName];
-            
-            // Some layers such as GamePlayLayer does not have the background image file.
-            if (bg)
-            {
-                // position the label on the center of the screen
-                bg.position =  ccp( size.width /2 , size.height/2 );
-                
-                [self addChild:bg z:0];
-            }
- 
-        }
         
         // Parse svg file
         {
@@ -66,6 +46,7 @@
             [loader release];
         }
         
+        NSString * sceneImageFile = nil;
         NSString * backgroundImageFile = nil;
         // Load attributes from the svg file.
         {
@@ -76,8 +57,8 @@
             CXMLElement * rootElement = [svgDocument rootElement];
             
             backgroundMusic_ = [[Util getStringValue:rootElement name:@"_backgroundMusic" defaultValue:nil] retain];
-            backgroundImageFile = [[Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:nil] retain];
-            
+            backgroundImageFile = [Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:nil];
+            sceneImageFile = [Util getStringValue:rootElement name:@"_sceneImage" defaultValue:nil];
             beforeScrollSleepSec_ = [Util getIntValue:rootElement name:@"_beforeScrollSleepSec" defaultValue:0];
             NSString * scrollbackgroundOnce = [[Util getStringValue:rootElement name:@"_scrollBackgroundOnce" defaultValue:nil] retain];
             
@@ -86,7 +67,30 @@
             else
                 loopParallax_ = YES;
         }
+
+
         
+        // ask director the the window size
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        
+        // Set background
+        {
+         
+            if ( ! sceneImageFile ) {
+                sceneImageFile = [sceneName stringByAppendingString:@".png"]; // The default scene image file is same with the svg file.
+            }
+            CCSprite * bg = [CCSprite spriteWithFile:sceneImageFile];
+            
+            // Some layers such as GamePlayLayer does not have the background image file.
+            if (bg)
+            {
+                // position the label on the center of the screen
+                bg.position =  ccp( size.width /2 , size.height/2 );
+                
+                [self addChild:bg z:-1];
+            }
+        }
+
         backgroundWidth_ = 0;
         
         if (backgroundImageFile) // If the background image file is specified, do infinite scrolling
@@ -97,9 +101,8 @@
             CCSprite * backgroundSprite = [CCSprite spriteWithFile:backgroundImageFile];
             backgroundWidth_ = backgroundSprite.contentSize.width;
             backgroundSprite.anchorPoint = ccp(0,0);
-            [parallaxNode_ addChild:backgroundSprite z:-1 parallaxRatio:ccp(1/SCROLL_FACTOR,1/SCROLL_FACTOR) positionOffset:CGPointZero];
-            [self addChild:parallaxNode_ z:-1 tag:0];
-            [self schedule:@selector(step:)];
+            [parallaxNode_ addChild:backgroundSprite z:-2 parallaxRatio:ccp(1/SCROLL_FACTOR,1/SCROLL_FACTOR) positionOffset:CGPointZero];
+            [self addChild:parallaxNode_ z:-2 tag:0];
         }
 
         self.actionListener = nil;
@@ -153,21 +156,36 @@
     if ( backgroundMusic_ ) {
         [Util playBGM:backgroundMusic_];
     }
-    
+
     if ( self.loadingLevelMapName ) {
         assert( self.loadingLevel > 0 );
         // Should wait a frame to get the loading scene displayed on the screen.
         [self scheduleUpdate];
     }
 
+    // If we have any background, start scheduling for scrolling it.
+    if ( backgroundWidth_ > 0 ) {
+        [self schedule:@selector(step:)];
+    }
+
     if ( tryToRefreshAD_ ) {
-        // Make sure refreshing the AD is enabled.
-        assert( [[AdManager sharedAdManager] isRefreshEnabled] );
-        // Try to show next AD when the screen changes.
-        [[AdManager sharedAdManager] refresh];
+
+        // In case refreshing the AD is enabled.
+        if ([[AdManager sharedAdManager] isRefreshEnabled]) {
+            // Try to show next AD when the screen changes.
+            [[AdManager sharedAdManager] refresh];
+        }
     }
     
     [super onEnterTransitionDidFinish];
+}
+
+- (void) onExit {
+    
+	// in case you have something to dealloc, do it in this method
+    [self unscheduleAllSelectors];
+    
+    [super onExit];
 }
 
 // on "dealloc" you need to release all your retained objects

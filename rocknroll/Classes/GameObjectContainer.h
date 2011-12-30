@@ -20,8 +20,8 @@
 class GameObjectContainer
 {
 protected:
-    
-    CollisionDetector2D< REF(GameObject) > cd;
+    // Don't put REF(GameObject) because rtree.hpp used in CollisionDetector2D is leaking memory.
+    CollisionDetector2D< GameObject* > cd;
  
 public :
     struct ltGameObject
@@ -37,7 +37,23 @@ public :
     GameObjectSet gameObjectSet;
 public :
     GameObjectContainer() {}
-    ~GameObjectContainer() {}
+    virtual ~GameObjectContainer() {
+        // Iterate all game objects, remove it
+        box_t allAreaBox = box_t(point_t(-kMAX_POSITION, -kMAX_POSITION), point_t(kMAX_POSITION, kMAX_POSITION));
+        removeCollidingObjects(allAreaBox);
+    }
+
+    void removeCollidingObjects(const box_t & box) {
+        std::deque<GameObject*> v;
+        v = getCollidingObjects(box);
+        
+        for (std::deque<GameObject*>::iterator it = v.begin(); it != v.end(); it++)
+        {
+            GameObject * refGameObject = *it;
+            refGameObject->deactivate();
+            refGameObject->removeSelf();
+        }
+    }
     
     void insert( REF(GameObject) refGameObject )
     {
@@ -47,7 +63,7 @@ public :
         std::pair<GameObjectSet::iterator,bool> ret = gameObjectSet.insert( refGameObject );
         assert(ret.second);// ret.second == true means that a new element is inserted
         
-        cd.insertBox( refGameObject->getContentBox(), refGameObject);
+        cd.insertBox( refGameObject->getContentBox(), refGameObject.get());
         
         refGameObject->setContainer(this);
     }
@@ -56,10 +72,10 @@ public :
     {
         assert(refGameObject);
         gameObjectSet.erase( refGameObject );
-        cd.removeBox( refGameObject->getContentBox(), refGameObject);
+        cd.removeBox( refGameObject->getContentBox(), refGameObject.get());
     }
     
-    inline std::deque< REF(GameObject) > getCollidingObjects(const box_t & box) const {
+    inline std::deque< GameObject* > getCollidingObjects(const box_t & box) const {
         return cd.getCollidingValues(box);
     }
     

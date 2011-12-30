@@ -40,6 +40,7 @@ public :
         
         Helper::runAction(sprite_, clipAction_);
     }
+    
     virtual ~TxAnimationClip()
     {
         assert(sprite_);
@@ -50,6 +51,30 @@ public :
         [clipAction_ release];
         clipAction_ = NULL;
     }
+    
+    virtual void setEnable(BOOL enable) {
+        if (enable)
+        {
+            Helper::runAction(sprite_, clipAction_);
+        }
+        else
+        {
+            Helper::runAction(sprite_, NULL);
+        }
+    }
+/*    
+    virtual BOOL getEnable() {
+        return TRUE;
+    }
+*/  
+    virtual void setVisible(BOOL visible) {
+        sprite_.visible = visible;
+    }
+    
+    virtual BOOL getVisible() {
+        return sprite_.visible;
+    }
+
 };
 
 
