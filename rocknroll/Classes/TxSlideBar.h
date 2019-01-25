@@ -40,6 +40,13 @@ public :
         slider_ = nil;
     }
     
+    /** @brief this is used to add the main CCNode of this widget as a child of InteractiveSprite.
+     *  For the TxSiderBar, we don't support it.
+     */ 
+    virtual CCNode * getNode() {
+        return nil;
+    }
+
     float getValue()
     {
         return [slider_ value];

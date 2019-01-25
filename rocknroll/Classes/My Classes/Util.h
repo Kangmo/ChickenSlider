@@ -37,6 +37,9 @@
 +(void) saveDifficulty:(int)difficulty;
 +(int) loadTouchTutor;
 +(void) saveTouchTutor:(int)touchTutor;
++(int) loadPlayMode;
++(void) savePlayMode:(int)playMode;
+
 
 +(int) loadHighScore:(NSString*)mapName level:(int)level;
 +(void) saveHighScore:(NSString*)mapName level:(int)level highScore:(int)highScore;
@@ -61,6 +64,8 @@
 
 +(void) showAlertWithTitle:(NSString*)title message:(NSString*) message;
 
++ (BOOL) doesString:(NSString*)testedString contain:(NSString *) containedstring options:(NSStringCompareOptions) options;
++ (BOOL) doesString:(NSString*)testedString contain:(NSString *) containedstring;
 
 @end
 

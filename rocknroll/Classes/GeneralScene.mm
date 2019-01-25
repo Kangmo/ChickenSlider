@@ -8,12 +8,14 @@
 #include "AppAnalytics.h"
 //#import "RetainCountTrace.h"
 #include "AdManager.h"
+#import "DemoManager.h"
 
 @implementation GeneralScene
 
 @synthesize actionListener;
 @synthesize loadingLevel;
 @synthesize loadingLevelMapName;
+@synthesize layerName = sceneName_;
 
 //SYNTESIZE_TRACE(GeneralScene)
 
@@ -24,6 +26,7 @@
 {
 	if( (self=[super init])) 
 	{
+        
         tryToRefreshAD_ = YES;
         
         widgetContainer_ = new TxWidgetContainer();
@@ -56,6 +59,7 @@
             assert(svgDocument);
             CXMLElement * rootElement = [svgDocument rootElement];
             
+            showDemoStage_ =  [Util getStringValue:rootElement name:@"_showDemoStage" defaultValue:nil] ? YES : NO;
             backgroundMusic_ = [[Util getStringValue:rootElement name:@"_backgroundMusic" defaultValue:nil] retain];
             backgroundImageFile = [Util getStringValue:rootElement name:@"_backgroundImage" defaultValue:nil];
             sceneImageFile = [Util getStringValue:rootElement name:@"_sceneImage" defaultValue:nil];
@@ -68,11 +72,9 @@
                 loopParallax_ = YES;
         }
 
-
         
         // ask director the the window size
         CGSize size = [[CCDirector sharedDirector] winSize];
-        
         // Set background
         {
          
@@ -90,9 +92,11 @@
                 [self addChild:bg z:-1];
             }
         }
+        
 
         backgroundWidth_ = 0;
         
+        // Show the scrolling background only when we don't show the demo stage.
         if (backgroundImageFile) // If the background image file is specified, do infinite scrolling
         {
             parallaxNode_ = [CCParallaxNode node];
@@ -101,7 +105,7 @@
             CCSprite * backgroundSprite = [CCSprite spriteWithFile:backgroundImageFile];
             backgroundWidth_ = backgroundSprite.contentSize.width;
             backgroundSprite.anchorPoint = ccp(0,0);
-            [parallaxNode_ addChild:backgroundSprite z:-2 parallaxRatio:ccp(1/SCROLL_FACTOR,1/SCROLL_FACTOR) positionOffset:CGPointZero];
+            [parallaxNode_ addChild:backgroundSprite z:0 parallaxRatio:ccp(1/SCROLL_FACTOR,1/SCROLL_FACTOR) positionOffset:CGPointZero];
             [self addChild:parallaxNode_ z:-2 tag:0];
         }
 
@@ -177,7 +181,25 @@
         }
     }
     
+    if (showDemoStage_) {
+        if ( ! [[DemoManager sharedDemoManager] isRunningDemo] ) {
+            [[DemoManager sharedDemoManager] runNextDemo];
+        }
+    }
+
     [super onEnterTransitionDidFinish];
+}
+
+/** Run end action for each InteractiveSprite in this layer. Called before this layer is removed */
+-(void) runEndAction {
+    for(id child in self.children)
+    {
+        if([child isKindOfClass:[InteractiveSprite class]])
+        {
+            InteractiveSprite * intrSprite = child;
+            [intrSprite runEndAction];
+        }
+    }
 }
 
 - (void) onExit {
@@ -200,14 +222,6 @@
     [backgroundMusic_ release];
 
     [self unscheduleAllSelectors];
-    
-    for (id child in self.children) {
-        if ([child isKindOfClass:[InteractiveSprite class]])
-        {
-            InteractiveSprite * intrSprite = (InteractiveSprite*) child;
-            [intrSprite removeFromTouchDispatcher];
-        }
-    }
     
     self.loadingLevelMapName = nil;
     [sceneName_ release];
@@ -233,7 +247,7 @@
 	GeneralScene *layer = [GeneralScene nodeWithSceneName:sceneName];
     
 	// add layer as a child to scene
-	[scene addChild:layer z:0 tag:GeneralSceneLayerTagMain];
+	[scene addChild:layer z:0 tag:GeneralSceneLayerTagMenu];
 	
 	// return the scene
 	return scene;
@@ -254,7 +268,7 @@
     layer.loadingLevel = level;
 
 	// add layer as a child to scene
-	[scene addChild:layer z:0 tag:GeneralSceneLayerTagMain];
+	[scene addChild:layer z:0 tag:GeneralSceneLayerTagMenu];
 
 	// return the scene
 	return scene;
@@ -287,17 +301,7 @@
 
 -(void) onMessage:(NSString*)message 
 {
-    // PauseLayer.svg receives "Quit" message from ConfirmQuitLayer.svg
-    if ( [message isEqualToString:@"Quit"] )
-    {
-        assert(self.actionListener);
-        
-        // Relay the message to StageScene
-        [self.actionListener onMessage:@"Quit"];
-
-        // We need to remove current layer(pause layer) first.
-        [self removeFromParentAndCleanup:YES];
-    }
+    // Do nothing.
 }
 
 // Called by TxWidget when the value of the widget changes. 

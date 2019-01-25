@@ -47,11 +47,15 @@ class HeroContactListener;
     CDSoundSource * _dropSound;
     CDSoundSource * _jumpSound;
     CDSoundSource * _slideFailSound;
+    CDSoundSource * _boostSound;
     
     // Attributes read from Bird layer in game_classes.svg
     float _minSpeedX;
     float _minSpeedY;
     float _maxSpeed;
+    
+    // A flag indicating if the game play mode is "Hard"
+    BOOL isHardMode;
 }
 @property (nonatomic, assign) b2World *world;
 @property (nonatomic, assign) b2Body *body;
@@ -67,6 +71,7 @@ class HeroContactListener;
 - (CCSprite*) getSprite;
 
 -(void) changeSpeed:(float)speedGain;
+-(void) boostSpeed;
 
 -(void) addSaveChickParticle;
 

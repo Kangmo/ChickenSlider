@@ -210,15 +210,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="334.19814"
+     inkscape:cx="217.52552"
      inkscape:cy="198.20825"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="712"
-     inkscape:window-x="95"
-     inkscape:window-y="31"
+     inkscape:window-x="29"
+     inkscape:window-y="8"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -241,74 +241,28 @@
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/HelpScene4.png"
        xlink:href="HelpScene4.png"
-       width="480"
-       height="320"
-       id="image4432"
+       y="0"
        x="0"
-       y="0" />
+       id="image4432"
+       height="320"
+       width="480" />
   </g>
-  <g
-     inkscape:label="Others"
-     inkscape:groupmode="layer"
-     id="layer1"
-     style="display:none"
-     ignore="" />
   <g
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="InteractiveSprites"
-     style="display:none">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:3.65572906px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="LayerForSwallowingTouch"
-       width="480"
-       height="320"
-       x="0"
-       y="0"
-       objectType="MenuItem"
-       objectTouchAction="Action=None" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.70004892px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-4-7"
-       width="78.29995"
-       height="35.29995"
-       x="386.78946"
-       y="274.04501"
-       objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=PlayButtonImage,Images=playbt.png,DefaultIndex=0,Align=Center" />
-    <rect
-       style="opacity:0.4;fill:#ff7f2a;display:inline"
-       id="level1"
-       width="90.487831"
-       height="44.859394"
-       x="379.52524"
-       y="268.27588"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=1,Sound=Touch.wav" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer8"
-     inkscape:label="iAD"
-     style="display:none">
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="230.14915"
-       y="30.052441"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="230.14915"
-         y="30.052441">iAD</tspan></text>
+     style="display:inline">
+    <image
+       y="274"
+       x="380"
+       id="image4922"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/playbt.png"
+       height="36"
+       width="79"
+       objectTouchAction="Action=SceneTransition,SceneName=StageScene,Arg1=MAP01,Arg2=1,Sound=Touch.wav"
+       objectDesc="WidgetType=Label,WidgetName=BackButtonText,Font=white34.fnt,Align=Center"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectType="Widget" />
   </g>
 </svg>

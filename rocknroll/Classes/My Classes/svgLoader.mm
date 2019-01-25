@@ -419,76 +419,41 @@
 		{
             if (objectType)
             {
+                /*
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
                 if ([objectType isEqualToString:@"MenuItem"])
                 {
+                    
                     NSString * objectTouchAction = [[curShape attributeForName:@"objectTouchAction"] stringValue];
                     NSString * objectHoverAction = [[curShape attributeForName:@"objectHoverAction"] stringValue];
-                    NSString * hoveringSpriteFile = nil;
                     
-                    // Set hover action
-                    NSMutableDictionary * hoverActionDescs = StringParser::getDictionary(objectHoverAction);
-                    body_hover_action_t hoverAction = BHA_NULL;
-                    if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
-                    {
-                        hoverAction = BHA_SHOW_IMAGE;
-                        if ( [[hoverActionDescs valueForKey:@"Action"] isEqualToString:@"ShowImage"] )
-                            
-                            hoveringSpriteFile = [hoverActionDescs valueForKey:@"ImageFile"];
-                        assert(hoveringSpriteFile);
-                    }
+                    InteractiveSprite * intrSprite = [InteractiveSprite spriteWithHoverAction:objectHoverAction touchAction:objectTouchAction startAction:nil endAction:nil backgroundImage:nil];
                     
-                    if ( hoverAction == BHA_NULL ) // If no hovering action is specified
-                    {
-                        hoverAction = BHA_SHOW_PARTICLE;
-                        // If the hovering sprite is nil, use transparent dummy sprite for hovering.
-                        hoveringSpriteFile = @"Dummy.png";
-                    }
-                    
-                    // Set touch action.
-                    NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
-                    body_touch_action_t touchAction = BTA_NULL;
-                    NSString * actionName = [touchActionDescs valueForKey:@"Action"];
-                    touchAction = [InteractiveSprite getTouchAction:actionName];
-                    
-                    assert(hoveringSpriteFile);
-                    
-                    InteractiveSprite * intrSprite = [[[InteractiveSprite alloc] initWithFile:hoveringSpriteFile] autorelease];
-                    assert(intrSprite);
-                    
-                    [intrSprite setHoverAction:hoverAction actionDescs:hoverActionDescs ];
-                    [intrSprite setTouchAction:touchAction actionDescs:touchActionDescs ];
-                    
-                    //CGSize winSize = [[CCDirector sharedDirector] winSize];
-                    // 1) Convert Y to GL, to get top get topLeft by subtracting Y from screen height 
-                    // 2) and then subtract orgHeight to get bottomLeft
-                    
-                    // Move the InteractiveSprite down if the AD is enabled. 
-                    NSString * AdShiftYStr = [touchActionDescs valueForKey:@"AdShiftY"];
-                    // AdShiftY is either -1 or 1. For Ad banners on top, we use AdShiftY==-1 to move widgets down by LANDSCAPE_AD_HEIGHT;
-                    if (AdShiftYStr) {
-                        int AdShiftY = [AdShiftYStr intValue];
-                        assert( AdShiftY >= -1 && AdShiftY <= 1);
-                        bottomInOpenGL += [Util getAdHeight] * AdShiftY;
-                    }
-
                     intrSprite.bottomLeftCorner = CGPointMake(orgX, bottomInOpenGL);
                     intrSprite.nodeSize = CGSizeMake(orgWidth, orgHeight);
                     intrSprite.position = ccp( intrSprite.bottomLeftCorner.x + intrSprite.nodeSize.width * 0.5 , 
                                               intrSprite.bottomLeftCorner.y + intrSprite.nodeSize.height * 0.5 );
-                    
-                    [layer addChild:intrSprite];
+
+                    // InteractiveSprites defined using Images are loaded by loadGameObjects which is called after this function, initRectangles. 
+                    // We need to have higher z order than 
+                    [layer addChild:intrSprite z:1];
                 }
+                */
+
                 if ([objectType isEqualToString:@"Widget"])
                 {
                     assert(widgetContainer);
                     NSString * objectDesc = [[curShape attributeForName:@"objectDesc"] stringValue];
                     const std::string objectDescCStr = std::string([objectDesc cStringUsingEncoding: NSASCIIStringEncoding]);
-                    REF(TxWidget) widgetRef = TxWidgetFactory::newWidget( layer, TxRectMake(orgX, bottomInOpenGL, orgWidth, orgHeight), objectDescCStr );
+                    NSString * objectTouchAction = [[curShape attributeForName:@"objectTouchAction"] stringValue];
+                    NSString * objectStartAction = [[curShape attributeForName:@"objectStartAction"] stringValue];
+                    NSString * objectEndAction = [[curShape attributeForName:@"objectEndAction"] stringValue];
+                    
+                    REF(TxWidget) widgetRef = TxWidgetFactory::newWidget( layer, TxRectMake(orgX, bottomInOpenGL, orgWidth, orgHeight ), objectDescCStr, objectTouchAction, objectStartAction, objectEndAction, nil );
                     
                     widgetContainer->addWidget(widgetRef);
                 }
-                
+                /*
                 // if "objectType" attr is defined, it is simply a game object not affected by physics
                 if ([objectType isEqualToString:@"Advertisement"])
                 {
@@ -513,6 +478,7 @@
                     gameObjectContainer->insert(refGameObject);
          
                 }
+                */
                 continue;
             }
 
@@ -630,6 +596,22 @@
 //            if([curShape attributeForName:@"isEdge"])
         {
             CCLOG(@"BEGIN : SvgLoader loading static edge: %@",name);
+            
+            // by default, use static body.
+            b2Body *terrainBody = staticBody;
+            
+            NSString * distanceStr = [[curShape attributeForName:@"distance"] stringValue];
+            if (distanceStr) {
+                b2BodyDef bodyDef;
+                // by kangmo kim
+                bodyDef.type = b2_kinematicBody;
+                bodyDef.position.Set(0, 0);
+                assert(world);
+                
+                terrainBody = world->CreateBody(&bodyDef);
+                terrainBody->SetLinearVelocity(b2Vec2(1,0));
+            }
+            
             NSString * pointListStr = [[curShape attributeForName:@"d"] stringValue];
             REF(PointVector) points = StringParser::parsePointList(pointListStr);
             
@@ -661,9 +643,9 @@
                     
                     float32 staticBodyDensity = 0;
                     
-                    assert(staticBody);
+                    assert(terrainBody);
                     
-                    b2Fixture* edgeFixture = staticBody->CreateFixture(&edgeShape, staticBodyDensity);
+                    b2Fixture* edgeFixture = terrainBody->CreateFixture(&edgeShape, staticBodyDensity);
                     
                     if(friction)	edgeFixture->SetFriction([friction floatValue]);
                     else edgeFixture->SetFriction(0.5f);
@@ -791,6 +773,7 @@
     return @"Car";
 }
 
+
 -(void) initGameObjects:(NSArray *) gameObjects
 {
 	for (CXMLElement * gameObject in gameObjects) 
@@ -799,21 +782,64 @@
 		NSString * instanceName = [[gameObject attributeForName:@"id"] stringValue];
 		NSString * xOffset = [[gameObject attributeForName:@"x"] stringValue];
 		NSString * yOffset = [[gameObject attributeForName:@"y"] stringValue];
-//        NSString * height = [[gameObject attributeForName:@"height"] stringValue];
-//        NSString * gameObjectImageFile = [[gameObject attributeForLocalName:@"href" URI:nil] stringValue];
+        assert(xOffset);
+        assert(yOffset);
 
 		NSString * gameObjectImageFile = [[gameObject attributeForName:@"xlink:href"] stringValue];
-        NSString * className = [self getClassNameFromURL:gameObjectImageFile];
-        
-        assert(classDict);
-        
-        ClassInfo * classInfo = [classDict getClassByName:className];
-        
 
-        NSString * namePrefix = [instanceName stringByAppendingString:@"_"];
-        // Not true:(x,y) is the top left corner. We need to provide bottm left corner for the offset.
-        // Not true:So we add height from the y position. ( Y value grows from top to bottom in svg files )
-        [self instantiateObjects:classInfo.svgLayer namePrefix:namePrefix xOffset:[xOffset floatValue] yOffset:[yOffset floatValue]];
+        NSString * objectType = [[gameObject attributeForName:@"objectType"] stringValue];
+        
+        if (objectType) {
+            NSString * width = [[gameObject attributeForName:@"width"] stringValue];
+            NSString * height = [[gameObject attributeForName:@"height"] stringValue];
+
+            assert(width);
+            assert(height);
+            
+            float orgX = [xOffset floatValue];
+            float orgY = [yOffset floatValue];
+            float orgWidth = [width floatValue];
+            float orgHeight = [height floatValue];
+            
+            float bottomInOpenGL = svgCanvasHeight - orgY - orgHeight;
+
+            if ([objectType isEqualToString:@"Widget"])
+            {
+                NSString * imageFileName = [gameObjectImageFile lastPathComponent];
+                
+                assert(widgetContainer);
+
+                // How the widget comes into the layer? EaseIn? from left side? right side?
+                NSString * objectStartAction = [[gameObject attributeForName:@"objectStartAction"] stringValue];
+                NSString * objectEndAction = [[gameObject attributeForName:@"objectEndAction"] stringValue];
+                
+                NSString * objectDesc = [[gameObject attributeForName:@"objectDesc"] stringValue];
+                const std::string objectDescCStr = std::string([objectDesc cStringUsingEncoding: NSASCIIStringEncoding]);
+                NSString * objectTouchAction = [[gameObject attributeForName:@"objectTouchAction"] stringValue];
+                
+                REF(TxWidget) widgetRef = TxWidgetFactory::newWidget( layer, TxRectMake(orgX, bottomInOpenGL, orgWidth, orgHeight ), objectDescCStr, objectTouchAction, objectStartAction, objectEndAction, imageFileName );
+                
+                widgetContainer->addWidget(widgetRef);
+                continue;
+            }
+        }
+        
+        if ( [Util doesString:gameObjectImageFile contain:@"/GameClasses/"] ) { // Is it an instance of a Game Class?
+            NSString * className = [self getClassNameFromURL:gameObjectImageFile];
+            
+            assert(classDict);
+            
+            ClassInfo * classInfo = [classDict getClassByName:className];
+            
+            
+            NSString * namePrefix = [instanceName stringByAppendingString:@"_"];
+            // Not true:(x,y) is the top left corner. We need to provide bottm left corner for the offset.
+            // Not true:So we add height from the y position. ( Y value grows from top to bottom in svg files )
+            [self instantiateObjects:classInfo.svgLayer namePrefix:namePrefix xOffset:[xOffset floatValue] yOffset:[yOffset floatValue]];
+            continue;
+        }
+        
+        NSAssert1(0, @"Invalid game object paht : %@", gameObjectImageFile);
     }    
 }
 -(void) instantiateObjects:(CXMLElement*)svgLayer namePrefix:(NSString*)objectNamePrefix xOffset:(float)xOffset yOffset:(float)yOffset

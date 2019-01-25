@@ -33,6 +33,10 @@ public :
         delete _incNumLabel;
         _incNumLabel = NULL;
     }    
+
+    virtual CCNode * getNode() {
+        return _incNumLabel->getLabel();
+    }
     
     IncNumLabel * getWidgetImpl()
     {

@@ -6,16 +6,21 @@
 #import "ClipFactory.h"
 #import "GeneralMessageProtocol.h"
 #import "OptionScene.h"
+#import "OnlineScene.h"
 #import "IntermediateScene.h"
 #import "AppDelegate.h"
 #include "AppAnalytics.h"
 #include "ParticleManager.h"
+
+#import "GameState.h"
+#import "DemoManager.h"
+#import "GeneralScene.h"
+@interface InteractiveSprite() 
+-(void) onTouchMenu:(id)sender;
+@end
+
 @implementation InteractiveSprite
 
-@synthesize bottomLeftCorner = bottomLeftCorner_;
-@synthesize nodeSize = nodeSize_;
-@synthesize scale = scale_;
-@synthesize layer = layer_;
 @synthesize touchActionDescs = touchActionDescs_;
 
 /** @brief Convert the touch action type in SVG file into body_touch_action_t enumeration 
@@ -30,6 +35,22 @@
     else if ( [actionName isEqualToString:@"PushScene"] ) // Cocos2d: Push Scene
     {
         touchAction = BTA_PUSH_SCENE;
+    }
+    else if ( [actionName isEqualToString:@"ReplaceLayer"] ) // Cocos2d: Replace Menu Layer
+    {
+        touchAction = BTA_REPLACE_LAYER;
+    }
+    else if ( [actionName isEqualToString:@"PushLayer"] ) // Cocos2d: Replace Menu Layer
+    {
+        touchAction = BTA_PUSH_LAYER;
+    }
+    else if ( [actionName isEqualToString:@"PopLayer"] ) // Cocos2d: Replace Menu Layer
+    {
+        touchAction = BTA_POP_LAYER;
+    }
+    else if ( [actionName isEqualToString:@"PopAndDiscardLayer"] ) // Cocos2d: Replace Menu Layer
+    {
+        touchAction = BTA_POP_AND_DISCARD_LAYER;
     }
     else if ( [actionName isEqualToString:@"AddLayer"] )
     {
@@ -46,23 +67,43 @@
     return touchAction;
 }
 
+/** @brief Convert the start action type in SVG file into body_start_action_t enumeration 
+ */
++(body_start_end_action_t)getStartEndAction:(NSString*)actionName {
+    body_start_end_action_t touchAction = BSEA_NULL;
+    
+    if ( [actionName isEqualToString:@"SlideIn"] ) // Cocos2d: Replace Scene
+    {
+        touchAction = BSEA_SLIDE_IN;
+    }
+    else if ( [actionName isEqualToString:@"SlideOut"] ) // Cocos2d: Push Scene
+    {
+        touchAction = BSEA_SLIDE_OUT;
+    }
+    
+    return touchAction;
+}
+    
 /** @brief Override init to receive touch events. 
  */
 -(id)initWithFile:(NSString*)fileName {
-    if ( (self = [super initWithFile:fileName]) )
+    
+    if ( (self = [super init]) )
     {
-        [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+        CCMenuItem * menuItem = [CCMenuItemImage itemFromNormalImage:fileName selectedImage:fileName target:self selector:@selector(onTouchMenu:)];
+
+        // The default anchorPoint of CCNode is (0,0). Change the anchor point to (0.5, 0.5);
+        self.anchorPoint = ccp(0.5, 0.5);
+        self.contentSize = menuItem.contentSize;
+        [self addChildAtCenter:[CCMenu menuWithItems:menuItem, nil] z:0];
+        
         touchActionType_ = BTA_NULL;
         touchActionDescs_ = nil;
-        hoverActionType_ = BHA_NULL;
-        hoverActionDescs_ = nil;
-        scale_ = 1.0;
-        bottomLeftCorner_ = CGPointMake(-1,-1);
-        nodeSize_ = CGSizeMake(-1,-1);
-        
-        // The CCSprite itself is a hovering image. Don't show the hovering image at first.
-        self.visible = NO;
-        particleEmitter_ = nil;
+        startActionType_ = BSEA_NULL;
+        startActionDescs_ = nil;
+        endActionType_ = BSEA_NULL;
+        endActionDescs_ = nil;
+
         
         lockSprite_ = nil;
         
@@ -74,13 +115,63 @@
     return self;
 }
 
++(id)spriteWithTouchAction:(NSString*)objectTouchAction 
+               startAction:(NSString*)objectStartAction 
+                 endAction:(NSString*)objectEndAction 
+           backgroundImage:(NSString*)backgroundImage {
+    
+    // Set start action.
+    NSMutableDictionary * startActionDescs = StringParser::getDictionary(objectStartAction);
+    body_start_end_action_t startAction = BSEA_NULL;
+    NSString * startActionName = [startActionDescs valueForKey:@"Action"];
+    if (startActionName) {
+        startAction = [InteractiveSprite getStartEndAction:startActionName];
+    }
+
+    // Set end action.
+    NSMutableDictionary * endActionDescs = StringParser::getDictionary(objectEndAction);
+    body_start_end_action_t endAction = BSEA_NULL;
+    NSString * endActionName = [endActionDescs valueForKey:@"Action"];
+    if (endActionName) {
+        endAction = [InteractiveSprite getStartEndAction:endActionName];
+    }
+
+    if (!backgroundImage) {
+        // Use transparent dummy sprite if no background image is given.
+        backgroundImage = @"Dummy.png";
+    }
+    
+    // Set touch action.
+    NSMutableDictionary * touchActionDescs = StringParser::getDictionary(objectTouchAction);
+    body_touch_action_t touchAction = BTA_NULL;
+    NSString * actionName = [touchActionDescs valueForKey:@"Action"];
+    touchAction = [InteractiveSprite getTouchAction:actionName];
+
+    
+    InteractiveSprite * intrSprite = [[[InteractiveSprite alloc] initWithFile:backgroundImage] autorelease];
+    assert(intrSprite);
+    
+    [intrSprite setStartAction:startAction actionDescs:startActionDescs ];
+    [intrSprite setEndAction:endAction actionDescs:endActionDescs ];
+    [intrSprite setTouchAction:touchAction actionDescs:touchActionDescs ];
+    
+    return intrSprite;
+}
+
+-(void) addChildAtCenter:(CCNode*)node z:(int)z {
+    [self addChild:node z:z];
+    
+    CGSize nodeSize = [self contentSize];
+    // The child(progressCircle_) position is relative to bottom left corner of the parent(self)
+    // The lock sprite has the same position. 
+    node.position = ccp(nodeSize.width*0.5, nodeSize.height*0.5);
+}
+
 -(void) startProgress {
     if ( [progressCircle_ parent] == nil )
     {
-        [[self parent] addChild:progressCircle_];
-        // The progress node has the same position.
-        progressCircle_.position = self.position;
-        
+        [self addChildAtCenter:progressCircle_ z:2000];
+
         // Show that IAP is on progress
         // start the progress circle.
         [progressCircle_ start];
@@ -94,7 +185,7 @@
         [progressCircle_ stop];
         
         // Remove the progress circle.
-        [[self parent] removeChild:progressCircle_ cleanup:NO];
+        [self removeChild:progressCircle_ cleanup:NO];
     }
 }
 
@@ -108,16 +199,13 @@
     if (locked)
     {
 #if ! defined(UNLOCK_LEVELS_FOR_TEST)        
-        CCNode * parent = [self parent];
-        
         // Should not lock twice
         assert( ! [self isLocked] );
         lockSprite_ = [[CCSprite spriteWithSpriteFrameName:spriteFrameName] retain];
         assert(lockSprite_);
         
-        [parent addChild:lockSprite_];
-        // The lock sprite has the same position.
-        lockSprite_.position = self.position;
+        [self addChildAtCenter:lockSprite_ z:1000];
+
 #endif /*UNLOCK_LEVELS_FOR_TEST*/
     }
     else
@@ -152,19 +240,19 @@
 /** @brief Set the action type and data
  *
  */
--(void)setHoverAction:(body_hover_action_t)actionType actionDescs:(NSDictionary*)actionDescs
+-(void)setStartAction:(body_start_end_action_t)actionType actionDescs:(NSDictionary*)actionDescs
 {
-    hoverActionType_ = actionType;
-    hoverActionDescs_ = [actionDescs retain];
+    startActionType_ = actionType;
+    startActionDescs_ = [actionDescs retain];
 }
 
-/** @brief Remove this object from touch dispatcher 
+/** @brief Set the action type and data
+ *
  */
--(void)removeFromTouchDispatcher
+-(void)setEndAction:(body_start_end_action_t)actionType actionDescs:(NSDictionary*)actionDescs
 {
-    CCLOG(@"Interactive Body Node : removeFromTouchDispatcher");
-    
-    [[CCTouchDispatcher sharedDispatcher] removeDelegate:self];
+    endActionType_ = actionType;
+    endActionDescs_ = [actionDescs retain];
 }
 
 /** @brief called when IAP is done
@@ -225,7 +313,8 @@
         lockSprite_ = nil;
     }
     [touchActionDescs_ release];
-    [hoverActionDescs_ release];
+    [startActionDescs_ release];
+    [endActionDescs_ release];
 
     [super dealloc];
 }
@@ -239,12 +328,13 @@
     
     // BUGBUG : We need isTouchHandling_ at the LevelMapScene
     
-    CCLayer * owningLayer = (CCLayer*)[self parent];
+    GeneralScene * owningLayer = (GeneralScene*)[self parent];
     assert(owningLayer);
-    assert([owningLayer isKindOfClass:[CCLayer class]] );
+    assert([owningLayer isKindOfClass:[GeneralScene class]] );
 
     BOOL pushScene = NO;
-
+    NSString * layerName = nil;
+    
     NSString * soundFileName = [touchActionDescs_ valueForKey:@"Sound"];
     if ( soundFileName) {
         CDSoundSource * sound = [[ClipFactory sharedFactory] soundByFile:soundFileName];
@@ -256,11 +346,10 @@
     if (actionMessage)
     {
         assert( [owningLayer isKindOfClass:[GeneralScene class]] );
-        GeneralScene * generalScene = (GeneralScene*) owningLayer;
-        assert( generalScene.actionListener );
+        assert( owningLayer.actionListener );
         
         // Send action to the action listener.
-        [generalScene.actionListener onMessage:actionMessage];
+        [owningLayer.actionListener onMessage:actionMessage];
     }
 
     // See if there is any option that we need to process for all types of touch actions.
@@ -305,7 +394,7 @@
             [appDelegate openWebView:URLString];
         }
         break;
-            
+        
         case BTA_ADD_LAYER : 
         {
             // The running scene should be StageScene with a level svg file.
@@ -323,7 +412,63 @@
             confirmQuitLayer.actionListener = messageProtocol;
             
             // add layer as a child to scene
-            [runningScene addChild:confirmQuitLayer z:200 tag:GeneralSceneLayerTagMain];
+            [runningScene addChild:confirmQuitLayer z:200 tag:GeneralSceneLayerTagMenu];
+        }
+        break;
+            
+        case BTA_POP_AND_DISCARD_LAYER:
+        {
+            // Simply remove the layer
+            [[DemoManager sharedDemoManager] popLayerName];
+            break;
+        }
+        case BTA_POP_LAYER:
+        {
+            layerName = [[DemoManager sharedDemoManager] popLayerName];
+            if ( !layerName ) // Users may click the back button twice. Process it only if the popped layer name is not nil. 
+                break;
+            NSAssert(layerName, @"The popped layer is NULL.");
+            // fall through
+        }
+        case BTA_PUSH_LAYER :
+        case BTA_REPLACE_LAYER : 
+        {
+            GeneralScene * newLayer = nil;
+            if ( !layerName ) {
+                layerName = [touchActionDescs_ valueForKey:@"SceneName"];
+            }
+            
+            // Push the current layer name so that we can come back .
+            if ( touchActionType_ == BTA_PUSH_LAYER ) {
+                id parent = self.parent;
+                NSAssert2( [parent isKindOfClass:[GeneralScene class]], @"Parent(%@) of InteractiveSprite(%@) is not a kind of GeneralScene", parent, self);
+                GeneralScene * generalScene = (GeneralScene*) parent;
+                [[DemoManager sharedDemoManager] pushLayerName:generalScene.layerName];
+            }
+            
+            // If the scene name starts with "MAP", we instantiate LevelMapScene.
+            if ( [[layerName substringWithRange:NSMakeRange(0,3)] isEqualToString:@"MAP"] )
+            {
+                newLayer = [LevelMapScene nodeWithSceneName:layerName];
+            }
+            else if ( [layerName isEqualToString:@"OptionScene"] )
+            {
+                newLayer = [OptionScene nodeWithSceneName:layerName];
+            }
+            else if ( [layerName isEqualToString:@"OnlineScene"] )
+            {
+                newLayer = [OnlineScene nodeWithSceneName:layerName];
+            }
+            else
+            {
+                newLayer = [GeneralScene nodeWithSceneName:layerName];
+            }
+            
+            // The new layer sends message to the same action listener.
+            // Ex> PauseLayer's action listener is StageScene. When the user hits on the "Quit" button in the PauseLayer, "ConfirmQuitLayer" is pushed. In this case, ConfirmQuitLayer's OK button will send "Quit" message to StageScene.
+            newLayer.actionListener = owningLayer.actionListener;
+            
+            [[DemoManager sharedDemoManager] reserveReplacingMenuLayer:newLayer];
         }
         break;
             
@@ -348,6 +493,14 @@
                 
                 int levelNum = [levelNumAttr intValue];
 
+                GamePlayerFlag playerFlag = GF_SingleInitiator;
+                
+                if ( [Util loadPlayMode] ) { // The multiplay toggle is turned on in the stage selection scene.
+                    playerFlag = GF_MultiplayInitiator;
+                }
+                
+                [GameState sharedGameState].playerFlag = playerFlag;
+                
                 // Move the hero to the new level and start the new level stage
                 newScene = [GeneralScene loadingSceneOfMap:mapNameAttr levelNum:levelNum];
             }
@@ -369,8 +522,7 @@
             {
                 if (pushScene) {
                     [[CCDirector sharedDirector] pushScene:newScene ];
-                }
-                else {
+                } else {
                     // Do we have a scene to show before starting the actual scene?
                     // Ex> Show opening scene before playing stage 1.
                     NSString * intermediateSceneName = [touchActionDescs_ valueForKey:@"IntermediateScene"];
@@ -394,85 +546,6 @@
     }
 }
 
-/** @brief Handles hover action based on the action type and descriptor.
- */
--(void)handleHoverAction
-{
-    assert(hoverActionType_);
-    assert(hoverActionDescs_);
-    
-    switch(hoverActionType_)
-    {
-        case BHA_SHOW_PARTICLE:
-        {
-            // Particle emitter. Emit partcles until the hovering is done. (3600 seconds means 1 hour)
-            particleEmitter_ = ParticleManager::createParticleEmitter(@"stars.png", 30, 3600);
-            
-            [self addChild:particleEmitter_ z:10]; // adding the emitter
-            
-            // Show the hovering sprite.
-            self.visible = YES;
-        }
-        break;
-            
-        case BHA_SHOW_IMAGE : 
-        {
-            // Show the hovering sprite.
-            self.visible = YES;
-        }
-        break;
-            
-        default:
-        {
-            NSAssert1(0, @"Unhandled hover action type found. %d", (int)touchActionType_);
-        }
-        break;
-    }
-
-}
-
--(BOOL) isTouchOnNode:(CGPoint)touch{
-    // Enlarge the touch area by INTERACTIVE_SPRITE_TOUCH_GAP pixcels on top/left/bottom/right to make the touch easier 
-    if(CGRectContainsPoint(CGRectMake(self.bottomLeftCorner.x-INTERACTIVE_SPRITE_TOUCH_GAP, 
-                                      self.bottomLeftCorner.y-INTERACTIVE_SPRITE_TOUCH_GAP, 
-                                      self.nodeSize.width*self.scale + INTERACTIVE_SPRITE_TOUCH_GAP*2, 
-                                      self.nodeSize.height*self.scale + INTERACTIVE_SPRITE_TOUCH_GAP *2), 
-                           touch))
-        return YES;
-    else 
-        return NO;
-}
-
--(BOOL)ccTouchBegan:(UITouch*)touch withEvent:(UIEvent *)event {
-    
-    CGPoint touchPoint = [touch locationInView:[touch view]];
-    touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint ];
-//    CCLOG(@"InteractiveBodyNode : Touch Began=>%f,%f", touchPoint.x, touchPoint.y );
-    if ([self isTouchOnNode:touchPoint]) {
-        if ( [self isLocked] )
-        {
-            // Common stuff to process
-            NSString * unlockingProductName = [touchActionDescs_ valueForKey:@"UnlockingProductName"];
-            if (!unlockingProductName) // If it can't be unlocked by purchasing a product, don't show the hovering action. 
-            {
-                // BUGBUG : play some sound
-                return YES;
-            }
-        }
-        if ( hoverActionType_ != BHA_NULL ) // Handle the hovering action if it is specified.
-        {
-            [self handleHoverAction];
-        }
-        return YES;
-    }
-    return NO;
-}
-
--(void)ccTouchMoved:(UITouch*)touch withEvent:(UIEvent *)event {
-}
-
-
-
 /** @brief Restore unfinished IAP transaction and finishe it 
  */
 -(void) tryUnlockWithIAP
@@ -487,30 +560,93 @@
     }
 }
 
--(void)ccTouchEnded:(UITouch*)touch withEvent:(UIEvent *)event {
-
-    // Do not show the hovering sprite.
-    self.visible = NO;
-    if ( particleEmitter_ )
+-(void) onTouchMenu:(id)sender {
+    if ( [self isLocked] )
     {
-        [particleEmitter_ removeFromParentAndCleanup:YES];
-        particleEmitter_ = nil;
-    }
-
-    CGPoint touchPoint = [touch locationInView:[touch view]];
-    touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint ];
-//    CCLOG(@"InteractiveBodyNode : Touch Ended=>%f,%f", touchPoint.x, touchPoint.y );
-    if ([self isTouchOnNode:touchPoint]) {
-        if ( [self isLocked] )
-        {
-            // BUGBUG : play some sound
-            [self tryUnlockWithIAP];
- 
-            return;
-        }
+        // BUGBUG : play some sound
+        [self tryUnlockWithIAP];
         
-        [self handleTouchAction];
+        return;
     }
+    
+    [self handleTouchAction];
+}
+
+-(void) applyStartEndAction:(body_start_end_action_t)action descs:(NSDictionary*)descs {
+    if ( action == BSEA_SLIDE_IN ) {
+        static CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        float initX = [[descs valueForKey:@"InitX"] floatValue];
+        float initY = [[descs valueForKey:@"InitY"] floatValue];
+        float duration = [[descs valueForKey:@"Duration"] floatValue];
+        float period = [[descs valueForKey:@"Period"] floatValue];
+        
+        float adjustAmountX = winSize.width * initX;
+        float adjustAmountY = winSize.height * initY;
+        
+        [self stopAllActions];
+        
+        self.position = ccpAdd(self.position, ccp(adjustAmountX, adjustAmountY));
+        
+        CCActionInterval * moveBy = [CCMoveBy actionWithDuration:duration
+                                                        position:ccp( adjustAmountX * -1, adjustAmountY * -1)];
+        
+        CCEaseElasticOut * easeOut = [CCEaseElasticOut actionWithAction:moveBy
+                                                                 period:period];
+        
+        CCDelayTime * delay = [CCDelayTime actionWithDuration:2.0f];
+        
+        CCActionInterval * moveDown = [CCMoveBy actionWithDuration:0.3
+                                                          position:ccp( 0, -5)];
+        CCActionInterval * moveUp = [CCMoveBy actionWithDuration:0.3
+                                                        position:ccp( 0, 30)];
+        CCActionInterval * moveDownAgain = [CCMoveBy actionWithDuration:0.3
+                                                               position:ccp( 0, -25)];
+        CCSequence * moveSequence = [CCSequence actions:moveDown, moveUp, moveDownAgain, nil];
+        CCEaseElasticInOut * easeOutMoveUp = [CCEaseElasticInOut actionWithAction:moveSequence
+                                                                           period:1.0f];
+        
+        CCSequence * repeatSequence = [CCSequence actions:delay,easeOutMoveUp,nil];
+        
+        CCSequence * sequence = [CCSequence actions:easeOut,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,repeatSequence,nil];
+        [self runAction:sequence];
+    }
+    
+    if ( action == BSEA_SLIDE_OUT ) {
+        static CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        float targetX = [[descs valueForKey:@"TargetX"] floatValue];
+        float targetY = [[descs valueForKey:@"TargetY"] floatValue];
+        float sleepSeconds = [[descs valueForKey:@"Sleep"] floatValue];
+        float duration = [[descs valueForKey:@"Duration"] floatValue];
+        float period = [[descs valueForKey:@"Period"] floatValue];
+        
+        float adjustAmountX = winSize.width * targetX;
+        float adjustAmountY = winSize.height * targetY;
+        
+        [self stopAllActions];
+        
+        CCActionInterval * moveBy = [CCMoveBy actionWithDuration:duration
+                                                        position:ccp( adjustAmountX, adjustAmountY)];
+        
+        CCEaseElasticIn * easeIn = [CCEaseElasticIn actionWithAction:moveBy
+                                                                 period:period];
+        
+        CCDelayTime * delay = [CCDelayTime actionWithDuration:sleepSeconds];
+        
+        CCSequence * sequence = [CCSequence actions:delay,easeIn,nil];
+        
+        [self runAction:sequence];
+    }
+}
+
+- (void) onEnter {
+    [super onEnter];
+    [self applyStartEndAction:startActionType_ descs:startActionDescs_];
+}
+
+- (void) runEndAction {
+    [self applyStartEndAction:endActionType_ descs:endActionDescs_];
 }
 
 - (void) onEnterTransitionDidFinish {

@@ -23,6 +23,8 @@
 #import "TxWidget.h"
 #import "GamePlayLayer.h"
 
+#import "GameKitHelper.h"
+
 class b2WorldEx;
 @class Sky;
 
@@ -35,7 +37,7 @@ typedef enum {
 @class GamePlayLayer;
 
 // HelloWorld Layer
-@interface StageScene : CCLayer<ScoreBoardProtocol, TutorialBoardProtocol, GeneralMessageProtocol, TxWidgetListener>
+@interface StageScene : CCLayer<ScoreBoardProtocol, TutorialBoardProtocol, GeneralMessageProtocol, TxWidgetListener, GameKitHelperProtocol, GameKitCommProtocol>
 {
     // The screen size.
     CGSize screenSize;
@@ -130,11 +132,15 @@ typedef enum {
     
     BOOL isTouchTutorEnabled;
     BOOL isTouchTutorShown;
+    
+    // The number ticks.
+    int ticks;
 }
 
 @property (nonatomic, assign) Car * car;
 @property (nonatomic, retain) Hero * hero;
 
+-(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel playUI:(GamePlayLayer*)aPlayUI;
 
 +(CCScene*) sceneInMap:(NSString*)mapName levelNum:(int)level;
 +(StageScene*) sharedStageScene;

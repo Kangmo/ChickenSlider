@@ -58,7 +58,7 @@
 #if defined(DISABLE_ADS)    
     return YES; // BUGBUG : Optimization1 : Don't show AD.
 #else
-    return [[IAP sharedIAP] isFeaturePurchased:@"com.thankyousoft.chickenslider.maps.map02"];
+    return [[IAP sharedIAP] isFeaturePurchased:@"com.thankyousoft.chickenslidermulti.maps.map02"];
 #endif
 }
 
@@ -158,6 +158,20 @@
 
 +(void) saveTouchTutor:(int)touchTutor {
     [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"TouchTutor" value:touchTutor];
+}
+
+/** @brief return the play mode. 0 : Single Play, 1: MultiPlay
+ */
++(int) loadPlayMode{
+    int playMode;
+    playMode = [[PersistentGameState sharedPersistentGameState] readIntAttr:@"PlayMode" default:0];
+    return playMode;
+}
+
+/** @brief save play mode. 0 : Single Play, 1: MultiPlay 
+ */
++(void) savePlayMode:(int)playMode {
+    [[PersistentGameState sharedPersistentGameState] writeIntAttr:@"PlayMode" value:playMode];
 }
 
 +(NSString*) levelStateName:(NSString*)stateName mapName:(NSString*)mapName level:(int)level {
@@ -313,6 +327,17 @@
     
     [alert runModal];
 #endif    
+}
+
+
++ (BOOL) doesString:(NSString*)testedString contain:(NSString *) containedstring
+                options:(NSStringCompareOptions) options {
+    NSRange rng = [testedString rangeOfString:containedstring options:options];
+    return rng.location != NSNotFound;
+}
+
++ (BOOL) doesString:(NSString*)testedString contain:(NSString *) containedstring {
+    return [Util doesString:testedString contain:containedstring options:0];
 }
 
 @end

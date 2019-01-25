@@ -18,8 +18,7 @@
    sodipodi:docname="OptionScene.svg"
    inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/menus/CreditsScene.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
-   _backgroundImage="cloud960.png">
+   inkscape:export-ydpi="90">
   <defs
      id="defs3176">
     <linearGradient
@@ -154,16 +153,18 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="31.30242"
+     inkscape:cx="204.78307"
      inkscape:cy="95.618381"
      inkscape:document-units="px"
      inkscape:current-layer="layer7"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="712"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0" />
+     inkscape:window-x="7"
+     inkscape:window-y="43"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
   <metadata
      id="metadata3179">
     <rdf:RDF>
@@ -178,57 +179,27 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
-     id="layer5"
-     inkscape:label="Background"
-     ignore=""
-     style="display:inline" />
-  <g
-     inkscape:label="Others"
-     inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline"
+     inkscape:label="BG"
      ignore="">
     <image
-       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/OptionScene.png"
-       xlink:href="OptionScene.png"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=BackgroundImageText,Font=white34.fnt,Align=Center"
+       objectTouchAction="Action=None"
+       style="display:inline"
        y="0"
        x="0"
        id="image4279"
        height="320"
-       width="480" />
+       width="480"
+       xlink:href="/Users/kmkim/Games/rocknroll/rocknroll/menus/OptionScene.png"
+       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/CreditsScene.png" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:3.65572906px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="LayerForSwallowingTouch"
-       width="480"
-       height="320"
-       x="0"
-       y="0"
-       objectType="MenuItem"
-       objectTouchAction="Action=None" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.48735565px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7"
-       width="37.437027"
-       height="35.782413"
-       x="427.26382"
-       y="276.75449"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.wav,Option=PopCurrentScene" />
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.00459158px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject"
-       width="132.19006"
-       height="43.05854"
-       x="17.112631"
-       y="268.95145"
-       objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=CreditsScene,Arg1=Null,Sound=Touch.wav" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8"
@@ -270,8 +241,8 @@
        id="StartObject-7-7-9-8-4-8"
        width="147.53419"
        height="33.985462"
-       x="220.69238"
-       y="226.65953"
+       x="217.03526"
+       y="214.65953"
        objectType="Widget"
        objectDesc="WidgetType=ToggleButton,WidgetName=Difficulty,Images=Sel_Easy.png|Sel_Hard.png,Align=Center" />
     <rect
@@ -279,34 +250,34 @@
        id="StartObject-7-7-9-8-4-8-7"
        width="69.378716"
        height="31.378714"
-       x="220.0265"
-       y="174.47528"
+       x="216.87447"
+       y="168.47528"
        objectType="Widget"
        objectDesc="WidgetType=ToggleButton,WidgetName=TouchTutor,Images=offbt.png|onbt.png,Align=Center" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer9"
-     inkscape:label="iAD"
-     style="display:none">
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="208.17967"
-       y="30.925459"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="208.17967"
-         y="30.925459">iAD</tspan></text>
+    <image
+       style="display:inline"
+       y="272.7056"
+       x="428.4671"
+       id="image14262"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/backbt.png"
+       height="36"
+       width="36"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectDesc="WidgetType=Label,WidgetName=BackButtonText,Font=white34.fnt,Align=Center"
+       objectType="Widget"
+       objectTouchAction="Action=PopLayer,Sound=Touch.wav"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
+    <image
+       y="262.7056"
+       x="16.332506"
+       id="image5067"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/creditsbt.png"
+       height="46"
+       width="133"
+       objectDesc="WidgetType=Label,WidgetName=CreditsButtonText,Font=white34.fnt,Align=Center"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1,Period=0.45"
+       objectType="Widget"
+       objectTouchAction="Action=PushLayer,SceneName=CreditsScene,Arg1=Null,Sound=Touch.wav" />
   </g>
 </svg>

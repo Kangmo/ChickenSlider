@@ -209,16 +209,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="224.2324"
-     inkscape:cy="52.432716"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="126.52305"
+     inkscape:cy="147.81088"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="710"
-     inkscape:window-x="55"
-     inkscape:window-y="0"
+     inkscape:window-x="21"
+     inkscape:window-y="18"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -234,48 +234,27 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
-     id="layer7"
-     inkscape:label="Background"
-     ignore=""
-     style="display:inline">
-    <image
-       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/ClearScene.png"
-       xlink:href="ClearScene.png"
-       width="480"
-       height="320"
-       id="image4432"
-       x="0"
-       y="0" />
-  </g>
-  <g
-     inkscape:label="Others"
-     inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline"
-     ignore="" />
+     inkscape:label="BG"
+     ignore="">
+    <image
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=BackgroundImageText,Font=white34.fnt,Align=Center"
+       objectTouchAction="Action=None"
+       style="display:inline"
+       y="0"
+       x="0"
+       id="image4279"
+       height="320"
+       width="480"
+       xlink:href="/Users/kmkim/Games/rocknroll/rocknroll/menus/ClearScene.png"
+       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/CreditsScene.png" />
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.7467857px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-4-9"
-       width="109.11308"
-       height="28.826639"
-       x="349.28665"
-       y="187.15768"
-       objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=NextStageButton,Images=nextstage.png,DefaultIndex=0,Align=Center" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.89749283px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7"
-       width="115.8799"
-       height="39.204216"
-       x="345.69531"
-       y="272.34982"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=SelectStage,Sound=Touch.wav" />
     <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.83498245px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7"
@@ -348,48 +327,41 @@
        y="39.984982"
        objectType="Widget"
        objectDesc="WidgetType=ImageArray,WidgetName=StarPoints,Images=B_Star_0.png|B_Star_1.png|B_Star_2.png|B_Star_3.png,Align=Center" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.85755658px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-79"
-       width="115.91371"
-       height="35.782413"
-       x="345.98373"
-       y="183.92093"
-       objectType="MenuItem"
+    <image
+       y="184.83246"
+       x="347.07117"
+       id="image7566"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/nextstage.png"
+       height="38"
+       width="116"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=NextStageButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
        objectTouchAction="Action=None,ActionMessage=NextStage,Sound=Touch.wav" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.86382234px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-79-7"
-       width="116.43801"
-       height="36.143734"
-       x="345.67068"
-       y="229.01649"
-       objectType="MenuItem"
+    <image
+       y="229.01402"
+       x="347.07117"
+       id="image7644"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/retrybt.png"
+       height="38"
+       width="116"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=RetryButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1.2,Period=0.65"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
        objectTouchAction="Action=None,ActionMessage=Retry,Sound=Touch.wav" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer8"
-     inkscape:label="iAD"
-     style="display:none">
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="230.14915"
-       y="30.052441"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="230.14915"
-         y="30.052441">iAD</tspan></text>
+    <image
+       y="273.19559"
+       x="347.07117"
+       id="image7722"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/selstagebt.png"
+       height="38"
+       width="116"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=SelectStageButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1.4,Period=0.85"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=None,ActionMessage=SelectStage,Sound=Touch.wav" />
   </g>
 </svg>

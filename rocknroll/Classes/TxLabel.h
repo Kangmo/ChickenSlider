@@ -58,6 +58,10 @@ public :
         label_ = NULL;
     }
     
+    virtual CCNode * getNode() {
+        return label_;
+    }
+
     NSString * getFont()
     {
         const std::string & fontName = getPropValue("Font");
@@ -91,6 +95,25 @@ public :
     {
         NSString * intString = [NSString stringWithFormat:@"%d", value];
         [label_ setString:intString];
+    }
+
+    void setStringValue(NSString * value)
+    {
+        [label_ setString:value];
+    }
+    
+    NSString * getStringValue()
+    {
+        return [label_ string];
+    }
+
+    // BUGBUG : Consider making it virtual
+    void setPosition(CGPoint position) {
+        label_.position = position;
+    }
+    
+    const CGPoint getPosition() {
+        return label_.position;
     }
 };
 

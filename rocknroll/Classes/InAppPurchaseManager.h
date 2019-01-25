@@ -10,7 +10,7 @@
 
 #import <StoreKit/StoreKit.h>
 
-#define kPRODUCT_ID @"com.thankyousoft.chickenslider.maps.map02"
+#define kPRODUCT_ID @"com.thankyousoft.chickenslidermulti.maps.map02"
 //#define kPRODUCT_ID @"com.thankyousoft.rocknroll.map02"
 
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"

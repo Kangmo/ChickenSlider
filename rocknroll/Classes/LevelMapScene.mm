@@ -31,9 +31,8 @@
 // initialize your instance here
 -(id) initWithSceneName:(NSString*)sceneName
 {
-    NSString * mapName = sceneName;
-    if ([sceneName isEqualToString:@"MAP02_02"])
-        mapName = @"MAP02";
+    // Convert MAP01_01 to MAP01
+    NSString * mapName = [sceneName substringToIndex:5];
     
     self = [super initWithSceneName:sceneName];
     if (self) {
@@ -50,7 +49,7 @@
         [self loadLevelSprites];
         [self loadMapState];
         [self lockLevels];
-        
+
     }
     
     return self;
@@ -73,23 +72,24 @@
     // 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-    // TODO : Think about not hardcoding the map select scene.
-    if ([sceneName isEqualToString:@"MAP02"] && level >= 9 )
-        sceneName = @"MAP02_02";
-
+    // BUGBUG : Show the correct page for the level.
+    
 	// 'layer' is an autorelease object.
 	LevelMapScene *layer = [LevelMapScene nodeWithSceneName:sceneName];
+    /*
     if (cleared)
     {
         [layer setLevelCleared:level];
     }
+    */
 	
 	// add layer as a child to scene
-	[scene addChild: layer];
+	[scene addChild: layer z:0 tag:GeneralSceneLayerTagMenu];
 	
 	// return the scene
 	return scene;
 }
+
 
 +(CCScene*)sceneWithName:(NSString*)sceneName
 {

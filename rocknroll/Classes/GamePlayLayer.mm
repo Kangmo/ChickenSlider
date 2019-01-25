@@ -7,8 +7,8 @@
 //
 
 #import "GamePlayLayer.h"
+#import "GameKitHelper.h"
 @implementation GamePlayLayer
-
 // initialize your instance here
 -(id) initWithSceneName:(NSString*)sceneName
 {
@@ -44,10 +44,40 @@
         score_ = (TxIntegerLabel*) widgetContainer_->getWidget("Score").get();
         highScore_ = (TxLabel*) widgetContainer_->getWidget("HighScore").get();
         mapPosition_ = (TxLabel*) widgetContainer_->getWidget("MapPosition").get();
+
+        playersGround_ = (TxImageArray*) widgetContainer_->getWidget("PlayersGround").get();
+        
+        // The hero on this device
+        player1_ = (TxAnimationClip*) widgetContainer_->getWidget("Player1").get();
+        
+        // Other players on other devices (player2, player3, player4)
+        player2_ = (TxAnimationClip*) widgetContainer_->getWidget("Player2").get();
+        player2_->setVisible(NO);
+        player2_->setEnable(NO);
+        
+        player3_ = (TxAnimationClip*) widgetContainer_->getWidget("Player3").get();
+        player3_->setVisible(NO);
+        player3_->setEnable(NO);
+
+        player4_ = (TxAnimationClip*) widgetContainer_->getWidget("Player4").get();
+        player4_->setVisible(NO);
+        player4_->setEnable(NO);
+
+        player1Alias_ = (TxLabel*) widgetContainer_->getWidget("Player1Alias").get();
+        player2Alias_ = (TxLabel*) widgetContainer_->getWidget("Player2Alias").get();
+        player3Alias_ = (TxLabel*) widgetContainer_->getWidget("Player3Alias").get();
+        player4Alias_ = (TxLabel*) widgetContainer_->getWidget("Player4Alias").get();
+        
+        player2_id_ = nil;
+        player3_id_ = nil;
+        player4_id_ = nil;
+        
+        
         stageClearClip_ = (TxAnimationClip*) widgetContainer_->getWidget("StageClear").get();
         stageTimeoutClip_ = (TxAnimationClip*) widgetContainer_->getWidget("StageTimeout").get();
         touchTutorClip_ = (TxAnimationClip*) widgetContainer_->getWidget("TouchTutor").get();
-
+        
+        
         // By default we don't run the clip , we don't show the clip for StageClear and StageTimeout
         stageClearClip_->setVisible(NO);
         stageClearClip_->setEnable(NO);
@@ -67,6 +97,11 @@
 
 
 -(void)dealloc {
+
+    [player2_id_ release];
+    [player3_id_ release];
+    [player4_id_ release];
+
     [super dealloc];
 }
 
@@ -161,17 +196,95 @@
     sandClock_->setProgress(seconds, totalSeconds_);
 }
 
+/** @brief Set the GameCenter ID of hero on this device 
+ */
+-(void) setHeroAlias:(NSString*)heroAlias 
+{
+    player1Alias_->setStringValue(heroAlias);
+}
+
+/** @brief Set the X position of a specific player. 
+ */
+-(void) setMapProgress:(int)mapProgress player:(TxAnimationClip*)playerClip alias:(TxLabel*)playerAlias{
+    const TxRect & playersGroundRect = playersGround_->getRect();
+    const CGPoint playerPosition = playerClip->getPosition();
+    
+    float newPlayerPosX = playersGroundRect.origin.x + playersGroundRect.size.width * mapProgress / 100.0f;
+    playerClip->setPosition( ccp(newPlayerPosX, playerPosition.y) );
+    
+    const CGPoint playerAliasPosision = playerAlias->getPosition();
+    playerAlias->setPosition( ccp(newPlayerPosX, playerAliasPosision.y) );
+}
+
 /** @brief Set the X position of the map. This is for designing levels. 
  */
 -(void) setMapProgress:(int)mapProgress
 {
-
     if ( mapProgress != prevMapProgress )
     {
         NSString *positionString = [NSString stringWithFormat:@"%d%%",mapProgress];
         [mapPosition_->getWidgetImpl() setString:positionString];
         prevMapProgress = mapProgress;
+
+        [self setMapProgress:mapProgress player:player1_ alias:player1Alias_];
     }
+}
+
+/** @brief Set the players alias.
+ */
+-(void) doubleCheckAlias:(TxLabel*)playerAlias playerID:(NSString*)playerID {
+    NSString * aliasString = playerAlias->getStringValue();
+    if ( aliasString == nil || [aliasString isEqualToString:@""] ) {
+        GKPlayer * player = [[GameKitHelper sharedGameKitHelper] getPlayerByID:playerID];
+        // Because GKPlayer objects in the current match are retrieved asynchronously, 
+        // We may get nil for the player.
+        if (player) // If we have the player data retrieved,
+        {
+            // Set the player alias 
+            playerAlias->setStringValue(player.alias);
+        }
+    }
+}
+
+
+/** @brief Set position of other players.
+ */
+-(void) setProgress:(int)mapProgress position:(CGPoint)position player:(NSString*)playerID {
+    CCLOG(@"Player[%@] = (%f,%f)", playerID, position.x, position.y);
+    if ( !player2_id_ )
+        player2_id_ = [playerID retain];
+    if ([player2_id_ isEqualToString:playerID]) {
+        [self doubleCheckAlias:player2Alias_ playerID:playerID];
+        [self setMapProgress:mapProgress player:player2_ alias:player2Alias_];
+        player2_->setVisible(YES);
+        player2_->setEnable(YES);
+        return;
+    }
+
+    if ( !player3_id_ )
+        player3_id_ = [playerID retain];
+    if ([player3_id_ isEqualToString:playerID]) {
+        [self doubleCheckAlias:player3Alias_ playerID:playerID];
+        [self setMapProgress:mapProgress player:player3_ alias:player3Alias_];
+        player3_->setVisible(YES);
+        player3_->setEnable(YES);
+        return;
+    }
+    
+    if ( !player4_id_ )
+        player4_id_ = [playerID retain];
+    if ([player4_id_ isEqualToString:playerID]) {
+        [self doubleCheckAlias:player4Alias_ playerID:playerID];
+        [self setMapProgress:mapProgress player:player4_ alias:player4Alias_];
+        player4_->setVisible(YES);
+        player4_->setEnable(YES);
+        return;
+    }
+    
+    // Should never come here. 
+    // TODO : Add Flurry 
+    NSLog(@"ERROR:All 4 player IDs are filled, but we received a new ID : %@", playerID);
+    assert(0);
 }
 
 /** @brief Set the stage name.
@@ -182,7 +295,6 @@
         [stageName_->getWidgetImpl() setString:stageName];
     }
 }
-
 
 - (void) showMessage:(NSString*) message {
     message_->showMessage( message );

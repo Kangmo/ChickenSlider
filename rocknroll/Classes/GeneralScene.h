@@ -6,7 +6,7 @@
 #import "TxWidgetContainer.h"
 #import "TxWidget.h"
 typedef enum {
-    GeneralSceneLayerTagMain=100,
+    GeneralSceneLayerTagMenu=100,
     GeneralSceneLayerTagRealQuit=101 // The layer for asking if the user really wants to quit the stage.
 } GeneralSceneLayerTags;
 
@@ -17,6 +17,9 @@ class b2WorldEx;
 
     BOOL didStartLoading_;
     TxWidgetContainer * widgetContainer_;
+    
+    // Show Demo Stage?
+    BOOL showDemoStage_;
     
     // The background music
     NSString * backgroundMusic_;
@@ -37,7 +40,7 @@ class b2WorldEx;
 @property(nonatomic,assign) id<GeneralMessageProtocol> actionListener;
 @property(nonatomic,assign) int loadingLevel;
 @property(nonatomic,retain) NSString * loadingLevelMapName;
-
+@property(nonatomic,readonly) NSString * layerName;
 
 +(id)nodeWithSceneName:(NSString*)sceneName;
 +(CCScene*)sceneWithName:(NSString*)sceneName;
@@ -45,5 +48,6 @@ class b2WorldEx;
 
 // initialize your instance here
 -(id) initWithSceneName:(NSString*)sceneName;
+-(void) runEndAction;
 
 @end

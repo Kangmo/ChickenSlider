@@ -14,6 +14,7 @@
 #import "FlurryAnalytics.h"
 #include "AppAnalytics.h"
 #import "IAP.h"
+#import "GameState.h"
 
 @implementation AppDelegate
 
@@ -50,8 +51,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     [FlurryAnalytics logError:@"Uncaught Exception" message:callStack exception:exception];
     
-    assert(defaultExceptionHandler);
-    defaultExceptionHandler(exception);
+    if(defaultExceptionHandler) {
+        defaultExceptionHandler(exception);
+    }
 }
 
 -(void) installExceptionHandler {
@@ -111,7 +113,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	//[director setDisplayFPS:YES];
+	[director setDisplayFPS:YES];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -121,7 +123,13 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[window addSubview: viewController.view];
 	
 	[window makeKeyAndVisible];
-	
+
+    // Initialize GameKit
+    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+    gkHelper.commDelegate = [GameState sharedGameState];
+
+    [gkHelper authenticateLocalPlayer];
+
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.
@@ -129,10 +137,12 @@ void uncaughtExceptionHandler(NSException *exception) {
     
 	// Removes the startup flicker
 	[self removeStartupFlicker];
-	
+    
+#if ! defined(DISABLE_IAP)
     // Initialize IAP.
     [IAP sharedIAP];
-
+#endif
+    
     // Set volumes
     int musicVolume = [Util loadMusicVolume];
     int effectVolume = [Util loadEffectVolume];
@@ -142,7 +152,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     
     // Load the sprite frames.
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"sprites.plist" textureFile:@"sprites.pvr"];
-    
+
+    // Load the sprite frames.
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"menu_sprites.plist" textureFile:@"menu_sprites.pvr"];
+
     // Enable AD only if no feature is not purchased
     if ( ! [Util didPurchaseAny ] )
     {
@@ -152,16 +165,19 @@ void uncaughtExceptionHandler(NSException *exception) {
         [[AdManager sharedAdManager] enableRefresh];
         [[AdManager sharedAdManager] refresh];
     }
+    
+#if ! defined(DEBUG)    
     [self installExceptionHandler];
+#endif
     
     // Start Flurry Analytics
-    AppAnalytics::sharedAnalytics().startSession("3CJN3GNYVFBEKMBCNPG2");
+    AppAnalytics::sharedAnalytics().startSession("YAP4LQ93A59M1MS6QB2Q");
 
     AppAnalytics::sharedAnalytics().beginEventProperty();
     AppAnalytics::sharedAnalytics().addDeviceProperties();
     AppAnalytics::sharedAnalytics().endEventProperty();
     AppAnalytics::sharedAnalytics().beginTimedEvent("AppPlayTime");
-
+    
     CCScene * theFirstScene = [GeneralScene sceneWithName:@"MainMenuScene"];
     //CCScene * theFirstScene = [StageScene sceneInMap:@"MAP01" levelNum:1];
 	

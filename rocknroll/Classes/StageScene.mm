@@ -26,6 +26,10 @@
 
 #import "AdManager.h"
 
+// For game center integration
+#import "NetworkPackets.h"
+#import "GameState.h"
+#import "DemoManager.h"
 //Pixel to metres ratio. Box2D uses metres as the unit for measurement.
 //This ratio defines how many pixels correspond to 1 Box2D "metre"
 //Box2D is optimized for objects of 1x1 metre therefore it makes sense
@@ -45,6 +49,8 @@ const float backgroundImageHeight = 512;
 
 
 @interface StageScene() 
+-(void) showMatchMaker;
+- (void) sendPosition:(CGPoint)playerPos;
 - (void) finishStageWithMessage:(NSString*)message stageCleared:(BOOL)clearedCurrentStage;
 - (void) decideTouchTutorEnabled;
 @end
@@ -58,7 +64,7 @@ const float backgroundImageHeight = 512;
 static StageScene* instanceOfStageScene;
 +(StageScene*) sharedStageScene
 {
-	NSAssert(instanceOfStageScene != nil, @"StageScene instance not yet initialized!");
+//	NSAssert(instanceOfStageScene != nil, @"StageScene instance not yet initialized!");
 	return instanceOfStageScene;
 }
 
@@ -114,9 +120,8 @@ PROF_END(cocos2d_layer_visit);
         playTimeSec  = [Util getIntValue:rootElement name:@"_playTimeSec" defaultValue:60];
         
         //playTimeSec = 1000;
-        if (! isHardMode ) {
-            // In easy mode, we give 50% more time.
-            playTimeSec = playTimeSec * EASY_MODE_PLAY_TIME_FACTOR;
+        if ( isHardMode ) {
+            playTimeSec = playTimeSec * HARD_MODE_PLAY_TIME_FACTOR;
         }
         oneStarCount = [Util getIntValue:rootElement name:@"_oneStarCount" defaultValue:1];
         twoStarCount = [Util getIntValue:rootElement name:@"_twoStarCount" defaultValue:2];
@@ -359,17 +364,18 @@ PROF_END(cocos2d_layer_visit);
 {
     // BUGBUG : How about not playing the background music during the pause scene?
     // Get the parent Scene that has the current layer.
-    CCScene * parentScene = (CCScene*)[self parent];
-    assert(parentScene);
-    assert( [parentScene isKindOfClass:[CCScene class]] );
-    
+
     // 'layer' is an autorelease object.
 	GeneralScene *pauseLayer = [GeneralScene nodeWithSceneName:@"PauseLayer"];
-    //[pauseLayer swallowTouch];
+
     pauseLayer.actionListener = self;
+
+    // BUGBUG make the current layer darker.
+    
+    // BUGBUG Disable touch on the current layer.
     
 	// add layer as a child to scene
-	[parentScene addChild:pauseLayer z:100 tag:GeneralSceneLayerTagMain];
+    [[DemoManager sharedDemoManager] replaceMenuLayer:pauseLayer];
     
     [self pauseGame];
 }
@@ -419,7 +425,7 @@ PROF_END(cocos2d_layer_visit);
         [self resumeGame];
         [self retryGame];
     }
-    
+
     // Quit : Sent by PauseLayer.svg
     if ( [message isEqualToString:@"Quit"] )
     {
@@ -445,6 +451,13 @@ PROF_END(cocos2d_layer_visit);
 
 ///////////////////////////////////////////////////////////////
 
+/** @brief If there is no playUI, it is in demo mode
+ */
+-(BOOL) isDemoMode {
+    return playUI?NO:YES;
+}
+
+
 /** @brief See if we need to enable touch tutor. Touch tutor can be enabled only in level 1,2,3,4 in MAP01.
  Users can choose to enable or disable it in the Options menu.
 */
@@ -452,10 +465,13 @@ PROF_END(cocos2d_layer_visit);
 -(void) decideTouchTutorEnabled
 {
     isTouchTutorEnabled = NO;
-    if ([mapName isEqualToString:@"MAP01"] && level <=4 ) {
-        isTouchTutorEnabled = [Util loadTouchTutor] ? YES:NO;
+    if (![self isDemoMode] ) { // It is not a demo mode and
+        if ([mapName isEqualToString:@"MAP01"] && level <=4 ) {
+            isTouchTutorEnabled = [Util loadTouchTutor] ? YES:NO;
+        }
     }
 }
+
 // initialize your instance here
 -(id) initInMap:(NSString*)aMapName levelNum:(int)aLevel playUI:(GamePlayLayer*)aPlayUI
 {
@@ -466,16 +482,27 @@ PROF_END(cocos2d_layer_visit);
 
         PROF_RESET_ALL();
         
-        gameObjectContainer = new GameObjectContainer();
-        screenSize = [CCDirector sharedDirector].winSize;
         assert(aMapName);
         assert(aLevel>0);
+        
+        mapName = [aMapName retain];
+        level = aLevel;
+        playUI = [aPlayUI retain];
+        
+        gameObjectContainer = new GameObjectContainer();
+        screenSize = [CCDirector sharedDirector].winSize;
+
+        ticks = 0;
         
         isTouchTutorShown = NO;
 
         totalFrameCount = 0;
         
         isHardMode = [Util loadDifficulty] ? YES:NO;
+        if ( [self isDemoMode] ) {
+            // Make it run faster in demo mode by switching to hard mode.
+            isHardMode = YES;
+        }
 
         closingScene = nil;
 
@@ -498,19 +525,18 @@ PROF_END(cocos2d_layer_visit);
         
         stageCleared = NO;
         
-		// enable touches
-		self.isTouchEnabled = YES;
-		
-		// enable accelerometer
-		self.isAccelerometerEnabled = YES;
+        if (![self isDemoMode]) {
+            // enable touches
+            self.isTouchEnabled = YES;
 
+            // enable accelerometer
+            self.isAccelerometerEnabled = YES;
+            [[UIAccelerometer sharedAccelerometer] setUpdateInterval:1/60];
+        }
         
         int highScore = [Util loadHighScore:aMapName level:aLevel];
-        [aPlayUI setHighScore:highScore];
-        
-        playUI = [aPlayUI retain];
-        mapName = [aMapName retain];
-        level = aLevel;
+        [playUI setHighScore:highScore];
+
         assert( aLevel < MAX_LEVELS_PER_MAP );
         assert( MAX_LEVELS_PER_MAP < 99 );
 
@@ -523,6 +549,9 @@ PROF_END(cocos2d_layer_visit);
         
         // Read attributes from SVG file
         [self readAttributesFromSVG:svgFilePath];
+        if ( [self isDemoMode] ) {
+            playTimeSec = DEMO_MODE_PLAY_TIME_SEC;
+        }
         // Assign the play time read from SVG file to the sbSecondsLeft variable that we decrease within tick function.
         sbSecondsLeft = (float)playTimeSec;
         sbRecentSecond = playTimeSec + 1; // To show playTimeSec on the score board, sbRecentSecond should be greater than playTimeSec.
@@ -604,6 +633,17 @@ PROF_END(cocos2d_layer_visit);
 		
         instanceOfStageScene = self;
 
+        // Initialize game kit
+        GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+		gkHelper.delegate = self;
+        gkHelper.commDelegate = self;
+        
+        [playUI setHeroAlias:@"Me"];
+        /*
+        NSString * heroAlias = gkHelper.localPlayerAlias;
+        if (heroAlias)
+            [playUI setHeroAlias:heroAlias];
+        */
         // Initialize score labels. (Requires spriteSheet);
         //[self initScoreLabels];
         
@@ -683,6 +723,32 @@ PROF_END(cocos2d_layer_visit);
 }
 */
 
+-(void) accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+    static int shakeCount = 0;
+    
+    if (acceleration.x > SHAKE_DEVICE_ACC_THRESHOLD || acceleration.x < -SHAKE_DEVICE_ACC_THRESHOLD || 
+        acceleration.y > SHAKE_DEVICE_ACC_THRESHOLD || acceleration.y < -SHAKE_DEVICE_ACC_THRESHOLD ||
+        acceleration.z > SHAKE_DEVICE_ACC_THRESHOLD || acceleration.z < -SHAKE_DEVICE_ACC_THRESHOLD) {
+        
+        if (shakeCount == 0) {
+            if (sbChicks > 0) {
+                // Boost the speed of Hero
+                [hero boostSpeed];
+                
+                // Decrease the number of chicks saved
+                sbChicks--;
+                [playUI setChicks:sbChicks];
+                
+                // Show particle
+                [hero addSaveChickParticle];
+            }
+            shakeCount ++;
+        }
+    }
+    else {
+        shakeCount = 0;
+    }
+}
 
 -(void) draw
 {
@@ -800,7 +866,7 @@ PROF_END(cocos2d_layer_visit);
 
 /** @brief process to see if we need to show touch tutor.
  */
--(void) processTouchTutor:(Terrain*)t heroY:(float)heroY_withoutZoom{
+-(void) processTouchTutor:(Terrain*)t heroY:(float)heroY_withoutZoom autoPlay:(BOOL)autoPlay{
     // Calculate the distance between the hero and the terrain (in meters).
     float terrainY;
     if ( [t terrainYatHero:&terrainY] ) {
@@ -819,14 +885,19 @@ PROF_END(cocos2d_layer_visit);
                     
                     isTouchTutorShown = YES;
                 }
+                
+                if (autoPlay && !self.hero.diving)
+                    self.hero.diving = YES;
             }
             else {
                 if ( isTouchTutorShown ) {
                     [playUI showTouchTutor:NO];
                     isTouchTutorShown = NO;
                 }
+                
+                if (autoPlay && self.hero.diving)
+                    self.hero.diving = NO;
             }
-            
         }
     }
 }
@@ -839,7 +910,7 @@ PROF_END(cocos2d_layer_visit);
     float maxTerrainY_belowHero = -kMAX_POSITION;
     
     
-    if (hero)
+    //if (hero)
     {
         /////////////////////////////////////////////
         // Step1 : Adjust Terrains
@@ -879,7 +950,11 @@ PROF_END(cocos2d_layer_visit);
                     maxTerrainY_belowHero = borderMinY;
 
                 if (isTouchTutorEnabled) {
-                    [self processTouchTutor:t heroY:heroY_withoutZoom];
+                    [self processTouchTutor:t heroY:heroY_withoutZoom autoPlay:NO];
+                }
+                // BUGBUG : Not using isDemoMode for performance optimization not to send messages to self.
+                if ( !playUI) {
+                    [self processTouchTutor:t heroY:heroY_withoutZoom autoPlay:YES];                    
                 }
             }
                 
@@ -894,7 +969,6 @@ PROF_END(cocos2d_layer_visit);
     // Is the hero on a terrain which is far enough from the ground?
     if ( maxTerrainY_belowHero > groundY + GROUND_TO_NEWGROUND_GAP )
         return maxTerrainY_belowHero;
-
 
     return groundY;
 }
@@ -945,7 +1019,6 @@ PROF_END(cocos2d_layer_visit);
 
 -(void) gotoLevelMapWithFail
 {
-
     // IF the level is cleared, the next level is unlocked.
     // IF the level is not cleared(the Hero is dead), go back to level map scene.
     CCScene * levelMapScene = [LevelMapScene sceneWithName:mapName level:level cleared:NO];
@@ -998,6 +1071,11 @@ PROF_END(cocos2d_layer_visit);
         // Increase score
         sbScore += ((int)sbSecondsLeft)*SCORE_PER_SECOND_FOR_HARD_MODE;
     }
+    else
+    {
+        // Increase score
+        sbScore += ((int)sbSecondsLeft)*SCORE_PER_SECOND_FOR_EASY_MODE;
+    }
     
     int stars = [self calcStars];
     
@@ -1013,6 +1091,8 @@ PROF_END(cocos2d_layer_visit);
                                          timeSpent:(playTimeSec-sbSecondsLeft)
                                           timeLeft:sbSecondsLeft];
     
+//    [self checkAchieve
+    
     if ( closingScene )
     {
         CCScene * theClosingScene = [IntermediateScene sceneWithName:closingScene nextScene:nextScene];
@@ -1022,6 +1102,15 @@ PROF_END(cocos2d_layer_visit);
     [[CCDirector sharedDirector] replaceScene:nextScene];
 
     CCLOG(@"onStageClear:data");
+}
+
+
+-(void)onDemoNextStage:(id)sender data:(void*)callbackData 
+{
+    
+    [[DemoManager sharedDemoManager] runNextDemo];
+    
+    CCLOG(@"onDemoNextStage:data");
 }
 
 
@@ -1047,36 +1136,47 @@ PROF_END(cocos2d_layer_visit);
     id lastAction = nil;
     if ( clearedCurrentStage )
     {
-        lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageClear:data:) data:(void*)nil];
         // Instead of showing label, show stage clear animation
         [label setString:@""]; 
-        [playUI startStageClearAnim];
-        
-        // Wait more to show stars particle for longer time...
-        sceneTransitionWaitSec = 6.0;
+        if ( [self isDemoMode] ) {
+            lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onDemoNextStage:data:) data:(void*)nil];
+        }
+        else
+        {
+            lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageClear:data:) data:(void*)nil];
+            
+            [playUI startStageClearAnim];
+            
+            // Wait more to show stars particle for longer time...
+            sceneTransitionWaitSec = 6.0;
+        }
     }
     else
     {
-        lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageFail:data:) data:(void*)nil];
-
         if ( [message isEqualToString:@"_timeout_"] ) {
             // Instead of showing label, show stage timeout animation
             [label setString:@""]; 
             [playUI startStageTimeoutAnim];
         }
         
-        AppAnalytics::sharedAnalytics().beginEventProperty();
-        AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName, level);
-        AppAnalytics::sharedAnalytics().addDeviceProperties();
-        float timeSpent = (playTimeSec-sbSecondsLeft);
-        if (timeSpent) {
-            float averageFPS = totalFrameCount/timeSpent;
-            AppAnalytics::sharedAnalytics().addEventProperty("averageFPS", averageFPS);
-            NSLog(@"averageFPS=%f\n", averageFPS);
-        }
-        AppAnalytics::sharedAnalytics().endEventProperty();
+        if ( [self isDemoMode] ) {
+            lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onDemoNextStage:data:) data:(void*)nil];
+        } else {
+            lastAction = [CCCallFuncND actionWithTarget:self selector:@selector(onStageFail:data:) data:(void*)nil];
             
-        AppAnalytics::sharedAnalytics().logEvent( "StageScene:Failed:"+[Util toStdString:message] );
+            AppAnalytics::sharedAnalytics().beginEventProperty();
+            AppAnalytics::sharedAnalytics().addStageNameEventProperty(mapName, level);
+            AppAnalytics::sharedAnalytics().addDeviceProperties();
+            float timeSpent = (playTimeSec-sbSecondsLeft);
+            if (timeSpent) {
+                float averageFPS = totalFrameCount/timeSpent;
+                AppAnalytics::sharedAnalytics().addEventProperty("averageFPS", averageFPS);
+                NSLog(@"averageFPS=%f\n", averageFPS);
+            }
+            AppAnalytics::sharedAnalytics().endEventProperty();
+            
+            AppAnalytics::sharedAnalytics().logEvent( "StageScene:Failed:"+[Util toStdString:message] );
+        }
     }
     
 	[label runAction:[CCSequence actions:
@@ -1103,7 +1203,13 @@ PROF_END(cocos2d_layer_visit);
         return;
     }
     
-    if ( hero.body->GetPosition().y < groundY_worldSystem - HERO_DEAD_GAP_WORLD_Y ) {
+    float heroY;
+    if (hero)
+        heroY = hero.body->GetPosition().y;
+    if (car)
+        heroY = car->getBody()->GetPosition().y;
+    
+    if ( heroY < groundY_worldSystem - HERO_DEAD_GAP_WORLD_Y ) {
         if ( ! hero.isDead )
         {
             // Show that the hero is dead (Jump like mario!)
@@ -1147,23 +1253,29 @@ PROF_END(cocos2d_layer_visit);
     }
 }
 
-
 - (void) onEnterTransitionDidFinish {
-    if (!didPlayMusic) // Play music only once. We need it because this function is called whenever OptionScene, HelpScene in PauseScene is popped. We don't want the music to play start again whenever the game resumes from the PauseScene.
-    {
-        if (musicFileName)
+    if ( [self isDemoMode] ) {
+        // awake the hero if it is demo mode.
+        [self.hero wake];
+    }
+    else {
+        if (!didPlayMusic) // Play music only once. We need it because this function is called whenever OptionScene, HelpScene in PauseScene is popped. We don't want the music to play start again whenever the game resumes from the PauseScene.
         {
-            [Util playBGM:musicFileName];
+            if (musicFileName)
+            {
+                [Util playBGM:musicFileName];
+            }
+            didPlayMusic = YES;
         }
-        didPlayMusic = YES;
-    }
-    // When the game is paused, we still show the AD. 
-    // This function is called when the Option or Help scene is popped and came back to the StageScene to show the pause layer while to game is in puase.
-    if (!isGamePaused) { 
-        // Hide ADs during game play.
-        [[AdManager sharedAdManager] setVisible:NO];
-    }
 
+        // When the game is paused, we still show the AD. 
+        // This function is called when the Option or Help scene is popped and came back to the StageScene to show the pause layer while to game is in puase.
+        if (!isGamePaused) { 
+            // Hide ADs during game play.
+            [[AdManager sharedAdManager] setVisible:NO];
+        }
+    }
+    
     [super onEnterTransitionDidFinish];
 }
 
@@ -1249,12 +1361,23 @@ PROF_END(cocos2d_layer_visit);
         }
     }
 
-    sbSecondsLeft -= dt;
+    if ( !stageCleared) {
+        sbSecondsLeft -= dt;
+    }
 
     if ( sbSecondsLeft < 0.0f ) // Time is up!
     {
         [self giveUpGame:@"_timeout_"];
     }
+}
+
+/** Get the map progress percentage given the hero X position.
+ */
+-(int)getMapProgress:(float)heroX_withoutZoom {
+    int mapProgress = (int) (heroX_withoutZoom * 100 / terrainMaxX);
+    if (mapProgress > 100)
+        mapProgress = 100;
+    return mapProgress;
 }
 
 -(void) tick: (ccTime) dt
@@ -1267,6 +1390,14 @@ PROF_END(cocos2d_layer_visit);
         PROF_ENABLE();
 */
     // TODO : Understand why adjusting terrain should come here.
+
+    // In the first frame, show match maker if in multiplay mode
+    if (ticks == 0) {
+        if ( [GameState sharedGameState].playerFlag == GF_MultiplayInitiator ) { // MultiPlay?
+            [self showMatchMaker];
+        }
+    }
+    ticks ++;
 
     // if the game is paused, dont' update the game frame. 
     assert (!isGamePaused);
@@ -1284,8 +1415,17 @@ PROF_BEGIN(stage_tick_updateFollowPosition);
 PROF_END(stage_tick_updateFollowPosition);
 
 PROF_BEGIN(stage_tick_adjustTerrains);
-    float heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
-    float heroY_withoutZoom = hero.body->GetPosition().y * INIT_PTM_RATIO;
+    float heroX_withoutZoom;
+    float heroY_withoutZoom;
+    
+    if (hero) {
+        heroX_withoutZoom = hero.body->GetPosition().x * INIT_PTM_RATIO;
+        heroY_withoutZoom = hero.body->GetPosition().y * INIT_PTM_RATIO;
+    }
+    if (car) {
+        heroX_withoutZoom = car->getBody()->GetPosition().x * INIT_PTM_RATIO;
+        heroY_withoutZoom = car->getBody()->GetPosition().y * INIT_PTM_RATIO;
+    }
 
     // groundY will be used in the next tick to decide the zoom level.
     float screenGroundY_withoutZoom = [self adjustTerrains:heroX_withoutZoom heroY:heroY_withoutZoom];
@@ -1372,15 +1512,20 @@ PROF_BEGIN(stage_tick_update_labels);
     // Show the map position with 1/100 scale
     if ( heroX_withoutZoom - prevMapPosition_heroX > 100 )
     {
-        int mapProgress =  (int) (heroX_withoutZoom * 100 / terrainMaxX);
-        if (mapProgress > 100)
-            mapProgress = 100;
+        int mapProgress =  [self getMapProgress:heroX_withoutZoom];
         
         // BUGBUG : DO OPT
 //        prevMapPosition_heroX = heroX_withoutZoom;
         [playUI setMapProgress:mapProgress];
     }
 PROF_END(stage_tick_update_labels);
+    
+    // Send position 4 times a second. 
+    // (Send once per 16 frames. Assuming we are running 60 frames, we send the player position four times a sec.)  
+    if ( (ticks & 0x0F) == 0 ) {
+        [self sendPosition:ccp(heroX_withoutZoom,heroY_withoutZoom)];
+//        [playUI updateMyProgress:mapProgress];
+    }
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -1452,19 +1597,6 @@ PROF_END(stage_tick_update_labels);
 //	isThrottleEnabled = NO;
 }
 
-// BUGBUG : Understand why this is called.
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-    /*
-    labelX.text = [NSString stringWithFormat:@"%@%f", @"X: ", acceleration.x];
-    labelY.text = [NSString stringWithFormat:@"%@%f", @"Y: ", acceleration.y];
-    labelZ.text = [NSString stringWithFormat:@"%@%f", @"Z: ", acceleration.z];
-    
-    self.progressX.progress = ABS(acceleration.x);
-    self.progressY.progress = ABS(acceleration.y);
-    self.progressZ.progress = ABS(acceleration.z);
-    */
-}
-
 // Called by TxWidget when the value of the widget changes. 
 // Ex> If the scene definition SVG contains TxToggleButton, this is called whenever the button is toggled. 
 // Ex> If the scene definition SVG contains TxSlideBar, this is called whenever the sliding button is dragged. 
@@ -1473,11 +1605,205 @@ PROF_END(stage_tick_update_labels);
     // By default, do nothing.
 }
 
+#pragma mark GameKitHelper delegate methods
+-(void) onLocalPlayerAuthenticationChanged
+{
+	GKLocalPlayer* localPlayer = [GKLocalPlayer localPlayer];
+	CCLOG(@"LocalPlayer isAuthenticated changed to: %@", localPlayer.authenticated ? @"YES" : @"NO");
+	
+	if (localPlayer.authenticated)
+	{
+		GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+		[gkHelper getLocalPlayerFriends];
+        [playUI setHeroAlias:localPlayer.alias];
+		//[gkHelper resetAchievements];
+	}	
+}
+
+-(void) onFriendListReceived:(NSArray*)friends
+{
+	CCLOG(@"onFriendListReceived: %@", [friends description]);
+	GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+	[gkHelper getPlayerInfo:friends];
+}
+
+-(void) showMatchMaker {
+	GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+    
+    GKMatchRequest* request = [[[GKMatchRequest alloc] init] autorelease];
+	request.minPlayers = 2;
+	request.maxPlayers = 4;
+	
+	//GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+	[gkHelper showMatchmakerWithRequest:request];
+	[gkHelper queryMatchmakingActivity];
+}
+
+-(void) onPlayerInfoReceived:(NSArray*)players
+{
+	CCLOG(@"onPlayerInfoReceived: %@", [players description]);
+	//[gkHelper submitScore:1234 category:@"Playtime"];
+	
+	//[gkHelper showLeaderboard];
+    
+    // Don't show matchmaker.
+    //[self showMatchMaker];
+}
+
+-(void) onScoresSubmitted:(bool)success
+{
+	CCLOG(@"onScoresSubmitted: %@", success ? @"YES" : @"NO");
+}
+
+-(void) onScoresReceived:(NSArray*)scores
+{
+	CCLOG(@"onScoresReceived: %@", [scores description]);
+}
+
+-(void) onAchievementReported:(GKAchievement*)achievement
+{
+	CCLOG(@"onAchievementReported: %@", achievement);
+}
+
+-(void) onAchievementsLoaded:(NSDictionary*)achievements
+{
+	CCLOG(@"onLocalPlayerAchievementsLoaded: %@", [achievements description]);
+}
+
+-(void) onResetAchievements:(bool)success
+{
+	CCLOG(@"onResetAchievements: %@", success ? @"YES" : @"NO");
+}
+
+-(void) onLeaderboardViewDismissed
+{
+	CCLOG(@"onLeaderboardViewDismissed");
+}
+
+-(void) onAchievementsViewDismissed
+{
+	CCLOG(@"onAchievementsViewDismissed");
+}
+
+-(void) onReceivedMatchmakingActivity:(NSInteger)activity
+{
+	CCLOG(@"receivedMatchmakingActivity: %i", activity);
+}
+
+-(void) onMatchFound:(GKMatch*)match
+{
+	CCLOG(@"onMatchFound: %@", match);
+}
+
+-(void) onPlayersAddedToMatch:(bool)success
+{
+	CCLOG(@"onPlayersAddedToMatch: %@", success ? @"YES" : @"NO");
+}
+
+-(void) onMatchmakingViewDismissed
+{
+	CCLOG(@"onMatchmakingViewDismissed");
+}
+-(void) onMatchmakingViewError
+{
+	CCLOG(@"onMatchmakingViewError");
+}
+
+-(void) onPlayerConnected:(NSString*)playerID
+{
+	CCLOG(@"onPlayerConnected: %@", playerID);
+}
+
+-(void) onPlayerDisconnected:(NSString*)playerID
+{
+	CCLOG(@"onPlayerDisconnected: %@", playerID);
+}
+
+-(void) onStartMatch
+{
+	CCLOG(@"onStartMatch");
+}
+
+// TM16: handles receiving of data, determines packet type and based on that executes certain code
+-(void) onReceivedData:(NSData*)data fromPlayer:(NSString*)playerID
+{
+	SBasePacket* basePacket = (SBasePacket*)[data bytes];
+	CCLOG(@"onReceivedData: %@ fromPlayer: %@ - Packet type: %i", data, playerID, basePacket->type);
+    //BUGBUG : uncomment
+/*	
+	switch (basePacket->type)
+	{
+		case kPacketTypeScore:
+		{
+			SScorePacket* scorePacket = (SScorePacket*)basePacket;
+			CCLOG(@"\tscore = %i", scorePacket->score);
+			break;
+		}
+		case kPacketTypePosition:
+		{
+			SPositionPacket* positionPacket = (SPositionPacket*)basePacket;
+			CCLOG(@"\tposition = (%.1f, %.1f)", positionPacket->position.x, positionPacket->position.y);
+			
+			// instruct remote players to move their tilemap layer to this position (giving the impression that the player has moved)
+			// this is just to show that it's working by "magically" moving the other device's screen/player
+			if (playerID != [GKLocalPlayer localPlayer].playerID)
+			{
+//                [self sendPosition:ccp(heroX_withoutZoom,heroY_withoutZoom)];
+                int mapProgress =  [self getMapProgress:positionPacket->position.x];
+
+                [playUI setProgress:mapProgress position:positionPacket->position player:(NSString*)playerID];
+                
+//				CCTMXTiledMap* tileMap = (CCTMXTiledMap*)[self getChildByTag:TileMapNode];
+//				[self centerTileMapOnTileCoord:positionPacket->position tileMap:tileMap];
+ 
+			}
+			break;
+		}
+		default:
+			CCLOG(@"unknown packet type %i", basePacket->type);
+			break;
+	}
+ */
+}
+
+// TM16: send a bogus score (simply an integer increased every time it is sent)
+-(void) sendScore
+{
+	if ([GameKitHelper sharedGameKitHelper].currentMatch != nil)
+	{
+/** // BUGBUG uncomment		
+		SScorePacket packet;
+		packet.type = kPacketTypeScore;
+		packet.score = sbScore;
+		
+		[[GameKitHelper sharedGameKitHelper] sendDataToAllPlayers:&packet length:sizeof(packet)];
+*/
+    }
+}
+
+// TM16: send a tile coordinate
+-(void) sendPosition:(CGPoint)playerPos
+{
+	if ([GameKitHelper sharedGameKitHelper].currentMatch != nil)
+	{
+		SPositionPacket packet;
+		packet.type = kPacketTypePosition;
+		packet.position = playerPos;
+		
+		[[GameKitHelper sharedGameKitHelper] sendDataToAllPlayers:&packet length:sizeof(packet)];
+	}
+}
+
+
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
     CCLOG(@"StageScene:dealloc");
     
+    GameKitHelper* gkHelper = [GameKitHelper sharedGameKitHelper];
+    gkHelper.delegate = nil;
+    gkHelper.commDelegate = [GameState sharedGameState];
+
     [self unschedule: @selector(tick:)];
     
     if (car)
@@ -1501,7 +1827,8 @@ PROF_END(stage_tick_update_labels);
 	delete m_debugDraw;
 
 	// Reset the StageScene singleton.
-    instanceOfStageScene = nil;
+// BUGBUG : Rethink if it is ok to comment this.
+//    instanceOfStageScene = nil;
     
     [playUI release];
     [mapName release];
@@ -1519,4 +1846,6 @@ PROF_END(stage_tick_update_labels);
 	// don't forget to call "super dealloc"
 	[super dealloc];
 }
+
+
 @end

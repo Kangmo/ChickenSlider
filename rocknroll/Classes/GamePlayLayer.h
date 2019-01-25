@@ -31,7 +31,18 @@
     TxLabel * highScore_ ;
     TxLabel * mapPosition_ ;
     
+    TxImageArray * playersGround_ ;
+    TxAnimationClip * player1_ ; // The hero
     
+    TxAnimationClip * player2_ ;
+    TxAnimationClip * player3_ ;
+    TxAnimationClip * player4_ ;
+    
+    TxLabel * player1Alias_ ;
+    TxLabel * player2Alias_ ;
+    TxLabel * player3Alias_ ;
+    TxLabel * player4Alias_ ;
+
     TxAnimationClip * touchTutorClip_ ;
     TxAnimationClip * stageClearClip_ ;
     TxAnimationClip * stageTimeoutClip_ ;
@@ -41,6 +52,10 @@
     int nScore_;
     
     int prevMapProgress;
+    
+    NSString * player2_id_;
+    NSString * player3_id_;
+    NSString * player4_id_;
 }
 
 +(id)layerWithSceneName:(NSString*)sceneName;
@@ -54,10 +69,16 @@
 -(void) setChicks:(int)chicks;
 -(void) setSecondsLeft:(float)secondsLeft;
 -(void) showMessage:(NSString*) message ;
--(void) setMapProgress:(int)mapProgress;
 -(void) showCombo:(int)combo;
 -(void) startStageClearAnim ;
 -(void) startStageTimeoutAnim;
 -(void) showTouchTutor:(BOOL)bShow;
+
+// Set map progress for other players
+-(void) setProgress:(int)mapProgress position:(CGPoint)position player:(NSString*)playerID;
+
+// Set map progress for the hero
+-(void) setMapProgress:(int)mapProgress;
+-(void) setHeroAlias:(NSString*)heroAlias;
 
 @end

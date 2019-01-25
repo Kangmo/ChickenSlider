@@ -36,7 +36,7 @@ void Chick::onCollideWithHero(Hero * pHero)
     // Increase score
     [_scoreBoard increaseScore:scorePerChick];
     
-    // Speed Up. _heroSpeedGain is from the heroSpeedGain attribute in the Bird class in game_classes.svg
+    // Speed Up. _heroSpeedGain is from the heroSpeedGain attribute in the Chick class in game_classes.svg
     [pHero changeSpeed:_heroSpeedGain];
     
     // For the collided objects, remove them

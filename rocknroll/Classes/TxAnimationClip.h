@@ -52,6 +52,10 @@ public :
         clipAction_ = NULL;
     }
     
+    virtual CCNode * getNode() {
+        return sprite_;
+    }
+    
     virtual void setEnable(BOOL enable) {
         if (enable)
         {
@@ -75,6 +79,13 @@ public :
         return sprite_.visible;
     }
 
+    void setPosition(CGPoint position) {
+        sprite_.position = position;
+    }
+    
+    const CGPoint getPosition() {
+        return sprite_.position;
+    }
 };
 
 

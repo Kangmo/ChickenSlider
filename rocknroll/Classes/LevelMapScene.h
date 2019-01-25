@@ -24,7 +24,7 @@
     NSString * mapName_;
 }
 
-
++(id)nodeWithSceneName:(NSString*)sceneName;
 +(CCScene*)sceneWithName:(NSString*)sceneName;
 +(CCScene*)sceneWithName:(NSString*)sceneName level:(int)level cleared:(BOOL)cleared;
 

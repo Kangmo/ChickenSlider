@@ -10,6 +10,7 @@
 #define rocknroll_TxWidget_h
 
 #import "Util.h"
+#import "InteractiveSprite.h"
 
 typedef struct TxPoint {
     float x;
@@ -48,7 +49,11 @@ class TxWidget;
 #include "TxPropSet.h"
 class TxWidget
 {
+    
 protected:
+    /** @brief The interactive sprite attached to this Widget */
+    InteractiveSprite * intrSprite_;
+    
     /** @brief The location and size of the widget described in the svg file */
     TxRect    rect_;
     /** @brief The Attr=Value list in the objectDesc attribute in the svg file */
@@ -119,14 +124,41 @@ protected:
 public :
     TxWidget(const TxRect & rect, REF(TxPropSet) propSetRef) : rect_(rect), propSetRef_(propSetRef)
     {
+        intrSprite_ = nil;
     }
+    
     virtual ~TxWidget()
     {
+        [intrSprite_ release];
     }
 
+    void setInteractiveSprite( NSString * objectTouchAction, NSString * objectStartAction, NSString * objectEndAction, NSString * backgroundImage) {
+        intrSprite_ = [[InteractiveSprite spriteWithTouchAction:objectTouchAction startAction:objectStartAction endAction:objectEndAction backgroundImage:backgroundImage] retain];
+        
+        // Between the parent and the node, add interactive sprite.
+        CCNode * node = getNode();
+        assert(node);
+        
+        CGPoint nodePosition = node.position;
+        CCNode * parent = node.parent;
+        assert(parent);
+        
+        [parent removeChild:node cleanup:NO];
+        [parent addChild:intrSprite_ z:0];
+        intrSprite_.position = nodePosition;
+        
+        [intrSprite_ addChildAtCenter:node z:0];
+    }
+    
+    virtual CCNode * getNode() = 0;
+                              
     const std::string & getName()
     {
         return getPropValue("WidgetName");
+    }
+
+    const TxRect & getRect() {
+        return rect_;
     }
 
     /** @brief Align the CCNode owned by an TxWidget based on the "Align" property */

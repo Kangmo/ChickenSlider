@@ -207,16 +207,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="161.51253"
-     inkscape:cy="211.95197"
+     inkscape:zoom="2"
+     inkscape:cx="370.59711"
+     inkscape:cy="280.87669"
      inkscape:document-units="px"
      inkscape:current-layer="layer6"
      showgrid="false"
      inkscape:window-width="994"
      inkscape:window-height="594"
-     inkscape:window-x="42"
-     inkscape:window-y="8"
+     inkscape:window-x="298"
+     inkscape:window-y="21"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -274,7 +274,7 @@
        width="95.386551"
        height="17.326921"
        x="50.556873"
-       y="161.2323"
+       y="160.45093"
        objectType="Widget"
        objectDesc="WidgetType=Label,WidgetName=Unit,Font=white23.fnt,Align=Left" />
     <rect
@@ -323,42 +323,6 @@
        objectType="Widget"
        objectDesc="WidgetType=IntegerLabel,WidgetName=ChickCount,Font=yellow25.fnt,Align=Center" />
     <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.64508796px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-4-5"
-       width="41.503654"
-       height="56.549706"
-       x="434.13199"
-       y="5.9841232"
-       objectType="Widget"
-       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-3-9-8-7"
-       width="33.85413"
-       height="26.225109"
-       x="437.64157"
-       y="5.8822956"
-       objectType="Widget"
-       objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.5513745px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-4-7"
-       width="48.486141"
-       height="35.363449"
-       x="430.32556"
-       y="32.102474"
-       objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=PauseSign,Images=Pause.png,Align=Center" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.80304396px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="HelpObject"
-       width="53.877052"
-       height="67.50779"
-       x="424.59967"
-       y="2.8983181"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.wav" />
-    <rect
        style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.47143051px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7-9-8-3-9-8-79"
        width="47.7966"
@@ -406,36 +370,123 @@
     <rect
        objectDesc="WidgetType=AnimationClip,WidgetName=TouchTutor,ClipFile=clip_touch.plist,InitFrameAnimation=touch,Align=Center"
        objectType="Widget"
-       y="240.0256"
-       x="203.1983"
+       y="206.69057"
+       x="359.77194"
        height="76.892952"
        width="89.892952"
        id="rect3391-7"
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.10704827px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer8"
-     inkscape:label="iAD"
-     style="display:none">
     <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.41661736px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-9"
+       width="213.58339"
+       height="4.5833826"
+       x="136.6572"
+       y="311.28931"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=PlayersGround,Images=playersground.png,Align=Center" />
+    <rect
+       objectDesc="WidgetType=AnimationClip,WidgetName=Player4,ClipFile=clip_player4.plist,InitFrameAnimation=player4,Align=Center"
+       objectType="Widget"
+       y="280.96262"
+       x="126.68604"
+       height="25.732088"
+       width="15.732089"
+       id="rect3396"
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.2679114px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    <rect
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.2679114px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="rect3398"
+       width="15.732089"
+       height="25.732088"
+       x="126.68604"
+       y="280.96265"
+       objectType="Widget"
+       objectDesc="WidgetType=AnimationClip,WidgetName=Player3,ClipFile=clip_player3.plist,InitFrameAnimation=player3,Align=Center" />
+    <rect
+       objectDesc="WidgetType=AnimationClip,WidgetName=Player2,ClipFile=clip_player2.plist,InitFrameAnimation=player2,Align=Center"
+       objectType="Widget"
+       y="280.96265"
+       x="126.68604"
+       height="25.732088"
+       width="15.732089"
+       id="rect3400"
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.2679114px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    <rect
+       style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.40195459px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="rect3402"
+       width="25.598045"
+       height="35.598045"
+       x="126.75304"
+       y="271.02966"
+       objectType="Widget"
+       objectDesc="WidgetType=AnimationClip,WidgetName=Player1,ClipFile=clip_player1.plist,InitFrameAnimation=player1,Align=Center" />
+    <rect
+       objectDesc="WidgetType=Label,WidgetName=Player4Alias,Font=white23.fnt,Align=Center"
+       objectType="Widget"
+       y="250.36191"
+       x="126.92096"
+       height="17.326921"
+       width="95.386551"
+       id="rect3440"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54133344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54133344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="rect3442"
+       width="95.386551"
+       height="17.326921"
+       x="126.92096"
+       y="250.36191"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=Player3Alias,Font=white23.fnt,Align=Center" />
+    <rect
+       objectDesc="WidgetType=Label,WidgetName=Player2Alias,Font=white23.fnt,Align=Center"
+       objectType="Widget"
+       y="250.36191"
+       x="126.92096"
+       height="17.326921"
+       width="95.386551"
+       id="rect3444"
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54133344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54133344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="rect3446"
+       width="95.386551"
+       height="17.326921"
+       x="126.92096"
+       y="250.36191"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=Player1Alias,Font=white23.fnt,Align=Center" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.39675739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-3-9-8-7"
+       width="33.85413"
+       height="26.225109"
+       x="437.57294"
+       y="4.6695313"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=SandClockSeconds,Font=white23.fnt,Align=Center" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.5513745px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-7"
+       width="48.486141"
+       height="35.363449"
+       x="429.75693"
+       y="30.889711"
+       objectType="Widget"
+       objectDesc="WidgetType=ImageArray,WidgetName=PauseSign,Images=Pause.png,Align=Center" />
+    <image
+       style="display:inline"
        y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="230.14915"
-       y="30.052441"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="230.14915"
-         y="30.052441">iAD</tspan></text>
+       x="420.5"
+       id="image11443-9"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/images/clockbt.png"
+       height="69"
+       width="69"
+       objectType="Widget"
+       objectDesc="WidgetType=SandClock,WidgetName=SandClock,Images=clock00.png|clock01.png|clock02.png|clock03.png|clock04.png|clock05.png|clock06.png|clock07.png|clock08.png|clock09.png|clock10.png|clock11.png,Align=Center"
+       objectTouchAction="Action=None,ActionMessage=PausePressed,Sound=Touch.wav"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
   </g>
 </svg>

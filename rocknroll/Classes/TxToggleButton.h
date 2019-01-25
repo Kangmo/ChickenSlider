@@ -6,8 +6,8 @@
 //  Copyright (c) 2011년 강모소프트. All rights reserved.
 //
 
-#ifndef rocknroll_TxImageSwitch_h
-#define rocknroll_TxImageSwitch_h
+#ifndef rocknroll_TxToggleButton_h
+#define rocknroll_TxToggleButton_h
 
 #include "TxLabel.h"
 #import "ActionRelayer.h"
@@ -16,7 +16,7 @@
  options :
  WidgetType=ImageSwitch,WidgetName=Difficulty,Images=Sel_Easy.png|Sel_Hard.png
  */
-class TxToggleButton : public TxWidget
+class TxToggleButton : public TxWidget, ActionRelayListener
 {
 protected:
     ActionRelayer * relayer_;
@@ -68,6 +68,8 @@ public :
         if (getIsPersistent()) {
             // The default value is -1 : Don't show any image if the persistent attribute does not exist.
             defaultIndex = [Util loadIntAttr:[Util toNSString:getName()] default:-1];
+            
+            relayer_.actionRelayListener = this;
         }
         
         if (defaultIndex == -1)
@@ -76,7 +78,7 @@ public :
             if (defaultIndexString)
                 defaultIndex = [defaultIndexString intValue];
         }
-        
+
         setValue(defaultIndex);
     }
     
@@ -94,8 +96,19 @@ public :
         [relayer_ release];
         relayer_ = NULL;
     }
-
     
+    virtual CCNode * getNode() {
+        return menu_;
+    }
+
+    // Implements ActionRelayListener. 
+    // Called whenever ActionRelayer relays touch messages to the toggle button to CCLayer that has the CCMenu
+    virtual void onActionRelay() {
+         // The default value is -1 : Don't show any image if the persistent attribute does not exist.
+         int imageIndex = getValue();
+         
+         [Util saveIntAttr:[Util toNSString:getName()] value:imageIndex];
+    }
     
     int getValue()
     {

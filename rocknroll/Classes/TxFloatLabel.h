@@ -41,7 +41,12 @@ public :
         assert(_floatLabel);
         delete _floatLabel;
         _floatLabel = NULL;
-    }        
+    }
+    
+    virtual CCNode * getNode() {
+        return _floatLabel->getLabel();
+    }
+
 };
 
 #endif

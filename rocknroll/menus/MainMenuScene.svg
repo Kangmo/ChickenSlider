@@ -20,7 +20,7 @@
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
    _backgroundMusic="music_menu.m4a"
-   _backgroundImage="cloud960.png">
+   _showDemoStage="YES">
   <defs
      id="defs3176">
     <linearGradient
@@ -392,16 +392,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="399.16988"
-     inkscape:cy="142.32959"
+     inkscape:cx="179.34126"
+     inkscape:cy="167.60317"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
-     inkscape:window-x="316"
-     inkscape:window-y="74"
-     inkscape:window-maximized="0" />
+     inkscape:window-height="709"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata3179">
     <rdf:RDF>
@@ -416,60 +416,20 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="background"
-     ignore=""
-     style="display:inline">
-    <image
-       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/MainMenuScene.png"
-       xlink:href="MainMenuScene.png"
-       style="display:inline"
-       y="1.0899134e-06"
-       x="0.71428353"
-       id="image3363"
-       height="320"
-       width="480" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.99564838px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject"
-       width="127.34026"
-       height="43.906147"
-       x="334.09134"
-       y="215.90367"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MapSelectScene,Arg1=Null,Sound=Touch.wav" />
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.99875122px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="HelpObject"
-       width="128.82251"
-       height="43.671898"
-       x="333.41547"
-       y="265.10425"
-       objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=HelpScene1,Sound=Touch.wav" />
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
+    <image
        y="0"
-       objectType="Advertisement" />
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.04112101px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-9"
-       width="132.26764"
-       height="46.219784"
-       x="19.524916"
-       y="263.6087"
-       objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=OptionScene,Arg1=Null,Sound=Touch.wav" />
+       x="0"
+       id="image12761"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/images/main-chicken.png"
+       height="320"
+       width="480"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=BackgroundText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideOut,TargetX=0,TargetY=-1,Duration=1,Period=2,Sleep=2"
+       objectTouchAction="Action=None,Sound=Touch.wav" />
     <rect
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:2.07041478px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7"
@@ -484,8 +444,8 @@
        id="StartObject-7"
        width="33.982441"
        height="32.329369"
-       x="354.29865"
-       y="170.04959"
+       x="353.58435"
+       y="159.33531"
        objectType="MenuItem"
        objectTouchAction="Action=OpenURL,URL=http://facebook.com/ThankyouSoft,Sound=Touch.wav" />
     <rect
@@ -493,8 +453,8 @@
        id="StartObject-7-9"
        width="33.299561"
        height="32.329369"
-       x="393.16858"
-       y="170.26389"
+       x="392.45428"
+       y="159.54961"
        objectType="MenuItem"
        objectTouchAction="Action=OpenURL,URL=http://twitter.com/ThankyouSoft,Sound=Touch.wav" />
     <rect
@@ -502,9 +462,57 @@
        id="StartObject-7-9-3"
        width="33.268467"
        height="32.329369"
-       x="430.88287"
-       y="170.26389"
+       x="430.16858"
+       y="159.54961"
        objectType="MenuItem"
        objectTouchAction="Action=OpenURL,URL=http://plus.google.com/118264395094960225876,Sound=Touch.wav" />
+    <image
+       y="207.85713"
+       x="330.6554"
+       id="image11443"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/images/multiplaybt.png"
+       height="46"
+       width="133"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=MultiplayButtonText,Font=white34.fnt,Align=Center"
+       objectTouchAction="Action=ReplaceLayer,SceneName=MapSelectScene,Arg1=Multi,Sound=Touch.wav"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
+    <image
+       y="261.42859"
+       x="330.6554"
+       id="image12132"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/singleplaybt.png"
+       height="46"
+       width="133"
+       objectDesc="WidgetType=Label,WidgetName=SingleplayButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1.2,Period=0.65"
+       objectType="Widget"
+       objectTouchAction="Action=ReplaceLayer,SceneName=MapSelectScene,Arg1=Single,Sound=Touch.wav"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
+    <image
+       y="207.85713"
+       x="17.428574"
+       id="image12210"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/onlinebt.png"
+       height="46"
+       width="133"
+       objectDesc="WidgetType=Label,WidgetName=OnlineButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1.4,Period=0.85"
+       objectType="Widget"
+       objectTouchAction="Action=PushLayer,SceneName=OnlineScene,Sound=Touch.wav"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
+    <image
+       y="261.42859"
+       x="17.428574"
+       id="image12451"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/optionbt.png"
+       height="46"
+       width="133"
+       objectDesc="WidgetType=Label,WidgetName=OptionButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1.8,Period=1.05"
+       objectType="Widget"
+       objectTouchAction="Action=PushLayer,SceneName=OptionScene,Sound=Touch.wav"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
   </g>
 </svg>

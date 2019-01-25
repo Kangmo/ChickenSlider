@@ -9,27 +9,41 @@ typedef enum body_touch_action_t
     BTA_NULL = 0,
     BTA_SCENE_TRANSITION = 1,
     BTA_PUSH_SCENE = 2,
-    BTA_ADD_LAYER = 3, // Give up the current stage, go to the level map scene.
-    BTA_OPEN_URL = 4,
-    BTA_NONE = 5
+    BTA_REPLACE_LAYER = 3,
+    BTA_PUSH_LAYER = 4,
+    BTA_POP_LAYER = 5,
+    BTA_POP_AND_DISCARD_LAYER = 6,
+    BTA_ADD_LAYER = 7, // Give up the current stage, go to the level map scene.
+    BTA_OPEN_URL = 8,
+    BTA_NONE = 9,
 } body_touch_action_t;
 
-typedef enum body_hover_action_t
+typedef enum body_start_end_action_t
 {
-    BHA_NULL = 0,
-    BHA_SHOW_IMAGE = 1,
-    BHA_SHOW_PARTICLE = 2
-} body_hover_action_t;
+    BSEA_NULL = 0,
+    BSEA_SLIDE_IN = 1,
+    BSEA_SLIDE_OUT = 2,
+} body_start_end_action_t;
 
-@interface InteractiveSprite : CCSprite<CCTargetedTouchDelegate, IAPDelegate> {
+@interface InteractiveSprite : CCNode<IAPDelegate> {
+    /** @brief The menu that this CCNode responds to 
+     */
+    CCMenu * menu;
+    
     /** @brief The action type and descriptors for touch action.
      */
     body_touch_action_t touchActionType_;
     NSDictionary* touchActionDescs_;
-    /** @brief The action type and descriptors for hover action.
+
+    /** @brief The action type and descriptors for start action.
      */
-    body_hover_action_t hoverActionType_;
-    NSDictionary* hoverActionDescs_;
+    body_start_end_action_t startActionType_;
+    NSDictionary* startActionDescs_;
+    
+    /** @brief The action type and descriptors for start action.
+     */
+    body_start_end_action_t endActionType_;
+    NSDictionary* endActionDescs_;
 
     /** @brief The bottom left corner of the AABB of this interactive body : Y increases as the point moves up within the screen.
      */
@@ -48,41 +62,35 @@ typedef enum body_hover_action_t
      */
     CCSprite *lockSprite_;
     
-    /** @brief The particle emitter that shows particles while hovering.
-     */
-    CCParticleSystemQuad * particleEmitter_;
-    
     /** @brief The progress timer to show while the IAP is in progress
      */
     ProgressCircle * progressCircle_;
-
-    /** @brief Is tick scheduled?
-     */
-    //BOOL tickScheduled_;
-    
-    /** @brief the delta time accumulated in tick method. This is required to check if the feature is purchased every 1/8 second
-     */
-    //ccTime tickAccDT_;
 }
-@property(assign, nonatomic) CGPoint bottomLeftCorner;
-@property(assign, nonatomic) CGSize nodeSize;
-@property(assign, nonatomic) CGFloat scale;
-@property(assign, nonatomic) CCLayer * layer;
 
 @property(assign, nonatomic, readonly) NSDictionary * touchActionDescs;
 
 
 -(id)initWithFile:(NSString*)fileName;
 
++(id)spriteWithTouchAction:(NSString*)objectTouchAction 
+               startAction:(NSString*)objectStartAction 
+                 endAction:(NSString*)objectEndAction 
+           backgroundImage:(NSString*)backgroundImage;
+
+
+-(void)addChildAtCenter:(CCNode*)node z:(int)z;
+
 -(void)setTouchAction:(body_touch_action_t)actionType actionDescs:(NSDictionary*)actionDescs;
 
--(void)setHoverAction:(body_hover_action_t)actionType actionDescs:(NSDictionary*)actionDescs;
+-(void)setStartAction:(body_start_end_action_t)actionType actionDescs:(NSDictionary*)actionDescs;
 
--(void)removeFromTouchDispatcher;
+-(void)setEndAction:(body_start_end_action_t)actionType actionDescs:(NSDictionary*)actionDescs;
+
 
 -(void) setLocked:(BOOL)locked;
 -(void) setLocked:(BOOL)locked spriteFrameName:(NSString*)spriteFrameName;
 -(BOOL) isLocked;
+-(void) runEndAction;
 
 /** @brief Convert the touch action type in SVG file into body_touch_action_t enumeration 
  */

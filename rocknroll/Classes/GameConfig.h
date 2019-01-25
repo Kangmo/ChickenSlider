@@ -30,12 +30,14 @@
  */
 #define kMAX_POSITION (9999999.0f)
 
-#define SCORE_PER_COMBO_FOR_HARD_MODE (100)
-#define SCORE_PER_COMBO_FOR_EASY_MODE (80)
-#define SCORE_PER_CHICK_FOR_HARD_MODE (1500)
-#define SCORE_PER_CHICK_FOR_EASY_MODE (1000)
-#define SCORE_PER_KEY (10)
-#define SCORE_PER_SECOND_FOR_HARD_MODE (500)
+#define SCORE_PER_COMBO_FOR_HARD_MODE (120)
+#define SCORE_PER_COMBO_FOR_EASY_MODE (100)
+#define SCORE_PER_CHICK_FOR_HARD_MODE (600)
+#define SCORE_PER_CHICK_FOR_EASY_MODE (500)
+#define SCORE_PER_KEY (50)
+#define SCORE_PER_SECOND_FOR_HARD_MODE (700)
+#define SCORE_PER_SECOND_FOR_EASY_MODE (500)
+
 
 #define INIT_PTM_RATIO (32)
 #define INIT_ZOOM_RATIO (1)
@@ -68,13 +70,20 @@
 // Start blinking the health bar if it reaches at 50% level.
 #define HEALTH_BAR_BLINKING_THRESHOLD (50)
 
-#define EASY_MODE_PLAY_TIME_FACTOR (1.35f)
+#define HARD_MODE_PLAY_TIME_FACTOR (0.80f)
+
+#define SHAKE_DEVICE_ACC_THRESHOLD (1.5f)
+
+#define SHAKE_DEVICE_HERO_SPEED_GAIN (8)
+
 
 // The default time duration to simulate in box2d for each frame.
 #define EASY_MODE_FRAME_DURATION_SEC (1.0f/55.0f)
 #define HARD_MODE_FRAME_DURATION_SEC (1.0f/45.0f)
 
 // IncNumLabel.h
+
+const int DEMO_MODE_PLAY_TIME_SEC = 20;
 
 // The minimum frame speed ratio : 100%
 #define MIN_FRAME_SPEED_RATIO (1.0f)
@@ -116,14 +125,15 @@ const float LANDSCAPE_AD_HEIGHT = 40;
 #define SVG_LOADER_SHAPE_POINTS_PER_AUTOPOOL (32)
 
 // Unlock all stage levels for testing
-//#define UNLOCK_LEVELS_FOR_TEST (1)
+#define UNLOCK_LEVELS_FOR_TEST (1)
 
 //#define DISABLE_IAP (1)
 #define RESET_IAP_DATA (1)
 
-//#define DISABLE_ADS (1)
+#define DISABLE_ADS (1)
 
 //#define DO_PROFILE (1)
+
 
 #endif // __GAME_CONFIG_H
 

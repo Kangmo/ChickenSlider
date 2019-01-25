@@ -71,6 +71,9 @@
 	totalTime += delta;
 
     StageScene* stage = [StageScene sharedStageScene];
+    if (!stage)
+        return;
+    
 	Car* car = stage.car;
     
     assert(car);
@@ -80,7 +83,7 @@
         nextShotTime = totalTime + 0.5f;
         
         b2Body * body = car->getBody();
-        body->ApplyLinearImpulse(b2Vec2(100,200), body->GetPosition());
+        body->ApplyLinearImpulse(b2Vec2(30,60), body->GetPosition());
         //		[game shootBulletFromShip:[game defaultShip]];
     }
     

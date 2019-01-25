@@ -18,8 +18,7 @@
    sodipodi:docname="HelpScene1.svg"
    inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/menus/HelpScene.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90"
-   _backgroundImage="cloud960.png">
+   inkscape:export-ydpi="90">
   <defs
      id="defs3176">
     <linearGradient
@@ -209,15 +208,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="59.711882"
-     inkscape:cy="198.20825"
+     inkscape:cx="284.75519"
+     inkscape:cy="117.39605"
      inkscape:document-units="px"
      inkscape:current-layer="layer6"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="712"
-     inkscape:window-x="36"
-     inkscape:window-y="70"
+     inkscape:window-width="1041"
+     inkscape:window-height="632"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -236,54 +235,33 @@
      id="layer7"
      inkscape:label="Background"
      ignore=""
-     style="display:inline">
+     style="display:none">
     <image
        sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/HelpScene1.png"
        xlink:href="HelpScene1.png"
-       y="0"
-       x="0"
-       id="image4432"
+       width="480"
        height="320"
-       width="480" />
+       id="image4432"
+       x="0"
+       y="0" />
   </g>
-  <g
-     inkscape:label="Others"
-     inkscape:groupmode="layer"
-     id="layer1"
-     style="display:inline"
-     ignore="" />
   <g
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:3.65572906px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="LayerForSwallowingTouch"
-       width="480"
-       height="320"
-       x="0"
-       y="0"
-       objectType="MenuItem"
-       objectTouchAction="Action=None" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.70004892px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-4"
-       width="78.29995"
-       height="35.29995"
-       x="389.19531"
-       y="276.04501"
+    <image
+       y="274"
+       x="384"
+       id="image4387"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/nextbt.png"
+       height="36"
+       width="79"
+       objectTouchAction="Action=ReplaceLayer,SceneName=HelpScene2,Sound=Touch.wav"
        objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=NextButtonImage,Images=nextbt.png,DefaultIndex=0,Align=Center" />
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.82970589px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="HelpObject"
-       width="92.119698"
-       height="42.147808"
-       x="381.38501"
-       y="271.65198"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=HelpScene2,Sound=Touch.wav" />
+       objectDesc="WidgetType=Label,WidgetName=BackButtonText,Font=white34.fnt,Align=Center"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45" />
     <rect
        style="opacity:0.3;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.90135062px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
        id="StartObject-7-7"
@@ -293,30 +271,5 @@
        y="116.0067"
        objectType="Widget"
        objectDesc="WidgetType=AnimationClip,WidgetName=HelpAnimation,ClipFile=clip_help.plist,InitFrameAnimation=help_D,Align=Center" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer8"
-     inkscape:label="iAD"
-     style="display:none">
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="230.14915"
-       y="30.052441"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="230.14915"
-         y="30.052441">iAD</tspan></text>
   </g>
 </svg>

@@ -20,11 +20,12 @@
 #include "TxFloatLabel.h"
 #include "TxIntegerLabel.h"
 #include "TxAnimationClip.h"
+#include "TxScrollLayer.h"
 
 namespace TxWidgetFactory
 {
     /** @brief Create a new widget with the given rect and property list within the given CCNode */
-    inline REF(TxWidget) newWidget(TxWidgetOwner * parentNode, const TxRect & rect, const std::string & propListString)
+    inline REF(TxWidget) newWidget(TxWidgetOwner * parentNode, const TxRect & rect, const std::string & propListString, NSString * objectTouchAction, NSString * objectStartAction, NSString * objectEndAction, NSString * backgroundImage)
     {
         REF(TxWidget) widgetRef = REF(TxWidget)((TxWidget*)NULL);
         
@@ -49,6 +50,10 @@ namespace TxWidgetFactory
         {
             widgetRef = REF(TxWidget) (new TxSandClock( parentNode, rect, propSetRef) );
         }
+        else if (widgetType == "ScrollLayer")
+        {
+            widgetRef = REF(TxWidget) (new TxScrollLayer( parentNode, rect, propSetRef) );
+        }
         else if (widgetType == "ToggleButton")
         {
             widgetRef = REF(TxWidget) (new TxToggleButton( parentNode, rect, propSetRef) );
@@ -70,8 +75,12 @@ namespace TxWidgetFactory
             // Shouldn't come here.
             assert(0);
         }
-                      
         assert(widgetRef);
+        
+        if (objectTouchAction) {
+            widgetRef->setInteractiveSprite(objectTouchAction,objectStartAction,objectEndAction,backgroundImage);
+        }
+        
         return widgetRef;
     }
 };

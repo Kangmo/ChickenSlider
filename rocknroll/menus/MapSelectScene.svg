@@ -19,8 +19,7 @@
    inkscape:export-filename="/Users/kmkim/Games/rocknroll/rocknroll/menus/MapSelectScene.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   _backgroundMusic="music_menu.m4a"
-   _backgroundImage="cloud960.png">
+   _backgroundMusic="music_menu.m4a">
   <defs
      id="defs3176">
     <filter
@@ -354,13 +353,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="-137.94921"
+     inkscape:cx="124.71115"
      inkscape:cy="154.28693"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="712"
+     inkscape:window-height="710"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -387,39 +386,12 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     ignore="">
-    <image
-       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/MapSelectScene.png"
-       xlink:href="MapSelectScene.png"
-       y="0"
-       x="0"
-       id="image3559"
-       height="320"
-       width="480" />
-  </g>
+     ignore="" />
   <g
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:2.11165595px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject"
-       width="163.86499"
-       height="153.47562"
-       x="71.555916"
-       y="97.762962"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP01,Arg1=Null,Sound=Touch.wav" />
-    <rect
-       style="opacity:0.2;fill:#ff7f2a;fill-rule:evenodd;stroke:#000000;stroke-width:2.10037303px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="HelpObject"
-       width="164.53835"
-       height="151.21852"
-       x="269.93979"
-       y="97.991859"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MAP02,Arg1=Null,UnlockingProductName=com.thankyousoft.chickenslider.maps.map02,UnlockingFeathers=10000,Sound=Touch.wav" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3817"
@@ -441,38 +413,39 @@
            x="-71.720833"
            y="-78.000099" /></flowRegion><flowPara
          id="flowPara3839" /></flowRoot>    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.61106992px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="BackObject"
-       width="48.299583"
-       height="43.603123"
-       x="421.04636"
-       y="272.30841"
-       objectType="MenuItem"
-       objectTouchAction="Action=SceneTransition,SceneName=MainMenuScene,Arg1=Null,Sound=Touch.wav" />
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:5.14863634px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8-7-7"
+       width="480"
+       height="320"
+       x="0"
+       y="0"
+       objectType="Widget"
+       objectDesc="WidgetType=ScrollLayer,WidgetName=MapSelectScrollLayer,Layers=MapSelectScene_MAP01|MapSelectScene_MAP02|MapSelectScene_SHOP,ContentWidthRatio=1,ContentHeightRatio=1,OffsetWidthRatio=0.5,Align=Left,IsPersistent=YES" />
+    <rect
+       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.94287372px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       id="StartObject-7-7-9-8-4-8"
+       width="147.53419"
+       height="33.985462"
+       x="19.781189"
+       y="268.18774"
+       objectType="Widget"
+       objectDesc="WidgetType=ToggleButton,WidgetName=Difficulty,Images=Sel_Easy.png|Sel_Hard.png,Align=Center,IsPersistent=YES,DefaultIndex=0" />
+    <image
+       y="266.64465"
+       x="428.48743"
+       id="image14262"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/backbt.png"
+       height="36"
+       width="36"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectDesc="WidgetType=Label,WidgetName=BackButtonText,Font=white34.fnt,Align=Center"
+       objectType="Widget"
+       objectTouchAction="Action=ReplaceLayer,SceneName=MainMenuScene,Arg1=Null,Sound=Touch.wav"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer6"
      inkscape:label="iAD"
-     style="display:inline">
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="224.25386"
-       y="31.096375"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="224.25386"
-         y="31.096375">iAD</tspan></text>
-  </g>
+     style="display:inline" />
 </svg>

@@ -66,6 +66,70 @@
 			<string>1</string>
 		</dict>
 	</dict>
+	<key>player1</key>
+	<dict>
+		<key>Duration</key>
+		<string>0.2</string>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>player1_%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>1</string>
+		</dict>
+	</dict>
+	<key>player2</key>
+	<dict>
+		<key>Duration</key>
+		<string>0.2</string>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>player2_%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>1</string>
+		</dict>
+	</dict>
+	<key>player3</key>
+	<dict>
+		<key>Duration</key>
+		<string>0.2</string>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>player3_%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>1</string>
+		</dict>
+	</dict>
+	<key>player4</key>
+	<dict>
+		<key>Duration</key>
+		<string>0.2</string>
+		<key>Atlas</key>
+		<string>sprites.plist</string>
+		<key>Frames</key>
+		<dict>
+			<key>Format</key>
+			<string>player4_%02d.png</string>
+			<key>StartIndex</key>
+			<string>0</string>
+			<key>EndIndex</key>
+			<string>1</string>
+		</dict>
+	</dict>
 	<key>icarus_dropping</key>
 	<dict>
 		<key>Duration</key>
@@ -112,54 +176,6 @@
 			<string>1</string>
 			<key>EndIndex</key>
 			<string>10</string>
-		</dict>
-	</dict>
-	<key>explosion</key>
-	<dict>
-		<key>Atlas</key>
-		<string>sprites.plist</string>
-		<key>Duration</key>
-		<string>0.3</string>
-		<key>Frames</key>
-		<dict>
-			<key>Format</key>
-			<string>explosion%02d.png</string>
-			<key>StartIndex</key>
-			<string>0</string>
-			<key>EndIndex</key>
-			<string>3</string>
-		</dict>
-	</dict>
-	<key>bomb</key>
-	<dict>
-		<key>Atlas</key>
-		<string>sprites.plist</string>
-		<key>Duration</key>
-		<string>0.3</string>
-		<key>Frames</key>
-		<dict>
-			<key>Format</key>
-			<string>bomb%02d.png</string>
-			<key>StartIndex</key>
-			<string>0</string>
-			<key>EndIndex</key>
-			<string>3</string>
-		</dict>
-	</dict>
-	<key>remedy</key>
-	<dict>
-		<key>Atlas</key>
-		<string>sprites.plist</string>
-		<key>Duration</key>
-		<string>0.3</string>
-		<key>Frames</key>
-		<dict>
-			<key>Format</key>
-			<string>remedy%02d.png</string>
-			<key>StartIndex</key>
-			<string>0</string>
-			<key>EndIndex</key>
-			<string>3</string>
 		</dict>
 	</dict>
 	<key>finishbar</key>

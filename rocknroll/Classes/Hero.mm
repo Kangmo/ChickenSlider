@@ -66,6 +66,8 @@
             assert(_jumpSound);
             _slideFailSound = [[[ClipFactory sharedFactory] soundByFile:@"slidefail"SND_EXT] retain];
             assert(_slideFailSound);
+            _boostSound = [[[ClipFactory sharedFactory] soundByFile:@"boost"SND_EXT] retain];
+            assert(_boostSound);
         }
         
         { // Get attribute values from XML.
@@ -92,6 +94,10 @@
 		_contactListener = new HeroContactListener(self);
 		_world->SetContactListener(_contactListener);
 
+        if ([Util loadDifficulty])
+            isHardMode = YES;
+        else
+            isHardMode = NO;
         
         [self loadAnimationClips];
 		[self reset];
@@ -307,6 +313,15 @@
 	_body->SetLinearVelocity(vel);
 }
 
+/** @brief Called when the user shakes device!
+ */
+-(void) boostSpeed {
+    [_boostSound play];
+    // Boost the speed of Hero
+    [self changeSpeed:SHAKE_DEVICE_HERO_SPEED_GAIN];
+
+}
+
 - (void) updatePhysics {
     if (_hasWings)
     {
@@ -422,7 +437,9 @@
             [_jumpSound play];
         }
         
-        [_scoreBoard increaseSpeedRatio:FRAME_SPEED_RATIO_PER_COMBO];
+        if (isHardMode) { // Increase speed ratio only in the hard mode.
+            [_scoreBoard increaseSpeedRatio:FRAME_SPEED_RATIO_PER_COMBO];
+        }
         
         [_scoreBoard increaseScore:_scorePerCombo * ((_nPerfectSlides<10)?_nPerfectSlides:10)];
 	}
@@ -481,6 +498,7 @@
     [_dropSound release];
     [_jumpSound release];
     [_slideFailSound release]; 
+    [_boostSound release];
     
 	delete _contactListener;
 	[super dealloc];

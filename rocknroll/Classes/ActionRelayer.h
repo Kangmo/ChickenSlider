@@ -10,12 +10,18 @@
 
 class TxWidget;
 
+class ActionRelayListener {
+public :
+    virtual void onActionRelay() = 0;
+};
+
 @interface ActionRelayer : NSObject
 {
     id actionTarget_;
     TxWidget* actionSource_;
 }
 
+@property (assign) ActionRelayListener * actionRelayListener;
 +(id)actionRelayerWithTarget:(id)target source:(TxWidget*)source;
 
 @end

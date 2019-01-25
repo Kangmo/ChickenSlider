@@ -44,11 +44,11 @@
      id="base"
      showgrid="true"
      inkscape:zoom="3.2138003"
-     inkscape:cx="-83.476017"
-     inkscape:cy="302.68824"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:current-layer="FinishBar"
+     inkscape:cx="50.199399"
+     inkscape:cy="315.13456"
+     inkscape:window-x="131"
+     inkscape:window-y="2"
+     inkscape:current-layer="Car"
      width="480px"
      inkscape:window-maximized="0"
      inkscape:snap-grids="true"
@@ -138,7 +138,7 @@
        style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:label="Car"
      id="Car"
      inkscape:groupmode="layer">
@@ -149,7 +149,8 @@
        height="20.187164"
        x="0"
        y="-0.18516421"
-       phy_density="1" />
+       phy_density="5"
+       sprite="000_32.png" />
     <rect
        maxTorque="1500"
        motorSpeed="0"
@@ -158,8 +159,8 @@
        id="boberJoint2"
        width="1"
        height="1"
-       x="80.993416"
-       y="20.873184"
+       x="90.993416"
+       y="15.873184"
        isRevoluteJoint=""
        body1="CarMainBody"
        body2="boberWheel2" />
@@ -170,8 +171,8 @@
        body2="boberWheel1"
        body1="CarMainBody"
        isRevoluteJoint=""
-       y="20.873184"
-       x="20.682617"
+       y="15.873184"
+       x="5.6826172"
        height="1"
        width="1"
        id="boberJoint1"
@@ -179,25 +180,27 @@
     <rect
        phy_restitution="0.0001"
        phy_friction="1.0"
-       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.58102518;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:1.74307549;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="boberWheel2"
-       width="15.418975"
-       height="15.418975"
-       x="73.657104"
-       y="14.290512"
+       width="46.256924"
+       height="46.256924"
+       x="67.871536"
+       y="-7.1284614"
        isCircle=""
-       phy_density="1.0" />
+       phy_density="0.02"
+       sprite="001_48.png" />
     <rect
        phy_restitution="0.001"
        phy_friction="1.0"
-       phy_density="1.0"
+       phy_density="0.02"
        isCircle=""
-       y="14.068306"
-       x="13.377739"
-       height="15.609756"
-       width="15.609756"
+       y="-7.4146352"
+       x="-17.414635"
+       height="46.829269"
+       width="46.829269"
        id="boberWheel1"
-       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.39024389;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:1.17073154;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="001_48.png" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -220,26 +223,6 @@
        minSpeedX="3"
        minSpeedY="-40"
        maxSpeed="60" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="Bomb"
-     inkscape:label="Bomb"
-     style="display:none">
-    <rect
-       initFrameAnim="bomb"
-       initClipFile="clip_bomb.plist"
-       phy_restitution="0"
-       phy_friction="0"
-       phy_density="0.1"
-       isCircle=""
-       y="0"
-       x="0"
-       height="32"
-       width="32"
-       id="rect6831-0"
-       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
-       gameObjectClass="Bomb" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -434,7 +417,7 @@
      inkscape:groupmode="layer"
      id="FinishBar"
      inkscape:label="FinishBar"
-     style="display:inline">
+     style="display:none">
     <rect
        gameObjectClass="EatenItem"
        style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
@@ -456,26 +439,6 @@
   </g>
   <g
      inkscape:groupmode="layer"
-     id="Remedy"
-     inkscape:label="Remedy"
-     style="display:none">
-    <rect
-       gameObjectClass="Remedy"
-       style="opacity:0.5;fill:#0000ff;stroke:none;display:inline"
-       id="rect4250"
-       width="32"
-       height="32"
-       x="0"
-       y="0"
-       isCircle=""
-       phy_density="0.1"
-       phy_friction="0"
-       phy_restitution="0"
-       initClipFile="clip_remedy.plist"
-       initFrameAnim="remedy" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
      id="Chick"
      inkscape:label="Chick"
      style="display:none">
@@ -494,5 +457,124 @@
        initClipFile="clip_chick.plist"
        initFrameAnim="chick"
        heroSpeedGain="8" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-01"
+     inkscape:label="R0202-01"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-01_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-01.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-02"
+     inkscape:label="R0202-02"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-02_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-02.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-03"
+     inkscape:label="R0202-03"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-03_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-03.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-04"
+     inkscape:label="R0202-04"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-04_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-04.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-05"
+     inkscape:label="R0202-05"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-05_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-05.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-06"
+     inkscape:label="R0202-06"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-06_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-06.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="R0202-07"
+     inkscape:label="R0202-07"
+     style="display:none">
+    <rect
+       phy_restitution="0.001"
+       phy_friction="1.0"
+       phy_density="0.2"
+       y="0"
+       x="0"
+       height="32"
+       width="32"
+       id="R0202-07_MainBody"
+       style="opacity:0.94650209;fill:#ff0000;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sprite="R0202-07.png" />
   </g>
 </svg>

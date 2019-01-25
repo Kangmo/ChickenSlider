@@ -28,5 +28,5 @@
     TxLabel * effectVolumeLabel_;
 }
 +(CCScene*)sceneWithName:(NSString*)sceneName;
-
++(id)nodeWithSceneName:(NSString*)sceneName;
 @end

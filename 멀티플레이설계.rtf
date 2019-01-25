@@ -1,0 +1,62 @@
+{\rtf1\ansi\ansicpg949\cocoartf1138\cocoasubrtf230
+{\fonttbl\f0\fnil\fcharset129 AppleGothic;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12600\viewh11940\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \'c3\'b9\'b9\'f8\'c2\'b0 \'b7\'ce\'b5\'f9\'c8\'ad\'b8\'e9 : \
+Initiator :\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 (In LoadingScene)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 0) load level\
+1) show Invite Modal\
+2) upon dismiss of Invite Modal\
+3) send LOAD_LEVEL (map, level)\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 1) Initiate timer (10 seconds ) \
+2) show "communicating" animation\
+3) fill in receive LEVEL_LOADED from all players\
+4) if all players filled, or 10 seconds time out\
+        send ALL_PLAYERS_READY\
+5) scene transition to StageScene\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+Participant :\
+(In LoadingScene)\
+1) receive LOAD_LEVEL\
+2) load level\
+3) send LEVEL_LOADED( player_id )\
+4) show "communicating" animation\
+5) wait until receive ALL_PLAYERS_READY\
+6) scene transition to StageScene\
+\
+\
+While playing :\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 When participant dropped :\
+1) Initiator : Sets the participant as dropped.\
+\
+When initiator dropped:\
+1) Participant : Show message : "Initiator Dropped". Quit to main menu.\
+\
+Pause Menu :\
+1) Restart is disabled\
+2) Quit goes to MainMenuScene\
+\
+Stage Cleared :\
+Initiator : \
+1) Initiate timer ( 10 seconds )\
+2) Wait for all participant finishes\
+3)  if all participants finished, or 10 seconds time out\
+     send ALL_PLAYERS_CLEARED(1st~4th player id & time)\
+4) show ResultScene\
+\
+Participant :\
+(In GameState)\
+1) Receive ALL_PLAYERS_CLEARED(1st~4th player id & time)\
+2) show ResultScene}

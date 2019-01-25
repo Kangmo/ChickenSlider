@@ -250,15 +250,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="-52.683086"
-     inkscape:cy="136.14486"
+     inkscape:cx="38.744022"
+     inkscape:cy="164.49678"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="710"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-x="173"
+     inkscape:window-y="71"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -274,56 +274,9 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
-     id="layer4"
-     inkscape:label="background"
-     ignore=""
-     style="display:inline" />
-  <g
-     inkscape:label="Others"
-     inkscape:groupmode="layer"
-     id="layer1"
-     style="display:inline"
-     ignore="">
-    <image
-       y="0"
-       x="0"
-       id="image3406"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/menus/ConfirmQuitLayer.png"
-       height="320"
-       width="480" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:3.65572906px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="LayerForSwallowingTouch"
-       width="480"
-       height="320"
-       x="0"
-       y="0"
-       objectType="MenuItem"
-       objectTouchAction="Action=None" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54751831px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject"
-       width="39.877182"
-       height="42.398628"
-       x="290.14038"
-       y="251.12033"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,Sound=Touch.wav,Option=RemoveOwningLayer" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.54259717px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="HelpObject"
-       width="41.005516"
-       height="40.494118"
-       x="234.10146"
-       y="251.82193"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=Quit,Sound=Touch.wav,Option=RemoveOwningLayer" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3370"
@@ -334,30 +287,44 @@
            height="360.62445"
            x="246.47722"
            y="26.045612" /></flowRegion><flowPara
-         id="flowPara3376" /></flowRoot>  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer10"
-     inkscape:label="iAD"
-     style="display:none">
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Sans"
-       x="206.68729"
-       y="30.118359"
-       id="text4395"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4397"
-         x="206.68729"
-         y="30.118359">iAD</tspan></text>
+         id="flowPara3376" /></flowRoot>    <image
+       style="display:inline"
+       y="122.40605"
+       x="78"
+       id="image3715"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/areusure.png"
+       height="78"
+       width="323"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=DialogText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=0,InitY=-1,Duration=1,Period=0.45"
+       objectEndAction="Action=SlideOut,TargetX=0,TargetY=1,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=None,Sound=Touch.wav" />
+    <image
+       style="display:inline"
+       y="179.33246"
+       x="341.80719"
+       id="image3777"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/areusure-no.png"
+       height="41"
+       width="42"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=OkButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1.2,Period=0.65"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=PopLayer,Sound=Touch.wav" />
+    <image
+       style="display:inline"
+       y="181.35277"
+       x="294.33002"
+       id="image3855"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/areusure-yes.png"
+       height="41"
+       width="42"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=YesButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1.4,Period=0.85"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=PopAndDiscardLayer,ActionMessage=Quit,Sound=Touch.wav,Option=RemoveOwningLayer" />
   </g>
 </svg>

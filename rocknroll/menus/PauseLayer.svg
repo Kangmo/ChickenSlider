@@ -250,15 +250,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="267.49419"
-     inkscape:cy="136.14486"
+     inkscape:cx="255.04552"
+     inkscape:cy="120.64641"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="710"
-     inkscape:window-x="-66"
-     inkscape:window-y="12"
+     inkscape:window-width="956"
+     inkscape:window-height="559"
+     inkscape:window-x="221"
+     inkscape:window-y="26"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata3179">
@@ -283,47 +283,12 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     ignore="">
-    <image
-       y="0"
-       x="0"
-       id="image3406"
-       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/menus/PauseLayer.png"
-       height="320"
-       width="480" />
-  </g>
+     ignore="" />
   <g
      inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:3.65572906px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="LayerForSwallowingTouch"
-       width="480"
-       height="320"
-       x="0"
-       y="0"
-       objectType="MenuItem"
-       objectTouchAction="Action=None" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.21798754px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject"
-       width="155.37425"
-       height="53.849991"
-       x="320.78021"
-       y="139.32864"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=Resume,Sound=Touch.wav,Option=RemoveOwningLayer" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.19312251px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="HelpObject"
-       width="154.50223"
-       height="51.965424"
-       x="5.1220946"
-       y="259.21823"
-       objectType="MenuItem"
-       objectTouchAction="Action=AddLayer,LayerName=ConfirmQuitLayer,Sound=Touch.wav" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3370"
@@ -334,33 +299,66 @@
            height="360.62445"
            x="246.47722"
            y="26.045612" /></flowRegion><flowPara
-         id="flowPara3376" /></flowRoot>    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.20726848px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-9"
-       width="154.0688"
-       height="53.354633"
-       x="320.77039"
-       y="200.21233"
-       objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=OptionScene,Arg1=Null,Sound=Touch.wav" />
-    <rect
-       style="opacity:0.2;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.20113301px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-9-5"
-       width="152.50679"
-       height="53.354633"
-       x="320.54553"
-       y="259.0181"
-       objectType="MenuItem"
-       objectTouchAction="Action=PushScene,SceneName=HelpScene1,Arg1=Null,Sound=Touch.wav" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:1.21798754px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7"
-       width="155.37425"
-       height="53.849991"
-       x="5.165688"
-       y="198.12068"
-       objectType="MenuItem"
+         id="flowPara3376" /></flowRoot>    <image
+       y="177.84262"
+       x="302.8681"
+       id="image7253"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/pause-optionbt.png"
+       height="54"
+       width="156"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=OptionButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1.4,Period=0.85"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=PushLayer,SceneName=OptionScene,Arg1=Null,Sound=Touch.wav" />
+    <image
+       y="245.52286"
+       x="22.005096"
+       id="image7331"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/pause-quitbt.png"
+       height="54"
+       width="156"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=QuitButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1.6,Period=1.05"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=PushLayer,SceneName=ConfirmQuitLayer,Sound=Touch.wav" />
+    <image
+       y="177.84262"
+       x="22.005096"
+       id="image7393"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/pause-restartbt.png"
+       height="54"
+       width="156"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=RestartButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1.2,Period=0.65"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
        objectTouchAction="Action=None,ActionMessage=Retry,Sound=Touch.wav,Option=RemoveOwningLayer" />
+    <image
+       y="110.16238"
+       x="302.8681"
+       id="image7455"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/pause-resumebt.png"
+       height="54"
+       width="156"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=ResumeButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1,Period=0.45"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=None,ActionMessage=Resume,Sound=Touch.wav,Option=RemoveOwningLayer" />
+    <image
+       y="245.52286"
+       x="302.8681"
+       id="image7097"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/pause-helpbt.png"
+       height="54"
+       width="156"
+       objectType="Widget"
+       objectDesc="WidgetType=Label,WidgetName=HelpButtonText,Font=white34.fnt,Align=Center"
+       objectStartAction="Action=SlideIn,InitX=-1,InitY=0,Duration=1.8,Period=1.25"
+       objectEndAction="Action=SlideOut,TargetX=1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectTouchAction="Action=PushLayer,SceneName=HelpScene1,Arg1=Null,Sound=Touch.wav" />
   </g>
   <g
      inkscape:groupmode="layer"

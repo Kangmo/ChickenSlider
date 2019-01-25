@@ -8,7 +8,9 @@
 
 #import "ActionRelayer.h"
 #import "TxWidget.h"
+
 @implementation ActionRelayer
+@synthesize actionRelayListener;
 
 -(id)initRelayerWithTarget:(id)target source:(TxWidget*)source
 {
@@ -25,10 +27,12 @@
     return [[[ActionRelayer alloc] initRelayerWithTarget:target source:source] autorelease];
 }
 
-
 -(void) relayAction: (id) sender
 {
     // BUGBUG : Relay to actionListener
     [actionTarget_ onWidgetAction:actionSource_];
+    if (self.actionRelayListener) {
+        self.actionRelayListener->onActionRelay();
+    }
 }
 @end

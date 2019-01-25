@@ -66,7 +66,8 @@
         time_ = (TxLabel*) widgetContainer_->getWidget("Time").get();
         maxCombo_ = (TxLabel*) widgetContainer_->getWidget("MaxCombo").get();
         score_ = (TxIntegerLabel*) widgetContainer_->getWidget("Score").get();
-        nextStageButton_ = (TxImageArray*) widgetContainer_->getWidget("NextStageButton").get();
+        // BUGBUG : Get Next stage button
+//        nextStageButton_ = (TxImageArray*) widgetContainer_->getWidget("NextStageButton").get();
         
         starPoints_->setValue(stars);
         if ( [Util loadStarCount:m level:l] < stars ) { // Save the new star count only if the user has got more stars than the saved one.
@@ -101,8 +102,16 @@
         
         if ( lastStage ) {
             // Hide next stage button.
-            nextStageButton_->setValue(-1);
+            // BUGBUG : Hide next stage button
+            //nextStageButton_->setValue(-1);
+        } else {
+            // Unlock the next level if it exists.
+            int highestUnlockedLevel = [Util loadHighestUnlockedLevel:mapName_];
+            int newLevel = level_ + 1;
+            if (level_ == highestUnlockedLevel)
+                [Util saveHighestUnlockedLevel:mapName_ level:newLevel];
         }
+
         
         // log App analysis event.
         {
@@ -204,20 +213,11 @@
         if (lastStage_) {
             // Do nothing.
         } else {
-            // Unlock the next level if it exists.
-            int highestUnlockedLevel = [Util loadHighestUnlockedLevel:mapName_];
             int newLevel = level_ + 1;
-            if (level_ == highestUnlockedLevel)
-                [Util saveHighestUnlockedLevel:mapName_ level:newLevel];
             
             CCScene * loadingScene = [GeneralScene loadingSceneOfMap:mapName_ levelNum:newLevel];
             [[CCDirector sharedDirector] replaceScene:loadingScene];
         }
-    }
-    
-    if ( [message isEqualToString:@"Retry" ] ) {
-        CCScene * newScene = [GeneralScene loadingSceneOfMap:mapName_ levelNum:level_];
-        [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:newScene] ];
     }
     
     if ( [message isEqualToString:@"SelectStage"] )
@@ -227,6 +227,11 @@
         assert(levelMapScene);
         
         [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:levelMapScene]];
+    }
+    
+    if ( [message isEqualToString:@"Retry" ] ) {
+        CCScene * newScene = [GeneralScene loadingSceneOfMap:mapName_ levelNum:level_];
+        [[CCDirector sharedDirector] replaceScene:[Util defaultSceneTransition:newScene] ];
     }
     
     AppAnalytics::sharedAnalytics().beginEventProperty();

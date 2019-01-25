@@ -394,15 +394,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="251.72852"
-     inkscape:cy="145.32538"
+     inkscape:cx="154.82488"
+     inkscape:cy="123.10966"
      inkscape:document-units="px"
      inkscape:current-layer="layer5"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="711"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-height="709"
+     inkscape:window-x="114"
+     inkscape:window-y="49"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3179">
@@ -418,50 +418,20 @@
   </metadata>
   <g
      inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="background"
-     ignore=""
-     style="display:none">
-    <image
-       sodipodi:absref="/Users/kmkim/Games/rocknroll/rocknroll/menus/MainMenuScene.png"
-       xlink:href="MainMenuScene.png"
-       width="480"
-       height="320"
-       id="image3363"
-       x="0.71428353"
-       y="1.0899134e-06"
-       style="display:inline" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
      id="layer5"
      inkscape:label="InteractiveSprites"
      style="display:inline">
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.85837215px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7-7-9-8-4"
-       width="94.141624"
-       height="44.141628"
-       x="19.66748"
-       y="259.68753"
-       objectType="Widget"
-       objectDesc="WidgetType=ImageArray,WidgetName=SkipButtonImage,Images=skip.png,DefaultIndex=0,Align=Center" />
-    <rect
-       style="opacity:0.3;fill:#806600;stroke:#000000;stroke-width:0.85646725;display:inline"
-       id="rect3891"
-       width="480"
-       height="32"
-       x="0"
-       y="0"
-       objectType="Advertisement" />
-    <rect
-       style="opacity:0.5;fill:#ff9955;fill-rule:evenodd;stroke:#000000;stroke-width:0.97369653px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       id="StartObject-7"
-       width="103.54703"
-       height="51.640282"
-       x="15.168091"
-       y="256.14102"
-       objectType="MenuItem"
-       objectTouchAction="Action=None,ActionMessage=NextScene,Sound=Touch.wav" />
+    <image
+       y="256.78571"
+       x="21.071415"
+       id="image3528"
+       xlink:href="file:///Users/kmkim/Games/rocknroll/rocknroll/Resources/Images/skip.png"
+       height="45"
+       width="95"
+       objectDesc="WidgetType=Label,WidgetName=SkipButtonText,Font=white34.fnt,Align=Center"
+       objectEndAction="Action=SlideOut,TargetX=-1,TargetY=0,Duration=1,Period=0.45,Sleep=0"
+       objectStartAction="Action=SlideIn,InitX=1,InitY=0,Duration=1,Period=0.45"
+       objectTouchAction="Action=None,ActionMessage=NextScene,Sound=Touch.wav"
+       objectType="Widget" />
   </g>
 </svg>
